@@ -19,7 +19,6 @@ namespace Shiners.WebApp
                 .Build();
 
             host.Run();
-            // google map api AIzaSyCodwn3QiyswQJkQ_m5qBgvDynA00XHhOY
         }
     }
 }

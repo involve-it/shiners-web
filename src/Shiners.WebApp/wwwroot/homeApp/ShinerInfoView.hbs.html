@@ -1,0 +1,22 @@
+﻿<h3>{{details.title}}</h3>
+
+<p>
+    {{details.description}}
+</p>
+{{#if details.locations}}
+    {{#each details.locations}}
+    <p>
+        Адрес: {{name}}
+    </p>
+    {{/each}}
+{{/if}}
+<p class="text-center">
+    <a class="btn btn-primary" href="#">Перейти</a>
+</p>
+<p>
+    {{#each other}}
+
+        <label class="label label-info">{{key}}</label>
+
+    {{/each}}
+</p>

@@ -2,7 +2,8 @@
 "use strict";
 var webpack = require('webpack'),
     BowerWebpackPlugin = require("bower-webpack-plugin"),
-    ExtractTextPlugin = require("extract-text-webpack-plugin");;
+    ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 module.exports = {
     entry: ['./wwwroot/index.js' ],
     output: {
