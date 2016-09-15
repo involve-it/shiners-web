@@ -1,19 +1,22 @@
 ﻿import Marionette from 'backbone.marionette';
-import template from './IndexView.hbs.html';
+import Template from './IndexView.hbs.html';
 import LoadMap from 'load-google-maps-api';
 import SearchView from './SearchView.js';
 import ShinerInfoView from './ShinerInfoView.js';
+import _ from 'underscore';
 export default Marionette.View.extend({
     map:null,
     shiners:[],
     fetchTimeOut:null,
-    template:template,
+    template:Template,
     regions: {
         search:'#searchView'
     },
 
     initialize() {
+        console.info('index view is initializing');
         this.listenTo(this.collection,'after:load',this.showShiners);
+        console.info('index view is initialized');
     },
 
     onRender() {

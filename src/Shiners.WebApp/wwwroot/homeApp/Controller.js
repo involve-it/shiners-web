@@ -2,7 +2,7 @@
 var IndexView = require('./index/indexView.js');
 import PostDetailsView from './posts/DetailsView.js';
 import Marionette from 'backbone.marionette';
-
+import AsteroidModel from '../data/AsteroidModel.js'
 
 
 export default Marionette.Object.extend({
@@ -12,7 +12,10 @@ export default Marionette.Object.extend({
     },
 
     postDetails(id) {
-        app.layout.showChildView('content', new PostDetailsView({model:app.nearbyPosts}));
+        var post = new AsteroidModel({_id:id});
+        post.loadByMethod('getPost',{callback:() => {
+            app.layout.showChildView('content', new PostDetailsView({model:app.nearbyPosts}));
+        }});
     },
     createPost() {
         
