@@ -6707,7 +6707,6 @@
 	    onStart: function onStart() {
 	
 	        this.initTemplateHelpers();
-	
 	        this.asteroid = new _asteroid2.default("www.shiners.mobi", true);
 	        this.nearbyPosts = new _AsteroidCollection2.default(null, { asteroid: this.asteroid });
 	        var rootView = new _MainLayoutView2.default();
@@ -39859,17 +39858,19 @@
 	    + this.escapeExpression(((helper = (helper = helpers.key || (depth0 != null ? depth0.key : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"key","hash":{},"data":data}) : helper)))
 	    + "</label>\n\n";
 	},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-	    var stack1, alias1=this.lambda, alias2=this.escapeExpression;
+	    var stack1, helper, alias1=this.lambda, alias2=this.escapeExpression, alias3=helpers.helperMissing;
 	
 	  return "<h3>"
 	    + alias2(alias1(((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.title : stack1), depth0))
 	    + "</h3>\n<p>\n    "
-	    + alias2((helpers.moment || (depth0 && depth0.moment) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.timestamp : depth0),"YY, MMM dd",{"name":"moment","hash":{},"data":data}))
+	    + alias2((helpers.moment || (depth0 && depth0.moment) || alias3).call(depth0,(depth0 != null ? depth0.timestamp : depth0),"YY, MMM dd",{"name":"moment","hash":{},"data":data}))
 	    + "\n</p>\n<p>\n    "
 	    + alias2(alias1(((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.description : stack1), depth0))
 	    + "\n</p>\n"
 	    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.locations : stack1),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-	    + "<p class=\"text-center\">\n    <a class=\"btn btn-primary\" href=\"#\">Перейти</a>\n</p>\n<p>\n"
+	    + "<p class=\"text-center\">\n    <a class=\"btn btn-primary\" href=\"#postDetails/"
+	    + alias2(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias3),(typeof helper === "function" ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
+	    + "\">Перейти</a>\n</p>\n<p>\n"
 	    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.other : depth0),{"name":"each","hash":{},"fn":this.program(4, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
 	    + "</p>";
 	},"useData":true});
