@@ -14,10 +14,6 @@ var View = Marionette.View.extend({
     shiners:[],
     fetchTimeOut:null,
 
-    regions: {
-        search:'#searchView'
-    },
-
     initialize(){
         this.listenTo(this.collection,'after:load',this.showShiners);
     },
@@ -31,10 +27,6 @@ var View = Marionette.View.extend({
             origin: new window.google.maps.Point(0, 0),
             // The anchor for this image is the base of the flagpole at (0, 32).
             anchor: new window.google.maps.Point(0, 32)
-        };
-        var shape = {
-            coords: [1, 1, 1, 20, 18, 20, 18, 1],
-            type: 'poly'
         };
 
         this.collection.each((model) => {         
