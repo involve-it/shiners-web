@@ -21,7 +21,7 @@ let App = Backbone.Marionette.Application.extend({
     },
 
     onStart() {
-
+        console.info('app is starting');
         this.initTemplateHelpers();
         this.asteroid = new Asteroid("www.shiners.mobi",true);
         this.nearbyPosts = new Collection(null,{asteroid:this.asteroid});
@@ -29,7 +29,9 @@ let App = Backbone.Marionette.Application.extend({
         this.layout = rootView;
         this.showView(rootView);
         this.router = new Router();
+        console.info('app started');
         Backbone.history.start();
+        console.info('history started');
     }
 });
 

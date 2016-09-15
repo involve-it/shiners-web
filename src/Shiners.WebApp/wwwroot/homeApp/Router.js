@@ -1,12 +1,13 @@
-﻿import Backbone from 'backbone';
-import Marionette from 'backbone.marionette';
-import Controller from './Controller.js'
+﻿import Marionette from 'backbone.marionette';
+import Controller from './Controller.js';
 export default Marionette.AppRouter.extend({
-    
-    controller:Controller,
-    routes: {
+    initialize() {
+        console.info('init router');
+    },
+    controller: new Controller,
+    appRoutes: {
         "":"index",
-        "postDetails":"postDetails"
+        "posts/:id":"postDetails"
 
     }
 });
