@@ -5,7 +5,7 @@ export default MongoModel.extend({
     asteroid:null,
 
     initialize(attrs,options){      
-        this.asteroid = options.asteroid||null;
+        this.asteroid = (options||{}).asteroid||null;
         MongoModel.prototype.initialize.apply(this,arguments);
     },
 
@@ -17,7 +17,7 @@ export default MongoModel.extend({
             callback = opts.callback ||null,
             self=this;
         this.trigger('before:load');
-        this.asteroid.apply(method,options.args||this.id).result.then((result)=>{         
+        this.asteroid.apply(method,opts.args||this.id).result.then((result)=>{         
             if(callback)
                 callback.apply(context,arguments);
             self.set(_.isArray(result)?result[0]:result,_.omit(opts,"context","callback"));
