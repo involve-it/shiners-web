@@ -1,9 +1,9 @@
 ﻿import Backbone from 'backbone';
 import _ from 'underscore';
-import MongoModel from './MongoModel.js'
+import AsteroidModel from './AsteroidModel.js'
 export default Backbone.Collection.extend({
     
-    model:MongoModel,
+    model:AsteroidModel,
 
     asteroid:null,
 
@@ -13,6 +13,8 @@ export default Backbone.Collection.extend({
     },
 
     loadByMethod(method,args,options) {
+        if (!this.asteroid)
+            throw new Error("Asteroid instanse of this collection is not exists!");
         var opts = options || {};
         var context = opts.context||this,
             callback = opts.callback ||null,
