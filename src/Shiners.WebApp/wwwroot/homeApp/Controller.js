@@ -14,7 +14,7 @@ export default Marionette.Object.extend({
     postDetails(id) {
         var post = new AsteroidModel({_id:id});
         post.loadByMethod('getPost',{callback:() => {
-            app.layout.showChildView('content', new PostDetailsView({model:app.nearbyPosts}));
+            app.layout.showChildView('content', new PostDetailsView({model:post}));
         }});
     },
     createPost() {
