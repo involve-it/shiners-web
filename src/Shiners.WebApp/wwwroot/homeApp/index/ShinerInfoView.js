@@ -5,7 +5,7 @@ var View = Marionette.View.extend({
     template:template,
 
     onBeforeRender() {
-        
+         
     }
 });
 export default View;

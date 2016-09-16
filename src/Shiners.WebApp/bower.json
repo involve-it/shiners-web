@@ -12,5 +12,8 @@
     "jqueryui-touch-punch": "*",
     "flexslider": "2.6.0",
     "tether": "1.3.1"
+  },
+  "resolutions": {
+    "backbone": "1.3.3"
   }
 }

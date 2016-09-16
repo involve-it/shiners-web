@@ -1,18 +1,23 @@
 ﻿import app from './app.js';
-import IndexView from './index/IndexView.js';
+var IndexView = require('./index/indexView.js');
+import PostDetailsView from './posts/DetailsView.js';
 import Marionette from 'backbone.marionette';
-import AsteroidModel from '../data/AsteroidModel.js';
+import AsteroidModel from '../data/AsteroidModel.js'
+
+
 export default Marionette.Object.extend({
-    initialize: function(){
-        console.info('init controller');
-    },
     index() {
-        console.info('index route');
+        
         app.layout.showChildView('content', new IndexView({collection:app.nearbyPosts}));
     },
 
     postDetails(id) {
-        var post = new AsteroidModel({ _id: id });
-        app.layout.showChildView('content', new DetailsView({model:post}));
+        var post = new AsteroidModel({_id:id});
+        post.loadByMethod('getPost',{callback:() => {
+            app.layout.showChildView('content', new PostDetailsView({model:post}));
+        }});
+    },
+    createPost() {
+        
     }
 });
