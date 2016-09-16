@@ -14,9 +14,7 @@ export default Marionette.View.extend({
     },
 
     initialize() {
-        console.info('index view is initializing');
         this.listenTo(this.collection,'after:load',this.showShiners);
-        console.info('index view is initialized');
     },
 
     onRender() {

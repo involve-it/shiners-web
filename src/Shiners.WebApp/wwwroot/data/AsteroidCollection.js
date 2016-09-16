@@ -8,7 +8,7 @@ export default Backbone.Collection.extend({
     asteroid:null,
 
     initialize(models,options){      
-        this.asteroid = options.asteroid||null;
+        this.asteroid = (options||{}).asteroid||null;
         Backbone.Collection.prototype.initialize.apply(this,arguments);
     },
 

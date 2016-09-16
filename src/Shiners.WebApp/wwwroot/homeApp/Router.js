@@ -2,10 +2,10 @@
 import Controller from './Controller.js'
 export default Marionette.AppRouter.extend({
     
-    controller:Controller,
-    routes: {
+    controller:new Controller,
+    appRoutes: {
         "":"index",
         "posts/new":"createPost",
-        "posts:/:id":"postDetails"
+        "posts/:id":"postDetails"
     }
 });
