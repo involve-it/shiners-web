@@ -8,7 +8,8 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Shiners.Models.Domain
 {
     //таблица с сылками на изображения(сами изображения хранятся на Amazon)
-    class Image
+    //public необходимо для исподьзования в другом проекте 
+    public class Image
     {
         //Id - поле _id в таблице images(ключевое поле)
         [BsonElement("_id")]
