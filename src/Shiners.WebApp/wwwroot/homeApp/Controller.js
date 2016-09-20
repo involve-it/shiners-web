@@ -16,10 +16,9 @@ export default Marionette.Object.extend({
     },
 
     postDetails(id) {
-
         app.layout.showChildView('content', new PreloaderView());
         var post = new AsteroidModel({_id:id},{asteroid:app.asteroid});
-        window.shinersPost = post;
+        window.shinersPost = post.attributes;
         post.loadByMethod('getPost',{
             callback:() => app.layout.showChildView('content', new PostDetailsView({model:post}))
         });

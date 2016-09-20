@@ -1,17 +1,17 @@
 ﻿<section class="page-header page-header-xs">
     <div class="container">
-        <h1>{{title}}</h1>
-        <span class="font-lato size-18 weight-300">{{moment timestamp "YY, MMM dd"}}</span>
+        <h1>{{details.title}}</h1>
+        <span class="font-lato size-18 weight-300">{{moment timestamp "humanize"}}</span>
 
         <!-- breadcrumbs -->
         <ol class="breadcrumb">
-            <li><a href="#/">Главная</a></li>
-            <li><a href="#/posts">Объявления</a></li>
+            <li><a href="/">Главная</a></li>
+            <li><a href="/posts">Объявления</a></li>
             <li class="active">{{details.title}}</li>
         </ol><!-- /breadcrumbs -->
     </div>
 </section>
-<!-- -->
+
 <section>
     <div class="container">
         <!-- OWL SLIDER -->
@@ -31,44 +31,42 @@
         <!-- /OWL SLIDER -->
     </div>
 </section>
-<!-- / -->
-<!-- -->
+
 <section>
     <div class="container">
-
         <div class="row nomargin">
-
             <div class="col-md-8 col-sm-8">
-
                 <!-- Subtitle -->
                 <div class="heading-title heading-border">
                     <h2>Описание <span>объявления</span></h2>
-
                     <ul class="list-inline categories nomargin">
                         <li><a href="#">Photography</a></li>
                         <li><a href="#">Design</a></li>
                     </ul>
-
                 </div>
                 <!-- /Subtitle -->              
                 <p class="font-lato size-18">{{details.description}}</p>
-
             </div>
 
             <div class="col-md-4 col-sm-4">
-
                 <div class="panel panel-default">
                     <div class="panel-body">
-
                         <p class="font-lato size-18">Integer posuere erat a ante venenatis dapibus posuere velit aliquet nulla sed consectetur.</p>
-
                         <ul class="portfolio-detail-list list-unstyled nomargin">
                             <li><span><i class="fa fa-user"></i>Author:</span> Smarty Inc.</li>
                             <li><span><i class="fa fa-calendar"></i>Released:</span> 29th June 2015</li>
                             <li><span><i class="fa fa-lightbulb-o"></i>Technologies:</span> HTML / CSS / JAVASCRIPT</li>
                             <li><span><i class="fa fa-link"></i>Website:</span> <a href="#">www.stepofweb.com</a></li>
+                            {{#if details.locations}}
+                            {{#each details.locations}}
+                            <li>
+                                <span>
+                                    <i class="fa fa-map-marker"></i>{{name}}
+                                </span>
+                            </li>
+                            {{/each}}
+                            {{/if}}
                         </ul>
-
                     </div>
 
                     <div class="panel-footer">

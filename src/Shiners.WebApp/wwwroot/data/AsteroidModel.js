@@ -19,9 +19,9 @@ export default MongoModel.extend({
         this.trigger('before:load');
         this.asteroid.apply(method,opts.args||[this.id]).result.then((result)=>{ 
             if (result && result.success) {
+                self.set(result.result, _.omit(opts, "context", "callback"));
                 if (callback)
                     callback.apply(context, arguments);
-                self.set(result.result, _.omit(opts, "context", "callback"));
                 self.trigger('after:load', result);
             } else if(result.error) {
                 throw new Error("Fetch fail from meteor! Error Id: " + result.error.errorId);

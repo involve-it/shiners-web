@@ -78,6 +78,7 @@ namespace Shiners.WebApp
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute("posts", "Posts/{id?}",new {controller="Posts",action="Index"});
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

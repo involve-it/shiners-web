@@ -11,6 +11,8 @@ export default Marionette.AppRouter.extend({
     appRoutes: {
         "":"index",
         "posts/new":"createPost",
-        "posts/:id":"postDetails"
+        "posts/:id":"postDetails",
+        "Posts/new":"createPost",
+        "Posts/:id":"postDetails"
     }
 });
