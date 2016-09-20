@@ -17,11 +17,17 @@ export default MongoModel.extend({
             callback = opts.callback ||null,
             self=this;
         this.trigger('before:load');
-        this.asteroid.apply(method,opts.args||this.id).result.then((result)=>{         
-            if(callback)
-                callback.apply(context,arguments);
-            self.set(_.isArray(result)?result[0]:result,_.omit(opts,"context","callback"));
-            self.trigger('after:load',result);
+        this.asteroid.apply(method,opts.args||[this.id]).result.then((result)=>{ 
+            if (result && result.success) {
+                if (callback)
+                    callback.apply(context, arguments);
+                self.set(result.result, _.omit(opts, "context", "callback"));
+                self.trigger('after:load', result);
+            } else if(result.error) {
+                throw new Error("Fetch fail from meteor! Error Id: " + result.error.errorId);
+            }          
+        }).catch(err => {
+            throw new Error("Fetch fail from meteor! Custom access error: " + err);
         });
     }
 });

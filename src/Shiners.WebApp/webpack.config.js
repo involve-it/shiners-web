@@ -11,7 +11,7 @@ module.exports = {
         filename: "bundle.js"
     },
     resolve: {
-        modulesDirectories: ["wwwroot/lib", "node_modules"]
+        modulesDirectories: ["node_modules"]
     },
     plugins: [
                     new BowerWebpackPlugin({
@@ -24,9 +24,7 @@ module.exports = {
                     new webpack.ProvidePlugin({
                         $: "jquery",
                         jQuery: "jquery",
-                        "window.jQuery": "jquery",
-                        JQuery: "jquery",
-                        "window.JQuery": "jquery"
+                        JQuery: "jquery"
                         //'window.Tether': "tether",
                         //'Tether': "tether"
                     })
