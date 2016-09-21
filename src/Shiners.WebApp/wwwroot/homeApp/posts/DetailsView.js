@@ -1,169 +1,155 @@
 ﻿import Marionette from 'backbone.marionette';
 import template from './DetailsView.hbs.html';
-
+import '../../lib/owl-carousel/owl.carousel.min.js';
 var View = Marionette.View.extend({
     
     template:template,
 
-    onBeforeRender() {
-        console.info(this.model.toJSON());
-    },
-
     onAttach() {
-        this.initCarusel();
+        this.initCarousel('#postImages');
+        this.initCarousel('#relatedPosts');
     },
 
-    initCarusel() {
-        if(_container.length > 0) {
+    initCarousel(el) {
 
-            loadScript(plugin_path + 'owl-carousel/owl.carousel.min.js', function() {
+        var slider 		= this.$(el);
+        var options 	= slider.attr('data-plugin-options');
 
-                _container.each(function() {
+        // Progress Bar
+        var $opt = eval('(' + options + ')');  // convert text to json
 
-                    var slider 		= jQuery(this);
-                    var options 	= slider.attr('data-plugin-options');
+        if($opt.progressBar == 'true') {
+            var afterInit = progressBar;
+        } else {
+            var afterInit = false;
+        }
 
-                    // Progress Bar
-                    var $opt = eval('(' + options + ')');  // convert text to json
+        var defaults = {
+            items: 					5,
+            itemsCustom: 			false,
+            itemsDesktop: 			[1199,4],
+            itemsDesktopSmall: 		[980,3],
+            itemsTablet: 			[768,2],
+            itemsTabletSmall: 		false,
+            itemsMobile: 			[479,1],
+            singleItem: 			true,
+            itemsScaleUp: 			false,
 
-                    if($opt.progressBar == 'true') {
-                        var afterInit = progressBar;
-                    } else {
-                        var afterInit = false;
-                    }
+            slideSpeed: 			200,
+            paginationSpeed: 		800,
+            rewindSpeed: 			1000,
 
-                    var defaults = {
-                        items: 					5,
-                        itemsCustom: 			false,
-                        itemsDesktop: 			[1199,4],
-                        itemsDesktopSmall: 		[980,3],
-                        itemsTablet: 			[768,2],
-                        itemsTabletSmall: 		false,
-                        itemsMobile: 			[479,1],
-                        singleItem: 			true,
-                        itemsScaleUp: 			false,
+            autoPlay: 				false,
+            stopOnHover: 			false,
 
-                        slideSpeed: 			200,
-                        paginationSpeed: 		800,
-                        rewindSpeed: 			1000,
+            navigation: 			false,
+            navigationText: [
+                                '<i class="fa fa-angle-left"></i>',
+                                '<i class="fa fa-angle-right"></i>'
+            ],
+            rewindNav: 				true,
+            scrollPerPage: 			false,
 
-                        autoPlay: 				false,
-                        stopOnHover: 			false,
+            pagination: 			true,
+            paginationNumbers: 		false,
 
-                        navigation: 			false,
-                        navigationText: [
-											'<i class="fa fa-angle-left"></i>',
-											'<i class="fa fa-angle-right"></i>'
-                        ],
-                        rewindNav: 				true,
-                        scrollPerPage: 			false,
+            responsive: 			true,
+            responsiveRefreshRate: 	200,
+            responsiveBaseWidth: 	window,
 
-                        pagination: 			true,
-                        paginationNumbers: 		false,
+            baseClass: 				"owl-carousel",
+            theme: 					"owl-theme",
 
-                        responsive: 			true,
-                        responsiveRefreshRate: 	200,
-                        responsiveBaseWidth: 	window,
+            lazyLoad: 				false,
+            lazyFollow: 			true,
+            lazyEffect: 			"fade",
 
-                        baseClass: 				"owl-carousel",
-                        theme: 					"owl-theme",
+            autoHeight: 			false,
 
-                        lazyLoad: 				false,
-                        lazyFollow: 			true,
-                        lazyEffect: 			"fade",
+            jsonPath: 				false,
+            jsonSuccess: 			false,
 
-                        autoHeight: 			false,
+            dragBeforeAnimFinish: 	true,
+            mouseDrag: 				true,
+            touchDrag: 				true,
 
-                        jsonPath: 				false,
-                        jsonSuccess: 			false,
+            transitionStyle: 		false,
 
-                        dragBeforeAnimFinish: 	true,
-                        mouseDrag: 				true,
-                        touchDrag: 				true,
+            addClassActive: 		false,
 
-                        transitionStyle: 		false,
+            beforeUpdate: 			false,
+            afterUpdate: 			false,
+            beforeInit: 			false,
+            afterInit: 				afterInit,
+            beforeMove: 			false,
+            afterMove: 				(afterInit == false) ? false : moved,
+            afterAction: 			false,
+            startDragging: 			false,
+            afterLazyLoad: 			false
+        }
 
-                        addClassActive: 		false,
+        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+        slider.owlCarousel(config).addClass("owl-carousel-init");
 
-                        beforeUpdate: 			false,
-                        afterUpdate: 			false,
-                        beforeInit: 			false,
-                        afterInit: 				afterInit,
-                        beforeMove: 			false,
-                        afterMove: 				(afterInit == false) ? false : moved,
-                        afterAction: 			false,
-                        startDragging: 			false,
-                        afterLazyLoad: 			false
-                    }
-
-                    var config = jQuery.extend({}, defaults, options, slider.data("plugin-options"));
-                    slider.owlCarousel(config).addClass("owl-carousel-init");
-					
-
-                    // Progress Bar
-                    var elem = jQuery(this);
-
-                    //Init progressBar where elem is $("#owl-demo")
-                    function progressBar(elem){
-                        $elem = elem;
-                        //build progress bar elements
-                        buildProgressBar();
-                        //start counting
-                        start();
-                    }
+        function progressBar(elem){
+            $elem = elem;
+            //build progress bar elements
+            buildProgressBar();
+            //start counting
+            start();
+        }
 				 
-                    //create div#progressBar and div#bar then prepend to $("#owl-demo")
-                    function buildProgressBar(){
-                        $progressBar = jQuery("<div>",{
-                            id:"progressBar"
-                        });
-                        $bar = jQuery("<div>",{
-                            id:"bar"
-                        });
-                        $progressBar.append($bar).prependTo($elem);
-                    }
+        //create div#progressBar and div#bar then prepend to $("#owl-demo")
+        function buildProgressBar(){
+            $progressBar = $("<div>",{
+                id:"progressBar"
+            });
+            $bar = $("<div>",{
+                id:"bar"
+            });
+            $progressBar.append($bar).prependTo($elem);
+        }
 
-                    function start() {
-                        //reset timer
-                        percentTime = 0;
-                        isPause = false;
-                        //run interval every 0.01 second
-                        tick = setInterval(interval, 10);
-                    };
+        function start() {
+            //reset timer
+            percentTime = 0;
+            isPause = false;
+            //run interval every 0.01 second
+            tick = setInterval(interval, 10);
+        };
 
 			 
-                    var time = 7; // time in seconds
-                    function interval() {
-                        if(isPause === false){
-                            percentTime += 1 / time;
-                            $bar.css({
-                                width: percentTime+"%"
-                            });
-                            //if percentTime is equal or greater than 100
-                            if(percentTime >= 100){
-                                //slide to next item 
-                                $elem.trigger('owl.next')
-                            }
-                        }
-                    }
-				 
-                    //pause while dragging 
-                    function pauseOnDragging(){
-                        isPause = true;
-                    }
-				 
-                    //moved callback
-                    function moved(){
-                        //clear interval
-                        clearTimeout(tick);
-                        //start again
-                        start();
-                    }
-
+        var time = 7; // time in seconds
+        function interval() {
+            if(isPause === false){
+                percentTime += 1 / time;
+                $bar.css({
+                    width: percentTime+"%"
                 });
-
-            });
+                //if percentTime is equal or greater than 100
+                if(percentTime >= 100){
+                    //slide to next item 
+                    $elem.trigger('owl.next')
+                }
+            }
         }
+				 
+        //pause while dragging 
+        function pauseOnDragging(){
+            isPause = true;
+        }
+				 
+        //moved callback
+        function moved(){
+            //clear interval
+            clearTimeout(tick);
+            //start again
+            start();
+        }
+    },
+
+    initRelatedCarousel() {
+        
     }
 });
 export default View;
