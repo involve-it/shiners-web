@@ -4,6 +4,7 @@
 /// <reference path="data/asteroidcollection.js" />
 /// <reference path="data/asteroidmodel.js" />
 /// <reference path="data/mongomodel.js" />
+/// <reference path="homeapp/about/aboutview.js" />
 /// <reference path="homeApp/app.js" />
 /// <reference path="homeapp/bannerview.js" />
 /// <reference path="homeapp/controller.js" />
