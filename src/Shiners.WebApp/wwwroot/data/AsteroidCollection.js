@@ -20,11 +20,13 @@ export default Backbone.Collection.extend({
             callback = opts.callback ||null,
             self=this;
         this.trigger('before:load');
-        this.asteroid.apply(method,args).result.then((result)=>{         
-            if(callback)
-                callback.apply(context,arguments);
+        var result = this.asteroid.apply(method, args).result;
+        result.then((result)=>{  
             self.set(result,_.omit(opts,"context","callback"));
+            if(callback)
+                callback.apply(context,arguments);           
             self.trigger('after:load',result);
         });
+        return this.asteroid.apply(method, args).result;
     }
 });

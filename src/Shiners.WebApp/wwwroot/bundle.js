@@ -16219,7 +16219,7 @@
 	var Handlebars = __webpack_require__(/*! ./~/handlebars/runtime.js */ 49);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-	    return "<div id=\"header\" class=\"sticky clearfix\">\r\n    <!-- TOP NAV -->\r\n    <header id=\"topNav\">\r\n        <div class=\"container\">\r\n            <!-- Mobile Menu Button -->\r\n            <button class=\"btn btn-mobile\" data-toggle=\"collapse\" data-target=\".nav-main-collapse\">\r\n                <i class=\"fa fa-bars\"></i>\r\n            </button>\r\n            <!-- BUTTONS -->\r\n            <ul class=\"pull-right nav nav-pills nav-second-main\">\r\n                <!-- QUICK SHOP CART -->\r\n                <li class=\"quick-cart\">\r\n                    <a href=\"#\">\r\n                        <i class=\"fa fa-sign-in\"></i>\r\n                    </a>\r\n                    <div class=\"quick-cart-box\">\r\n                        <h4>Авторизация</h4>\r\n                        <div class=\"quick-cart-wrapper\">\r\n\r\n                        </div>\r\n                    </div>\r\n                </li>\r\n            </ul>\r\n\r\n            <a class=\"logo pull-left\" href=\"/\">\r\n                <img src=\"/images/logo_dark.png\" alt=\"\" /> <!-- light logo -->\r\n                <img src=\"/images/logo_dark.png\" alt=\"\" /> <!-- dark logo -->\r\n            </a>\r\n\r\n            <div class=\"navbar-collapse pull-right nav-main-collapse collapse submenu-dark\">\r\n                <nav class=\"nav-main\">\r\n                    <ul id=\"topMain\" class=\"nav nav-pills nav-main\">\r\n                        <li class=\"active\">\r\n                            <!-- HOME -->\r\n                            <a href=\"#\">ГЛАВНАЯ</a>\r\n                        </li>\r\n                        <li>\r\n                            <!-- PAGES -->\r\n                            <a href=\"#\">\r\n                                КАК ЭТО РАБОТАЕТ\r\n                            </a>\r\n                        </li>\r\n                        <li>\r\n                            <!-- FEATURES -->\r\n                            <a href=\"#\">\r\n                                ПОМОЩЬ\r\n                            </a>\r\n                        </li>\r\n                        <li>\r\n                            <!-- FEATURES -->\r\n                            <a href=\"#\">\r\n                                О САЙТЕ\r\n                            </a>\r\n                        </li>\r\n                    </ul>\r\n                </nav>\r\n            </div>\r\n        </div>\r\n    </header>\r\n</div>\r\n\r\n<div id=\"appBanner\"></div>\r\n<div id=\"appMap\"></div>\r\n<div id=\"appContent\"></div>\r\n\r\n<footer id=\"footer\">\r\n    <div class=\"copyright\">\r\n        <div class=\"container\">\r\n            <ul class=\"pull-right nomargin list-inline mobile-block\">\r\n                <li><a href=\"#\">Термины &amp; Соглашения</a></li>\r\n                <li>•</li>\r\n                <li><a href=\"#\">Пользовательское соглашение</a></li>\r\n            </ul>\r\n            &copy; Все права защищены, Shiners\r\n        </div>\r\n    </div>\r\n</footer>\r\n<!-- SCROLL TO TOP -->\r\n<a href=\"#\" id=\"toTop\"></a>\r\n";
+	    return "<div id=\"header\" class=\"sticky clearfix\">\n    <!-- TOP NAV -->\n    <header id=\"topNav\">\n        <div class=\"container\">\n            <!-- Mobile Menu Button -->\n            <button class=\"btn btn-mobile\" data-toggle=\"collapse\" data-target=\".nav-main-collapse\">\n                <i class=\"fa fa-bars\"></i>\n            </button>\n            <!-- BUTTONS -->\n            <ul class=\"pull-right nav nav-pills nav-second-main\">\n                <!-- QUICK SHOP CART -->\n                <li class=\"quick-cart\">\n                    <a href=\"#\">\n                        <i class=\"fa fa-sign-in\"></i>\n                    </a>\n                    <div class=\"quick-cart-box\">\n                        <h4>Авторизация</h4>\n                        <div class=\"quick-cart-wrapper\">\n\n                        </div>\n                    </div>\n                </li>\n            </ul>\n\n            <a class=\"logo pull-left\" href=\"/\">\n                <img src=\"/images/logo_dark.png\" alt=\"\" /> <!-- light logo -->\n                <img src=\"/images/logo_dark.png\" alt=\"\" /> <!-- dark logo -->\n            </a>\n\n            <div class=\"navbar-collapse pull-right nav-main-collapse collapse submenu-dark\">\n                <nav class=\"nav-main\">\n                    <ul id=\"topMain\" class=\"nav nav-pills nav-main\">\n                        <li class=\"active\">\n                            <!-- HOME -->\n                            <a href=\"#\">ГЛАВНАЯ</a>\n                        </li>\n                        <li>\n                            <!-- PAGES -->\n                            <a href=\"#\">\n                                КАК ЭТО РАБОТАЕТ\n                            </a>\n                        </li>\n                        <li>\n                            <!-- FEATURES -->\n                            <a href=\"#\">\n                                ПОМОЩЬ\n                            </a>\n                        </li>\n                        <li>\n                            <!-- FEATURES -->\n                            <a href=\"#\">\n                                О САЙТЕ\n                            </a>\n                        </li>\n                    </ul>\n                </nav>\n            </div>\n        </div>\n    </header>\n</div>\n\n<div id=\"appBanner\"></div>\n<div id=\"appMap\"></div>\n<div id=\"appContent\"></div>\n\n<footer id=\"footer\">\n    <div class=\"copyright\">\n        <div class=\"container\">\n            <ul class=\"pull-right nomargin list-inline mobile-block\">\n                <li><a href=\"#\">Термины &amp; Соглашения</a></li>\n                <li>•</li>\n                <li><a href=\"#\">Пользовательское соглашение</a></li>\n            </ul>\n            &copy; Все права защищены, Shiners\n        </div>\n    </div>\n</footer>\n<!-- SCROLL TO TOP -->\n<a href=\"#\" id=\"toTop\"></a>\n";
 	},"useData":true});
 
 /***/ },
@@ -16962,7 +16962,7 @@
   \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -17058,6 +17058,7 @@
 	    initMap: function initMap() {
 	        var _this2 = this;
 	
+	        // AIzaSyB6JoRSeKMn_yjz3Oip84N9YhX7B6djHLA - api key geolocation
 	        (0, _loadGoogleMapsApi2.default)({ key: 'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY' }).then(_underscore2.default.bind(function (maps) {
 	            _this2.map = new maps.Map(document.getElementById('map2'), {
 	                center: { lat: 55.75396, lng: 37.620393 },
@@ -17065,13 +17066,30 @@
 	                scrollwheel: false
 	            });
 	            _this2.map.addListener('bounds_changed', _underscore2.default.bind(_this2.onBoundsChange, _this2));
-	
-	            if (navigator.geolocation) {
-	                navigator.geolocation.getCurrentPosition(_underscore2.default.bind(_this2.setMapPosition, _this2), _underscore2.default.bind(_this2.setMapPosition, _this2, { coords: { latitude: 55.75396, longitude: 37.620395 } }));
-	            } else {
-	                _this2.fetchPosts();
-	            }
+	            _this2.geolocation();
+	            //if (navigator.geolocation) {
+	            //    navigator.geolocation.getCurrentPosition( _.bind(this.setMapPosition,this),  _.bind(this.setMapPosition,this,{ coords: {latitude:55.75396,longitude:37.620395} }));
+	            //} else {
+	            //    this.fetchPosts();
+	            //}
 	        }, this));
+	    },
+	    geolocation: function geolocation() {
+	        var _this3 = this;
+	
+	        $.ajax({
+	            dataType: "json",
+	            url: 'https://www.googleapis.com/geolocation/v1/geolocate',
+	            data: { key: 'AIzaSyB6JoRSeKMn_yjz3Oip84N9YhX7B6djHLA' },
+	            context: this
+	        }).done(function (resp) {
+	            if (resp.location) {
+	                _this3.map.setCenter(resp.location);
+	            } else {
+	                _this3.fetchPosts();
+	                console.error('geolocation not working');
+	            }
+	        });
 	    },
 	    setMapPosition: function setMapPosition(position) {
 	        var pos = {
@@ -17081,11 +17099,11 @@
 	        this.map.setCenter(pos);
 	    },
 	    onBoundsChange: function onBoundsChange() {
-	        var _this3 = this;
+	        var _this4 = this;
 	
 	        if (this.fetchTimeOut) clearTimeout(this.fetchTimeOut);
 	        this.fetchTimeOut = setTimeout(_underscore2.default.bind(function () {
-	            _this3.fetchPosts();
+	            _this4.fetchPosts();
 	        }, this), 500);
 	    },
 	    fetchPosts: function fetchPosts() {
@@ -17096,6 +17114,7 @@
 	    }
 	});
 	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 2)))
 
 /***/ },
 /* 57 */
@@ -17107,7 +17126,7 @@
 	var Handlebars = __webpack_require__(/*! ./~/handlebars/runtime.js */ 49);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-	    return "<div id=\"map2\" class=\"contact-over-map\"></div>\r\n<div class=\"container-fluid\" id=\"searchView\">\r\n</div>";
+	    return "<div id=\"map2\" class=\"contact-over-map\"></div>\n<div class=\"container-fluid\" id=\"searchView\">\n</div>";
 	},"useData":true});
 
 /***/ },
@@ -17174,7 +17193,7 @@
 	var Handlebars = __webpack_require__(/*! ./~/handlebars/runtime.js */ 49);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-	    return "\r\n<h3 class=\"size-20\">Поиск по объявлениям</h3>\r\n<form enctype=\"multipart/form-data\" method=\"post\" action=\"php/contact.php\">\r\n    <fieldset>\r\n        <input type=\"hidden\" value=\"contact_send\" name=\"action\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12 margin-bottom-20\">\r\n                <div class=\"fancy-form\">\r\n                    <!-- input -->\r\n                    <i class=\"fa fa-search\"></i>\r\n                    <input type=\"text\" placeholder=\"Поиск...\" class=\"form-control\">\r\n                    <span class=\"fancy-tooltip top-left\">\r\n                        <!-- positions: .top-left | .top-right -->\r\n                        <em>Свободный поиск по словам</em>\r\n                    </span>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-12 margin-bottom-20\">\r\n                <select class=\"form-control select2\">\r\n                    <option value=\"\">--- Все категории ---</option>\r\n                    <option value=\"1\">Встречи</option>\r\n                    <option value=\"2\">Услуги</option>\r\n                    <option value=\"3\">Товары</option>\r\n                    <option value=\"4\">Прогулки</option>\r\n                </select>\r\n            </div>\r\n\r\n            <div class=\"col-md-12 margin-bottom-20\">\r\n                <label class=\"switch switch-primary switch-round\">\r\n                    <input type=\"checkbox\" checked=\"\">\r\n                    <span data-off=\"НЕТ\" data-on=\"ДА\" class=\"switch-label\"></span>\r\n                    <span> Только живые посты?</span>\r\n                </label>\r\n            </div>\r\n            <div class=\"col-md-12 margin-bottom-20\">\r\n                <div class=\"margin-bottom-10\">\r\n                    <label for=\"bedrooms\">Радиус поиска (км):</label>\r\n                    <input type=\"hidden\" name=\"bedrooms\" id=\"bedrooms\" class=\"form-control\"> <!-- hidden input -->\r\n                </div>\r\n                <div class=\"slider-wrapper info-slider\">\r\n                    <div id=\"slider3\"></div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </fieldset>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <button class=\"btn btn-primary btn-block\" type=\"submit\"><i class=\"fa fa-search\"></i> Найти</button>\r\n        </div>\r\n    </div>\r\n</form>";
+	    return "\n<h3 class=\"size-20\">Поиск по объявлениям</h3>\n<form enctype=\"multipart/form-data\" method=\"post\" action=\"php/contact.php\">\n    <fieldset>\n        <input type=\"hidden\" value=\"contact_send\" name=\"action\">\n        <div class=\"row\">\n            <div class=\"col-md-12 margin-bottom-20\">\n                <div class=\"fancy-form\">\n                    <!-- input -->\n                    <i class=\"fa fa-search\"></i>\n                    <input type=\"text\" placeholder=\"Поиск...\" class=\"form-control\">\n                    <span class=\"fancy-tooltip top-left\">\n                        <!-- positions: .top-left | .top-right -->\n                        <em>Свободный поиск по словам</em>\n                    </span>\n                </div>\n            </div>\n            <div class=\"col-md-12 margin-bottom-20\">\n                <select class=\"form-control select2\">\n                    <option value=\"\">--- Все категории ---</option>\n                    <option value=\"1\">Встречи</option>\n                    <option value=\"2\">Услуги</option>\n                    <option value=\"3\">Товары</option>\n                    <option value=\"4\">Прогулки</option>\n                </select>\n            </div>\n\n            <div class=\"col-md-12 margin-bottom-20\">\n                <label class=\"switch switch-primary switch-round\">\n                    <input type=\"checkbox\" checked=\"\">\n                    <span data-off=\"НЕТ\" data-on=\"ДА\" class=\"switch-label\"></span>\n                    <span> Только живые посты?</span>\n                </label>\n            </div>\n            <div class=\"col-md-12 margin-bottom-20\">\n                <div class=\"margin-bottom-10\">\n                    <label for=\"bedrooms\">Радиус поиска (км):</label>\n                    <input type=\"hidden\" name=\"bedrooms\" id=\"bedrooms\" class=\"form-control\"> <!-- hidden input -->\n                </div>\n                <div class=\"slider-wrapper info-slider\">\n                    <div id=\"slider3\"></div>\n                </div>\n            </div>\n\n        </div>\n    </fieldset>\n    <div class=\"row\">\n        <div class=\"col-md-12\">\n            <button class=\"btn btn-primary btn-block\" type=\"submit\"><i class=\"fa fa-search\"></i> Найти</button>\n        </div>\n    </div>\n</form>";
 	},"useData":true});
 
 /***/ },
@@ -17214,7 +17233,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 9)();
-	exports.push([module.id, "/*! jQuery-ui-Slider-Pips - v1.11.4 - 2016-09-04\r\n* Copyright (c) 2016 Simon Goellner <simey.me@gmail.com>; Licensed MIT */\r\n\r\n.ui-slider-horizontal.ui-slider-pips{margin-bottom:1.4em}.ui-slider-pips .ui-slider-label,.ui-slider-pips .ui-slider-pip-hide{display:none}.ui-slider-pips .ui-slider-pip-label .ui-slider-label{display:block}.ui-slider-pips .ui-slider-pip{width:2em;height:1em;line-height:1em;position:absolute;font-size:0.8em;color:#999;overflow:visible;text-align:center;top:20px;left:20px;margin-left:-1em;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.ui-state-disabled.ui-slider-pips .ui-slider-pip{cursor:default}.ui-slider-pips .ui-slider-line{background:#999;width:1px;height:3px;position:absolute;left:50%}.ui-slider-pips .ui-slider-label{position:absolute;top:5px;left:50%;margin-left:-1em;width:2em}.ui-slider-pips:not(.ui-slider-disabled) .ui-slider-pip:hover .ui-slider-label{color:black;font-weight:bold}.ui-slider-vertical.ui-slider-pips{margin-bottom:1em;margin-right:2em}.ui-slider-vertical.ui-slider-pips .ui-slider-pip{text-align:left;top:auto;left:20px;margin-left:0;margin-bottom:-0.5em}.ui-slider-vertical.ui-slider-pips .ui-slider-line{width:3px;height:1px;position:absolute;top:50%;left:0}.ui-slider-vertical.ui-slider-pips .ui-slider-label{top:50%;left:0.5em;margin-left:0;margin-top:-0.5em;width:2em}.ui-slider-float .ui-slider-handle:focus,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip-label .ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label{outline:none}.ui-slider-float .ui-slider-tip,.ui-slider-float .ui-slider-tip-label{position:absolute;visibility:hidden;top:-40px;display:block;width:34px;margin-left:-18px;left:50%;height:20px;line-height:20px;background:white;border-radius:3px;border:1px solid #888;text-align:center;font-size:12px;opacity:0;color:#333;-webkit-transition-property:opacity, top, visibility;transition-property:opacity, top, visibility;-webkit-transition-timing-function:ease-in;transition-timing-function:ease-in;-webkit-transition-duration:200ms, 200ms, 0ms;transition-duration:200ms, 200ms, 0ms;-webkit-transition-delay:0ms, 0ms, 200ms;transition-delay:0ms, 0ms, 200ms}.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{opacity:1;top:-30px;visibility:visible;-webkit-transition-timing-function:ease-out;transition-timing-function:ease-out;-webkit-transition-delay:200ms, 200ms, 0ms;transition-delay:200ms, 200ms, 0ms}.ui-slider-float .ui-slider-pip .ui-slider-tip-label{top:42px}.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:32px;font-weight:normal}.ui-slider-float .ui-slider-tip:after,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#fff;position:absolute;bottom:-10px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-tip:before,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#888;position:absolute;bottom:-11px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-bottom-color:#fff;top:-10px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-bottom-color:#888;top:-11px}.ui-slider-vertical.ui-slider-float .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-tip-label{top:50%;margin-top:-11px;width:34px;margin-left:0px;left:-60px;color:#333;-webkit-transition-duration:200ms, 200ms, 0;transition-duration:200ms, 200ms, 0;-webkit-transition-property:opacity, left, visibility;transition-property:opacity, left, visibility;-webkit-transition-delay:0, 0, 200ms;transition-delay:0, 0, 200ms}.ui-slider-vertical.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:50%;margin-top:-11px;left:-50px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label{left:47px}.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{left:37px}.ui-slider-vertical.ui-slider-float .ui-slider-tip:after,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-left-color:#fff;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-10px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-tip:before,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-left-color:#888;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-11px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-right-color:#fff;right:auto;left:-10px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-right-color:#888;right:auto;left:-11px}.ui-slider-pips [class*=ui-slider-pip-initial]{font-weight:bold;color:#14CA82}.ui-slider-pips .ui-slider-pip-initial-2{color:#1897C9}.ui-slider-pips [class*=ui-slider-pip-selected]{font-weight:bold;color:#FF7A00}.ui-slider-pips .ui-slider-pip-inrange{color:black}.ui-slider-pips .ui-slider-pip-selected-2{color:#E70081}.ui-slider-pips [class*=ui-slider-pip-selected] .ui-slider-line,.ui-slider-pips .ui-slider-pip-inrange .ui-slider-line{background:black}\r\n", ""]);
+	exports.push([module.id, "/*! jQuery-ui-Slider-Pips - v1.11.4 - 2016-09-04\n* Copyright (c) 2016 Simon Goellner <simey.me@gmail.com>; Licensed MIT */\n\n.ui-slider-horizontal.ui-slider-pips{margin-bottom:1.4em}.ui-slider-pips .ui-slider-label,.ui-slider-pips .ui-slider-pip-hide{display:none}.ui-slider-pips .ui-slider-pip-label .ui-slider-label{display:block}.ui-slider-pips .ui-slider-pip{width:2em;height:1em;line-height:1em;position:absolute;font-size:0.8em;color:#999;overflow:visible;text-align:center;top:20px;left:20px;margin-left:-1em;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.ui-state-disabled.ui-slider-pips .ui-slider-pip{cursor:default}.ui-slider-pips .ui-slider-line{background:#999;width:1px;height:3px;position:absolute;left:50%}.ui-slider-pips .ui-slider-label{position:absolute;top:5px;left:50%;margin-left:-1em;width:2em}.ui-slider-pips:not(.ui-slider-disabled) .ui-slider-pip:hover .ui-slider-label{color:black;font-weight:bold}.ui-slider-vertical.ui-slider-pips{margin-bottom:1em;margin-right:2em}.ui-slider-vertical.ui-slider-pips .ui-slider-pip{text-align:left;top:auto;left:20px;margin-left:0;margin-bottom:-0.5em}.ui-slider-vertical.ui-slider-pips .ui-slider-line{width:3px;height:1px;position:absolute;top:50%;left:0}.ui-slider-vertical.ui-slider-pips .ui-slider-label{top:50%;left:0.5em;margin-left:0;margin-top:-0.5em;width:2em}.ui-slider-float .ui-slider-handle:focus,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip-label .ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label{outline:none}.ui-slider-float .ui-slider-tip,.ui-slider-float .ui-slider-tip-label{position:absolute;visibility:hidden;top:-40px;display:block;width:34px;margin-left:-18px;left:50%;height:20px;line-height:20px;background:white;border-radius:3px;border:1px solid #888;text-align:center;font-size:12px;opacity:0;color:#333;-webkit-transition-property:opacity, top, visibility;transition-property:opacity, top, visibility;-webkit-transition-timing-function:ease-in;transition-timing-function:ease-in;-webkit-transition-duration:200ms, 200ms, 0ms;transition-duration:200ms, 200ms, 0ms;-webkit-transition-delay:0ms, 0ms, 200ms;transition-delay:0ms, 0ms, 200ms}.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{opacity:1;top:-30px;visibility:visible;-webkit-transition-timing-function:ease-out;transition-timing-function:ease-out;-webkit-transition-delay:200ms, 200ms, 0ms;transition-delay:200ms, 200ms, 0ms}.ui-slider-float .ui-slider-pip .ui-slider-tip-label{top:42px}.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:32px;font-weight:normal}.ui-slider-float .ui-slider-tip:after,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#fff;position:absolute;bottom:-10px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-tip:before,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#888;position:absolute;bottom:-11px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-bottom-color:#fff;top:-10px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-bottom-color:#888;top:-11px}.ui-slider-vertical.ui-slider-float .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-tip-label{top:50%;margin-top:-11px;width:34px;margin-left:0px;left:-60px;color:#333;-webkit-transition-duration:200ms, 200ms, 0;transition-duration:200ms, 200ms, 0;-webkit-transition-property:opacity, left, visibility;transition-property:opacity, left, visibility;-webkit-transition-delay:0, 0, 200ms;transition-delay:0, 0, 200ms}.ui-slider-vertical.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:50%;margin-top:-11px;left:-50px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label{left:47px}.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{left:37px}.ui-slider-vertical.ui-slider-float .ui-slider-tip:after,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-left-color:#fff;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-10px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-tip:before,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-left-color:#888;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-11px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-right-color:#fff;right:auto;left:-10px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-right-color:#888;right:auto;left:-11px}.ui-slider-pips [class*=ui-slider-pip-initial]{font-weight:bold;color:#14CA82}.ui-slider-pips .ui-slider-pip-initial-2{color:#1897C9}.ui-slider-pips [class*=ui-slider-pip-selected]{font-weight:bold;color:#FF7A00}.ui-slider-pips .ui-slider-pip-inrange{color:black}.ui-slider-pips .ui-slider-pip-selected-2{color:#E70081}.ui-slider-pips [class*=ui-slider-pip-selected] .ui-slider-line,.ui-slider-pips .ui-slider-pip-inrange .ui-slider-line{background:black}\n", ""]);
 
 /***/ },
 /* 62 */
@@ -17230,650 +17249,650 @@
 	
 	(function ($) {
 	
-	                "use strict";
+	    "use strict";
 	
-	                var extensionMethods = {
+	    var extensionMethods = {
 	
-	                                // pips
+	        // pips
 	
-	                                pips: function pips(settings) {
+	        pips: function pips(settings) {
 	
-	                                                var slider = this,
-	                                                    i,
-	                                                    j,
-	                                                    p,
-	                                                    collection = "",
-	                                                    mousedownHandlers,
-	                                                    min = slider._valueMin(),
-	                                                    max = slider._valueMax(),
-	                                                    pips = (max - min) / slider.options.step,
-	                                                    $handles = slider.element.find(".ui-slider-handle"),
-	                                                    $pips;
+	            var slider = this,
+	                i,
+	                j,
+	                p,
+	                collection = "",
+	                mousedownHandlers,
+	                min = slider._valueMin(),
+	                max = slider._valueMax(),
+	                pips = (max - min) / slider.options.step,
+	                $handles = slider.element.find(".ui-slider-handle"),
+	                $pips;
 	
-	                                                var options = {
+	            var options = {
 	
-	                                                                first: "label",
-	                                                                /* "label", "pip", false */
+	                first: "label",
+	                /* "label", "pip", false */
 	
-	                                                                last: "label",
-	                                                                /* "label", "pip", false */
+	                last: "label",
+	                /* "label", "pip", false */
 	
-	                                                                rest: "pip",
-	                                                                /* "label", "pip", false */
+	                rest: "pip",
+	                /* "label", "pip", false */
 	
-	                                                                labels: false,
-	                                                                /* [array], { first: "string", rest: [array], last: "string" }, false */
+	                labels: false,
+	                /* [array], { first: "string", rest: [array], last: "string" }, false */
 	
-	                                                                prefix: "",
-	                                                                /* "", string */
+	                prefix: "",
+	                /* "", string */
 	
-	                                                                suffix: "",
-	                                                                /* "", string */
+	                suffix: "",
+	                /* "", string */
 	
-	                                                                step: pips > 100 ? Math.floor(pips * 0.05) : 1,
-	                                                                /* number */
+	                step: pips > 100 ? Math.floor(pips * 0.05) : 1,
+	                /* number */
 	
-	                                                                formatLabel: function formatLabel(value) {
-	                                                                                return this.prefix + value + this.suffix;
-	                                                                }
-	                                                                /* function
-	                                                                    must return a value to display in the pip labels */
+	                formatLabel: function formatLabel(value) {
+	                    return this.prefix + value + this.suffix;
+	                }
+	                /* function
+	                    must return a value to display in the pip labels */
 	
-	                                                };
+	            };
 	
-	                                                if ($.type(settings) === "object" || $.type(settings) === "undefined") {
+	            if ($.type(settings) === "object" || $.type(settings) === "undefined") {
 	
-	                                                                $.extend(options, settings);
-	                                                                slider.element.data("pips-options", options);
-	                                                } else {
+	                $.extend(options, settings);
+	                slider.element.data("pips-options", options);
+	            } else {
 	
-	                                                                if (settings === "destroy") {
+	                if (settings === "destroy") {
 	
-	                                                                                destroy();
-	                                                                } else if (settings === "refresh") {
+	                    destroy();
+	                } else if (settings === "refresh") {
 	
-	                                                                                slider.element.slider("pips", slider.element.data("pips-options"));
-	                                                                }
+	                    slider.element.slider("pips", slider.element.data("pips-options"));
+	                }
 	
-	                                                                return;
-	                                                }
+	                return;
+	            }
 	
-	                                                // we don't want the step ever to be a floating point or negative
-	                                                // (or 0 actually, so we'll set it to 1 in that case).
-	                                                slider.options.pipStep = Math.abs(Math.round(options.step)) || 1;
+	            // we don't want the step ever to be a floating point or negative
+	            // (or 0 actually, so we'll set it to 1 in that case).
+	            slider.options.pipStep = Math.abs(Math.round(options.step)) || 1;
 	
-	                                                // get rid of all pips that might already exist.
-	                                                slider.element.off(".selectPip").addClass("ui-slider-pips").find(".ui-slider-pip").remove();
+	            // get rid of all pips that might already exist.
+	            slider.element.off(".selectPip").addClass("ui-slider-pips").find(".ui-slider-pip").remove();
 	
-	                                                // small object with functions for marking pips as selected.
+	            // small object with functions for marking pips as selected.
 	
-	                                                var selectPip = {
+	            var selectPip = {
 	
-	                                                                single: function single(value) {
+	                single: function single(value) {
 	
-	                                                                                this.resetClasses();
+	                    this.resetClasses();
 	
-	                                                                                $pips.filter(".ui-slider-pip-" + this.classLabel(value)).addClass("ui-slider-pip-selected");
+	                    $pips.filter(".ui-slider-pip-" + this.classLabel(value)).addClass("ui-slider-pip-selected");
 	
-	                                                                                if (slider.options.range) {
+	                    if (slider.options.range) {
 	
-	                                                                                                $pips.each(function (k, v) {
+	                        $pips.each(function (k, v) {
 	
-	                                                                                                                var pipVal = $(v).children(".ui-slider-label").data("value");
+	                            var pipVal = $(v).children(".ui-slider-label").data("value");
 	
-	                                                                                                                if (slider.options.range === "min" && pipVal < value || slider.options.range === "max" && pipVal > value) {
+	                            if (slider.options.range === "min" && pipVal < value || slider.options.range === "max" && pipVal > value) {
 	
-	                                                                                                                                $(v).addClass("ui-slider-pip-inrange");
-	                                                                                                                }
-	                                                                                                });
-	                                                                                }
-	                                                                },
+	                                $(v).addClass("ui-slider-pip-inrange");
+	                            }
+	                        });
+	                    }
+	                },
 	
-	                                                                range: function range(values) {
+	                range: function range(values) {
 	
-	                                                                                this.resetClasses();
+	                    this.resetClasses();
 	
-	                                                                                for (i = 0; i < values.length; i++) {
+	                    for (i = 0; i < values.length; i++) {
 	
-	                                                                                                $pips.filter(".ui-slider-pip-" + this.classLabel(values[i])).addClass("ui-slider-pip-selected-" + (i + 1));
-	                                                                                }
+	                        $pips.filter(".ui-slider-pip-" + this.classLabel(values[i])).addClass("ui-slider-pip-selected-" + (i + 1));
+	                    }
 	
-	                                                                                if (slider.options.range) {
+	                    if (slider.options.range) {
 	
-	                                                                                                $pips.each(function (k, v) {
+	                        $pips.each(function (k, v) {
 	
-	                                                                                                                var pipVal = $(v).children(".ui-slider-label").data("value");
+	                            var pipVal = $(v).children(".ui-slider-label").data("value");
 	
-	                                                                                                                if (pipVal > values[0] && pipVal < values[1]) {
+	                            if (pipVal > values[0] && pipVal < values[1]) {
 	
-	                                                                                                                                $(v).addClass("ui-slider-pip-inrange");
-	                                                                                                                }
-	                                                                                                });
-	                                                                                }
-	                                                                },
+	                                $(v).addClass("ui-slider-pip-inrange");
+	                            }
+	                        });
+	                    }
+	                },
 	
-	                                                                classLabel: function classLabel(value) {
+	                classLabel: function classLabel(value) {
 	
-	                                                                                return value.toString().replace(".", "-");
-	                                                                },
+	                    return value.toString().replace(".", "-");
+	                },
 	
-	                                                                resetClasses: function resetClasses() {
+	                resetClasses: function resetClasses() {
 	
-	                                                                                var regex = /(^|\s*)(ui-slider-pip-selected|ui-slider-pip-inrange)(-{1,2}\d+|\s|$)/gi;
+	                    var regex = /(^|\s*)(ui-slider-pip-selected|ui-slider-pip-inrange)(-{1,2}\d+|\s|$)/gi;
 	
-	                                                                                $pips.removeClass(function (index, css) {
-	                                                                                                return (css.match(regex) || []).join(" ");
-	                                                                                });
-	                                                                }
+	                    $pips.removeClass(function (index, css) {
+	                        return (css.match(regex) || []).join(" ");
+	                    });
+	                }
 	
-	                                                };
+	            };
 	
-	                                                function getClosestHandle(val) {
+	            function getClosestHandle(val) {
 	
-	                                                                var h,
-	                                                                    k,
-	                                                                    sliderVals,
-	                                                                    comparedVals,
-	                                                                    closestVal,
-	                                                                    tempHandles = [],
-	                                                                    closestHandle = 0;
+	                var h,
+	                    k,
+	                    sliderVals,
+	                    comparedVals,
+	                    closestVal,
+	                    tempHandles = [],
+	                    closestHandle = 0;
 	
-	                                                                if (slider.values() && slider.values().length) {
+	                if (slider.values() && slider.values().length) {
 	
-	                                                                                // get the current values of the slider handles
-	                                                                                sliderVals = slider.values();
+	                    // get the current values of the slider handles
+	                    sliderVals = slider.values();
 	
-	                                                                                // find the offset value from the `val` for each
-	                                                                                // handle, and store it in a new array
-	                                                                                comparedVals = $.map(sliderVals, function (v) {
-	                                                                                                return Math.abs(v - val);
-	                                                                                });
+	                    // find the offset value from the `val` for each
+	                    // handle, and store it in a new array
+	                    comparedVals = $.map(sliderVals, function (v) {
+	                        return Math.abs(v - val);
+	                    });
 	
-	                                                                                // figure out the closest handles to the value
-	                                                                                closestVal = Math.min.apply(Math, comparedVals);
+	                    // figure out the closest handles to the value
+	                    closestVal = Math.min.apply(Math, comparedVals);
 	
-	                                                                                // if a comparedVal is the closestVal, then
-	                                                                                // set the value accordingly, and set the closest handle.
-	                                                                                for (h = 0; h < comparedVals.length; h++) {
-	                                                                                                if (comparedVals[h] === closestVal) {
-	                                                                                                                tempHandles.push(h);
-	                                                                                                }
-	                                                                                }
+	                    // if a comparedVal is the closestVal, then
+	                    // set the value accordingly, and set the closest handle.
+	                    for (h = 0; h < comparedVals.length; h++) {
+	                        if (comparedVals[h] === closestVal) {
+	                            tempHandles.push(h);
+	                        }
+	                    }
 	
-	                                                                                // set the closest handle to the first handle in array,
-	                                                                                // just incase we have no _lastChangedValue to compare to.
-	                                                                                closestHandle = tempHandles[0];
+	                    // set the closest handle to the first handle in array,
+	                    // just incase we have no _lastChangedValue to compare to.
+	                    closestHandle = tempHandles[0];
 	
-	                                                                                // now we want to find out if any of the closest handles were
-	                                                                                // the last changed handle, if so we specify that handle to change
-	                                                                                for (k = 0; k < tempHandles.length; k++) {
-	                                                                                                if (slider._lastChangedValue === tempHandles[k]) {
-	                                                                                                                closestHandle = tempHandles[k];
-	                                                                                                }
-	                                                                                }
+	                    // now we want to find out if any of the closest handles were
+	                    // the last changed handle, if so we specify that handle to change
+	                    for (k = 0; k < tempHandles.length; k++) {
+	                        if (slider._lastChangedValue === tempHandles[k]) {
+	                            closestHandle = tempHandles[k];
+	                        }
+	                    }
 	
-	                                                                                if (slider.options.range && tempHandles.length === 2) {
+	                    if (slider.options.range && tempHandles.length === 2) {
 	
-	                                                                                                if (val > sliderVals[1]) {
+	                        if (val > sliderVals[1]) {
 	
-	                                                                                                                closestHandle = tempHandles[1];
-	                                                                                                } else if (val < sliderVals[0]) {
+	                            closestHandle = tempHandles[1];
+	                        } else if (val < sliderVals[0]) {
 	
-	                                                                                                                closestHandle = tempHandles[0];
-	                                                                                                }
-	                                                                                }
-	                                                                }
+	                            closestHandle = tempHandles[0];
+	                        }
+	                    }
+	                }
 	
-	                                                                return closestHandle;
-	                                                }
+	                return closestHandle;
+	            }
 	
-	                                                function destroy() {
+	            function destroy() {
 	
-	                                                                slider.element.off(".selectPip").on("mousedown.slider", slider.element.data("mousedown-original")).removeClass("ui-slider-pips").find(".ui-slider-pip").remove();
-	                                                }
+	                slider.element.off(".selectPip").on("mousedown.slider", slider.element.data("mousedown-original")).removeClass("ui-slider-pips").find(".ui-slider-pip").remove();
+	            }
 	
-	                                                // when we click on a label, we want to make sure the
-	                                                // slider's handle actually goes to that label!
-	                                                // so we check all the handles and see which one is closest
-	                                                // to the label we clicked. If 2 handles are equidistant then
-	                                                // we move both of them. We also want to trigger focus on the
-	                                                // handle.
+	            // when we click on a label, we want to make sure the
+	            // slider's handle actually goes to that label!
+	            // so we check all the handles and see which one is closest
+	            // to the label we clicked. If 2 handles are equidistant then
+	            // we move both of them. We also want to trigger focus on the
+	            // handle.
 	
-	                                                // without this method the label is just treated like a part
-	                                                // of the slider and there's no accuracy in the selected value
+	            // without this method the label is just treated like a part
+	            // of the slider and there's no accuracy in the selected value
 	
-	                                                function labelClick(label, e) {
+	            function labelClick(label, e) {
 	
-	                                                                if (slider.option("disabled")) {
-	                                                                                return;
-	                                                                }
+	                if (slider.option("disabled")) {
+	                    return;
+	                }
 	
-	                                                                var val = $(label).data("value"),
-	                                                                    indexToChange = getClosestHandle(val);
+	                var val = $(label).data("value"),
+	                    indexToChange = getClosestHandle(val);
 	
-	                                                                if (slider.values() && slider.values().length) {
+	                if (slider.values() && slider.values().length) {
 	
-	                                                                                slider.options.values[indexToChange] = slider._trimAlignValue(val);
-	                                                                } else {
+	                    slider.options.values[indexToChange] = slider._trimAlignValue(val);
+	                } else {
 	
-	                                                                                slider.options.value = slider._trimAlignValue(val);
-	                                                                }
+	                    slider.options.value = slider._trimAlignValue(val);
+	                }
 	
-	                                                                slider._refreshValue();
-	                                                                slider._change(e, indexToChange);
-	                                                }
+	                slider._refreshValue();
+	                slider._change(e, indexToChange);
+	            }
 	
-	                                                // method for creating a pip. We loop this for creating all
-	                                                // the pips.
+	            // method for creating a pip. We loop this for creating all
+	            // the pips.
 	
-	                                                function createPip(which) {
+	            function createPip(which) {
 	
-	                                                                var label,
-	                                                                    percent,
-	                                                                    number = which,
-	                                                                    classes = "ui-slider-pip",
-	                                                                    css = "",
-	                                                                    value = slider.value(),
-	                                                                    values = slider.values(),
-	                                                                    labelValue,
-	                                                                    classLabel,
-	                                                                    labelIndex;
+	                var label,
+	                    percent,
+	                    number = which,
+	                    classes = "ui-slider-pip",
+	                    css = "",
+	                    value = slider.value(),
+	                    values = slider.values(),
+	                    labelValue,
+	                    classLabel,
+	                    labelIndex;
 	
-	                                                                if (which === "first") {
+	                if (which === "first") {
 	
-	                                                                                number = 0;
-	                                                                } else if (which === "last") {
+	                    number = 0;
+	                } else if (which === "last") {
 	
-	                                                                                number = pips;
-	                                                                }
+	                    number = pips;
+	                }
 	
-	                                                                // labelValue is the actual value of the pip based on the min/step
-	                                                                labelValue = min + slider.options.step * number;
+	                // labelValue is the actual value of the pip based on the min/step
+	                labelValue = min + slider.options.step * number;
 	
-	                                                                // classLabel replaces any decimals with hyphens
-	                                                                classLabel = labelValue.toString().replace(".", "-");
+	                // classLabel replaces any decimals with hyphens
+	                classLabel = labelValue.toString().replace(".", "-");
 	
-	                                                                // get the index needed for selecting labels out of the array
-	                                                                labelIndex = number + min - min;
+	                // get the index needed for selecting labels out of the array
+	                labelIndex = number + min - min;
 	
-	                                                                // we need to set the human-readable label to either the
-	                                                                // corresponding element in the array, or the appropriate
-	                                                                // item in the object... or an empty string.
+	                // we need to set the human-readable label to either the
+	                // corresponding element in the array, or the appropriate
+	                // item in the object... or an empty string.
 	
-	                                                                if ($.type(options.labels) === "array") {
+	                if ($.type(options.labels) === "array") {
 	
-	                                                                                label = options.labels[labelIndex] || "";
-	                                                                } else if ($.type(options.labels) === "object") {
+	                    label = options.labels[labelIndex] || "";
+	                } else if ($.type(options.labels) === "object") {
 	
-	                                                                                if (which === "first") {
+	                    if (which === "first") {
 	
-	                                                                                                // set first label
-	                                                                                                label = options.labels.first || "";
-	                                                                                } else if (which === "last") {
+	                        // set first label
+	                        label = options.labels.first || "";
+	                    } else if (which === "last") {
 	
-	                                                                                                // set last label
-	                                                                                                label = options.labels.last || "";
-	                                                                                } else if ($.type(options.labels.rest) === "array") {
+	                        // set last label
+	                        label = options.labels.last || "";
+	                    } else if ($.type(options.labels.rest) === "array") {
 	
-	                                                                                                // set other labels, but our index should start at -1
-	                                                                                                // because of the first pip.
-	                                                                                                label = options.labels.rest[labelIndex - 1] || "";
-	                                                                                } else {
+	                        // set other labels, but our index should start at -1
+	                        // because of the first pip.
+	                        label = options.labels.rest[labelIndex - 1] || "";
+	                    } else {
 	
-	                                                                                                // urrggh, the options must be f**ked, just show nothing.
-	                                                                                                label = labelValue;
-	                                                                                }
-	                                                                } else {
+	                        // urrggh, the options must be f**ked, just show nothing.
+	                        label = labelValue;
+	                    }
+	                } else {
 	
-	                                                                                label = labelValue;
-	                                                                }
+	                    label = labelValue;
+	                }
 	
-	                                                                if (which === "first") {
+	                if (which === "first") {
 	
-	                                                                                // first Pip on the Slider
-	                                                                                percent = "0%";
+	                    // first Pip on the Slider
+	                    percent = "0%";
 	
-	                                                                                classes += " ui-slider-pip-first";
-	                                                                                classes += options.first === "label" ? " ui-slider-pip-label" : "";
-	                                                                                classes += options.first === false ? " ui-slider-pip-hide" : "";
-	                                                                } else if (which === "last") {
+	                    classes += " ui-slider-pip-first";
+	                    classes += options.first === "label" ? " ui-slider-pip-label" : "";
+	                    classes += options.first === false ? " ui-slider-pip-hide" : "";
+	                } else if (which === "last") {
 	
-	                                                                                // last Pip on the Slider
-	                                                                                percent = "100%";
+	                    // last Pip on the Slider
+	                    percent = "100%";
 	
-	                                                                                classes += " ui-slider-pip-last";
-	                                                                                classes += options.last === "label" ? " ui-slider-pip-label" : "";
-	                                                                                classes += options.last === false ? " ui-slider-pip-hide" : "";
-	                                                                } else {
+	                    classes += " ui-slider-pip-last";
+	                    classes += options.last === "label" ? " ui-slider-pip-label" : "";
+	                    classes += options.last === false ? " ui-slider-pip-hide" : "";
+	                } else {
 	
-	                                                                                // all other Pips
-	                                                                                percent = (100 / pips * which).toFixed(4) + "%";
+	                    // all other Pips
+	                    percent = (100 / pips * which).toFixed(4) + "%";
 	
-	                                                                                classes += options.rest === "label" ? " ui-slider-pip-label" : "";
-	                                                                                classes += options.rest === false ? " ui-slider-pip-hide" : "";
-	                                                                }
+	                    classes += options.rest === "label" ? " ui-slider-pip-label" : "";
+	                    classes += options.rest === false ? " ui-slider-pip-hide" : "";
+	                }
 	
-	                                                                classes += " ui-slider-pip-" + classLabel;
+	                classes += " ui-slider-pip-" + classLabel;
 	
-	                                                                // add classes for the initial-selected values.
-	                                                                if (values && values.length) {
+	                // add classes for the initial-selected values.
+	                if (values && values.length) {
 	
-	                                                                                for (i = 0; i < values.length; i++) {
+	                    for (i = 0; i < values.length; i++) {
 	
-	                                                                                                if (labelValue === values[i]) {
+	                        if (labelValue === values[i]) {
 	
-	                                                                                                                classes += " ui-slider-pip-initial-" + (i + 1);
-	                                                                                                                classes += " ui-slider-pip-selected-" + (i + 1);
-	                                                                                                }
-	                                                                                }
+	                            classes += " ui-slider-pip-initial-" + (i + 1);
+	                            classes += " ui-slider-pip-selected-" + (i + 1);
+	                        }
+	                    }
 	
-	                                                                                if (slider.options.range) {
+	                    if (slider.options.range) {
 	
-	                                                                                                if (labelValue > values[0] && labelValue < values[1]) {
+	                        if (labelValue > values[0] && labelValue < values[1]) {
 	
-	                                                                                                                classes += " ui-slider-pip-inrange";
-	                                                                                                }
-	                                                                                }
-	                                                                } else {
+	                            classes += " ui-slider-pip-inrange";
+	                        }
+	                    }
+	                } else {
 	
-	                                                                                if (labelValue === value) {
+	                    if (labelValue === value) {
 	
-	                                                                                                classes += " ui-slider-pip-initial";
-	                                                                                                classes += " ui-slider-pip-selected";
-	                                                                                }
+	                        classes += " ui-slider-pip-initial";
+	                        classes += " ui-slider-pip-selected";
+	                    }
 	
-	                                                                                if (slider.options.range) {
+	                    if (slider.options.range) {
 	
-	                                                                                                if (slider.options.range === "min" && labelValue < value || slider.options.range === "max" && labelValue > value) {
+	                        if (slider.options.range === "min" && labelValue < value || slider.options.range === "max" && labelValue > value) {
 	
-	                                                                                                                classes += " ui-slider-pip-inrange";
-	                                                                                                }
-	                                                                                }
-	                                                                }
+	                            classes += " ui-slider-pip-inrange";
+	                        }
+	                    }
+	                }
 	
-	                                                                css = slider.options.orientation === "horizontal" ? "left: " + percent : "bottom: " + percent;
+	                css = slider.options.orientation === "horizontal" ? "left: " + percent : "bottom: " + percent;
 	
-	                                                                // add this current pip to the collection
-	                                                                return "<span class=\"" + classes + "\" style=\"" + css + "\">" + "<span class=\"ui-slider-line\"></span>" + "<span class=\"ui-slider-label\" data-value=\"" + labelValue + "\">" + options.formatLabel(label) + "</span>" + "</span>";
-	                                                }
+	                // add this current pip to the collection
+	                return "<span class=\"" + classes + "\" style=\"" + css + "\">" + "<span class=\"ui-slider-line\"></span>" + "<span class=\"ui-slider-label\" data-value=\"" + labelValue + "\">" + options.formatLabel(label) + "</span>" + "</span>";
+	            }
 	
-	                                                // create our first pip
-	                                                collection += createPip("first");
+	            // create our first pip
+	            collection += createPip("first");
 	
-	                                                // for every stop in the slider where we need a pip; create one.
-	                                                for (p = slider.options.pipStep; p < pips; p += slider.options.pipStep) {
-	                                                                collection += createPip(p);
-	                                                }
+	            // for every stop in the slider where we need a pip; create one.
+	            for (p = slider.options.pipStep; p < pips; p += slider.options.pipStep) {
+	                collection += createPip(p);
+	            }
 	
-	                                                // create our last pip
-	                                                collection += createPip("last");
+	            // create our last pip
+	            collection += createPip("last");
 	
-	                                                // append the collection of pips.
-	                                                slider.element.append(collection);
+	            // append the collection of pips.
+	            slider.element.append(collection);
 	
-	                                                // store the pips for setting classes later.
-	                                                $pips = slider.element.find(".ui-slider-pip");
+	            // store the pips for setting classes later.
+	            $pips = slider.element.find(".ui-slider-pip");
 	
-	                                                // store the mousedown handlers for later, just in case we reset
-	                                                // the slider, the handler would be lost!
+	            // store the mousedown handlers for later, just in case we reset
+	            // the slider, the handler would be lost!
 	
-	                                                if ($._data(slider.element.get(0), "events").mousedown && $._data(slider.element.get(0), "events").mousedown.length) {
+	            if ($._data(slider.element.get(0), "events").mousedown && $._data(slider.element.get(0), "events").mousedown.length) {
 	
-	                                                                mousedownHandlers = $._data(slider.element.get(0), "events").mousedown;
-	                                                } else {
+	                mousedownHandlers = $._data(slider.element.get(0), "events").mousedown;
+	            } else {
 	
-	                                                                mousedownHandlers = slider.element.data("mousedown-handlers");
-	                                                }
+	                mousedownHandlers = slider.element.data("mousedown-handlers");
+	            }
 	
-	                                                slider.element.data("mousedown-handlers", mousedownHandlers.slice());
+	            slider.element.data("mousedown-handlers", mousedownHandlers.slice());
 	
-	                                                // loop through all the mousedown handlers on the slider,
-	                                                // and store the original namespaced (.slider) event handler so
-	                                                // we can trigger it later.
-	                                                for (j = 0; j < mousedownHandlers.length; j++) {
-	                                                                if (mousedownHandlers[j].namespace === "slider") {
-	                                                                                slider.element.data("mousedown-original", mousedownHandlers[j].handler);
-	                                                                }
-	                                                }
+	            // loop through all the mousedown handlers on the slider,
+	            // and store the original namespaced (.slider) event handler so
+	            // we can trigger it later.
+	            for (j = 0; j < mousedownHandlers.length; j++) {
+	                if (mousedownHandlers[j].namespace === "slider") {
+	                    slider.element.data("mousedown-original", mousedownHandlers[j].handler);
+	                }
+	            }
 	
-	                                                // unbind the mousedown.slider event, because it interferes with
-	                                                // the labelClick() method (stops smooth animation), and decide
-	                                                // if we want to trigger the original event based on which element
-	                                                // was clicked.
-	                                                slider.element.off("mousedown.slider").on("mousedown.selectPip", function (e) {
+	            // unbind the mousedown.slider event, because it interferes with
+	            // the labelClick() method (stops smooth animation), and decide
+	            // if we want to trigger the original event based on which element
+	            // was clicked.
+	            slider.element.off("mousedown.slider").on("mousedown.selectPip", function (e) {
 	
-	                                                                var $target = $(e.target),
-	                                                                    closest = getClosestHandle($target.data("value")),
-	                                                                    $handle = $handles.eq(closest);
+	                var $target = $(e.target),
+	                    closest = getClosestHandle($target.data("value")),
+	                    $handle = $handles.eq(closest);
 	
-	                                                                $handle.addClass("ui-state-active");
+	                $handle.addClass("ui-state-active");
 	
-	                                                                if ($target.is(".ui-slider-label")) {
+	                if ($target.is(".ui-slider-label")) {
 	
-	                                                                                labelClick($target, e);
+	                    labelClick($target, e);
 	
-	                                                                                slider.element.one("mouseup.selectPip", function () {
+	                    slider.element.one("mouseup.selectPip", function () {
 	
-	                                                                                                $handle.removeClass("ui-state-active").focus();
-	                                                                                });
-	                                                                } else {
+	                        $handle.removeClass("ui-state-active").focus();
+	                    });
+	                } else {
 	
-	                                                                                var originalMousedown = slider.element.data("mousedown-original");
-	                                                                                originalMousedown(e);
-	                                                                }
-	                                                });
+	                    var originalMousedown = slider.element.data("mousedown-original");
+	                    originalMousedown(e);
+	                }
+	            });
 	
-	                                                slider.element.on("slide.selectPip slidechange.selectPip", function (e, ui) {
+	            slider.element.on("slide.selectPip slidechange.selectPip", function (e, ui) {
 	
-	                                                                var $slider = $(this),
-	                                                                    value = $slider.slider("value"),
-	                                                                    values = $slider.slider("values");
+	                var $slider = $(this),
+	                    value = $slider.slider("value"),
+	                    values = $slider.slider("values");
 	
-	                                                                if (ui) {
+	                if (ui) {
 	
-	                                                                                value = ui.value;
-	                                                                                values = ui.values;
-	                                                                }
+	                    value = ui.value;
+	                    values = ui.values;
+	                }
 	
-	                                                                if (slider.values() && slider.values().length) {
+	                if (slider.values() && slider.values().length) {
 	
-	                                                                                selectPip.range(values);
-	                                                                } else {
+	                    selectPip.range(values);
+	                } else {
 	
-	                                                                                selectPip.single(value);
-	                                                                }
-	                                                });
-	                                },
+	                    selectPip.single(value);
+	                }
+	            });
+	        },
 	
-	                                // floats
+	        // floats
 	
-	                                float: function float(settings) {
+	        float: function float(settings) {
 	
-	                                                var i,
-	                                                    slider = this,
-	                                                    min = slider._valueMin(),
-	                                                    max = slider._valueMax(),
-	                                                    value = slider._value(),
-	                                                    values = slider._values(),
-	                                                    tipValues = [],
-	                                                    $handles = slider.element.find(".ui-slider-handle");
+	            var i,
+	                slider = this,
+	                min = slider._valueMin(),
+	                max = slider._valueMax(),
+	                value = slider._value(),
+	                values = slider._values(),
+	                tipValues = [],
+	                $handles = slider.element.find(".ui-slider-handle");
 	
-	                                                var options = {
+	            var options = {
 	
-	                                                                handle: true,
-	                                                                /* false */
+	                handle: true,
+	                /* false */
 	
-	                                                                pips: false,
-	                                                                /* true */
+	                pips: false,
+	                /* true */
 	
-	                                                                labels: false,
-	                                                                /* [array], { first: "string", rest: [array], last: "string" }, false */
+	                labels: false,
+	                /* [array], { first: "string", rest: [array], last: "string" }, false */
 	
-	                                                                prefix: "",
-	                                                                /* "", string */
+	                prefix: "",
+	                /* "", string */
 	
-	                                                                suffix: "",
-	                                                                /* "", string */
+	                suffix: "",
+	                /* "", string */
 	
-	                                                                event: "slidechange slide",
-	                                                                /* "slidechange", "slide", "slidechange slide" */
+	                event: "slidechange slide",
+	                /* "slidechange", "slide", "slidechange slide" */
 	
-	                                                                formatLabel: function formatLabel(value) {
-	                                                                                return this.prefix + value + this.suffix;
-	                                                                }
-	                                                                /* function
-	                                                                    must return a value to display in the floats */
+	                formatLabel: function formatLabel(value) {
+	                    return this.prefix + value + this.suffix;
+	                }
+	                /* function
+	                    must return a value to display in the floats */
 	
-	                                                };
+	            };
 	
-	                                                if ($.type(settings) === "object" || $.type(settings) === "undefined") {
+	            if ($.type(settings) === "object" || $.type(settings) === "undefined") {
 	
-	                                                                $.extend(options, settings);
-	                                                                slider.element.data("float-options", options);
-	                                                } else {
+	                $.extend(options, settings);
+	                slider.element.data("float-options", options);
+	            } else {
 	
-	                                                                if (settings === "destroy") {
+	                if (settings === "destroy") {
 	
-	                                                                                destroy();
-	                                                                } else if (settings === "refresh") {
+	                    destroy();
+	                } else if (settings === "refresh") {
 	
-	                                                                                slider.element.slider("float", slider.element.data("float-options"));
-	                                                                }
+	                    slider.element.slider("float", slider.element.data("float-options"));
+	                }
 	
-	                                                                return;
-	                                                }
+	                return;
+	            }
 	
-	                                                if (value < min) {
-	                                                                value = min;
-	                                                }
+	            if (value < min) {
+	                value = min;
+	            }
 	
-	                                                if (value > max) {
-	                                                                value = max;
-	                                                }
+	            if (value > max) {
+	                value = max;
+	            }
 	
-	                                                if (values && values.length) {
+	            if (values && values.length) {
 	
-	                                                                for (i = 0; i < values.length; i++) {
+	                for (i = 0; i < values.length; i++) {
 	
-	                                                                                if (values[i] < min) {
-	                                                                                                values[i] = min;
-	                                                                                }
+	                    if (values[i] < min) {
+	                        values[i] = min;
+	                    }
 	
-	                                                                                if (values[i] > max) {
-	                                                                                                values[i] = max;
-	                                                                                }
-	                                                                }
-	                                                }
+	                    if (values[i] > max) {
+	                        values[i] = max;
+	                    }
+	                }
+	            }
 	
-	                                                // add a class for the CSS
-	                                                slider.element.addClass("ui-slider-float").find(".ui-slider-tip, .ui-slider-tip-label").remove();
+	            // add a class for the CSS
+	            slider.element.addClass("ui-slider-float").find(".ui-slider-tip, .ui-slider-tip-label").remove();
 	
-	                                                function destroy() {
+	            function destroy() {
 	
-	                                                                slider.element.off(".sliderFloat").removeClass("ui-slider-float").find(".ui-slider-tip, .ui-slider-tip-label").remove();
-	                                                }
+	                slider.element.off(".sliderFloat").removeClass("ui-slider-float").find(".ui-slider-tip, .ui-slider-tip-label").remove();
+	            }
 	
-	                                                function getPipLabels(values) {
+	            function getPipLabels(values) {
 	
-	                                                                // when checking the array we need to divide
-	                                                                // by the step option, so we store those values here.
+	                // when checking the array we need to divide
+	                // by the step option, so we store those values here.
 	
-	                                                                var vals = [],
-	                                                                    steppedVals = $.map(values, function (v) {
-	                                                                                return Math.ceil((v - min) / slider.options.step);
-	                                                                });
+	                var vals = [],
+	                    steppedVals = $.map(values, function (v) {
+	                    return Math.ceil((v - min) / slider.options.step);
+	                });
 	
-	                                                                // now we just get the values we need to return
-	                                                                // by looping through the values array and assigning the
-	                                                                // label if it exists.
+	                // now we just get the values we need to return
+	                // by looping through the values array and assigning the
+	                // label if it exists.
 	
-	                                                                if ($.type(options.labels) === "array") {
+	                if ($.type(options.labels) === "array") {
 	
-	                                                                                for (i = 0; i < values.length; i++) {
+	                    for (i = 0; i < values.length; i++) {
 	
-	                                                                                                vals[i] = options.labels[steppedVals[i]] || values[i];
-	                                                                                }
-	                                                                } else if ($.type(options.labels) === "object") {
+	                        vals[i] = options.labels[steppedVals[i]] || values[i];
+	                    }
+	                } else if ($.type(options.labels) === "object") {
 	
-	                                                                                for (i = 0; i < values.length; i++) {
+	                    for (i = 0; i < values.length; i++) {
 	
-	                                                                                                if (values[i] === min) {
+	                        if (values[i] === min) {
 	
-	                                                                                                                vals[i] = options.labels.first || min;
-	                                                                                                } else if (values[i] === max) {
+	                            vals[i] = options.labels.first || min;
+	                        } else if (values[i] === max) {
 	
-	                                                                                                                vals[i] = options.labels.last || max;
-	                                                                                                } else if ($.type(options.labels.rest) === "array") {
+	                            vals[i] = options.labels.last || max;
+	                        } else if ($.type(options.labels.rest) === "array") {
 	
-	                                                                                                                vals[i] = options.labels.rest[steppedVals[i] - 1] || values[i];
-	                                                                                                } else {
+	                            vals[i] = options.labels.rest[steppedVals[i] - 1] || values[i];
+	                        } else {
 	
-	                                                                                                                vals[i] = values[i];
-	                                                                                                }
-	                                                                                }
-	                                                                } else {
+	                            vals[i] = values[i];
+	                        }
+	                    }
+	                } else {
 	
-	                                                                                for (i = 0; i < values.length; i++) {
+	                    for (i = 0; i < values.length; i++) {
 	
-	                                                                                                vals[i] = values[i];
-	                                                                                }
-	                                                                }
+	                        vals[i] = values[i];
+	                    }
+	                }
 	
-	                                                                return vals;
-	                                                }
+	                return vals;
+	            }
 	
-	                                                // apply handle tip if settings allows.
-	                                                if (options.handle) {
+	            // apply handle tip if settings allows.
+	            if (options.handle) {
 	
-	                                                                // we need to set the human-readable label to either the
-	                                                                // corresponding element in the array, or the appropriate
-	                                                                // item in the object... or an empty string.
+	                // we need to set the human-readable label to either the
+	                // corresponding element in the array, or the appropriate
+	                // item in the object... or an empty string.
 	
-	                                                                tipValues = slider.values() && slider.values().length ? getPipLabels(values) : getPipLabels([value]);
+	                tipValues = slider.values() && slider.values().length ? getPipLabels(values) : getPipLabels([value]);
 	
-	                                                                for (i = 0; i < tipValues.length; i++) {
+	                for (i = 0; i < tipValues.length; i++) {
 	
-	                                                                                $handles.eq(i).append($("<span class=\"ui-slider-tip\">" + options.formatLabel(tipValues[i]) + "</span>"));
-	                                                                }
-	                                                }
+	                    $handles.eq(i).append($("<span class=\"ui-slider-tip\">" + options.formatLabel(tipValues[i]) + "</span>"));
+	                }
+	            }
 	
-	                                                if (options.pips) {
+	            if (options.pips) {
 	
-	                                                                // if this slider also has pip-labels, we make those into tips, too.
-	                                                                slider.element.find(".ui-slider-label").each(function (k, v) {
+	                // if this slider also has pip-labels, we make those into tips, too.
+	                slider.element.find(".ui-slider-label").each(function (k, v) {
 	
-	                                                                                var $this = $(v),
-	                                                                                    val = [$this.data("value")],
-	                                                                                    label,
-	                                                                                    $tip;
+	                    var $this = $(v),
+	                        val = [$this.data("value")],
+	                        label,
+	                        $tip;
 	
-	                                                                                label = options.formatLabel(getPipLabels(val)[0]);
+	                    label = options.formatLabel(getPipLabels(val)[0]);
 	
-	                                                                                // create a tip element
-	                                                                                $tip = $("<span class=\"ui-slider-tip-label\">" + label + "</span>").insertAfter($this);
-	                                                                });
-	                                                }
+	                    // create a tip element
+	                    $tip = $("<span class=\"ui-slider-tip-label\">" + label + "</span>").insertAfter($this);
+	                });
+	            }
 	
-	                                                // check that the event option is actually valid against our
-	                                                // own list of the slider's events.
-	                                                if (options.event !== "slide" && options.event !== "slidechange" && options.event !== "slide slidechange" && options.event !== "slidechange slide") {
+	            // check that the event option is actually valid against our
+	            // own list of the slider's events.
+	            if (options.event !== "slide" && options.event !== "slidechange" && options.event !== "slide slidechange" && options.event !== "slidechange slide") {
 	
-	                                                                options.event = "slidechange slide";
-	                                                }
+	                options.event = "slidechange slide";
+	            }
 	
-	                                                // when slider changes, update handle tip label.
-	                                                slider.element.off(".sliderFloat").on(options.event + ".sliderFloat", function (e, ui) {
+	            // when slider changes, update handle tip label.
+	            slider.element.off(".sliderFloat").on(options.event + ".sliderFloat", function (e, ui) {
 	
-	                                                                var uiValue = $.type(ui.value) === "array" ? ui.value : [ui.value],
-	                                                                    val = options.formatLabel(getPipLabels(uiValue)[0]);
+	                var uiValue = $.type(ui.value) === "array" ? ui.value : [ui.value],
+	                    val = options.formatLabel(getPipLabels(uiValue)[0]);
 	
-	                                                                $(ui.handle).find(".ui-slider-tip").html(val);
-	                                                });
-	                                }
+	                $(ui.handle).find(".ui-slider-tip").html(val);
+	            });
+	        }
 	
-	                };
+	    };
 	
-	                $.extend(true, $.ui.slider.prototype, extensionMethods);
+	    $.extend(true, $.ui.slider.prototype, extensionMethods);
 	})(jQuery);
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 2)))
 
@@ -17936,25 +17955,25 @@
 	},"2":function(depth0,helpers,partials,data) {
 	    var helper;
 	
-	  return "    <p>\r\n        Адрес: "
+	  return "    <p>\n        Адрес: "
 	    + this.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"name","hash":{},"data":data}) : helper)))
-	    + "\r\n    </p>\r\n";
+	    + "\n    </p>\n";
 	},"4":function(depth0,helpers,partials,data) {
 	    var helper;
 	
-	  return "\r\n        <label class=\"label label-info\">"
+	  return "\n        <label class=\"label label-info\">"
 	    + this.escapeExpression(((helper = (helper = helpers.key || (depth0 != null ? depth0.key : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"key","hash":{},"data":data}) : helper)))
-	    + "</label>\r\n\r\n";
+	    + "</label>\n\n";
 	},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
 	    var stack1, alias1=this.escapeExpression;
 	
 	  return "<h3>"
 	    + alias1(this.lambda(((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.title : stack1), depth0))
-	    + "</h3>\r\n<small class=\"text-muted\">\r\n    Добавлено "
+	    + "</h3>\n<small class=\"text-muted\">\n    Добавлено "
 	    + alias1((helpers.moment || (depth0 && depth0.moment) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.timestamp : depth0),"YY, MMM dd",{"name":"moment","hash":{},"data":data}))
-	    + "\r\n</small>\r\n"
+	    + "\n</small>\n"
 	    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.locations : stack1),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-	    + "<p class=\"text-center\">\r\n    <button type=\"button\" class=\"btn btn-primary toPostDetails\">Перейти</button>\r\n</p>\r\n<p>\r\n"
+	    + "<p class=\"text-center\">\n    <button type=\"button\" class=\"btn btn-primary toPostDetails\">Перейти</button>\n</p>\n<p>\n"
 	    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.other : depth0),{"name":"each","hash":{},"fn":this.program(4, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
 	    + "</p>";
 	},"useData":true});
@@ -18107,7 +18126,7 @@
 	var Handlebars = __webpack_require__(/*! ./~/handlebars/runtime.js */ 49);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-	    return "<div class=\"container text-center\">\r\n    <h1>\r\n        СВЕТЛЯЧКИ - ЭТО\r\n        <span class=\"word-rotator\" data-delay=\"4000\">\r\n            <span class=\"items\">\r\n                <span>ВСТРЕЧИ В РЕАЛЬНОМ ВРЕМЕНИ</span>\r\n                <span>БИЗНЕСЫ В ДВУХ ШАГАХ</span>\r\n                <span>ОБЪЯВЛЕНИЯ ВОКРУГ</span>\r\n                <span>УСЛУГИ ПОБЛИЗОСТИ</span>\r\n            </span>\r\n        </span><!-- /word rotator -->\r\n    </h1>\r\n    <span class=\"font-lato size-18 weight-300\">\r\n        Примерно <span class=\"countTo\" data-speed=\"4000\">550</span> светлячков в\r\n        <span class=\"theme-color\">Вашем</span> регионе\r\n    </span>\r\n</div>";
+	    return "<div class=\"container text-center\">\n    <h1>\n        СВЕТЛЯЧКИ - ЭТО\n        <span class=\"word-rotator\" data-delay=\"4000\">\n            <span class=\"items\">\n                <span>ВСТРЕЧИ В РЕАЛЬНОМ ВРЕМЕНИ</span>\n                <span>БИЗНЕСЫ В ДВУХ ШАГАХ</span>\n                <span>ОБЪЯВЛЕНИЯ ВОКРУГ</span>\n                <span>УСЛУГИ ПОБЛИЗОСТИ</span>\n            </span>\n        </span><!-- /word rotator -->\n    </h1>\n    <span class=\"font-lato size-18 weight-300\">\n        Примерно <span class=\"countTo\" data-speed=\"4000\">550</span> светлячков в\n        <span class=\"theme-color\">Вашем</span> регионе\n    </span>\n</div>";
 	},"useData":true});
 
 /***/ },
@@ -28794,7 +28813,7 @@
 	var Handlebars = __webpack_require__(/*! ./~/handlebars/runtime.js */ 49);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-	    return "<section>\r\n    <div class=\"container\">\r\n        <div class=\"text-center\">\r\n            <h1>ДОБРО ПОЖАЛОВАТЬ НА <span>SHINERS</span>.</h1>\r\n            <h2 class=\"col-sm-10 col-sm-offset-1 nomargin-bottom weight-400\">Сайт для поиска услуг, мероприятий и других объявлений от людей вокруг Вас.</h2>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n<section class=\"alternate\">\r\n    <div class=\"container\">\r\n        <div class=\"heading-title text-center margin-bottom-80\">\r\n            <h3>КАК ЭТО РАБОТАЕТ</h3>\r\n        </div>\r\n        <ul class=\"process-steps nav nav-tabs nav-justified\">\r\n            <li class=\"active\">\r\n                <a data-toggle=\"tab\" href=\"#step1\"><i class=\"icon-plus\"></i></a>\r\n                <h5>Создай свой пост</h5>\r\n            </li>\r\n            <li>\r\n                <a data-toggle=\"tab\" href=\"#step2\"><i class=\"icon-map-marker\"></i></a>\r\n                <h5>Ты находишь / Тебя находят</h5>\r\n            </li>\r\n            <li>\r\n                <a data-toggle=\"tab\" href=\"#step3\"><i class=\"icon-ok\"></i></a>\r\n                <h5>Договаривайся / встречайся</h5>\r\n            </li>\r\n        </ul>\r\n\r\n        <div class=\"tab-content margin-top-60\">\r\n            <div role=\"tabpanel\" class=\"tab-pane active\" id=\"step1\">\r\n                <h4>Создай свой пост</h4>\r\n                Напиши объявление о том, что тебя сейчас интересует\r\n                или размести ссылку на свой пост на любом другом ресурсе — так ты получаешь готовый светлячек\r\n                Продаешь ты платье, ищешь работу или компанию для вечеринки, - расскажи об этом, и люди поблизости об этом узнают.\r\n            </div>\r\n\r\n            <div role=\"tabpanel\" class=\"tab-pane\" id=\"step2\">\r\n                <h4>Ты находишь / Тебя находят</h4>\r\n                Используй светлячки для поиска живых объявлений поблизости и мгновенной встречи с ее владельцем.\r\n\r\n                В каждом разделе можно увидеть Светлячков, которые сейчас рядом.\r\n                Ищи любую информацию в нашей «умной строке».\r\n                Если еще нет поста по твоему запросу, установи свой Светлячок, чтобы о нем узнали другие пользователи.\r\n                Установи светлячек на любое объявление,\r\n                и оно будет перемещаться вместе с тобой как твоя виртуальная визитка,\r\n                которую смогут видеть люди вокруг\r\n            </div>\r\n\r\n            <div role=\"tabpanel\" class=\"tab-pane\" id=\"step3\">\r\n                <h4>Договаривайся / встречайся</h4>\r\n                Светлчки помогут тебе увидеть объявления от будущих клиентов, собеседников, единомышленников, которые находятся непосредственно рядом с тобой (на той же улице, в том же районе), дальше тебе остается тольно написать мгновенное сообщение и договориться о встрече прямо здесь и прямо сейчас.\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n<section>\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <!-- toggle -->\r\n            <div class=\"col-md-6 col-sm-6\">\r\n                <div class=\"toggle toggle-accordion toggle-transparent toggle-bordered-full\">\r\n                    <div class=\"toggle active\">\r\n                        <label>Один сервис для всех ресурсов</label>\r\n                        <div class=\"toggle-content\" style=\"display:block\">\r\n                            <p>Если у тебя уже есть пост на другом ресурсе–просто размести ссылку на него-и получи готовый Светлячок!</p>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"toggle\">\r\n                        <label>Живые объявления поблизости</label>\r\n                        <div class=\"toggle-content\">\r\n                            <p>\r\n                                Светлячки — это живые объявления от людей поблизости.\r\n                                Представь себе виртуальную визитку, только носят её не в кошельке, а в мобильном телефоне, и видят её не избранные, а все те, кто рядом\r\n                            </p>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"toggle\">\r\n                        <label>Быстрые встречи и контакты</label>\r\n                        <div class=\"toggle-content\">\r\n                            <p>Используй Светлячки для установки быстрых живых контактов- встреч, в нужное время, в нужном месте.</p>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"col-md-6 col-sm-6\">\r\n                <h4>Популярные посты</h4>\r\n\r\n                <label>\r\n                    <span class=\"pull-right\">60%</span>\r\n                    РЕКЛАМА\r\n                </label>\r\n                <div class=\"progress progress-xxs\">\r\n                    <div class=\"progress-bar progress-bar-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%; min-width: 2em;\"></div>\r\n                </div>\r\n\r\n                <label>\r\n                    <span class=\"pull-right\">88%</span>\r\n                    ТОВАРЫ\r\n                </label>\r\n                <div class=\"progress progress-xxs\">\r\n                    <div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 88%; min-width: 2em;\"></div>\r\n                </div>\r\n\r\n                <label>\r\n                    <span class=\"pull-right\">93%</span>\r\n                    ТУРИЗМ\r\n                </label>\r\n                <div class=\"progress progress-xxs\">\r\n                    <div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 93%; min-width: 2em;\"></div>\r\n                </div>\r\n\r\n                <label>\r\n                    <span class=\"pull-right\">77%</span>\r\n                    СОБЫТИЯ\r\n                </label>\r\n                <div class=\"progress progress-xxs\">\r\n                    <div class=\"progress-bar progress-bar-info\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 77%; min-width: 2em;\"></div>\r\n                </div>\r\n                <label>\r\n                    <span class=\"pull-right\">99%</span>\r\n                    РАБОТА\r\n                </label>\r\n                <div class=\"progress progress-xxs\">\r\n                    <div class=\"progress-bar progress-bar-primary\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 99%; min-width: 2em;\"></div>\r\n                </div>\r\n            </div>\r\n            <!-- /skills -->\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n<section>\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <div class=\"col-sm-6 col-md-4 col-lg-4\">\r\n                <div class=\"box-icon box-icon-left\">\r\n                    <a class=\"box-icon-title\" href=\"#\">\r\n                        <i class=\"fa fa-tablet\"></i>\r\n                        <h2>ТОВАРЫ И УСЛУГИ</h2>\r\n                    </a>\r\n                    <p class=\"text-muted\">Lorem definitiones ei pri per recteque hendrerit scriptorem in errem scribentur mel fastidii.</p>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-sm-6 col-md-4 col-lg-4\">\r\n                <div class=\"box-icon box-icon-left\">\r\n                    <a class=\"box-icon-title\" href=\"#\">\r\n                        <i class=\"et-document\"></i>\r\n                        <h2>ВСТРЕЧИ</h2>\r\n                    </a>\r\n                    <p class=\"text-muted\">Lorem definitiones ei pri per recteque hendrerit scriptorem in errem scribentur mel fastidii.</p>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-sm-6 col-md-4 col-lg-4\">\r\n                <div class=\"box-icon box-icon-left\">\r\n                    <a class=\"box-icon-title\" href=\"#\">\r\n                        <i class=\"et-basket\"></i>\r\n                        <h2>КОМЬЮНИТИ</h2>\r\n                    </a>\r\n                    <p class=\"text-muted\">Lorem definitiones ei pri per recteque hendrerit scriptorem in errem scribentur mel fastidii.</p>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-sm-6 col-md-4 col-lg-4\">\r\n                <div class=\"box-icon box-icon-left\">\r\n                    <a class=\"box-icon-title\" href=\"#\">\r\n                        <i class=\"et-briefcase\"></i>\r\n                        <h2>ТРЕНИНГИ</h2>\r\n                    </a>\r\n                    <p class=\"text-muted\">Lorem definitiones ei pri per recteque hendrerit scriptorem in errem scribentur mel fastidii.</p>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-sm-6 col-md-4 col-lg-4\">\r\n                <div class=\"box-icon box-icon-left\">\r\n                    <a class=\"box-icon-title\" href=\"#\">\r\n                        <i class=\"et-megaphone\"></i>\r\n                        <h2>СОБЫТИЯ</h2>\r\n                    </a>\r\n                    <p class=\"text-muted\">Lorem definitiones ei pri per recteque hendrerit scriptorem in errem scribentur mel fastidii.</p>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-sm-6 col-md-4 col-lg-4\">\r\n                <div class=\"box-icon box-icon-left\">\r\n                    <a class=\"box-icon-title\" href=\"#\">\r\n                        <i class=\"et-flag\"></i>\r\n                        <h2>РАБОТА</h2>\r\n                    </a>\r\n                    <p class=\"text-muted\">Lorem definitiones ei pri per recteque hendrerit scriptorem in errem scribentur mel fastidii.</p>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n<div class=\"alert alert-transparent bordered-bottom nomargin\">\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-9 col-sm-12\">\r\n                <!-- left text -->\r\n                <h3>Участвуй <span><strong>бесплатно</strong></span> в проекте!</h3>\r\n                <p class=\"font-lato weight-300 size-20 nomargin-bottom\">\r\n                    Контактируй с людьми, предложи свои услуги на сайте\r\n                </p>\r\n            </div><!-- /left text -->\r\n            <div class=\"col-md-3 col-sm-12 text-right\">\r\n                <!-- right btn -->\r\n                <a href=\"#\" rel=\"nofollow\" target=\"_blank\" class=\"btn btn-primary btn-lg\">Установи свой светлячок</a>\r\n            </div><!-- /right btn -->\r\n        </div>\r\n    </div>\r\n</div>";
+	    return "<section>\n    <div class=\"container\">\n        <div class=\"text-center\">\n            <h1>ДОБРО ПОЖАЛОВАТЬ НА <span>SHINERS</span>.</h1>\n            <h2 class=\"col-sm-10 col-sm-offset-1 nomargin-bottom weight-400\">Сайт для поиска услуг, мероприятий и других объявлений от людей вокруг Вас.</h2>\n        </div>\n    </div>\n</section>\n\n<section class=\"alternate\">\n    <div class=\"container\">\n        <div class=\"heading-title text-center margin-bottom-80\">\n            <h3>КАК ЭТО РАБОТАЕТ</h3>\n        </div>\n        <ul class=\"process-steps nav nav-tabs nav-justified\">\n            <li class=\"active\">\n                <a data-toggle=\"tab\" href=\"#step1\"><i class=\"icon-plus\"></i></a>\n                <h5>Создай свой пост</h5>\n            </li>\n            <li>\n                <a data-toggle=\"tab\" href=\"#step2\"><i class=\"icon-map-marker\"></i></a>\n                <h5>Ты находишь / Тебя находят</h5>\n            </li>\n            <li>\n                <a data-toggle=\"tab\" href=\"#step3\"><i class=\"icon-ok\"></i></a>\n                <h5>Договаривайся / встречайся</h5>\n            </li>\n        </ul>\n\n        <div class=\"tab-content margin-top-60\">\n            <div role=\"tabpanel\" class=\"tab-pane active\" id=\"step1\">\n                <h4>Создай свой пост</h4>\n                Напиши объявление о том, что тебя сейчас интересует\n                или размести ссылку на свой пост на любом другом ресурсе — так ты получаешь готовый светлячек\n                Продаешь ты платье, ищешь работу или компанию для вечеринки, - расскажи об этом, и люди поблизости об этом узнают.\n            </div>\n\n            <div role=\"tabpanel\" class=\"tab-pane\" id=\"step2\">\n                <h4>Ты находишь / Тебя находят</h4>\n                Используй светлячки для поиска живых объявлений поблизости и мгновенной встречи с ее владельцем.\n\n                В каждом разделе можно увидеть Светлячков, которые сейчас рядом.\n                Ищи любую информацию в нашей «умной строке».\n                Если еще нет поста по твоему запросу, установи свой Светлячок, чтобы о нем узнали другие пользователи.\n                Установи светлячек на любое объявление,\n                и оно будет перемещаться вместе с тобой как твоя виртуальная визитка,\n                которую смогут видеть люди вокруг\n            </div>\n\n            <div role=\"tabpanel\" class=\"tab-pane\" id=\"step3\">\n                <h4>Договаривайся / встречайся</h4>\n                Светлчки помогут тебе увидеть объявления от будущих клиентов, собеседников, единомышленников, которые находятся непосредственно рядом с тобой (на той же улице, в том же районе), дальше тебе остается тольно написать мгновенное сообщение и договориться о встрече прямо здесь и прямо сейчас.\n            </div>\n\n        </div>\n    </div>\n</section>\n\n<section>\n    <div class=\"container\">\n        <div class=\"row\">\n            <!-- toggle -->\n            <div class=\"col-md-6 col-sm-6\">\n                <div class=\"toggle toggle-accordion toggle-transparent toggle-bordered-full\">\n                    <div class=\"toggle active\">\n                        <label>Один сервис для всех ресурсов</label>\n                        <div class=\"toggle-content\" style=\"display:block\">\n                            <p>Если у тебя уже есть пост на другом ресурсе–просто размести ссылку на него-и получи готовый Светлячок!</p>\n                        </div>\n                    </div>\n                    <div class=\"toggle\">\n                        <label>Живые объявления поблизости</label>\n                        <div class=\"toggle-content\">\n                            <p>\n                                Светлячки — это живые объявления от людей поблизости.\n                                Представь себе виртуальную визитку, только носят её не в кошельке, а в мобильном телефоне, и видят её не избранные, а все те, кто рядом\n                            </p>\n                        </div>\n                    </div>\n                    <div class=\"toggle\">\n                        <label>Быстрые встречи и контакты</label>\n                        <div class=\"toggle-content\">\n                            <p>Используй Светлячки для установки быстрых живых контактов- встреч, в нужное время, в нужном месте.</p>\n                        </div>\n                    </div>\n                </div>\n            </div>\n\n            <div class=\"col-md-6 col-sm-6\">\n                <h4>Популярные посты</h4>\n\n                <label>\n                    <span class=\"pull-right\">60%</span>\n                    РЕКЛАМА\n                </label>\n                <div class=\"progress progress-xxs\">\n                    <div class=\"progress-bar progress-bar-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%; min-width: 2em;\"></div>\n                </div>\n\n                <label>\n                    <span class=\"pull-right\">88%</span>\n                    ТОВАРЫ\n                </label>\n                <div class=\"progress progress-xxs\">\n                    <div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 88%; min-width: 2em;\"></div>\n                </div>\n\n                <label>\n                    <span class=\"pull-right\">93%</span>\n                    ТУРИЗМ\n                </label>\n                <div class=\"progress progress-xxs\">\n                    <div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 93%; min-width: 2em;\"></div>\n                </div>\n\n                <label>\n                    <span class=\"pull-right\">77%</span>\n                    СОБЫТИЯ\n                </label>\n                <div class=\"progress progress-xxs\">\n                    <div class=\"progress-bar progress-bar-info\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 77%; min-width: 2em;\"></div>\n                </div>\n                <label>\n                    <span class=\"pull-right\">99%</span>\n                    РАБОТА\n                </label>\n                <div class=\"progress progress-xxs\">\n                    <div class=\"progress-bar progress-bar-primary\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 99%; min-width: 2em;\"></div>\n                </div>\n            </div>\n            <!-- /skills -->\n        </div>\n    </div>\n</section>\n\n<section>\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-sm-6 col-md-4 col-lg-4\">\n                <div class=\"box-icon box-icon-left\">\n                    <a class=\"box-icon-title\" href=\"#\">\n                        <i class=\"fa fa-tablet\"></i>\n                        <h2>ТОВАРЫ И УСЛУГИ</h2>\n                    </a>\n                    <p class=\"text-muted\">Lorem definitiones ei pri per recteque hendrerit scriptorem in errem scribentur mel fastidii.</p>\n                </div>\n            </div>\n            <div class=\"col-sm-6 col-md-4 col-lg-4\">\n                <div class=\"box-icon box-icon-left\">\n                    <a class=\"box-icon-title\" href=\"#\">\n                        <i class=\"et-document\"></i>\n                        <h2>ВСТРЕЧИ</h2>\n                    </a>\n                    <p class=\"text-muted\">Lorem definitiones ei pri per recteque hendrerit scriptorem in errem scribentur mel fastidii.</p>\n                </div>\n            </div>\n            <div class=\"col-sm-6 col-md-4 col-lg-4\">\n                <div class=\"box-icon box-icon-left\">\n                    <a class=\"box-icon-title\" href=\"#\">\n                        <i class=\"et-basket\"></i>\n                        <h2>КОМЬЮНИТИ</h2>\n                    </a>\n                    <p class=\"text-muted\">Lorem definitiones ei pri per recteque hendrerit scriptorem in errem scribentur mel fastidii.</p>\n                </div>\n            </div>\n            <div class=\"col-sm-6 col-md-4 col-lg-4\">\n                <div class=\"box-icon box-icon-left\">\n                    <a class=\"box-icon-title\" href=\"#\">\n                        <i class=\"et-briefcase\"></i>\n                        <h2>ТРЕНИНГИ</h2>\n                    </a>\n                    <p class=\"text-muted\">Lorem definitiones ei pri per recteque hendrerit scriptorem in errem scribentur mel fastidii.</p>\n                </div>\n            </div>\n            <div class=\"col-sm-6 col-md-4 col-lg-4\">\n                <div class=\"box-icon box-icon-left\">\n                    <a class=\"box-icon-title\" href=\"#\">\n                        <i class=\"et-megaphone\"></i>\n                        <h2>СОБЫТИЯ</h2>\n                    </a>\n                    <p class=\"text-muted\">Lorem definitiones ei pri per recteque hendrerit scriptorem in errem scribentur mel fastidii.</p>\n                </div>\n            </div>\n            <div class=\"col-sm-6 col-md-4 col-lg-4\">\n                <div class=\"box-icon box-icon-left\">\n                    <a class=\"box-icon-title\" href=\"#\">\n                        <i class=\"et-flag\"></i>\n                        <h2>РАБОТА</h2>\n                    </a>\n                    <p class=\"text-muted\">Lorem definitiones ei pri per recteque hendrerit scriptorem in errem scribentur mel fastidii.</p>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n\n<div class=\"alert alert-transparent bordered-bottom nomargin\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-md-9 col-sm-12\">\n                <!-- left text -->\n                <h3>Участвуй <span><strong>бесплатно</strong></span> в проекте!</h3>\n                <p class=\"font-lato weight-300 size-20 nomargin-bottom\">\n                    Контактируй с людьми, предложи свои услуги на сайте\n                </p>\n            </div><!-- /left text -->\n            <div class=\"col-md-3 col-sm-12 text-right\">\n                <!-- right btn -->\n                <a href=\"#\" rel=\"nofollow\" target=\"_blank\" class=\"btn btn-primary btn-lg\">Установи свой светлячок</a>\n            </div><!-- /right btn -->\n        </div>\n    </div>\n</div>";
 	},"useData":true});
 
 /***/ },
@@ -28820,6 +28839,10 @@
 	
 	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 83);
 	
+	var _underscore = __webpack_require__(/*! underscore */ 36);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.View.extend({
@@ -28831,19 +28854,8 @@
 	        this.initCarousel('#relatedPosts');
 	    },
 	    initCarousel: function initCarousel(el) {
-	
 	        var slider = this.$(el);
 	        var options = slider.attr('data-plugin-options');
-	
-	        // Progress Bar
-	        var $opt = eval('(' + options + ')'); // convert text to json
-	
-	        if ($opt.progressBar == 'true') {
-	            var afterInit = progressBar;
-	        } else {
-	            var afterInit = false;
-	        }
-	
 	        var defaults = {
 	            items: 5,
 	            itemsCustom: false,
@@ -28897,73 +28909,18 @@
 	            beforeUpdate: false,
 	            afterUpdate: false,
 	            beforeInit: false,
-	            afterInit: afterInit,
+	            afterInit: false,
 	            beforeMove: false,
-	            afterMove: afterInit == false ? false : moved,
+	            afterMove: false,
 	            afterAction: false,
 	            startDragging: false,
 	            afterLazyLoad: false
 	        };
-	
 	        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+	        if (el == '#postImages' && _underscore2.default.size(this.model.get('details.photos')) <= 1) config.autoPlay = false;
 	        slider.owlCarousel(config).addClass("owl-carousel-init");
-	
-	        function progressBar(elem) {
-	            $elem = elem;
-	            //build progress bar elements
-	            buildProgressBar();
-	            //start counting
-	            start();
-	        }
-	
-	        //create div#progressBar and div#bar then prepend to $("#owl-demo")
-	        function buildProgressBar() {
-	            $progressBar = $("<div>", {
-	                id: "progressBar"
-	            });
-	            $bar = $("<div>", {
-	                id: "bar"
-	            });
-	            $progressBar.append($bar).prependTo($elem);
-	        }
-	
-	        function start() {
-	            //reset timer
-	            percentTime = 0;
-	            isPause = false;
-	            //run interval every 0.01 second
-	            tick = setInterval(interval, 10);
-	        };
-	
-	        var time = 7; // time in seconds
-	        function interval() {
-	            if (isPause === false) {
-	                percentTime += 1 / time;
-	                $bar.css({
-	                    width: percentTime + "%"
-	                });
-	                //if percentTime is equal or greater than 100
-	                if (percentTime >= 100) {
-	                    //slide to next item 
-	                    $elem.trigger('owl.next');
-	                }
-	            }
-	        }
-	
-	        //pause while dragging 
-	        function pauseOnDragging() {
-	            isPause = true;
-	        }
-	
-	        //moved callback
-	        function moved() {
-	            //clear interval
-	            clearTimeout(tick);
-	            //start again
-	            start();
-	        }
 	    },
-	    initRelatedCarousel: function initRelatedCarousel() {}
+	    showRelatedPosts: function showRelatedPosts() {}
 	});
 	exports.default = View;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 2)))
@@ -28978,29 +28935,50 @@
 	var Handlebars = __webpack_require__(/*! ./~/handlebars/runtime.js */ 49);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"1":function(depth0,helpers,partials,data) {
-	    var stack1;
-	
-	  return ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.locations : stack1),{"name":"each","hash":{},"fn":this.program(2, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-	},"2":function(depth0,helpers,partials,data) {
 	    var helper;
 	
-	  return "                            <li>\r\n                                <span>\r\n                                    <i class=\"fa fa-map-marker\"></i>"
-	    + this.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"name","hash":{},"data":data}) : helper)))
-	    + "\r\n                                </span>\r\n                            </li>\r\n";
-	},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-	    var stack1, alias1=this.lambda, alias2=this.escapeExpression;
+	  return "                <div>\r\n                    <img class=\"img-responsive\" src=\""
+	    + this.escapeExpression(((helper = (helper = helpers.data || (depth0 != null ? depth0.data : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"data","hash":{},"data":data}) : helper)))
+	    + "\" alt=\"\">\r\n                </div>\r\n";
+	},"3":function(depth0,helpers,partials,data) {
+	    var stack1;
 	
-	  return "<section class=\"page-header page-header-xs\">\r\n    <div class=\"container\">\r\n        <h1>"
+	  return "                            <li><span><i class=\"fa fa-money\"></i>Стоимость:</span> "
+	    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.price : stack1), depth0))
+	    + "</li>\n";
+	},"5":function(depth0,helpers,partials,data) {
+	    var stack1;
+	
+	  return ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.locations : stack1),{"name":"each","hash":{},"fn":this.program(6, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+	},"6":function(depth0,helpers,partials,data) {
+	    var helper;
+	
+	  return "                            <li>\n                                <span>\n                                    <i class=\"fa fa-map-marker\"></i> Адрес\n                                </span>\n                                "
+	    + this.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"name","hash":{},"data":data}) : helper)))
+	    + "\n                            </li>\n";
+	},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+	    var stack1, helper, alias1=this.lambda, alias2=this.escapeExpression, alias3=helpers.helperMissing, alias4="function";
+	
+	  return "<section class=\"page-header page-header-xs\">\n    <div class=\"container\">\n        <h1>"
 	    + alias2(alias1(((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.title : stack1), depth0))
-	    + "</h1>\r\n        <span class=\"font-lato size-18 weight-300\">"
-	    + alias2((helpers.moment || (depth0 && depth0.moment) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.timestamp : depth0),"humanize",{"name":"moment","hash":{},"data":data}))
-	    + "</span>\r\n\r\n        <!-- breadcrumbs -->\r\n        <ol class=\"breadcrumb\">\r\n            <li><a href=\"/\">Главная</a></li>\r\n            <li><a href=\"/posts\">Объявления</a></li>\r\n            <li class=\"active\">"
+	    + "</h1>\n        <span class=\"font-lato size-18 weight-300\">"
+	    + alias2((helpers.moment || (depth0 && depth0.moment) || alias3).call(depth0,(depth0 != null ? depth0.timestamp : depth0),"fromNow",{"name":"moment","hash":{},"data":data}))
+	    + "</span>\n\n        <!-- breadcrumbs -->\n        <ol class=\"breadcrumb\">\n            <li><a href=\"/\">Главная</a></li>\n            <li><a href=\"/posts\">Объявления</a></li>\n            <li class=\"active\">"
 	    + alias2(alias1(((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.title : stack1), depth0))
-	    + "</li>\r\n        </ol><!-- /breadcrumbs -->\r\n    </div>\r\n</section>\r\n\r\n<section>\r\n    <div class=\"container\">\r\n        <!-- OWL SLIDER -->\r\n        <div class=\"container\">\r\n            <div class=\"owl-carousel buttons-autohide controlls-over nomargin\" id=\"postImages\" data-plugin-options='{\"items\": 1, \"autoPlay\": 3500, \"autoHeight\": false, \"navigation\": true, \"pagination\": false, \"transitionStyle\":\"fade\", \"progressBar\":\"false\"}'>\r\n                <div>\r\n                    <img class=\"img-responsive\" src=\"/images/demo/mockups/1200x800/15-min.jpg\" alt=\"\">\r\n                </div>\r\n                <div>\r\n                    <img class=\"img-responsive\" src=\"/images/demo/mockups/1200x800/9-min.jpg\" alt=\"\">\r\n                </div>\r\n                <div>\r\n                    <img class=\"img-responsive\" src=\"/images/demo/mockups/1200x800/2-min.jpg\" alt=\"\">\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <!-- /OWL SLIDER -->\r\n    </div>\r\n</section>\r\n\r\n<section>\r\n    <div class=\"container\">\r\n        <div class=\"row nomargin\">\r\n            <div class=\"col-md-8 col-sm-8\">\r\n                <!-- Subtitle -->\r\n                <div class=\"heading-title heading-border\">\r\n                    <h2>Описание <span>объявления</span></h2>\r\n                    <ul class=\"list-inline categories nomargin\">\r\n                        <li><a href=\"#\">Photography</a></li>\r\n                        <li><a href=\"#\">Design</a></li>\r\n                    </ul>\r\n                </div>\r\n                <!-- /Subtitle -->              \r\n                <p class=\"font-lato size-18\">"
-	    + alias2(alias1(((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.description : stack1), depth0))
-	    + "</p>\r\n            </div>\r\n\r\n            <div class=\"col-md-4 col-sm-4\">\r\n                <div class=\"panel panel-default\">\r\n                    <div class=\"panel-body\">\r\n                        <p class=\"font-lato size-18\">Integer posuere erat a ante venenatis dapibus posuere velit aliquet nulla sed consectetur.</p>\r\n                        <ul class=\"portfolio-detail-list list-unstyled nomargin\">\r\n                            <li><span><i class=\"fa fa-user\"></i>Author:</span> Smarty Inc.</li>\r\n                            <li><span><i class=\"fa fa-calendar\"></i>Released:</span> 29th June 2015</li>\r\n                            <li><span><i class=\"fa fa-lightbulb-o\"></i>Technologies:</span> HTML / CSS / JAVASCRIPT</li>\r\n                            <li><span><i class=\"fa fa-link\"></i>Website:</span> <a href=\"#\">www.stepofweb.com</a></li>\r\n"
-	    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.locations : stack1),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-	    + "                        </ul>\r\n                    </div>\r\n\r\n                    <div class=\"panel-footer\">\r\n\r\n                        <!-- Social Icons -->\r\n                        <a href=\"#\" class=\"social-icon social-icon-sm social-icon-transparent social-facebook\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Facebook\">\r\n\r\n                            <i class=\"icon-facebook\"></i>\r\n                            <i class=\"icon-facebook\"></i>\r\n                        </a>\r\n\r\n                        <a href=\"#\" class=\"social-icon social-icon-sm social-icon-transparent social-twitter\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Twitter\">\r\n                            <i class=\"icon-twitter\"></i>\r\n                            <i class=\"icon-twitter\"></i>\r\n                        </a>\r\n\r\n                        <a href=\"#\" class=\"social-icon social-icon-sm social-icon-transparent social-gplus\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Google plus\">\r\n                            <i class=\"icon-gplus\"></i>\r\n                            <i class=\"icon-gplus\"></i>\r\n                        </a>\r\n\r\n                        <a href=\"#\" class=\"social-icon social-icon-sm social-icon-transparent social-linkedin\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Linkedin\">\r\n                            <i class=\"icon-linkedin\"></i>\r\n                            <i class=\"icon-linkedin\"></i>\r\n                        </a>\r\n\r\n                        <a href=\"#\" class=\"social-icon social-icon-sm social-icon-transparent social-pinterest\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pinterest\">\r\n                            <i class=\"icon-pinterest\"></i>\r\n                            <i class=\"icon-pinterest\"></i>\r\n                        </a>\r\n                        <!-- /Social Icons -->\r\n\r\n                    </div>\r\n\r\n                </div>\r\n\r\n            </div>\r\n\r\n        </div>\r\n\r\n    </div>\r\n</section>\r\n<!-- -->\r\n<!-- -->\r\n<section>\r\n    <div class=\"container\">\r\n\r\n        <div class=\"heading-title heading-border\">\r\n            <h3>Related <span>Projects</span></h3>\r\n            <p class=\"font-lato size-14\">Lorem ipsum dolor sit amet.</p>\r\n        </div>\r\n\r\n        <!--\r\n            RELATED CAROUSEL\r\n\r\n            controlls-over		= navigation buttons over the image\r\n            buttons-autohide 	= navigation buttons visible on mouse hover only\r\n\r\n            owl-carousel item paddings\r\n                .owl-padding-0\r\n                .owl-padding-1\r\n                .owl-padding-2\r\n                .owl-padding-3\r\n                .owl-padding-6\r\n                .owl-padding-10\r\n                .owl-padding-15\r\n                .owl-padding-20\r\n        -->\r\n        <div class=\"text-center\">\r\n            <div class=\"owl-carousel owl-padding-1 nomargin buttons-autohide controlls-over\" id=\"relatedPosts\" data-plugin-options='{\"singleItem\": false, \"items\": \"4\", \"autoPlay\": 3500, \"navigation\": true, \"pagination\": false}'>\r\n\r\n                <!-- item -->\r\n                <div class=\"item-box\">\r\n                    <figure>\r\n                        <span class=\"item-hover\">\r\n                            <span class=\"overlay dark-5\"></span>\r\n                            <span class=\"inner\">\r\n\r\n                                <!-- lightbox -->\r\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/16-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\r\n                                    <span class=\"fa fa-plus size-20\"></span>\r\n                                </a>\r\n\r\n                                <!-- details -->\r\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\r\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\r\n                                </a>\r\n\r\n                            </span>\r\n                        </span>\r\n\r\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/16-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\r\n                    </figure>\r\n\r\n                    <div class=\"item-box-desc\">\r\n                        <h3>Architect Project</h3>\r\n                        <ul class=\"list-inline categories nomargin\">\r\n                            <li><a href=\"#\">Architecture</a></li>\r\n                            <li><a href=\"#\">Design</a></li>\r\n                        </ul>\r\n                    </div>\r\n\r\n                </div>\r\n                <!-- /item -->\r\n                <!-- item -->\r\n                <div class=\"item-box\">\r\n                    <figure>\r\n                        <span class=\"item-hover\">\r\n                            <span class=\"overlay dark-5\"></span>\r\n                            <span class=\"inner\">\r\n\r\n                                <!-- lightbox -->\r\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/4-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\r\n                                    <span class=\"fa fa-plus size-20\"></span>\r\n                                </a>\r\n\r\n                                <!-- details -->\r\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\r\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\r\n                                </a>\r\n\r\n                            </span>\r\n                        </span>\r\n\r\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/4-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\r\n                    </figure>\r\n\r\n                    <div class=\"item-box-desc\">\r\n                        <h3>Architect Project</h3>\r\n                        <ul class=\"list-inline categories nomargin\">\r\n                            <li><a href=\"#\">Architecture</a></li>\r\n                            <li><a href=\"#\">Design</a></li>\r\n                        </ul>\r\n                    </div>\r\n\r\n                </div>\r\n                <!-- /item -->\r\n                <!-- item -->\r\n                <div class=\"item-box\">\r\n                    <figure>\r\n                        <span class=\"item-hover\">\r\n                            <span class=\"overlay dark-5\"></span>\r\n                            <span class=\"inner\">\r\n\r\n                                <!-- lightbox -->\r\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/5-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\r\n                                    <span class=\"fa fa-plus size-20\"></span>\r\n                                </a>\r\n\r\n                                <!-- details -->\r\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\r\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\r\n                                </a>\r\n\r\n                            </span>\r\n                        </span>\r\n\r\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/5-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\r\n                    </figure>\r\n\r\n                    <div class=\"item-box-desc\">\r\n                        <h3>Architect Project</h3>\r\n                        <ul class=\"list-inline categories nomargin\">\r\n                            <li><a href=\"#\">Architecture</a></li>\r\n                            <li><a href=\"#\">Design</a></li>\r\n                        </ul>\r\n                    </div>\r\n\r\n                </div>\r\n                <!-- /item -->\r\n                <!-- item -->\r\n                <div class=\"item-box\">\r\n                    <figure>\r\n                        <span class=\"item-hover\">\r\n                            <span class=\"overlay dark-5\"></span>\r\n                            <span class=\"inner\">\r\n\r\n                                <!-- lightbox -->\r\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/6-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\r\n                                    <span class=\"fa fa-plus size-20\"></span>\r\n                                </a>\r\n\r\n                                <!-- details -->\r\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\r\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\r\n                                </a>\r\n\r\n                            </span>\r\n                        </span>\r\n\r\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/6-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\r\n                    </figure>\r\n\r\n                    <div class=\"item-box-desc\">\r\n                        <h3>Architect Project</h3>\r\n                        <ul class=\"list-inline categories nomargin\">\r\n                            <li><a href=\"#\">Architecture</a></li>\r\n                            <li><a href=\"#\">Design</a></li>\r\n                        </ul>\r\n                    </div>\r\n\r\n                </div>\r\n                <!-- /item -->\r\n                <!-- item -->\r\n                <div class=\"item-box\">\r\n                    <figure>\r\n                        <span class=\"item-hover\">\r\n                            <span class=\"overlay dark-5\"></span>\r\n                            <span class=\"inner\">\r\n\r\n                                <!-- lightbox -->\r\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/7-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\r\n                                    <span class=\"fa fa-plus size-20\"></span>\r\n                                </a>\r\n\r\n                                <!-- details -->\r\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\r\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\r\n                                </a>\r\n\r\n                            </span>\r\n                        </span>\r\n\r\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/7-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\r\n                    </figure>\r\n\r\n                    <div class=\"item-box-desc\">\r\n                        <h3>Architect Project</h3>\r\n                        <ul class=\"list-inline categories nomargin\">\r\n                            <li><a href=\"#\">Architecture</a></li>\r\n                            <li><a href=\"#\">Design</a></li>\r\n                        </ul>\r\n                    </div>\r\n\r\n                </div>\r\n                <!-- /item -->\r\n                <!-- item -->\r\n                <div class=\"item-box\">\r\n                    <figure>\r\n                        <span class=\"item-hover\">\r\n                            <span class=\"overlay dark-5\"></span>\r\n                            <span class=\"inner\">\r\n\r\n                                <!-- lightbox -->\r\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/8-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\r\n                                    <span class=\"fa fa-plus size-20\"></span>\r\n                                </a>\r\n\r\n                                <!-- details -->\r\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\r\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\r\n                                </a>\r\n\r\n                            </span>\r\n                        </span>\r\n\r\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/8-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\r\n                    </figure>\r\n\r\n                    <div class=\"item-box-desc\">\r\n                        <h3>Architect Project</h3>\r\n                        <ul class=\"list-inline categories nomargin\">\r\n                            <li><a href=\"#\">Architecture</a></li>\r\n                            <li><a href=\"#\">Design</a></li>\r\n                        </ul>\r\n                    </div>\r\n\r\n                </div>\r\n                <!-- /item -->\r\n                <!-- item -->\r\n                <div class=\"item-box\">\r\n                    <figure>\r\n                        <span class=\"item-hover\">\r\n                            <span class=\"overlay dark-5\"></span>\r\n                            <span class=\"inner\">\r\n\r\n                                <!-- lightbox -->\r\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/9-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\r\n                                    <span class=\"fa fa-plus size-20\"></span>\r\n                                </a>\r\n\r\n                                <!-- details -->\r\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\r\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\r\n                                </a>\r\n\r\n                            </span>\r\n                        </span>\r\n\r\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/9-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\r\n                    </figure>\r\n\r\n                    <div class=\"item-box-desc\">\r\n                        <h3>Architect Project</h3>\r\n                        <ul class=\"list-inline categories nomargin\">\r\n                            <li><a href=\"#\">Architecture</a></li>\r\n                            <li><a href=\"#\">Design</a></li>\r\n                        </ul>\r\n                    </div>\r\n\r\n                </div>\r\n                <!-- /item -->\r\n                <!-- item -->\r\n                <div class=\"item-box\">\r\n                    <figure>\r\n                        <span class=\"item-hover\">\r\n                            <span class=\"overlay dark-5\"></span>\r\n                            <span class=\"inner\">\r\n\r\n                                <!-- lightbox -->\r\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/10-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\r\n                                    <span class=\"fa fa-plus size-20\"></span>\r\n                                </a>\r\n\r\n                                <!-- details -->\r\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\r\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\r\n                                </a>\r\n\r\n                            </span>\r\n                        </span>\r\n\r\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/10-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\r\n                    </figure>\r\n\r\n                    <div class=\"item-box-desc\">\r\n                        <h3>Architect Project</h3>\r\n                        <ul class=\"list-inline categories nomargin\">\r\n                            <li><a href=\"#\">Architecture</a></li>\r\n                            <li><a href=\"#\">Design</a></li>\r\n                        </ul>\r\n                    </div>\r\n\r\n                </div>\r\n                <!-- /item -->\r\n\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n</section>";
+	    + "</li>\n        </ol><!-- /breadcrumbs -->\n    </div>\n</section>\n\n<section>\n    <div class=\"container\">\n        <!-- OWL SLIDER -->\n        <div class=\"container\">\n            <div class=\"owl-carousel buttons-autohide controlls-over nomargin\" id=\"postImages\" data-plugin-options='{\"items\": 1, \"autoPlay\": 3500, \"autoHeight\": false, \"navigation\": true, \"pagination\": false, \"transitionStyle\":\"fade\", \"progressBar\":\"false\"}'>\r\n"
+	    + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.photos : stack1),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+	    + "            </div>\n        </div>\n        <!-- /OWL SLIDER -->\n    </div>\n</section>\n\n<section>\n    <div class=\"container\">\n        <div class=\"row nomargin\">\n            <div class=\"col-md-8 col-sm-8\">\n                <!-- Subtitle -->\n                <div class=\"heading-title heading-border\">\n                    <h2>Описание <span>объявления</span></h2>\n                    <ul class=\"list-inline categories nomargin\">\n                        <li><a href=\"#\">"
+	    + alias2(((helper = (helper = helpers.type || (depth0 != null ? depth0.type : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(depth0,{"name":"type","hash":{},"data":data}) : helper)))
+	    + "</a></li>\n                    </ul>\n                </div>\n                <!-- /Subtitle -->              \n                <p class=\"font-lato size-18\">"
+	    + ((stack1 = alias1(((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.description : stack1), depth0)) != null ? stack1 : "")
+	    + "</p>\n            </div>\n\n            <div class=\"col-md-4 col-sm-4\">\n                <div class=\"panel panel-default\">\n                    <div class=\"panel-body\">\n                        <p class=\"font-lato size-18\">Дополнительные сведения об объявлении:</p>\n                        <ul class=\"portfolio-detail-list list-unstyled nomargin\">\n                            <li><span><i class=\"fa fa-user\"></i>Автор:</span> "
+	    + alias2(alias1(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
+	    + "</li>\n                            <li><span><i class=\"fa fa-calendar\"></i>Действует до:</span> "
+	    + alias2(((helper = (helper = helpers.endDatePost || (depth0 != null ? depth0.endDatePost : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(depth0,{"name":"endDatePost","hash":{},"data":data}) : helper)))
+	    + "</li>\n"
+	    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.price : stack1),{"name":"if","hash":{},"fn":this.program(3, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+	    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.details : depth0)) != null ? stack1.locations : stack1),{"name":"if","hash":{},"fn":this.program(5, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+	    + "                        </ul>\n                    </div>\n\n                    <div class=\"panel-footer\">\n\n                        <!-- Social Icons -->\n                        <a href=\"#\" class=\"social-icon social-icon-sm social-icon-transparent social-facebook\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Facebook\">\n\n                            <i class=\"icon-facebook\"></i>\n                            <i class=\"icon-facebook\"></i>\n                        </a>\n\n                        <a href=\"#\" class=\"social-icon social-icon-sm social-icon-transparent social-twitter\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Twitter\">\n                            <i class=\"icon-twitter\"></i>\n                            <i class=\"icon-twitter\"></i>\n                        </a>\n\n                        <a href=\"#\" class=\"social-icon social-icon-sm social-icon-transparent social-gplus\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Google plus\">\n                            <i class=\"icon-gplus\"></i>\n                            <i class=\"icon-gplus\"></i>\n                        </a>\n\n                        <a href=\"#\" class=\"social-icon social-icon-sm social-icon-transparent social-linkedin\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Linkedin\">\n                            <i class=\"icon-linkedin\"></i>\n                            <i class=\"icon-linkedin\"></i>\n                        </a>\n\n                        <a href=\"#\" class=\"social-icon social-icon-sm social-icon-transparent social-pinterest\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pinterest\">\n                            <i class=\"icon-pinterest\"></i>\n                            <i class=\"icon-pinterest\"></i>\n                        </a>\n                        <!-- /Social Icons -->\n\n                    </div>\n\n                </div>\n\n            </div>\n\n        </div>\n\n    </div>\n</section>\n<!-- -->\n<!-- -->\n<section>\n    <div class=\"container\">\n\n        <div class=\"heading-title heading-border\">\n            <h3>Похожие <span>объявления</span></h3>\n        </div>\n\n        <!--\n            RELATED CAROUSEL\n\n            controlls-over		= navigation buttons over the image\n            buttons-autohide 	= navigation buttons visible on mouse hover only\n\n            owl-carousel item paddings\n                .owl-padding-0\n                .owl-padding-1\n                .owl-padding-2\n                .owl-padding-3\n                .owl-padding-6\n                .owl-padding-10\n                .owl-padding-15\n                .owl-padding-20\n        -->\n        <div class=\"text-center\">\n            <div class=\"owl-carousel owl-padding-1 nomargin buttons-autohide controlls-over\" id=\"relatedPosts\" data-plugin-options='{\"singleItem\": false, \"items\": \"4\", \"autoPlay\": 3500, \"navigation\": true, \"pagination\": false}'>\n\n                <!-- item -->\n                <div class=\"item-box\">\n                    <figure>\n                        <span class=\"item-hover\">\n                            <span class=\"overlay dark-5\"></span>\n                            <span class=\"inner\">\n\n                                <!-- lightbox -->\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/16-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\n                                    <span class=\"fa fa-plus size-20\"></span>\n                                </a>\n\n                                <!-- details -->\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\n                                </a>\n\n                            </span>\n                        </span>\n\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/16-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\n                    </figure>\n\n                    <div class=\"item-box-desc\">\n                        <h3>Architect Project</h3>\n                        <ul class=\"list-inline categories nomargin\">\n                            <li><a href=\"#\">Architecture</a></li>\n                            <li><a href=\"#\">Design</a></li>\n                        </ul>\n                    </div>\n\n                </div>\n                <!-- /item -->\n                <!-- item -->\n                <div class=\"item-box\">\n                    <figure>\n                        <span class=\"item-hover\">\n                            <span class=\"overlay dark-5\"></span>\n                            <span class=\"inner\">\n\n                                <!-- lightbox -->\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/4-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\n                                    <span class=\"fa fa-plus size-20\"></span>\n                                </a>\n\n                                <!-- details -->\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\n                                </a>\n\n                            </span>\n                        </span>\n\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/4-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\n                    </figure>\n\n                    <div class=\"item-box-desc\">\n                        <h3>Architect Project</h3>\n                        <ul class=\"list-inline categories nomargin\">\n                            <li><a href=\"#\">Architecture</a></li>\n                            <li><a href=\"#\">Design</a></li>\n                        </ul>\n                    </div>\n\n                </div>\n                <!-- /item -->\n                <!-- item -->\n                <div class=\"item-box\">\n                    <figure>\n                        <span class=\"item-hover\">\n                            <span class=\"overlay dark-5\"></span>\n                            <span class=\"inner\">\n\n                                <!-- lightbox -->\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/5-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\n                                    <span class=\"fa fa-plus size-20\"></span>\n                                </a>\n\n                                <!-- details -->\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\n                                </a>\n\n                            </span>\n                        </span>\n\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/5-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\n                    </figure>\n\n                    <div class=\"item-box-desc\">\n                        <h3>Architect Project</h3>\n                        <ul class=\"list-inline categories nomargin\">\n                            <li><a href=\"#\">Architecture</a></li>\n                            <li><a href=\"#\">Design</a></li>\n                        </ul>\n                    </div>\n\n                </div>\n                <!-- /item -->\n                <!-- item -->\n                <div class=\"item-box\">\n                    <figure>\n                        <span class=\"item-hover\">\n                            <span class=\"overlay dark-5\"></span>\n                            <span class=\"inner\">\n\n                                <!-- lightbox -->\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/6-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\n                                    <span class=\"fa fa-plus size-20\"></span>\n                                </a>\n\n                                <!-- details -->\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\n                                </a>\n\n                            </span>\n                        </span>\n\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/6-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\n                    </figure>\n\n                    <div class=\"item-box-desc\">\n                        <h3>Architect Project</h3>\n                        <ul class=\"list-inline categories nomargin\">\n                            <li><a href=\"#\">Architecture</a></li>\n                            <li><a href=\"#\">Design</a></li>\n                        </ul>\n                    </div>\n\n                </div>\n                <!-- /item -->\n                <!-- item -->\n                <div class=\"item-box\">\n                    <figure>\n                        <span class=\"item-hover\">\n                            <span class=\"overlay dark-5\"></span>\n                            <span class=\"inner\">\n\n                                <!-- lightbox -->\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/7-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\n                                    <span class=\"fa fa-plus size-20\"></span>\n                                </a>\n\n                                <!-- details -->\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\n                                </a>\n\n                            </span>\n                        </span>\n\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/7-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\n                    </figure>\n\n                    <div class=\"item-box-desc\">\n                        <h3>Architect Project</h3>\n                        <ul class=\"list-inline categories nomargin\">\n                            <li><a href=\"#\">Architecture</a></li>\n                            <li><a href=\"#\">Design</a></li>\n                        </ul>\n                    </div>\n\n                </div>\n                <!-- /item -->\n                <!-- item -->\n                <div class=\"item-box\">\n                    <figure>\n                        <span class=\"item-hover\">\n                            <span class=\"overlay dark-5\"></span>\n                            <span class=\"inner\">\n\n                                <!-- lightbox -->\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/8-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\n                                    <span class=\"fa fa-plus size-20\"></span>\n                                </a>\n\n                                <!-- details -->\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\n                                </a>\n\n                            </span>\n                        </span>\n\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/8-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\n                    </figure>\n\n                    <div class=\"item-box-desc\">\n                        <h3>Architect Project</h3>\n                        <ul class=\"list-inline categories nomargin\">\n                            <li><a href=\"#\">Architecture</a></li>\n                            <li><a href=\"#\">Design</a></li>\n                        </ul>\n                    </div>\n\n                </div>\n                <!-- /item -->\n                <!-- item -->\n                <div class=\"item-box\">\n                    <figure>\n                        <span class=\"item-hover\">\n                            <span class=\"overlay dark-5\"></span>\n                            <span class=\"inner\">\n\n                                <!-- lightbox -->\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/9-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\n                                    <span class=\"fa fa-plus size-20\"></span>\n                                </a>\n\n                                <!-- details -->\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\n                                </a>\n\n                            </span>\n                        </span>\n\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/9-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\n                    </figure>\n\n                    <div class=\"item-box-desc\">\n                        <h3>Architect Project</h3>\n                        <ul class=\"list-inline categories nomargin\">\n                            <li><a href=\"#\">Architecture</a></li>\n                            <li><a href=\"#\">Design</a></li>\n                        </ul>\n                    </div>\n\n                </div>\n                <!-- /item -->\n                <!-- item -->\n                <div class=\"item-box\">\n                    <figure>\n                        <span class=\"item-hover\">\n                            <span class=\"overlay dark-5\"></span>\n                            <span class=\"inner\">\n\n                                <!-- lightbox -->\n                                <a class=\"ico-rounded lightbox\" href=\"/images/demo/mockups/1200x800/10-min.jpg\" data-plugin-options='{\"type\":\"image\"}'>\n                                    <span class=\"fa fa-plus size-20\"></span>\n                                </a>\n\n                                <!-- details -->\n                                <a class=\"ico-rounded\" href=\"portfolio-single-slider.html\">\n                                    <span class=\"glyphicon glyphicon-option-horizontal size-20\"></span>\n                                </a>\n\n                            </span>\n                        </span>\n\n                        <img class=\"img-responsive\" src=\"/images/demo/mockups/600x399/10-min.jpg\" width=\"600\" height=\"399\" alt=\"\">\n                    </figure>\n\n                    <div class=\"item-box-desc\">\n                        <h3>Architect Project</h3>\n                        <ul class=\"list-inline categories nomargin\">\n                            <li><a href=\"#\">Architecture</a></li>\n                            <li><a href=\"#\">Design</a></li>\n                        </ul>\n                    </div>\n\n                </div>\n                <!-- /item -->\n\n            </div>\n        </div>\n\n    </div>\n</section>";
 	},"useData":true});
 
 /***/ },
@@ -29730,7 +29708,7 @@
 	var Handlebars = __webpack_require__(/*! ./~/handlebars/runtime.js */ 49);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-	    return "<div class=\"inner\">\r\n    <span class=\"loader\"></span>\r\n</div>";
+	    return "<div class=\"inner\">\n    <span class=\"loader\"></span>\n</div>";
 	},"useData":true});
 
 /***/ },

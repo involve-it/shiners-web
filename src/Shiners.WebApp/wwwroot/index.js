@@ -8,6 +8,7 @@ require("./css/layout.css");
 require("./css/header-1.css");
 require("./css/color_scheme/blue.css");
 require("./css/custom.css");
+import './lib/font-awesome/css/font-awesome.css';
 import './lib/jquery-ui/jquery-ui.min.js';
 
 import app from './homeApp/app.js';

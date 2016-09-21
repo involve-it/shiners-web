@@ -1,34 +1,26 @@
 ﻿<section class="page-header page-header-xs">
     <div class="container">
         <h1>{{details.title}}</h1>
-        <span class="font-lato size-18 weight-300">{{moment timestamp "humanize"}}</span>
-
-        <!-- breadcrumbs -->
+        <span class="font-lato size-18 weight-300">{{moment timestamp "fromNow" local=true}}</span>
         <ol class="breadcrumb">
             <li><a href="/">Главная</a></li>
             <li><a href="/posts">Объявления</a></li>
             <li class="active">{{details.title}}</li>
-        </ol><!-- /breadcrumbs -->
+        </ol>
     </div>
 </section>
 
 <section>
     <div class="container">
-        <!-- OWL SLIDER -->
         <div class="container">
             <div class="owl-carousel buttons-autohide controlls-over nomargin" id="postImages" data-plugin-options='{"items": 1, "autoPlay": 3500, "autoHeight": false, "navigation": true, "pagination": false, "transitionStyle":"fade", "progressBar":"false"}'>
+                {{#each details.photos}}
                 <div>
-                    <img class="img-responsive" src="/images/demo/mockups/1200x800/15-min.jpg" alt="">
+                    <img class="img-responsive" src="{{data}}" alt="">
                 </div>
-                <div>
-                    <img class="img-responsive" src="/images/demo/mockups/1200x800/9-min.jpg" alt="">
-                </div>
-                <div>
-                    <img class="img-responsive" src="/images/demo/mockups/1200x800/2-min.jpg" alt="">
-                </div>
+                {{/each}}
             </div>
         </div>
-        <!-- /OWL SLIDER -->
     </div>
 </section>
 
@@ -36,33 +28,32 @@
     <div class="container">
         <div class="row nomargin">
             <div class="col-md-8 col-sm-8">
-                <!-- Subtitle -->
                 <div class="heading-title heading-border">
-                    <h2>Описание <span>объявления</span></h2>
+                    <h2><span>{{details.title}}</span></h2>
                     <ul class="list-inline categories nomargin">
-                        <li><a href="#">Photography</a></li>
-                        <li><a href="#">Design</a></li>
+                        <li><a href="#">{{type}}</a></li>
                     </ul>
-                </div>
-                <!-- /Subtitle -->              
-                <p class="font-lato size-18">{{details.description}}</p>
+                </div>          
+                <p class="font-lato size-18">{{{details.description}}}</p>
             </div>
 
             <div class="col-md-4 col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <p class="font-lato size-18">Integer posuere erat a ante venenatis dapibus posuere velit aliquet nulla sed consectetur.</p>
+                        <p class="font-lato size-18">Дополнительные сведения об объявлении:</p>
                         <ul class="portfolio-detail-list list-unstyled nomargin">
-                            <li><span><i class="fa fa-user"></i>Author:</span> Smarty Inc.</li>
-                            <li><span><i class="fa fa-calendar"></i>Released:</span> 29th June 2015</li>
-                            <li><span><i class="fa fa-lightbulb-o"></i>Technologies:</span> HTML / CSS / JAVASCRIPT</li>
-                            <li><span><i class="fa fa-link"></i>Website:</span> <a href="#">www.stepofweb.com</a></li>
+                            <li><span><i class="fa fa-user"></i>Автор:</span> {{user.username}}</li>
+                            <li><span><i class="fa fa-calendar"></i>Действует до:</span> {{moment date=endDatePost format="DD.MM.YYYY" local=true}}</li>
+                            {{#if details.price}}
+                            <li><span><i class="fa fa-money"></i>Стоимость:</span> {{details.price}}</li>
+                            {{/if}}
                             {{#if details.locations}}
                             {{#each details.locations}}
                             <li>
                                 <span>
-                                    <i class="fa fa-map-marker"></i>{{name}}
+                                    <i class="fa fa-map-marker"></i> Адрес
                                 </span>
+                                {{name}}
                             </li>
                             {{/each}}
                             {{/if}}
@@ -70,8 +61,6 @@
                     </div>
 
                     <div class="panel-footer">
-
-                        <!-- Social Icons -->
                         <a href="#" class="social-icon social-icon-sm social-icon-transparent social-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
 
                             <i class="icon-facebook"></i>
@@ -97,314 +86,13 @@
                             <i class="icon-pinterest"></i>
                             <i class="icon-pinterest"></i>
                         </a>
-                        <!-- /Social Icons -->
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 </section>
-<!-- -->
-<!-- -->
+
 <section>
-    <div class="container">
-
-        <div class="heading-title heading-border">
-            <h3>Related <span>Projects</span></h3>
-            <p class="font-lato size-14">Lorem ipsum dolor sit amet.</p>
-        </div>
-
-        <!--
-            RELATED CAROUSEL
-
-            controlls-over		= navigation buttons over the image
-            buttons-autohide 	= navigation buttons visible on mouse hover only
-
-            owl-carousel item paddings
-                .owl-padding-0
-                .owl-padding-1
-                .owl-padding-2
-                .owl-padding-3
-                .owl-padding-6
-                .owl-padding-10
-                .owl-padding-15
-                .owl-padding-20
-        -->
-        <div class="text-center">
-            <div class="owl-carousel owl-padding-1 nomargin buttons-autohide controlls-over" id="relatedPosts" data-plugin-options='{"singleItem": false, "items": "4", "autoPlay": 3500, "navigation": true, "pagination": false}'>
-
-                <!-- item -->
-                <div class="item-box">
-                    <figure>
-                        <span class="item-hover">
-                            <span class="overlay dark-5"></span>
-                            <span class="inner">
-
-                                <!-- lightbox -->
-                                <a class="ico-rounded lightbox" href="/images/demo/mockups/1200x800/16-min.jpg" data-plugin-options='{"type":"image"}'>
-                                    <span class="fa fa-plus size-20"></span>
-                                </a>
-
-                                <!-- details -->
-                                <a class="ico-rounded" href="portfolio-single-slider.html">
-                                    <span class="glyphicon glyphicon-option-horizontal size-20"></span>
-                                </a>
-
-                            </span>
-                        </span>
-
-                        <img class="img-responsive" src="/images/demo/mockups/600x399/16-min.jpg" width="600" height="399" alt="">
-                    </figure>
-
-                    <div class="item-box-desc">
-                        <h3>Architect Project</h3>
-                        <ul class="list-inline categories nomargin">
-                            <li><a href="#">Architecture</a></li>
-                            <li><a href="#">Design</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /item -->
-                <!-- item -->
-                <div class="item-box">
-                    <figure>
-                        <span class="item-hover">
-                            <span class="overlay dark-5"></span>
-                            <span class="inner">
-
-                                <!-- lightbox -->
-                                <a class="ico-rounded lightbox" href="/images/demo/mockups/1200x800/4-min.jpg" data-plugin-options='{"type":"image"}'>
-                                    <span class="fa fa-plus size-20"></span>
-                                </a>
-
-                                <!-- details -->
-                                <a class="ico-rounded" href="portfolio-single-slider.html">
-                                    <span class="glyphicon glyphicon-option-horizontal size-20"></span>
-                                </a>
-
-                            </span>
-                        </span>
-
-                        <img class="img-responsive" src="/images/demo/mockups/600x399/4-min.jpg" width="600" height="399" alt="">
-                    </figure>
-
-                    <div class="item-box-desc">
-                        <h3>Architect Project</h3>
-                        <ul class="list-inline categories nomargin">
-                            <li><a href="#">Architecture</a></li>
-                            <li><a href="#">Design</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /item -->
-                <!-- item -->
-                <div class="item-box">
-                    <figure>
-                        <span class="item-hover">
-                            <span class="overlay dark-5"></span>
-                            <span class="inner">
-
-                                <!-- lightbox -->
-                                <a class="ico-rounded lightbox" href="/images/demo/mockups/1200x800/5-min.jpg" data-plugin-options='{"type":"image"}'>
-                                    <span class="fa fa-plus size-20"></span>
-                                </a>
-
-                                <!-- details -->
-                                <a class="ico-rounded" href="portfolio-single-slider.html">
-                                    <span class="glyphicon glyphicon-option-horizontal size-20"></span>
-                                </a>
-
-                            </span>
-                        </span>
-
-                        <img class="img-responsive" src="/images/demo/mockups/600x399/5-min.jpg" width="600" height="399" alt="">
-                    </figure>
-
-                    <div class="item-box-desc">
-                        <h3>Architect Project</h3>
-                        <ul class="list-inline categories nomargin">
-                            <li><a href="#">Architecture</a></li>
-                            <li><a href="#">Design</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /item -->
-                <!-- item -->
-                <div class="item-box">
-                    <figure>
-                        <span class="item-hover">
-                            <span class="overlay dark-5"></span>
-                            <span class="inner">
-
-                                <!-- lightbox -->
-                                <a class="ico-rounded lightbox" href="/images/demo/mockups/1200x800/6-min.jpg" data-plugin-options='{"type":"image"}'>
-                                    <span class="fa fa-plus size-20"></span>
-                                </a>
-
-                                <!-- details -->
-                                <a class="ico-rounded" href="portfolio-single-slider.html">
-                                    <span class="glyphicon glyphicon-option-horizontal size-20"></span>
-                                </a>
-
-                            </span>
-                        </span>
-
-                        <img class="img-responsive" src="/images/demo/mockups/600x399/6-min.jpg" width="600" height="399" alt="">
-                    </figure>
-
-                    <div class="item-box-desc">
-                        <h3>Architect Project</h3>
-                        <ul class="list-inline categories nomargin">
-                            <li><a href="#">Architecture</a></li>
-                            <li><a href="#">Design</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /item -->
-                <!-- item -->
-                <div class="item-box">
-                    <figure>
-                        <span class="item-hover">
-                            <span class="overlay dark-5"></span>
-                            <span class="inner">
-
-                                <!-- lightbox -->
-                                <a class="ico-rounded lightbox" href="/images/demo/mockups/1200x800/7-min.jpg" data-plugin-options='{"type":"image"}'>
-                                    <span class="fa fa-plus size-20"></span>
-                                </a>
-
-                                <!-- details -->
-                                <a class="ico-rounded" href="portfolio-single-slider.html">
-                                    <span class="glyphicon glyphicon-option-horizontal size-20"></span>
-                                </a>
-
-                            </span>
-                        </span>
-
-                        <img class="img-responsive" src="/images/demo/mockups/600x399/7-min.jpg" width="600" height="399" alt="">
-                    </figure>
-
-                    <div class="item-box-desc">
-                        <h3>Architect Project</h3>
-                        <ul class="list-inline categories nomargin">
-                            <li><a href="#">Architecture</a></li>
-                            <li><a href="#">Design</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /item -->
-                <!-- item -->
-                <div class="item-box">
-                    <figure>
-                        <span class="item-hover">
-                            <span class="overlay dark-5"></span>
-                            <span class="inner">
-
-                                <!-- lightbox -->
-                                <a class="ico-rounded lightbox" href="/images/demo/mockups/1200x800/8-min.jpg" data-plugin-options='{"type":"image"}'>
-                                    <span class="fa fa-plus size-20"></span>
-                                </a>
-
-                                <!-- details -->
-                                <a class="ico-rounded" href="portfolio-single-slider.html">
-                                    <span class="glyphicon glyphicon-option-horizontal size-20"></span>
-                                </a>
-
-                            </span>
-                        </span>
-
-                        <img class="img-responsive" src="/images/demo/mockups/600x399/8-min.jpg" width="600" height="399" alt="">
-                    </figure>
-
-                    <div class="item-box-desc">
-                        <h3>Architect Project</h3>
-                        <ul class="list-inline categories nomargin">
-                            <li><a href="#">Architecture</a></li>
-                            <li><a href="#">Design</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /item -->
-                <!-- item -->
-                <div class="item-box">
-                    <figure>
-                        <span class="item-hover">
-                            <span class="overlay dark-5"></span>
-                            <span class="inner">
-
-                                <!-- lightbox -->
-                                <a class="ico-rounded lightbox" href="/images/demo/mockups/1200x800/9-min.jpg" data-plugin-options='{"type":"image"}'>
-                                    <span class="fa fa-plus size-20"></span>
-                                </a>
-
-                                <!-- details -->
-                                <a class="ico-rounded" href="portfolio-single-slider.html">
-                                    <span class="glyphicon glyphicon-option-horizontal size-20"></span>
-                                </a>
-
-                            </span>
-                        </span>
-
-                        <img class="img-responsive" src="/images/demo/mockups/600x399/9-min.jpg" width="600" height="399" alt="">
-                    </figure>
-
-                    <div class="item-box-desc">
-                        <h3>Architect Project</h3>
-                        <ul class="list-inline categories nomargin">
-                            <li><a href="#">Architecture</a></li>
-                            <li><a href="#">Design</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /item -->
-                <!-- item -->
-                <div class="item-box">
-                    <figure>
-                        <span class="item-hover">
-                            <span class="overlay dark-5"></span>
-                            <span class="inner">
-
-                                <!-- lightbox -->
-                                <a class="ico-rounded lightbox" href="/images/demo/mockups/1200x800/10-min.jpg" data-plugin-options='{"type":"image"}'>
-                                    <span class="fa fa-plus size-20"></span>
-                                </a>
-
-                                <!-- details -->
-                                <a class="ico-rounded" href="portfolio-single-slider.html">
-                                    <span class="glyphicon glyphicon-option-horizontal size-20"></span>
-                                </a>
-
-                            </span>
-                        </span>
-
-                        <img class="img-responsive" src="/images/demo/mockups/600x399/10-min.jpg" width="600" height="399" alt="">
-                    </figure>
-
-                    <div class="item-box-desc">
-                        <h3>Architect Project</h3>
-                        <ul class="list-inline categories nomargin">
-                            <li><a href="#">Architecture</a></li>
-                            <li><a href="#">Design</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /item -->
-
-            </div>
-        </div>
-
-    </div>
+    <div class="container" id="relatedPostsContainer"></div>
 </section>

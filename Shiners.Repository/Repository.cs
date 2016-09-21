@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Driver;
-using MongoDB.Bson;
 using Shiners.Repository.Stores;
 
 
@@ -19,13 +18,11 @@ namespace Shiners.Repository
 
         public Repository()
         {
-            string connectionString = "mongodb://localhost:3001";
+            string connectionString = "mongodb://buzzar:qwerty!123@109.230.131.241:27017/Buzzar";
             MongoClient client = new MongoClient(connectionString);
-            database = client.GetDatabase("meteor");
-
-            Images = new ImagesStore(database);
             
-        }
-        
+            database = client.GetDatabase("Buzzar");
+            Images = new ImagesStore(database);          
+        }        
     }
 }

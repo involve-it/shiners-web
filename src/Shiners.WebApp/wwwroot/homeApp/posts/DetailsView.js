@@ -1,29 +1,29 @@
 ﻿import Marionette from 'backbone.marionette';
 import template from './DetailsView.hbs.html';
 import '../../lib/owl-carousel/owl.carousel.min.js';
+import Collection from '../../data/AsteroidCollection.js';
+import RelatedPostsView from './RelatedPostsView.js';
+import _ from 'underscore';
+import app from '../app.js';
 var View = Marionette.View.extend({
     
     template:template,
 
-    onAttach() {
-        this.initCarousel('#postImages');
-        this.initCarousel('#relatedPosts');
+    regions: {
+        'related':'#relatedPostsContainer'
     },
 
-    initCarousel(el) {
+    onRender() {
+        this.showRelatedPosts();
+    },
 
-        var slider 		= this.$(el);
+    onAttach() {
+        this.initCarousel();
+    },
+
+    initCarousel() {
+        var slider 		= this.$('#postImages');
         var options 	= slider.attr('data-plugin-options');
-
-        // Progress Bar
-        var $opt = eval('(' + options + ')');  // convert text to json
-
-        if($opt.progressBar == 'true') {
-            var afterInit = progressBar;
-        } else {
-            var afterInit = false;
-        }
-
         var defaults = {
             items: 					5,
             itemsCustom: 			false,
@@ -80,76 +80,25 @@ var View = Marionette.View.extend({
             beforeUpdate: 			false,
             afterUpdate: 			false,
             beforeInit: 			false,
-            afterInit: 				afterInit,
+            afterInit: 				false,
             beforeMove: 			false,
-            afterMove: 				(afterInit == false) ? false : moved,
+            afterMove: 				false,
             afterAction: 			false,
             startDragging: 			false,
             afterLazyLoad: 			false
         }
-
         var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+        if (el == '#postImages' && _.size(this.model.get('details.photos')) <= 1)
+            config.autoPlay = false;
         slider.owlCarousel(config).addClass("owl-carousel-init");
-
-        function progressBar(elem){
-            $elem = elem;
-            //build progress bar elements
-            buildProgressBar();
-            //start counting
-            start();
-        }
-				 
-        //create div#progressBar and div#bar then prepend to $("#owl-demo")
-        function buildProgressBar(){
-            $progressBar = $("<div>",{
-                id:"progressBar"
-            });
-            $bar = $("<div>",{
-                id:"bar"
-            });
-            $progressBar.append($bar).prependTo($elem);
-        }
-
-        function start() {
-            //reset timer
-            percentTime = 0;
-            isPause = false;
-            //run interval every 0.01 second
-            tick = setInterval(interval, 10);
-        };
-
-			 
-        var time = 7; // time in seconds
-        function interval() {
-            if(isPause === false){
-                percentTime += 1 / time;
-                $bar.css({
-                    width: percentTime+"%"
-                });
-                //if percentTime is equal or greater than 100
-                if(percentTime >= 100){
-                    //slide to next item 
-                    $elem.trigger('owl.next')
-                }
-            }
-        }
-				 
-        //pause while dragging 
-        function pauseOnDragging(){
-            isPause = true;
-        }
-				 
-        //moved callback
-        function moved(){
-            //clear interval
-            clearTimeout(tick);
-            //start again
-            start();
-        }
     },
 
-    initRelatedCarousel() {
-        
+    showRelatedPosts() {
+        var collection = new Collection(null,{asteroid:this.model.asteroid});
+        collection.loadByMethod('searchPosts', ['some query',app.position.lat,app.position.lng,200,0,10])
+            .then(_.bind(() => {
+                this.showChildView('related', new RelatedPostsView({collection:collection}));
+            },this));        
     }
 });
 export default View;

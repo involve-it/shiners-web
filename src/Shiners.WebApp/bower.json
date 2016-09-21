@@ -2,6 +2,7 @@
   "name": "asp.net",
   "dependencies": {
     "jquery-ui-slider-pips": "1.11.4",
-    "bootstrap": "3.3.6"
+    "bootstrap": "3.3.6",
+    "font-awesome": "4.6.1"
   }
 }

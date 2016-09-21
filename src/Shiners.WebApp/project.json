@@ -40,7 +40,8 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "MongoDB.Bson": "2.2.4"
   },
 
   "tools": {
@@ -58,7 +59,16 @@
   },
 
   "frameworks": {
-    "net461": { }
+    "net461": {
+      "dependencies": {
+        "Shiners.Models": {
+          "target": "project"
+        },
+        "Shiners.Repository": {
+          "target": "project"
+        }
+      }
+    }
   },
 
   "buildOptions": {

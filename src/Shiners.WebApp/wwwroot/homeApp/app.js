@@ -16,7 +16,10 @@ let App = Marionette.Application.extend({
     nearbyPosts:null,
     myPosts:null,
     user:null,
-
+    position: {
+        lat:0,
+        lng:0
+    }
     router:null,
 
     initTemplateHelpers() {
@@ -31,8 +34,8 @@ let App = Marionette.Application.extend({
         var rootView = new RootView({app:this});
         this.layout = rootView;
         this.showView(rootView);
+        this.getPosition();
         
-        Backbone.history.start({pushState: true});
         var self = this;
         $(document).on('click', 'a:not([data-direct-link])', (e)=> {        
             var href = e.target.attributes["href"];
@@ -45,6 +48,30 @@ let App = Marionette.Application.extend({
 
     supportsHistoryApi () {
         return !!(window.history && history.pushState);
+    },
+
+    startHistory() {
+        Backbone.history.start({pushState: true});
+    },
+
+    getPosition() {
+        var app = this;
+        $.ajax({
+            dataType: "json",
+            url: 'https://www.googleapis.com/geolocation/v1/geolocate',
+            data: {key:'AIzaSyB6JoRSeKMn_yjz3Oip84N9YhX7B6djHLA'},
+            context:this
+        }).done((resp) => {
+            if (resp.location) {
+                app.position = resp.location;
+                app.startHistory();
+            } else {
+                app.startHistory();
+                console.error('geolocation not working');
+            }
+        }).fail(() => {
+            console.error('connection error to google geolocation api');
+        });
     }
 });
 

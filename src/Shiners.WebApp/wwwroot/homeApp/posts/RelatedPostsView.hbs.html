@@ -1,0 +1,34 @@
+﻿<div class="heading-title heading-border">
+    <h3>Похожие <span>объявления</span></h3>
+</div>
+<div class="text-center">
+    
+    <div class="owl-carousel owl-padding-1 nomargin buttons-autohide controlls-over" id="relatedPosts" data-plugin-options='{"singleItem": false, "items": "4", "autoPlay": 3500, "navigation": true, "pagination": false}'>
+        {{#each collection}}
+        <div class="item-box">
+            <figure>
+                <span class="item-hover">
+                    <span class="overlay dark-5"></span>
+                    <span class="inner">
+                        <!-- lightbox -->
+                        <a class="ico-rounded lightbox" href="/images/demo/mockups/1200x800/16-min.jpg" data-plugin-options='{"type":"image"}'>
+                            <span class="fa fa-plus size-20"></span>
+                        </a>
+                        <!-- details -->
+                        <a class="ico-rounded" href="/posts/{{_id}}">
+                            <span class="glyphicon glyphicon-option-horizontal size-20"></span>
+                        </a>
+                    </span>
+                </span>
+                <img class="img-responsive" src="/images/demo/mockups/600x399/16-min.jpg" width="600" height="399" alt="">
+            </figure>
+            <div class="item-box-desc">
+                <h3>{{details.title}}</h3>
+                <ul class="list-inline categories nomargin">
+                    <li><a href="#">{{type}}</a></li>
+                </ul>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

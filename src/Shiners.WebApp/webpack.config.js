@@ -5,9 +5,10 @@ var webpack = require('webpack'),
     ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-    entry: ['./wwwroot/index.js' ],
+    entry: './wwwroot/index.js' ,
     output: {
-        path:"./wwwroot/",
+        path: "/wwwroot/",
+        publicPath: "/",
         filename: "bundle.js"
     },
     resolve: {
@@ -15,7 +16,7 @@ module.exports = {
     },
     plugins: [
                     new BowerWebpackPlugin({
-                        modulesDirectories: ["wwwroot/lib"],
+                        modulesDirectories: ["/wwwroot/lib"],
                         manifestFiles:      "bower.json",
                         includes:           /.*/,
                         excludes:           [],
@@ -31,7 +32,7 @@ module.exports = {
                    // ,new ExtractTextPlugin('bundle.css')
                 ],
     devServer: {
-        contentBase: ".",
+        contentBase: "/",
         host: "localhost",
         port: 9000
     },

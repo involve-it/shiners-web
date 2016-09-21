@@ -18,10 +18,10 @@ namespace Shiners.Repository.Stores
         {
             database = db;
         }
-        public static async Task<List<Image>> GetPhotos(string[] idFind)
+        public static async Task<List<Image>> GetPhotos(string[] ids)
         {
             List<Image> ret = new List<Image>();
-            var filter = Builders<BsonDocument>.Filter.In("_id", idFind);
+            var filter = Builders<BsonDocument>.Filter.In("_id", ids);
             var collection = database.GetCollection<BsonDocument>("images");
             using (var cursor = await collection.FindAsync(filter))
             {
@@ -37,10 +37,10 @@ namespace Shiners.Repository.Stores
             return ret;
         }
 
-        public static async Task<Image> GetPhoto(string idFind)
+        public static async Task<Image> GetPhoto(string id)
         {
             Image ret = new Image();
-            var filter = Builders<BsonDocument>.Filter.Eq("_id", idFind);
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", id);
             var collection = database.GetCollection<BsonDocument>("image");
             using (var cursor = await collection.FindAsync(filter))
             {

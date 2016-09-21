@@ -10,6 +10,7 @@ var View = Marionette.View.extend({
     },
 
     redirectToDetails() {
+        window.postInCollection = this.model.attributes;
         app.router.navigate('posts/'+this.model.id,{trigger:true});
     },
 
