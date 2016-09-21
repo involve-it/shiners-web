@@ -15,71 +15,69 @@ var View = Marionette.View.extend({
         var slider 		= this.$('#relatedPosts');
         var options 	= slider.attr('data-plugin-options');
         var defaults = {
-            items: 					5,
-            itemsCustom: 			false,
-            itemsDesktop: 			[1199,4],
-            itemsDesktopSmall: 		[980,3],
-            itemsTablet: 			[768,2],
-            itemsTabletSmall: 		false,
-            itemsMobile: 			[479,1],
-            singleItem: 			true,
-            itemsScaleUp: 			false,
+            items: 5,
+            itemsCustom: false,
+            itemsDesktop: [1199, 4],
+            itemsDesktopSmall: [980, 3],
+            itemsTablet: [768, 2],
+            itemsTabletSmall: false,
+            itemsMobile: [479, 1],
+            singleItem: true,
+            itemsScaleUp: false,
 
-            slideSpeed: 			200,
-            paginationSpeed: 		800,
-            rewindSpeed: 			1000,
+            slideSpeed: 200,
+            paginationSpeed: 800,
+            rewindSpeed: 1000,
 
-            autoPlay: 				false,
-            stopOnHover: 			false,
+            autoPlay: false,
+            stopOnHover: false,
 
-            navigation: 			false,
+            navigation: false,
             navigationText: [
-                                '<i class="fa fa-angle-left"></i>',
-                                '<i class="fa fa-angle-right"></i>'
+                '<i class="fa fa-angle-left"></i>',
+                '<i class="fa fa-angle-right"></i>'
             ],
-            rewindNav: 				true,
-            scrollPerPage: 			false,
+            rewindNav: true,
+            scrollPerPage: false,
 
-            pagination: 			true,
-            paginationNumbers: 		false,
+            pagination: true,
+            paginationNumbers: false,
 
-            responsive: 			true,
-            responsiveRefreshRate: 	200,
-            responsiveBaseWidth: 	window,
+            responsive: true,
+            responsiveRefreshRate: 200,
+            responsiveBaseWidth: window,
 
-            baseClass: 				"owl-carousel",
-            theme: 					"owl-theme",
+            baseClass: "owl-carousel",
+            theme: "owl-theme",
 
-            lazyLoad: 				false,
-            lazyFollow: 			true,
-            lazyEffect: 			"fade",
+            lazyLoad: false,
+            lazyFollow: true,
+            lazyEffect: "fade",
 
-            autoHeight: 			false,
+            autoHeight: false,
 
-            jsonPath: 				false,
-            jsonSuccess: 			false,
+            jsonPath: false,
+            jsonSuccess: false,
 
-            dragBeforeAnimFinish: 	true,
-            mouseDrag: 				true,
-            touchDrag: 				true,
+            dragBeforeAnimFinish: true,
+            mouseDrag: true,
+            touchDrag: true,
 
-            transitionStyle: 		false,
+            transitionStyle: false,
 
-            addClassActive: 		false,
+            addClassActive: false,
 
-            beforeUpdate: 			false,
-            afterUpdate: 			false,
-            beforeInit: 			false,
-            afterInit: 				false,
-            beforeMove: 			false,
-            afterMove: 				false,
-            afterAction: 			false,
-            startDragging: 			false,
-            afterLazyLoad: 			false
-        }
+            beforeUpdate: false,
+            afterUpdate: false,
+            beforeInit: false,
+            afterInit: false,
+            beforeMove: false,
+            afterMove: false,
+            afterAction: false,
+            startDragging: false,
+            afterLazyLoad: false
+        };
         var config = $.extend({}, defaults, options, slider.data("plugin-options"));
-        if (el == '#postImages' && _.size(this.model.get('details.photos')) <= 1)
-            config.autoPlay = false;
         slider.owlCarousel(config).addClass("owl-carousel-init");
     }
 });

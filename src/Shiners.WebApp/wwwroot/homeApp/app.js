@@ -19,7 +19,7 @@ let App = Marionette.Application.extend({
     position: {
         lat:0,
         lng:0
-    }
+    },
     router:null,
 
     initTemplateHelpers() {

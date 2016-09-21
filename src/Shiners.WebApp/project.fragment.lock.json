@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "exports": {
+    "Shiners.Models/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5.2",
+      "compile": {
+        "bin/Debug/Shiners.Models.dll": {}
+      },
+      "runtime": {
+        "../packages/MongoDB.Bson.2.2.4/lib/net45/MongoDB.Bson.dll": {},
+        "../packages/MongoDB.Driver.2.2.4/lib/net45/MongoDB.Driver.dll": {},
+        "../packages/MongoDB.Driver.Core.2.2.4/lib/net45/MongoDB.Driver.Core.dll": {},
+        "bin/Debug/Shiners.Models.dll": {}
+      }
+    },
+    "Shiners.Repository/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5.2",
+      "compile": {
+        "bin/Debug/Shiners.Repository.dll": {}
+      },
+      "runtime": {
+        "../packages/MongoDB.Bson.2.2.4/lib/net45/MongoDB.Bson.dll": {},
+        "../packages/MongoDB.Driver.2.2.4/lib/net45/MongoDB.Driver.dll": {},
+        "../packages/MongoDB.Driver.Core.2.2.4/lib/net45/MongoDB.Driver.Core.dll": {},
+        "bin/Debug/Shiners.Repository.dll": {}
+      }
+    }
+  }
+}
