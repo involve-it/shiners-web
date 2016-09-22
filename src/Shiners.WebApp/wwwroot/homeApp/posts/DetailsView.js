@@ -8,30 +8,34 @@ import app from '../app.js';
 var View = Marionette.View.extend({
     
     template:template,
-
+    collection:null,
     regions: {
         'related':'#relatedPostsContainer'
     },
 
-    onRender() {
-        this.showRelatedPosts();
+    initialize() {
+        this.collection = new Collection(null,{asteroid:this.model.asteroid});
+        this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
     },
 
     onAttach() {
         this.initCarousel();
+        var center = app.map.getCenter();
+        //this.collection.loadByMethod('searchPosts', ['',center.lat(),center.lng(),200,0,10]);
+        this.collection.loadByMethod('getPopularPosts',[center.lat(),center.lng(),200,0,10]);
     },
 
     initCarousel() {
         var slider 		= this.$('#postImages');
         var options 	= slider.attr('data-plugin-options');
         var defaults = {
-            items: 5,
+            //items: 5,
             itemsCustom: false,
-            itemsDesktop: [1199, 4],
-            itemsDesktopSmall: [980, 3],
-            itemsTablet: [768, 2],
-            itemsTabletSmall: false,
-            itemsMobile: [479, 1],
+            //itemsDesktop: [1199, 4],
+            //itemsDesktopSmall: [980, 3],
+            //itemsTablet: [768, 2],
+            //itemsTabletSmall: false,
+            //itemsMobile: [479, 1],
             singleItem: true,
             itemsScaleUp: false,
 
@@ -88,17 +92,13 @@ var View = Marionette.View.extend({
             afterLazyLoad: false
         };
         var config = $.extend({}, defaults, options, slider.data("plugin-options"));
-        if (el === '#postImages' && _.size(this.model.get('details.photos')) <= 1)
-            config.autoPlay = false;
         slider.owlCarousel(config).addClass("owl-carousel-init");
     },
 
     showRelatedPosts() {
-        var collection = new Collection(null,{asteroid:this.model.asteroid});
-        collection.loadByMethod('searchPosts', ['some query',app.position.lat,app.position.lng,200,0,10])
-            .then(_.bind(() => {
-                this.showChildView('related', new RelatedPostsView({collection:collection}));
-            },this));        
+        console.info('show related posts');
+        window.relatedPosts = this.collection.toJSON();
+        this.showChildView('related', new RelatedPostsView({ collection: this.collection }));
     }
 });
 export default View;

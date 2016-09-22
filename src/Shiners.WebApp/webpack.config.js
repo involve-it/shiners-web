@@ -7,8 +7,8 @@ var webpack = require('webpack'),
 module.exports = {
     entry: './wwwroot/index.js' ,
     output: {
-        path: "/wwwroot/",
-        publicPath: "/",
+        path: "./wwwroot/",
+       
         filename: "bundle.js"
     },
     resolve: {
@@ -25,7 +25,9 @@ module.exports = {
                     new webpack.ProvidePlugin({
                         $: "jquery",
                         jQuery: "jquery",
-                        JQuery: "jquery"
+                        JQuery: "jquery",
+                        _: "underscore",
+                        moment:"moment"
                         //'window.Tether': "tether",
                         //'Tether': "tether"
                     })
@@ -50,9 +52,12 @@ module.exports = {
                 test: /\.html$/,
                 loader: "underscore-template-loader",
                 query: {
-                    evaluate: /{{([\s\S]+?)}}/g,
-                    interpolate: /{{=([\s\S]+?)}}/g,
-                    escape: /{{-([\s\S]+?)}}/g
+                    interpolate: '\\{\\{=(.+?)\\}\\}',
+                    escape: '\\{\\{-(.+?)\\}\\}',
+                    evaluate: '\\{\\{(.+?)\\}\\}'
+                    //evaluate: /{{([\s\S]+?)}}/g,
+                    //interpolate: /{{=([\s\S]+?)}}/g,
+                    //escape: /{{-([\s\S]+?)}}/g
                 }
             },
             {

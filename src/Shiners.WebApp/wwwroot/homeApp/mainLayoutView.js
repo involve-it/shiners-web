@@ -3,15 +3,19 @@ import template from './MainLayoutView.hbs.html';
 import _ from 'underscore';
 import MapView from './MapView.js';
 import BannerView from './BannerView.js';
-
+import app from './app.js';
 
 var View = Marionette.View.extend({
 
     template:template,
-    app:null,
+
     id:"wrapper",
 
     mapView:null,
+
+    events: {
+        'click a:not([data-direct-link])':'onClickLink'
+    },
 
     regions: {
         'content':'#appContent',
@@ -19,17 +23,21 @@ var View = Marionette.View.extend({
         'banner':'#appBanner'
     },
 
-    initialize(setts) {
-        this.app = setts.app;
+    onClickLink(e) {
+        var href = e.target.attributes["href"];
+        if (href && !_.isEmpty(href)) {
+            e.preventDefault();
+            app.router.navigate(href, true);
+        }
     },
 
     onRender() {
         this.renderMapAndBanner();
-        this.listenTo(this.app.router,'route',this.toggleMapAndBanner);
+        this.listenTo(app.router,'route',this.toggleMapAndBanner);
     },
 
     renderMapAndBanner() {
-        this.showChildView('map',new MapView({collection:this.app.nearbyPosts}));
+        this.showChildView('map',new MapView({collection:app.nearbyPosts}));
         this.showChildView('banner',new BannerView());
     },
 

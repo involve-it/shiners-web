@@ -12,6 +12,13 @@
         "../packages/MongoDB.Driver.2.2.4/lib/net45/MongoDB.Driver.dll": {},
         "../packages/MongoDB.Driver.Core.2.2.4/lib/net45/MongoDB.Driver.Core.dll": {},
         "bin/Debug/Shiners.Models.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/Shiners.Models.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
       }
     },
     "Shiners.Repository/1.0.0": {
@@ -25,6 +32,13 @@
         "../packages/MongoDB.Driver.2.2.4/lib/net45/MongoDB.Driver.dll": {},
         "../packages/MongoDB.Driver.Core.2.2.4/lib/net45/MongoDB.Driver.Core.dll": {},
         "bin/Debug/Shiners.Repository.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/Shiners.Repository.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
       }
     }
   }

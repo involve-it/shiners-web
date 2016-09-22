@@ -139,7 +139,7 @@ namespace Shiners.Models.Domain
         public string Language { get; set; }
     }
 
-    class Lastlogin
+    public class Lastlogin
     {
         public Lastlogin()
         {

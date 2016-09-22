@@ -8,6 +8,7 @@ var View = Marionette.View.extend({
     template:template,
 
     onAttach() {
+        
         this.initCarousel();
     },
 

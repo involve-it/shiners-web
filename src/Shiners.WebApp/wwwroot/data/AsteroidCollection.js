@@ -12,21 +12,28 @@ export default Backbone.Collection.extend({
         Backbone.Collection.prototype.initialize.apply(this,arguments);
     },
 
-    loadByMethod(method,args,options) {
+    loadByMethod(method,args,callbk,options) {
         if (!this.asteroid)
             throw new Error("Asteroid instanse of this collection is not exists!");
         var opts = options || {};
         var context = opts.context||this,
-            callback = opts.callback ||null,
+            callback = callbk ||null,
             self=this;
         this.trigger('before:load');
-        var result = this.asteroid.apply(method, args).result;
-        result.then((result)=>{  
-            self.set(result,_.omit(opts,"context","callback"));
-            if(callback)
-                callback.apply(context,arguments);           
-            self.trigger('after:load',result);
+
+        this.asteroid.apply(method, args).result.then((result)=> {
+            var res = _.isArray(result) ? result : result.result;
+            if (res) {
+                self.set(res, _.omit(opts, "context", "callback"));
+                if (callback)
+                    callback.apply(context, arguments);
+                self.trigger('after:load', result);
+            } else {
+                throw new Error(result.error?result.error.errorId:"error fetch asteroid collection by method "+method);
+            }
+            
+        }).catch((error) => {
+            throw new Error(error);
         });
-        return this.asteroid.apply(method, args).result;
     }
 });

@@ -4,7 +4,7 @@ import SearchView from './SearchView.js';
 import ShinerInfoView from './ShinerInfoView.js';
 import MapLoader from 'load-google-maps-api';
 import _ from 'underscore';
-
+import app from './app.js';
 var View = Marionette.View.extend({
     tagName:'section',
     className:'map-section',
@@ -63,13 +63,14 @@ var View = Marionette.View.extend({
 
     initMap() {
         // AIzaSyB6JoRSeKMn_yjz3Oip84N9YhX7B6djHLA - api key geolocation
-        MapLoader({key:'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY'}).then( _.bind((maps) => {
+        MapLoader({key:'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY'}).then( _.bind((maps) => {           
             this.map = new maps.Map(document.getElementById('map2'),
             {
                 center: { lat: 55.75396, lng: 37.620393 },
                 zoom: 14,
                 scrollwheel: false
             });
+            app.map = this.map;
             this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition( _.bind(this.setMapPosition,this),  _.bind(this.setMapPosition,this,{ coords: {latitude:55.75396,longitude:37.620395} }));

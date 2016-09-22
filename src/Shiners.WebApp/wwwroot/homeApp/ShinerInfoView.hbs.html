@@ -1,21 +1,23 @@
-﻿<h3>{{details.title}}</h3>
+﻿<h3>{{=details.title}}</h3>
 <small class="text-muted">
-    Добавлено {{moment timestamp "YY, MMM dd"}}
+    Добавлено {{=moment(timestamp).fromNow()}}
 </small>
-{{#if details.locations}}
-    {{#each details.locations}}
+
+{{_.each(details.locations,function(loc) { }}
     <p>
-        Адрес: {{name}}
+        Адрес: {{=loc.name}}
     </p>
-    {{/each}}
-{{/if}}
+{{  }); }}
+
 <p class="text-center">
     <button type="button" class="btn btn-primary toPostDetails">Перейти</button>
 </p>
+
 <p>
-    {{#each other}}
 
-        <label class="label label-info">{{key}}</label>
+    {{_.each(obj.other,function(o){ }}
 
-    {{/each}}
+    <label class="label label-info">{{=o.key}}</label>
+
+    {{});}}
 </p>

@@ -14,7 +14,7 @@ namespace Shiners.WebApp.Controllers.api
     {
         public JObject Get(string id)
         {
-            
+            return new JObject();
         }
     }
 }

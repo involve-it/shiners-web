@@ -5,12 +5,16 @@ var View = Marionette.View.extend({
     listener:null,
     template:template,
 
+    initialize() {
+        window.postInCollection = this.model.attributes;
+    },
+
     delegateMapEvent() {
         this.listener = window.google.maps.event.addDomListener(this.$('.toPostDetails')[0], 'click', _.bind(this.redirectToDetails,this));
     },
 
     redirectToDetails() {
-        window.postInCollection = this.model.attributes;
+        
         app.router.navigate('posts/'+this.model.id,{trigger:true});
     },
 

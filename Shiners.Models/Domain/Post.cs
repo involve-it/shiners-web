@@ -46,7 +46,7 @@ namespace Shiners.Models.Domain
         public Stats Stats { get; set; }
 
         [BsonElement("status")]
-        public Status Status { get; set; }
+        public PostStatus Status { get; set; }
 
         [BsonElement("presences")]
         public Presences Presences { get; set; }
@@ -58,7 +58,7 @@ namespace Shiners.Models.Domain
             Details = new Details();
             TrainingsDetails = new TrainingsDetails();
             Stats = new Stats();
-            Status = new Status();
+            Status = new PostStatus();
             Presences = new Presences();
 
         }
@@ -120,7 +120,7 @@ namespace Shiners.Models.Domain
         [BsonElement("typeCategory")]
         public string TypeCategory { get; set; }
     }
-    class Status
+    class PostStatus
     {
         [BsonElement("visible")]
         public string Visible { get; set; }
