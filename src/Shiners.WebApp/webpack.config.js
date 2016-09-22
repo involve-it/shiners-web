@@ -46,7 +46,15 @@ module.exports = {
                 }
             },
 
-            { test: /\.hbs.html$/, loader: "handlebars-loader" },
+            {
+                test: /\.html$/,
+                loader: "underscore-template-loader",
+                query: {
+                    evaluate: /{{([\s\S]+?)}}/g,
+                    interpolate: /{{=([\s\S]+?)}}/g,
+                    escape: /{{-([\s\S]+?)}}/g
+                }
+            },
             {
                 test: /\.scss$/,
                 loaders: ["sass","style", "css" ]
