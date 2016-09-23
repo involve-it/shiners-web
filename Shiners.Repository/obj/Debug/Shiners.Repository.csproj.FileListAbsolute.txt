@@ -10,3 +10,15 @@ Z:\git\shiners\shiners-web\Shiners.Repository\bin\Debug\MongoDB.Driver.xml
 Z:\git\shiners\shiners-web\Shiners.Repository\obj\Debug\Shiners.Repository.csprojResolveAssemblyReference.cache
 Z:\git\shiners\shiners-web\Shiners.Repository\obj\Debug\Shiners.Repository.dll
 Z:\git\shiners\shiners-web\Shiners.Repository\obj\Debug\Shiners.Repository.pdb
+Y:\Projects\git\shiners\shiners-web\Shiners.Repository\bin\Debug\Shiners.Repository.dll
+Y:\Projects\git\shiners\shiners-web\Shiners.Repository\bin\Debug\Shiners.Repository.pdb
+Y:\Projects\git\shiners\shiners-web\Shiners.Repository\bin\Debug\MongoDB.Bson.dll
+Y:\Projects\git\shiners\shiners-web\Shiners.Repository\bin\Debug\MongoDB.Driver.Core.dll
+Y:\Projects\git\shiners\shiners-web\Shiners.Repository\bin\Debug\MongoDB.Driver.dll
+Y:\Projects\git\shiners\shiners-web\Shiners.Repository\bin\Debug\Shiners.Models.dll
+Y:\Projects\git\shiners\shiners-web\Shiners.Repository\bin\Debug\Shiners.Models.pdb
+Y:\Projects\git\shiners\shiners-web\Shiners.Repository\bin\Debug\MongoDB.Bson.xml
+Y:\Projects\git\shiners\shiners-web\Shiners.Repository\bin\Debug\MongoDB.Driver.xml
+Y:\Projects\git\shiners\shiners-web\Shiners.Repository\obj\Debug\Shiners.Repository.csprojResolveAssemblyReference.cache
+Y:\Projects\git\shiners\shiners-web\Shiners.Repository\obj\Debug\Shiners.Repository.dll
+Y:\Projects\git\shiners\shiners-web\Shiners.Repository\obj\Debug\Shiners.Repository.pdb

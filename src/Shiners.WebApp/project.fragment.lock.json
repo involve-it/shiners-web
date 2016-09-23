@@ -5,16 +5,16 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.5.2",
       "compile": {
-        "bin/Debug/Shiners.Models.dll": {}
+        "bin/Release/Shiners.Models.dll": {}
       },
       "runtime": {
         "../packages/MongoDB.Bson.2.2.4/lib/net45/MongoDB.Bson.dll": {},
         "../packages/MongoDB.Driver.2.2.4/lib/net45/MongoDB.Driver.dll": {},
         "../packages/MongoDB.Driver.Core.2.2.4/lib/net45/MongoDB.Driver.Core.dll": {},
-        "bin/Debug/Shiners.Models.dll": {}
+        "bin/Release/Shiners.Models.dll": {}
       },
       "contentFiles": {
-        "bin/Debug/Shiners.Models.pdb": {
+        "bin/Release/Shiners.Models.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true
@@ -25,16 +25,16 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.5.2",
       "compile": {
-        "bin/Debug/Shiners.Repository.dll": {}
+        "bin/Release/Shiners.Repository.dll": {}
       },
       "runtime": {
         "../packages/MongoDB.Bson.2.2.4/lib/net45/MongoDB.Bson.dll": {},
         "../packages/MongoDB.Driver.2.2.4/lib/net45/MongoDB.Driver.dll": {},
         "../packages/MongoDB.Driver.Core.2.2.4/lib/net45/MongoDB.Driver.Core.dll": {},
-        "bin/Debug/Shiners.Repository.dll": {}
+        "bin/Release/Shiners.Repository.dll": {}
       },
       "contentFiles": {
-        "bin/Debug/Shiners.Repository.pdb": {
+        "bin/Release/Shiners.Repository.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true

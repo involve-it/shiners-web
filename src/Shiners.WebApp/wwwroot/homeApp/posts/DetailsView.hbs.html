@@ -9,12 +9,11 @@
         </ol>
     </div>
 </section>
-
 <section>
     <div class="container">
         <div class="container">
             <div class="owl-carousel buttons-autohide controlls-over nomargin" id="postImages" data-plugin-options='{"items": 1, "autoPlay": {{-_.size(details.photo)>1?'3500':'false'}}, "autoHeight": false, "navigation": true, "pagination": false, "transitionStyle":"fade", "progressBar":"false"}'>
-                {{_.each(details.photos,(photo)=>{ }}
+                {{_.each(details.photos,function(photo){ }}
                 <div>
                     <img class="img-responsive" src="{{=photo.data}}" alt="">
                 </div>
@@ -22,9 +21,6 @@
             </div>
         </div>
     </div>
-</section>
-
-<section>
     <div class="container">
         <div class="row nomargin">
             <div class="col-md-8 col-sm-8">
@@ -33,7 +29,7 @@
                     <ul class="list-inline categories nomargin">
                         <li><a href="#">{{=type}}</a></li>
                     </ul>
-                </div>          
+                </div>
                 <p class="font-lato size-18">{{=details.description}}</p>
             </div>
 
@@ -48,14 +44,14 @@
                             <li><span><i class="fa fa-money"></i>Стоимость:</span> {{=details.price}}</li>
                             {{ } }}
                             {{if (details.locations){ }}
-                                {{_.each(details.locations,function(loc){  }}
-                                    <li>
-                                        <span>
+                            {{_.each(details.locations,function(loc){ }}
+                            <li>
+                                <span>
                                             <i class="fa fa-map-marker"></i> Адрес
                                         </span>
-                                        {{=loc.name}}
-                                    </li>
-                                {{});}}
+                                {{=loc.name}}
+                            </li>
+                            {{});}}
                             {{ } }}
                         </ul>
                     </div>

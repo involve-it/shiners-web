@@ -12,7 +12,7 @@
                     <span class="inner">
                         <!-- lightbox -->
                         <!-- details -->
-                        <a class="ico-rounded" href="/posts/{{=item._id}}">
+                        <a title="{{=item.details.title}}" class="ico-rounded" href="/posts/{{=item._id}}">
                             <span class="glyphicon glyphicon-option-horizontal size-20"></span>
                         </a>
                     </span>
@@ -20,7 +20,7 @@
                 <img class="img-responsive" src="{{-(item.details.photosUrls?item.details.photosUrls[0]:null)||'/images/demo/mockups/600x399/16-min.jpg'}}" width="600" height="399" alt="">
             </figure>
             <div class="item-box-desc">
-                <h3>{{=item.details.title}}</h3>
+                <h3 title="{{=item.details.title}}">{{=item.details.title.length <= 21? item.details.title:item.details.title.substring(0,18)+'...'}}</h3>
                 <ul class="list-inline categories nomargin">
                     <li><a href="#">{{=item.type}}</a></li>
                 </ul>

@@ -7,3 +7,13 @@ Z:\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Bson.xml
 Z:\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Driver.xml
 Z:\git\shiners\shiners-web\Shiners.Models\obj\Debug\Shiners.Models.dll
 Z:\git\shiners\shiners-web\Shiners.Models\obj\Debug\Shiners.Models.pdb
+Y:\Projects\git\shiners\shiners-web\Shiners.Models\bin\Debug\Shiners.Models.dll
+Y:\Projects\git\shiners\shiners-web\Shiners.Models\bin\Debug\Shiners.Models.pdb
+Y:\Projects\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Bson.dll
+Y:\Projects\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Driver.Core.dll
+Y:\Projects\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Driver.dll
+Y:\Projects\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Bson.xml
+Y:\Projects\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Driver.xml
+Y:\Projects\git\shiners\shiners-web\Shiners.Models\obj\Debug\Shiners.Models.csprojResolveAssemblyReference.cache
+Y:\Projects\git\shiners\shiners-web\Shiners.Models\obj\Debug\Shiners.Models.dll
+Y:\Projects\git\shiners\shiners-web\Shiners.Models\obj\Debug\Shiners.Models.pdb
