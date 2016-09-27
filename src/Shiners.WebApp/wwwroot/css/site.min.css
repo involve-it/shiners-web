@@ -21889,15 +21889,15 @@ i.ico-hover:hover {
 
 
 .contact-over-map {
-    min-height: 500px;
+    height: 500px;
 }
 .map-section {
     padding-top: 10px;
-
+    height: 500px;
 }
 
 .item-box figure {
-    height: 150px;
+    height: 200px;
 }
 
 .contact-over-box {
