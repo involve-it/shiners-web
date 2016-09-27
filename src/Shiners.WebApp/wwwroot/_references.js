@@ -56,4 +56,5 @@
 /// <reference path="lib/summernote/dist/summernote.js" />
 /// <reference path="lib/tether/dist/js/tether.js" />
 /// <reference path="lib/underscore/underscore.js" />
+/// <reference path="sharedviews/img/imageview.js" />
 /// <reference path="sharedviews/preloaderview.js" />
