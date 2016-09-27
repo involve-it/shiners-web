@@ -1,23 +1,17 @@
-﻿<h3>{{=details.title}}</h3>
-<small class="text-muted">
-    Добавлено {{=moment(timestamp).fromNow()}}
-</small>
+﻿
+<div class="box-image text-center">
+    <a class="image-hover lightbox toPostDetails text-center" data-plugin-options='{"type":"image"}'>
+        <img style="max-width: 100%" class="img-responsive" src="{{-details.photosUrls && details.photosUrls.length>0?details.photosUrls[0]:'/images/demo/300x250.png'}}" alt="" />
+    </a>
 
-{{_.each(details.locations,function(loc) { }}
-    <p>
-        Адрес: {{=loc.name}}
+    <a class="box-image-title toPostDetails">
+        <h2>{{=details.title}}</h2>
+    </a>
+    <p class="font-lato weight-300">
+        {{_.each(details.locations,function(loc) { }}
+        <small class="font-lato size-18 margin-bottom-30 block">
+            Адрес: {{=loc.name}}
+        </small>
+        {{ }); }}
     </p>
-{{  }); }}
-
-<p class="text-center">
-    <button type="button" class="btn btn-primary toPostDetails">Перейти</button>
-</p>
-
-<p>
-
-    {{_.each(obj.other,function(o){ }}
-
-    <label class="label label-info">{{=o.key}}</label>
-
-    {{});}}
-</p>
+</div>

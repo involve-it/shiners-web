@@ -9,7 +9,9 @@ var View = Marionette.View.extend({
     template:template,
 
     className:'contact-over-box',
-
+    events: {
+        'click #searchParametersButton':'toggleSearchParameters'
+    },
     onRender() {
         var self=this;
         self.$("#slider3").slider({
@@ -26,6 +28,10 @@ var View = Marionette.View.extend({
 
         self.$("#bedrooms").val(self.$("#slider3").slider("value"));
         self.$("#slider3").slider("pips", { rest: "label" });
+    },
+
+    toggleSearchParameters() {
+        this.$('#searchParameters').slideToggle(300);
     }
 
 });

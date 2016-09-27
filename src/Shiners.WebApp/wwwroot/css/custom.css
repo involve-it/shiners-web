@@ -1,13 +1,17 @@
 ﻿
 
 .contact-over-map {
-    min-height: 400px;
+    min-height: 500px;
 }
 .map-section {
-    /*padding-top: 20px;*/
+    padding-top: 10px;
 
 }
 
 .item-box figure {
     height: 150px;
+}
+
+.contact-over-box {
+    min-height: inherit;
 }
