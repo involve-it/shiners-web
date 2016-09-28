@@ -1,4 +1,5 @@
 ﻿import Marionette from 'backbone.marionette';
+import Backbone from 'backbone';
 import template from './MapView.hbs.html';
 import SearchView from './SearchView.js';
 import ShinerInfoView from './ShinerInfoView.js';
@@ -10,6 +11,7 @@ var View = Marionette.View.extend({
     className:'map-section',
     template:template,
     map:null,
+    model:null,
     shiners:[],
     mapInfoWindow:null,
     fetchTimeOut:null,
@@ -17,17 +19,26 @@ var View = Marionette.View.extend({
         search:'#searchView'
     },
     initialize() {
-        this.listenTo(this.collection,'after:load',this.showShiners);
+        this.model = new Backbone.Model(); // search model
     },
+
+    modelEvents: {
+        'change':'fetchPosts'
+    },
+
+    collectionEvents: {
+        'after:load':'showShiners'
+    },
+
     onRender() {
-        this.showChildView('search', new SearchView());
+        this.showChildView('search', new SearchView({collection:this.collection,model:this.model}));
         setTimeout(_.bind(this.initMap,this),500);
     },
 
     showShiners() {
         var image = {
-            url: '../images/shiners/default_32.png',
-            size: new window.google.maps.Size(32, 32),
+            url: '../images/shiners/default_32_blue.png',
+            size: new window.google.maps.Size(35, 46),
             origin: new window.google.maps.Point(0, 0),
             anchor: new window.google.maps.Point(0, 32)
         };
@@ -50,23 +61,32 @@ var View = Marionette.View.extend({
     },
 
     shinerInfo(shiner,model,event) {
+        if (this.infoView) {
+            this.infoView.remove();
+            this.infoView = null;
+        }
+        if (this.googleWindow) {
+            this.googleWindow.close();
+            this.googleWindow = null;
+        }
         this.infoView = new ShinerInfoView({model:model});
         var infoView = this.infoView;
-        var infoWindow = new window.google.maps.InfoWindow({
+        this.googleWindow = new window.google.maps.InfoWindow({
             content: infoView.render().$el[0]
         });
-        infoWindow.addListener('closeclick',() => infoView.remove());
-        window.google.maps.event.addListener(infoWindow,'domready',() => infoView.delegateMapEvent());
-        infoWindow.open(this.map, shiner);
+        this.googleWindow.addListener('closeclick',() => infoView.remove());
+        window.google.maps.event.addListener(this.googleWindow,'domready',() => infoView.delegateMapEvent());
+        this.googleWindow.open(this.map, shiner);
         this.once('before:destroy',this.infoView.remove,this.infoView);
     },
 
     initMap() {
         // AIzaSyB6JoRSeKMn_yjz3Oip84N9YhX7B6djHLA - api key geolocation
-        MapLoader({key:'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY'}).then( _.bind((maps) => {           
+        MapLoader({key:'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY'}).then( _.bind((maps) => {
+            var center = { lat: 55.75396, lng: 37.620393 };
             this.map = new maps.Map(document.getElementById('map2'),
             {
-                center: { lat: 55.75396, lng: 37.620393 },
+                center: center,
                 zoom: 14,
                 scrollwheel: false
             });
@@ -75,7 +95,7 @@ var View = Marionette.View.extend({
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition( _.bind(this.setMapPosition,this),  _.bind(this.setMapPosition,this,{ coords: {latitude:55.75396,longitude:37.620395} }));
             } else {
-                this.fetchPosts();
+                this.model.set({ position: center });
             }
         },this) );
     },
@@ -92,15 +112,37 @@ var View = Marionette.View.extend({
         if (this.fetchTimeOut)
             clearTimeout(this.fetchTimeOut);
         this.fetchTimeOut = setTimeout(_.bind( ()=> {
-            this.fetchPosts();
+            if (this.map.getZoom()>12) {
+                var center = this.map.getCenter();
+                this.model.set({
+                    position: {
+                        lat:center.lat(),
+                        lng:center.lng()
+                    }
+                });
+            }
         }, this), 500);
     },
 
     fetchPosts() {
-        if (this.map.getZoom()>12) {
-            var center = this.map.getCenter();
-            this.collection.loadByMethod('getNearbyPosts',[center.lat(),center.lng()]);
+        var query = this.model.get('query'),
+            method='getNearbyPosts',
+            args=[];
+        if (query && !_.isEmpty(query.trim())) {
+            method = 'searchPosts';
+            args.push(query.trim()); // query string
+            args.push(this.model.get('position').lat); // lat 
+            args.push(this.model.get('position').lng); // lng 
+            args.push(this.model.get('radius') || 5); // radius
+            args.push(this.model.get('skip') || 0); // skip
+            args.push(this.model.get('take') || 20); // take
+            args.push([]); // take
+        } else {
+            args.push(this.model.get('position').lat);// lat 
+            args.push(this.model.get('position').lng);// lng 
         }
+        console.info(args);
+        this.collection.loadByMethod(method,args);
     }
 });
 export default View;

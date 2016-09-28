@@ -22,6 +22,7 @@ export default Backbone.Collection.extend({
         this.trigger('before:load');
 
         this.asteroid.apply(method, args).result.then((result)=> {
+            console.info(result);
             var res = _.isArray(result) ? result : result.result;
             if (res) {
                 self.set(res, _.omit(opts, "context", "callback"));
@@ -33,6 +34,7 @@ export default Backbone.Collection.extend({
             }
             
         }).catch((error) => {
+            console.error(error);
             throw new Error(error);
         });
     }

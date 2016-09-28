@@ -4,7 +4,7 @@ import app from './app.js';
 var View = Marionette.View.extend({
     listener:null,
     template:template,
-
+    googleWindow:null,
     initialize() {
         window.postInCollection = this.model.attributes;
     },
