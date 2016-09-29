@@ -58,6 +58,12 @@ var View = Marionette.View.extend({
                 }, this);
             }
         },this);
+        for(var i = this.shiners.length; i--;) {
+            if(!this.collection.get(this.shiners[i].modelId)) {
+                this.shiners[i].setMap(null);
+                this.shiners.splice(i, 1);
+            }
+        }
     },
 
     shinerInfo(shiner,model,event) {
@@ -92,7 +98,7 @@ var View = Marionette.View.extend({
             });
             app.map = this.map;
             this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
-            if (navigator.geolocation) {
+            if (window.navigator&&window.navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition( _.bind(this.setMapPosition,this),  _.bind(this.setMapPosition,this,{ coords: {latitude:55.75396,longitude:37.620395} }));
             } else {
                 this.model.set({ position: center });
@@ -126,22 +132,33 @@ var View = Marionette.View.extend({
 
     fetchPosts() {
         var query = this.model.get('query'),
-            method='getNearbyPosts',
+            method='getNearbyPostsTest',
             args=[];
         if (query && !_.isEmpty(query.trim())) {
             method = 'searchPosts';
-            args.push(query.trim()); // query string
-            args.push(this.model.get('position').lat); // lat 
-            args.push(this.model.get('position').lng); // lng 
-            args.push(this.model.get('radius') || 5); // radius
-            args.push(this.model.get('skip') || 0); // skip
-            args.push(this.model.get('take') || 20); // take
-            args.push([]); // take
+            args.push({
+                query:query,
+                lat:this.model.get('position').lat,
+                lng:this.model.get('position').lng,
+                radius:this.model.get('radius') ||5
+            });
+            //args.push(query.trim()); // query string
+            //args.push(this.model.get('position').lat); // lat 
+            //args.push(this.model.get('position').lng); // lng 
+            //args.push(this.model.get('radius') || 5); // radius
+
+            //args.push(this.model.get('skip') || 0); // skip
+            //args.push(this.model.get('take') || 20); // take
+            //args.push([]); // take
         } else {
-            args.push(this.model.get('position').lat);// lat 
-            args.push(this.model.get('position').lng);// lng 
+            args.push({
+                lat:this.model.get('position').lat,
+                lng:this.model.get('position').lng,
+                radius:5
+            });
+            //args.push(this.model.get('position').lat);// lat 
+            //args.push(this.model.get('position').lng);// lng 
         }
-        console.info(args);
         this.collection.loadByMethod(method,args);
     }
 });
