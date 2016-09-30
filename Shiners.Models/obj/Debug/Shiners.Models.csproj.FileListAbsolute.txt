@@ -7,3 +7,4 @@ Z:\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Bson.xml
 Z:\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Driver.xml
 Z:\git\shiners\shiners-web\Shiners.Models\obj\Debug\Shiners.Models.dll
 Z:\git\shiners\shiners-web\Shiners.Models\obj\Debug\Shiners.Models.pdb
+Z:\git\shiners\shiners-web\Shiners.Models\obj\Debug\Shiners.Models.csprojResolveAssemblyReference.cache

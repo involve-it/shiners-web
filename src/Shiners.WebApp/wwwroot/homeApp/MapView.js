@@ -114,9 +114,11 @@ var View = Marionette.View.extend({
     },
 
     onBoundsChange() {
+        
         if (this.fetchTimeOut)
             clearTimeout(this.fetchTimeOut);
         this.fetchTimeOut = setTimeout(_.bind( ()=> {
+            
             if (this.map.getZoom()>12) {
                 var center = this.map.getCenter();
                 this.model.set({
@@ -148,6 +150,7 @@ var View = Marionette.View.extend({
                 radius:5
             });
         }
+        
         this.collection.loadByMethod(method,args);
     }
 });

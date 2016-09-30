@@ -15,16 +15,25 @@ let App = Marionette.Application.extend({
     nearbyPosts:null,
     myPosts:null,
     user:null,
+    postAdTypes:null,
+
     router:null,
 
-    onStart() { 
-        this.user = new AsteroidModel();
+    initialize() {
         this.asteroid = new Asteroid("www.shiners.mobi",true);
+        this.user = new AsteroidModel(null,{asteroid:this.asteroid});
+        this.postAdTypes = new Collection(null, { asteroid: this.asteroid });
+        this.myPosts=new Collection(null, { asteroid: this.asteroid });
+        
         this.nearbyPosts = new Collection(null,{asteroid:this.asteroid});
         this.router = new Router({app:this});
         var rootView = new RootView({app:this});
         this.layout = rootView;
-        this.showView(rootView);
+    },
+
+    onStart() {
+        this.postAdTypes.loadByMethod('getPostAdTypes');
+        this.showView(this.layout);
         this.getPosition();
     },
 
@@ -41,11 +50,9 @@ let App = Marionette.Application.extend({
         $.ajax({
             dataType: "json",
             url: 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAuVoCXgaA7oR1sr49WEcdD3sBA7MzUANk',
-            type:'POST',
-            context:this
+            type:'POST'
         }).done((resp) => {
             if (resp.location) {
-                console.info(this);
                 app.user.set('location',resp.location);
             } else {
                 console.error('geolocation not working');
