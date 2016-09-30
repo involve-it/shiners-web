@@ -1,10 +1,12 @@
-﻿import template from './SearchView.hbs.html';
+﻿
+import template from './SearchView.hbs.html';
 import Backbone from 'backbone';
 import '../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css';
 import '../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js';
 import '../lib/jquery-slimscroll/jquery.slimscroll.min.js';
 import ShinersListView from './ShinersListView.js';
-
+import CategoriesListView from './CategoriesListView.js';
+import app from '../app.js';
 var View = Backbone.Marionette.View.extend({
     
     template:template,
@@ -15,10 +17,12 @@ var View = Backbone.Marionette.View.extend({
         'change #query':'changeQuery'
     },
     regions: {
-        shiners:'#shinersList'
+        shiners:'#shinersList',
+        categories:'#selectCategories'
     },
 
     onRender() {
+        this.showCategories();
         this.showShiners();
     },
 
@@ -28,6 +32,10 @@ var View = Backbone.Marionette.View.extend({
 
     showShiners() {
         this.showChildView('shiners', new ShinersListView({collection:this.collection}));
+    },
+
+    showCategories(){
+        this.showChildView('categories', new CategoriesListView({model:this.model,collection:app.postAdTypes}));
     },
 
     changeRadius(e) {
