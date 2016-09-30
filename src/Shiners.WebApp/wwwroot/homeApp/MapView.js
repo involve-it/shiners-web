@@ -87,9 +87,8 @@ var View = Marionette.View.extend({
     },
 
     initMap() {
-        // AIzaSyB6JoRSeKMn_yjz3Oip84N9YhX7B6djHLA - api key geolocation
         MapLoader({key:'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY'}).then( _.bind((maps) => {
-            var center = { lat: 55.75396, lng: 37.620393 };
+            var center = app.user.get('location') || { lat: 55.75396, lng: 37.620393 };
             this.map = new maps.Map(document.getElementById('map2'),
             {
                 center: center,
@@ -98,12 +97,12 @@ var View = Marionette.View.extend({
             });
             app.map = this.map;
             this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
-            if (window.navigator&&window.navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition( _.bind(this.setMapPosition,this),  _.bind(this.setMapPosition,this,{ coords: {latitude:55.75396,longitude:37.620395} }));
-            } else {
-                this.model.set({ position: center });
-            }
-        },this) );
+            //if (window.navigator&&window.navigator.geolocation) {
+            //    navigator.geolocation.getCurrentPosition( _.bind(this.setMapPosition,this),  _.bind(this.setMapPosition,this,{ coords: {latitude:55.75396,longitude:37.620395} }));
+            //} else {
+            //    this.model.set({ position: center });
+            //}
+        },this));
     },
 
     setMapPosition(position) {
@@ -142,22 +141,12 @@ var View = Marionette.View.extend({
                 lng:this.model.get('position').lng,
                 radius:this.model.get('radius') ||5
             });
-            //args.push(query.trim()); // query string
-            //args.push(this.model.get('position').lat); // lat 
-            //args.push(this.model.get('position').lng); // lng 
-            //args.push(this.model.get('radius') || 5); // radius
-
-            //args.push(this.model.get('skip') || 0); // skip
-            //args.push(this.model.get('take') || 20); // take
-            //args.push([]); // take
         } else {
             args.push({
                 lat:this.model.get('position').lat,
                 lng:this.model.get('position').lng,
                 radius:5
             });
-            //args.push(this.model.get('position').lat);// lat 
-            //args.push(this.model.get('position').lng);// lng 
         }
         this.collection.loadByMethod(method,args);
     }

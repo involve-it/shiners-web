@@ -6,6 +6,7 @@ import RootView from './MainLayoutView.js';
 import Collection from '../data/AsteroidCollection.js';
 import Router from './Router.js';
 import _ from 'underscore';
+import AsteroidModel from '../data/AsteroidModel.js';
 let App = Marionette.Application.extend({
     region:'body',
     layout:null,
@@ -14,21 +15,17 @@ let App = Marionette.Application.extend({
     nearbyPosts:null,
     myPosts:null,
     user:null,
-    position: {
-        lat:0,
-        lng:0
-    },
     router:null,
 
-    onStart() {
+    onStart() { 
+        this.user = new AsteroidModel();
         this.asteroid = new Asteroid("www.shiners.mobi",true);
         this.nearbyPosts = new Collection(null,{asteroid:this.asteroid});
         this.router = new Router({app:this});
         var rootView = new RootView({app:this});
         this.layout = rootView;
         this.showView(rootView);
-        //this.getPosition();
-        this.startHistory();
+        this.getPosition();
     },
 
     supportsHistoryApi () {
@@ -37,28 +34,25 @@ let App = Marionette.Application.extend({
 
     startHistory() {
         Backbone.history.start({pushState: this.supportsHistoryApi()});
-    }
+    },
 
-    //getPosition() {
-    //    var app = this;
-    //    $.ajax({
-    //        dataType: "json",
-    //        url: 'https://www.googleapis.com/geolocation/v1/geolocate',
-    //        data: {key:'AIzaSyB6JoRSeKMn_yjz3Oip84N9YhX7B6djHLA'},
-    //        context:this
-    //    }).done((resp) => {
-    //        if (resp.location) {
-    //            app.position = resp.location;
-    //            app.startHistory();
-    //        } else {
-    //            app.startHistory();
-    //            console.error('geolocation not working');
-    //        }
-    //    }).fail(() => {
-    //        app.startHistory();
-    //        console.error('connection error to google geolocation api');
-    //    });
-    //}
+    getPosition() {
+        var app = this;
+        $.ajax({
+            dataType: "json",
+            url: 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAuVoCXgaA7oR1sr49WEcdD3sBA7MzUANk',
+            type:'POST',
+            context:this
+        }).done((resp) => {
+            if (resp.location) {
+                console.info(this);
+                app.user.set('location',resp.location);
+            } else {
+                console.error('geolocation not working');
+            }
+        }).fail(() => console.error('connection error to google geolocation api'))
+            .always(() => app.startHistory());
+    }
 });
 
 export default new App();

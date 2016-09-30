@@ -24,7 +24,7 @@ var View = Marionette.View.extend({
     },
 
     onClickLink(e) {
-        var href = e.target.attributes["href"];
+        var href = $(e.target).attr('href');
         if (href && !_.isEmpty(href)) {
             e.preventDefault();
             app.router.navigate(href, true);
