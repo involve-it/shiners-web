@@ -1,10 +1,21 @@
 ﻿import Marionette from 'backbone.marionette';
-import template from './CategoriesListView.html';
 import ItemView from './CategoriesItemView.js';
+import _ from 'underscore';
+var View = Marionette.CollectionView.extend({
+    childView:ItemView,
+    className:'list-group list-group-bordered list-group-noicon uppercase',
+    tagName:'ul',
+    childViewEvents: {
+        'check:category': 'onCheckCategory'
+    },
 
-var View = Marionette.CompositeView.extend({
-    className:'side-nav',
-    template:template,
-    childView:ItemView
+    onCheckCategory(model,isChecked) {
+        if (isChecked) {
+            this.model.set('activeCats', _.union(this.model.get('activeCats') || [], [model.get('name')]));
+        } else {
+            this.model.set('activeCats', _.without(this.model.get('activeCats') || [], model.get('name')));
+        }
+        
+    }
 });
 export default View;

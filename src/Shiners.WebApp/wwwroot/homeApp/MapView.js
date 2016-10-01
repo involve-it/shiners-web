@@ -134,23 +134,26 @@ var View = Marionette.View.extend({
     fetchPosts() {
         var query = this.model.get('query'),
             method='getNearbyPostsTest',
-            args=[];
-        if (query && !_.isEmpty(query.trim())) {
+            activeCats=this.model.get('activeCats'),
+            args=[],
+            radius = this.model.get('radius')||7;
+        if ((query && !_.isEmpty(query.trim()))||(activeCats&&!_.isEmpty(activeCats))) {
             method = 'searchPosts';
             args.push({
-                query:query,
+                query:query||"",
                 lat:this.model.get('position').lat,
                 lng:this.model.get('position').lng,
-                radius:this.model.get('radius') ||5
+                radius:radius,
+                activeCats:activeCats||[]
             });
         } else {
             args.push({
                 lat:this.model.get('position').lat,
                 lng:this.model.get('position').lng,
-                radius:5
+                radius:radius
             });
         }
-        
+        console.info(args);
         this.collection.loadByMethod(method,args);
     }
 });

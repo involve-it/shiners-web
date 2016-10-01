@@ -16,6 +16,7 @@
 /// <reference path="homeapp/posts/DetailsView.js" />
 /// <reference path="homeapp/posts/relatedpostsview.js" />
 /// <reference path="homeapp/router.js" />
+/// <reference path="homeapp/search/categoriesitemview.js" />
 /// <reference path="homeapp/search/categorieslistview.js" />
 /// <reference path="homeapp/search/searchview.js" />
 /// <reference path="homeapp/search/shinerslistitemview.js" />

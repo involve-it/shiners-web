@@ -18,7 +18,6 @@ export default MongoModel.extend({
             self=this;
         this.trigger('before:load');
         this.asteroid.apply(method,opts.args||[this.id]).result.then((result)=> {
-            console.info(result);
             if (result && result.success) {
                 self.set(result.result, _.omit(opts, "context", "callback"));
                 if (callback)
