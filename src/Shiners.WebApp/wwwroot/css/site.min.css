@@ -21903,3 +21903,33 @@ i.ico-hover:hover {
 .contact-over-box {
     min-height: inherit;
 }
+
+/*suggestion box*/
+.suggestion-box {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color rgba(0, 0, 0, 0.07) rgba(0, 0, 0, 0.07);
+    border-image: none;
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    top: 21px;
+    background-color: #fff;
+    box-shadow: 5px 5px rgba(91, 91, 91, 0.2);
+    display: none;
+    left: auto;
+    margin-top: 36px;
+    padding: 10px 0;
+    position: absolute;
+    right: 0;
+    width: 274px;
+    z-index: 22;
+}
+
+.suggestion-box .suggestion-box-wrapper {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* */

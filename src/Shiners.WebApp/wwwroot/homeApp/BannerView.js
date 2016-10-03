@@ -1,14 +1,49 @@
 ﻿import Marionette from 'backbone.marionette';
 import template from './BannerView.hbs.html';
+import selectionTemplate from './BannerViewLocationSelect.hbs.html';
 import '../lib/jquery.countTo.js';
-
+import app from './app.js';
 var View = Marionette.View.extend({
-    tagName:'section',
-    className:'page-header page-header-xs',
-    template:template,
+    tagName: 'section',
+    className: 'page-header page-header-xs',
+    template: template,
+    searchTimeOut: null,
+    modelEvents: {
+        'change:address': 'render'
+    },
+
+    events: {
+        'click #selectLocation': 'renderLocationsSelection',
+        'click #cancelSelection': 'render',
+        'keyup #locationQuery': 'onLocationsSearch',
+        'click #locationQuery':'showSuggestions'
+    },
 
     onDomRefresh() {
         this.initCounters();
+    },
+
+    renderLocationsSelection() {
+        this.template = selectionTemplate;
+        this.render();
+        this.template = template;
+    },
+
+    onLocationsSearch (e) {
+        if (e && (e.keyCode > 31 || e.keyCode === 13 || e.keyCode === 8)) {
+            if (this.searchTimeOut)
+                clearTimeout(this.searchTimeOut);
+            this.searchTimeOut = setTimeout(_.bind(function () {
+                
+            }, this), 400);
+        }
+    },
+
+    showSuggestions(e) {
+        var quickCartBox = this.$('#suggestionsBox');
+        if(!quickCartBox.is(":visible")) {
+            quickCartBox.fadeIn(300);
+        }
     },
 
     initCounters() {

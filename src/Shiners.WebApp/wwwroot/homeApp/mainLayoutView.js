@@ -38,7 +38,7 @@ var View = Marionette.View.extend({
 
     renderMapAndBanner() {
         this.showChildView('map',new MapView({collection:app.nearbyPosts}));
-        this.showChildView('banner',new BannerView());
+        this.showChildView('banner',new BannerView({model:app.user}));
     },
 
     toggleMapAndBanner(routeName) {

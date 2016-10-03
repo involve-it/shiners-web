@@ -7,14 +7,16 @@ import MapLoader from 'load-google-maps-api';
 import _ from 'underscore';
 import app from './app.js';
 var View = Marionette.View.extend({
-    tagName:'section',
-    className:'map-section',
-    template:template,
-    map:null,
-    model:null,
-    shiners:[],
-    mapInfoWindow:null,
-    fetchTimeOut:null,
+    tagName: 'section',
+    className: 'map-section',
+    template: template,
+    map: null,
+    model: null,
+    shiners: [],
+    mapInfoWindow: null,
+    fetchTimeOut: null,
+    geocodeTimeOut: null,
+    geocoder: null,
     regions: {
         search:'#searchView'
     },
@@ -87,7 +89,7 @@ var View = Marionette.View.extend({
     },
 
     initMap() {
-        MapLoader({key:'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY'}).then( _.bind((maps) => {
+        MapLoader({key:'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY',libraries:'places'}).then( _.bind((maps) => {
             var center = app.user.get('location') || { lat: 55.75396, lng: 37.620393 };
             this.map = new maps.Map(document.getElementById('map2'),
             {
@@ -95,8 +97,14 @@ var View = Marionette.View.extend({
                 zoom: 14,
                 scrollwheel: false
             });
+            this.geocoder = new maps.Geocoder();
+            this.placesService = new maps.places.PlacesService(this.map);
+
             app.map = this.map;
+            app.geocoder = this.geocoder;
+            app.placesService = this.placesService;
             this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
+            this.map.addListener('bounds_changed',_.bind(this.findLocationName,this));
             //if (window.navigator&&window.navigator.geolocation) {
             //    navigator.geolocation.getCurrentPosition( _.bind(this.setMapPosition,this),  _.bind(this.setMapPosition,this,{ coords: {latitude:55.75396,longitude:37.620395} }));
             //} else {
@@ -128,6 +136,33 @@ var View = Marionette.View.extend({
                     }
                 });
             }
+        }, this), 500);
+    },
+
+    findLocationName() {
+        if (this.geocodeTimeOut)
+            clearTimeout(this.geocodeTimeOut);
+        this.geocodeTimeOut = setTimeout(_.bind( ()=> {
+            var center = this.map.getCenter();
+            var latLng = {
+                    lat:center.lat(),
+                    lng:center.lng()
+                };
+            this.geocoder.geocode({'location': latLng},_.bind((results,status)=>{
+                if (status === window.google.maps.GeocoderStatus.OK) {
+                    var locationName = _.find(results[0].address_components,
+                        (res) => {
+                            return _.find(res.types,(type)=>type==='locality'||type==='administrative_area_level_2'||type==='political');
+                        },this);
+                    app.user.set({
+                        position: latLng,
+                        address:locationName.long_name
+                    });
+                } else {
+                    console.error('Geocoder failed due to: ' + status);
+                }
+            },this));
+            
         }, this), 500);
     },
 
