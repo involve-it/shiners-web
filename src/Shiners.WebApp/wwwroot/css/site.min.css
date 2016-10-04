@@ -21914,22 +21914,33 @@ i.ico-hover:hover {
     border-image: none;
     border-style: none solid solid;
     border-width: 0 1px 1px;
-    top: 21px;
     background-color: #fff;
     box-shadow: 5px 5px rgba(91, 91, 91, 0.2);
     display: none;
     left: auto;
-    margin-top: 36px;
     padding: 10px 0;
     position: absolute;
     right: 0;
-    width: 274px;
+    width: 100%;
     z-index: 22;
 }
 
 .suggestion-box .suggestion-box-wrapper {
     max-height: 300px;
     overflow-y: auto;
+    text-align: left;
+}
+.suggestion-box-wrapper a {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    display: block;
+    padding: 15px 10px;
 }
 
+.suggestion-box-wrapper a h6 {
+    margin: 0;
+    overflow: hidden;
+    padding: 4px 0 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 /* */

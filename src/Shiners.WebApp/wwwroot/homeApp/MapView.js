@@ -98,11 +98,11 @@ var View = Marionette.View.extend({
                 scrollwheel: false
             });
             this.geocoder = new maps.Geocoder();
-            this.placesService = new maps.places.PlacesService(this.map);
+            //this.placesService = new maps.places.PlacesService(this.map);
 
             app.map = this.map;
             app.geocoder = this.geocoder;
-            app.placesService = this.placesService;
+            //app.placesService = this.placesService;
             this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
             this.map.addListener('bounds_changed',_.bind(this.findLocationName,this));
             //if (window.navigator&&window.navigator.geolocation) {

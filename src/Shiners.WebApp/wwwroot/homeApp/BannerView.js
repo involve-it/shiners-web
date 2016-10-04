@@ -1,15 +1,26 @@
 ﻿import Marionette from 'backbone.marionette';
+import OsmCollection from '../data/OsmSearchCollection.js';
 import template from './BannerView.hbs.html';
-import selectionTemplate from './BannerViewLocationSelect.hbs.html';
+import selectionTemplate from './selectLocation/BannerViewLocationSelect.hbs.html';
 import '../lib/jquery.countTo.js';
 import app from './app.js';
+import SuggestionsView from './selectLocation/SuggestionListView.js'
 var View = Marionette.View.extend({
     tagName: 'section',
     className: 'page-header page-header-xs',
     template: template,
     searchTimeOut: null,
+    osmCollection:null,
     modelEvents: {
         'change:address': 'render'
+    },
+
+    initialize() {
+        this.osmCollection = new OsmCollection();
+    },
+
+    regions: {
+        'suggestions':'#suggestionsListBox'
     },
 
     events: {
@@ -26,6 +37,7 @@ var View = Marionette.View.extend({
     renderLocationsSelection() {
         this.template = selectionTemplate;
         this.render();
+        this.showChildView('suggestions',new SuggestionsView({collection:this.osmCollection,model:this.model }));
         this.template = template;
     },
 
@@ -34,7 +46,18 @@ var View = Marionette.View.extend({
             if (this.searchTimeOut)
                 clearTimeout(this.searchTimeOut);
             this.searchTimeOut = setTimeout(_.bind(function () {
-                
+                this.osmCollection.fetch({
+                    data: {
+                        //q:e.target.value,
+                        format:'json',
+                        'accept-language':'ru',
+                        limit:15,
+                        polygon_geojson:0,
+                        city:e.target.value,
+                        county:e.target.value,
+                        state:e.target.value
+                    }
+                });
             }, this), 400);
         }
     },
