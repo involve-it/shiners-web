@@ -48,14 +48,15 @@ var View = Marionette.View.extend({
             this.searchTimeOut = setTimeout(_.bind(function () {
                 this.osmCollection.fetch({
                     data: {
-                        //q:e.target.value,
+                        q:e.target.value,
                         format:'json',
                         'accept-language':'ru',
-                        limit:15,
-                        polygon_geojson:0,
-                        city:e.target.value,
-                        county:e.target.value,
-                        state:e.target.value
+                        limit:20,
+                        polygon_geojson:0
+                        //city:e.target.value,
+                        //county:e.target.value,
+                        //state:e.target.value,
+                        //country:e.target.value
                     }
                 });
             }, this), 400);
