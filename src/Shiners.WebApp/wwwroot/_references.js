@@ -14,6 +14,7 @@
 /// <reference path="homeapp/index/posttypesview.js" />
 /// <reference path="homeapp/mainlayoutview.js" />
 /// <reference path="homeapp/mapview.js" />
+/// <reference path="homeapp/posts/create/createpostview.js" />
 /// <reference path="homeapp/posts/DetailsView.js" />
 /// <reference path="homeapp/posts/relatedpostsview.js" />
 /// <reference path="homeapp/router.js" />

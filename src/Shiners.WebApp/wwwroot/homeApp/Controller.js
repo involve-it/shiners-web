@@ -3,6 +3,7 @@ import IndexView from './index/indexView.js';
 import PostDetailsView from './posts/DetailsView.js';
 import AsteroidModel from '../data/AsteroidModel.js'
 import PreloaderView from '../sharedViews/PreloaderView.js';
+import CreatePostView from './posts/create/CreatePostView.js';
 import app from './app.js';
 
 export default Marionette.Object.extend({
@@ -24,6 +25,6 @@ export default Marionette.Object.extend({
         });
     },
     createPost() {
-        
+        app.layout.showChildView('content', new CreatePostView());
     }
 });
