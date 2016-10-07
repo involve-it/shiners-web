@@ -21923,12 +21923,14 @@ i.ico-hover:hover {
     right: 0;
     width: 100%;
     z-index: 22;
+    top: 40px;
 }
 
 .suggestion-box .suggestion-box-wrapper {
     max-height: 300px;
     overflow-y: auto;
     text-align: left;
+    
 }
 .suggestion-box-wrapper a {
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
