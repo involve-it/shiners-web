@@ -8,3 +8,13 @@ Z:\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Driver.xml
 Z:\git\shiners\shiners-web\Shiners.Models\obj\Debug\Shiners.Models.csprojResolveAssemblyReference.cache
 Z:\git\shiners\shiners-web\Shiners.Models\obj\Debug\Shiners.Models.dll
 Z:\git\shiners\shiners-web\Shiners.Models\obj\Debug\Shiners.Models.pdb
+F:\git\shiners\shiners-web\Shiners.Models\bin\Debug\Shiners.Models.dll
+F:\git\shiners\shiners-web\Shiners.Models\bin\Debug\Shiners.Models.pdb
+F:\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Bson.dll
+F:\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Driver.Core.dll
+F:\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Driver.dll
+F:\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Bson.xml
+F:\git\shiners\shiners-web\Shiners.Models\bin\Debug\MongoDB.Driver.xml
+F:\git\shiners\shiners-web\Shiners.Models\obj\Debug\Shiners.Models.csprojResolveAssemblyReference.cache
+F:\git\shiners\shiners-web\Shiners.Models\obj\Debug\Shiners.Models.dll
+F:\git\shiners\shiners-web\Shiners.Models\obj\Debug\Shiners.Models.pdb

@@ -13,6 +13,7 @@ export default Marionette.AppRouter.extend({
         "posts/new":"createPost",
         "posts/:id":"postDetails",
         "Posts/new":"createPost",
-        "Posts/:id":"postDetails"
+        "Posts/:id":"postDetails",
+        "login":"login"
     }
 });

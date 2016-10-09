@@ -6,6 +6,7 @@
 /// <reference path="data/mongomodel.js" />
 /// <reference path="data/osmsearchcollection.js" />
 /// <reference path="homeapp/about/aboutview.js" />
+/// <reference path="homeapp/account/loginview.js" />
 /// <reference path="homeApp/app.js" />
 /// <reference path="homeapp/bannerview.js" />
 /// <reference path="homeapp/controller.js" />

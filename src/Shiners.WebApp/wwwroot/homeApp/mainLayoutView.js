@@ -13,27 +13,30 @@ var View = Marionette.View.extend({
 
     mapView:null,
 
-    events: {
-        'click a:not([data-direct-link])':'onClickLink'
-    },
-
     regions: {
         'content':'#appContent',
         'map':'#appMap',
         'banner':'#appBanner'
     },
 
-    onClickLink(e) {
-        var href = $(e.target).attr('href');
-        if (href && !_.isEmpty(href)) {
-            e.preventDefault();
-            app.router.navigate(href, true);
-        }
+    onClickLink() {
+        Backbone.$(document).on('click', 'a:not([data-direct-link])', function (e) {
+            var href = Backbone.$(this).attr('href');
+            var protocol = this.protocol + '//';
+            if (href && !_.isEmpty(href) && href.slice(protocol.length) !== protocol) {
+                e.preventDefault();
+                app.router.navigate(href, true);
+            }
+        });
     },
 
     onRender() {
         this.renderMapAndBanner();
         this.listenTo(app.router,'route',this.toggleMapAndBanner);
+    },
+
+    onAttach() {
+        this.onClickLink();
     },
 
     renderMapAndBanner() {
