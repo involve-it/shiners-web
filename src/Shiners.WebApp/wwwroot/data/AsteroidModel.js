@@ -9,15 +9,16 @@ export default MongoModel.extend({
         MongoModel.prototype.initialize.apply(this,arguments);
     },
 
-    loadByMethod(method,options) {
+    loadByMethod(method,args,callbk,options) {
+
         if (!this.asteroid)
             throw new Error("Asteroid instanse of model with id="+this.id+" is not exists!");
         var opts = options || {};
         var context = opts.context||this,
-            callback = opts.callback ||null,
+            callback = callbk ||null,
             self=this;
         this.trigger('before:load');
-        this.asteroid.apply(method,opts.args||[this.id]).result.then((result)=> {
+        this.asteroid.apply(method,args||[this.id]).result.then((result)=> {
             if (result && result.success) {
                 self.set(result.result, _.omit(opts, "context", "callback"));
                 if (callback)

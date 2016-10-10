@@ -3,6 +3,7 @@ import template from './MainLayoutView.hbs.html';
 import _ from 'underscore';
 import MapView from './MapView.js';
 import BannerView from './BannerView.js';
+import UserBarView from './UserBarView.js';
 import app from './app.js';
 
 var View = Marionette.View.extend({
@@ -16,7 +17,8 @@ var View = Marionette.View.extend({
     regions: {
         'content':'#appContent',
         'map':'#appMap',
-        'banner':'#appBanner'
+        'banner':'#appBanner',
+        'userBar':'#userBar'
     },
 
     onClickLink() {
@@ -42,6 +44,7 @@ var View = Marionette.View.extend({
     renderMapAndBanner() {
         this.showChildView('map',new MapView({collection:app.nearbyPosts}));
         this.showChildView('banner',new BannerView({model:app.user}));
+        this.showChildView('userBar', new UserBarView({ model: app.user }));
     },
 
     toggleMapAndBanner(routeName) {

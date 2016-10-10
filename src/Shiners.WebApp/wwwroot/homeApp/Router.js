@@ -14,6 +14,9 @@ export default Marionette.AppRouter.extend({
         "posts/:id":"postDetails",
         "Posts/new":"createPost",
         "Posts/:id":"postDetails",
-        "login":"login"
+        "Account/Login":"login",
+        "Account/FogotPassword":"fogotPassword",
+        "Home/About":"about",
+        "Home/HowItWorks":'howItWorks'
     }
 });

@@ -22,6 +22,7 @@ let App = Marionette.Application.extend({
     initialize() {
         this.asteroid = new Asteroid("www.shiners.mobi",true);
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
+        window.user = this.user;
         this.postAdTypes = new Collection(null, { asteroid: this.asteroid });
         this.myPosts=new Collection(null, { asteroid: this.asteroid });
         
@@ -35,6 +36,7 @@ let App = Marionette.Application.extend({
         this.postAdTypes.loadByMethod('getPostAdTypes');
         this.showView(this.layout);
         this.getPosition();
+        this.checkLogin();
     },
 
     supportsHistoryApi () {
@@ -59,6 +61,37 @@ let App = Marionette.Application.extend({
             }
         }).fail(() => console.error('connection error to google geolocation api'))
             .always(() => app.startHistory());
+    },
+
+    checkLogin() {
+        var user = this.user;
+        if (document.cookie["userId"]) {
+            user.set('_id', document.cookie["userId"]);
+            user.loadByMethod('getUser', [user.get('_id')],()=>user.trigger('login'));
+        }
+    },
+
+    authorize(email,password) {
+        var user=this.user;
+        this.asteroid.loginWithPassword(email, password)
+            .then((loginResult) => {
+                user.set('_id', loginResult);
+                //document.cookie["userId"] = loginResult;
+                user.loadByMethod('getUser', [loginResult],()=>user.trigger('login'));               
+            }).catch((error) => {
+                user.trigger('error:login', error);
+                console.error('Error:', error);
+            });
+    },
+
+    logout() {
+        var user = this.user;
+        this.asteroid.logout().then(() => {
+            user.unset('_id');
+            user.unset('id');
+            //delete document.cookie["userId"];
+            user.trigger('logout');
+        });
     }
 });
 

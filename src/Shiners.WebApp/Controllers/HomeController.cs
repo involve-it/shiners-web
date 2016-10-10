@@ -15,9 +15,12 @@ namespace Shiners.WebApp.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            return View("Index");
+        }
 
-            return View();
+        public IActionResult HowItWorks()
+        {
+            return View("Index");
         }
 
         public IActionResult Contact()

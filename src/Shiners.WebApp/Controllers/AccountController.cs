@@ -41,10 +41,9 @@ namespace Shiners.WebApp.Controllers
         // GET: /Account/Login
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Login(string returnUrl = null)
+        public IActionResult Login()
         {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            return View("../Home/Index");
         }
 
         //
