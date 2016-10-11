@@ -1,6 +1,7 @@
 ﻿
 import Marionette from 'backbone.marionette';
 import Backbone from 'backbone';
+import "sockjs-client";
 import Asteroid from 'asteroid.browser';
 import RootView from './MainLayoutView.js';
 import Collection from '../data/AsteroidCollection.js';
@@ -22,14 +23,11 @@ let App = Marionette.Application.extend({
     initialize() {
         this.asteroid = new Asteroid("www.shiners.mobi",true);
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
-        window.user = this.user;
         this.postAdTypes = new Collection(null, { asteroid: this.asteroid });
-        this.myPosts=new Collection(null, { asteroid: this.asteroid });
-        
+        this.myPosts=new Collection(null, { asteroid: this.asteroid });  
         this.nearbyPosts = new Collection(null,{asteroid:this.asteroid});
         this.router = new Router({app:this});
-        var rootView = new RootView({app:this});
-        this.layout = rootView;
+        this.layout = new RootView({app:this});
     },
 
     onStart() {

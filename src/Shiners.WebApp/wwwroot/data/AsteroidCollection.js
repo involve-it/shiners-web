@@ -20,8 +20,7 @@ export default Backbone.Collection.extend({
             callback = callbk ||null,
             self=this;
         this.trigger('before:load');
-
-        this.asteroid.apply(method, args).result.then((result)=> {
+        this.asteroid.call(method, args).result.then((result)=> {
             console.info(result);
             var res = _.isArray(result) ? result : result.result;
             if (result.success) {

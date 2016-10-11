@@ -170,23 +170,23 @@ var View = Marionette.View.extend({
         var query = this.model.get('query'),
             method='getNearbyPostsTest',
             activeCats=this.model.get('activeCats'),
-            args=[],
+            args,
             radius = this.model.get('radius')||7;
         if ((query && !_.isEmpty(query.trim()))||(activeCats&&!_.isEmpty(activeCats))) {
             method = 'searchPosts';
-            args.push({
+            args = {
                 query:query||"",
                 lat:this.model.get('position').lat,
                 lng:this.model.get('position').lng,
                 radius:radius,
                 activeCats:activeCats||[]
-            });
+            };
         } else {
-            args.push({
+            args={
                 lat:this.model.get('position').lat,
                 lng:this.model.get('position').lng,
                 radius:radius
-            });
+            };
         }
         console.info(args);
         this.collection.loadByMethod(method,args);
