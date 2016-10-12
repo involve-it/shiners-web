@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Shiners.WebApp.Controllers
 {
-    public class PostsController : Controller
+    public class ChatsController : Controller
     {
-        public IActionResult Index(string id=null)
+        public IActionResult Index(string id = null)
         {
             return View("../Home/Index");
         }
-        
+
         public IActionResult My()
         {
             return View("../Home/Index");

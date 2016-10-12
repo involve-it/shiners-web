@@ -6,14 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Shiners.WebApp.Controllers
 {
-    public class PostsController : Controller
+    public class ProfileController : Controller
     {
-        public IActionResult Index(string id=null)
-        {
-            return View("../Home/Index");
-        }
-        
-        public IActionResult My()
+        public IActionResult Index(string id = null)
         {
             return View("../Home/Index");
         }
