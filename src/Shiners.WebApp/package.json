@@ -21,18 +21,17 @@
     "url-loader": "0.5.7",
     "webpack": "1.13.2",
     "extract-text-webpack-plugin": "1.0.1"
-
   },
   "dependencies": {
-    "underscore": "1.8.3",
-    "backbone.marionette": "3.0.0",
     "asteroid.browser": "0.6.1",
+    "backbone.marionette": "3.0.0",
     "bootstrap": "3.3.7",
     "bootstrap-loader": "1.1.6",
     "bootstrap-sass": "3.3.7",
     "jquery": "2.2.4",
     "jquery-ui": "1.12.1",
     "load-google-maps-api": "0.0.2",
-    "moment": "2.14.1"
+    "moment": "2.14.1",
+    "underscore": "1.8.3"
   }
 }

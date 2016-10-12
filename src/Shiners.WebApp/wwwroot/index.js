@@ -1,7 +1,6 @@
 ﻿import 'jquery';
 //import 'bootstrap-loader';
 import './lib/bootstrap/dist/js/bootstrap.min.js';
-
 //require("./css/OpenSans.css");
 //require("./css/essentials.css");
 //require("./css/layout.css");

@@ -2,17 +2,21 @@
 "use strict";
 var webpack = require('webpack'),
     BowerWebpackPlugin = require("bower-webpack-plugin"),
-    ExtractTextPlugin = require("extract-text-webpack-plugin");
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    path=require('path');
 
 module.exports = {
-    entry: './wwwroot/index.js' ,
+    entry: './wwwroot/index.js',
     output: {
         path: "./wwwroot/",
-       
+
         filename: "bundle.js"
     },
     resolve: {
-        modulesDirectories: ["node_modules"]
+        modulesDirectories: ["node_modules"],
+        alias: {
+            SockJS: path.resolve("./wwwroot/lib/sockjs.min.js")
+        }
     },
     plugins: [
                     new BowerWebpackPlugin({
@@ -27,7 +31,8 @@ module.exports = {
                         jQuery: "jquery",
                         JQuery: "jquery",
                         _: "underscore",
-                        moment:"moment"
+                        moment:"moment",
+                        SockJS: "SockJS"
                         //'window.Tether': "tether",
                         //'Tether': "tether"
                     })
