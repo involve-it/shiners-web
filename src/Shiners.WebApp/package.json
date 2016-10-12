@@ -23,8 +23,6 @@
     "extract-text-webpack-plugin": "1.0.1"
   },
   "dependencies": {
-    "debug": "2.2.0",
-    "sockjs-client": "1.0.0",
     "asteroid.browser": "0.6.1",
     "backbone.marionette": "3.0.0",
     "bootstrap": "3.3.7",

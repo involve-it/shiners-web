@@ -1,8 +1,8 @@
-﻿
-import Marionette from 'backbone.marionette';
+﻿import Marionette from 'backbone.marionette';
 import Backbone from 'backbone';
-import "sockjs-client";
-import Asteroid from 'asteroid.browser';
+import SockJS from 'SockJS';
+import '../lib/detectmobile.js';
+import Asteroid from '../lib/asteroid.browser.js';
 import RootView from './MainLayoutView.js';
 import Collection from '../data/AsteroidCollection.js';
 import Router from './Router.js';
@@ -17,7 +17,7 @@ let App = Marionette.Application.extend({
     myPosts:null,
     user:null,
     postAdTypes:null,
-
+    isMobile:false,
     router:null,
 
     initialize() {
@@ -31,6 +31,7 @@ let App = Marionette.Application.extend({
     },
 
     onStart() {
+        this.isMobile = $.browser.mobile;
         this.postAdTypes.loadByMethod('getPostAdTypes');
         this.showView(this.layout);
         this.getPosition();
