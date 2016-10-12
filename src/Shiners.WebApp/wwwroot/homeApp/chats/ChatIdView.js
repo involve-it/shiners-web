@@ -1,18 +1,17 @@
 ﻿import Marionette from 'backbone.marionette';
-import template from './CreatePostView.hbs.html';
+import template from './ChatIdView.hbs.html';
 var View = Marionette.View.extend({
     template:template,
     initialize() {
         
     },
-/*
-    tagName:'iframe',
+  /*  tagName:'iframe',
 
     attributes: {
         width:'100%',
-        src:'https://shiners.mobi/posts/new?type=ad&isiframe=true'
+        src:'https://shiners.mobi/chat/'+chatId._id+'?isiframe=true'
     },
-*/
+    */
     events:{
         'load iframe':'removeHeader'
     },
@@ -20,6 +19,7 @@ var View = Marionette.View.extend({
     removeHeader(e) {
         console.info('remove header');
         window.myIframe = e.target;
+        console.info(src)
     },
 
     onAttach() {

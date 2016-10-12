@@ -1,5 +1,5 @@
 ﻿import Marionette from 'backbone.marionette';
-import template from './CreatePostView.hbs.html';
+import template from './PostsMyView.hbs.html';
 var View = Marionette.View.extend({
     template:template,
     initialize() {
@@ -10,9 +10,9 @@ var View = Marionette.View.extend({
 
     attributes: {
         width:'100%',
-        src:'https://shiners.mobi/posts/new?type=ad&isiframe=true'
+        src:'https://shiners.mobi/posts/my?isiframe=true'
     },
-*/
+    */
     events:{
         'load iframe':'removeHeader'
     },

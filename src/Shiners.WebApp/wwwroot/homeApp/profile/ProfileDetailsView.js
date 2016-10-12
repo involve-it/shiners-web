@@ -1,18 +1,11 @@
 ﻿import Marionette from 'backbone.marionette';
-import template from './CreatePostView.hbs.html';
+import template from './ProfileDetailsView.hbs.html';
 var View = Marionette.View.extend({
     template:template,
     initialize() {
         
     },
-/*
-    tagName:'iframe',
 
-    attributes: {
-        width:'100%',
-        src:'https://shiners.mobi/posts/new?type=ad&isiframe=true'
-    },
-*/
     events:{
         'load iframe':'removeHeader'
     },

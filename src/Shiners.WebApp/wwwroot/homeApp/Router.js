@@ -10,10 +10,18 @@ export default Marionette.AppRouter.extend({
 
     appRoutes: {
         "":"index",
+       
+        //"posts/:id":"postDetails",
+        
         "posts/new":"createPost",
-        "posts/:id":"postDetails",
         "Posts/new":"createPost",
-        "Posts/:id":"postDetails",
+        "Posts/My":"postsMy",
+        "chats/My":"chatsMy",
+        "Chats/My":"chatsMy",
+        
+        "chats/:id":"chatId",
+        "Chats/:id":"chatId",
+        "user/:id": "profileDetails",
         "Account/Login":"login",
         "Account/FogotPassword":"fogotPassword",
         "Home/About":"about",
