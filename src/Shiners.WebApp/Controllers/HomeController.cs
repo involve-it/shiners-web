@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Shiners.WebApp.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         public IActionResult Index()
