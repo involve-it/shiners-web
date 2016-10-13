@@ -2,7 +2,7 @@
 import _ from 'underscore';
 
 export default Backbone.Collection.extend({
-    url:'http://nominatim.openstreetmap.org/search',
+    url:'https://nominatim.openstreetmap.org/search',
     parse(resp) {
         return resp;
     }
