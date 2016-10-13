@@ -1,7 +1,7 @@
 ﻿import Marionette from 'backbone.marionette';
 import ShinerListItemView from './ShinersListItemView.js';
 var View = Marionette.CollectionView.extend({
-    className:'height-300 slimscroll',
+    className:'height-250 slimscroll',
     tagName:'div',
 
     childView:ShinerListItemView,

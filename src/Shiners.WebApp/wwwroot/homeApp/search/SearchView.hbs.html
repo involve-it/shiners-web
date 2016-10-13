@@ -1,72 +1,49 @@
-﻿<div class="row">
-    <div class="col-md-12">
-        <div class="fancy-form">
-            <div class="input-group">
-                <span class="input-group-btn">
-                    <button id="searchParametersButton" class="btn btn-default" type="button"><i class="fa fa-gears"></i></button>
-                </span>
-                <input type="text" placeholder="Поиск..." class="form-control" name="query" id="query">
-                <span class="fancy-tooltip top-left">
-                    <!-- positions: .top-left | .top-right -->
-                    <em>Свободный поиск по словам</em>
-                </span>
-            </div>
-        </div>
+﻿<div class="fancy-form">
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button title="Фильтр поиска" id="searchParametersButton" class="btn btn-default" type="button">
+                <i class="fa fa-filter size-14 text-info"></i>
+            </button>
+        </span>
+        <input type="text" placeholder="Поиск..." class="form-control" name="query" id="query">
+        <span class="input-group-btn hidden-lg hidden-md">
+            <a id="userLocation" title="Местоположение" class="btn btn-default btn-block size-14">
+                <i class="fa fa-map-marker text-success"></i>
+            </a>
+        </span>
+        <span class="fancy-tooltip top-left">
+            <!-- positions: .top-left | .top-right -->
+            <em>Свободный поиск по словам</em>
+        </span>
     </div>
+</div>
+<div id="searchParameters" style="display: none">
     <div class="toggle toggle-transparent-body">
-
-        <div class="toggle active">
-            <label>Фильтр</label>
-            <div class="toggle-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-            </div>
-        </div>
-
         <div class="toggle">
-            <label>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</label>
+            <label>ПАРАМЕТРЫ ПОИСКА</label>
             <div class="toggle-content">
-                <p>Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc.</p>
+                <div class="margin-bottom-40">
+                    <div class="margin-bottom-10">
+                        <label for="radius">Радиус поиска (км):</label>
+                        <input type="hidden" name="radius" id="radius" class="form-control">
+                    </div>
+                    <div class="slider-wrapper info-slider">
+                        <div id="slider3"></div>
+                    </div>
+                </div>
+                <div id="selectCategories">
+
+                </div>
             </div>
         </div>
+        <div class="toggle {{=isMobile?'':'active'}}">
+            <label>НАЙДЕННЫЕ СВЕТЛЯЧКИ</label>
+            <div class="toggle-content" id="searchResults" style="{{=isMobile?'':'display: block'}}">
+                <div class="box-inner">
+                    <div id="shinersList">
 
-        <div class="toggle">
-            <label>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</label>
-            <div class="toggle-content">
-                <p>Ut enim massa, sodales tempor convallis et, iaculis ac massa.</p>
-            </div>
-        </div>
-
-    </div>
-    <div id="searchParameters" style="display: none">
-
-        <div class="col-md-12 margin-bottom-10 side-nav">
-            <div class="side-nav-head">
-                <button class="fa fa-bars" id="toggleCategs"></button>
-                <h4>КАТЕГОРИИ</h4>
-            </div>
-            <div id="selectCategories">
-
-            </div>
-        </div>
-        <div class="col-md-12 margin-bottom-10">
-            <div class="margin-bottom-10">
-                <label for="radius">Радиус поиска (км):</label>
-                <input type="hidden" name="radius" id="radius" class="form-control"> <!-- hidden input -->
-            </div>
-            <div class="slider-wrapper info-slider">
-                <div id="slider3"></div>
-            </div>
-        </div>
-    </div>
-    <hr/>
-    <div id="searchResults">
-        <div class="box-inner">
-            <h3>
-                <a class="pull-right size-11 text-warning" href="#">Подробнее</a>
-                ОБЪЯВЛЕНИЯ ВОКРУГ
-            </h3>
-            <div id="shinersList">
-                
+                    </div>
+                </div>
             </div>
         </div>
     </div>

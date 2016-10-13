@@ -16,7 +16,7 @@
       "wwwroot/css/custom.css"
     ],
     "minify": {
-      "enabled": false,
+      "enabled": true,
       "commentMode": "none"
     }
   }

@@ -47,10 +47,19 @@ var View = Marionette.View.extend({
         this.showChildView('userBar', new UserBarView({ model: app.user }));
     },
 
+    toggleBannerView() {
+        if (this.getRegion('banner').$el.is(':hidden')) {
+            this.getRegion('banner').$el.show();
+        } else {
+            this.getRegion('banner').$el.hide();
+        }
+    },
+
     toggleMapAndBanner(routeName) {
         if (routeName === "index") {
             this.getRegion('map').$el.show();
-            this.getRegion('banner').$el.show();
+            if(!app.isMobile)
+                this.getRegion('banner').$el.show();
         } else {
             this.getRegion('map').$el.hide();
             this.getRegion('banner').$el.hide();

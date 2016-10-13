@@ -27,11 +27,13 @@ var View = Marionette.View.extend({
         'click #selectLocation': 'renderLocationsSelection',
         'click #cancelSelection': 'render',
         'keyup #locationQuery': 'onLocationsSearch',
-        'click #locationQuery':'showSuggestions'
+        'click #locationQuery':'showSuggestions',
+        'click #hideView':'hideView'
     },
 
     onDomRefresh() {
-        this.initCounters();
+        if(!app.isMobile)
+            this.initCounters();
     },
 
     renderLocationsSelection() {
@@ -103,6 +105,10 @@ var View = Marionette.View.extend({
                 }
             });
         }, _delay);
+    },
+
+    hideView() {
+        app.layout.toggleBannerView();
     }
 });
 export default View;

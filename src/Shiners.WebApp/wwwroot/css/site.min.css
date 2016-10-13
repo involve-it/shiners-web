@@ -21889,11 +21889,11 @@ i.ico-hover:hover {
 
 
 .contact-over-map {
-    height: 500px;
+    height: 460px;
 }
 .map-section {
     padding-top: 10px;
-    height: 500px;
+    height: 460px;
 }
 
 .item-box figure {
@@ -21902,6 +21902,7 @@ i.ico-hover:hover {
 
 .contact-over-box {
     min-height: inherit;
+    padding: 5px 5px;
 }
 
 /*suggestion box*/
@@ -21946,3 +21947,12 @@ i.ico-hover:hover {
     white-space: nowrap;
 }
 /* */
+
+.contact-over-box .toggle .toggle-content {
+    padding: 5px 5px;
+}
+div.toggle {
+
+    margin: 0;
+
+}

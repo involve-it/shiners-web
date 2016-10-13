@@ -3,7 +3,6 @@ import template from './CategoriesItemView.hbs.html';
 var View = Marionette.CompositeView.extend({
     template:template,
     tagName:'li',
-    className:'list-group-item',
     events: {
         'click a':'toggleCheck'
     },
