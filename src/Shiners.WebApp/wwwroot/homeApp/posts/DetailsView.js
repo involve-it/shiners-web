@@ -14,6 +14,7 @@ var View = Marionette.View.extend({
     },
 
     initialize() {
+        window.postDetails = this.model.toJSON();
         this.collection = new Collection(null,{asteroid:this.model.asteroid});
         this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
     },
@@ -96,8 +97,6 @@ var View = Marionette.View.extend({
     },
 
     showRelatedPosts() {
-        console.info('show related posts');
-        window.relatedPosts = this.collection.toJSON();
         this.showChildView('related', new RelatedPostsView({ collection: this.collection }));
     }
 });

@@ -1,89 +1,109 @@
 ﻿<section class="page-header page-header-xs">
     <div class="container">
         <h1>{{=details.title}}</h1>
-        <span class="font-lato size-18 weight-300">{{=moment(timestamp).fromNow()}}</span>
         <ol class="breadcrumb">
             <li><a href="/">Главная</a></li>
-            <li><a href="/posts">Объявления</a></li>
+            <li><a href="/Posts">Объявления</a></li>
             <li class="active">{{=details.title}}</li>
         </ol>
     </div>
 </section>
 <section>
     <div class="container">
-        <div class="container">
-            <div class="owl-carousel buttons-autohide controlls-over nomargin" id="postImages" data-plugin-options='{"items": 1, "autoPlay": {{-_.size(details.photo)>1?'3500':'false'}}, "autoHeight": false, "navigation": true, "pagination": false, "transitionStyle":"fade", "progressBar":"false"}'>
-                {{_.each(details.photos,function(photo){ }}
-                <div>
-                    <img class="img-responsive" src="{{=photo.data}}" alt="">
-                </div>
-                {{});}}
+        <div class="row">
+            <div class="col-md-12">
+                <span class="font-lato weight-300"><i class="fa fa-clock-o"></i> Опубликовано {{=moment(timestamp).fromNow()}}</span>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="row nomargin">
-            <div class="col-md-8 col-sm-8">
-                <div class="heading-title heading-border">
-                    <h2><span>{{=details.title}}</span></h2>
-                    <ul class="list-inline categories nomargin">
-                        <li><a href="#">{{=type}}</a></li>
-                    </ul>
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="owl-carousel buttons-autohide controlls-over nomargin" id="postImages" data-plugin-options='{"items": 1, "autoPlay": {{-_.size(details.photo)>1?'3500':'false'}}, "autoHeight": false, "navigation": true, "pagination": false, "transitionStyle":"fade", "progressBar":"false"}'>
+                    {{_.each(details.photos,function(photo){ }}
+                    <div>
+                        <img class="img-responsive" src="{{=photo.data}}" alt="">
+                    </div>
+                    {{});}}
                 </div>
-                <p class="font-lato size-18">{{=details.description}}</p>
             </div>
-
-            <div class="col-md-4 col-sm-4">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <p class="font-lato size-18">Дополнительные сведения об объявлении:</p>
-                        <ul class="portfolio-detail-list list-unstyled nomargin">
-                            <li><span><i class="fa fa-user"></i>Автор:</span> {{=user.username}}</li>
-                            <li><span><i class="fa fa-calendar"></i>Действует до:</span> {{=moment(endDatePost).format("ll")}}</li>
-                            {{if (details.price) { }}
-                            <li><span><i class="fa fa-money"></i>Стоимость:</span> {{=details.price}}</li>
-                            {{ } }}
-                            {{if (details.locations){ }}
-                            {{_.each(details.locations,function(loc){ }}
-                            <li>
-                                <span>
-                                            <i class="fa fa-map-marker"></i> Адрес
-                                        </span>
-                                {{=loc.name}}
-                            </li>
-                            {{});}}
-                            {{ } }}
-                        </ul>
-                    </div>
-
-                    <div class="panel-footer">
-                        <a href="#" class="social-icon social-icon-sm social-icon-transparent social-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
-
-                            <i class="icon-facebook"></i>
-                            <i class="icon-facebook"></i>
-                        </a>
-
-                        <a href="#" class="social-icon social-icon-sm social-icon-transparent social-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
-                            <i class="icon-twitter"></i>
-                            <i class="icon-twitter"></i>
-                        </a>
-
-                        <a href="#" class="social-icon social-icon-sm social-icon-transparent social-gplus" data-toggle="tooltip" data-placement="top" title="Google plus">
-                            <i class="icon-gplus"></i>
-                            <i class="icon-gplus"></i>
-                        </a>
-
-                        <a href="#" class="social-icon social-icon-sm social-icon-transparent social-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin">
-                            <i class="icon-linkedin"></i>
-                            <i class="icon-linkedin"></i>
-                        </a>
-
-                        <a href="#" class="social-icon social-icon-sm social-icon-transparent social-pinterest" data-toggle="tooltip" data-placement="top" title="Pinterest">
-                            <i class="icon-pinterest"></i>
-                            <i class="icon-pinterest"></i>
-                        </a>
-                    </div>
-                </div>
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <tr>
+                        <td>
+                            <i class="fa fa-eye"></i> Просмотров
+                        </td>
+                        <td>
+                            Всего: {{=stats.seenTotal}} Сегодня: {{=stats.seenToday}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fa fa-street-view"></i> Статус
+                        </td>
+                        <td></td>
+                    </tr>
+                    {{if (obj.type) { }}
+                    <tr>
+                        <td>
+                            <i class="fa fa-list-alt"></i> Тип
+                        </td>
+                        <td>
+                            <span class="label label-info">{{=type}}</span>
+                        </td>
+                    </tr>
+                    {{ } }}
+                    <tr>
+                        <td>
+                            <i class="fa fa-location-arrow"></i> Дистанция
+                        </td>
+                        <td></td>
+                    </tr>
+                    {{if(obj.social) { }}
+                    <tr>
+                        <td>
+                            <i class="fa fa-heart"></i> Нравится
+                        </td>
+                        <td>
+                            {{=_.size(social.likes)}}
+                        </td>
+                    </tr>
+                    {{ } }}
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="weight-300">{{=details.title}}</h2>
+                <div class="rating rating-4 size-20 margin-top-10 text-blue"></div>
+                <ul class="portfolio-detail-list list-unstyled nomargin">
+                    <li><span><i class="fa fa-calendar"></i>Действует до:</span> {{=moment(endDatePost).format("ll")}}</li>
+                    {{if (details.price) { }}
+                    <li><span><i class="fa fa-money"></i>Стоимость:</span> {{=details.price}}</li>
+                    {{ } }}
+                    {{if (details.locations){ }}
+                    {{_.each(details.locations,function(loc){ }}
+                    <li>
+                        <span>
+                            <i class="fa fa-map-marker"></i> Адрес
+                        </span>
+                        {{=loc.name}}
+                    </li>
+                    {{});}}
+                    {{ } }}
+                </ul>
+                <p class="font-lato weight-300 size-15">{{=details.description}}</p>
+            </div>
+        </div>
+        <div class="row alternate">
+            <div class="col-md-12">
+                <span>
+                    <a href="#">
+                        <img class="" src="{{=user.image && user.image.imageUrl?user.image.imageUrl:'/images/avatar.png'}}" alt="" width="50" height="50">
+                    </a>
+                    <span><strong>{{=user.username}}</strong> </span>
+                </span>
+                <button type="button" class="btn btn-blue">Написать сообщение</button>
+                <button type="button" class="btn btn-leaf"><i class="fa fa-heart-o"></i> Нравится</button>
             </div>
         </div>
     </div>

@@ -9,7 +9,7 @@ import './lib/bootstrap/dist/js/bootstrap.min.js';
 //require("./css/custom.css");
 //import './lib/font-awesome/css/font-awesome.css';
 import './lib/jquery-ui/jquery-ui.min.js';
-
+import moment from 'moment';
 import app from './homeApp/app.js';
-
+moment.lang('ru');
 app.start();

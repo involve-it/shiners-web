@@ -1,6 +1,7 @@
 ﻿import Marionette from 'backbone.marionette';
 import Backbone from 'backbone';
 import template from './MapView.hbs.html';
+import createButtonTemplate from './CreateButton.hbs.html';
 import SearchView from './search/SearchView.js';
 import ShinerInfoView from './ShinerInfoView.js';
 import MapLoader from 'load-google-maps-api';
@@ -39,8 +40,8 @@ var View = Marionette.View.extend({
 
     showShiners() {
         var image = {
-            url: '../images/shiners/default_32_blue.png',
-            size: new window.google.maps.Size(35, 46),
+            url: '../images/shiners/shiner_marker.png',
+            size: new window.google.maps.Size(40, 52),
             origin: new window.google.maps.Point(0, 0),
             anchor: new window.google.maps.Point(0, 32)
         };
@@ -89,7 +90,7 @@ var View = Marionette.View.extend({
     },
 
     initMap() {
-        MapLoader({key:'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY',libraries:'places'}).then( _.bind((maps) => {
+        MapLoader({key:'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY'}).then( _.bind((maps) => {
             var center = app.user.get('location') || { lat: 55.75396, lng: 37.620393 };
             this.map = new maps.Map(document.getElementById('map2'),
             {
@@ -98,19 +99,20 @@ var View = Marionette.View.extend({
                 scrollwheel: false
             });
             this.geocoder = new maps.Geocoder();
-            //this.placesService = new maps.places.PlacesService(this.map);
-
             app.map = this.map;
             app.geocoder = this.geocoder;
-            //app.placesService = this.placesService;
             this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
             this.map.addListener('bounds_changed',_.bind(this.findLocationName,this));
-            //if (window.navigator&&window.navigator.geolocation) {
-            //    navigator.geolocation.getCurrentPosition( _.bind(this.setMapPosition,this),  _.bind(this.setMapPosition,this,{ coords: {latitude:55.75396,longitude:37.620395} }));
-            //} else {
-            //    this.model.set({ position: center });
-            //}
+            this.createButton();
         },this));
+    },
+
+    createButton() {
+        var el = $(createButtonTemplate()).get(0);
+        el.addEventListener('click', function() {
+            app.router.navigate('Posts/new',{trigger:true});
+        });
+        this.map.controls[window.google.maps.ControlPosition.BOTTOM_CENTER].push(el);
     },
 
     setMapPosition(position) {
