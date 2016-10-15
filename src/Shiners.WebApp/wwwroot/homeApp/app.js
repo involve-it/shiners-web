@@ -1,6 +1,6 @@
 ﻿import Marionette from 'backbone.marionette';
 import Backbone from 'backbone';
-import SockJS from 'SockJS';
+//import SockJS from 'SockJS';
 import '../lib/detectmobile.js';
 import Asteroid from '../lib/asteroid.browser.js';
 import RootView from './MainLayoutView.js';

@@ -2,6 +2,7 @@
 import Backbone from 'backbone';
 import template from './MapView.hbs.html';
 import createButtonTemplate from './CreateButton.hbs.html';
+import setPositionMapButtonTemplate from './SetPositionMapButton.hbs.html';
 import SearchView from './search/SearchView.js';
 import ShinerInfoView from './ShinerInfoView.js';
 import MapLoader from 'load-google-maps-api';
@@ -103,16 +104,30 @@ var View = Marionette.View.extend({
             app.geocoder = this.geocoder;
             this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
             this.map.addListener('bounds_changed',_.bind(this.findLocationName,this));
-            this.createButton();
+            this.mapAddPostButton();
+            this.mapSetPositionButton();
         },this));
     },
 
-    createButton() {
+    mapAddPostButton() {
         var el = $(createButtonTemplate()).get(0);
-        el.addEventListener('click', function() {
+        el.addEventListener('click', ()=> {
             app.router.navigate('Posts/new',{trigger:true});
         });
         this.map.controls[window.google.maps.ControlPosition.BOTTOM_CENTER].push(el);
+    },
+
+    mapSetPositionButton() {
+        var el = $(setPositionMapButtonTemplate()).get(0),
+            self=this;
+        el.addEventListener('click', ()=> {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position)=> {
+                    self.setMapPosition(position);
+                }, ()=> {});
+            }
+        });
+        this.map.controls[app.isMobile?window.google.maps.ControlPosition.TOP_RIGHT: window.google.maps.ControlPosition.TOP_CENTER].push(el);
     },
 
     setMapPosition(position) {
