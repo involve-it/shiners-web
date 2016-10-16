@@ -54,7 +54,8 @@ let App = Marionette.Application.extend({
             type:'POST'
         }).done((resp) => {
             if (resp.location) {
-                app.user.set('location',resp.location);
+                resp.location.detectionType = 'ip';
+                app.user.set('position',resp.location);
             } else {
                 console.error('geolocation not working');
             }

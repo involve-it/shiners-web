@@ -3,7 +3,7 @@ import ItemView from './CategoriesItemView.js';
 import _ from 'underscore';
 var View = Marionette.CollectionView.extend({
     childView:ItemView,
-    className:'list-group list-group-bordered list-group-noicon uppercase',
+    className:'list-unstyled uppercase',
     tagName:'ul',
     childViewEvents: {
         'check:category': 'onCheckCategory'

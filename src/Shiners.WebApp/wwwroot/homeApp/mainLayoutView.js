@@ -42,15 +42,25 @@ var View = Marionette.View.extend({
     },
 
     renderMapAndBanner() {
-        this.showChildView('map',new MapView({collection:app.nearbyPosts}));
-        this.showChildView('banner',new BannerView({model:app.user}));
+        var searchModel = new Backbone.Model();
+        this.showChildView('map',new MapView({collection:app.nearbyPosts,model:searchModel}));       
+        this.showChildView('banner',new BannerView({model:searchModel}));
         this.showChildView('userBar', new UserBarView({ model: app.user }));
+    },
+
+    toggleBannerView() {
+        if (this.getRegion('banner').$el.is(':hidden')) {
+            this.getRegion('banner').$el.show();
+        } else {
+            this.getRegion('banner').$el.hide();
+        }
     },
 
     toggleMapAndBanner(routeName) {
         if (routeName === "index") {
             this.getRegion('map').$el.show();
-            this.getRegion('banner').$el.show();
+            if(!app.isMobile)
+                this.getRegion('banner').$el.show();
         } else {
             this.getRegion('map').$el.hide();
             this.getRegion('banner').$el.hide();

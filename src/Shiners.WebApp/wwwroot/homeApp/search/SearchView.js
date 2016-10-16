@@ -14,11 +14,18 @@ var View = Backbone.Marionette.View.extend({
     events: {
         'click #searchParametersButton':'toggleSearchParameters',
         'keyup #query':'onTextSearch',
-        'click #toggleCategs':'toggleCategories'
+        'click div.toggle > label':'toggleResults',
+        'click #userLocation':'toggleBannerView'
     },
     regions: {
         shiners:'#shinersList',
         categories:'#selectCategories'
+    },
+
+    onBeforeRender() {
+        this.templateContext = {
+            isMobile: app.isMobile
+        };
     },
 
     onRender() {
@@ -29,6 +36,9 @@ var View = Backbone.Marionette.View.extend({
     onAttach() {
         this.initRadiusSlider();
         this.showCategories();
+        if (!app.isMobile) {
+            this.toggleSearchParameters();
+        }
     },
 
     showShiners() {
@@ -73,8 +83,39 @@ var View = Backbone.Marionette.View.extend({
         this.$('#searchParameters').slideToggle(300);
     },
 
-    toggleCategories() {
-        this.getChildView('categories').$el.slideToggle(300);
+    toggleResults(e) {
+        var previewParClosedHeight = 25;
+        var parentSection 	= $(e.target).parent(),
+				parentWrapper 	= $(e.target).parents("div.toggle"),
+				previewPar 		= false,
+				isAccordion 	= parentWrapper.hasClass("toggle-accordion");
+		if(isAccordion && typeof(e.originalEvent) !== "undefined") {
+			parentWrapper.find("div.toggle.active > label").trigger("click");
+		}
+		parentSection.toggleClass("active");
+		if(parentSection.find("> p").get(0)) {
+			previewPar 					= parentSection.find("> p");
+			var previewParCurrentHeight = previewPar.css("height");
+			var previewParAnimateHeight = previewPar.css("height");
+			previewPar.css("height", "auto");
+			previewPar.css("height", previewParCurrentHeight);
+		}
+		var toggleContent = parentSection.find("> div.toggle-content");
+		if(parentSection.hasClass("active")) {
+			$(previewPar).animate({height: previewParAnimateHeight}, 350, ()=> $(e.target).addClass("preview-active"));
+			toggleContent.slideDown(350);
+		} else {
+			$(previewPar).animate({height: previewParClosedHeight}, 350, ()=> $(e.target).removeClass("preview-active"));
+			toggleContent.slideUp(350);
+		}
+    },
+
+    toggleBannerView() {
+        app.layout.toggleBannerView();
     }
+
+    //toggleCategories() {
+    //    this.getChildView('categories').$el.slideToggle(300);
+    //}
 });
 export default View;

@@ -5,6 +5,7 @@ import Collection from '../../data/AsteroidCollection.js';
 import RelatedPostsView from './RelatedPostsView.js';
 import _ from 'underscore';
 import app from '../app.js';
+import locationHelper from '../../helpers/locationHelper.js';
 var View = Marionette.View.extend({
     
     template:template,
@@ -14,6 +15,7 @@ var View = Marionette.View.extend({
     },
 
     initialize() {
+        window.postDetails = this.model.toJSON();
         this.collection = new Collection(null,{asteroid:this.model.asteroid});
         this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
     },
@@ -25,6 +27,26 @@ var View = Marionette.View.extend({
         this.collection.loadByMethod('getPopularPosts',[center.lat(),center.lng(),200,0,10]);
     },
 
+    onBeforeRender() {
+        this.setModelDistance();
+        
+    },
+    setModelDistance() {
+        var locations = this.model.get('details').locations;
+        if (locations && _.size(locations) > 0 && app.user.has('position')) {
+            var location = _.find(locations, function(l) { return l.placeType === 'dynamic'; });
+            if (!location)
+                location = locations[0];
+            var dist = locationHelper.getDistance(location.coords.lat,
+                location.coords.lng,
+                app.user.get('position').lat,
+                app.user.get('position').lng);
+            this.model.set('distance',dist );
+            this.model.set('distanceType', 'km');
+        } else {
+            this.model.set('distance',-1);
+        }       
+    },
     initCarousel() {
         var slider 		= this.$('#postImages');
         var options 	= slider.attr('data-plugin-options');
@@ -96,8 +118,6 @@ var View = Marionette.View.extend({
     },
 
     showRelatedPosts() {
-        console.info('show related posts');
-        window.relatedPosts = this.collection.toJSON();
         this.showChildView('related', new RelatedPostsView({ collection: this.collection }));
     }
 });
