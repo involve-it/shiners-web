@@ -11,14 +11,14 @@ export default Marionette.AppRouter.extend({
     appRoutes: {
         "":"index",
        
-        "posts/:id":"postDetails",
+        
         
         "posts/new":"createPost",
         "Posts/new":"createPost",
         "Posts/My":"postsMy",
         "chats/My":"chatsMy",
         "Chats/My":"chatsMy",
-        
+        "posts/:id":"postDetails",
         "chats/:id":"chatId",
         "Chats/:id":"chatId",
         "user/:id": "profileDetails",
