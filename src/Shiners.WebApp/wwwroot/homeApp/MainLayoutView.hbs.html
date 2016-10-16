@@ -1,48 +1,48 @@
-﻿<div id="header" class="sticky clearfix">
-    <!-- TOP NAV -->
+﻿<div id="header" class="sticky clearfix header-md">
     <header id="topNav">
         <div class="container">
-            <!-- Mobile Menu Button -->
             <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
                 <i class="fa fa-bars"></i>
             </button>
-            <div id="userBar">
-                
-            </div>
-
+            <div id="userBar" style="display: none"></div>
+            
             <a class="logo pull-left" href="/">
-                <img src="/images/logo_dark.png" alt="" /> <!-- light logo -->
-                <img src="/images/logo_dark.png" alt="" /> <!-- dark logo -->
+                <img src="/images/logo-home-logotype-wide.png" alt="" />               
             </a>
-
+            <a class="btn btn-danger pull-right hidden-sm hidden-xs" href="/Posts/New">
+                Создать
+            </a>
             <div class="navbar-collapse pull-right nav-main-collapse collapse submenu-dark">
                 <nav class="nav-main">
                     <ul id="topMain" class="nav nav-pills nav-main">
                         <li class="active">
-                            <!-- HOME -->
-                            <a href="/">ГЛАВНАЯ</a>
+                            <a href="/">Главная</a>
+                        </li>
+                        <li class="hidden-lg hidden-md">
+                            <a href="/Posts/New">
+                                Создать
+                            </a>
                         </li>
                         <li>
-                            <!-- PAGES -->
                             <a href="/Home/HowItWorks">
-                                КАК ЭТО РАБОТАЕТ
+                                Как это работает
                             </a>
                         </li>
 
                         <li>
-                            <!-- FEATURES -->
                             <a href="/Home/About">
-                                О САЙТЕ
+                                О сайте
                             </a>
                         </li>
                     </ul>
                 </nav>
             </div>
+            
         </div>
     </header>
 </div>
-<div id="appBanner"></div>
-<div id="appMap"></div>
+<div id="appBanner" style="display: none;"></div>
+<div id="appMap" style="display: none;"></div>
 <div id="appContent"></div>
 
 <footer id="footer">
@@ -60,5 +60,4 @@
         </div>
     </div>
 </footer>
-<!-- SCROLL TO TOP -->
 <a href="#" id="toTop"></a>

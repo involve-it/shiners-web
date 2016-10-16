@@ -10,6 +10,7 @@ var View = Marionette.CollectionView.extend({
     },
 
     setAddress(model) {
+        app.user.set('position', {type:'manual',lat:parseFloat(model.get('lat')),lng:parseFloat(model.get('lon'))});
         app.map.setCenter({
             lat:parseFloat(model.get('lat')),
             lng:parseFloat(model.get('lon'))

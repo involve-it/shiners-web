@@ -5,12 +5,13 @@
 /// <reference path="data/asteroidmodel.js" />
 /// <reference path="data/mongomodel.js" />
 /// <reference path="data/osmsearchcollection.js" />
+/// <reference path="helpers/locationhelper.js" />
 /// <reference path="homeapp/about/aboutview.js" />
 /// <reference path="homeapp/account/fogotpasswordview.js" />
 /// <reference path="homeapp/account/loginview.js" />
 /// <reference path="homeApp/app.js" />
 /// <reference path="homeapp/bannerview.js" />
-/// <reference path="homeapp/chats/chatsmyview - копировать.js" />
+/// <reference path="homeApp/chats/ChatIdView.js" />
 /// <reference path="homeapp/chats/chatsmyview.js" />
 /// <reference path="homeapp/controller.js" />
 /// <reference path="homeapp/howitworks/howitworksview.js" />

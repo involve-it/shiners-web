@@ -42,8 +42,9 @@ var View = Marionette.View.extend({
     },
 
     renderMapAndBanner() {
-        this.showChildView('map',new MapView({collection:app.nearbyPosts}));
-        this.showChildView('banner',new BannerView({model:app.user}));
+        var searchModel = new Backbone.Model();
+        this.showChildView('map',new MapView({collection:app.nearbyPosts,model:searchModel}));       
+        this.showChildView('banner',new BannerView({model:searchModel}));
         this.showChildView('userBar', new UserBarView({ model: app.user }));
     },
 

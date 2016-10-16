@@ -11,5 +11,5 @@ import './lib/bootstrap/dist/js/bootstrap.min.js';
 import './lib/jquery-ui/jquery-ui.min.js';
 import moment from 'moment';
 import app from './homeApp/app.js';
-moment.lang('ru');
+moment.locale('ru');
 app.start();

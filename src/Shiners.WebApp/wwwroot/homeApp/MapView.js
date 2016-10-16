@@ -16,14 +16,15 @@ var View = Marionette.View.extend({
     model: null,
     shiners: [],
     mapInfoWindow: null,
+    userMarker:null,
     fetchTimeOut: null,
-    geocodeTimeOut: null,
+    geocodeTimeout: null,
     geocoder: null,
     regions: {
         search:'#searchView'
     },
     initialize() {
-        this.model = new Backbone.Model(); // search model
+        
     },
 
     modelEvents: {
@@ -91,8 +92,9 @@ var View = Marionette.View.extend({
     },
 
     initMap() {
+        var defaultCoords = { lat: 55.75396, lng: 37.620393 };
         MapLoader({key:'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY'}).then( _.bind((maps) => {
-            var center = app.user.get('location') || { lat: 55.75396, lng: 37.620393 };
+            var center = app.user.get('position') || defaultCoords;
             this.map = new maps.Map(document.getElementById('map2'),
             {
                 center: center,
@@ -101,11 +103,14 @@ var View = Marionette.View.extend({
             });
             this.geocoder = new maps.Geocoder();
             app.map = this.map;
+            window.myMap = app.map;
             app.geocoder = this.geocoder;
             this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
             this.map.addListener('bounds_changed',_.bind(this.findLocationName,this));
             this.mapAddPostButton();
             this.mapSetPositionButton();
+            this.showUser();
+            this.listenTo(app.user,'change:position',this.showUser);
         },this));
     },
 
@@ -123,11 +128,31 @@ var View = Marionette.View.extend({
         el.addEventListener('click', ()=> {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((position)=> {
+                    app.user.set('position', {type:'navigator',lat:position.coords.latitude,lng:position.coords.longitude});
                     self.setMapPosition(position);
                 }, ()=> {});
             }
         });
         this.map.controls[app.isMobile?window.google.maps.ControlPosition.TOP_RIGHT: window.google.maps.ControlPosition.TOP_CENTER].push(el);
+    },
+
+    showUser() {
+        if (app.user.has('position')) {
+            var image = {
+                url: '../images/shiners/user.png',
+                size: new window.google.maps.Size(40, 40),
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(20, 20)
+            };
+            var marker =  this.userMarker || new window.google.maps.Marker({
+                map: this.map,
+                icon: image,
+                title: 'Вы (' + (app.user.get('username') ||'анонимный пользователь') +')'
+            });
+            marker.setPosition(app.user.get('position'));
+            if (!this.userMarker)
+                this.userMarker = marker;
+        }
     },
 
     setMapPosition(position) {
@@ -139,11 +164,9 @@ var View = Marionette.View.extend({
     },
 
     onBoundsChange() {
-        
         if (this.fetchTimeOut)
             clearTimeout(this.fetchTimeOut);
-        this.fetchTimeOut = setTimeout(_.bind( ()=> {
-            
+        this.fetchTimeOut = setTimeout(_.bind( ()=> {            
             if (this.map.getZoom()>12) {
                 var center = this.map.getCenter();
                 this.model.set({
@@ -157,9 +180,9 @@ var View = Marionette.View.extend({
     },
 
     findLocationName() {
-        if (this.geocodeTimeOut)
-            clearTimeout(this.geocodeTimeOut);
-        this.geocodeTimeOut = setTimeout(_.bind( ()=> {
+        if (this.geocodeTimeout)
+            clearTimeout(this.geocodeTimeout);
+        this.geocodeTimeout = setTimeout(_.bind( ()=> {
             var center = this.map.getCenter();
             var latLng = {
                     lat:center.lat(),
@@ -171,15 +194,14 @@ var View = Marionette.View.extend({
                         (res) => {
                             return _.find(res.types,(type)=>type==='locality'||type==='administrative_area_level_2'||type==='political');
                         },this);
-                    app.user.set({
+                    this.model.set({
                         position: latLng,
                         address:locationName.long_name
                     });
                 } else {
                     console.error('Geocoder failed due to: ' + status);
                 }
-            },this));
-            
+            },this));           
         }, this), 500);
     },
 
@@ -205,7 +227,6 @@ var View = Marionette.View.extend({
                 radius:radius
             };
         }
-        console.info(args);
         this.collection.loadByMethod(method,args);
     }
 });

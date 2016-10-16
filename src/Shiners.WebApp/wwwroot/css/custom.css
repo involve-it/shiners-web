@@ -1,6 +1,4 @@
-﻿
-
-.contact-over-map {
+﻿.contact-over-map {
     height: 460px;
 }
 .map-section {
@@ -68,3 +66,31 @@ div.toggle {
     margin: 0;
 
 }
+
+/*header*/
+#header {
+    background-color: #51b9c8;
+    background-image: linear-gradient(180deg, #51b9c8, #4695e6);
+}
+#topMain.nav-pills > li > a {
+    color: #fff;
+}
+#topMain.nav-pills > li > a:hover {
+    color: #fff;
+}
+#topMain.nav-pills > li.active > a {
+    color: #fff;
+}
+#header.header-md #topNav a.logo > img {
+    height: 47px;
+    transition: all 0.3s ease 0s;
+}
+
+#header.header-md #topNav a.logo {
+
+    line-height: 70px;
+}
+#topNav .btn {
+    margin-top: 15px;
+}
+/**/
