@@ -1,17 +1,22 @@
-﻿
-<div class="box-image text-center">
-    <a class="image-hover lightbox toPostDetails text-center" data-plugin-options='{"type":"image"}'>
-        <img style="max-width: 100%" class="img-responsive" src="{{-details.photosUrls && details.photosUrls.length>0?details.photosUrls[0]:'/images/demo/300x250.png'}}" alt="" />
+﻿<div class="box-inner margin-top-30">
+    <a title="{{=details.title}}" class="block height-250" style="background-image: url({{-details.photosUrls && details.photosUrls.length>0?details.photosUrls[0]:'/images/demo/300x250.png'}}); background-position: center; background-repeat: no-repeat; ">
+        
     </a>
-
-    <a class="box-image-title toPostDetails">
-        <h2>{{=details.title}}</h2>
-    </a>
-    <p class="font-lato weight-300">
-        {{_.each(details.locations,function(loc) { }}
-        <small class="font-lato size-18 margin-bottom-30 block">
-            Адрес: {{=loc.name}}
-        </small>
-        {{ }); }}
+    <h3 class="text-left margin-top-20 bold size-16 elipsis"><a>{{=details.title}}</a></h3>
+    <p class="text-left">
+        {{var loc = _.find(details.locations,function(l) { return l.placeType==='dynamic' })||details.locations[0]; }}
+        {{ if (loc) { }}
+        Адрес: {{=loc.name}}
+        {{ } }}
     </p>
+    <ul class="text-left size-12 list-inline list-separator nomargin">
+        <li>
+            <i class="fa fa-calendar"></i>
+            {{=moment(timestamp).fromNow()}}
+        </li>
+        <li>
+            <i class="fa fa-eye"></i>
+            {{=stats.seenAll}}
+        </li>
+    </ul>
 </div>

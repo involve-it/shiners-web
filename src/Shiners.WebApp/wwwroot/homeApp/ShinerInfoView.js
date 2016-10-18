@@ -2,24 +2,27 @@
 import template from './ShinerInfoView.hbs.html';
 import app from './app.js';
 var View = Marionette.View.extend({
-    listener:null,
+    //listener:null,
     template:template,
-    googleWindow:null,
+    //googleWindow:null,
     initialize() {
         window.postInCollection = this.model.attributes;
     },
 
-    delegateMapEvent() {
-        this.listener = window.google.maps.event.addDomListener(this.$('.toPostDetails')[0], 'click', _.bind(this.redirectToDetails,this));
+    events: {
+        'click a':'redirectToDetails'
     },
+
+    //delegateMapEvent() {
+    //    this.listener = window.google.maps.event.addDomListener(this.$('.toPostDetails')[0], 'click', _.bind(this.redirectToDetails,this));
+    //},
 
     redirectToDetails() {
-        
         app.router.navigate('posts/'+this.model.id,{trigger:true});
-    },
-
-    onBeforeDestroy() {
-        this.listener.remove();
     }
+
+    //onBeforeDestroy() {
+    //    this.listener.remove();
+    //}
 });
 export default View;

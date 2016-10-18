@@ -10,7 +10,7 @@ import app from '../app.js';
 var View = Backbone.Marionette.View.extend({
     fetchTimeOut:null,
     template:template,
-    className:'contact-over-box',
+    //className:'contact-over-box',
     events: {
         'click #searchParametersButton':'toggleSearchParameters',
         'keyup #query':'onTextSearch',

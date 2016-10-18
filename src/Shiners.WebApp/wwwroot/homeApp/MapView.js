@@ -21,8 +21,14 @@ var View = Marionette.View.extend({
     geocodeTimeout: null,
     geocoder: null,
     regions: {
-        search:'#searchView'
+        search:'#searchView',
+        info:'#shinerInfoView'
     },
+
+    events: {
+        'click #closeInfo':'hideInfoContainer'
+    },
+
     initialize() {
         
     },
@@ -72,23 +78,42 @@ var View = Marionette.View.extend({
     },
 
     shinerInfo(shiner,model,event) {
-        if (this.infoView) {
-            this.infoView.remove();
-            this.infoView = null;
+        if (app.isMobile) {
+            app.router.navigate('posts/' + model.id, { trigger: true });
+        } else {
+            if (this.getRegion('info').hasView() && this.getChildView('info').model.id===model.id) {          
+                this.hideInfoContainer();
+            } else {
+                this.showChildView('info', new ShinerInfoView({ model: model }));
+                this.showInfoContainer();
+            }
         }
-        if (this.googleWindow) {
-            this.googleWindow.close();
-            this.googleWindow = null;
-        }
-        this.infoView = new ShinerInfoView({model:model});
-        var infoView = this.infoView;
-        this.googleWindow = new window.google.maps.InfoWindow({
-            content: infoView.render().$el[0]
-        });
-        this.googleWindow.addListener('closeclick',() => infoView.remove());
-        window.google.maps.event.addListener(this.googleWindow,'domready',() => infoView.delegateMapEvent());
-        this.googleWindow.open(this.map, shiner);
-        this.once('before:destroy',this.infoView.remove,this.infoView);
+        //if (this.infoView) {
+        //    this.infoView.remove();
+        //    this.infoView = null;
+        //}
+        //if (this.googleWindow) {
+        //    this.googleWindow.close();
+        //    this.googleWindow = null;
+        //}
+        //this.infoView = new ShinerInfoView({model:model});
+        //var infoView = this.infoView;
+        //this.googleWindow = new window.google.maps.InfoWindow({
+        //    content: infoView.render().$el[0]
+        //});
+        //this.googleWindow.addListener('closeclick',() => infoView.remove());
+        //window.google.maps.event.addListener(this.googleWindow,'domready',() => infoView.delegateMapEvent());
+        //this.googleWindow.open(this.map, shiner);
+        //this.once('before:destroy',this.infoView.remove,this.infoView);
+    },
+
+    hideInfoContainer() {
+        this.getRegion('info').empty();
+        this.$('#info-container').hide();
+    },
+
+    showInfoContainer() {
+        this.$('#info-container').show();
     },
 
     initMap() {

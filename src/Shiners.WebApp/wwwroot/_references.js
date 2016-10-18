@@ -29,6 +29,7 @@
 /// <reference path="homeapp/search/categoriesitemview.js" />
 /// <reference path="homeapp/search/categorieslistview.js" />
 /// <reference path="homeapp/search/searchview.js" />
+/// <reference path="homeapp/search/shinersemptyview.js" />
 /// <reference path="homeapp/search/shinerslistitemview.js" />
 /// <reference path="homeapp/search/shinerslistview.js" />
 /// <reference path="homeapp/selectlocation/suggestionitemview.js" />
