@@ -4,8 +4,8 @@ import template from './iframeView.hbs.html';
 import './iframeView.css';
 import app from '../app.js';
 
-// const FRAME_DOMAIN = 'https://shiners.mobi';
-const FRAME_DOMAIN = 'http://localhost:3000';
+const FRAME_DOMAIN = 'https://shiners.mobi';
+//const FRAME_DOMAIN = 'http://localhost:3000';
 class View extends Marionette.View.extend({
     template:template,
     
