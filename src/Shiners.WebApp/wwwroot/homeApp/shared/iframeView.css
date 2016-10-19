@@ -1,0 +1,10 @@
+﻿.sh-iframe-view {
+    padding: 0 !important;
+}
+    .sh-iframe-view .container {
+            width: auto !important;
+    }
+
+    body.sh-hidden-overflow {
+        overflow: hidden !important;
+    }
