@@ -8,6 +8,9 @@ import Collection from '../data/AsteroidCollection.js';
 import Router from './Router.js';
 import _ from 'underscore';
 import AsteroidModel from '../data/AsteroidModel.js';
+import IframeView from './shared/iframeView.js';
+
+window.$ = $; // testing only, need to add isDev flag!
 let App = Marionette.Application.extend({
     region:'body',
     layout:null,
@@ -20,6 +23,9 @@ let App = Marionette.Application.extend({
     isMobile:false,
     router:null,
 
+    views: {
+        iframeView: null
+    },
     initialize() {
         this.asteroid = new Asteroid("www.shiners.mobi",true);
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
@@ -36,6 +42,8 @@ let App = Marionette.Application.extend({
         this.showView(this.layout);
         this.getPosition();
         this.checkLogin();
+
+        this._loadIframeView();
     },
 
     supportsHistoryApi () {
@@ -92,6 +100,19 @@ let App = Marionette.Application.extend({
             //delete document.cookie["userId"];
             user.trigger('logout');
         });
+    },
+    _loadIframeView() {
+        var that = this;
+        setTimeout(()=> {
+            if (!that.views.iframeView) {
+                var iView = new IframeView({
+                    pagePath: 'posts/new'
+                });
+                iView.render();
+                that.views.iframeView = iView;
+            }
+        }, 6000); // let's assume main page is loaded by this time
+
     }
 });
 
