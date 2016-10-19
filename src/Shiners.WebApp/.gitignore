@@ -12,6 +12,8 @@
 .idea/deployment.xml
 .idea/misc.xml
 
+wwwroot/bundle.js
+wwwroot/_references.js
 
 ### Ignore VS files, taken from: https://gist.github.com/indyfromoz/4109296
 ###################
