@@ -61,6 +61,8 @@ var View = Marionette.View.extend({
             this.getRegion('map').$el.show();
             if(!app.isMobile)
                 this.getRegion('banner').$el.show();
+            if(window.google)
+                window.google.maps.event.trigger(app.map, 'resize');
         } else {
             this.getRegion('map').$el.hide();
             this.getRegion('banner').$el.hide();

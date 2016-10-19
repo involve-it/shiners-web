@@ -151,6 +151,7 @@ var View = Marionette.View.extend({
         var el = $(setPositionMapButtonTemplate()).get(0),
             self=this;
         el.addEventListener('click', ()=> {
+            alert('click ');
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((position)=> {
                     app.user.set('position', {type:'navigator',lat:position.coords.latitude,lng:position.coords.longitude});
@@ -158,7 +159,7 @@ var View = Marionette.View.extend({
                 }, ()=> {});
             }
         });
-        this.map.controls[app.isMobile?window.google.maps.ControlPosition.TOP_RIGHT: window.google.maps.ControlPosition.TOP_CENTER].push(el);
+        this.map.controls[app.isMobile?window.google.maps.ControlPosition.BOTTOM_CENTER: window.google.maps.ControlPosition.TOP_CENTER].push(el);
     },
 
     showUser() {
