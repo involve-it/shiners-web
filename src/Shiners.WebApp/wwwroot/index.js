@@ -10,6 +10,7 @@ import './lib/bootstrap/dist/js/bootstrap.min.js';
 //import './lib/font-awesome/css/font-awesome.css';
 import './lib/jquery-ui/jquery-ui.min.js';
 import moment from 'moment';
+//import 'SockJS';
 import app from './homeApp/app.js';
 moment.locale('ru');
 app.start();
