@@ -145,3 +145,10 @@ div.toggle {
 	font-size: 12px;
     margin-top: -10px;
 }
+
+/*btn-red customization*/
+
+.btn-red {
+    background-color: #f04124;
+    color: #fff !important;
+}
