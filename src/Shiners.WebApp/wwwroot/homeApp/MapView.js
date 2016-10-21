@@ -151,7 +151,6 @@ var View = Marionette.View.extend({
         var el = $(setPositionMapButtonTemplate()).get(0),
             self=this;
         el.addEventListener('click', ()=> {
-            alert('click ');
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((position)=> {
                     app.user.set('position', {type:'navigator',lat:position.coords.latitude,lng:position.coords.longitude});
