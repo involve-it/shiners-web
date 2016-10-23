@@ -10,9 +10,10 @@ export default Marionette.AppRouter.extend({
 
     appRoutes: {
         "":"index",
-        "about-us":"about",
+        
         "posts/new":"createPost",
         "Posts/new":"createPost",
+        "Posts/New":"createPost",
         "Posts/My":"postsMy",
         "chats/My":"chatsMy",
         "Chats/My":"chatsMy",
@@ -22,7 +23,7 @@ export default Marionette.AppRouter.extend({
         "user/:id": "profileDetails",
         "Account/Login":"login",
         "Account/FogotPassword":"fogotPassword",
-        "Home/About":"about",
-        "Home/HowItWorks":'howItWorks'
+        "Home/HowItWorks":'howItWorks',
+        "about-us":"about"
     }
 });
