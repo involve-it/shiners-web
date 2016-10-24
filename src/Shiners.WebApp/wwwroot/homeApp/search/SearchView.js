@@ -63,20 +63,43 @@ var View = Backbone.Marionette.View.extend({
 
     initRadiusSlider() {
         var self=this;
-        self.$("#slider3").slider({
+
+        var cases 		= ["1", "5", "20", "везде"];
+        var $radiusslider = self.$("#slider3").slider({
             range: "min",
             animate: true,
-            min: 2,
-            max: 50,
-            step: 10,
-            value: 10,
-            slide: (event, ui)=> {
+            min: 0,
+            max: 3,
+            value: 1
+            //slide: (event, ui)=> {
+            //    self.model.set('radius', parseInt(ui.value));
+            //    self.$("#radius").val(ui.value);
+            //}
+        });
+        $radiusslider.slider("float" , { labels: cases });
+        $radiusslider.on("slidechange", function(e,ui) {
+            if (ui.value === cases[cases.length - 1]) {
+                self.model.set('radius', 20000);
+            } else {
                 self.model.set('radius', parseInt(ui.value));
-                self.$("#radius").val(ui.value);
+            }
+            var radius = self.model.get('radius');
+            switch (radius) {
+                case 1:
+                    app.map.setZoom(14);
+                    break;
+                case 5:
+                    app.map.setZoom(12);
+                    break;
+                case 20:
+                    app.map.setZoom(10);
+                    break;
+                default:
+                    app.map.setZoom(1);
+                    break;
             }
         });
         self.$("#radius").val(self.$("#slider3").slider("value"));
-        self.$("#slider3").slider("pips", { rest: "label" });
     },
 
     toggleSearchParameters() {
