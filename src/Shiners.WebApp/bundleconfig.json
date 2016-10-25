@@ -13,6 +13,7 @@
       "wwwroot/css/layout.css",
       "wwwroot/css/header-1.css",
       "wwwroot/css/color_scheme/blue.css",
+      "wwwroot/css/constants.css",
       "wwwroot/css/custom.css"
     ],
     "minify": {

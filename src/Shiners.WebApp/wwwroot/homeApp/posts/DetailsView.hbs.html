@@ -48,7 +48,9 @@
                         </td>
                         <td>
                             {{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}
-                            <span title="{{=isDynamic?'Динамическое объявление':'Статическое'}}" class="fa fa-{{=isDynamic?'motorcycle':'flag' }} text-{{=isDynamic?'success':'muted'}}"></span>
+                            <span title="{{=isDynamic?'Динамическое объявление':'Статическое'}}">
+                                <i class="bz-icon bz-icon-{{=isDynamic?'dinamic':'flag' }} {{=isDynamic?'success':''}}"></i>
+                            </span>
                         </td>
                     </tr>
                     {{if (obj.type) { }}
@@ -57,7 +59,7 @@
                             <i class="fa fa-list-alt"></i> Тип
                         </td>
                         <td>
-                            <span class="label label-info">{{=type}}</span>
+                            <span class="label bg-type-category-{{=type}}">{{=type}}</span>
                         </td>
                     </tr>
                     {{ } }}

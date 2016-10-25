@@ -192,15 +192,13 @@ var View = Marionette.View.extend({
         if (this.fetchTimeOut)
             clearTimeout(this.fetchTimeOut);
         this.fetchTimeOut = setTimeout(_.bind( ()=> {            
-            if (this.map.getZoom()>12) {
-                var center = this.map.getCenter();
-                this.model.set({
-                    position: {
-                        lat:center.lat(),
-                        lng:center.lng()
-                    }
-                });
-            }
+            var center = this.map.getCenter();
+            this.model.set({
+                position: {
+                    lat:center.lat(),
+                    lng:center.lng()
+                }
+            });
         }, this), 500);
     },
 
