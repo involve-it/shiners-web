@@ -30,6 +30,8 @@ var View = Marionette.View.extend({
             var bounds = app.map.getBounds().toJSON();
             var len = locationHelper.getDistance(bounds.north, bounds.east, bounds.south, bounds.west)/2;
             this.model.set('progress',dist>300?1:((len-dist)/len)*100.0);
+            //var currentDate = (new Date()).valueOf();
+            //var progres = this.model.has('endDatePost')? (this.model.get('endDatePost')/currentDate) *100:100;
         } else {
             this.model.set('distance',-1);
             this.model.set('progress',0);
