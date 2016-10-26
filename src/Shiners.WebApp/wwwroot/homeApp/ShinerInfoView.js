@@ -27,11 +27,11 @@ var View = Marionette.View.extend({
             var dist = locationHelper.getDistance(location.coords.lat,location.coords.lng,app.user.get('position').lat,app.user.get('position').lng);
             this.model.set('distance',dist );
             this.model.set('distanceType', 'km');
-            var bounds = app.map.getBounds().toJSON();
-            var len = locationHelper.getDistance(bounds.north, bounds.east, bounds.south, bounds.west)/2;
-            this.model.set('progress',dist>300?1:((len-dist)/len)*100.0);
-            //var currentDate = (new Date()).valueOf();
-            //var progres = this.model.has('endDatePost')? (this.model.get('endDatePost')/currentDate) *100:100;
+            var currentDate = (new Date()).valueOf(),
+                endDate=this.model.get('endDatePost'),
+                createDate = this.model.get('timestamp');
+            var progress = endDate? ((currentDate-createDate)/(endDate-createDate)) *100:100;
+            this.model.set('progress', progress);
         } else {
             this.model.set('distance',-1);
             this.model.set('progress',0);
