@@ -66,14 +66,24 @@ var View = Marionette.View.extend({
     toggleMapAndBanner(routeName) {
         if (routeName === "index") {
             this.getRegion('map').$el.show();
-            if(!app.isMobile)
+            if (!app.isMobile)
                 this.getRegion('banner').$el.show();
+            else
+                this.hideFooter();
             if(window.google)
                 window.google.maps.event.trigger(app.map, 'resize');
         } else {
+            this.showFooter();
             this.getRegion('map').$el.hide();
             this.getRegion('banner').$el.hide();
         }
+    },
+
+    hideFooter() {
+        this.$('#footer').hide();
+    },
+    showFooter() {
+        this.$('#footer').show();
     }
 });
 export default View;

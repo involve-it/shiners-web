@@ -1,5 +1,6 @@
 ﻿import Marionette from 'backbone.marionette';
 import IndexView from './index/indexView.js';
+import MobileIndexView from './index/MobileIndexView.js';
 import PostDetailsView from './posts/DetailsView.js';
 import AsteroidModel from '../data/AsteroidModel.js'
 import PreloaderView from '../sharedViews/PreloaderView.js';
@@ -15,17 +16,23 @@ import AboutView from './about/AboutView.js';
 import HowItWorksView from './howItWorks/HowItWorksView.js';
 import FogotPasswordView from './account/FogotPasswordView.js';
 import app from './app.js';
-import Model from '../data/AsteroidModel.js';
+//import Model from '../data/AsteroidModel.js';
 export default Marionette.Object.extend({
 
-    initialize() {
-
-    },
-
     index() {
-        app.layout.showChildView('content', new IndexView());
+        if (!app.isMobile)
+            app.layout.showChildView('content', new IndexView());
+        else {
+            
+            app.layout.getRegion('content').empty();
+        }
+            
     },
-    
+
+    mobileIndex() {
+        app.layout.showChildView('content', new MobileIndexView({IndexView:IndexView}));
+    },
+
     postsMy(){
         app.layout.showChildView('content',new PostsMytView());
     },
