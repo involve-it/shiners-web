@@ -17,12 +17,12 @@ var View = Marionette.View.extend({
             iView = app.views.iframeView;
         } else {
             iView = new IframeView({
-                 pagePath: 'posts/new'
+                pagePath: '/posts/new?type=ad'
             });
             iView.render();
             app.views.iframeView = iView;
         }
-        //iView.updatePath('posts/new');
+        iView.setPage('/posts/new?type=ad');
         $('#iframeHolder').show();
         //this.$('.js-iframe-holder').append(iView.$el);
     },
