@@ -105,12 +105,12 @@ let App = Marionette.Application.extend({
         setTimeout(()=> {
             if (!that.views.iframeView) {
                 var iView = new IframeView({
-                    pagePath: 'posts/new'
+                    //pagePath: 'posts/new'
                 });
                 iView.render();
                 that.views.iframeView = iView;
             }
-        }, 6000); // let's assume main page is loaded by this time
+        }, 3000); // let's assume main page is loaded by this time
 
     }
 });
