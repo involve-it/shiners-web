@@ -4,6 +4,7 @@ import template from './iframeView.hbs.html';
 import './iframeView.css';
 import app from '../app.js';
 
+window.app1 = app; // testing only!
 const FRAME_DOMAIN = 'https://shiners.mobi';
 //const FRAME_DOMAIN = 'http://localhost:3000';
 class View extends Marionette.View.extend({
@@ -26,20 +27,44 @@ class View extends Marionette.View.extend({
     constructor(options) {
         options = Object.assign({
             width: '100%',
-            pathName: 'posts/new'
+            pagePath: 'home'
+            //pathName: 'posts/new'
         }, options);
 
         super(options);
         this.options = options;
     }
-    updatePath(newPath) {
+    setPage(newPath) {
+        this._updatePath(newPath)
+    }
+    _updatePath(newPath) {
         // trigger new path command to iFrame:
-        this.sendMessage();
+        this.sendMessage(this._addQsParamsToPath(newPath));
+    }
+    _addQsParamsToPath(url) {
+        var ret = url;
+        var latLngStr = '', position = app.user.get('position');
+        if (position) {
+            latLngStr = `&lat=${ position.lat }&lng=${ position.lng }`;
+        }
+        if (url.indexOf('isiframe') === -1) {
+            if (url.indexOf('?') === -1) {
+                ret += `?isiframe=true` + latLngStr; 
+            } else {
+                ret += `&isiframe=true` + latLngStr; 
+            }
+        }
+        return ret;
     }
     serializeData() {
         var attr = this.options,
+            that = this,
             src = function(a) { 
-                return `${ FRAME_DOMAIN }/${ attr.pagePath }?type=ad&isiframe=true`; 
+                var url = `${ FRAME_DOMAIN }${ attr.pagePath }`;
+                url = that._addQsParamsToPath(url);  
+                
+                console.log('iframeview:serializeData:url: ', url);
+                return url;
             }(),
             height = $(window).height() - ($('#header').height() + $('#footer').height());
         return {
@@ -53,9 +78,9 @@ class View extends Marionette.View.extend({
         $('#iframeHolder').append(this.$el);
     }
     // inter-iframe communication:
-    sendMessage() {
+    sendMessage(newPath) {
         window.iframeView.postMessage({
-            pagePath: 'posts/new'
+            pagePath: newPath
         }, "*");
     }
     _setMessageEvents() {
@@ -70,8 +95,16 @@ class View extends Marionette.View.extend({
 
         function receiveMessage(event)
         {
-            that.$el.height(event.data.height);
-            var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+            if(event.data && event.data.user) {
+                // user-logged in event!
+                if (!app.userMeteorObj) {
+                    app.userMeteorObj = event.data.user;
+                    app.trigger('user:init', event.data.user);
+                }
+            }
+            event.data && event.data.height && that.$el.height(event.data.height);
+            // some staff
+            //var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
             //if (origin !== "http://example.org:8080")
               //  return;
 

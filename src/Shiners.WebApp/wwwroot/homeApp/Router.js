@@ -14,7 +14,7 @@ export default Marionette.AppRouter.extend({
         "posts/new":"createPost",
         "Posts/new":"createPost",
         "Posts/New":"createPost",
-        "Posts/My":"postsMy",
+        "posts/my":"postsMy",
         "chats/My":"chatsMy",
         "Chats/My":"chatsMy",
         "posts/:id":"postDetails",
