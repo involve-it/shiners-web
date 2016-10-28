@@ -117,3 +117,56 @@ div.toggle {
 			border-radius: 3px;
 
 }
+
+/*logo*/
+
+.shiners-logo {
+    margin-top: 10px;
+}
+.shiners-logo a {
+	color:#fff;
+	text-decoration:none;
+}
+.shiners-logo a:after {
+	color:#fff;
+	text-decoration:none;
+}
+.shiners-logo a:hover {
+	color:#fff;
+	text-decoration:none;
+}
+.shiners-logo a:active {
+	color:#fff;
+	text-decoration:none;
+}
+.shiners-logo small {
+    color: #fff;
+	display: block;
+	font-size: 12px;
+    margin-top: -10px;
+}
+
+/*btn-red customization*/
+
+.btn-red {
+    background-color: #f04124;
+    color: #fff !important;
+}
+  .bg-type-category-jobs      {background-color: rgba(114,201,234, 1);}
+  .bg-type-category-trainings {background-color: rgba(209,138,189, 1);}
+  .bg-type-category-connect   {background-color: rgba(253,94,81, 1);}
+  .bg-type-category-trade     {background-color: rgba(155,156,156, 1);}
+  .bg-type-category-housing   {background-color: rgba(189,208,39, 1);}
+  .bg-type-category-events    {background-color: rgba(237,116,40, 1);}
+  .bg-type-category-services  {background-color: rgba(166,210,173, 1);}
+  .bg-type-category-help      {background-color: rgba(90,163,147, 1);}
+  .bg-type-category-          {display: none; }
+/*categories colors*/
+  .type-category-jobs      {color: rgba(114,201,234, 1);}
+  .type-category-trainings {color: rgba(209,138,189, 1);}
+  .type-category-connect   {color: rgba(253,94,81, 1);}
+  .type-category-trade     {color: rgba(155,156,156, 1);}
+  .type-category-housing   {color: rgba(189,208,39, 1);}
+  .type-category-events    {color: rgba(237,116,40, 1);}
+  .type-category-services  {color: rgba(166,210,173, 1);}
+  .type-category-help      {color: rgba(90,163,147, 1);}

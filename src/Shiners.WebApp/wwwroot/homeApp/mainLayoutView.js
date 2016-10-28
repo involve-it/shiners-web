@@ -4,6 +4,7 @@ import _ from 'underscore';
 import MapView from './MapView.js';
 import BannerView from './BannerView.js';
 import UserBarView from './UserBarView.js';
+import NavLocationView from './NavLocationView.js';
 import app from './app.js';
 
 var View = Marionette.View.extend({
@@ -18,7 +19,8 @@ var View = Marionette.View.extend({
         'content':'#appContent',
         'map':'#appMap',
         'banner':'#appBanner',
-        'userBar':'#userBar'
+        'userBar':'#userBar',
+        'navLocation':'#navLocation'
     },
 
     onClickLink() {
@@ -45,7 +47,12 @@ var View = Marionette.View.extend({
         var searchModel = new Backbone.Model();
         this.showChildView('map',new MapView({collection:app.nearbyPosts,model:searchModel}));       
         this.showChildView('banner',new BannerView({model:searchModel}));
+        this.showChildView('navLocation', new NavLocationView({model:searchModel}));
         this.showChildView('userBar', new UserBarView({ model: app.user }));
+    },
+
+    showChangeLocation() {
+        this.getChildView('banner').renderLocationsSelection();
     },
 
     toggleBannerView() {
@@ -59,12 +66,24 @@ var View = Marionette.View.extend({
     toggleMapAndBanner(routeName) {
         if (routeName === "index") {
             this.getRegion('map').$el.show();
-            if(!app.isMobile)
+            if (!app.isMobile)
                 this.getRegion('banner').$el.show();
+            else
+                this.hideFooter();
+            if(window.google)
+                window.google.maps.event.trigger(app.map, 'resize');
         } else {
+            this.showFooter();
             this.getRegion('map').$el.hide();
             this.getRegion('banner').$el.hide();
         }
+    },
+
+    hideFooter() {
+        this.$('#footer').hide();
+    },
+    showFooter() {
+        this.$('#footer').show();
     }
 });
 export default View;

@@ -13,10 +13,10 @@ module.exports = {
         filename: "bundle.js"
     },
     resolve: {
-        modulesDirectories: ["node_modules"],
-        alias: {
-            SockJS: path.resolve("./wwwroot/lib/sockjs.min.js")
-        }
+        modulesDirectories: ["node_modules"]
+        //alias: {
+        //    SockJS: path.resolve("./wwwroot/lib/sockjs.min.js")
+        //}
     },
     plugins: [
                     new BowerWebpackPlugin({
@@ -31,8 +31,8 @@ module.exports = {
                         jQuery: "jquery",
                         JQuery: "jquery",
                         _: "underscore",
-                        moment:"moment",
-                        SockJS: "SockJS"
+                        moment:"moment"
+                        //SockJS: "SockJS"
                         //'window.Tether': "tether",
                         //'Tether': "tether"
                     })

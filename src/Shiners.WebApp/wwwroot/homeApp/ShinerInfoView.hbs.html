@@ -1,15 +1,44 @@
-﻿<div class="box-inner margin-top-30">
-    <a title="{{=details.title}}" class="block height-250" style="background-image: url({{-details.photosUrls && details.photosUrls.length>0?details.photosUrls[0]:'/images/demo/300x250.png'}}); background-position: center; background-repeat: no-repeat; ">
-        
+﻿<div class="box-inner margin-top-10">
+    {{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}
+    <span class="pull-left">
+        <span class="label label-default">
+            <i class="fa fa-calendar"></i> {{=moment(timestamp).fromNow()}}
+        </span>
+    </span>
+    <span class="pull-right">
+        <span class="label label-default margin-left-3">
+            <i class="fa fa-eye"></i> {{=stats.seenAll}}
+        </span>
+        <span title="{{=isDynamic?'Динамическое объявление':'Статическое'}}" class="label label-default margin-left-3">
+            <i class="bz-icon bz-icon-{{=isDynamic?'dinamic':'flag' }} {{=isDynamic?'success':''}}"></i>
+        </span>
+        <span class="label label-default margin-left-3">
+            <i class="fa fa-location-arrow"></i> {{=distance>-1?distance.toFixed(1) + ' '+distanceType:''}}
+        </span>
+    </span>
+    <a title="{{=details.title}}" class="block height-250 text-right" style="background-image: url({{-details.photosUrls && details.photosUrls.length>0?details.photosUrls[0]:'/images/demo/300x250.png'}}); background-position: center; background-repeat: no-repeat; background-size: 120%">
+
     </a>
-    <h3 class="text-left margin-top-20 bold size-16 elipsis"><a>{{=details.title}}</a></h3>
-    <p class="text-left">
+
+    <h3 class="text-left margin-top-10 margin-bottom-10 bold size-16 elipsis" style="border: none">
+        <a>{{=details.title}}</a>
+    </h3>
+    
+    <p class="text-left margin-bottom-10">        
         {{var loc = _.find(details.locations,function(l) { return l.placeType==='dynamic' })||details.locations[0]; }}
         {{ if (loc) { }}
-        Адрес: {{=loc.name}}
+        {{=loc.name}}
         {{ } }}
     </p>
-    <ul class="text-left size-12 list-inline list-separator nomargin">
+    <div class="progress progress-xxs">
+        <div class="progress-bar {{=progress>=70?'progress-bar-success':(progress>=25&&progress<70?'progress-bar-warning':'progress-bar-danger')}}" role="progressbar" style="width: {{=progress}}%; min-width: 1em; ">
+            <span class="sr-only"></span>
+        </div>
+    </div>
+    <p>
+        <span class="label bg-type-category-{{=type}} pull-left">{{=type}}</span> <a class="pull-right">Написать сообщение</a>
+    </p>
+    <!--<ul class="text-left size-12 list-inline list-separator nomargin">
         <li>
             <i class="fa fa-calendar"></i>
             {{=moment(timestamp).fromNow()}}
@@ -18,5 +47,5 @@
             <i class="fa fa-eye"></i>
             {{=stats.seenAll}}
         </li>
-    </ul>
+    </ul>-->
 </div>

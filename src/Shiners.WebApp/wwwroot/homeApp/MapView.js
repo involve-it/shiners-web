@@ -3,6 +3,7 @@ import Backbone from 'backbone';
 import template from './MapView.hbs.html';
 import createButtonTemplate from './CreateButton.hbs.html';
 import setPositionMapButtonTemplate from './SetPositionMapButton.hbs.html';
+import mobileShowInfoButtonTemplate from './MobileShowInfoButton.hbs.html';
 import SearchView from './search/SearchView.js';
 import ShinerInfoView from './ShinerInfoView.js';
 import MapLoader from 'load-google-maps-api';
@@ -132,8 +133,14 @@ var View = Marionette.View.extend({
             app.geocoder = this.geocoder;
             this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
             this.map.addListener('bounds_changed',_.bind(this.findLocationName,this));
+            if (app.isMobile) {
+                this.mobile_CreateInfoButton();
+                this.mobile_mapResize();
+                this.mobile_listenToResize();
+            }
             this.mapAddPostButton();
             this.mapSetPositionButton();
+            
             this.showUser();
             this.listenTo(app.user,'change:position',this.showUser);
         },this));
@@ -158,7 +165,24 @@ var View = Marionette.View.extend({
                 }, ()=> {});
             }
         });
-        this.map.controls[app.isMobile?window.google.maps.ControlPosition.TOP_RIGHT: window.google.maps.ControlPosition.TOP_CENTER].push(el);
+        this.map.controls[app.isMobile?window.google.maps.ControlPosition.BOTTOM_CENTER: window.google.maps.ControlPosition.TOP_CENTER].push(el);
+    },
+
+    mobile_CreateInfoButton() {
+        var el = $(mobileShowInfoButtonTemplate()).get(0);
+        el.addEventListener('click', ()=> {
+            app.router.navigate('mobileIndex',{trigger:true});
+        });
+        this.map.controls[window.google.maps.ControlPosition.BOTTOM_CENTER].push(el);
+    },
+
+    mobile_mapResize() {
+        this.$('#map2').height($(window).height()-$('#header').height());
+        window.google.maps.event.trigger(app.map, 'resize');
+    },
+
+    mobile_listenToResize() {
+        $(window).resize(_.bind(this.mobile_mapResize,this));
     },
 
     showUser() {
@@ -192,15 +216,13 @@ var View = Marionette.View.extend({
         if (this.fetchTimeOut)
             clearTimeout(this.fetchTimeOut);
         this.fetchTimeOut = setTimeout(_.bind( ()=> {            
-            if (this.map.getZoom()>12) {
-                var center = this.map.getCenter();
-                this.model.set({
-                    position: {
-                        lat:center.lat(),
-                        lng:center.lng()
-                    }
-                });
-            }
+            var center = this.map.getCenter();
+            this.model.set({
+                position: {
+                    lat:center.lat(),
+                    lng:center.lng()
+                }
+            });
         }, this), 500);
     },
 
@@ -235,7 +257,7 @@ var View = Marionette.View.extend({
             method='getNearbyPostsTest',
             activeCats=this.model.get('activeCats'),
             args,
-            radius = this.model.get('radius')||7;
+            radius = this.model.get('radius')||5;
         if ((query && !_.isEmpty(query.trim()))||(activeCats&&!_.isEmpty(activeCats))) {
             method = 'searchPosts';
             args = {

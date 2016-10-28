@@ -10,7 +10,7 @@ import app from '../app.js';
 var View = Backbone.Marionette.View.extend({
     fetchTimeOut:null,
     template:template,
-    //className:'contact-over-box',
+
     events: {
         'click #searchParametersButton':'toggleSearchParameters',
         'keyup #query':'onTextSearch',
@@ -28,8 +28,7 @@ var View = Backbone.Marionette.View.extend({
         };
     },
 
-    onRender() {
-        
+    onRender() {     
         this.showShiners();
     },
 
@@ -49,11 +48,11 @@ var View = Backbone.Marionette.View.extend({
         this.showChildView('categories', new CategoriesListView({model:this.model,collection:app.postAdTypes}));
     },
 
-    onTextSearch: function (e) {
+    onTextSearch: (e)=> {
         if (e && (e.keyCode > 31 || e.keyCode === 13 || e.keyCode === 8)) {
             if (this.fetchTimeOut)
                 clearTimeout(this.fetchTimeOut);
-            this.fetchTimeOut = setTimeout(_.bind(function () {
+            this.fetchTimeOut = setTimeout(_.bind( ()=> {
                 console.info('query: '+e.target.value);
                 var val = e.target.value;
                 this.model.set('query', val);
@@ -62,21 +61,27 @@ var View = Backbone.Marionette.View.extend({
     },
 
     initRadiusSlider() {
-        var self=this;
-        self.$("#slider3").slider({
+        var model=this.model,            
+            cases = [
+                {name:'200м',value:0.2,zoom:16},
+                {name:'1км',value:1,zoom:14},
+                {name:'5км',value:5,zoom:12},
+                {name:'20км',value:20,zoom:10},
+                {name:'везде',value:20000,zoom:3}
+            ];
+  
+        var $radiusslider = this.$("#slider3").slider({
             range: "min",
             animate: true,
-            min: 2,
-            max: 50,
-            step: 10,
-            value: 10,
-            slide: (event, ui)=> {
-                self.model.set('radius', parseInt(ui.value));
-                self.$("#radius").val(ui.value);
-            }
+            min: 0,
+            max: 4,
+            value: 2
         });
-        self.$("#radius").val(self.$("#slider3").slider("value"));
-        self.$("#slider3").slider("pips", { rest: "label" });
+        $radiusslider.slider("pips", { rest: "label", labels: _.map(cases,(c)=>c.name) });
+        $radiusslider.on("slidechange", (e,ui)=> {
+            model.set('radius',cases[ui.value].value);
+            app.map.setZoom(cases[ui.value].zoom);
+        });
     },
 
     toggleSearchParameters() {
@@ -113,9 +118,5 @@ var View = Backbone.Marionette.View.extend({
     toggleBannerView() {
         app.layout.toggleBannerView();
     }
-
-    //toggleCategories() {
-    //    this.getChildView('categories').$el.slideToggle(300);
-    //}
 });
 export default View;
