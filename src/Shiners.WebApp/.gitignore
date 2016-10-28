@@ -16,6 +16,8 @@ wwwroot/bundle.js
 wwwroot/bundle.js.map
 wwwroot/_references.js
 
+node_modules
+
 ### Ignore VS files, taken from: https://gist.github.com/indyfromoz/4109296
 ###################
 # compiled source #
