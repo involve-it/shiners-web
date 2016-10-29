@@ -9,13 +9,15 @@ import CreatePostView from './posts/create/CreatePostView.js';
 import PostsMytView from './posts/postsMy/PostsMyView.js';
 import ChatsMyView from './chats/ChatsMyView.js';
 import ChatIdView from './chats/ChatIdView.js';
-import ProfileDetailsView from './profile/ProfileDetailsView.js';
+import ProfileDetailsView from './user/ProfileDetailsView.js';
 
 import LoginView from './account/LoginView.js';
 import AboutView from './about/AboutView.js';
 import HowItWorksView from './howItWorks/HowItWorksView.js';
 import FogotPasswordView from './account/FogotPasswordView.js';
-import ProfilePageView from './profile/ProfilePageView';
+import ProfilePageView from './user/ProfilePageView';
+import MyMessagesPageView from './user/MyMessagesPageView';
+import UserDetailsPageView from './user/UserDetailsPageView';
 import app from './app.js';
 //import Model from '../data/AsteroidModel.js';
 export default Marionette.Object.extend({
@@ -88,5 +90,11 @@ export default Marionette.Object.extend({
     },
     profilePage() {
         app.layout.showChildView('content',new ProfilePageView());
+    },
+    myMessagesPage() {
+        app.layout.showChildView('content',new MyMessagesPageView());
+    },
+    userDetailsPage(id) {
+        app.layout.showChildView('content',new UserDetailsPageView({ id: id }));
     }
 });
