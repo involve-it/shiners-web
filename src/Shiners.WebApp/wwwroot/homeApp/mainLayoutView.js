@@ -112,7 +112,7 @@ var View = Marionette.View.extend({
             // hide all post-beginning links (we don't want user to go somewhere)
             setTimeout(() => {
                 $('a[href^="/posts/"]').each((i, a) => {
-                    $(a).hide()
+                    $(a).hide();
                 });
             }, 1000);
         }
@@ -129,8 +129,6 @@ var View = Marionette.View.extend({
             }
         }, 2000); // let's assume main page is loaded by this time
 
-    },
-    onAttach() {
     }
 });
 export default View;
