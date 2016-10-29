@@ -59,7 +59,7 @@ class View extends Marionette.View.extend({
     serializeData() {
         var attr = this.options,
             that = this,
-            src = function(a) { 
+            src = function(a) {
                 var url = `${ FRAME_DOMAIN }${ attr.pagePath }`;
                 url = that._addQsParamsToPath(url);  
                 
