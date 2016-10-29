@@ -1,14 +1,14 @@
 ﻿import Marionette from 'backbone.marionette';
 import Backbone from 'backbone';
+import '../helpers/helpers';
 import '../lib/detectmobile.js';
 import Asteroid from '../lib/asteroid.browser.js';
-import RootView from './MainLayoutView.js';
+import RootView from './mainLayoutView.js';
 import Collection from '../data/AsteroidCollection.js';
 import Router from './Router.js';
 import _ from 'underscore';
 import AsteroidModel from '../data/AsteroidModel.js';
-import IframeView from './shared/iframeView.js';
-
+import '../css/shiners-override.css';
 window.$ = $; // testing only, need to add isDev flag!
 let App = Marionette.Application.extend({
     region:'body',
@@ -41,8 +41,6 @@ let App = Marionette.Application.extend({
         this.showView(this.layout);
         this.getPosition();
         this.checkLogin();
-
-        this._loadIframeView();
     },
 
     supportsHistoryApi () {
@@ -99,20 +97,9 @@ let App = Marionette.Application.extend({
             //delete document.cookie["userId"];
             user.trigger('logout');
         });
-    },
-    _loadIframeView() {
-        var that = this;
-        setTimeout(()=> {
-            if (!that.views.iframeView) {
-                var iView = new IframeView({
-                    //pagePath: 'posts/new'
-                });
-                iView.render();
-                that.views.iframeView = iView;
-            }
-        }, 3000); // let's assume main page is loaded by this time
-
     }
 });
 
-export default new App();
+var app = new App();
+$h.app = app; 
+export default app;

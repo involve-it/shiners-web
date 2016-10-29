@@ -9,21 +9,22 @@ export default Marionette.AppRouter.extend({
     },
 
     appRoutes: {
-        "":"index",
-        "mobileIndex":'mobileIndex',
-        "posts/new":"createPost",
-        "Posts/new":"createPost",
-        "Posts/New":"createPost",
-        "posts/my":"postsMy",
-        "chats/My":"chatsMy",
-        "Chats/My":"chatsMy",
-        "posts/:id":"postDetails",
-        "chats/:id":"chatId",
-        "Chats/:id":"chatId",
-        "user/:id": "profileDetails",
-        "Account/Login":"login",
-        "Account/FogotPassword":"fogotPassword",
-        "Home/HowItWorks":'howItWorks',
-        "about-us":"about"
+        '':'index',
+        'mobileIndex':'mobileIndex',
+        'posts/new':'createPost',
+        //'Posts/new':'createPost',
+        //'Posts/New':'createPost',
+        'posts/my':'postsMy',
+        'chats/my':'myMessagesPage',
+        //'chats/my':'chatsMy',
+        'chats/:id':'chatId',
+        'posts/:id':'postDetails',
+        //'user/:id': 'profileDetails',
+        'user/:id': 'userDetailsPage',
+        'Account/Login':'login',
+        'Account/FogotPassword':'fogotPassword',
+        'Home/HowItWorks':'howItWorks',
+        'about-us':'about',
+        'profile': 'profilePage'
     }
 });

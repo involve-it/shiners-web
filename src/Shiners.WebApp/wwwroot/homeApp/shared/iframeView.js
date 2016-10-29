@@ -27,7 +27,7 @@ class View extends Marionette.View.extend({
     constructor(options) {
         options = Object.assign({
             width: '100%',
-            pagePath: 'home'
+            pagePath: '/home'
             //pathName: 'posts/new'
         }, options);
 
@@ -59,7 +59,7 @@ class View extends Marionette.View.extend({
     serializeData() {
         var attr = this.options,
             that = this,
-            src = function(a) { 
+            src = function(a) {
                 var url = `${ FRAME_DOMAIN }${ attr.pagePath }`;
                 url = that._addQsParamsToPath(url);  
                 
@@ -93,13 +93,12 @@ class View extends Marionette.View.extend({
         });
         window.addEventListener("message", receiveMessage, false);
 
-        function receiveMessage(event)
-        {
+        function receiveMessage(event) {
             if(event.data && event.data.user) {
                 // user-logged in event!
                 if (!app.userMeteorObj) {
                     app.userMeteorObj = event.data.user;
-                    app.trigger('user:init', event.data.user);
+                    app.user.trigger('receivedMeteorUser', event.data.user);
                 }
             }
             event.data && event.data.height && that.$el.height(event.data.height);
