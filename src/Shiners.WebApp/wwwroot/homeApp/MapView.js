@@ -149,7 +149,7 @@ var View = Marionette.View.extend({
     mapAddPostButton() {
         var el = $(createButtonTemplate()).get(0);
         el.addEventListener('click', ()=> {
-            app.router.navigate('Posts/new',{trigger:true});
+            app.router.navigate('posts/new', { trigger:true });
         });
         this.map.controls[window.google.maps.ControlPosition.BOTTOM_CENTER].push(el);
     },
