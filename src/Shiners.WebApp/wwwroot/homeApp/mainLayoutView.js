@@ -100,6 +100,9 @@ var View = Marionette.View.extend({
         this.$('#userBar .quick-cart').hide();
         this.$('#userBar ul').append(view.$el);
         this.$('#userBar').show();
+
+        // other menu items:
+        this.$('.js-need-auth').show();
     },
     _adaptUiIfIsIframe() {
         var isIframe = $h.help.getUrlParams().isiframe;
