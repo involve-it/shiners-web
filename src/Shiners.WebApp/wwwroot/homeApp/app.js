@@ -8,7 +8,7 @@ import Collection from '../data/AsteroidCollection.js';
 import Router from './Router.js';
 import _ from 'underscore';
 import AsteroidModel from '../data/AsteroidModel.js';
-
+import '../css/shiners-override.css';
 window.$ = $; // testing only, need to add isDev flag!
 let App = Marionette.Application.extend({
     region:'body',
