@@ -12,8 +12,8 @@ export default Marionette.AppRouter.extend({
         "":"index",
         "mobileIndex":'mobileIndex',
         "posts/new":"createPost",
-        "Posts/new":"createPost",
-        "Posts/New":"createPost",
+        //"Posts/new":"createPost",
+        //"Posts/New":"createPost",
         "posts/my":"postsMy",
         "chats/My":"chatsMy",
         "Chats/My":"chatsMy",
@@ -24,6 +24,7 @@ export default Marionette.AppRouter.extend({
         "Account/Login":"login",
         "Account/FogotPassword":"fogotPassword",
         "Home/HowItWorks":'howItWorks',
-        "about-us":"about"
+        "about-us":"about",
+        'profile': 'profilePage'
     }
 });
