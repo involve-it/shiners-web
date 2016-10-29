@@ -15,6 +15,7 @@ import LoginView from './account/LoginView.js';
 import AboutView from './about/AboutView.js';
 import HowItWorksView from './howItWorks/HowItWorksView.js';
 import FogotPasswordView from './account/FogotPasswordView.js';
+import ProfilePageView from './profile/ProfilePageView';
 import app from './app.js';
 //import Model from '../data/AsteroidModel.js';
 export default Marionette.Object.extend({
@@ -84,5 +85,8 @@ export default Marionette.Object.extend({
         app.layout.showChildView('content', new PreloaderView());
         var userModel = new Backbone.Model({ _id:id });
         app.layout.showChildView('content',new ProfileDetailsView( {model: userModel }));
+    },
+    profilePage() {
+        app.layout.showChildView('content',new ProfilePageView());
     }
 });
