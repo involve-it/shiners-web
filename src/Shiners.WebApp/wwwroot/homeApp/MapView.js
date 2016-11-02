@@ -47,14 +47,23 @@ var View = Marionette.View.extend({
         setTimeout(_.bind(this.initMap,this),500);
     },
 
-    showShiners() {
-        var image = {
-            url: '../images/shiners/shiner_marker.png',
-            size: new window.google.maps.Size(40, 52),
-            origin: new window.google.maps.Point(0, 0),
-            anchor: new window.google.maps.Point(0, 32)
-        };
-        this.collection.each((model) => {         
+    getShinerUrlPin(model) {
+        var details = model.get('details');
+        var postType = details.locations &&_.find(details.locations, (l)=> l.placeType === 'dynamic')?'dynamic':'static';
+        var category = model.get('type');
+        var userStatus = model.get('user').online?'live':'offline';
+        return category? '../images/shiners/pins/' + postType + '-' + userStatus + '-flag-' + category + '.png':'../images/shiners/shiner_marker.png';
+    },
+
+    showShiners() {       
+        this.collection.each((model) => { 
+            var url = this.getShinerUrlPin(model);
+            var image = {
+                url: url || '../images/shiners/shiner_marker.png',
+                scaledSize: new window.google.maps.Size(25, 33),
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(0, 32)
+            };
             if (!_.find(this.shiners, (sh) => sh.modelId===model.id)) {
                 var details = model.get('details');
                 _.each(details.locations, (location) => {
