@@ -21,14 +21,14 @@
                 <div class="owl-carousel buttons-autohide controlls-over nomargin" id="postImages" data-plugin-options='{"items": 1, "autoPlay": {{-_.size(details.photo)>1?'3500':'false'}}, "autoHeight": false, "navigation": true, "pagination": false, "transitionStyle":"fade", "progressBar":"false"}'>
                     {{ if (_.size(details.photos)>0){ }}
                     {{_.each(details.photos,function(photo){ }}
-                        <div>
-                            <img class="img-responsive" src="{{=photo.data}}" alt="">
-                        </div>
-                        {{});}}                 
+                    <div>
+                        <img class="img-responsive" src="{{=photo.data}}" alt="">
+                    </div>
+                    {{});}}                 
                     {{ } else { }}
-                        <div>
-                            <img class="img-responsive" src="/images/demo/no-photo.png" alt="">
-                        </div>
+                    <div>
+                        <img class="img-responsive" src="/images/demo/no-photo.png" alt="">
+                    </div>
                     {{ } }}
                 </div>
             </div>
@@ -119,8 +119,5 @@
             </div>
         </div>
     </div>
-</section>
-
-<section>
-    <div class="container" id="relatedPostsContainer"></div>
+    <div class="container margin-top-20" id="relatedPostsContainer"></div>
 </section>
