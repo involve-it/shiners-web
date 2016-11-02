@@ -30,7 +30,6 @@ export default Backbone.Collection.extend({
                 throw new Error(result.error?result.error.errorId:"error fetch asteroid collection by method "+method);
             }
         }).catch((error) => {
-            console.error(error);
             throw new Error(error);
         });
     }

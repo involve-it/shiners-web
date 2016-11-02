@@ -13,23 +13,21 @@ var View = Backbone.Marionette.View.extend({
     $radiusSlider:null,
     sliderCases:null,
     initialize() {
-        this.listenTo(this.collection, 'after:load',this.checkIfEmpty);
+        this.listenTo(this.collection, 'after:load', this.checkIfEmpty);
     },
 
-    checkIfEmpty(collection) {
-        if (collection.size() === 0) {
-            var self = this;
-            setTimeout(() => {
-                    var currentVal = self.$radiusSlider.slider('value');
-                    if (currentVal < self.$radiusSlider.slider('option', 'max')) {
-                        self.$radiusSlider.slider('value', currentVal + 1);
-                    } else {
-                        self.stopListening(collection);
-                    }
-                },
-                200);
+    checkIfEmpty() {
+        if (!this.collection.size()) {
+            setTimeout(_.bind(()=>{
+                var currentVal = this.$radiusSlider.slider('value');
+                if (currentVal < this.$radiusSlider.slider('option', 'max')) {
+                    this.$radiusSlider.slider('value', currentVal + 1);
+                } else {
+                    this.stopListening(this.collection,'after:load');
+                }
+            },this),300);
         } else
-            this.stopListening(collection);
+            this.stopListening(this.collection,'after:load');
     },
 
     events: {
@@ -74,7 +72,6 @@ var View = Backbone.Marionette.View.extend({
             if (this.fetchTimeOut)
                 clearTimeout(this.fetchTimeOut);
             this.fetchTimeOut = setTimeout(_.bind( ()=> {
-                console.info('query: '+e.target.value);
                 var val = e.target.value;
                 this.model.set('query', val);
             }, this), 400);

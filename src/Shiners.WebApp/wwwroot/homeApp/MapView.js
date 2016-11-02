@@ -140,7 +140,7 @@ var View = Marionette.View.extend({
             app.map = this.map;
             window.myMap = app.map;
             app.geocoder = this.geocoder;
-            this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
+            //this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
             this.map.addListener('bounds_changed',_.bind(this.findLocationName,this));
             if (app.isMobile) {
                 this.mobile_CreateInfoButton();
@@ -198,7 +198,7 @@ var View = Marionette.View.extend({
         if (app.user.has('position')) {
             var image = {
                 url: '../images/shiners/user.png',
-                size: new window.google.maps.Size(40, 40),
+                scaledSize: new window.google.maps.Size(35, 35),
                 origin: new window.google.maps.Point(0, 0),
                 anchor: new window.google.maps.Point(20, 20)
             };
@@ -221,19 +221,19 @@ var View = Marionette.View.extend({
         this.map.setCenter(pos);
     },
 
-    onBoundsChange() {
-        if (this.fetchTimeOut)
-            clearTimeout(this.fetchTimeOut);
-        this.fetchTimeOut = setTimeout(_.bind( ()=> {            
-            var center = this.map.getCenter();
-            this.model.set({
-                position: {
-                    lat:center.lat(),
-                    lng:center.lng()
-                }
-            });
-        }, this), 500);
-    },
+    //onBoundsChange() {
+    //    if (this.fetchTimeOut)
+    //        clearTimeout(this.fetchTimeOut);
+    //    this.fetchTimeOut = setTimeout(_.bind( ()=> {            
+    //        var center = this.map.getCenter();
+    //        this.model.set({
+    //            position: {
+    //                lat:center.lat(),
+    //                lng:center.lng()
+    //            }
+    //        });
+    //    }, this), 500);
+    //},
 
     findLocationName() {
         if (this.geocodeTimeout)
@@ -255,6 +255,9 @@ var View = Marionette.View.extend({
                         address:locationName.long_name
                     });
                 } else {
+                    this.model.set({
+                        position: latLng
+                    });
                     console.error('Geocoder failed due to: ' + status);
                 }
             },this));           
@@ -266,7 +269,7 @@ var View = Marionette.View.extend({
             method='getNearbyPostsTest',
             activeCats=this.model.get('activeCats'),
             args,
-            radius = Math.round(0.6215 / this.model.get('radius'));
+            radius = this.model.get('radius')* 0.6215;
         if ((query && !_.isEmpty(query.trim()))||(activeCats&&!_.isEmpty(activeCats))) {
             method = 'searchPosts';
             args = {
