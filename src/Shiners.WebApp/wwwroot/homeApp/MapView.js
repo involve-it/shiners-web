@@ -266,7 +266,7 @@ var View = Marionette.View.extend({
             method='getNearbyPostsTest',
             activeCats=this.model.get('activeCats'),
             args,
-            radius = this.model.get('radius')||5;
+            radius = Math.round(0.6215 / this.model.get('radius'));
         if ((query && !_.isEmpty(query.trim()))||(activeCats&&!_.isEmpty(activeCats))) {
             method = 'searchPosts';
             args = {

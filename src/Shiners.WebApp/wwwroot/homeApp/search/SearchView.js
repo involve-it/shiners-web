@@ -10,6 +10,27 @@ import app from '../app.js';
 var View = Backbone.Marionette.View.extend({
     fetchTimeOut:null,
     template:template,
+    $radiusSlider:null,
+    sliderCases:null,
+    initialize() {
+        this.listenTo(this.collection, 'after:load',this.checkIfEmpty);
+    },
+
+    checkIfEmpty(collection) {
+        if (collection.size() === 0) {
+            var self = this;
+            setTimeout(() => {
+                    var currentVal = self.$radiusSlider.slider('value');
+                    if (currentVal < self.$radiusSlider.slider('option', 'max')) {
+                        self.$radiusSlider.slider('value', currentVal + 1);
+                    } else {
+                        self.stopListening(collection);
+                    }
+                },
+                200);
+        } else
+            this.stopListening(collection);
+    },
 
     events: {
         'click #searchParametersButton':'toggleSearchParameters',
@@ -61,27 +82,27 @@ var View = Backbone.Marionette.View.extend({
     },
 
     initRadiusSlider() {
-        var model=this.model,            
-            cases = [
-                {name:'200м',value:0.2,zoom:16},
-                {name:'1км',value:1,zoom:14},
-                {name:'5км',value:5,zoom:12},
-                {name:'20км',value:20,zoom:10},
-                {name:'везде',value:20000,zoom:3}
-            ];
-  
-        var $radiusslider = this.$("#slider3").slider({
+        this.sliderCases = [
+            {name:'200м',value:0.2,zoom:16},
+            {name:'1км',value:1,zoom:14},
+            {name:'5км',value:5,zoom:12},
+            {name:'20км',value:20,zoom:10},
+            {name:'везде',value:20000,zoom:3}
+        ];
+        this.$radiusSlider = this.$("#slider3").slider({
             range: "min",
             animate: true,
             min: 0,
             max: 4,
-            value: 2
+            value: this.model.get('radius')
         });
-        $radiusslider.slider("pips", { rest: "label", labels: _.map(cases,(c)=>c.name) });
-        $radiusslider.on("slidechange", (e,ui)=> {
-            model.set('radius',cases[ui.value].value);
-            app.map.setZoom(cases[ui.value].zoom);
-        });
+        this.$radiusSlider.slider("pips", { rest: "label", labels: _.map(this.sliderCases,(c)=>c.name) });
+        this.$radiusSlider.on("slidechange", _.bind(this.onRadiusChange,this));
+    },
+
+    onRadiusChange(e,ui) {
+        this.model.set('radius',this.sliderCases[ui.value].value);
+        app.map.setZoom(this.sliderCases[ui.value].zoom);
     },
 
     toggleSearchParameters() {
