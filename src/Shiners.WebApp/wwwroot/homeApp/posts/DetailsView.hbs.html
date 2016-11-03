@@ -12,36 +12,37 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <span class="font-lato weight-300"><i class="fa fa-clock-o"></i> Опубликовано {{=moment(timestamp).fromNow()}}</span>
+                <span class="font-lato weight-300"><i class="fa fa-clock-o"></i> Опубликовано {{=moment(obj.timestamp).fromNow()}}</span>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-
                 <div class="owl-carousel buttons-autohide controlls-over nomargin" id="postImages" data-plugin-options='{"items": 1, "autoPlay": {{-_.size(details.photo)>1?'3500':'false'}}, "autoHeight": false, "navigation": true, "pagination": false, "transitionStyle":"fade", "progressBar":"false"}'>
                     {{ if (_.size(details.photos)>0){ }}
                     {{_.each(details.photos,function(photo){ }}
-                    <div>
-                        <img class="img-responsive" src="{{=photo.data}}" alt="">
-                    </div>
+                        <div>
+                            <img class="img-responsive" src="{{=photo.data}}" alt="">
+                        </div>
                     {{});}}                 
                     {{ } else { }}
-                    <div>
-                        <img class="img-responsive" src="/images/demo/no-photo.png" alt="">
-                    </div>
+                        <div>
+                            <img class="img-responsive" src="/images/no_image.png" alt="">
+                        </div>
                     {{ } }}
                 </div>
             </div>
             <div class="col-md-6">
                 <table class="table table-striped">
-                    <tr>
-                        <td>
-                            <i class="fa fa-eye"></i> Просмотров
-                        </td>
-                        <td>
-                            Всего: {{=stats.seenTotal}} Сегодня: {{=stats.seenToday}}
-                        </td>
-                    </tr>
+                    {{if(obj.stats) { }}
+                        <tr>
+                            <td>
+                                <i class="fa fa-eye"></i> Просмотров
+                            </td>
+                            <td>
+                                Всего: {{=stats.seenTotal}} Сегодня: {{=stats.seenToday}}
+                            </td>
+                        </tr>
+                    {{ } }}
                     <tr>
                         <td>
                             <i class="fa fa-street-view"></i> Статус
@@ -54,14 +55,14 @@
                         </td>
                     </tr>
                     {{if (obj.type) { }}
-                    <tr>
-                        <td>
-                            <i class="fa fa-list-alt"></i> Тип
-                        </td>
-                        <td>
-                            <span class="label bg-type-category-{{=type}}">{{=type}}</span>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-list-alt"></i> Тип
+                            </td>
+                            <td>
+                                <span class="label bg-type-category-{{=obj.type}}">{{=obj.type}}</span>
+                            </td>
+                        </tr>
                     {{ } }}
                     
                     <tr>
@@ -71,14 +72,14 @@
                         <td> {{=distance>=0?distance.toFixed(1):'Не определена'}} {{=distanceType==='km'?'км':'miles'}} </td>
                     </tr>
                     {{if(obj.social) { }}
-                    <tr>
-                        <td>
-                            <i class="fa fa-heart"></i> Нравится
-                        </td>
-                        <td>
-                            {{=_.size(social.likes)}}
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-heart"></i> Нравится
+                            </td>
+                            <td>
+                                {{=_.size(social.likes)}}
+                            </td>
+                        </tr>
                     {{ } }}
                 </table>
             </div>
@@ -90,16 +91,16 @@
                 <ul class="portfolio-detail-list list-unstyled nomargin">
                     <li><span><i class="fa fa-calendar"></i>Действует до:</span> {{=moment(endDatePost).format("ll")}}</li>
                     {{if (details.price) { }}
-                    <li><span><i class="fa fa-money"></i>Стоимость:</span> {{=details.price}}</li>
+                        <li><span><i class="fa fa-money"></i>Стоимость:</span> {{=details.price}}</li>
                     {{ } }}
                     {{if (details.locations){ }}
                     {{_.each(details.locations,function(loc){ }}
-                    <li>
-                        <span>
-                            <i class="fa fa-map-marker"></i> Адрес
-                        </span>
-                        {{=loc.name}}
-                    </li>
+                        <li>
+                            <span>
+                                <i class="fa fa-map-marker"></i> Адрес
+                            </span>
+                            {{=loc.name}}
+                        </li>
                     {{});}}
                     {{ } }}
                 </ul>

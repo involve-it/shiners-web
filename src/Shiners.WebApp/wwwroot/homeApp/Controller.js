@@ -43,7 +43,10 @@ export default Marionette.Object.extend({
     postDetails(id) {
         app.layout.showChildView('content', new PreloaderView());
         var post = new AsteroidModel({_id:id},{asteroid:app.asteroid});
-        post.loadByMethod('getPost',null,() => app.layout.showChildView('content', new PostDetailsView({model:post})));
+        post.loadByMethod('getPost',null,() => {
+            window.detailsPost = post;
+            app.layout.showChildView('content', new PostDetailsView({ model: post }));
+        });
     },
     createPost() {
         /*  if (app.user.id) {
