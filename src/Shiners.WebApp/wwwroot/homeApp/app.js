@@ -21,7 +21,7 @@ let App = Marionette.Application.extend({
     postAdTypes:null,
     isMobile:false,
     router:null,
-
+    iframeLoaded:false,
     views: {
         iframeView: null
     },
@@ -39,8 +39,18 @@ let App = Marionette.Application.extend({
         this.isMobile = $.browser.mobile;
         this.postAdTypes.loadByMethod('getPostAdTypes');
         this.showView(this.layout);
+        this.initVkAndFacebookApi();
         this.getPosition();
         this.checkLogin();
+    },
+
+    initVkAndFacebookApi(){
+        VK.init({ apiId: 5709603, onlyWidgets: true });
+        FB.init({
+            appId:'510068285855489',
+            version    : 'v2.7',
+            xfbml      : true
+        });
     },
 
     supportsHistoryApi () {

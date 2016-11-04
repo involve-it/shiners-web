@@ -9,12 +9,7 @@ const FRAME_DOMAIN = 'https://shiners.mobi';
 //const FRAME_DOMAIN = 'http://localhost:3000';
 class View extends Marionette.View.extend({
     template:template,
-    
-    events:{
-        'load iframe':'iframeLoad'
-    },
-    iframeLoad(e) {
-    },
+
     removeHeader(e) {
         window.myIframe = e.target;
     },
