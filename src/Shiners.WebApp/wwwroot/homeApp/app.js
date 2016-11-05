@@ -22,6 +22,7 @@ let App = Marionette.Application.extend({
     isMobile:false,
     router:null,
     iframeLoaded:false,
+    FbInitialized:false,
     views: {
         iframeView: null
     },
@@ -37,20 +38,34 @@ let App = Marionette.Application.extend({
 
     onStart() {
         this.isMobile = $.browser.mobile;
-        this.postAdTypes.loadByMethod('getPostAdTypes');
+        this.initVkApi();
+        this.postAdTypes.loadByMethod('getPostAdTypes');        
         this.showView(this.layout);
-        this.initVkAndFacebookApi();
         this.getPosition();
         this.checkLogin();
     },
 
-    initVkAndFacebookApi(){
+    FbButton(container){
+        if(!this.FbInitialized){
+            FB.init({
+                appId:'510068285855489',
+                version    : 'v2.8',
+                status:true
+            });
+            this.FbInitialized=true;
+        }
+        if(container)
+            FB.XFBML.parse(container); 
+    },
+
+    initVkApi(){
+        //FB.init({
+        //    appId:'510068285855489',
+        //    version    : 'v2.8',
+        //    status:true
+        //});
+
         VK.init({ apiId: 5709603, onlyWidgets: true });
-        FB.init({
-            appId:'510068285855489',
-            version    : 'v2.7',
-            xfbml      : true
-        });
     },
 
     supportsHistoryApi () {

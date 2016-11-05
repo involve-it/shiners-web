@@ -21,30 +21,27 @@ var View = Marionette.View.extend({
     },
 
     onAttach() {
+        this.initVkSocialButton(); 
         this.initCarousel();
         var center = app.map.getCenter();
         //this.collection.loadByMethod('searchPosts', ['',center.lat(),center.lng(),200,0,10]);
-        this.collection.loadByMethod('getPopularPosts',[center.lat(),center.lng(),200,0,10]);
-        this.initVkSocialButton();     
+        this.collection.loadByMethod('getPopularPosts',[center.lat(),center.lng(),200,0,10]); 
     },
 
     onBeforeRender() {
         this.setModelDistance();
     },
 
-    initVkSocialButton(){
-        var self=this;
-        setTimeout(_.bind(()=>{
-            var details = self.model.get('details');
-            var options = {
-                pageTitle:details.title,
-                pageDescription:details.description,
-                pageImage:details.photos && details.photos.length>0?details.photos[0].data:null,
-                type:'mini'
-            }
-            VK.Widgets.Like("vk_like",options,self.model.id);
-            FB.XFBML.parse(document.getElementById('fb_like')); 
-        },this),1000);
+    initVkSocialButton(){     
+        var details = this.model.get('details');
+        var options = {
+            pageTitle:details.title,
+            pageDescription:details.description,
+            pageImage:details.photos && details.photos.length>0?details.photos[0].data:null,
+            type:'button'
+        };      
+        VK.Widgets.Like("vk_like",options,this.model.id);
+        app.FbButton(this.$('#fb_like').get(0));
     },
 
     setModelDistance() {
