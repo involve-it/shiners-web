@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Shiners.WebApp.Data;
 using Shiners.WebApp.Models;
 using Shiners.WebApp.Services;
+using Shiners.WebApp.Renderers;
 
 namespace Shiners.WebApp
 {
@@ -31,10 +32,11 @@ namespace Shiners.WebApp
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+            Renderer = new UnderscoreRenderer(env.WebRootPath, "./homeApp", "./sharedViews");
         }
 
         public IConfigurationRoot Configuration { get; }
-
+        public UnderscoreRenderer Renderer { get; private set; }
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -45,7 +47,7 @@ namespace Shiners.WebApp
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
-
+            services.AddScoped<UnderscoreRenderer>((provider) => Renderer);
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }
@@ -67,8 +69,9 @@ namespace Shiners.WebApp
             }
 
             app.UseStaticFiles();
+            app.UseWebSockets();
             app.UseIdentity();
-
+           
             app.UseMvc(routes =>
             {
                 routes.MapRoute("about", "about-us", new { controller = "Home", action = "About" });
