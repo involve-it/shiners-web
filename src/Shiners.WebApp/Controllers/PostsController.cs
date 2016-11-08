@@ -17,12 +17,13 @@ namespace Shiners.WebApp.Controllers
             Renderer = _renderer;
         }
 
-        public async Task<IActionResult> Index(string id=null)
+        public async Task<IActionResult> Index(string id)
         {
-
+            
             MeteorClient client = new MeteorClient(new Uri("wss://shiners.mobi/websocket"));
             await client.ConnectAsync();
-            var result = await client.Call<JArray>("getPopularPosts", 55.755814, 37.617635, 200, 0, 10);
+            var post = client.Call<JObject>("getPost",id);
+            var result = await client.Call<JObject>("getPopularPosts", 55.755814, 37.617635, 200, 0, 10);
             return View("../Home/Index");
         }
         

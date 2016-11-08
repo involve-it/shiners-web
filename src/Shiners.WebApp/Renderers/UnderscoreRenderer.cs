@@ -53,10 +53,10 @@ namespace Shiners.WebApp.Renderers
             Engine.ExecuteFile(Path.Combine(root, "./lib/underscore/underscore-min.js"));
             Engine.ExecuteFile(Path.Combine(root,"./lib/moment/min/moment-with-locales.min.js"));
             Engine.ExecuteFile( Path.Combine(root,"./serverRenderConfig.js"));
-            Engine.SetGlobalValue("isServer",true);
-            Engine.SetGlobalFunction("render", new RenderDelegate(_render));
-            Engine.SetGlobalFunction("renderCollection", new RenderDelegate(_renderCollection));
-
+            //Engine.SetGlobalValue("isServer",true);
+            Engine.SetGlobalFunction("serverRender", new RenderDelegate(_render));
+            Engine.SetGlobalFunction("serverRenderCollection", new RenderDelegate(_renderCollection));
+            var _ = Engine.GetGlobalValue<ObjectInstance>("_");
             foreach (var dirPath in entryPoints)
             {
                 DirectoryInfo dir = new DirectoryInfo(Path.Combine(root, dirPath));
@@ -64,9 +64,6 @@ namespace Shiners.WebApp.Renderers
                 {
                     string key = Util.VirtualPath.GetVirtualPath(root, file.FullName);
                     string fileContent = File.ReadAllText(file.FullName).Replace("\r\n","");
-                    //string jsCode = $"_.template('{fileContent}')";
-                    var _ = Engine.GetGlobalValue<ObjectInstance>("_");
-                    
                     UserDefinedFunction tmpl = _.CallMemberFunction("template", fileContent) as UserDefinedFunction;
                     CompiledTemplates.Add(key, tmpl);
                 }
@@ -75,7 +72,7 @@ namespace Shiners.WebApp.Renderers
 
         public string Render(string template, object data,string tagName=null,string htmlAttrs=null)
         {
-            var jObj = "(" + GetViewData(data).ToString() + ")";
+            var jObj = "(" + GetViewData(data) + ")";
             return Engine.CallGlobalFunction<string>("render", template, Engine.Evaluate<ObjectInstance>(jObj), tagName, htmlAttrs);
         }
 

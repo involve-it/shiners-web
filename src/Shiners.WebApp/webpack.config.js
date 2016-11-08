@@ -59,7 +59,8 @@ module.exports = {
                 query: {
                     interpolate: '\\{\\{=(.+?)\\}\\}',
                     escape: '\\{\\{-(.+?)\\}\\}',
-                    evaluate: '\\{\\{(.+?)\\}\\}'
+                    evaluate: '\\{\\{(.+?)\\}\\}',
+                    withImports: true
                     //evaluate: /{{([\s\S]+?)}}/g,
                     //interpolate: /{{=([\s\S]+?)}}/g,
                     //escape: /{{-([\s\S]+?)}}/g

@@ -12,5 +12,9 @@ import './lib/jquery-ui/jquery-ui.min.js';
 import moment from 'moment';
 //import 'SockJS';
 import app from './homeApp/app.js';
+_.templateSettings.imports = {
+    serverRender() {},
+    serverRenderCollection(){}
+};
 moment.locale('ru');
 app.start();
