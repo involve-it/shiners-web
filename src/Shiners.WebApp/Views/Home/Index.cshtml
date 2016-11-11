@@ -1,4 +1,5 @@
-﻿@{
+﻿@model string
+@{
     Layout = null;
 }
 
@@ -15,7 +16,7 @@
     <link href="~/favicon.ico" rel="icon" />
 </head>
 <body class="smoothscroll enable-animation sh-body">
-
+    @Html.Raw(Model??string.Empty)
 </body>
 <script id="facebook-jssdk" type="text/javascript" src="//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.8"></script>
 <script type="text/javascript" src="https://vk.com/js/api/openapi.js?136"></script>

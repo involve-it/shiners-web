@@ -19,13 +19,26 @@ namespace Shiners.WebApp.Controllers
 
         public async Task<IActionResult> Index(string id)
         {
-            //Request.HttpContext.Connection.RemoteIpAddress
-            MeteorClient client = new MeteorClient(new Uri("wss://shiners.mobi/websocket"));
-            await client.ConnectAsync();
-            var post = await client.Call<JObject>("getPost",id);
-            var result = await client.Call<JObject>("getPopularPosts", 55.755814, 37.617635, 200, 0, 10);
-            
-            return View("../Home/Index");
+            //obj.routeViewPath,obj.routeViewData,obj.routeViewTag,obj.routeViewHtmlAttrs
+            using (MeteorClient client = new MeteorClient(new Uri("wss://shiners.mobi/websocket")))
+            {
+                await client.ConnectAsync();
+                //Request.HttpContext.Connection.RemoteIpAddress
+                //var popularPostsResult = await client.Call<JObject>("getPopularPosts", 55.755814, 37.617635, 200, 0, 10);
+                var postResult = await client.Call<JObject>("getPost", id);
+                JObject post = postResult["result"] as JObject;
+                var routeViewPath = "~/homeApp/posts/DetailsView.hbs.html";
+                var layoutPath = "~/homeApp/MainLayoutView.hbs.html";
+                var data = new JObject()
+                {
+                    {"routeViewPath",routeViewPath },
+                    {"routeViewTag","div" },
+                    {"routeViewHtmlAttrs",null },
+                    {"routeViewData",post }
+                };
+                
+                return View("../Home/Index", Renderer.Render(layoutPath, data, "div", "id=\"wrapper\""));
+            }
         }
         
         public IActionResult My()

@@ -78,6 +78,8 @@ namespace Shiners.WebApp.Renderers
 
         public JObject GetViewData(object attributes)
         {
+            if(attributes is JObject || attributes is JToken)
+                return attributes as JObject;
             var jobject = new JObject();
             object value;
             if (attributes != null)
