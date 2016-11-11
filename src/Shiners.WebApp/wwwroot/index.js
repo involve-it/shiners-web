@@ -11,10 +11,10 @@ import './lib/bootstrap/dist/js/bootstrap.min.js';
 import './lib/jquery-ui/jquery-ui.min.js';
 import moment from 'moment';
 //import 'SockJS';
+window.serverRender = () => {};
+window.serverRenderCollection = () => {};
+
 import app from './homeApp/app.js';
-_.templateSettings.imports = {
-    serverRender() {},
-    serverRenderCollection(){}
-};
+
 moment.locale('ru');
 app.start();
