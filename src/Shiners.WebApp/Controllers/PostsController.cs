@@ -23,10 +23,11 @@ namespace Shiners.WebApp.Controllers
             JObject post;
             using (MeteorClient client = new MeteorClient(new Uri("wss://shiners.mobi/websocket")))
             {
-                await client.ConnectAsync();
+               await client.ConnectAsync();
+                
                 //Request.HttpContext.Connection.RemoteIpAddress
                 //var popularPostsResult = await client.Call<JObject>("getPopularPosts", 55.755814, 37.617635, 200, 0, 10);
-                var postResult = await client.Call<JObject>("getPost", id);
+                var postResult = client.Call<JObject>("getPost", id).Result;
                 post = postResult["result"] as JObject;
                 
             }
