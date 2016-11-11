@@ -2,6 +2,7 @@
 import Backbone from 'backbone';
 import '../helpers/helpers';
 import '../lib/detectmobile.js';
+//import "ddp.js";
 import Asteroid from '../lib/asteroid.browser.js';
 import RootView from './mainLayoutView.js';
 import Collection from '../data/AsteroidCollection.js';
@@ -9,7 +10,7 @@ import Router from './Router.js';
 import _ from 'underscore';
 import AsteroidModel from '../data/AsteroidModel.js';
 import '../css/shiners-override.css';
-window.$ = $; // testing only, need to add isDev flag!
+
 let App = Marionette.Application.extend({
     region:'body',
     layout:null,
@@ -33,19 +34,19 @@ let App = Marionette.Application.extend({
         this.myPosts=new Collection(null, { asteroid: this.asteroid });  
         this.nearbyPosts = new Collection(null,{asteroid:this.asteroid});
         this.router = new Router({app:this});
-        this.layout = new RootView({app:this});
+        this.layout = new RootView();
     },
 
     onStart() {
         this.isMobile = $.browser.mobile;
-        this.initVkApi();
-        this.postAdTypes.loadByMethod('getPostAdTypes');        
+        this.postAdTypes.loadByMethod('getPostAdTypes');                  
         this.showView(this.layout);
+        this.initVkApi();
         this.getPosition();
         this.checkLogin();
     },
 
-    FbButton(container){
+    FbButton(container) {
         if(!this.FbInitialized){
             FB.init({
                 appId:'510068285855489',
@@ -125,6 +126,5 @@ let App = Marionette.Application.extend({
     }
 });
 
-var app = new App();
-$h.app = app; 
-export default app;
+
+export default new App();

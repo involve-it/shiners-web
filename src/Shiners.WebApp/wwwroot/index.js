@@ -11,10 +11,11 @@ import './lib/bootstrap/dist/js/bootstrap.min.js';
 import './lib/jquery-ui/jquery-ui.min.js';
 import moment from 'moment';
 //import 'SockJS';
+import app from './homeApp/app.js';
 window.serverRender = () => {};
 window.serverRenderCollection = () => {};
-
-import app from './homeApp/app.js';
-
 moment.locale('ru');
+//_.templateSettings.imports= {
+//    _:require('underscore')
+//}
 app.start();

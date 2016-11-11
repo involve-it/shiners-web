@@ -9,23 +9,25 @@ using Shiners.WebApp.Renderers;
 
 namespace Shiners.WebApp.Controllers
 {
+    //[RequireHttps]
     public class PostsController : Controller
     {
-        private UnderscoreRenderer Renderer { get;  set; }
-        public PostsController(UnderscoreRenderer _renderer)
+        private readonly UnderscoreRenderer Renderer;
+        private readonly MeteorClient Meteor;
+        public PostsController(UnderscoreRenderer _renderer, MeteorClient _meteorClient)
         {
             Renderer = _renderer;
+            Meteor = _meteorClient;
         }
 
-        public async Task<IActionResult> Index(string id)
+        public IActionResult Index(string id)
         {
             //obj.routeViewPath,obj.routeViewData,obj.routeViewTag,obj.routeViewHtmlAttrs
             JObject post;
-            MeteorClient client = new MeteorClient(new Uri("wss://shiners.mobi/websocket"));
-            await client.ConnectAsync();
             //Request.HttpContext.Connection.RemoteIpAddress
             //var popularPostsResult = await client.Call<JObject>("getPopularPosts", 55.755814, 37.617635, 200, 0, 10);
-            var postResult = await client.Call<JObject>("getPost", id);
+            var postResult = Meteor.Call<JObject>("getPost", id).Result;
+            
             post = postResult["result"] as JObject;
             var routeViewPath = "~/homeApp/posts/DetailsView.hbs.html";
             var layoutPath = "~/homeApp/MainLayoutView.hbs.html";
@@ -33,16 +35,15 @@ namespace Shiners.WebApp.Controllers
                 {
                     {"routeViewPath",routeViewPath },
                     {"routeViewTag","div" },
-                    {"routeViewHtmlAttrs",null },
                     {"routeViewData",post }
                 };
             var resp = Renderer.Render(layoutPath, data, "div", "id=\"wrapper\"");
-            return View("../Home/Index", resp);
+            return View("Index", resp);
         }
         
         public IActionResult My()
         {
-            return View("../Home/Index");
+            return View("Index");
         }
     }
 }

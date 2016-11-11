@@ -19,8 +19,8 @@ namespace Shiners.WebApp.Renderers
         private string _render(params object[] args)
         {
             string path = args[0].ToString();
-            object data = args.Length > 1 && args[1] != null ? args[1] : null;
-            string tagName = args.Length > 2? (args[2] != null ? args[2].ToString():null) : "div";
+            object data = args.Length > 1 && args[1] != null && !(args[1] is Jurassic.Null)&&!(args[1] is Jurassic.Undefined) ? args[1] : null;
+            string tagName = args.Length > 2? (args[2] != null && !(args[2] is Jurassic.Null) && !(args[2] is Jurassic.Undefined) ? args[2].ToString():null) : "div";
             string htmlAttrs = args.Length > 3 && args[3] != null ? args[3].ToString() : null;
 
             var result = data != null ? CompiledTemplates[path].Call(Engine.Global, data) : CompiledTemplates[path].Call(Engine.Global);
@@ -73,7 +73,7 @@ namespace Shiners.WebApp.Renderers
         public string Render(string template, object data,string tagName=null,string htmlAttrs=null)
         {
             var jObj = "(" + GetViewData(data) + ")";
-            return Engine.CallGlobalFunction<string>("render", template, Engine.Evaluate<ObjectInstance>(jObj), tagName, htmlAttrs);
+            return Engine.CallGlobalFunction<string>("serverRender", template, Engine.Evaluate<ObjectInstance>(jObj), tagName, htmlAttrs);
         }
 
         public JObject GetViewData(object attributes)

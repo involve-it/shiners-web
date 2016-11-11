@@ -19,11 +19,11 @@
             <div class="col-md-6">
                 <div class="owl-carousel buttons-autohide controlls-over nomargin" id="postImages" data-plugin-options='{"items": 1, "autoPlay": {{-_.size(details.photo)>1?'3500':'false'}}, "autoHeight": false, "navigation": true, "pagination": false, "transitionStyle":"fade", "progressBar":"false"}'>
                     {{ if (_.size(details.photos)>0){ }}
-                    {{_.each(details.photos,function(photo){ }}
-                        <div>
-                            <img class="img-responsive" src="{{=photo.data}}" alt="">
-                        </div>
-                    {{});}}                 
+                        {{_.each(details.photos,function(photo){ }}
+                            <div>
+                                <img class="img-responsive" src="{{=photo.data}}" alt="">
+                            </div>
+                        {{});}}                 
                     {{ } else { }}
                         <div>
                             <img class="img-responsive" src="/images/no_image.png" alt="">
@@ -69,7 +69,9 @@
                         <td>
                             <i class="fa fa-location-arrow"></i> Дистанция
                         </td>
-                        <td> {{=distance>=0?distance.toFixed(1):'Не определена'}} {{=distanceType==='km'?'км':'miles'}} </td>
+                        {{if(obj.distance && obj.distanceType){ }}
+                            <td> {{=distance>=0?distance.toFixed(1):'Не определена'}} {{=distanceType==='km'?'км':'miles'}} </td>
+                        {{ } }}
                     </tr>
                     {{if(obj.social) { }}
                         <tr>

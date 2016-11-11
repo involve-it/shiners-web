@@ -4,7 +4,6 @@ import template from './iframeView.hbs.html';
 import './iframeView.css';
 import app from '../app.js';
 
-window.app1 = app; // testing only!
 const FRAME_DOMAIN = 'https://shiners.mobi';
 //const FRAME_DOMAIN = 'http://localhost:3000';
 class View extends Marionette.View.extend({
@@ -30,7 +29,7 @@ class View extends Marionette.View.extend({
         this.options = options;
     }
     setPage(newPath) {
-        this._updatePath(newPath)
+        this._updatePath(newPath);
     }
     _updatePath(newPath) {
         // trigger new path command to iFrame:

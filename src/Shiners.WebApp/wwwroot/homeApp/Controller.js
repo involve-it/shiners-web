@@ -26,10 +26,8 @@ export default Marionette.Object.extend({
         if (!app.isMobile)
             app.layout.showChildView('content', new IndexView());
         else {
-            
             app.layout.getRegion('content').empty();
         }
-            
     },
 
     mobileIndex() {
@@ -48,6 +46,7 @@ export default Marionette.Object.extend({
             app.layout.showChildView('content', new PostDetailsView({ model: post }));
         });
     },
+
     createPost() {
         /*  if (app.user.id) {
               app.layout.showChildView('content', new CreatePostView({model:new Model({userId:app.user.id}) }));
@@ -74,8 +73,6 @@ export default Marionette.Object.extend({
         app.layout.showChildView('content',new HowItWorksView());
     },
 
-
-
     chatsMy(){
         app.layout.showChildView('content',new ChatsMyView());
     },
@@ -91,12 +88,15 @@ export default Marionette.Object.extend({
         var userModel = new Backbone.Model({ _id:id });
         app.layout.showChildView('content',new ProfileDetailsView( {model: userModel }));
     },
+
     profilePage() {
         app.layout.showChildView('content',new ProfilePageView());
     },
+
     myMessagesPage() {
         app.layout.showChildView('content',new MyMessagesPageView());
     },
+
     userDetailsPage(id) {
         app.layout.showChildView('content',new UserDetailsPageView({ id: id }));
     }

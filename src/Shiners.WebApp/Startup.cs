@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DdpNet;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -32,11 +33,14 @@ namespace Shiners.WebApp
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
-            Renderer = new UnderscoreRenderer(env.WebRootPath, "./homeApp", "./sharedViews");
+            Renderer = new UnderscoreRenderer(env.WebRootPath.Contains("wwwroot")? env.WebRootPath:env.ContentRootPath, "./homeApp", "./sharedViews");
+            GlobalMeteorClient = new MeteorClient(new Uri("wss://shiners.mobi/websocket"));
+            GlobalMeteorClient.ConnectAsync().Wait();
         }
 
         public IConfigurationRoot Configuration { get; }
         public UnderscoreRenderer Renderer { get; private set; }
+        public MeteorClient GlobalMeteorClient { get; private set; }
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -48,6 +52,7 @@ namespace Shiners.WebApp
 
             services.AddMvc();
             services.AddScoped<UnderscoreRenderer>((provider) => Renderer);
+            services.AddScoped<MeteorClient>((provider) => GlobalMeteorClient);
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }
@@ -69,7 +74,7 @@ namespace Shiners.WebApp
             }
 
             app.UseStaticFiles();
-            app.UseWebSockets();
+            //app.UseWebSockets();
             app.UseIdentity();
            
             app.UseMvc(routes =>

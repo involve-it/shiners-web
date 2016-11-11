@@ -30,21 +30,20 @@ var View = Marionette.View.extend({
         'click #closeInfo':'hideInfoContainer'
     },
 
-    initialize() {
-        
-    },
-
     modelEvents: {
         'change':'fetchPosts'
     },
 
     collectionEvents: {
-        'after:load':'showShiners'
+        'reset':'showShiners'
     },
 
     onRender() {
         this.showChildView('search', new SearchView({collection:this.collection,model:this.model}));
-        setTimeout(_.bind(this.initMap,this),500);
+    },
+
+    onAttach() {
+        this.initMap();
     },
 
     getShinerUrlPin(model) {
@@ -55,8 +54,8 @@ var View = Marionette.View.extend({
         return category? '../images/shiners/pins/' + postType + '-' + userStatus + '-flag-' + category + '.png':'../images/shiners/shiner_marker.png';
     },
 
-    showShiners() {       
-        this.collection.each((model) => { 
+    showShiners() {
+        this.collection.each((model) => {  
             var url = this.getShinerUrlPin(model);
             var image = {
                 url: url || '../images/shiners/shiner_marker.png',
@@ -270,7 +269,7 @@ var View = Marionette.View.extend({
             activeCats=this.model.get('activeCats'),
             args,
             radius = this.model.get('radius')* 0.6215;
-        if ((query && !_.isEmpty(query.trim()))||(activeCats&&!_.isEmpty(activeCats))) {
+        if ((query && !_.isEmpty(query.trim()))||(activeCats&&!_.isEmpty(activeCats))) {          
             method = 'searchPosts';
             args = {
                 query:query||"",
@@ -285,7 +284,7 @@ var View = Marionette.View.extend({
                 lng:this.model.get('position').lng,
                 radius:radius
             };
-        }
+        }        
         this.collection.loadByMethod(method,args);
     }
 });

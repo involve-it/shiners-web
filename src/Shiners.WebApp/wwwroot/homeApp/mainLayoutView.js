@@ -14,11 +14,7 @@ var View = Marionette.View.extend({
 
     template:template,
     id:"wrapper",
-
     mapView:null,
-    initialize() {
-        
-    },
     regions: {
         'content':'#appContent',
         'map':'#appMap',

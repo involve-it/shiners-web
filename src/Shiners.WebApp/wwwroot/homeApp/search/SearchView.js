@@ -1,5 +1,4 @@
-﻿
-import template from './SearchView.hbs.html';
+﻿import template from './SearchView.hbs.html';
 import Backbone from 'backbone';
 import '../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css';
 import '../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js';
@@ -13,21 +12,23 @@ var View = Backbone.Marionette.View.extend({
     $radiusSlider:null,
     sliderCases:null,
     initialize() {
-        this.listenTo(this.collection, 'after:load', this.checkIfEmpty);
+        this.listenTo(this.collection, 'reset', this.checkIfEmpty);
     },
 
     checkIfEmpty() {
-        if (!this.collection.size()) {
-            setTimeout(_.bind(()=>{
-                var currentVal = this.$radiusSlider.slider('value');
-                if (currentVal < this.$radiusSlider.slider('option', 'max')) {
-                    this.$radiusSlider.slider('value', currentVal + 1);
-                } else {
-                    this.stopListening(this.collection,'after:load');
-                }
-            },this),300);
-        } else
-            this.stopListening(this.collection,'after:load');
+        if (this.collection.size() > 0)
+            this.stopListening(this.collection, 'reset');
+        else
+            this._incrementSliderRadius();
+    },
+
+    _incrementSliderRadius() {
+        var currentVal = this.$radiusSlider.slider('value');
+        if (currentVal < this.$radiusSlider.slider('option', 'max')) {
+            this.$radiusSlider.slider('value', currentVal + 1);
+        } else {
+            this.stopListening(this.collection, 'reset');
+        }
     },
 
     events: {
@@ -67,14 +68,16 @@ var View = Backbone.Marionette.View.extend({
         this.showChildView('categories', new CategoriesListView({model:this.model,collection:app.postAdTypes}));
     },
 
-    onTextSearch: (e)=> {
-        if (e && (e.keyCode > 31 || e.keyCode === 13 || e.keyCode === 8)) {
+    setQuery(val) {       
+        this.model.set('query', val);
+    },
+
+    onTextSearch (e) {
+        var val = e.target.value;     
+        if (e.keyCode > 31 || e.keyCode === 13 || e.keyCode === 8) {
             if (this.fetchTimeOut)
                 clearTimeout(this.fetchTimeOut);
-            this.fetchTimeOut = setTimeout(_.bind( ()=> {
-                var val = e.target.value;
-                this.model.set('query', val);
-            }, this), 400);
+            this.fetchTimeOut = setTimeout(_.bind(this.setQuery, this,val), 400);
         }
     },
 
