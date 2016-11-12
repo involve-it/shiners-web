@@ -34,13 +34,11 @@ namespace Shiners.WebApp
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
             Renderer = new UnderscoreRenderer(env.WebRootPath.Contains("wwwroot")? env.WebRootPath:env.ContentRootPath, "./homeApp", "./sharedViews");
-            GlobalMeteorClient = new MeteorClient(new Uri("wss://shiners.mobi/websocket"));
-            GlobalMeteorClient.ConnectAsync().Wait();
         }
 
         public IConfigurationRoot Configuration { get; }
         public UnderscoreRenderer Renderer { get; private set; }
-        public MeteorClient GlobalMeteorClient { get; private set; }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -52,7 +50,7 @@ namespace Shiners.WebApp
 
             services.AddMvc();
             services.AddScoped<UnderscoreRenderer>((provider) => Renderer);
-            services.AddScoped<MeteorClient>((provider) => GlobalMeteorClient);
+            //services.AddScoped<MeteorClient>((provider) => new MeteorClient(new Uri("wss://shiners.mobi/websocket")));
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }

@@ -13,11 +13,11 @@ namespace Shiners.WebApp.Controllers
     public class PostsController : Controller
     {
         private readonly UnderscoreRenderer Renderer;
-        private readonly MeteorClient Meteor;
-        public PostsController(UnderscoreRenderer _renderer, MeteorClient _meteorClient)
+        //private  MeteorClient Meteor;
+        public PostsController(UnderscoreRenderer _renderer/*, MeteorClient _meteorClient*/)
         {
             Renderer = _renderer;
-            Meteor = _meteorClient;
+            //Meteor = _meteorClient;
         }
 
         public IActionResult Index(string id)
@@ -26,8 +26,11 @@ namespace Shiners.WebApp.Controllers
             JObject post;
             //Request.HttpContext.Connection.RemoteIpAddress
             //var popularPostsResult = await client.Call<JObject>("getPopularPosts", 55.755814, 37.617635, 200, 0, 10);
-            var postResult = Meteor.Call<JObject>("getPost", id).Result;
-            
+
+            //Meteor.ConnectAsync().Wait();
+            var postResult = Program.Meteor.Call<JObject>("getPost", id).Result;
+            //Meteor.Dispose();
+            //Meteor = null;
             post = postResult["result"] as JObject;
             var routeViewPath = "~/homeApp/posts/DetailsView.hbs.html";
             var layoutPath = "~/homeApp/MainLayoutView.hbs.html";
