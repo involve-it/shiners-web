@@ -15,7 +15,7 @@ var View = Marionette.View.extend({
     },
 
     initialize() {
-        window.postDetails = this.model.toJSON();
+        window.postDetails = this.model.toJSON(); // debug
         this.collection = new Collection(null,{asteroid:this.model.asteroid});
         this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
     },

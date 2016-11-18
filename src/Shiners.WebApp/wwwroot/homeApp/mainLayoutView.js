@@ -37,7 +37,7 @@ var View = Marionette.View.extend({
         this.renderMapAndBanner();
         this.listenTo(app.router,'route',this.toggleMapAndBanner);
         this._adaptUiIfIsIframe();
-
+        window.user = app.user;
         this.listenTo(app.user, 'receivedMeteorUser', this._toggleUserInfo);
         this._loadIframeView();
     },

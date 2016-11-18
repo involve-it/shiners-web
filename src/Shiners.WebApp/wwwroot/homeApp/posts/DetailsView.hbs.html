@@ -125,8 +125,10 @@
                     </a>
                     <span><strong>{{=user.username}}</strong> </span>
                 </span>
-                <!--<button type="button" class="btn btn-blue">Написать сообщение</button>
-                <button type="button" class="btn btn-leaf"><i class="fa fa-heart-o"></i> Нравится</button>-->
+                {{if(obj.user && obj.user._id) { }}
+                <button id="sendMessage" type="button" class="btn btn-blue"><i class="fa fa-pencil"></i> Написать</button>
+                {{ } }}
+                <!--<button type="button" class="btn btn-leaf"><i class="fa fa-heart-o"></i> Нравится</button>-->
             </div>
         </div>
     </div>
