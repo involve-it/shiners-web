@@ -5,3 +5,5 @@
 .vs/Shiners/v14/.suo
 
 src/Shiners.WebApp/Shiners.WebApp.xproj.user
+.vs/restore.dg
+src/Shiners.WebApp/project.lock.json
