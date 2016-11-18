@@ -35,6 +35,7 @@ let App = Marionette.Application.extend({
         this.nearbyPosts = new Collection(null,{asteroid:this.asteroid});
         this.router = new Router({app:this});
         this.layout = new RootView();
+        window.app = this; // debug
     },
 
     onStart() {
