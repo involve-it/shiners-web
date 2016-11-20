@@ -51,7 +51,7 @@ namespace Shiners.WebApp.Renderers
             CompiledTemplates = new Dictionary<string, UserDefinedFunction>();
             Engine = new ScriptEngine();
             Engine.ExecuteFile(Path.Combine(root, "./lib/underscore/underscore-min.js"));
-            Engine.ExecuteFile(Path.Combine(root,"./lib/moment/min/moment-with-locales.min.js"));
+            Engine.ExecuteFile(Path.Combine(root,"./lib/moment/moment-with-locales.min.js"));
             Engine.ExecuteFile( Path.Combine(root,"./serverRenderConfig.js"));
             //Engine.SetGlobalValue("isServer",true);
             Engine.SetGlobalFunction("serverRender", new RenderDelegate(_render));

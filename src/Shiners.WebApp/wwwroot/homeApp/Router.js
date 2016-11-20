@@ -25,6 +25,7 @@ export default Marionette.AppRouter.extend({
         'Account/FogotPassword':'fogotPassword',
         'Home/HowItWorks':'howItWorks',
         'about-us':'about',
-        'profile': 'profilePage'
+        'profile': 'profilePage',
+        'messages/to/:remoteUserId':'messagesTo'
     }
 });

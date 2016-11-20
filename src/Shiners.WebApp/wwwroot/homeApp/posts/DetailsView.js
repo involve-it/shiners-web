@@ -30,6 +30,11 @@ var View = Marionette.View.extend({
 
     onBeforeRender() {
         this.setModelDistance();
+        if (app.userMeteorObj &&app.userMeteorObj._id) {
+            this.templateContext = {
+                currentUser:app.userMeteorObj
+            };
+        }
     },
 
     initVkSocialButton(){     

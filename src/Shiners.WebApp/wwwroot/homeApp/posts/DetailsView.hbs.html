@@ -125,8 +125,11 @@
                     </a>
                     <span><strong>{{=user.username}}</strong> </span>
                 </span>
-                <!--<button type="button" class="btn btn-blue">Написать сообщение</button>
-                <button type="button" class="btn btn-leaf"><i class="fa fa-heart-o"></i> Нравится</button>-->
+                {{if (obj.currentUser) { }}
+                    <a href="/messages/to/{{=user._id}}" class="btn btn-blue">Написать сообщение</a>
+                {{ } }}
+                
+                <!--<button type="button" class="btn btn-leaf"><i class="fa fa-heart-o"></i> Нравится</button>-->
             </div>
         </div>
     </div>

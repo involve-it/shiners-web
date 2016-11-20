@@ -10,6 +10,7 @@ import PostsMytView from './posts/postsMy/PostsMyView.js';
 import ChatsMyView from './chats/ChatsMyView.js';
 import ChatIdView from './chats/ChatIdView.js';
 import ProfileDetailsView from './user/ProfileDetailsView.js';
+import MessagesToUserView from './chats/native/MessagesToUserView.js';
 
 import LoginView from './account/LoginView.js';
 import AboutView from './about/AboutView.js';
@@ -81,6 +82,14 @@ export default Marionette.Object.extend({
         app.layout.showChildView('content', new PreloaderView());
         var chatModel = new Backbone.Model({ _id:id });
         app.layout.showChildView('content', new ChatIdView( {model: chatModel } ));
+    },
+    // чат с пользователем remoteUserId
+    messagesTo(remoteUserId) {
+        app.layout.showChildView('content', new PreloaderView());
+        var remoteUser = new AsteroidModel({_id:remoteUserId},{asteroid:app.asteroid});
+        remoteUser.loadByMethod('getUser',null,() => {
+            app.layout.showChildView('content', new MessagesToUserView( {model: remoteUser } ));
+        });
     },
 
     profileDetails(id){

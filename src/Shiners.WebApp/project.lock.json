@@ -2696,6 +2696,15 @@
         "runtime": {
           "lib/portable-windows8+net40+sl5+wp8+wpa81+wp81+MonoAndroid+MonoTouch/Validation.dll": {}
         }
+      },
+      "Shiners.Models/1.0.0": {
+        "type": "project"
+      },
+      "Shiners.Repository/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Shiners.Models": "1.0.0"
+        }
       }
     }
   },
@@ -7347,6 +7356,14 @@
         "lib/portable-windows8+net40+sl5+wp8+wpa81+wp81+MonoAndroid+MonoTouch/Validation.dll",
         "lib/portable-windows8+net40+sl5+wp8+wpa81+wp81+MonoAndroid+MonoTouch/Validation.xml"
       ]
+    },
+    "Shiners.Models/1.0.0": {
+      "type": "project",
+      "msbuildProject": "../../Shiners.Models/Shiners.Models.csproj"
+    },
+    "Shiners.Repository/1.0.0": {
+      "type": "project",
+      "msbuildProject": "../../Shiners.Repository/Shiners.Repository.csproj"
     }
   },
   "projectFileDependencyGroups": {
