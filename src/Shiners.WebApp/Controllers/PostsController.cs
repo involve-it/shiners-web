@@ -22,6 +22,8 @@ namespace Shiners.WebApp.Controllers
 
         public IActionResult Index(string id)
         {
+            if(Program.Meteor==null)
+                return View("Index");
             //obj.routeViewPath,obj.routeViewData,obj.routeViewTag,obj.routeViewHtmlAttrs
             JObject post;
             //Request.HttpContext.Connection.RemoteIpAddress
