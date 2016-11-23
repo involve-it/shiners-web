@@ -4,7 +4,7 @@ var View = Marionette.View.extend({
     template:template,
     tagName:'section',
     initialize() {
-        
+        //bz.chats.createChatIfFirstMessage
     },
 
     events:{
