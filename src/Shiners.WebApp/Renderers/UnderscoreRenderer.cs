@@ -71,7 +71,7 @@ namespace Shiners.WebApp.Renderers
         }
 
         public string Render(string template, object data,string tagName=null,string htmlAttrs=null)
-        {
+        {            
             var jObj = "(" + GetViewData(data) + ")";
             return Engine.CallGlobalFunction<string>("serverRender", template, Engine.Evaluate<ObjectInstance>(jObj), tagName, htmlAttrs);
         }
