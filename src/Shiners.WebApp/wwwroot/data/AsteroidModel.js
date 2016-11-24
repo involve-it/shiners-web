@@ -10,7 +10,6 @@ export default MongoModel.extend({
     },
 
     loadByMethod(method,args,callbk,options) {
-
         if (!this.asteroid)
             throw new Error("Asteroid instanse of model with id="+this.id+" is not exists!");
         var opts = options || {};

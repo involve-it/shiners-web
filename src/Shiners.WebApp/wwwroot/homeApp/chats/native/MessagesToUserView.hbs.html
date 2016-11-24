@@ -1,18 +1,10 @@
 ﻿<div class="container">
-
-    <div class="col-lg-3 col-md-3 col-sm-4">
-        <div class="thumbnail text-center">
-            <img src="{{=obj.image && image.imageUrl?image.imageUrl:'/images/noimage.jpg'}}" alt="">
-            <h2 class="size-18 margin-top-10 margin-bottom-0">{{=username}}</h2>
-        </div>
-    </div>
-
-    <div class="col-lg-9 col-md-9 col-sm-8">
+    <div class="col-md-12">
         <div class="box-icon box-icon-center box-icon-round box-icon-large text-center nomargin">
             <div class="box1 noradius">
                 <div class="box-icon-title">
-                    <i class="fa fa-comments-o"></i>
-                    <h2>Сообщений ещё нет</h2>
+                    <img class="thumbnail pull-left rounded" src="{{=remoteUser.image && remoteUser.image.imageUrl?remoteUser.image.imageUrl:'/images/noimage.jpg'}}" alt="" width="40" height="40">
+                    <h2>{{=remoteUser.username}}</h2>
                 </div>
             </div>
         </div>
@@ -21,7 +13,9 @@
             <div class="box-inner">
                 <ul class="comment list-unstyled">
                     <li class="comment">
-                        <img class="avatar" src="/images/demo/people/300x300/2-min.jpg" alt="avatar" width="50" height="50">
+
+                        <img class="avatar" src="/images/demo/people/300x300/5-min.jpg" alt="avatar" width="50" height="50">
+
                         <div class="comment-body">
                             <a href="#" class="comment-author">
                                 <small class="text-muted pull-right"> 12 Minutes ago </small>
@@ -33,96 +27,7 @@
                                 dolore magna aliquam tincidunt erat volutpat.
                             </p>
                         </div>
-                        <ul class="list-inline size-11 margin-top-10">
-                            <li>
-                                <a href="#" class="text-info"><i class="fa fa-reply"></i> Reply</a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-success"><i class="fa fa-thumbs-up"></i> Like</a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-muted">Show All Comments (36)</a>
-                            </li>
-                            <li class="pull-right">
-                                <a href="#" class="text-danger">Delete</a>
-                            </li>
-                            <li class="pull-right">
-                                <a href="#" class="text-primary">Edit</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="comment comment-reply">
-                        <!-- avatar -->
-                        <img class="avatar" src="/images/demo/people/300x300/3-min.jpg" alt="avatar" width="50" height="50">
-                        <!-- comment body -->
-                        <div class="comment-body">
-                            <a href="#" class="comment-author">
-                                <small class="text-muted pull-right"> 4 Minutes ago </small>
-                                <span>Ioana Doe</span>
-                            </a>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy! <i class="fa fa-smile-o green"></i>
-                            </p>
-                        </div><!-- /comment body -->
-                        <!-- options -->
-                        <ul class="list-inline size-11 margin-top-10">
-                            <li>
-                                <a href="#" class="text-success"><i class="fa fa-thumbs-up"></i> Like</a>
-                            </li>
-                            <li class="pull-right">
-                                <a href="#" class="text-danger">Delete</a>
-                            </li>
-                            <li class="pull-right">
-                                <a href="#" class="text-primary">Edit</a>
-                            </li>
-                        </ul><!-- /options -->
-                    </li>
-                    <li class="comment comment-reply">
-                        <!-- avatar -->
-                        <img class="avatar" src="/images/demo/people/300x300/4-min.jpg" alt="avatar" width="50" height="50">
-                        <!-- comment body -->
-                        <div class="comment-body">
-                            <a href="#" class="comment-author">
-                                <small class="text-muted pull-right"> a moment ago </small>
-                                <span>Simona Doe</span>
-                            </a>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy! <i class="fa fa-smile-o green"></i>
-                            </p>
-                        </div><!-- /comment body -->
-                        <!-- options -->
-                        <ul class="list-inline size-11 margin-top-10">
-                            <li>
-                                <a href="#" class="text-success"><i class="fa fa-thumbs-up"></i> Like</a>
-                            </li>
-                            <li class="pull-right">
-                                <a href="#" class="text-danger">Delete</a>
-                            </li>
-                            <li class="pull-right">
-                                <a href="#" class="text-primary">Edit</a>
-                            </li>
-                        </ul><!-- /options -->
-                    </li>
-                </ul>
-                <!-- /COMMENT -->
-                <!-- COMMENT -->
-                <ul class="comment list-unstyled">
-                    <li class="comment">
-                        <!-- avatar -->
-                        <img class="avatar" src="/images/demo/people/300x300/5-min.jpg" alt="avatar" width="50" height="50">
-                        <!-- comment body -->
-                        <div class="comment-body">
-                            <a href="#" class="comment-author">
-                                <small class="text-muted pull-right"> 12 Minutes ago </small>
-                                <span>Melisa Doe</span>
-                            </a>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                euismod tincidunt laoreet dolore magna aliquam tincidunt erat volutpat laoreet
-                                dolore magna aliquam tincidunt erat volutpat.
-                            </p>
-                        </div><!-- /comment body -->
-                        <!-- options -->
+
                         <ul class="list-inline size-11 margin-top-10">
                             <li>
                                 <a href="#" class="text-info"><i class="fa fa-reply"></i> Reply</a>
@@ -137,84 +42,52 @@
                                 <a href="#" class="text-primary">Edit</a>
                             </li>
                         </ul>
-                    </li><!-- /options -->
-                    <li class="comment comment-reply">
-                        <!-- avatar -->
-                        <img class="avatar" src="/images/demo/people/300x300/6-min.jpg" alt="avatar" width="50" height="50">
-                        <!-- comment body -->
-                        <div class="comment-body">
-                            <a href="#" class="comment-author">
-                                <small class="text-muted pull-right"> 4 Minutes ago </small>
-                                <span>Ioana Doe</span>
-                            </a>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy! <i class="fa fa-smile-o green"></i>
-                            </p>
-                        </div><!-- /comment body -->
-                        <!-- options -->
-                        <ul class="list-inline size-11 margin-top-10">
-                            <li>
-                                <a href="#" class="text-success"><i class="fa fa-thumbs-up"></i> Like</a>
-                            </li>
-                            <li class="pull-right">
-                                <a href="#" class="text-danger">Delete</a>
-                            </li>
-                            <li class="pull-right">
-                                <a href="#" class="text-primary">Edit</a>
-                            </li>
-                        </ul><!-- /options -->
                     </li>
-                    <li class="comment comment-reply">
-                        <!-- avatar -->
-                        <img class="avatar" src="/images/demo/people/300x300/7-min.jpg" alt="avatar" width="50" height="50">
-                        <!-- comment body -->
-                        <div class="comment-body">
-                            <a href="#" class="comment-author">
-                                <small class="text-muted pull-right"> a moment ago </small>
-                                <span>Simona Doe</span>
-                            </a>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy! <i class="fa fa-smile-o green"></i>
-                            </p>
-                        </div><!-- /comment body -->
-                        <!-- options -->
-                        <ul class="list-inline size-11 margin-top-10">
-                            <li>
-                                <a href="#" class="text-success"><i class="fa fa-thumbs-up"></i> Like</a>
-                            </li>
-                            <li class="pull-right">
-                                <a href="#" class="text-danger">Delete</a>
-                            </li>
-                            <li class="pull-right">
-                                <a href="#" class="text-primary">Edit</a>
-                            </li>
-                        </ul><!-- /options -->
-                    </li>
+                    {{ _.each(messages,function (msg){ }}
+                        <li class="comment">
+
+                            <img class="avatar" src="/images/demo/people/300x300/5-min.jpg" alt="avatar" width="50" height="50">
+
+                            <div class="comment-body">
+                                <a href="#" class="comment-author">
+                                    <small class="text-muted pull-right"> 12 Minutes ago </small>
+                                    <span>Melisa Doe</span>
+                                </a>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                                    euismod tincidunt laoreet dolore magna aliquam tincidunt erat volutpat laoreet
+                                    dolore magna aliquam tincidunt erat volutpat.
+                                </p>
+                            </div>
+
+                            <ul class="list-inline size-11 margin-top-10">
+                                <li>
+                                    <a href="#" class="text-info"><i class="fa fa-reply"></i> Reply</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-success"><i class="fa fa-thumbs-up"></i> Like</a>
+                                </li>
+                                <li class="pull-right">
+                                    <a href="#" class="text-danger">Delete</a>
+                                </li>
+                                <li class="pull-right">
+                                    <a href="#" class="text-primary">Edit</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {{ }); }}
                     <li>
                         <div class="input-group">
                             <input id="btn-input" class="form-control" placeholder="Type your message..." type="text">
                             <span class="input-group-btn">
                                 <button class="btn btn-primary" id="btn-chat">
-                                    <i class="fa fa-reply"></i> Reply
+                                    <i class="fa fa-reply"></i> Отправить
                                 </button>
                             </span>
                         </div>
                     </li>
                 </ul>
-                <!-- /COMMENT -->
-
             </div>
         </div>
-
-        <form method="post" action="#" class="box-light margin-top-20">
-            <div class="box-inner">
-                <h4 class="uppercase">Ваше сообщение</h4>
-                <textarea required="" class="form-control" data-maxlength="100" rows="5" placeholder=""></textarea>
-                <div class="text-muted text-right margin-top-3 size-12 margin-bottom-10">
-                    <span>0/100</span> Words
-                </div>
-                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Отправить</button>
-            </div>
-        </form>
     </div>
 </div>

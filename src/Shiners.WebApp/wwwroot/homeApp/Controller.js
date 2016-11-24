@@ -2,7 +2,8 @@
 import IndexView from './index/indexView.js';
 import MobileIndexView from './index/MobileIndexView.js';
 import PostDetailsView from './posts/DetailsView.js';
-import AsteroidModel from '../data/AsteroidModel.js'
+import AsteroidModel from '../data/AsteroidModel.js';
+import Collection from '../data/AsteroidCollection.js';
 import PreloaderView from '../sharedViews/PreloaderView.js';
 import CreatePostView from './posts/create/CreatePostView.js';
 
@@ -86,10 +87,20 @@ export default Marionette.Object.extend({
     // чат с пользователем remoteUserId
     messagesTo(remoteUserId) {
         app.layout.showChildView('content', new PreloaderView());
-        var remoteUser = new AsteroidModel({_id:remoteUserId},{asteroid:app.asteroid});
-        remoteUser.loadByMethod('getUser',null,() => {
-            app.layout.showChildView('content', new MessagesToUserView( {model: remoteUser } ));
-        });
+        if (app.userMeteorObj && app.userMeteorObj._id) {
+            var remoteUser = new AsteroidModel({ _id: remoteUserId }, { asteroid: app.asteroid });
+            remoteUser.loadByMethod('getUser',null,() => {                
+                app.asteroid.call('bz.chats.createChatIfFirstMessage',app.userMeteorObj._id, remoteUserId).result.then((error,chatId) => {
+                    var messages = new Collection(null,{asteroid:app.asteroid});
+                    messages.loadByMethod('getMessages', chatId,() => {
+                        var chat = new AsteroidModel({_id:chatId,remoteUser:remoteUser.toJSON(),user:app.userMeteorObj,messages:messages.toJSON()}, { asteroid: app.asteroid });
+                        app.layout.showChildView('content', new MessagesToUserView({ model: chat }));
+                    });                    
+                });              
+            });
+        } else {
+            app.router.navigate("",{trigger:true});
+        }        
     },
 
     profileDetails(id){

@@ -37,7 +37,6 @@ var View = Marionette.View.extend({
         this.renderMapAndBanner();
         this.listenTo(app.router,'route',this.toggleMapAndBanner);
         this._adaptUiIfIsIframe();
-
         this.listenTo(app.user, 'receivedMeteorUser', this._toggleUserInfo);
         this._loadIframeView();
     },
@@ -114,7 +113,6 @@ var View = Marionette.View.extend({
         }
     },
     _loadIframeView() {
-        var that = this;
         setTimeout(()=> {
             if (!app.views.iframeView) {
                 var iView = new IframeView({
@@ -124,7 +122,6 @@ var View = Marionette.View.extend({
                 app.views.iframeView = iView;
             }
         }, 2000); // let's assume main page is loaded by this time
-
     }
 });
 export default View;
