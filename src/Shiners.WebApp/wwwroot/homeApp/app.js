@@ -29,6 +29,7 @@ let App = Marionette.Application.extend({
     },
     initialize() {
         this.asteroid = new Asteroid("www.shiners.mobi",true);
+        window.asteroid = this.asteroid;
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
         this.postAdTypes = new Collection(null, { asteroid: this.asteroid });
         this.myPosts=new Collection(null, { asteroid: this.asteroid });  
@@ -107,7 +108,6 @@ let App = Marionette.Application.extend({
         this.asteroid.loginWithPassword(email, password)
             .then((loginResult) => {
                 user.set('_id', loginResult);
-                //document.cookie["userId"] = loginResult;
                 user.loadByMethod('getUser', [loginResult],()=>user.trigger('login'));               
             }).catch((error) => {
                 user.trigger('error:login', error);
@@ -120,7 +120,6 @@ let App = Marionette.Application.extend({
         this.asteroid.logout().then(() => {
             user.unset('_id');
             user.unset('id');
-            //delete document.cookie["userId"];
             user.trigger('logout');
         });
     }

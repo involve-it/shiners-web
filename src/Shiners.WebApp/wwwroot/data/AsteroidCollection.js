@@ -21,7 +21,7 @@ export default Backbone.Collection.extend({
         this.trigger('before:load',this);
         this.asteroid.call(method, args).result.then((result)=> {
             var res = _.isArray(result) ? result : result.result;
-            if (result.success) {
+            if (_.isArray(res)||result.success) {
                 self.reset(res && !_.isEmpty(res)?res:null, _.omit(opts, "context", "callback"));
                 if (callback)
                     callback.apply(context, arguments);

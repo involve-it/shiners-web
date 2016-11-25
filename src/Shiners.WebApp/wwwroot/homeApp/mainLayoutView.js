@@ -36,9 +36,9 @@ var View = Marionette.View.extend({
     onRender() {
         this.renderMapAndBanner();
         this.listenTo(app.router,'route',this.toggleMapAndBanner);
-        this._adaptUiIfIsIframe();
-        this.listenTo(app.user, 'receivedMeteorUser', this._toggleUserInfo);
-        this._loadIframeView();
+        //this._adaptUiIfIsIframe();
+        //this.listenTo(app.user, 'receivedMeteorUser', this._toggleUserInfo);
+        //this._loadIframeView();
     },
 
     onAttach() {
@@ -87,6 +87,13 @@ var View = Marionette.View.extend({
     showFooter() {
         this.$('#footer').show();
     },
+
+
+
+
+
+
+
     _toggleUserInfo(user) {
         var view = new UserMenuView({ 
             model: new Backbone.Model(user)

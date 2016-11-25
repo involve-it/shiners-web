@@ -21,7 +21,7 @@ import ProfilePageView from './user/ProfilePageView';
 import MyMessagesPageView from './user/MyMessagesPageView';
 import UserDetailsPageView from './user/UserDetailsPageView';
 import app from './app.js';
-//import Model from '../data/AsteroidModel.js';
+
 export default Marionette.Object.extend({
 
     index() {
@@ -84,19 +84,19 @@ export default Marionette.Object.extend({
         var chatModel = new Backbone.Model({ _id:id });
         app.layout.showChildView('content', new ChatIdView( {model: chatModel } ));
     },
-    // чат с пользователем remoteUserId
+
     messagesTo(remoteUserId) {
         app.layout.showChildView('content', new PreloaderView());
         if (app.userMeteorObj && app.userMeteorObj._id) {
             var remoteUser = new AsteroidModel({ _id: remoteUserId }, { asteroid: app.asteroid });
             remoteUser.loadByMethod('getUser',null,() => {                
-                app.asteroid.call('bz.chats.createChatIfFirstMessage',app.userMeteorObj._id, remoteUserId).result.then((error,chatId) => {
+                app.asteroid.call('bz.chats.createChatIfFirstMessage',app.userMeteorObj._id, remoteUserId).result.then((chatId) => {
                     var messages = new Collection(null,{asteroid:app.asteroid});
-                    messages.loadByMethod('getMessages', chatId,() => {
+                    messages.loadByMethod('getMessages', {chatId:chatId,skip:0,take:20},() => {
                         var chat = new AsteroidModel({_id:chatId,remoteUser:remoteUser.toJSON(),user:app.userMeteorObj,messages:messages.toJSON()}, { asteroid: app.asteroid });
                         app.layout.showChildView('content', new MessagesToUserView({ model: chat }));
-                    });                    
-                });              
+                    });
+                });
             });
         } else {
             app.router.navigate("",{trigger:true});

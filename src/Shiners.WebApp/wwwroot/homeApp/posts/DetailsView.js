@@ -18,16 +18,8 @@ var View = Marionette.View.extend({
         window.postDetails = this.model.toJSON();
         this.collection = new Collection(null,{asteroid:this.model.asteroid});
         this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
+        this.listenTo(app.user,'receivedMeteorUser',this.render);
     },
-
-    onAttach() {
-        this.initVkSocialButton(); 
-        this.initCarousel();
-        var center = app.map.getCenter();
-        //this.collection.loadByMethod('searchPosts', ['',center.lat(),center.lng(),200,0,10]);
-        this.collection.loadByMethod('getPopularPosts',[center.lat(),center.lng(),200,0,10]); 
-    },
-
     onBeforeRender() {
         this.setModelDistance();
         if (app.userMeteorObj &&app.userMeteorObj._id) {
@@ -35,6 +27,17 @@ var View = Marionette.View.extend({
                 currentUser:app.userMeteorObj
             };
         }
+    },
+
+    onRender() {
+        var center = app.map.getCenter();
+        this.collection.loadByMethod('getPopularPosts',[center.lat(),center.lng(),200,0,10]);
+        this.initVkSocialButton(); 
+        this.initCarousel();
+    },
+
+    onAttach() {
+        
     },
 
     initVkSocialButton(){     
