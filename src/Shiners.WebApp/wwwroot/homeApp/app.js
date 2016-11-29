@@ -29,7 +29,12 @@ let App = Marionette.Application.extend({
     },
     initialize() {
         this.asteroid = new Asteroid("www.shiners.mobi",true);
-        window.asteroid = this.asteroid;
+        window.asteroid = this.asteroid; // debug
+        this.asteroid.on('login', _.bind(this.initUser,this));
+        this.asteroid.on('logout', _.bind(this.destroyUser,this));
+        if (this.asteroid.loggedIn) {
+            this.initUser(this.asteroid.userId);
+        }
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
         this.postAdTypes = new Collection(null, { asteroid: this.asteroid });
         this.myPosts=new Collection(null, { asteroid: this.asteroid });  
@@ -44,7 +49,6 @@ let App = Marionette.Application.extend({
         this.showView(this.layout);
         this.initVkApi();
         this.getPosition();
-        this.checkLogin();
     },
 
     FbButton(container) {
@@ -61,12 +65,6 @@ let App = Marionette.Application.extend({
     },
 
     initVkApi(){
-        //FB.init({
-        //    appId:'510068285855489',
-        //    version    : 'v2.8',
-        //    status:true
-        //});
-
         VK.init({ apiId: 5709603, onlyWidgets: true });
     },
 
@@ -95,33 +93,39 @@ let App = Marionette.Application.extend({
             .always(() => app.startHistory());
     },
 
-    checkLogin() {
-        var user = this.user;
-        if (document.cookie["userId"]) {
-            user.set('_id', document.cookie["userId"]);
-            user.loadByMethod('getUser', [user.get('_id')],()=>user.trigger('login'));
-        }
-    },
+
 
     authorize(email,password) {
-        var user=this.user;
-        this.asteroid.loginWithPassword(email, password)
-            .then((loginResult) => {
-                user.set('_id', loginResult);
-                user.loadByMethod('getUser', [loginResult],()=>user.trigger('login'));               
-            }).catch((error) => {
-                user.trigger('error:login', error);
-                console.error('Error:', error);
-            });
+        //var user=this.user;
+        this.asteroid.loginWithPassword(email, password);
+        //.then((loginResult) => {
+        //    user.set('_id', loginResult);
+        //    user.loadByMethod('getUser', [loginResult],()=>user.trigger('login'));               
+        //}).catch((error) => {
+        //    user.trigger('error:login', error);
+        //    console.error('Error:', error);
+        //});
+    },
+
+    initUser(userId) {
+        this.user.set('_id',userId);
+        this.user.loadByMethod('getUser', _.bind(() => this.user.trigger('login'),this));
     },
 
     logout() {
-        var user = this.user;
-        this.asteroid.logout().then(() => {
-            user.unset('_id');
-            user.unset('id');
-            user.trigger('logout');
-        });
+        //var user = this.user;
+        this.asteroid.logout();
+        //    .then(() => {
+        //    user.unset('_id');
+        //    user.unset('id');
+        //    user.trigger('logout');
+        //});
+    },
+
+    destroyUser() {
+            this.user.unset('_id');
+            this.user.unset('id',{silent:true});
+            this.user.trigger('logout');
     }
 });
 

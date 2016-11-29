@@ -18,13 +18,13 @@ var View = Marionette.View.extend({
         window.postDetails = this.model.toJSON();
         this.collection = new Collection(null,{asteroid:this.model.asteroid});
         this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
-        this.listenTo(app.user,'receivedMeteorUser',this.render);
+        this.listenTo(app.user,'login',this.render);
     },
     onBeforeRender() {
         this.setModelDistance();
-        if (app.userMeteorObj &&app.userMeteorObj._id) {
+        if (app.asteroid.loggedIn) {
             this.templateContext = {
-                currentUser:app.userMeteorObj
+                currentUser:app.user.toJSON()
             };
         }
     },

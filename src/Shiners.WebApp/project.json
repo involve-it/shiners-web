@@ -5,6 +5,7 @@
     "AspNet.Identity.MongoDB": "2.0.8",
     "BundlerMinifier.Core": "2.2.301",
     "DdpNet": "0.1.0",
+    "ImageLibrary": "3.0.0",
     "Jurassic": "2.2.1",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
