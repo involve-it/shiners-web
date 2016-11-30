@@ -185,3 +185,8 @@ ul.process-steps li a {
     line-height: 30px;
     width: 50px;
 }
+
+/*user bar lonk color*/
+li.quick-cart > a {
+    color: #fff !important;
+}

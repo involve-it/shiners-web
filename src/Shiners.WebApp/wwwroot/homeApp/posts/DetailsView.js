@@ -19,6 +19,7 @@ var View = Marionette.View.extend({
         this.collection = new Collection(null,{asteroid:this.model.asteroid});
         this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
         this.listenTo(app.user,'login',this.render);
+        this.listenTo(app.user, 'logout', this.render);
     },
     onBeforeRender() {
         this.setModelDistance();
