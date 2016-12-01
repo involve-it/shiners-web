@@ -90,7 +90,7 @@ export default Marionette.Object.extend({
         if (app.asteroid.loggedIn) {
             var remoteUser = new AsteroidModel({ _id: remoteUserId }, { asteroid: app.asteroid });
             remoteUser.loadByMethod('getUser',() => {                
-                app.asteroid.call('bz.chats.createChatIfFirstMessage',app.userMeteorObj._id, remoteUserId).result.then((chatId) => {
+                app.asteroid.call('bz.chats.createChatIfFirstMessage',app.user.id, remoteUserId).result.then((chatId) => {
                     var messages = new Collection(null,{asteroid:app.asteroid});
                     messages.loadByMethod('getMessages', {chatId:chatId,skip:0,take:20},() => {
                         var chat = new AsteroidModel({_id:chatId,remoteUser:remoteUser.toJSON(),user:app.userMeteorObj,messages:messages.toJSON()}, { asteroid: app.asteroid });

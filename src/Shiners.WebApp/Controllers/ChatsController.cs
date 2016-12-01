@@ -17,5 +17,10 @@ namespace Shiners.WebApp.Controllers
         {
             return View("../Home/Index");
         }
+
+        public ActionResult To(string id)
+        {
+            return View("../Home/Index");
+        }
     }
 }

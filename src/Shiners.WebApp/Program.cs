@@ -17,8 +17,8 @@ namespace Shiners.WebApp
         {
             try
             {
-                Meteor = new MeteorClient(new Uri("wss://shiners.mobi/websocket"));
-                Meteor.ConnectAsync().Wait();
+                //Meteor = new MeteorClient(new Uri("wss://shiners.mobi/websocket"));
+                //Meteor.ConnectAsync().Wait();
             }
             catch (Exception e)
             {

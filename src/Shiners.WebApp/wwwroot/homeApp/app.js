@@ -9,6 +9,7 @@ import Collection from '../data/AsteroidCollection.js';
 import Router from './Router.js';
 import _ from 'underscore';
 import AsteroidModel from '../data/AsteroidModel.js';
+import PreloaderView from '../sharedViews/PreloaderView.js';
 import '../css/shiners-override.css';
 
 let App = Marionette.Application.extend({
@@ -29,12 +30,7 @@ let App = Marionette.Application.extend({
     },
     initialize() {
         this.asteroid = new Asteroid("www.shiners.mobi",true);
-        window.asteroid = this.asteroid; // debug
-        this.asteroid.on('login', _.bind(this.initUser,this));
-        this.asteroid.on('logout', _.bind(this.destroyUser,this));
-        if (this.asteroid.loggedIn) {
-            this.initUser(this.asteroid.userId);
-        }
+        window.asteroid = this.asteroid; // debug        
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
         this.postAdTypes = new Collection(null, { asteroid: this.asteroid });
         this.myPosts=new Collection(null, { asteroid: this.asteroid });  
@@ -43,12 +39,32 @@ let App = Marionette.Application.extend({
         this.layout = new RootView();
     },
 
-    onStart() {
-        this.isMobile = $.browser.mobile;
-        this.postAdTypes.loadByMethod('getPostAdTypes');                  
-        this.showView(this.layout);
-        this.initVkApi();
-        this.getPosition();
+    onStart() {   
+        this.showView(new PreloaderView); 
+        if (this.asteroid.resumeLoginPromise)
+            this._startApp();
+        else {
+            var app = this;
+            this.asteroid.on('connected',()=>app._startApp());
+            //this.asteroid.on('loginError',()=>app._startApp());
+        }      
+    },
+
+    _startApp() {
+        this.asteroid.off('connected');
+        //this.asteroid.off('loginError');
+        this.asteroid.resumeLoginPromise.finally((_.bind(() => {
+            this.isMobile = $.browser.mobile;
+            this.postAdTypes.loadByMethod('getPostAdTypes');
+            this.showView(this.layout);        
+            this.initVkApi();
+            this.getPosition();  
+            this.asteroid.on('login', _.bind(this.initUser,this));
+            this.asteroid.on('logout', _.bind(this.destroyUser,this));       
+            if (this.asteroid.loggedIn) {
+                this.initUser(this.asteroid.userId);
+            }
+        },this)));        
     },
 
     FbButton(container) {
