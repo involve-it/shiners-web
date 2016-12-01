@@ -74,7 +74,7 @@ namespace Shiners.WebApp
             app.UseStaticFiles();
             //app.UseWebSockets();
             app.UseIdentity();
-           
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute("about", "about-us", new { controller = "Home", action = "About" });
