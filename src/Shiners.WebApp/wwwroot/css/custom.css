@@ -1,175 +1,189 @@
 ﻿.contact-over-map {
-    height: 480px;
-}
+  height: 480px; }
+
 .map-section {
-    padding-top: 10px;
-    height: 480px;
-}
+  padding-top: 10px;
+  height: 480px; }
 
 .item-box figure {
-    height: 200px;
-}
+  height: 200px; }
 
 .contact-over-box {
-    min-height: inherit;
-    padding: 5px 5px;
-}
+  min-height: inherit;
+  padding: 5px 5px; }
 
 /*suggestion box*/
 .suggestion-box {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    border-color: -moz-use-text-color rgba(0, 0, 0, 0.07) rgba(0, 0, 0, 0.07);
-    border-image: none;
-    border-style: none solid solid;
-    border-width: 0 1px 1px;
-    background-color: #fff;
-    box-shadow: 5px 5px rgba(91, 91, 91, 0.2);
-    display: none;
-    left: auto;
-    padding: 10px 0;
-    position: absolute;
-    right: 0;
-    width: 100%;
-    z-index: 22;
-    top: 40px;
-}
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: -moz-use-text-color rgba(0, 0, 0, 0.07) rgba(0, 0, 0, 0.07);
+  border-image: none;
+  border-style: none solid solid;
+  border-width: 0 1px 1px;
+  background-color: #fff;
+  box-shadow: 5px 5px rgba(91, 91, 91, 0.2);
+  display: none;
+  left: auto;
+  padding: 10px 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  z-index: 22;
+  top: 40px; }
 
 .suggestion-box .suggestion-box-wrapper {
-    max-height: 300px;
-    overflow-y: auto;
-    text-align: left;
-    
-}
+  max-height: 300px;
+  overflow-y: auto;
+  text-align: left; }
+
 .suggestion-box-wrapper a {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-    display: block;
-    padding: 15px 10px;
-}
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  display: block;
+  padding: 15px 10px; }
 
 .suggestion-box-wrapper a h6 {
-    margin: 0;
-    overflow: hidden;
-    padding: 4px 0 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+  margin: 0;
+  overflow: hidden;
+  padding: 4px 0 0;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+
 /* */
-
 .contact-over-box .toggle .toggle-content {
-    padding: 5px 5px;
-}
+  padding: 5px 5px; }
+
 div.toggle {
-
-    margin: 0;
-
-}
+  margin: 0; }
 
 /*header*/
 #header {
-    background-color: #51b9c8;
-    background-image: linear-gradient(180deg, #51b9c8, #4695e6);
-}
+  background-color: #51b9c8;
+  background-image: linear-gradient(180deg, #51b9c8, #4695e6); }
+
 #topMain.nav-pills > li > a {
-    color: #fff;
-}
+  color: #fff; }
+
 #topMain.nav-pills > li > a:hover {
-    color: #fff;
-}
+  color: #fff; }
+
 #topMain.nav-pills > li.active > a {
-    color: #fff;
-}
+  color: #fff; }
+
 #header.header-md #topNav a.logo > img {
-    height: 47px;
-    transition: all 0.3s ease 0s;
-}
+  height: 47px;
+  transition: all 0.3s ease 0s; }
 
 #header.header-md #topNav a.logo {
+  line-height: 70px; }
 
-    line-height: 70px;
-}
 #topNav .btn {
-    margin-top: 15px;
-}
-/**/
+  margin-top: 15px; }
 
+/**/
 /*map bars and windows*/
 .map-frame {
-    padding: 5px 5px;
-    background-color: #fff;
-    box-shadow:#888 0 0 16px;
-    z-index:5;
-	-webkit-border-radius: 3px;
-	   -moz-border-radius: 3px;
-			border-radius: 3px;
-}
+  padding: 5px 5px;
+  background-color: #fff;
+  box-shadow: #888 0 0 16px;
+  z-index: 5;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
 
 .map-frame-right {
-    height: 460px;
-    padding: 5px 5px;
-    background-color: #fff;
-    box-shadow:#888 0 0 16px;
-    z-index:5;
-	-webkit-border-radius: 3px;
-	   -moz-border-radius: 3px;
-			border-radius: 3px;
-
-}
+  height: 460px;
+  padding: 5px 5px;
+  background-color: #fff;
+  box-shadow: #888 0 0 16px;
+  z-index: 5;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
 
 /*logo*/
-
 .shiners-logo {
-    margin-top: 10px;
-}
+  margin-top: 10px; }
+
 .shiners-logo a {
-	color:#fff;
-	text-decoration:none;
-}
+  color: #fff;
+  text-decoration: none; }
+
 .shiners-logo a:after {
-	color:#fff;
-	text-decoration:none;
-}
+  color: #fff;
+  text-decoration: none; }
+
 .shiners-logo a:hover {
-	color:#fff;
-	text-decoration:none;
-}
+  color: #fff;
+  text-decoration: none; }
+
 .shiners-logo a:active {
-	color:#fff;
-	text-decoration:none;
-}
+  color: #fff;
+  text-decoration: none; }
+
 .shiners-logo small {
-    color: #fff;
-	display: block;
-	font-size: 12px;
-    margin-top: -10px;
-}
+  color: #fff;
+  display: block;
+  font-size: 12px;
+  margin-top: -10px; }
 
 /*btn-red customization*/
-
 .btn-red {
-    background-color: #f04124;
-    color: #fff !important;
-}
-  .bg-type-category-jobs      {background-color: rgba(114,201,234, 1);}
-  .bg-type-category-trainings {background-color: rgba(209,138,189, 1);}
-  .bg-type-category-connect   {background-color: rgba(253,94,81, 1);}
-  .bg-type-category-trade     {background-color: rgba(155,156,156, 1);}
-  .bg-type-category-housing   {background-color: rgba(189,208,39, 1);}
-  .bg-type-category-events    {background-color: rgba(237,116,40, 1);}
-  .bg-type-category-services  {background-color: rgba(166,210,173, 1);}
-  .bg-type-category-help      {background-color: rgba(90,163,147, 1);}
-  .bg-type-category-          {display: none; }
+  background-color: #f04124;
+  color: #fff !important; }
+
+.bg-type-category-jobs {
+  background-color: #72c9ea; }
+
+.bg-type-category-trainings {
+  background-color: #d18abd; }
+
+.bg-type-category-connect {
+  background-color: #fd5e51; }
+
+.bg-type-category-trade {
+  background-color: #9b9c9c; }
+
+.bg-type-category-housing {
+  background-color: #bdd027; }
+
+.bg-type-category-events {
+  background-color: #ed7428; }
+
+.bg-type-category-services {
+  background-color: #a6d2ad; }
+
+.bg-type-category-help {
+  background-color: #5aa393; }
+
+.bg-type-category- {
+  display: none; }
+
 /*categories colors*/
-  .type-category-jobs      {color: rgba(114,201,234, 1);}
-  .type-category-trainings {color: rgba(209,138,189, 1);}
-  .type-category-connect   {color: rgba(253,94,81, 1);}
-  .type-category-trade     {color: rgba(155,156,156, 1);}
-  .type-category-housing   {color: rgba(189,208,39, 1);}
-  .type-category-events    {color: rgba(237,116,40, 1);}
-  .type-category-services  {color: rgba(166,210,173, 1);}
-  .type-category-help      {color: rgba(90,163,147, 1);}
+.type-category-jobs {
+  color: #72c9ea; }
+
+.type-category-trainings {
+  color: #d18abd; }
+
+.type-category-connect {
+  color: #fd5e51; }
+
+.type-category-trade {
+  color: #9b9c9c; }
+
+.type-category-housing {
+  color: #bdd027; }
+
+.type-category-events {
+  color: #ed7428; }
+
+.type-category-services {
+  color: #a6d2ad; }
+
+.type-category-help {
+  color: #5aa393; }
 
 /*process-steps customization*/
 /*.process-steps.nav-justified > li > a {
@@ -177,16 +191,15 @@ div.toggle {
     border-radius: 4px 4px 0 0;
 }*/
 ul.process-steps li a {
-    background-color: transparent;
-    border: none;
-    color: #111;
-    font-size: 30px;
-    height: 50px;
-    line-height: 30px;
-    width: 50px;
-}
+  background-color: transparent;
+  border: none;
+  color: #111;
+  font-size: 30px;
+  height: 50px;
+  line-height: 30px;
+  width: 50px; }
 
 /*user bar lonk color*/
 li.quick-cart > a {
-    color: #fff !important;
-}
+  color: #fff !important; }
+

@@ -22,17 +22,25 @@ namespace Shiners.WebApp.Controllers
         {
             environment = env;
         }
+        public FileResult GetCaptchaImage(string url, int w, int h)
+        {
+            var img = new KalikoImage(url);
+            MemoryStream stream = new MemoryStream();
+            img.SaveJpg(stream,90);
+            stream.Seek(0, SeekOrigin.Begin);
+            return new FileStreamResult(stream, "image/jpg");
 
-        public ActionResult Index(string url, int w, int h)
+        }
+        public FileResult Index(string url, int w, int h)
         {            
             try
             {
                 var img = new KalikoImage(url);
-                var filestream = new MemoryStream();
-                img.SaveJpg(filestream,100);
-                
-                Response.ContentType = "image/jpg";
-                return new StreamResult(filestream);
+                img.Resize(50,50);
+                MemoryStream stream = new MemoryStream();
+                img.SaveJpg(stream, 90);
+                stream.Seek(0, SeekOrigin.Begin);
+                return new FileStreamResult(stream, "image/jpg");
                 //var filestream=new MemoryStream(img.ByteArray);
                 //var image = Image.FromStream(filestream);
 

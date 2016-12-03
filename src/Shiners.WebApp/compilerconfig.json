@@ -2,5 +2,9 @@
   {
     "outputFile": "wwwroot/css/constants.css",
     "inputFile": "wwwroot/css/constants.less"
+  },
+  {
+    "outputFile": "wwwroot/css/custom.css",
+    "inputFile": "wwwroot/css/custom.scss"
   }
 ]
