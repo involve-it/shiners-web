@@ -1,0 +1,22 @@
+﻿<img class="avatar" src="/Img/url={{= userId===user._id?(user.image?user.image.imageUrl:''):(remoteUser.image?remoteUser.image.imageUrl:'')}}&w=50&h=50" alt="avatar" width="50" height="50">
+
+<div class="comment-body">
+    <a href="#" class="comment-author {{=userId==user._id?'pull-right':''}}">
+        <small class="text-muted pull-right"> {{=moment(timestamp).fromNow()}}</small>
+        <span>{{= userId==user._id?user.username:remoteUser.username}}</span>
+    </a>
+    <p>
+        {{=text}}
+    </p>
+</div>
+
+<ul class="list-inline size-11 margin-top-10">
+    <li class="pull-right">
+        <a href="#" class="text-danger">Удалить</a>
+    </li>   
+    {{if(userId==user._id) { }}
+        <li class="pull-right">
+            <a href="#" class="text-primary">Редактировать</a>
+        </li>
+    {{ } }}    
+</ul>

@@ -29,8 +29,8 @@ namespace Shiners.WebApp.Controllers
             img.SaveJpg(stream,90);
             stream.Seek(0, SeekOrigin.Begin);
             return new FileStreamResult(stream, "image/jpg");
-
         }
+
         public FileResult Index(string url, int w, int h)
         {            
             try
@@ -38,27 +38,20 @@ namespace Shiners.WebApp.Controllers
                 var img = new KalikoImage(url);
                 img.Resize(50,50);
                 MemoryStream stream = new MemoryStream();
-                img.SaveJpg(stream, 90);
+                img.SaveJpg(stream,50);
                 stream.Seek(0, SeekOrigin.Begin);
+                //string extension = Path.GetExtension(url).Replace(",", "");
                 return new FileStreamResult(stream, "image/jpg");
-                //var filestream=new MemoryStream(img.ByteArray);
-                //var image = Image.FromStream(filestream);
-
-                //var extension = Path.GetExtension(url);
-                //return new FileStreamResult(filestream, "image/"+ extension.Replace(".",""))
-                //{
-                //   FileDownloadName = "Img"+Guid.NewGuid()+extension
-                //};
-                //return new FileStreamResult(filestream, "image/png");
             }
             catch (Exception e)
             {
-                string noimagePath = Path.Combine(environment.WebRootPath, "./images/no_image.png");
-                var filestream = new MemoryStream();
-                new KalikoImage(noimagePath).SavePng(filestream);
-                return new FileStreamResult(filestream, "image/png");
-            }
-            
+                var img = new KalikoImage(Path.Combine(environment.WebRootPath, "./images/no_image.png"));
+                img.Resize(50, 50);
+                MemoryStream stream = new MemoryStream();
+                img.SaveJpg(stream, 50);
+                stream.Seek(0, SeekOrigin.Begin);
+                return new FileStreamResult(stream, "image/jpg");
+            }          
         }
     }
 }
