@@ -1,22 +1,36 @@
-﻿<img class="avatar" src="/Img/url={{= userId===user._id?(user.image?user.image.imageUrl:''):(remoteUser.image?remoteUser.image.imageUrl:'')}}&w=50&h=50" alt="avatar" width="50" height="50">
+﻿
+{{if (userId===user._id) { }}
+<img class="avatar" src="{{= user.image && user.image.imageUrl ? '/Img/url='+ user.image.imageUrl+'&w=50&h=50' : '/images/shiners/user.png'}}" alt="{{=user.username}}" width="50" height="50">
+{{ } else { }}
+<img class="avatar" src="{{= remoteUser.image &&remoteUser.image.imageUrl ?'/Img/url='+ remoteUser.image.imageUrl+'&w=50&h=50' : '/images/shiners/user.png'}}" alt="{{=remoteUser.username}}" width="50" height="50">
+{{ } }}
 
+
+<!-- comment body -->
 <div class="comment-body">
-    <a href="#" class="comment-author {{=userId==user._id?'pull-right':''}}">
-        <small class="text-muted pull-right"> {{=moment(timestamp).fromNow()}}</small>
+    <a href="/profile/{{=userId}}" class="comment-author">
+        <small class="text-muted pull-right"> {{=moment(timestamp).fromNow()}} </small>
         <span>{{= userId==user._id?user.username:remoteUser.username}}</span>
     </a>
     <p>
         {{=text}}
     </p>
-</div>
-
+</div><!-- /comment body -->
+<!-- options -->
 <ul class="list-inline size-11 margin-top-10">
+    <li>
+        <a href="#" class="text-info"><i class="fa fa-reply"></i> Переслать</a>
+    </li>
+    <li>
+        <a href="#" class="text-success"><i class="fa fa- fa-{{= status===''?'fa-check':''}}"></i></a>
+    </li>
     <li class="pull-right">
-        <a href="#" class="text-danger">Удалить</a>
-    </li>   
+        <a href="#" class="text-danger"> Удалить</a>
+    </li>
     {{if(userId==user._id) { }}
-        <li class="pull-right">
-            <a href="#" class="text-primary">Редактировать</a>
-        </li>
-    {{ } }}    
+    <li class="pull-right">
+        <a href="#" class="text-primary"> Редактировать</a>
+    </li>
+    {{ } }}
+    
 </ul>

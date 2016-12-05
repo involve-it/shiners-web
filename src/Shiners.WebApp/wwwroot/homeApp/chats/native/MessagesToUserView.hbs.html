@@ -1,26 +1,17 @@
 ﻿<div class="container">
     <div class="col-md-12">
-        <div class="box-icon box-icon-center box-icon-round box-icon-large text-center nomargin">
-            <div class="box1 noradius">
-                <div class="box-icon-title">
-                    <img class="thumbnail rounded" src="/Img/url={{=remoteUser.image && remoteUser.image.imageUrl?remoteUser.image.imageUrl:'/images/noimage.jpg'}}&w=70&h=70" alt="{{=remoteUser.username}}" width="70" height="70">
-                    <h2>{{=remoteUser.username}}</h2>
-                </div>
-            </div>
+        <div class="box-icon box-icon-center box-icon-round box-icon-large text-center nomargin">           
+            <h2><img class="rounded" src="{{=remoteUser.image && remoteUser.image.imageUrl?'/Img?url='+encodeURIComponent(remoteUser.image.imageUrl)+'&w=70&h=70':'/images/avatar.png'}}" alt="{{=remoteUser.username}}" width="70" height="70"> {{=remoteUser.username}}</h2>
         </div>
 
         <div class="box-light">
-            <div class="box-inner" id="messagesList"></div>
-            <div class="input-group">
-                <form action="#" method="post">
-                    <input id="messageText" class="form-control" placeholder="Ваше сообщение..." type="text">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit">
-                            <i class="fa fa-reply"></i> Отправить
-                        </button>
-                    </span>
-                </form>
-            </div>
+            <div class="box-inner" id="messagesList"></div> 
         </div>
+        <form method="post" action="#" class="box-light margin-top-10">
+            <div class="box-inner">
+                <textarea id="messageText" required="" class="form-control" data-maxlength="100" rows="3" placeholder="Ваше сообщение для пользователя {{=remoteUser.username}}"></textarea>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Отправить</button>
+            </div>
+        </form>
     </div>
 </div>

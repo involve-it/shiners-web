@@ -1,4 +1,4 @@
-﻿<img class="thumbnail pull-left" src="/Img?url={{=details.photosUrls && details.photosUrls.length>0?details.photosUrls[0]:'/images/no_image.png'}}&w=60&h=60" width="60" height="60" alt="" />
+﻿<img class="thumbnail pull-left" src="{{=details.photosUrls && details.photosUrls.length>0?'/Img?url='+encodeURIComponent(details.photosUrls[0])+'&w=60&h=60':'/images/no_image.png'}}" width="60" height="60" alt="" />
 <h4 class="size-13 nomargin noborder nopadding"><a href="/posts/{{-_id}}">{{=details.title}}</a></h4>
 <span class="size-11 text-muted">{{=moment(timestamp).fromNow()}}</span>
 {{if(obj.type) { }}

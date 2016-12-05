@@ -17,12 +17,13 @@ var View = Marionette.View.extend({
     },
 
     events:{
-        'form submit':'sendMessage'
+        'submit form':'sendMessage'
     },
 
     sendMessage(e) {
         e.preventDefault();
-        var value = (this.$('#messageText').val()||"").trim();
+        var $textEl = this.$('#messageText'); 
+        var value = ($textEl.val()||"").trim();
         if (!_.isEmpty(value)) {
             var model = new Model({
                 text: value,
@@ -32,6 +33,9 @@ var View = Marionette.View.extend({
                 chatId: this.model.id
             });
             this.collection.add(model);
+            model.save();
+            $textEl.val('');
+            $textEl.focus();
         }
     }
 

@@ -16,19 +16,46 @@ export default MongoModel.extend({
         var context = opts.context||this,
             callback = callbk ||(_.isFunction(args)?args:null),
             self=this,
-            argums=!args || _.isFunction(args)?[this.id]:args;
+            argums=!args || _.isFunction(args)?[this.id]:(_.isArray(args)?args:[args]);
         this.trigger('before:load');
-        this.asteroid.apply(method,argums).result.then((result)=> {
+        return this.asteroid.apply(method,argums).result.then((result)=> {
             if (result && result.success) {
                 self.set(result.result, _.omit(opts, "context", "callback"));
                 if (callback)
                     callback.apply(context, arguments);
                 self.trigger('after:load', result);
             } else if(result.error) {
+
                 throw new Error("Fetch fail from meteor! Error Id: " + result.error.errorId);
             }          
         }).catch(err => {
             throw new Error("Fetch fail from meteor! Custom access error: " + err);
+        });
+    },
+
+    save(method,args,callbk,options) {
+        if (!this.asteroid)
+            throw new Error("Asteroid instanse of model with id="+this.id+" is not exists!");
+        var opts = options || (callbk&&!_.isFunction(callbk)?callbk:{});
+        var context = opts.context||this,
+            callback = callbk ||(_.isFunction(args)?args:null),
+            self=this,
+            argums=!args || _.isFunction(args)?[this.attributes]:(_.isArray(args)?args:[args]);
+        this.trigger('before:save');
+        return this.asteroid.apply(method,argums).result.then((result)=> {
+            window.saveResult = result;
+            if (result && result.success) {
+                self.set(result.result, _.omit(opts, "context", "callback"));
+                if (callback)
+                    callback.apply(context, arguments);
+                self.trigger('save', result);
+            } else if(result.error) {
+                self.trigger('error:save', result);
+                throw new Error("Save fail from meteor! Error Id: " + result.error.errorId);
+            }          
+        }).catch(err => {
+            self.trigger('error:save', result);
+            throw new Error("Save fail from meteor! Custom access error: " + err);
         });
     }
 });

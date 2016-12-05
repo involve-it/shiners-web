@@ -30,27 +30,30 @@ namespace Shiners.WebApp.Controllers
             stream.Seek(0, SeekOrigin.Begin);
             return new FileStreamResult(stream, "image/jpg");
         }
-
+        //[ResponseCache(Duration = 120,Location = ResponseCacheLocation.Any)]
         public FileResult Index(string url, int w, int h)
         {            
             try
             {
+                if(string.IsNullOrWhiteSpace(url))
+                    throw new NullReferenceException("url is null or empty");
                 var img = new KalikoImage(url);
-                img.Resize(50,50);
+                img.Resize(w,h);
                 MemoryStream stream = new MemoryStream();
-                img.SaveJpg(stream,50);
+                img.SavePng(stream);
                 stream.Seek(0, SeekOrigin.Begin);
                 //string extension = Path.GetExtension(url).Replace(",", "");
-                return new FileStreamResult(stream, "image/jpg");
+                return new FileStreamResult(stream, "image/Png");
             }
             catch (Exception e)
             {
+                throw new Exception("crop image error",e);
                 var img = new KalikoImage(Path.Combine(environment.WebRootPath, "./images/no_image.png"));
-                img.Resize(50, 50);
+                img.Resize(w, h);
                 MemoryStream stream = new MemoryStream();
-                img.SaveJpg(stream, 50);
+                img.SavePng(stream, 50);
                 stream.Seek(0, SeekOrigin.Begin);
-                return new FileStreamResult(stream, "image/jpg");
+                return new FileStreamResult(stream, "image/png");
             }          
         }
     }

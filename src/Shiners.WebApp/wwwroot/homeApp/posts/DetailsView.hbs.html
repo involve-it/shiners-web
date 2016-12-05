@@ -121,7 +121,7 @@
             <div class="col-md-12">
                 <span class="margin-right-20">
                     <a href="/user/{{=user._id}}">
-                        <img class="" src="{{=user.image && user.image.imageUrl?'/Img?url='+user.image.imageUrl+'&w=50&h=50':'/images/avatar.png'}}" alt="" width="50" height="50">
+                        <img class="" src="{{=user.image && user.image.imageUrl?'/Img?url='+encodeURIComponent(user.image.imageUrl)+'&w=50&h=50':'/images/avatar.png'}}" alt="" width="50" height="50">
                     </a>
                     <span><strong>{{=user.username}}</strong> </span>
                 </span>
