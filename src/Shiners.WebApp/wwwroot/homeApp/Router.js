@@ -26,6 +26,7 @@ export default Marionette.AppRouter.extend({
         'Home/HowItWorks':'howItWorks',
         'about-us':'about',
         'profile': 'profilePage',
+        'messages/to/:remoteUserId?postId=:postId':'messagesTo',
         'messages/to/:remoteUserId':'messagesTo'
     }
 });

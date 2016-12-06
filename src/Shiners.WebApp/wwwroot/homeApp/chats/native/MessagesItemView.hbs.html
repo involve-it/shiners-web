@@ -22,10 +22,10 @@
         <a href="#" class="text-info"><i class="fa fa-reply"></i> Переслать</a>
     </li>
     <li>
-        <a href="#" class="text-success"><i class="fa fa- fa-{{= status===''?'fa-check':''}}"></i></a>
+        <a href="#" class="text-success"><i class="fa fa-{{= status}}"></i></a>
     </li>
     <li class="pull-right">
-        <a href="#" class="text-danger"> Удалить</a>
+        <a class="text-danger removeMessage"> Удалить</a>
     </li>
     {{if(userId==user._id) { }}
     <li class="pull-right">

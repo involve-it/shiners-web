@@ -2,6 +2,7 @@
 import template from './MessagesToUserView.hbs.html'
 import MessagesView from './MessagesListView.js'
 import Model from '../../../data/AsteroidModel.js'
+import app from '../../app.js'
 var View = Marionette.View.extend({
 
     template:template,
@@ -13,7 +14,7 @@ var View = Marionette.View.extend({
     },
 
     onRender() {
-        this.showChildView('messages',new MessagesView({collection:this.collection,childViewOptions:{ chat:this.model  }}));
+        this.showChildView('messages',new MessagesView({collection:this.collection,childViewOptions:{ chat:this.model}}));
     },
 
     events:{
@@ -31,9 +32,9 @@ var View = Marionette.View.extend({
                 userId: this.model.get('user')._id,
                 toUserId: this.model.get('remoteUser')._id,
                 chatId: this.model.id
-            });
+            },{asteroid:app.asteroid});
             this.collection.add(model);
-            model.save();
+            model.save('addMessage',{destinationUserId:this.model.get('remoteUser')._id,message:value,type:'text',associatedPostId:this.model.get('postId')});
             $textEl.val('');
             $textEl.focus();
         }

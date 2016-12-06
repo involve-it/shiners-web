@@ -9,8 +9,12 @@ var View = Marionette.View.extend({
         this.templateContext = {
             user: this.options.chat.get('user'),
             remoteUser: this.options.chat.get('remoteUser'),
-            status:options?options.status: (this.model.id ? 'sent':'sending')
+            status:options&&options.status?options.status: (this.model.id ? 'check':'time')
         }
+    },
+
+    events: {
+        'click .removeMessage':'removeMessage'
     },
 
     modelEvents: {
@@ -20,15 +24,19 @@ var View = Marionette.View.extend({
     },
 
     onSuccessSave() {
-        this.render({status:'sent'});
+        this.render({status:'check'});
     },
 
     onErrorSave() {
-        this.render({status:'error'});
+        this.render({status:'remove'});
     },
 
     onBeforeSave() {
-        this.render({status:'sending'});
+        this.render({status:'time'});
+    },
+
+    removeMessage() {
+        this.model.remove('removeMessages',[this.model.id]);
     }
 });
 export default View;

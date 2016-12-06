@@ -30,7 +30,7 @@ namespace Shiners.WebApp.Controllers
             stream.Seek(0, SeekOrigin.Begin);
             return new FileStreamResult(stream, "image/jpg");
         }
-        //[ResponseCache(Duration = 120,Location = ResponseCacheLocation.Any)]
+        [ResponseCache(Duration = 360,Location = ResponseCacheLocation.Any)]
         public FileResult Index(string url, int w, int h)
         {            
             try
@@ -38,22 +38,36 @@ namespace Shiners.WebApp.Controllers
                 if(string.IsNullOrWhiteSpace(url))
                     throw new NullReferenceException("url is null or empty");
                 var img = new KalikoImage(url);
-                img.Resize(w,h);
+                if (img.Width > img.Height)
+                {
+                    float scaleIndex = (float)img.Height / h;
+                    img.Resize((int)Math.Round(img.Width / scaleIndex, 0),h );
+                    img.Crop((int)Math.Round((img.Width - w - 1) / 2.0),0, w, h);
+                }
+                else if (img.Width < img.Height)
+                {
+                    float scaleIndex = (float) img.Width/w;
+                    img.Resize(w, (int)Math.Round(img.Height / scaleIndex, 0));
+                    img.Crop(0, (int) Math.Round((img.Height - h - 1)/2.0), w, h);
+                }
+                else
+                {
+                    img.Resize(w, h);
+                }
                 MemoryStream stream = new MemoryStream();
                 img.SavePng(stream);
                 stream.Seek(0, SeekOrigin.Begin);
-                //string extension = Path.GetExtension(url).Replace(",", "");
                 return new FileStreamResult(stream, "image/Png");
             }
             catch (Exception e)
             {
-                throw new Exception("crop image error",e);
-                var img = new KalikoImage(Path.Combine(environment.WebRootPath, "./images/no_image.png"));
-                img.Resize(w, h);
-                MemoryStream stream = new MemoryStream();
-                img.SavePng(stream, 50);
-                stream.Seek(0, SeekOrigin.Begin);
-                return new FileStreamResult(stream, "image/png");
+                throw new Exception("Ќе удалось обработать изображение по адресу "+url,e);
+                //var img = new KalikoImage(Path.Combine(environment.WebRootPath, "./images/no_image.png"));
+                //img.Resize(w, h);
+                //MemoryStream stream = new MemoryStream();
+                //img.SavePng(stream, 50);
+                //stream.Seek(0, SeekOrigin.Begin);
+                //return new FileStreamResult(stream, "image/png");
             }          
         }
     }
