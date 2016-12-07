@@ -14,7 +14,7 @@ var View = Marionette.View.extend({
     },
 
     onRender() {
-        this.showChildView('messages',new MessagesView({collection:this.collection,childViewOptions:{ chat:this.model}}));
+        this.showChildView('messages',new MessagesView({collection:this.collection,model:this.model,childViewOptions:{ chat:this.model}}));
     },
 
     events:{

@@ -18,12 +18,14 @@ let App = Marionette.Application.extend({
     asteroid:null,
     // application data
     nearbyPosts:null,
+    messagesSubscription:null,
     myPosts:null,
+    myMessages:null,
     user:null,
     postAdTypes:null,
     isMobile:false,
     router:null,
-    iframeLoaded:false,
+    //iframeLoaded:false,
     FbInitialized:false,
     views: {
         iframeView: null
@@ -35,6 +37,7 @@ let App = Marionette.Application.extend({
         this.postAdTypes = new Collection(null, { asteroid: this.asteroid });
         this.myPosts=new Collection(null, { asteroid: this.asteroid });  
         this.nearbyPosts = new Collection(null,{asteroid:this.asteroid});
+        this.myMessages = new Collection(null,{asteroid:this.asteroid});
         this.router = new Router({app:this});
         this.layout = new RootView();
     },
@@ -46,13 +49,12 @@ let App = Marionette.Application.extend({
         else {
             var app = this;
             this.asteroid.on('connected',()=>app._startApp());
-            //this.asteroid.on('loginError',()=>app._startApp());
-        }      
+        }
+        this.listenMessages();
     },
 
     _startApp() {
         this.asteroid.off('connected');
-        //this.asteroid.off('loginError');
         this.asteroid.resumeLoginPromise.finally((_.bind(() => {
             this.isMobile = $.browser.mobile;
             this.postAdTypes.loadByMethod('getPostAdTypes');
@@ -109,18 +111,8 @@ let App = Marionette.Application.extend({
             .always(() => app.startHistory());
     },
 
-
-
     authorize(email,password) {
-        //var user=this.user;
         this.asteroid.loginWithPassword(email, password);
-        //.then((loginResult) => {
-        //    user.set('_id', loginResult);
-        //    user.loadByMethod('getUser', [loginResult],()=>user.trigger('login'));               
-        //}).catch((error) => {
-        //    user.trigger('error:login', error);
-        //    console.error('Error:', error);
-        //});
     },
 
     initUser(userId) {
@@ -129,21 +121,25 @@ let App = Marionette.Application.extend({
     },
 
     logout() {
-        //var user = this.user;
         this.asteroid.logout();
-        //    .then(() => {
-        //    user.unset('_id');
-        //    user.unset('id');
-        //    user.trigger('logout');
-        //});
     },
 
     destroyUser() {
-            this.user.unset('_id');
-            this.user.unset('id',{silent:true});
-            this.user.trigger('logout');
+        this.user.unset('_id');
+        this.user.unset('id',{silent:true});
+        this.user.trigger('logout');
+    },
+
+    subscribeToCollections() {
+        this.messagesSubscription = this.asteroid.subscribe('messages-new');
+        var app = this;
+        this.asteroid.ddp.on("added", ({collection, id, fields}) => {
+            app.trigger("add:message", fields);
+        });
+        this.asteroid.ddp.on("removed", ({collection, id, fields}) => {
+            app.trigger("remove:message", fields);
+        });
     }
 });
-
 
 export default new App();

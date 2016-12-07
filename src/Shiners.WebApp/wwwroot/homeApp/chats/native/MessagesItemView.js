@@ -5,16 +5,22 @@ var View = Marionette.View.extend({
     template:template,
     tagName:'li',
     className:'comment',
-    onBeforeRender(options) {
+    status:null,
+    onBeforeRender() {
         this.templateContext = {
             user: this.options.chat.get('user'),
             remoteUser: this.options.chat.get('remoteUser'),
-            status:options&&options.status?options.status: (this.model.id ? 'check':'time')
+            status:this.status?this.status : (this.model.id ? (this.model.id===this.options.chat.get('user').id?'old':'remote'):'sending')
         }
     },
 
+    onRender() {
+        this.status = null;
+    },
+
     events: {
-        'click .removeMessage':'removeMessage'
+        'click .removeMessage':'removeMessage',
+        'click .editMessage':'debugCHeck'
     },
 
     modelEvents: {
@@ -24,19 +30,23 @@ var View = Marionette.View.extend({
     },
 
     onSuccessSave() {
-        this.render({status:'check'});
+        this.status = 'success';
+        this.render();
     },
 
     onErrorSave() {
-        this.render({status:'remove'});
+        this.status = 'error';
+        this.render();
     },
 
     onBeforeSave() {
-        this.render({status:'time'});
+        this.status = 'sending';
+        this.render();
     },
 
     removeMessage() {
-        this.model.remove('removeMessages',[this.model.id]);
+        this.model.remove('deleteMessages',[[this.model.id]]);
+        this.model.collection.remove(this.model);
     }
 });
 export default View;

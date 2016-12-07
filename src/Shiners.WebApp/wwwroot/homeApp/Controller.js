@@ -56,7 +56,8 @@ export default Marionette.Object.extend({
               app.router.navigate('/', true);
           }
           */
-        app.layout.showChildView('content', new CreatePostView());
+        var model = new AsteroidModel(null,{asteroid:app.asteroid});
+        app.layout.showChildView('content', new CreatePostView({model:model}));
     },
 
     login() {
@@ -90,9 +91,9 @@ export default Marionette.Object.extend({
         if (app.asteroid.loggedIn) {
             var remoteUser = new AsteroidModel({ _id: remoteUserId }, { asteroid: app.asteroid });
             remoteUser.loadByMethod('getUser',() => {
-                window.remoteUser = remoteUser;
+                window.remoteUser = remoteUser; // debug
                 app.asteroid.call('bz.chats.createChatIfFirstMessage',app.user.id, remoteUserId).result.then((chatId) => {
-                    var messages = new Collection(null,{asteroid:app.asteroid});
+                    var messages = new Collection(null,{asteroid:app.asteroid,comparator:'timestamp'});
                     messages.loadByMethod('getMessages', {chatId:chatId,skip:0,take:20},() => {
                         var chat = new AsteroidModel({_id:chatId,remoteUser:remoteUser.toJSON(),user:app.user.toJSON(),postId:postId}, { asteroid: app.asteroid });
                         app.layout.showChildView('content', new MessagesToUserView({ model: chat,collection:messages }));

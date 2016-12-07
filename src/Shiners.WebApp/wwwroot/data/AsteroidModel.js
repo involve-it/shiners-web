@@ -4,8 +4,10 @@ export default MongoModel.extend({
 
     asteroid:null,
 
-    initialize(attrs,options){      
-        this.asteroid = (options||{}).asteroid||null;
+    initialize(attrs,options) {
+        this.asteroid = options && options.asteroid
+            ? options.asteroid
+            : (this.collection && this.collection.asteroid ? this.collection.asteroid : null);
         MongoModel.prototype.initialize.apply(this,arguments);
     },
 
