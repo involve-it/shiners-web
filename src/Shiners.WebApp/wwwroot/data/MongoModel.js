@@ -1,5 +1,5 @@
-﻿import Backbone from 'backbone';
+﻿import Model from './BaseModel.js';
 import _ from 'underscore';
-export default Backbone.Model.extend({
+export default Model.extend({
     idAttribute: "_id"
 });

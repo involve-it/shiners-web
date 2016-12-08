@@ -1,1 +1,118 @@
-﻿
+﻿<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading panel-heading-transparent">
+            <h2 class="panel-title">Добавь своё объявление</h2>
+        </div>
+
+        <div class="panel-body">
+
+            <form method="post" enctype="multipart/form-data">
+                <fieldset>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Название *</label>
+                                <input type="text" name="details.title" value="" class="form-control required">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6">
+                                <label>Ссылка </label>
+                                <input type="email" name="contact[email]" value="" class="form-control required">
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <label>Ценв</label>
+                                <input type="text" name="contact[phone]" value="" class="form-control required">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12">
+                                <label>Тип объявления *</label>
+                                <select name="type" class="form-control pointer required">
+                                    <option value="">--- Выберите ---</option>
+                                    {{_.each(postTypes,function(type) { }}
+                                        <option value="{{=type.id}}">{{=type.i18n.ru.fullName}}</option>                                    
+                                    {{ }); }}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12">
+                                <label>Описание объявления</label>
+                                <textarea name="details.description" rows="4" class="form-control required"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12">
+                                <label>Описание объявления</label>
+                                <textarea name="details.description" rows="4" class="form-control required"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Способ отображения объявления</label>
+                            <div class="col-md-12 col-sm-12">
+                                <label class="switch switch-primary switch-round">
+                                    <input type="checkbox">
+                                    <span class="switch-label" data-on="Динамическое объявление" data-off="Динамическое объявление?"></span>
+                                </label>
+                                <i class="fa fa-info"></i> На карте отображается вместе с Вашим местоположением
+                                
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <label class="switch switch-primary switch-round">
+                                    <input  type="checkbox">
+                                    <span class="switch-label" data-on="Статическое объявление" data-off="Статическое объявление?"></span>
+                                </label>
+                                <i class="fa fa-info"></i> Возможность самому указать местоположение объявления
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>
+                                    Фотографии
+                                    <small class="text-muted">Выберите одну или несколько</small>
+                                </label>
+                                <div class="fancy-file-upload fancy-file-primary">
+                                    <i class="fa fa-upload"></i>
+                                    <input type="file" class="form-control" name="photo" onchange="jQuery(this).next('input').val(this.value);" />
+                                    <input type="text" class="form-control" placeholder="Не выбрано" readonly="" />
+                                    <span class="button">Выбрать</span>
+                                </div>
+                                <small class="text-muted block">Максимальный размер: 10мб (jpg/png)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-3d btn-teal btn-xlg btn-block margin-top-30">
+                            Добавить
+                            <span class="block font-lato">Ваше объявление будет доступно всем пользователям</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-xs btn-link" id="back">Назад</a>
+        </div>
+    </div>
+</div>

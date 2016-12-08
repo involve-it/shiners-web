@@ -130,7 +130,7 @@ let App = Marionette.Application.extend({
         this.user.trigger('logout');
     },
 
-    subscribeToCollections() {
+    listenMessages() {
         this.messagesSubscription = this.asteroid.subscribe('messages-new');
         var app = this;
         this.asteroid.ddp.on("added", ({collection, id, fields}) => {

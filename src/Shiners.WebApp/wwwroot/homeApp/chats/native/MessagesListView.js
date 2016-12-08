@@ -9,7 +9,7 @@ var View = Marionette.CollectionView.extend({
     className:'comment list-unstyled',
 
     initialize() {
-        this.listenTo(app, 'add:message',(fields)=> this.collection.add(fields));
+        this.listenTo(app, 'add:message',fields=> this.collection.add(fields));
     },
 
     onRender() {
