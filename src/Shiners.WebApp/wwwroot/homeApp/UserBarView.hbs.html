@@ -1,4 +1,10 @@
 ﻿{{if (obj._id) { }}
+<div class="sh-registers-buttons">
+    <button class="ui standard sign-up sh-button" id="userBarLink">{{-username}}</button>
+    <!--<button class="ui sh-white basic sh-button">Регистрация</button>-->
+</div>
+
+
 <li class="quick-cart">
     <a id="userBarLink" title="{{-username}}">
         <i class="fa fa-user"></i>
@@ -22,9 +28,9 @@
     </div>
 </li>
 {{ } else { }}
-<li class="quick-cart">   
-    <a href="/Account/Login" title="Вход на сайт">
-        <i class="fa fa-sign-in"></i>
-    </a>
-</li>
+<!-- IF ACCOUNT USER IS FALSE -->
+<div class="sh-registers-buttons">
+    <button class="ui standard sign-up sh-button">Вход</button>
+    <!--<button class="ui sh-white basic sh-button">Регистрация</button>-->
+</div>
 {{ } }}
