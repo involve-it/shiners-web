@@ -1,0 +1,43 @@
+﻿<div class="sh-map-search-form fancy-form">
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button title="Фильтр поиска" id="searchParametersButton" class="btn btn-default" type="button">
+                <i class="fa fa-cog"></i>
+            </button>
+        </span>
+        <input type="text" placeholder="Поиск..." class="form-control" name="query" id="query">
+        <span class="input-group-btn hidden-lg hidden-md">
+            <a id="userLocation" title="Местоположение" class="btn btn-default btn-block size-14">
+                <i class="fa fa-map-marker text-success"></i>
+            </a>
+        </span>
+        <span class="fancy-tooltip top-left">
+            <em>Свободный поиск по словам</em>
+        </span>
+    </div>
+</div>
+<div class="sh-map-distance">
+    <div class="margin-bottom-10">
+        <label for="radius">Радиус поиска (км):</label>
+        <input type="hidden" name="radius" id="radius" class="form-control">
+    </div>
+    <div class="slider-wrapper info-slider">
+        <div id="slider3"></div>
+    </div>
+</div>
+<div id="searchParameters" style="display: none">
+    <div class="ui sh-accordion toggle toggle-accordion">
+        <div class="toggle">
+            <label>Параметры поиска</label>
+            <div class="toggle-content">                
+                <div id="selectCategories"></div>
+            </div>
+        </div>
+        <div class="toggle {{=isMobile?'':'active'}}">
+            <label>Найденные светлячки</label>
+            <div class="toggle-content" id="searchResults" style="{{=isMobile?'':'display: block'}}">
+                <div id="shinersList" class="sh-shiners-list-items"></div>               
+            </div>
+        </div>
+    </div>
+</div>

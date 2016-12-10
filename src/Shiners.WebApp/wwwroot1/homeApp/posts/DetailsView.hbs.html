@@ -1,0 +1,137 @@
+﻿<!--<section class="page-header page-header-xs">
+    <div class="container">
+        <h1>{{=details.title}}</h1>
+        <ol class="breadcrumb">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/Posts">Объявления</a></li>
+            <li class="active">{{=details.title}}</li>
+        </ol>
+    </div>
+</section>-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="font-lato weight-300"><i class="fa fa-clock-o"></i> Опубликовано {{=moment(obj.timestamp).fromNow()}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="owl-carousel buttons-autohide controlls-over nomargin" id="postImages" data-plugin-options='{"items": 1, "autoPlay": {{-_.size(details.photo)>1?'3500':'false'}}, "autoHeight": false, "navigation": true, "pagination": false, "transitionStyle":"fade", "progressBar":"false"}'>
+                    {{ if (_.size(details.photos)>0){ }}
+                        {{_.each(details.photos,function(photo){ }}
+                            <div>
+                                <img class="img-responsive" src="{{=photo.data}}" alt="">
+                            </div>
+                        {{});}}                 
+                    {{ } else { }}
+                        <div>
+                            <img class="img-responsive" src="/images/no_image.png" alt="">
+                        </div>
+                    {{ } }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    {{if(obj.stats) { }}
+                        <tr>
+                            <td>
+                                <i class="fa fa-eye"></i> Просмотров
+                            </td>
+                            <td>
+                                Всего: {{=stats.seenTotal}} Сегодня: {{=stats.seenToday}}
+                            </td>
+                        </tr>
+                    {{ } }}
+                    <tr>
+                        <td>
+                            <i class="fa fa-street-view"></i> Статус
+                        </td>
+                        <td>
+                            {{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}
+                            <span title="{{=isDynamic?'Динамическое объявление':'Статическое'}}">
+                                <i class="bz-icon bz-icon-{{=isDynamic?'dinamic':'flag' }} {{=isDynamic?'success':''}}"></i>
+                            </span>
+                        </td>
+                    </tr>
+                    {{if (obj.type) { }}
+                        <tr>
+                            <td>
+                                <i class="fa fa-list-alt"></i> Тип
+                            </td>
+                            <td>
+                                <span class="label bg-type-category-{{=obj.type}}">{{=obj.type}}</span>
+                            </td>
+                        </tr>
+                    {{ } }}
+                    
+                    <tr>
+                        <td>
+                            <i class="fa fa-location-arrow"></i> Дистанция
+                        </td>
+                        {{if(obj.distance && obj.distanceType){ }}
+                            <td> {{=distance>=0?distance.toFixed(1):'Не определена'}} {{=distanceType==='km'?'км':'miles'}} </td>
+                        {{ } }}
+                    </tr>
+                    {{if(obj.social) { }}
+                        <tr>
+                            <td>
+                                <i class="fa fa-heart"></i> Нравится
+                            </td>
+                            <td>
+                                {{=_.size(social.likes)}}
+                            </td>
+                        </tr>
+                    {{ } }}
+                    <tr>
+                        <td>
+                            <div id="vk_like"></div>
+                        </td>
+                        <td id="fb_like">
+                            <div class="fb-like" data-href="https://shiners.ru/posts/{{=_id}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="weight-300">{{=details.title}}</h2>
+                <!--<div class="rating rating-4 size-20 margin-top-10 text-blue"></div>-->
+                <ul class="portfolio-detail-list list-unstyled nomargin">
+                    <li><span><i class="fa fa-calendar"></i>Действует до:</span> {{=moment(endDatePost).format("ll")}}</li>
+                    {{if (details.price) { }}
+                        <li><span><i class="fa fa-money"></i>Стоимость:</span> {{=details.price}}</li>
+                    {{ } }}
+                    {{if (details.locations){ }}
+                    {{_.each(details.locations,function(loc){ }}
+                        <li>
+                            <span>
+                                <i class="fa fa-map-marker"></i> Адрес
+                            </span>
+                            {{=loc.name}}
+                        </li>
+                    {{});}}
+                    {{ } }}
+                </ul>
+                <p class="font-lato weight-300 size-15">{{=details.description}}</p>
+            </div>
+        </div>
+        <div class="row alternate">
+            <div class="col-md-12">
+                <span class="margin-right-20">
+                    <a href="/user/{{=user._id}}">
+                        <img class="" src="{{=user.image && user.image.imageUrl?user.image.imageUrl:'/images/avatar.png'}}" alt="" width="50" height="50">
+                    </a>
+                    <span><strong>{{=user.username}}</strong> </span>
+                </span>
+                {{if (obj.currentUser) { }}
+                    <a href="/messages/to/{{=user._id}}" class="btn btn-blue">Написать сообщение</a>
+                {{ } }}
+                
+                <!--<button type="button" class="btn btn-leaf"><i class="fa fa-heart-o"></i> Нравится</button>-->
+            </div>
+        </div>
+    </div>
+    <div class="container margin-top-20" id="relatedPostsContainer"></div>
+</section>

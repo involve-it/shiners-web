@@ -1,0 +1,63 @@
+﻿<div class="sh-map-item-view-wrapper">
+    {{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}
+
+    <a title="{{=details.title}}" class="block height-250 text-right" style="background-image: url({{-details.photosUrls && details.photosUrls.length>0?details.photosUrls[0]:'/images/demo/300x250.png'}}); background-position: center; background-repeat: no-repeat; background-size: 120%"></a>
+
+    <div class="sh-map-item-view-info-panel">
+        <div class="sh-map-item-view-info-panel-first">
+            <span class="sh-label-box transparent-dark">
+                <i class="fa fa-calendar"></i> {{=moment(timestamp).fromNow()}}
+            </span>
+        </div>
+        <div class="sh-map-item-view-info-panel-second">
+            <span class="sh-label-box transparent-dark">
+                <i class="fa fa-eye"></i> {{=stats.seenAll}}
+            </span>
+            <span title="{{=isDynamic?'Динамическое объявление':'Статическое'}}" class="sh-label-box transparent-dark margin-left-3">
+                <i class="fa fa-{{=isDynamic?'man':'flag' }} {{=isDynamic?'success':''}}"></i>
+            </span>
+            <span class="sh-label-box transparent-dark margin-left-3">
+                <i class="fa fa-location-arrow"></i> {{=distance>-1?distance.toFixed(1) + ' '+distanceType:''}}
+            </span>
+        </div>
+    </div>
+
+    <h3 class="sh-item-title elipsis" style="border: none">
+        <a>{{=details.title}}</a>
+    </h3>
+    
+    <p class="sh-item-text">        
+        {{var loc = _.find(details.locations,function(l) { return l.placeType==='dynamic' })||details.locations[0]; }}
+        {{ if (loc) { }}
+        {{=loc.name}}
+        {{ } }}
+    </p>
+
+    <div class="sh-progress-bar progress">
+        <div class="progress-bar {{=progress>=70?'progress-bar-success':(progress>=25&&progress<70?'progress-bar-warning':'progress-bar-danger')}}" role="progressbar" style="width: {{=progress}}%; min-width: 1em; ">
+            <span class="sr-only"></span>
+        </div>
+    </div>
+
+    <div class="sh-map-item-view-info-panel-bottom">
+        <div class="sh-map-item-view-info-panel-bottom-wrapper">
+            <div>
+                <span class="label bg-type-category-{{=type}} pull-left">{{=type}}</span>
+            </div>
+            <div>
+                <a class="sh-info-panel-send-message">Написать сообщение</a>
+            </div>
+        </div>
+    </div>
+
+    <!--<ul class="text-left size-12 list-inline list-separator nomargin">
+        <li>
+            <i class="fa fa-calendar"></i>
+            {{=moment(timestamp).fromNow()}}
+        </li>
+        <li>
+            <i class="fa fa-eye"></i>
+            {{=stats.seenAll}}
+        </li>
+    </ul>-->
+</div>
