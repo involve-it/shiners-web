@@ -6,8 +6,8 @@ import '../lib/jquery.countTo.js';
 import app from './app.js';
 import SuggestionsView from './selectLocation/SuggestionListView.js'
 var View = Marionette.View.extend({
-    tagName: 'section',
-    className: 'page-header page-header-xs',
+    tagName: 'div',
+    className: 'sh-header-navbar-info',
     template: template,
     searchTimeOut: null,
     osmCollection:null,

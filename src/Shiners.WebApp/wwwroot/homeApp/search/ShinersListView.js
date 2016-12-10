@@ -2,7 +2,7 @@
 import ShinerListItemView from './ShinersListItemView.js';
 import EmptyView from './ShinersEmptyView.js';
 var View = Marionette.CollectionView.extend({
-    className:'height-200 slimscroll',
+    className:'sh-shiners-list-height slimscroll',
     tagName:'div',
     emptyView:EmptyView,
     childView:ShinerListItemView,
