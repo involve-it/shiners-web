@@ -1,36 +1,13 @@
 ﻿{{if (obj._id) { }}
 <div class="sh-registers-buttons">
-    <button class="ui standard sign-up sh-button" id="userBarLink">{{-username}}</button>
-    <!--<button class="ui sh-white basic sh-button">Регистрация</button>-->
+    <a href="/profile" class="ui standard sign-up sh-button" id="userBarLink">{{-username}}</a>
+    <button id="logout" class="ui sh-white basic sh-button"><i class="fa fa-sign-out"></i></button>
 </div>
 
-
-<li class="quick-cart">
-    <a id="userBarLink" title="{{-username}}">
-        <i class="fa fa-user"></i>
-    </a>
-    <div class="quick-cart-box">
-        <h4>Здравствуйте {{-username}}</h4>
-        <div class="quick-cart-wrapper">
-            <a href="/profile">
-                <h6>УПРАВЛЕНИЕ</h6>
-            </a>
-            <a href="/posts/my">
-                <h6>МОИ ПОСТЫ</h6>
-            </a>
-            <a href="/chats/my">
-                <h6>СООБЩЕНИЯ</h6>
-            </a>
-        </div>
-        <div class="quick-cart-footer clearfix">
-            <a id="logout" class="btn btn-primary btn-xs pull-right">ВЫХОД</a>
-        </div>
-    </div>
-</li>
 {{ } else { }}
 <!-- IF ACCOUNT USER IS FALSE -->
 <div class="sh-registers-buttons">
-    <button class="ui standard sign-up sh-button">Вход</button>
+    <a href="/Account/Login" class="ui standard sign-up sh-button">Вход</a>
     <!--<button class="ui sh-white basic sh-button">Регистрация</button>-->
 </div>
 {{ } }}
