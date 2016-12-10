@@ -13,10 +13,11 @@ module.exports = {
         filename: "bundle.js"
     },
     resolve: {
-        modulesDirectories: ["node_modules"]
-        //alias: {
-        //    SockJS: path.resolve("./wwwroot/lib/sockjs.min.js")
-        //}
+        modulesDirectories: ["node_modules"],
+        alias: {
+            //SockJS: path.resolve("./wwwroot/lib/sockjs.min.js")
+            moment: path.resolve('./wwwroot/lib/moment/moment-with-locales.min.js')
+        }
     },
     plugins: [
                     new BowerWebpackPlugin({

@@ -30,31 +30,39 @@ var View = Marionette.View.extend({
         'click #closeInfo':'hideInfoContainer'
     },
 
-    initialize() {
-        
-    },
-
     modelEvents: {
         'change':'fetchPosts'
     },
 
     collectionEvents: {
-        'after:load':'showShiners'
+        'reset':'showShiners'
     },
 
     onRender() {
         this.showChildView('search', new SearchView({collection:this.collection,model:this.model}));
-        setTimeout(_.bind(this.initMap,this),500);
+    },
+
+    onAttach() {
+        this.initMap();
+    },
+
+    getShinerUrlPin(model) {
+        var details = model.get('details');
+        var postType = details.locations &&_.find(details.locations, (l)=> l.placeType === 'dynamic')?'dynamic':'static';
+        var category = model.get('type');
+        var userStatus = model.get('user').online?'live':'offline';
+        return category? '../images/shiners/pins/' + postType + '-' + userStatus + '-flag-' + category + '.png':'../images/shiners/shiner_marker.png';
     },
 
     showShiners() {
-        var image = {
-            url: '../images/shiners/shiner_marker.png',
-            size: new window.google.maps.Size(40, 52),
-            origin: new window.google.maps.Point(0, 0),
-            anchor: new window.google.maps.Point(0, 32)
-        };
-        this.collection.each((model) => {         
+        this.collection.each((model) => {  
+            var url = this.getShinerUrlPin(model);
+            var image = {
+                url: url || '../images/shiners/shiner_marker.png',
+                scaledSize: new window.google.maps.Size(25, 33),
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(0, 32)
+            };
             if (!_.find(this.shiners, (sh) => sh.modelId===model.id)) {
                 var details = model.get('details');
                 _.each(details.locations, (location) => {
@@ -131,7 +139,7 @@ var View = Marionette.View.extend({
             app.map = this.map;
             window.myMap = app.map;
             app.geocoder = this.geocoder;
-            this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
+            //this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
             this.map.addListener('bounds_changed',_.bind(this.findLocationName,this));
             if (app.isMobile) {
                 this.mobile_CreateInfoButton();
@@ -189,7 +197,7 @@ var View = Marionette.View.extend({
         if (app.user.has('position')) {
             var image = {
                 url: '../images/shiners/user.png',
-                size: new window.google.maps.Size(40, 40),
+                scaledSize: new window.google.maps.Size(35, 35),
                 origin: new window.google.maps.Point(0, 0),
                 anchor: new window.google.maps.Point(20, 20)
             };
@@ -212,19 +220,19 @@ var View = Marionette.View.extend({
         this.map.setCenter(pos);
     },
 
-    onBoundsChange() {
-        if (this.fetchTimeOut)
-            clearTimeout(this.fetchTimeOut);
-        this.fetchTimeOut = setTimeout(_.bind( ()=> {            
-            var center = this.map.getCenter();
-            this.model.set({
-                position: {
-                    lat:center.lat(),
-                    lng:center.lng()
-                }
-            });
-        }, this), 500);
-    },
+    //onBoundsChange() {
+    //    if (this.fetchTimeOut)
+    //        clearTimeout(this.fetchTimeOut);
+    //    this.fetchTimeOut = setTimeout(_.bind( ()=> {            
+    //        var center = this.map.getCenter();
+    //        this.model.set({
+    //            position: {
+    //                lat:center.lat(),
+    //                lng:center.lng()
+    //            }
+    //        });
+    //    }, this), 500);
+    //},
 
     findLocationName() {
         if (this.geocodeTimeout)
@@ -246,6 +254,9 @@ var View = Marionette.View.extend({
                         address:locationName.long_name
                     });
                 } else {
+                    this.model.set({
+                        position: latLng
+                    });
                     console.error('Geocoder failed due to: ' + status);
                 }
             },this));           
@@ -257,8 +268,8 @@ var View = Marionette.View.extend({
             method='getNearbyPostsTest',
             activeCats=this.model.get('activeCats'),
             args,
-            radius = this.model.get('radius')||5;
-        if ((query && !_.isEmpty(query.trim()))||(activeCats&&!_.isEmpty(activeCats))) {
+            radius = this.model.get('radius')* 0.6215;
+        if ((query && !_.isEmpty(query.trim()))||(activeCats&&!_.isEmpty(activeCats))) {          
             method = 'searchPosts';
             args = {
                 query:query||"",
@@ -273,7 +284,7 @@ var View = Marionette.View.extend({
                 lng:this.model.get('position').lng,
                 radius:radius
             };
-        }
+        }        
         this.collection.loadByMethod(method,args);
     }
 });

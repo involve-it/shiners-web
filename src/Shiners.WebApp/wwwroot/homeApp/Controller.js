@@ -2,7 +2,9 @@
 import IndexView from './index/indexView.js';
 import MobileIndexView from './index/MobileIndexView.js';
 import PostDetailsView from './posts/DetailsView.js';
-import AsteroidModel from '../data/AsteroidModel.js'
+import AsteroidModel from '../data/AsteroidModel.js';
+import Post from '../data/PostModel.js'
+import Collection from '../data/AsteroidCollection.js';
 import PreloaderView from '../sharedViews/PreloaderView.js';
 import CreatePostView from './posts/create/CreatePostView.js';
 
@@ -10,6 +12,7 @@ import PostsMytView from './posts/postsMy/PostsMyView.js';
 import ChatsMyView from './chats/ChatsMyView.js';
 import ChatIdView from './chats/ChatIdView.js';
 import ProfileDetailsView from './user/ProfileDetailsView.js';
+import MessagesToUserView from './chats/native/MessagesToUserView.js';
 
 import LoginView from './account/LoginView.js';
 import AboutView from './about/AboutView.js';
@@ -19,17 +22,15 @@ import ProfilePageView from './user/ProfilePageView';
 import MyMessagesPageView from './user/MyMessagesPageView';
 import UserDetailsPageView from './user/UserDetailsPageView';
 import app from './app.js';
-//import Model from '../data/AsteroidModel.js';
+
 export default Marionette.Object.extend({
 
     index() {
         if (!app.isMobile)
             app.layout.showChildView('content', new IndexView());
         else {
-            
             app.layout.getRegion('content').empty();
         }
-            
     },
 
     mobileIndex() {
@@ -43,16 +44,19 @@ export default Marionette.Object.extend({
     postDetails(id) {
         app.layout.showChildView('content', new PreloaderView());
         var post = new AsteroidModel({_id:id},{asteroid:app.asteroid});
-        post.loadByMethod('getPost',null,() => app.layout.showChildView('content', new PostDetailsView({model:post})));
+        post.loadByMethod('getPost',null,() => {
+            window.detailsPost = post; // debug
+            app.layout.showChildView('content', new PostDetailsView({ model: post }));
+        });
     },
+
     createPost() {
-        /*  if (app.user.id) {
-              app.layout.showChildView('content', new CreatePostView({model:new Model({userId:app.user.id}) }));
+       if (app.user.id) {
+                var model = new Post(null,{asteroid:app.asteroid});
+                app.layout.showChildView('content', new CreatePostView({model:model}));
           } else {
               app.router.navigate('/', true);
           }
-          */
-        app.layout.showChildView('content', new CreatePostView());
     },
 
     login() {
@@ -71,8 +75,6 @@ export default Marionette.Object.extend({
         app.layout.showChildView('content',new HowItWorksView());
     },
 
-
-
     chatsMy(){
         app.layout.showChildView('content',new ChatsMyView());
     },
@@ -83,17 +85,39 @@ export default Marionette.Object.extend({
         app.layout.showChildView('content', new ChatIdView( {model: chatModel } ));
     },
 
+    messagesTo(remoteUserId,postId) {
+        app.layout.showChildView('content', new PreloaderView());
+        if (app.asteroid.loggedIn) {
+            var remoteUser = new AsteroidModel({ _id: remoteUserId }, { asteroid: app.asteroid });
+            remoteUser.loadByMethod('getUser',() => {
+                window.remoteUser = remoteUser; // debug
+                app.asteroid.call('bz.chats.createChatIfFirstMessage',app.user.id, remoteUserId).result.then((chatId) => {
+                    var messages = new Collection(null,{asteroid:app.asteroid,comparator:'timestamp'});
+                    messages.loadByMethod('getMessages', {chatId:chatId,skip:0,take:20},() => {
+                        var chat = new AsteroidModel({_id:chatId,remoteUser:remoteUser.toJSON(),user:app.user.toJSON(),postId:postId}, { asteroid: app.asteroid });
+                        app.layout.showChildView('content', new MessagesToUserView({ model: chat,collection:messages }));
+                    });
+                });
+            });
+        } else {
+            app.router.navigate("",{trigger:true});
+        }        
+    },
+
     profileDetails(id){
         app.layout.showChildView('content', new PreloaderView());
         var userModel = new Backbone.Model({ _id:id });
         app.layout.showChildView('content',new ProfileDetailsView( {model: userModel }));
     },
+
     profilePage() {
         app.layout.showChildView('content',new ProfilePageView());
     },
+
     myMessagesPage() {
         app.layout.showChildView('content',new MyMessagesPageView());
     },
+
     userDetailsPage(id) {
         app.layout.showChildView('content',new UserDetailsPageView({ id: id }));
     }

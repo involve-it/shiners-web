@@ -1,0 +1,17 @@
+﻿<div class="container">
+    <div class="col-md-12">
+        <div class="box-icon box-icon-center box-icon-round box-icon-large text-center nomargin">           
+            <h2><img class="rounded" src="{{=remoteUser.image && remoteUser.image.imageUrl?'/Img?url='+encodeURIComponent(remoteUser.image.imageUrl)+'&w=70&h=70':'/images/avatar.png'}}" alt="" width="70" height="70"> {{=remoteUser.username}}</h2>
+        </div>
+
+        <div class="box-light">
+            <div class="box-inner" id="messagesList"></div> 
+        </div>
+        <form method="post" action="#" class="box-light margin-top-10">
+            <div class="box-inner">
+                <textarea id="messageText" required="" class="form-control" data-maxlength="100" rows="3" placeholder="Ваше сообщение для пользователя {{=remoteUser.username}}"></textarea>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Отправить</button>
+            </div>
+        </form>
+    </div>
+</div>

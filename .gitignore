@@ -1,2 +1,7 @@
 
 .vs/
+*.suo
+
+.vs/Shiners/v14/.suo
+
+src/Shiners.WebApp/Shiners.WebApp.xproj.user

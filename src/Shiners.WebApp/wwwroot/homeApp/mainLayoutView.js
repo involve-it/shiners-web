@@ -14,11 +14,7 @@ var View = Marionette.View.extend({
 
     template:template,
     id:"wrapper",
-
     mapView:null,
-    initialize() {
-        
-    },
     regions: {
         'content':'#appContent',
         'map':'#appMap',
@@ -40,10 +36,9 @@ var View = Marionette.View.extend({
     onRender() {
         this.renderMapAndBanner();
         this.listenTo(app.router,'route',this.toggleMapAndBanner);
-        this._adaptUiIfIsIframe();
-
-        this.listenTo(app.user, 'receivedMeteorUser', this._toggleUserInfo);
-        this._loadIframeView();
+        //this._adaptUiIfIsIframe();
+        //this.listenTo(app.user, 'receivedMeteorUser', this._toggleUserInfo);
+        //this._loadIframeView();
     },
 
     onAttach() {
@@ -51,7 +46,7 @@ var View = Marionette.View.extend({
     },
 
     renderMapAndBanner() {
-        var searchModel = new Backbone.Model();
+        var searchModel = new Backbone.Model({radius:1});
         this.showChildView('map',new MapView({collection:app.nearbyPosts,model:searchModel}));       
         this.showChildView('banner',new BannerView({model:searchModel}));
         this.showChildView('navLocation', new NavLocationView({model:searchModel}));
@@ -92,6 +87,13 @@ var View = Marionette.View.extend({
     showFooter() {
         this.$('#footer').show();
     },
+
+
+
+
+
+
+
     _toggleUserInfo(user) {
         var view = new UserMenuView({ 
             model: new Backbone.Model(user)
@@ -112,13 +114,12 @@ var View = Marionette.View.extend({
             // hide all post-beginning links (we don't want user to go somewhere)
             setTimeout(() => {
                 $('a[href^="/posts/"]').each((i, a) => {
-                    $(a).hide()
+                    $(a).hide();
                 });
             }, 1000);
         }
     },
     _loadIframeView() {
-        var that = this;
         setTimeout(()=> {
             if (!app.views.iframeView) {
                 var iView = new IframeView({
@@ -128,9 +129,6 @@ var View = Marionette.View.extend({
                 app.views.iframeView = iView;
             }
         }, 2000); // let's assume main page is loaded by this time
-
-    },
-    onAttach() {
     }
 });
 export default View;

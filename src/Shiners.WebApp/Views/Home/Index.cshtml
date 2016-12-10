@@ -1,23 +1,5 @@
-﻿@{
-    Layout = null;
-}
+﻿@model string
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
-    <meta name="keywords" content="Shiners" />
-    <meta name="description" content="" />
-    <meta name="Author" content="Fetisov" />
-    <title>Shiners</title>
-    <link href="~/css/site.min.css" rel="stylesheet" />
-    <link href="~/favicon.ico" rel="icon" />
-    
-</head>
 <body class="smoothscroll enable-animation sh-body">
-
+    @Html.Raw(Model??string.Empty)
 </body>
-
-</html>
-<script src="/bundle.js" type="text/javascript"></script>

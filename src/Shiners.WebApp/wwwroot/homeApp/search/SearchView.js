@@ -1,5 +1,4 @@
-﻿
-import template from './SearchView.hbs.html';
+﻿import template from './SearchView.hbs.html';
 import Backbone from 'backbone';
 import '../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css';
 import '../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js';
@@ -10,6 +9,27 @@ import app from '../app.js';
 var View = Backbone.Marionette.View.extend({
     fetchTimeOut:null,
     template:template,
+    $radiusSlider:null,
+    sliderCases:null,
+    initialize() {
+        this.listenTo(this.collection, 'reset', this.checkIfEmpty);
+    },
+
+    checkIfEmpty() {
+        if (this.collection.size() > 0)
+            this.stopListening(this.collection, 'reset');
+        else
+            this._incrementSliderRadius();
+    },
+
+    _incrementSliderRadius() {
+        var currentVal = this.$radiusSlider.slider('value');
+        if (currentVal < this.$radiusSlider.slider('option', 'max')) {
+            this.$radiusSlider.slider('value', currentVal + 1);
+        } else {
+            this.stopListening(this.collection, 'reset');
+        }
+    },
 
     events: {
         'click #searchParametersButton':'toggleSearchParameters',
@@ -48,40 +68,41 @@ var View = Backbone.Marionette.View.extend({
         this.showChildView('categories', new CategoriesListView({model:this.model,collection:app.postAdTypes}));
     },
 
-    onTextSearch: (e)=> {
-        if (e && (e.keyCode > 31 || e.keyCode === 13 || e.keyCode === 8)) {
+    setQuery(val) {       
+        this.model.set('query', val);
+    },
+
+    onTextSearch (e) {
+        var val = e.target.value;     
+        if (e.keyCode > 31 || e.keyCode === 13 || e.keyCode === 8) {
             if (this.fetchTimeOut)
                 clearTimeout(this.fetchTimeOut);
-            this.fetchTimeOut = setTimeout(_.bind( ()=> {
-                console.info('query: '+e.target.value);
-                var val = e.target.value;
-                this.model.set('query', val);
-            }, this), 400);
+            this.fetchTimeOut = setTimeout(_.bind(this.setQuery, this,val), 400);
         }
     },
 
     initRadiusSlider() {
-        var model=this.model,            
-            cases = [
-                {name:'200м',value:0.2,zoom:16},
-                {name:'1км',value:1,zoom:14},
-                {name:'5км',value:5,zoom:12},
-                {name:'20км',value:20,zoom:10},
-                {name:'везде',value:20000,zoom:3}
-            ];
-  
-        var $radiusslider = this.$("#slider3").slider({
+        this.sliderCases = [
+            {name:'200м',value:0.2,zoom:16},
+            {name:'1км',value:1,zoom:14},
+            {name:'5км',value:5,zoom:12},
+            {name:'20км',value:20,zoom:10},
+            {name:'везде',value:20000,zoom:3}
+        ];
+        this.$radiusSlider = this.$("#slider3").slider({
             range: "min",
             animate: true,
             min: 0,
             max: 4,
-            value: 2
+            value: this.model.get('radius')
         });
-        $radiusslider.slider("pips", { rest: "label", labels: _.map(cases,(c)=>c.name) });
-        $radiusslider.on("slidechange", (e,ui)=> {
-            model.set('radius',cases[ui.value].value);
-            app.map.setZoom(cases[ui.value].zoom);
-        });
+        this.$radiusSlider.slider("pips", { rest: "label", labels: _.map(this.sliderCases,(c)=>c.name) });
+        this.$radiusSlider.on("slidechange", _.bind(this.onRadiusChange,this));
+    },
+
+    onRadiusChange(e,ui) {
+        this.model.set('radius',this.sliderCases[ui.value].value);
+        app.map.setZoom(this.sliderCases[ui.value].zoom);
     },
 
     toggleSearchParameters() {

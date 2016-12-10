@@ -4,15 +4,14 @@
             <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
                 <i class="fa fa-bars"></i>
             </button>
-            <div id="userBar" style="display: none"></div>
+            <div id="userBar">
+                
+            </div>
             <div class="shiners-logo pull-left">
                 <a href="/" style="font-size: 20px;">
                     <img src="/images/logo-home-logotype-short.png" alt="logotype" width="35" /> СВЕТЛЯЧКИ
                 </a>
                 <small class="margin-left-40 hidden-xs" id="navLocation"></small>
-                <!--<div>
-                    <a href="/" class="tab-post-link" style="font-size: 20px;">СВЕТЛЯЧКИ</a>
-                </div>-->
             </div>
             <a class="btn btn-red pull-right hidden-sm hidden-xs" href="/posts/new">
                 Создать
@@ -28,12 +27,6 @@
                                 Создать
                             </a>
                         </li>
-                        <li>
-                            <a href="/Home/HowItWorks">
-                                Как это работает
-                            </a>
-                        </li>
-
                         <li>
                             <a href="/about-us">
                                 О сайте
@@ -55,24 +48,38 @@
         </div>
     </header>
 </div>
-<div id="appBanner" style="display: none;"></div>
-<div id="appMap" style="display: none;"></div>
-<div id="appContent"></div>
-<div id="iframeHolder" style="display: none;"></div>
+<div id="appBanner" style="display: none;">
+    {{=serverRender('~/homeApp/BannerView.hbs.html',{},'section','class="page-header page-header-xs"')}}
+</div>
+<div id="appMap" style="display: none;">
+   
+</div>
+<div id="appContent">
+    {{=serverRender(obj.routeViewPath,obj.routeViewData,obj.routeViewTag,obj.routeViewHtmlAttrs)}}
+</div>
+<div id="iframeHolder" style="display: none;">
+
+</div>
 
 <footer id="footer">
-    <div class="copyright">
+    <div class="copyright has-social">
         <div class="container">
-            <ul class="pull-right nomargin list-inline mobile-block">
-                <li><a href="#">Термины &amp; Соглашения</a></li>
-                <li>•</li>
-                <li><a href="#">Пользовательское соглашение</a></li>
-                <li><span id="siteseal">
-    <script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=ZyKFvuSKrI4HLD5ZxKEekUwOortIU1FYlqJGEvyrOSBY7mDvY3MvTpFsQIcQ"></script>
-</span></li>
-            </ul>
-            &copy; Все права защищены, Shiners
+            <div class="pull-right">
+                <a data-direct-link target="_blank" href="https://www.facebook.com/shinersapp" class="social-icon social-icon-sm social-icon-transparent social-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+                    <i class="icon-facebook"></i>
+                    <i class="icon-facebook"></i>
+                </a>
+
+                <a data-direct-link target="_blank" href="https://vk.com/shinersnews" class="social-icon social-icon-sm social-icon-transparent social-vk" data-toggle="tooltip" data-placement="top" title="Мы во Vkontakte">
+                    <i class="icon-vk"></i>
+                    <i class="icon-vk"></i>
+                </a>
+            </div>
+            <div class="copyright-text pull-left">
+                &copy; &copy; Все права защищены, Shiners
+            </div>
         </div>
     </div>
 </footer>
 <a href="#" id="toTop"></a>
+<div id="fb-root"></div>

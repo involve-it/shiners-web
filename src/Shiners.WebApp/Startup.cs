@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DdpNet;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Shiners.WebApp.Data;
 using Shiners.WebApp.Models;
 using Shiners.WebApp.Services;
+using Shiners.WebApp.Renderers;
 
 namespace Shiners.WebApp
 {
@@ -26,20 +28,19 @@ namespace Shiners.WebApp
 
             if (env.IsDevelopment())
             {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
             }
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+            Renderer = new UnderscoreRenderer(env.WebRootPath.Contains("wwwroot")? env.WebRootPath:env.ContentRootPath, "./homeApp", "./sharedViews");
         }
 
         public IConfigurationRoot Configuration { get; }
+        public UnderscoreRenderer Renderer { get; private set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -48,13 +49,12 @@ namespace Shiners.WebApp
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
-
-            // Add application services.
+            services.AddScoped<UnderscoreRenderer>((provider) => Renderer);
+            //services.AddScoped<MeteorClient>((provider) => new MeteorClient(new Uri("wss://shiners.mobi/websocket")));
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -72,22 +72,20 @@ namespace Shiners.WebApp
             }
 
             app.UseStaticFiles();
+            //app.UseWebSockets();
             app.UseIdentity();
-
-            // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
-
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute("about", "about-us", new { controller = "Home", action = "About" });
                 routes.MapRoute("user","user/{id?}", new { controller = "Profile", action = "Index" });
                 routes.MapRoute("myChats", "chats/my", new { controller = "Chats", action = "My" });
                 routes.MapRoute("chats", "chats/{id?}", new { controller = "Chats", action = "Index" });
+                routes.MapRoute("chat", "messages/to/{id}",new {controller="Chats",action="To"});
                 routes.MapRoute("myPosts", "posts/my", new { controller = "Posts", action = "My" });
                 routes.MapRoute("posts", "posts/{id?}",new {controller="Posts",action="Index"});
                 routes.MapRoute("profile", "profile", new { controller = "Profile", action = "Index" });
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "default",template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

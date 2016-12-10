@@ -1,45 +1,28 @@
 ﻿import Marionette from 'backbone.marionette';
 import template from './CreatePostView.hbs.html';
-import IframeView from '../../shared/iframeView.js';
 import app from '../../app.js';
 
 var View = Marionette.View.extend({
     template:template,
-    initialize() {
+    tagName:'section',
+    events: {
+        'click #back':'back'
     },
 
-    events:{
-        'load iframe':'removeHeader'
-    },
-    onRender() {
-        var a = app, iView;
-        if (app.views.iframeView) {
-            iView = app.views.iframeView;
-        } else {
-            iView = new IframeView({
-                pagePath: '/posts/new?type=ad'
-            });
-            iView.render();
-            app.views.iframeView = iView;
+    onBeforeRender() {
+        this.templateContext= {
+            postTypes:app.postAdTypes.toJSON()
         }
-        iView.setPage('/posts/new?type=ad');
-        $('#iframeHolder').show();
-        //this.$('.js-iframe-holder').append(iView.$el);
-    },
-    removeHeader(e) {
-        console.info('remove header');
-        window.myIframe = e.target;
     },
 
-    onAttach() {
-        //this.$el.height(window.innerHeight-$('#header').height());
-        $('body').addClass('sh-hidden-overflow');
-
+    save() {
+        
     },
-    onDestroy() {
-        $('#iframeHolder').hide();
-        $('body').removeClass('sh-hidden-overflow');
 
+
+    back() {
+        history.back();
     }
+    
 });
 export default View;

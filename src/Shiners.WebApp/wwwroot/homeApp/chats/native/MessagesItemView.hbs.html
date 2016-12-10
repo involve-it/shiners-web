@@ -1,0 +1,44 @@
+﻿{{if (userId===user._id) { }}
+<img class="avatar" src="{{= user.image && user.image.imageUrl ? '/Img/Index?url='+encodeURIComponent(user.image.imageUrl) +'&w=50&h=50' : '/images/shiners/user.png'}}" alt="{{=user.username}}" width="50" height="50">
+{{ } else { }}
+<img class="avatar" src="{{= remoteUser.image &&remoteUser.image.imageUrl ?'/Img/Index?url='+ encodeURIComponent(remoteUser.image.imageUrl)+'&w=50&h=50' : '/images/shiners/user.png'}}" alt="{{=remoteUser.username}}" width="50" height="50">
+{{ } }}
+
+<div class="comment-body">
+    <a href="/profile/{{=userId}}" class="comment-author">
+        <small class="text-muted pull-right"> {{=moment(timestamp).calendar()}} </small>
+        <span>{{= userId==user._id?user.username:remoteUser.username}}</span>
+    </a>
+    <p>
+        {{=text}}
+    </p>
+</div>
+
+<ul class="list-inline size-11 margin-top-10">
+    <li>
+{{ switch (status) { case 'sending': }}
+
+        <a class="text-muted"><i class="fa fa-time"></i> отправка</a>
+
+{{ break; case 'success': }}
+
+        <a class="text-success"><i class="fa fa-check"></i> отправлено</a>
+
+{{ break; case 'error': }}
+
+        <a class="text-danger"><i class="fa fa-remove"></i> не отправлено</a>
+
+{{ break; case 'remote': }}
+
+        <span class="text-muted">&nbsp;</span>
+{{ break; case 'old': }}
+
+    <span class="text-muted">&nbsp;</span>
+
+{{ break; default: throw new Error("Unknown status"); } }}
+        
+    </li>
+    <li class="pull-right">
+        <a class="text-danger removeMessage"> Удалить</a>
+    </li>
+</ul>
