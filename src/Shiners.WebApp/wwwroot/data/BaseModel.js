@@ -1,4 +1,4 @@
 ﻿import _ from 'underscore'
 import validation from 'backbone-validation'
-var DeepModel = require('backbone-nested-model').extend(validation.mixin);
-export default DeepModel;
+import Backbone from 'backbone'
+export default Backbone.Model.extend(validation.mixin);

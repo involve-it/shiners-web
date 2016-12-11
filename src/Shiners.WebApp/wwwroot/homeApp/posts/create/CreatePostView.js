@@ -1,38 +1,52 @@
 ﻿import Marionette from 'backbone.marionette';
 import template from './CreatePostView.hbs.html';
 import app from '../../app.js';
+import scriptjs from  'scriptjs'
 
 var View = Marionette.View.extend({
     template:template,
     tagName:'section',
+    className:'sh-create-post',
     events: {
         'click #back':'back',
-        'change inpot[type=text]':'setProperty'
+        "change #detailsTitle":'setTitle',
+        "change #detailsUrl":'setUrl',
+        "change #detailsPrice":'setPrice',
+        "change #postType":'setPostType',
+        "change #detailsDescription":'setDescription',
+        "change #detailsUrl":'setUrl',
     },
 
     initialize() {
-        
+        window.createPostModel = this.model; // debug
     },
 
-    setProperty(e) {
-        var val = e.target.value ? e.target.value.trim() : null,
-            name = e.target.name;
-        val = val && !_.isEmpty(val) ? val : void 0;
-            if (val && !_.isEmpty(val)) {
-                if (name.indexOf('.') !== -1) {
-                    this.model.set(name,val);
-                        
-                }
-                    
-
-
-                    
-                else {
-
-                    this.model.set(name, val);
-                }
-            }   
+    setTitle(e) {
+        var details = this.model.get('details')||{};
+        if (e.target.value && !_.isEmpty(e.target.value.trim())) {
+            details.title = e.target.value.trim();
+        } else {
+            delete details.title;
+        }
+        this.model.set('details',details);
     },
+
+    //setProperty(e) {
+    //    var val = e.target.value ? e.target.value.trim() : null,
+    //        name = e.target.name;
+    //    val = val && !_.isEmpty(val) ? val : void 0;
+
+    //    if (name.indexOf('.') !== -1) {
+    //        var parts = name.split('.');
+    //        var propName = parts[0];
+    //        var prop = this.model.get(propName)||{};
+            
+
+    //    } else {
+    //        this.model.set(name, val);
+    //    }
+    //    this.model.set(name,val);
+    //},
 
     onBeforeRender() {
         this.templateContext= {
@@ -40,10 +54,22 @@ var View = Marionette.View.extend({
         }
     },
 
-    save() {
+    onAttach() {
+        this.initHtmlEditor();
+    },
+
+    initHtmlEditor() {
+        //ru-RU
+        scriptjs('/lib/ckeditor/ckeditor.js', function() {
+            CKEDITOR.config.language = 'ru';
+            CKEDITOR.replace("detailsDescription");
+        });
         
     },
 
+    save() {
+        
+    },
 
     back() {
         history.back();

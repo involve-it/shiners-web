@@ -1,4 +1,4 @@
-﻿import Model from './AsteroidModel.js';
+﻿import Model from '../AsteroidModel.js';
 
 export default Model.extend({
     save(options) {
@@ -59,6 +59,10 @@ export default Model.extend({
 //    data,
 //    thumbnail
 //};
+
+
+
+
 
 //jobsDetails={seniority,
 //    gender,
