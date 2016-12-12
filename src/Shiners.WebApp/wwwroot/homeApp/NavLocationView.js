@@ -4,6 +4,7 @@ import app from './app.js';
 var View = Marionette.View.extend({
     template:template,
     tagName:'a',
+    className: 'white-link',
     modelEvents: {
         'change:address':'render'
     },
