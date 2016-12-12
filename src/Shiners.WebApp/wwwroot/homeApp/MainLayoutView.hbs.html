@@ -1,162 +1,168 @@
 ﻿
 <div id="header" class="sticky clearfix header-md">
-    <header id="topNav">
-        
-        <div class="sh-header-topline">
-            <div class="container">
-                <div class="sh-header-topline-main">
-                    <div class="sh-header-topline-item">
-                        <i class="icon-map-marker"></i>
-                        <span class="text-muted hidden-xs hidden-sm">Выбрать район для Светлячков</span>
-                        <div class="sh-show-modal-city"> 
-                            <span class="text-weight bold">
-                                <span id="navLocation"></span>
-                            </span>
-                        </div>
-                    </div>
+	<header id="topNav">
+		
+		<div class="sh-header-topline">
+			<div class="container">
+				<div class="sh-header-topline-main">
+					<div class="sh-header-topline-item">
+						<i class="icon-map-marker"></i>
+						<span class="text-muted hidden-xs hidden-sm">Выбрать район для Светлячков</span>
+						<div class="sh-show-modal-city"> 
+							<span class="text-weight bold">
+								<span id="navLocation"></span>
+							</span>
+						</div>
+					</div>
 
-                    <div class="sh-header-topline-item sh-flex-center-items">
+					<div class="sh-header-topline-item sh-flex-center-items">
 
-                        <!-- Menu -->
-                        <div class="navbar-collapse pull-right nav-main-collapse collapse submenu-dark">
-                            <nav class="sh-nav-menu nav-main">
-                                <ul id="topMain" class="nav nav-pills nav-main">
-                                    <li class="active">
-                                        <a href="/">Главная</a>
-                                    </li>
-                                    <li class="hidden-lg hidden-md">
-                                        <a href="/posts/new">
-                                            Создать
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/about-us">
-                                            О сайте
-                                        </a>
-                                    </li>
-                                    <li class="js-need-auth" style="display: none;">
-                                        <a href="/chats/my">
-                                            Сообщения
-                                        </a>
-                                    </li>
-                                    <li class="js-need-auth" style="display: none;">
-                                        <a href="/posts/my">
-                                            Мои Посты
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
+						<!-- Menu -->
+						<div class="navbar-collapse pull-right nav-main-collapse collapse submenu-dark">
+							<nav class="sh-nav-menu nav-main">
+								<ul id="topMain" class="nav nav-pills nav-main">
+									<li class="active">
+										<a href="/">Главная</a>
+									</li>
+									<li class="hidden-lg hidden-md">
+										<a href="/posts/new">
+											Создать
+										</a>
+									</li>
+									<li>
+										<a href="/about-us">
+											О сайте
+										</a>
+									</li>
+									<li class="js-need-auth" style="display: none;">
+										<a href="/chats/my">
+											Сообщения
+										</a>
+									</li>
+									<li class="js-need-auth" style="display: none;">
+										<a href="/posts/my">
+											Мои Посты
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
 
-                        <div class="sh-header-dropdown-user">                        
-                            <div id="userBar"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="sh-header-navbar">
-            <div class="sh-header-navbar-wrapper sh-blurred-bg">
-                <div class="container">
+						<div class="sh-header-dropdown-user">                        
+							<div id="userBar"></div>
+						</div>
 
-                    <div class="sh-header-navbar-items">
-                        <div class="sh-header-navbar-logo">
-                            <a class="sh-logo-header" href="/">
-                                <img src="/images/logo-home-logotype-short-dark.png" alt="logotype" height="45" width="45" />
-                                Shiners
-                            </a>
-                        </div>
+						<!-- here will be a mobile menu -->
+						<button class="sh-btn-mobile-menu btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+							<i class="fa fa-bars"></i>
+						</button>
 
-                        <div class="sh-header-navbar-submenu"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="sh-header-navbar-wrapper sh-blurred-bg">
+			<div class="container">
 
-                        <div class="sh-header-navbar-create">
-                            <a class="ui sh-button standard create big hidden-sm hidden-xs" href="/posts/new">Создать Светлячок</a>
-                        </div>
-                    </div>
+				<div class="sh-header-navbar-items">
+					<div class="sh-header-navbar-logo">
+						<a class="sh-logo-header" href="/">
+							<img src="/images/logo-home-logotype-short-dark.png" alt="logotype" height="45" width="45" />
+							Shiners
+						</a>
+					</div>
 
-                    <!-- here will be a mobile menu -->
-                    <button class="sh-btn-mobile-menu btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
-                        <i class="fa fa-bars"></i>
-                    </button>
+					<div class="sh-header-navbar-submenu"></div>
 
-                    <div class="header-hr-line"></div>
-                    <div id="appBanner" style="display: none;">
-                        <!--=serverRender('~/homeApp/BannerView.hbs.html',{},'section','class="page-header page-header-xs"')-->
-                        {{=serverRender('~/homeApp/BannerView.hbs.html',{},'div','class="sh-header-navbar-info"')}}
-                    </div>
-                </div>
+					<div class="sh-header-navbar-create">
+						<a class="ui sh-button standard create big hidden-sm hidden-xs" href="/posts/new">Создать Светлячок</a>
+					</div>
+				</div>
 
-            </div>
+				<div class="header-hr-line"></div>
+				<div id="appBanner" style="display: none;">
+					<!--=serverRender('~/homeApp/BannerView.hbs.html',{},'section','class="page-header page-header-xs"')-->
+					{{=serverRender('~/homeApp/BannerView.hbs.html',{},'div','class="sh-header-navbar-info"')}}
+				</div>
+			</div>
 
-            <div id="appMap" class="sh-header-map" style="display: none;"></div>
-        </div>
-</header>
+		</div>
+
+		<div class="sh-header-navbar">
+			<div class="sh-header-map">
+				<div class="">
+					<div id="appMap" style="display: none;"></div>
+				</div>
+			</div>
+		</div>
+
+	</header>
 </div>
 
 <div id="appContent">
-    {{=serverRender(obj.routeViewPath,obj.routeViewData,obj.routeViewTag,obj.routeViewHtmlAttrs)}}
+	{{=serverRender(obj.routeViewPath,obj.routeViewData,obj.routeViewTag,obj.routeViewHtmlAttrs)}}
 </div>
 <div id="iframeHolder" style="display: none;"></div>
 
 <footer id="footer" class="sh-footer">
-    <div class="container">
-        <!--1-->
-        <div class="row footer-section footer-section-download">
-            <div class="col-xs-12">
-                <!--<div class="">Here will be pictures for download app</div>-->
-                <div class="sh-footer-images">
-                    <div class="sh-footer-images-browser"></div>
-                </div>
-            </div>
-        </div>
+	<div class="container">
+		<!--1-->
+		<div class="row footer-section footer-section-download hidden-xs">
+			<div class="col-xs-12">
+				<!--<div class="">Here will be pictures for download app</div>-->
+				<div class="sh-footer-images">
+					<div class="sh-footer-images-browser"></div>
+				</div>
+			</div>
+		</div>
 
-        <!--2-->
-        <div class="row footer-section footer-section-nav">
-            <div class="sh-footer-section-wrapper">
-                <div class="sh-f-col col-md-3 col-lg-3">
-                    <div class="sh-logo-footer">Shiners</div>
-                </div>
+		<!--2-->
+		<div class="row footer-section footer-section-nav">
+			<div class="sh-footer-section-wrapper">
+				<div class="sh-f-col col-sm-3 col-md-3 col-lg-3">
+					<div class="sh-logo-footer">Shiners</div>
+				</div>
 
-                <div class="sh-f-col col-md-3 col-lg-3">
-                    <div class="sh-choose-language"></div>
-                    <!--https://www.facebook.com/shinersapp-->
-                    <!--https://vk.com/shinersnews-->
-                </div>
+				<div class="sh-f-col col-sm-1 col-md-3 col-lg-3">
+					<div class="sh-choose-language"></div>
+					<!--https://www.facebook.com/shinersapp-->
+					<!--https://vk.com/shinersnews-->
+				</div>
 
-                <div class="sh-f-col col-md-3 col-lg-3">
-                    <dl class="sh-footer-list">
-                        <dt class="sh-footer-list-title middle">Навигация</dt>
-                        <dd class="sh-footer-list-item"><a class="" href="#">О нас</a></dd>
-                        <dd class="sh-footer-list-item"><a class="" href="#">Пункт 2</a></dd>
-                        <dd class="sh-footer-list-item">
-                            <a href="#" class="sh-store-link">
-                                <!--<img src="images/download_app_store_RU_135x40@2x.png" width="135" height="40" alt="Download Shiners">-->
-                            </a>
-                        </dd>
-                    </dl>
-                </div>
+				<div class="sh-f-col col-sm-4 col-md-3 col-lg-3">
+					<dl class="sh-footer-list">
+						<dt class="sh-footer-list-title middle">Навигация</dt>
+						<dd class="sh-footer-list-item"><a class="" href="#">О нас</a></dd>
+						<dd class="sh-footer-list-item"><a class="" href="#">Пункт 2</a></dd>
+						<dd class="sh-footer-list-item">
+							<a href="#" class="sh-store-link">
+								<!--<img src="images/download_app_store_RU_135x40@2x.png" width="135" height="40" alt="Download Shiners">-->
+							</a>
+						</dd>
+					</dl>
+				</div>
 
-                <div class="sh-f-col col-md-3 col-lg-3">
-                    <dl class="sh-footer-list">
-                        <dt class="sh-footer-list-title middle">Наши контакты</dt>
-                        <dd class="sh-footer-list-item"><a class="sh-social-link" href="mailto:support@shiners.ru" title="support@shiners.ru"><span class="sh-social-link-text">support@shiners.ru</span></a></dd>
-                        <dd class="sh-footer-list-item"><a class="" href="#">Посетите наш Справочный центр</a></dd>
-                        <dd class="sh-footer-list-item"><a class="" href="#">Terms of Use</a></dd>
-                        <dd class="sh-footer-list-item"><a class="" href="#">Privacy Policy</a></dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
+				<div class="sh-f-col col-sm-4 col-md-3 col-lg-3">
+					<dl class="sh-footer-list">
+						<dt class="sh-footer-list-title middle">Наши контакты</dt>
+						<dd class="sh-footer-list-item"><a class="sh-social-link" href="mailto:support@shiners.ru" title="support@shiners.ru"><span class="sh-social-link-text">support@shiners.ru</span></a></dd>
+						<dd class="sh-footer-list-item"><a class="" href="#">Посетите наш Справочный центр</a></dd>
+						<dd class="sh-footer-list-item"><a class="" href="#">Terms of Use</a></dd>
+						<dd class="sh-footer-list-item"><a class="" href="#">Privacy Policy</a></dd>
+					</dl>
+				</div>
+			</div>
+		</div>
 
-        <!--3-->
-        <div class="row">
-            <div class="col-xs-12 sh-copyright">
-                <p class="sh-usage-text">Использование сайта, в том числе создание Светлячков (постов), означает согласие с <a href="#">пользовательским соглашением</a>.</p>
-                <p class="margin-bottom-0">&#169; Shiners 2016, Все права защищены</p>
-            </div>
-        </div>
-    </div>
+		<!--3-->
+		<div class="row">
+			<div class="col-xs-12 sh-copyright">
+				<p class="sh-usage-text">Использование сайта, в том числе создание Светлячков (постов), означает согласие с <a href="#">пользовательским соглашением</a>.</p>
+				<p class="margin-bottom-0">&#169; Shiners 2016, Все права защищены</p>
+			</div>
+		</div>
+	</div>
 </footer>
 
 <a href="#" id="toTop"></a>
