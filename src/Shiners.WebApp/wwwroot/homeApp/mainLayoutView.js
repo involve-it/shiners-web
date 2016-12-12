@@ -36,6 +36,8 @@ var View = Marionette.View.extend({
     onRender() {
         this.renderMapAndBanner();
         this.listenTo(app.router,'route',this.toggleMapAndBanner);
+        this.listenTo(app.user, 'login', this.toggleMenuItems);
+        this.listenTo(app.user, 'logout', this.toggleMenuItems);
         //this._adaptUiIfIsIframe();
         //this.listenTo(app.user, 'receivedMeteorUser', this._toggleUserInfo);
         //this._loadIframeView();
@@ -43,6 +45,15 @@ var View = Marionette.View.extend({
 
     onAttach() {
         this.onClickLink();
+        this.toggleMenuItems();
+    },
+
+    toggleMenuItems() {
+        if(app.user.has('_id'))
+            this.$('.js-need-auth').show();
+        else {
+            this.$('.js-need-auth').hide();
+        }
     },
 
     renderMapAndBanner() {

@@ -3,8 +3,7 @@ import template from './UserBarView.hbs.html';
 import app from './app.js';
 var View = Marionette.View.extend({
     template:template,
-    tagName:'ul',
-    className:'pull-right nav nav-pills nav-second-main',
+    tagName:'div',
     events: {
         'click #logout':'logout',
         'click #userBarLink':'toggleView'

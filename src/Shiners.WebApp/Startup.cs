@@ -83,7 +83,9 @@ namespace Shiners.WebApp
                 routes.MapRoute("chats", "chats/{id?}", new { controller = "Chats", action = "Index" });
                 routes.MapRoute("chat", "messages/to/{id}",new {controller="Chats",action="To"});
                 routes.MapRoute("myPosts", "posts/my", new { controller = "Posts", action = "My" });
+                routes.MapRoute("createPost", "posts/new", new { controller = "Posts", action = "Create" });
                 routes.MapRoute("posts", "posts/{id?}",new {controller="Posts",action="Index"});
+                
                 routes.MapRoute("profile", "profile", new { controller = "Profile", action = "Index" });
                 routes.MapRoute(name: "default",template: "{controller=Home}/{action=Index}/{id?}");
             });

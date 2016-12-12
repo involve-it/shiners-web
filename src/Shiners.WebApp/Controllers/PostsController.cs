@@ -50,5 +50,10 @@ namespace Shiners.WebApp.Controllers
         {
             return View("Index");
         }
+
+        public IActionResult Create()
+        {
+            return View("Index");
+        }
     }
 }

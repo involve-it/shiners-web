@@ -1,5 +1,4 @@
 ﻿import _ from 'underscore'
-import Backbone from 'backbone'
 import validation from 'backbone-validation'
-_.extend(Backbone.Model.prototype, validation.mixin);
-export default Backbone.Model;
+import Backbone from 'backbone'
+export default Backbone.Model.extend(validation.mixin);
