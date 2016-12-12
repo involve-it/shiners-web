@@ -1,6 +1,7 @@
 ﻿import Marionette from 'backbone.marionette';
 import Backbone from 'backbone';
-import '../helpers/helpers';
+import '../i18n/en.js';
+import '../i18n/ru.js';
 import '../lib/detectmobile.js';
 //import "ddp.js";
 import Asteroid from '../lib/asteroid.browser.js';

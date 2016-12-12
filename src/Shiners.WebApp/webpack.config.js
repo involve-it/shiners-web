@@ -1,5 +1,8 @@
 /// <binding />
 "use strict";
+function isProduction() {
+    return false;
+}
 var webpack = require('webpack'),
     BowerWebpackPlugin = require("bower-webpack-plugin"),
     ExtractTextPlugin = require("extract-text-webpack-plugin"),
@@ -36,7 +39,9 @@ module.exports = {
                         //SockJS: "SockJS"
                         //'window.Tether': "tether",
                         //'Tether': "tether"
-                    })
+                    }),
+                    new webpack.optimize.DedupePlugin(),
+                    isProduction()? new webpack.optimize.UglifyJsPlugin(): function() {}
                    // ,new ExtractTextPlugin('bundle.css')
                 ],
     devServer: {
@@ -44,6 +49,8 @@ module.exports = {
         host: "localhost",
         port: 9000
     },
+    debug: isProduction()? false: true,
+    devtool: isProduction()? '': 'eval-source-map',
     module: {
         loaders: [
             {
