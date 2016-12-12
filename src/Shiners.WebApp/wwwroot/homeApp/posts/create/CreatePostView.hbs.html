@@ -33,7 +33,7 @@
                                 <select name="type" class="form-control pointer required" id="postType">
                                     <option value="">--- Выберите ---</option>
                                     {{_.each(postTypes,function(type) { }}
-                                        <option value="{{=type.id}}">{{=type.i18n.ru.fullName}}</option>                                    
+                                        <option value="{{=type._id}}">{{=type.i18n.ru.fullName}}</option>                                    
                                     {{ }); }}
                                 </select>
                             </div>
