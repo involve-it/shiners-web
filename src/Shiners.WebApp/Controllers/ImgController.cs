@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 using Kaliko.ImageLibrary;
 using Kaliko.ImageLibrary.Scaling;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
+using Newtonsoft.Json.Linq;
 using Shiners.WebApp.Util;
 
 namespace Shiners.WebApp.Controllers
@@ -70,5 +72,34 @@ namespace Shiners.WebApp.Controllers
                 //return new FileStreamResult(stream, "image/png");
             }          
         }
+        [HttpPost]
+        public JObject UploadTempImage(string cid)
+        {
+             
+            if (Request.Form.Files.Count>0)
+            {
+                var file = Request.Form.Files[0];
+
+                var extension = Path.GetExtension(file.FileName);
+                var fileName = "/images/temp/" + Guid.NewGuid() + extension;
+                var physicalPath = Path.Combine(environment.WebRootPath, "."+fileName);
+                var file1 = System.IO.File.Create(physicalPath);
+                file.CopyTo(file1);
+                file1.Flush();
+                file1.Close();
+                return new JObject()
+                {
+                    {"path", fileName },
+                    {"cid",cid }
+                };
+            }
+            else
+            {
+                throw new Exception("Не удалось загрузить файл. Длина файла 0");
+            }
+            
+        }
+
+
     }
 }

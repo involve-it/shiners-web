@@ -2,25 +2,34 @@
 import template from './CreatePostView.hbs.html';
 import app from '../../app.js';
 import scriptjs from  'scriptjs'
+import ImagesView from './UploadedImagesView.js'
 
 var View = Marionette.View.extend({
     template:template,
     tagName:'section',
     className:'sh-create-post',
     changeTimeOut:null,
+    images:null,
     events: {
         'click #back':'back',
         "change #detailsTitle":'setTitle',
-        "change #detailsUrl":'setUrl',
-        "change #detailsPrice":'setPrice',
+       // "change #detailsUrl":'setUrl',
+        //"change #detailsPrice":'setPrice',
         "change #postType":'setPostType',
-        "change #detailsDescription":'setDescription'
+        "change #detailsDescription":'setDescription',
+        "click #saveShiner":'save',
+        'click #addImgButton':'showImageDialog',
+        'change #addImgInput':'uploadImage'
+    },
 
+    regions: {
+        'images':'#uploadedImages'
     },
 
     initialize() {
         window.createPostModel = this.model; // debug
-        window.postAdTypes = app.postAdTypes; // debug
+        this.images = new Backbone.Collection();
+        window.uploadedImages = this.images; // debug
     },
 
     setTitle(e) {
@@ -102,6 +111,10 @@ var View = Marionette.View.extend({
         }
     },
 
+    onRender() {
+        this.showChildView('images',new ImagesView({collection:this.images}));
+    },
+
     onAttach() {
         this.initHtmlEditor();
     },
@@ -126,6 +139,41 @@ var View = Marionette.View.extend({
     onBeforeRemove() {
         if(CKEDITOR)
             CKEDITOR.instances["detailsDescription"].destroy();
+    },
+
+    showImageDialog() {
+        this.$('#addImgInput').trigger('click');
+    },
+
+    uploadImage: function (e) {
+        var re_text = /\.bmp|\.jpeg|\.jpg|\.png/i;
+        if (e.target.value.search(re_text) == -1) {
+            alert("Некорректное расширение картинки\n Должно быть  bmp, jpeg, jpg, png ");
+            e.target.form.reset();
+        } else {
+            var data = new FormData();
+            var files = $(e.target).get(0).files;
+            // Add the uploaded image content to the form data collection
+            if (files.length > 0) {
+                data.append("UploadedImage", files[0]);
+            }
+            var model = new Backbone.Model();
+            this.images.add(model);
+            var ajaxRequest = $.ajax({
+                type: "POST",
+                url: "/Img/UploadTempImage?cid="+model.cid,
+                contentType: false,
+                processData: false,
+                data: data
+            });
+            var self = this;
+            ajaxRequest.done(function (resp,textStatus, xhr) {
+                if (textStatus === 'success') {
+                    var m = self.images.get(resp.cid);
+                    m.set('data',resp.path);
+                }
+            });
+        }
     },
 
     save() {

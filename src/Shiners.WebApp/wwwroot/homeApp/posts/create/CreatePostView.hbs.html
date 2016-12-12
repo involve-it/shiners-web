@@ -1,101 +1,230 @@
 ﻿<div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading panel-heading-transparent">
-            <h2 class="panel-title">Добавь своё объявление</h2>
-        </div>
-        <div class="panel-body">
-            <form method="post" enctype="multipart/form-data">
-                <fieldset>
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <label>Заголовок *</label>
-                                <input type="text" id="detailsTitle" name="details.title" value="" class="form-control required">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-6 col-sm-6">
-                                <label>Ссылка </label>
-                                <input type="text" name="details.url" id="detailsUrl" value="" class="form-control required">
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <label>Цена</label>
-                                <input type="text" name="details.price" value="" id="detailsPrice" class="form-control required">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-12 col-sm-12">
-                                <label>Тип объявления *</label>
-                                <select name="type" class="form-control pointer required" id="postType">
-                                    <option value="">--- Выберите ---</option>
-                                    {{_.each(postTypes,function(type) { }}
-                                        <option value="{{=type._id}}">{{=type.i18n.ru.fullName}}</option>                                    
-                                    {{ }); }}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-12 col-sm-12">
-                                <label>Описание объявления</label>
-                                <textarea name="details.description" rows="4" id="detailsDescription" class="form-control required"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <label>Способ отображения объявления</label>
-                            <div class="col-md-12 col-sm-12">
-                                <label class="switch switch-primary switch-round">
-                                    <input type="checkbox">
-                                    <span class="switch-label" data-on="Динамическое объявление" data-off="Динамическое объявление?"></span>
-                                </label>
-                                <i class="fa fa-info"></i> На карте отображается вместе с Вашим местоположением
-                            </div>
-                            <div class="col-md-12 col-sm-12">
-                                <label class="switch switch-primary switch-round">
-                                    <input  type="checkbox">
-                                    <span class="switch-label" data-on="Статическое объявление" data-off="Статическое объявление?"></span>
-                                </label>
-                                <i class="fa fa-info"></i> Возможность самому указать местоположение объявления
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <label>
-                                    Фотографии
-                                    <small class="text-muted">Выберите одну или несколько</small>
-                                </label>
-                                <div class="fancy-file-upload fancy-file-primary">
-                                    <i class="fa fa-upload"></i>
-                                    <input type="file" class="form-control" name="photo" onchange="jQuery(this).next('input').val(this.value);" />
-                                    <input type="text" class="form-control" placeholder="Не выбрано" readonly="" />
-                                    <span class="button">Выбрать</span>
-                                </div>
-                                <small class="text-muted block">Максимальный размер: 10мб (jpg/png)</small>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-                <div class="row">
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-3d btn-teal btn-xlg btn-block margin-top-30">
-                            Добавить
-                            <span class="block font-lato">Ваше объявление будет доступно всем пользователям</span>
-                        </button>
+    <div class="sh-form">
+        <!--1-->
+        <div class="sh-form-step">
+            <div class="sh-form-row sh-caption">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Что
                     </div>
                 </div>
-            </form>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text sh-padding-title">
+                        Информация из этой секции будет использоваться при поиске вашего объявления. Пожалуйста, указывайте точные сведения, чтобы найти подходящий вариант.
+                    </div>
+                </div>
+            </div>
+
+            <!--
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title"></div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text"></div>
+                </div>
+            </div>
+            -->
+
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Анонимный пост
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text">
+                        <div class="sh-checkbox">
+                            <input id="anonymous-post" type="checkbox" class="js-toggle-checked"> <span>Включить анонимный пост</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Заголовок
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text">
+                        <div class="sh-input">
+                            <input type="text" class="sh-input-control form-control" placeholder="Название должно быть конкретным" id="detailsTitle">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Описание
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text">
+                        <div class="sh-textarea">
+                            <textarea class="sh-textarea-control" id="detailsDescription" placeholder="Подробное описание – это обязательный параметр объявления"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Категория
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text">
+                        <div class="sh-select">
+                            <select class="js-ad-type-select" required=""  id="postType">
+                                <option value=""> -- Выберите тип -- </option>
+                                {{_.each(postTypes,function(type) { }}
+                                    <option value="{{=type._id}}">{{=type.i18n.ru.fullName}}</option>
+                                {{ }); }}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Фотографии
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text">
+                        <div class="sh-photos-upload">
+                            <div class="sh-photos-upload-wrapper">
+                                <div class="sh-photos-upload-image">
+                                    <i class="fa fa-camera"></i>
+                                </div>
+                                <div class="sh-photos-upload-description">
+                                    <span>Добавьте фотографии для объявления.<br />Вы всегда можете вернуться к сохраненному объявлению и добавить новые фотографии.</span>
+                                </div>
+                                <div class="sh-photos-upload-button">
+                                    <a class="ui sh-button" id="addImgButton"> Добавить фото</a>
+                                    <input id="addImgInput" type="file" style="display: none" />
+                                </div>
+                            </div>
+                            <div id="uploadedImages">
+                                
+                            </div>                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="panel-footer">
-            <a class="btn btn-xs btn-link" id="back">Назад</a>
+
+        <!--2-->
+        <div class="sh-form-step">
+            <div class="sh-form-row sh-caption">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Где
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text sh-padding-title">
+                        Выберите надстройку для вашего объявления. С помощью этих данных пользователи найдут объявления в подходящем для них месте.
+                    </div>
+                </div>
+            </div>
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Местонахождение объявления
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text">
+                        <div class="sh-location-position">
+                            <div class="sh-location-position-wrapper">
+
+                                <div class="sh-btn-position">
+                                    <button type="button" class="sh-btn-position-wrapper sh-set-dynamic-position btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                        <span class="sh-icon"><i class="fa fa-male"></i></span>
+                                        <span class="sh-title">Динамическое</span>
+                                        <span class="sh-description">Выберите эту опцию, если желаете, чтобы созданное объявление перемещалось вместе с вашим устройством.</span>
+                                    </button>
+                                </div>
+
+                                <div class="sh-btn-position">
+                                    <button type="button" class="sh-btn-position-wrapper sh-set-static-position btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                        <span class="sh-icon"><i class="fa fa-flag"></i></span>
+                                        <span class="sh-title">Статическое</span>
+                                        <span class="sh-description">Выберите эту опцию, если желаете, чтобы созданное объявление было привязано к местности и не зависело от вашего перемещения.</span>
+                                        <span href="#" class="set-locations-new-post link">Нажмите, чтобы выбрать место</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!--3-->
+        <div class="sh-form-step">
+            <div class="sh-form-row sh-caption">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Когда
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text sh-padding-title">
+                        Установите время, в течении которого ваше объявление будет активным.
+                    </div>
+                </div>
+            </div>
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Продолжительность
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text">
+                        <div class="sh-datepicker">
+                            <div class="sh-datepicker-wrapper">
+                                <div class="sh-textfield-picker action l input">
+                                    <input type="text" class="sh-input-control form-control sh-datepicker" placeholder="Нажмите, чтобы выбрать дату" data-format="yyyy-mm-dd" data-lang="en" data-RTL="false">
+                                </div>
+                                <div class="sh-select sh-select-duration-picker">
+                                    <select class="form-control select2">
+                                        <option value="0">Один день</option>
+                                        <option value="1">Два дня</option>
+                                        <option value="2">Неделя</option>
+                                        <option value="3">Две недели</option>
+                                        <option value="4">Месяц</option>
+                                        <option value="5">Год</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sh-create-post-btn pull-right">
+            <button class="ui button standard create big disabled" id="saveShiner">Установить Светлячок</button>
+        </div>
+
+
     </div>
+
+
+    <!--
+    <div class="sh-work-wrapper">
+        <h1 class="sh-section-hero-headline sh-text-center">Как это работает</h1>
+        <p class="sh-section-intro sh-text-center">Сайт для поиска услуг, мероприятий и других объявлений от людей вокруг Вас</p>
+
+        <div class="sh-work-tabs"></div>
+    </div>
+    -->
+
 </div>
