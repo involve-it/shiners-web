@@ -3,6 +3,8 @@ import template from './CreatePostView.hbs.html';
 import app from '../../app.js';
 import scriptjs from  'scriptjs'
 import ImagesView from './UploadedImagesView.js'
+import LocationView from './SelectedLocationView.js'
+import ModalView from '../'
 
 var View = Marionette.View.extend({
     template:template,
@@ -19,17 +21,37 @@ var View = Marionette.View.extend({
         "change #detailsDescription":'setDescription',
         "click #saveShiner":'save',
         'click #addImgButton':'showImageDialog',
-        'change #addImgInput':'uploadImage'
+        'change #addImgInput':'uploadImage',
+        'change [name=locationType]':'onSelectLocation'
     },
 
     regions: {
-        'images':'#uploadedImages'
+        'images':'#uploadedImages',
+        'location':'#locationName'
     },
 
     initialize() {
         window.createPostModel = this.model; // debug
         this.images = new Backbone.Collection();
+        this.selectedLocation = new Backbone.Model({
+            coords:app.user.get('position')
+        });
+        this.listenTo(this.selectedLocation, this.showLocation);
         window.uploadedImages = this.images; // debug
+        window.user = app.user; // debug
+    },
+
+    setLocation(coords) {
+        var model = this.selectedLocation;
+        app.geocoder.geocode({'location': coords},_.bind((results,status)=>{
+            if (status === window.google.maps.GeocoderStatus.OK) {
+                model.set({
+                    coords: coords,
+                    name:results[0].long_name,
+                    accurateAddress:results[0].long_name
+                });
+            }
+        },this));
     },
 
     setTitle(e) {
@@ -87,23 +109,6 @@ var View = Marionette.View.extend({
             this.model.set('details',details);
         }, this), 400);       
     },
-
-    //setProperty(e) {
-    //    var val = e.target.value ? e.target.value.trim() : null,
-    //        name = e.target.name;
-    //    val = val && !_.isEmpty(val) ? val : void 0;
-
-    //    if (name.indexOf('.') !== -1) {
-    //        var parts = name.split('.');
-    //        var propName = parts[0];
-    //        var prop = this.model.get(propName)||{};
-            
-
-    //    } else {
-    //        this.model.set(name, val);
-    //    }
-    //    this.model.set(name,val);
-    //},
 
     onBeforeRender() {
         this.templateContext= {
@@ -174,6 +179,18 @@ var View = Marionette.View.extend({
                 }
             });
         }
+    },
+
+    onSelectLocation(e) {
+        if (e.target.id == "staticLocation") {
+            
+        } else {
+            this.showLocation();
+        }
+    },
+
+    showLocation() {
+        this.showChildView('location',new LocationView({model:this.selectedLocation}));
     },
 
     save() {
