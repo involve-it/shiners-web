@@ -61,7 +61,7 @@ var View = Marionette.View.extend({
                 url: url || '../images/shiners/shiner_marker.png',
                 scaledSize: new window.google.maps.Size(25, 33),
                 origin: new window.google.maps.Point(0, 0),
-                anchor: new window.google.maps.Point(0, 32)
+                anchor: new window.google.maps.Point(12, 33)
             };
             if (!_.find(this.shiners, (sh) => sh.modelId===model.id)) {
                 var details = model.get('details');
@@ -199,7 +199,7 @@ var View = Marionette.View.extend({
                 url: '../images/shiners/user.png',
                 scaledSize: new window.google.maps.Size(35, 35),
                 origin: new window.google.maps.Point(0, 0),
-                anchor: new window.google.maps.Point(20, 20)
+                anchor: new window.google.maps.Point(17, 17)
             };
             var marker =  this.userMarker || new window.google.maps.Marker({
                 map: this.map,

@@ -26,8 +26,14 @@ export default Marionette.View.extend({
         this.containerView = options.view;
     },
 
+    hide() {
+        this.$el.modal('hide');
+    },
+
     onShow() {
         this.showChildView('childView',this.containerView);
+        this.listenToOnce(this.containerView,'destroy',this.hide);
+        //detach
     },
 
     onAttach() {

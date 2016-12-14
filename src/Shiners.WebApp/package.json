@@ -38,6 +38,7 @@
     "load-google-maps-api": "0.0.2",
     "moment": "2.14.1",
     "underscore": "1.8.3",
-    "scriptjs": "2.5.8" 
+    "scriptjs": "2.5.8",
+    "bootstrap-datepicker": "1.6.4" 
   }
 }

@@ -136,44 +136,10 @@
             <div class="sh-form-row">
                 <div class="sh-form-label">
                     <div class="sh-form-label-title">
-                        Местонахождение объявления
+                        <a id="selectLocation">Выбрать Местонахождение объявления</a>
                     </div>
                 </div>
-                <div class="sh-form-content">
-                    <label class="radio">
-                        <input id="dynamicLocation" type="radio" name="locationType" value="1">
-                        <i></i> будет всегда рядом с пользователем
-                    </label>
-                    <label class="radio">
-                        <input id="staticLocation" type="radio" name="locationType" value="2">
-                        <i></i> Установить вручную
-                    </label>
-                    <div class="sh-form-content-text">
-                            <div class="sh-location-position">
-                                <div class="sh-location-position-wrapper">
 
-                                    <div class="sh-btn-position">
-                                        <button type="button" class="sh-btn-position-wrapper sh-set-dynamic-position btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
-                                            <span class="sh-icon"><i class="fa fa-male"></i></span>
-                                            <span class="sh-title">Динамическое</span>
-                                            <span class="sh-description">Выберите эту опцию, если желаете, чтобы созданное объявление перемещалось вместе с вашим устройством.</span>
-                                        </button>
-                                    </div>
-
-                                    <div class="sh-btn-position">
-                                        <button type="button" class="sh-btn-position-wrapper sh-set-static-position btn btn-primary" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target=".bs-example-modal-lg">
-                                            <span class="sh-icon"><i class="fa fa-flag"></i></span>
-                                            <span class="sh-title">Статическое</span>
-                                            <span class="sh-description">Выберите эту опцию, если желаете, чтобы созданное объявление было привязано к местности и не зависело от вашего перемещения.</span>
-
-                                        </button>
-                                        <a id="setPosition" class="set-locations-new-post link">Нажмите, чтобы выбрать место</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                </div>
                 <div id="locationName">
 
                 </div>
@@ -205,16 +171,16 @@
                         <div class="sh-datepicker">
                             <div class="sh-datepicker-wrapper">
                                 <div class="sh-textfield-picker action l input">
-                                    <input type="text" class="sh-input-control form-control sh-datepicker" placeholder="Нажмите, чтобы выбрать дату" data-format="yyyy-mm-dd" data-lang="en" data-RTL="false">
+                                    <input id="dateDuration" type="text" class="sh-input-control form-control sh-datepicker" placeholder="Нажмите, чтобы выбрать дату" data-format="yyyy-mm-dd" data-lang="en" data-RTL="false">
                                 </div>
                                 <div class="sh-select sh-select-duration-picker">
-                                    <select class="form-control select2">
-                                        <option value="0">Один день</option>
-                                        <option value="1">Два дня</option>
-                                        <option value="2">Неделя</option>
-                                        <option value="3">Две недели</option>
-                                        <option value="4">Месяц</option>
-                                        <option value="5">Год</option>
+                                    <select class="form-control select2" id="dateDurationSelect">
+                                        <option value="24">Один день</option>
+                                        <option value="48">Два дня</option>
+                                        <option value="168">Неделя</option>
+                                        <option value="336">Две недели</option>
+                                        <option value="720">Месяц</option>
+                                        <option value="8760">Год</option>
                                     </select>
                                 </div>
                             </div>

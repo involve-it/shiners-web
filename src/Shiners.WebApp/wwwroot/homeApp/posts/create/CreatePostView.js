@@ -6,6 +6,7 @@ import ImagesView from './UploadedImagesView.js'
 import LocationView from './SelectedLocationView.js'
 import ModalView from '../../../sharedViews/ModalContainerView.js'
 import LocationMapView from './LocationMapView.js'
+import 'bootstrap-datepicker'
 var View = Marionette.View.extend({
     template:template,
     tagName:'section',
@@ -22,13 +23,19 @@ var View = Marionette.View.extend({
         "click #saveShiner":'save',
         'click #addImgButton':'showImageDialog',
         'change #addImgInput':'uploadImage',
-        'change [name=locationType]':'onSelectLocation'
+        'click #selectLocation':'onSelectLocation',
+        'change #dateDurationSelect':'setFixedDuration',
+        'change #dateDuration':'setDate'
     },
 
     regions: {
         'images':'#uploadedImages',
         'location':'#locationName',
         'modal':'#modalContainer'
+    },
+
+    modelEvents: {
+        
     },
 
     initialize() {
@@ -39,7 +46,6 @@ var View = Marionette.View.extend({
         });
         this.listenTo(this.selectedLocation, this.showLocation);
         window.uploadedImages = this.images; // debug
-        window.user = app.user; // debug
     },
 
     setLocation(coords) {
@@ -49,7 +55,8 @@ var View = Marionette.View.extend({
                 model.set({
                     coords: coords,
                     name:results[0].long_name,
-                    accurateAddress:results[0].long_name
+                    accurateAddress:results[0].long_name,
+                    placeType:'static'
                 });
             }
         },this));
@@ -124,6 +131,7 @@ var View = Marionette.View.extend({
 
     onAttach() {
         this.initHtmlEditor();
+        this.initDatepicker();
     },
 
     initHtmlEditor() {
@@ -141,6 +149,29 @@ var View = Marionette.View.extend({
                 });
             }
         });      
+    },
+
+    initDatepicker() {
+        this.$('#dateDuration').datepicker({
+            language:'ru',
+            format:'dd/mm/yyyy'
+        });
+    },
+
+    setFixedDuration(e) {
+        var hours = parseInt(e.target.value);
+        var ms = hours * 3600000;
+        var dateMoment = moment();    
+        dateMoment=dateMoment.add(ms);
+        this.$('#dateDuration').datepicker('setDate',dateMoment.toDate());
+    },
+
+    setDate(e) {
+        if (e.target.value && !_.isEmpty(e.target.value)) {
+            var val = moment(e.target.value);
+            this.model.set('timestamp', val.unix());
+        }
+        
     },
 
     onBeforeRemove() {
@@ -184,11 +215,7 @@ var View = Marionette.View.extend({
     },
 
     onSelectLocation(e) {
-        if (e.target.id == "staticLocation") {
-            this.showChildView('modal', new ModalView({view:new LocationMapView({model:this.selectedLocation}),title:'Выбор местоположения'}));
-        } else {
-            this.setLocation(app.user.get('position'));
-        }
+        this.showChildView('modal', new ModalView({view:new LocationMapView({model:this.selectedLocation}),title:'Выбор местоположения'}));
     },
 
     save() {
