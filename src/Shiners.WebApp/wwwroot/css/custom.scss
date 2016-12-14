@@ -209,7 +209,7 @@ i {
         font-size: 1em;
         display: inline-block;
         opacity: 1;
-        margin: 0 .25rem 0 0;
+        margin: 0 4px 0 0;
         width: 1.18em;
         height: 1em;
         font-style: normal;
@@ -334,10 +334,10 @@ textarea, select {
 	color: rgba(0, 0, 0, 0.75);
 	display: block;
 	font-family: inherit;
-	font-size: 0.875rem;
+	font-size: 14px;
 	height: 44px;
-	margin: 0 0 1rem 0;
-	padding: 0.5rem;
+	margin: 0 0 16px 0;
+	padding: 8px;
 	width: 100%;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -386,9 +386,9 @@ textarea, select {
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
-		padding: 0.5rem;
+		padding: 8px;
 		font-family: inherit;
-		font-size: 0.875rem;
+		font-size: 14px;
 		line-height: normal;
 		-webkit-transition: border-color 0.15s linear, background 0.15s linear;
 		-moz-transition: border-color 0.15s linear, background 0.15s linear;
@@ -444,6 +444,7 @@ textarea, select {
 				outline: none;
 				border-radius: 0 2px 2px 0;
 				padding-right: 20px;
+                min-height: 44px;
 				-webkit-tap-highlight-color: transparent;
 				-webkit-appearance: none !important;
 				-moz-appearance: none !important;
@@ -575,7 +576,7 @@ textarea, select {
     font-style: normal;
     text-align: center;
     text-decoration: none;
-    border-radius: 0.28571429rem;
+    border-radius: 4px;
     box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -749,7 +750,7 @@ textarea, select {
     } /* end disabled */
 
     /* Sizes */
-    font-size: 1rem;
+    font-size: 16px;
 
     &.mini {
       font-size: 0.785rem
@@ -778,7 +779,7 @@ textarea, select {
       background: transparent none !important;
       color: rgba(0, 0, 0, 0.6) !important;
       font-weight: normal;
-      border-radius: 0.28571429rem;
+      border-radius: 4px;
       text-transform: none;
       text-shadow: none !important;
       box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.15) inset;
@@ -1729,69 +1730,69 @@ textarea, select {
   }
 }
 
-.sh-content {
-	background: $sh-main-content-bg;
-  
-	#sh-create-post {
-		padding-top: 45px;
-		
-		.sh-form {
-			max-width: 940px;
-			margin: 0 auto;
-			
-			.sh-form-step {
-				background-color: $sh-white-color;
-				margin-bottom: 36px;
-				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-				border-top: 1px solid $sh-white-color;
-				
-				.sh-form-row {
-					@include sh-display-flex();
-					
-					.sh-form-label {
-						flex-basis: 200px;
-						padding: 0 16px 16px;
-						
-						.sh-form-label-title {
-							color: $sh-main-black-color;
-							font-weight: 500;
-						}
-					}
-					
-					.sh-form-content {
-						flex-basis: 100%;
-						padding: 0 16px 16px;						
-					}
-					
-					//Caption
-					&.sh-caption {
-						min-height: 60px;
-						
-						.sh-form-label {
-							padding: 0;
-							@include sh-display-flex();
-                            @include sh-justify-content(center);
-							@include sh-align-items(center);
-							background: rgba(0,0,0, .1);
+.sh-content {}
 
-							.sh-form-label-title {
-								font-size: 28px;
-								font-weight: 400;
-								color: $sh-main-black-color;
-							}
+.sh-create-post {
+	padding-top: 45px;
+    padding-bottom: 0;
+    background: $sh-main-content-bg;
+		
+	.sh-form {
+		max-width: 940px;
+		margin: 0 auto;
+			
+		.sh-form-step {
+			background-color: $sh-white-color;
+			margin-bottom: 36px;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+			border-top: 1px solid $sh-white-color;
+				
+			.sh-form-row {
+				@include sh-display-flex();
+					
+				.sh-form-label {
+					flex-basis: 200px;
+					padding: 0 16px 16px;
+						
+					.sh-form-label-title {
+						color: $sh-main-black-color;
+						font-weight: 700;
+					}
+				}
+					
+				.sh-form-content {
+					flex-basis: 100%;
+					padding: 0 16px 16px;						
+				}
+					
+				//Caption
+				&.sh-caption {
+					min-height: 60px;
+						
+					.sh-form-label {
+						padding: 0;
+						@include sh-display-flex();
+                        @include sh-justify-content(center);
+						@include sh-align-items(center);
+						background: rgba(0,0,0, .1);
+
+						.sh-form-label-title {
+							font-size: 28px;
+							font-weight: 400;
+							color: $sh-main-black-color;
 						}
-						.sh-form-content {
-							padding: 0;
-							@include sh-display-flex();
-                            @include sh-justify-content(flex-start);
-							@include sh-align-items(center);
-							background: rgba(0,0,0,.03);
+					}
+					.sh-form-content {
+						padding: 0;
+						@include sh-display-flex();
+                        @include sh-justify-content(flex-start);
+						@include sh-align-items(center);
+						background: rgba(0,0,0,.03);
 							
-							.sh-form-content-text {
-								font-size: 16px;
-								padding-left: 16px;
-								color: $sh-main-gray-color;
-							}
+						.sh-form-content-text {
+							font-size: 16px;
+							padding-left: 16px;
+							color: $sh-main-gray-color;
 						}
 					}
 				}
@@ -1807,7 +1808,7 @@ textarea, select {
 	
 	.sh-photos-upload-wrapper {
         @include sh-display-flex();
-        @include sh-justify-content(column);
+        @include sh-flex-direction(column);
 		@include sh-align-items(center);
 		padding-top: 10px;
 		padding-bottom: 24px;
@@ -2064,48 +2065,47 @@ textarea, select {
         padding-top: 16px;
     }
 
-    .sh-content {
+   
 
-		#sh-create-post {
+	.sh-create-post {
 
-			.sh-form {
-
-				.sh-form-step {
-					margin-bottom: 16px;
+		.sh-form {
+			.sh-form-step {
+				margin-bottom: 16px;
 					
-					.sh-form-row {
-						@include sh-flex-direction(column);
-						margin-bottom: 16px;
+				.sh-form-row {
+					@include sh-flex-direction(column);
+					margin-bottom: 16px;
 
-						.sh-form-label {
-							flex-basis: inherit;
-							padding: 0 16px 8px;
+					.sh-form-label {
+						flex-basis: inherit;
+						padding: 0 16px 8px;
 							
+						.sh-form-label-title {
+							font-weight: bold;
+						}
+					}
+					.sh-form-content {}
+						
+					&.sh-caption {
+							
+						.sh-form-label {
+                            @include sh-justify-content(flex-start);								
+								
 							.sh-form-label-title {
-								font-weight: bold;
+								padding: 10px 16px;
 							}
 						}
-						.sh-form-content {}
-						
-						&.sh-caption {
 							
-							.sh-form-label {
-                                @include sh-justify-content(flex-start);								
-								
-								.sh-form-label-title {
-									padding: 10px 16px;
-								}
-							}
-							
-							.sh-form-content {
-								.sh-form-content-text {}
-							}
+						.sh-form-content {
+							.sh-form-content-text {}
 						}
 					}
 				}
 			}
 		}
 	}
+	
 
     #sh-works {
 
@@ -2329,27 +2329,27 @@ textarea, select {
 		}
 	}
 	
-	.sh-content {
+
 		
-		#sh-create-post {
-			padding-top: 15px;
+	.sh-create-post {
+		padding-top: 15px;
 			
-			.container {
-				padding-left: 0;
-				padding-right: 0;
-			}
+		.container {
+			padding-left: 0;
+			padding-right: 0;
+		}
 			
-			.sh-form {
+		.sh-form {
 
-				.sh-form-step {
+			.sh-form-step {
 
-					.sh-form-row {
-						margin-bottom: 6px;
-					}
+				.sh-form-row {
+					margin-bottom: 6px;
 				}
 			}
 		}
 	}
+
 	
 	/* Dynamic & Static */
 	.sh-location-position {
