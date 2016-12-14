@@ -4,8 +4,8 @@ import app from '../../app.js';
 import scriptjs from  'scriptjs'
 import ImagesView from './UploadedImagesView.js'
 import LocationView from './SelectedLocationView.js'
-import ModalView from '../'
-
+import ModalView from '../../../sharedViews/ModalContainerView.js'
+import LocationMapView from './LocationMapView.js'
 var View = Marionette.View.extend({
     template:template,
     tagName:'section',
@@ -27,7 +27,8 @@ var View = Marionette.View.extend({
 
     regions: {
         'images':'#uploadedImages',
-        'location':'#locationName'
+        'location':'#locationName',
+        'modal':'#modalContainer'
     },
 
     initialize() {
@@ -118,6 +119,7 @@ var View = Marionette.View.extend({
 
     onRender() {
         this.showChildView('images',new ImagesView({collection:this.images}));
+        this.showChildView('location', new LocationView({model:this.selectedLocation}));
     },
 
     onAttach() {
@@ -183,14 +185,10 @@ var View = Marionette.View.extend({
 
     onSelectLocation(e) {
         if (e.target.id == "staticLocation") {
-            
+            this.showChildView('modal', new ModalView({view:new LocationMapView({model:this.selectedLocation}),title:'Выбор местоположения'}));
         } else {
-            this.showLocation();
+            this.setLocation(app.user.get('position'));
         }
-    },
-
-    showLocation() {
-        this.showChildView('location',new LocationView({model:this.selectedLocation}));
     },
 
     save() {

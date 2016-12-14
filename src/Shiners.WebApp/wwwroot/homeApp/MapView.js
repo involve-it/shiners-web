@@ -137,7 +137,7 @@ var View = Marionette.View.extend({
             });
             this.geocoder = new maps.Geocoder();
             app.map = this.map;
-            window.myMap = app.map;
+            window.myMap = app.map; // debug
             app.geocoder = this.geocoder;
             //this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
             this.map.addListener('bounds_changed',_.bind(this.findLocationName,this));

@@ -28,5 +28,9 @@ export default Marionette.View.extend({
 
     onShow() {
         this.showChildView('childView',this.containerView);
+    },
+
+    onAttach() {
+        this.$el.modal();
     }
 });
