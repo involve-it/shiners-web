@@ -21,11 +21,24 @@ export default Model.extend({
     validation: {
 
         type: {
-            required:true
+            required:true,
+            
+            msg:'Введите категорию объявления'
+        },
+        endDatePost: {
+            required:true,
+            
+            msg:'Введите длительность объявления'
+        },
+        'details.title': {
+            required: true,
+            minLength:2,
+            msg:'Введите название объявления'
         },
 
-        'details.title': {
-            required: true
+        'details.locations'(value, attr, computedState) {
+            if (!value || _.isEmpty(value))
+                return "укажите местоположение";
         }
     }
 });

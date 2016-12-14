@@ -50,7 +50,7 @@
                 <div class="sh-form-content">
                     <div class="sh-form-content-text">
                         <div class="sh-input">
-                            <input type="text" class="sh-input-control form-control" placeholder="Название должно быть конкретным" id="detailsTitle">
+                            <input type="text" name="details.title" class="sh-input-control form-control" placeholder="Название должно быть конкретным" id="detailsTitle">
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                 <div class="sh-form-content">
                     <div class="sh-form-content-text">
                         <div class="sh-select">
-                            <select class="js-ad-type-select" required="" id="postType">
+                            <select class="js-ad-type-select" required="" id="postType" name="type">
                                 <option value=""> -- Выберите тип -- </option>
                                 {{_.each(postTypes,function(type) { }}
                                 <option value="{{=type._id}}">{{=type.i18n.ru.fullName}}</option>
@@ -140,7 +140,7 @@
                     </div>
                 </div>
 
-                <div id="locationName">
+                <div id="locationName" name="details.locations">
 
                 </div>
             </div>

@@ -34,9 +34,10 @@ var View = Marionette.View.extend({
         'modal':'#modalContainer'
     },
 
-    modelEvents: {
-        
-    },
+    //modelEvents: {
+    //    'invalid':'showErrorMessage',
+    //    'validated:invalid':'showErrorMessage1'
+    //},
 
     initialize() {
         window.createPostModel = this.model; // debug
@@ -69,7 +70,7 @@ var View = Marionette.View.extend({
         } else {
             delete details.title;
         }
-        this.model.set('details',details);
+        this.model.set('details',details,{validate:true});
     },
 
     setUrl(e) {
@@ -96,7 +97,7 @@ var View = Marionette.View.extend({
         var id = e.target.value;
         var postType = app.postAdTypes.get(id);
         if (postType) {
-            this.model.set('type',postType.get('name'));
+            this.model.set('type',postType.get('name'),{validate:true});
         } else {
             this.model.unset('type');
         }       
@@ -132,6 +133,7 @@ var View = Marionette.View.extend({
     onAttach() {
         this.initHtmlEditor();
         this.initDatepicker();
+        Backbone.Validation.bind(this);
     },
 
     initHtmlEditor() {
@@ -169,9 +171,8 @@ var View = Marionette.View.extend({
     setDate(e) {
         if (e.target.value && !_.isEmpty(e.target.value)) {
             var val = moment(e.target.value);
-            this.model.set('timestamp', val.unix());
-        }
-        
+            this.model.set('endDatePost', val.unix());
+        }      
     },
 
     onBeforeRemove() {
@@ -217,6 +218,14 @@ var View = Marionette.View.extend({
     onSelectLocation(e) {
         this.showChildView('modal', new ModalView({view:new LocationMapView({model:this.selectedLocation}),title:'Выбор местоположения'}));
     },
+
+    //showErrorMessage(a,b,c,d) {
+    //    var i = 0;
+    //},
+
+    //showErrorMessage1(a, b, c, d) {
+    //    var j = 0;
+    //},
 
     save() {
         
