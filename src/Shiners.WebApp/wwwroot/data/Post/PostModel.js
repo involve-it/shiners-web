@@ -8,7 +8,7 @@ export default Model.extend({
             self.trigger('before:save');
         return this.asteroid.call('addPost',this.attributes).result.then((resp) => {
             if (resp.success) {
-                self.model.set(resp.result,options);
+                self.set('_id',resp.result,options);
                 if(!options || !options.silent)
                     self.trigger('save',resp);
             } else {

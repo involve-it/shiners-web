@@ -106,9 +106,11 @@ namespace Shiners.WebApp.Controllers
         }
 
         [HttpPost]
-        public JArray CommitUploadImage(JArray data)
-        {            
-            foreach (JObject jImg in data)
+        public JArray CommitUploadImage([FromBody]JToken data)
+        {
+            JArray jdata = JArray.FromObject(data);
+            
+            foreach (JObject jImg in jdata)
             {
                 var physicalTempPath = Path.Combine(environment.WebRootPath, "." + jImg["data"]);
                 var fileName = Path.GetFileName(physicalTempPath);
@@ -127,9 +129,14 @@ namespace Shiners.WebApp.Controllers
                     System.IO.File.Delete(physicalTempPath);
                 }
                 catch (Exception){}
+
+
+
+                //jImg["id"]='dsdsd'
                 jImg["data"] = newFilePath;
+                //jImg["thumbnail"] = somePath;
             }
-            return data;
+            return jdata;
         }
 
     }

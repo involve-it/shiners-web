@@ -235,12 +235,10 @@ var View = Marionette.View.extend({
         this.showChildView('modal', new ModalView({view:new LocationMapView({model:this.selectedLocation}),title:'Выбор местоположения'}));
     },
     toggleCreateButton() {
-        var isValid = this.model.isValid();
-        console.info('is valid:' +isValid);
+        var errors = this.model.validate();
         var $btn = this.$('#saveShiner');
-       if (isValid) {
+       if (!errors) {
            $btn.removeClass('disabled');
-           alert('valid');
        } else {
            if(!$btn.hasClass('disabled'))
                $btn.addClass('disabled');
@@ -248,23 +246,24 @@ var View = Marionette.View.extend({
     },
 
     save() {
-        if (this.model.isValid()) {
-            var photos = this.model.get('details').photos;
-            if (photos && !_.isEmpty(photos)) {
+        if (!this.model.validate()) {
+            var model = this.model;
+            var photos = model.get('details').photos;
+            if (photos && !_.isEmpty(photos)) {               
                 $.ajax({
                     type: "POST",
                     url: "/Img/CommitUploadImage",
-                    contentType: 'json',
-                    data: photos,
-                    context:this
+                    contentType: "application/json",
+                    dataType: "json",
+                    data: JSON.stringify(photos)
                 }).done(resp => {
-                    var details = this.model.get('details');
+                    var details = model.get('details');
                     details.photos = resp;
-                    this.model.set('details', details);
-                    this.model.create();
+                    model.set('details', details);
+                    model.create();
                 });
             } else {
-                this.model.create();
+                model.create();
             }
         }
     },
