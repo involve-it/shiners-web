@@ -34,10 +34,9 @@ var View = Marionette.View.extend({
         'modal':'#modalContainer'
     },
 
-    //modelEvents: {
-    //    'invalid':'showErrorMessage',
-    //    'validated:invalid':'showErrorMessage1'
-    //},
+    modelEvents: {
+        'validated':'toggleCreateButton'
+    },
 
     initialize() {
         window.createPostModel = this.model; // debug
@@ -96,11 +95,7 @@ var View = Marionette.View.extend({
     setPostType(e) {
         var id = e.target.value;
         var postType = app.postAdTypes.get(id);
-        if (postType) {
-            this.model.set('type',postType.get('name'),{validate:true});
-        } else {
-            this.model.unset('type');
-        }       
+        this.model.set('type',postType?postType.get('name'):void 0,{validate:true});    
     },
 
     setDescription(e) {  
@@ -178,6 +173,7 @@ var View = Marionette.View.extend({
     onBeforeRemove() {
         if(CKEDITOR)
             CKEDITOR.instances["detailsDescription"].destroy();
+        Backbone.Validation.unbind(this);
     },
 
     showImageDialog() {
@@ -218,17 +214,14 @@ var View = Marionette.View.extend({
     onSelectLocation(e) {
         this.showChildView('modal', new ModalView({view:new LocationMapView({model:this.selectedLocation}),title:'Выбор местоположения'}));
     },
-
-    //showErrorMessage(a,b,c,d) {
-    //    var i = 0;
-    //},
-
-    //showErrorMessage1(a, b, c, d) {
-    //    var j = 0;
-    //},
+    toggleCreateButton(a,b,c) {
+        var i = 0;
+    },
 
     save() {
-        
+        if (this.model.isValid()) {
+            
+        }
     },
 
     back() {
