@@ -1,38 +1,42 @@
 ﻿import Model from '../AsteroidModel.js';
 
 export default Model.extend({
-    save(options) {
+
+    create(options) {
         var self = this;
         if(!options || !options.silent)
             self.trigger('before:save');
-        this.asteroid.call('addPost',this.attributes).result.then((resp) => {
+        return this.asteroid.call('addPost',this.attributes).result.then((resp) => {
             if (resp.success) {
                 self.model.set(resp.result,options);
                 if(!options || !options.silent)
                     self.trigger('save',resp);
             } else {
                 if(!options || !options.silent)
-                    self.trigger('error:save',resp);
+                    self.trigger('error:save',resp.error);
                 throw new Error("Creating post error: "+resp.error);
             }
+        }).catch(err => {
+            if(!options || !options.silent)
+                self.trigger('error:save', err);
+            console.error(err);
+            throw new Error("Save fail from meteor! Custom error: " + err);
         });
     },
 
     validation: {
 
         type: {
-            required:true,
-            
+            required:true,            
             msg:'Введите категорию объявления'
         },
+
         endDatePost: {
-            required:true,
-            
+            required:true,            
             msg:'Введите длительность объявления'
         },
         'details.title': {
             required: true,
-            minLength:2,
             msg:'Введите название объявления'
         },
 
