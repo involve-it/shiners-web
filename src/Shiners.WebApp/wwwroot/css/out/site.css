@@ -22042,6 +22042,9 @@ a:active, a:focus {
   color: #4a4a4a;
   font-size: 24px; }
 
+.sh-btn-mobile-menu i {
+  font-size: 14px !important; }
+
 i.icon {
   font-size: 1em;
   display: inline-block;
@@ -22124,6 +22127,9 @@ i.icon {
 
 .sh-form-row {
   margin-bottom: 36px; }
+
+.sh-location-name {
+  padding-top: 16px; }
 
 input:not([type="checkbox"]), select {
   height: 44px; }
@@ -22320,6 +22326,9 @@ textarea, select {
   opacity: 0.95 !important;
   background: white !important; }
 
+.sh-registers-buttons #logout {
+  padding: 9px 8px; }
+
 .sh-flex-center-items {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -22327,6 +22336,14 @@ textarea, select {
   -webkit-align-items: center;
   -ms-align-items: center;
   align-items: center; }
+
+.sh-flex-auto {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 auto;
+  -moz-box-flex: 1;
+  -moz-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto; }
 
 /* ------------------
     Class COMPONENTS
@@ -22613,10 +22630,41 @@ textarea, select {
       align-items: center; }
       #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city {
         display: inline-block;
+        width: 100%;
         cursor: pointer;
         padding-left: 8px; }
         #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .white-link {
           color: white; }
+        #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-h {
+          height: 52px;
+          overflow: hidden;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-align-items: center;
+          -ms-align-items: center;
+          align-items: center; }
+        #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value {
+          max-width: 290px;
+          position: relative;
+          display: block;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          width: auto; }
+          #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value:after {
+            content: "";
+            width: 60px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 230px;
+            background: -moz-linear-gradient(left, rgba(106, 170, 245, 0) 0%, #4a90e2 100%);
+            background: -webkit-linear-gradient(left, rgba(106, 170, 245, 0) 0%, #4a90e2 100%);
+            background: linear-gradient(to right, rgba(106, 170, 245, 0) 0%, #4a90e2 100%);
+            pointer-events: none; }
+      #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item i {
+        font-size: 13px; }
   #header .sh-header-topline-main,
   #header .text-muted {
     color: white; }
@@ -23351,9 +23399,6 @@ textarea, select {
       color: #4a4a4a; }
     .sh-photos-upload .sh-photos-upload-wrapper .sh-photos-upload-button > * {
       display: inline-block; }
-  .sh-photos-upload .sh-photos-upload-wrapper +
-.sh-photos-upload-thumbs {
-    border-top: 1px solid rgba(0, 0, 0, 0.2); }
   .sh-photos-upload .sh-photos-upload-thumbs {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -23362,11 +23407,40 @@ textarea, select {
     margin-top: 10px;
     padding-top: 20px; }
     .sh-photos-upload .sh-photos-upload-thumbs .img-item {
+      position: relative;
       background: rgba(101, 161, 230, 0.1);
       border-radius: 2px;
-      margin: 0 20px 24px;
-      height: 65px;
-      width: auto; }
+      margin: 0 20px 24px; }
+      .sh-photos-upload .sh-photos-upload-thumbs .img-item .removeImage {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        width: 22px;
+        height: 22px;
+        text-align: center;
+        background: #f4f4f4;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        border-radius: 50%;
+        -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); }
+      .sh-photos-upload .sh-photos-upload-thumbs .img-item img {
+        height: 85px;
+        width: auto;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        -ms-border-radius: 2px;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        -webkit-transition: all 0.15s ease-in-out;
+        -moz-transition: all 0.15s ease-in-out;
+        -ms-transition: all 0.15s ease-in-out;
+        -o-transition: all 0.15s ease-in-out;
+        transition: all 0.15s ease-in-out; }
 
 .sh-location-position-wrapper {
   display: -webkit-flex;
@@ -23452,6 +23526,10 @@ textarea, select {
       #header .sh-logo-header img {
         height: 30px;
         width: 30px; }
+    #header #topNav .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value {
+      max-width: 400px; }
+      #header #topNav .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value:after {
+        left: 340px; }
     #header #topNav .sh-header-topline-main .sh-btn-mobile-menu {
       position: relative;
       margin: 0;
@@ -23595,6 +23673,10 @@ textarea, select {
       text-align: center; }
     #sh-set-shiners .sh-set-shiners-wrapper div + div {
       padding-top: 20px; }
+  #header #topNav .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value {
+    max-width: 170px; }
+    #header #topNav .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value:after {
+      left: 110px; }
   #header .map-frame {
     top: 60px;
     left: 0;
@@ -23638,6 +23720,10 @@ textarea, select {
       margin-bottom: 16px; } }
 
 @media screen and (max-width: 480px) {
+  #header #topNav .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value {
+    max-width: 50px; }
+    #header #topNav .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value:after {
+      left: -10px; }
   .sh-body-wrapper .sh-header .sh-header-navbar {
     height: 130px; }
     .sh-body-wrapper .sh-header .sh-header-navbar .sh-header-navbar-items {
