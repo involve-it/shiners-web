@@ -22,6 +22,22 @@
   align-items: $align;
 }
 
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+
+	$fg-boxflex: $fg;
+
+	@if type-of($fg) == 'list' {
+		$fg-boxflex: nth($fg, 1);
+	}
+
+	-webkit-box-flex: $fg-boxflex;
+	-webkit-flex: $fg $fs $fb;
+	-moz-box-flex: $fg-boxflex;
+	-moz-flex: $fg $fs $fb;
+	-ms-flex: $fg $fs $fb;
+	flex: $fg $fs $fb;
+}
+
 @mixin sh-justify-content($value: flex-start) {
   @if $value == flex-start {
     -webkit-box-pack: start;
@@ -64,10 +80,24 @@
 }
 
 @mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
+    -webkit-border-radius:  $radius;
+    -moz-border-radius:     $radius;
+    -ms-border-radius:      $radius;
+    border-radius:          $radius;
+}
+
+@mixin box-shadow ($string) {
+	-webkit-box-shadow: $string;
+	-moz-box-shadow:    $string;
+	box-shadow:         $string;
+}
+
+@mixin sh-transition ($transition) {
+    -webkit-transition: $transition;  
+    -moz-transition:    $transition;
+    -ms-transition:     $transition; 
+    -o-transition:      $transition;  
+    transition:         $transition; 
 }
 
 
@@ -204,6 +234,12 @@ a:active, a:focus {
   font-size: 24px;
 }
 
+.sh-btn-mobile-menu {
+    i {
+        font-size: 14px !important;
+    }
+}
+
 i {
     &.icon {
         font-size: 1em;
@@ -298,6 +334,10 @@ i {
 
 .sh-form-row {
 	margin-bottom: 36px;
+}
+
+.sh-location-name {
+    padding-top: 16px;
 }
 
 input:not([type="checkbox"]), select {
@@ -543,13 +583,21 @@ textarea, select {
     }
 }
 
-.sh-registers-buttons {}
+.sh-registers-buttons {
+
+    #logout {
+        padding: 9px 8px;
+    }
+}
 
 .sh-flex-center-items {
     @include sh-display-flex();
     @include sh-align-items(center);
 }
 
+.sh-flex-auto {
+    @include flex(1, 0, auto);
+}
 
 /* ------------------
     Class COMPONENTS
@@ -924,12 +972,47 @@ textarea, select {
 
                 .sh-show-modal-city {
                     display: inline-block;
+                    width: 100%;
                     cursor: pointer;
                     padding-left: 8px;
 
                     .white-link {
                         color: $sh-white-color;
                     }
+
+                    .sh-nav-h {
+                        height: 52px;
+                        overflow: hidden;
+                        @include sh-display-flex();
+                        @include sh-align-items(center);
+                    }
+
+                    .sh-nav-location-value {
+                        max-width: 290px;
+                        position: relative;
+                        display: block;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        width: auto;
+
+                        &:after {
+                            content: "";
+                            width: 60px;
+                            height: 100%;
+                            position: absolute;
+                            top: 0;
+                            left: 230px;
+                            background: -moz-linear-gradient(left, rgba(106,170,245, 0) 0%, rgba(74,144,226, 1) 100%);
+                            background: -webkit-linear-gradient(left, rgba(106,170,245, 0) 0%, rgba(74,144,226, 1) 100%);
+                            background: linear-gradient(to right, rgba(106,170,245, 0) 0%, rgba(74,144,226, 1) 100%);
+                            pointer-events: none;
+                        }
+                    }
+                }
+
+                i {
+                    font-size: 13px;
                 }
             }
         }
@@ -1833,11 +1916,6 @@ textarea, select {
 		}
 	}
 	
-	.sh-photos-upload-wrapper +
-	.sh-photos-upload-thumbs {
-		border-top: 1px solid rgba(0, 0, 0, 0.2);
-	}
-	
 	.sh-photos-upload-thumbs {
 		@include sh-display-flex();
 		flex-wrap: wrap;
@@ -1845,11 +1923,34 @@ textarea, select {
 		padding-top: 20px;
 
 		.img-item {
+            position: relative;
 			background: rgba(101,161,230, .1);
 			border-radius: 2px;
 			margin: 0 20px 24px;
-			height: 65px;
-			width: auto;
+
+            .removeImage {
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                width: 22px;
+                height: 22px;
+                text-align: center;
+                background: $sh-footer-text-color;
+                @include border-radius(50%);
+                @include box-shadow(0 1px 1px rgba(0,0,0, .2));
+            }
+
+            img {
+                height: 85px;
+			    width: auto;
+                @include border-radius(2px);
+                @include box-shadow(0 0 10px rgba(0,0,0, .15));
+                @include sh-transition(all .15s ease-in-out);
+
+                &:hover, &:focus {}
+
+                &:active {}
+            }
 		}
 	}
 }
@@ -1947,7 +2048,7 @@ textarea, select {
     .container {
         width: 100% !important;
     }
-
+    
     #header {
         height: auto !important;
 
@@ -1964,6 +2065,25 @@ textarea, select {
 
         /* Mobile menu */
         #topNav {
+
+            //Width main menu
+            $width: 400px;
+
+            .sh-header-topline {
+                .sh-header-topline-main {
+                    .sh-header-topline-item {
+                        .sh-show-modal-city {
+                            .sh-nav-location-value {
+                                max-width: $width;
+
+                                &:after {
+                                    left: $width - 60px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             .sh-header-topline-main {
 
@@ -2238,6 +2358,28 @@ textarea, select {
     }
 
     #header {
+
+        #topNav {
+            //Width main menu
+            $width: 170px;
+
+            .sh-header-topline {
+                .sh-header-topline-main {
+                    .sh-header-topline-item {
+                        .sh-show-modal-city {
+                            .sh-nav-location-value {
+                                max-width: $width;
+
+                                &:after {
+                                    left: $width - 60px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         .map-frame {
             top: 60px;
             left: 0;
@@ -2309,6 +2451,29 @@ textarea, select {
 }
 
 @media screen and (max-width: 480px) {
+
+    #header {
+        #topNav {
+            //Width main menu
+            $width: 50px;
+
+            .sh-header-topline {
+                .sh-header-topline-main {
+                    .sh-header-topline-item {
+                        .sh-show-modal-city {
+                            .sh-nav-location-value {
+                                max-width: $width;
+
+                                &:after {
+                                    left: $width - 60px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 	.sh-body-wrapper {
 
