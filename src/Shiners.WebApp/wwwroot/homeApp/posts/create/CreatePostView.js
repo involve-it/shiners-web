@@ -5,7 +5,7 @@ import scriptjs from  'scriptjs'
 import ImagesView from './UploadedImagesView.js'
 import LocationView from './SelectedLocationView.js'
 import ModalView from '../../../sharedViews/ModalContainerView.js'
-import SuccessView from '../../../sharedViews/ModalContainerView.js'
+import SuccessView from '../../../sharedViews/SuccessView.js'
 import LocationMapView from './LocationMapView.js'
 import 'bootstrap-datepicker'
 
@@ -186,7 +186,7 @@ var View = Marionette.View.extend({
     setDate(e) {
         if (e.target.value && !_.isEmpty(e.target.value)) {
             var val = moment(e.target.value,"DD/MM/YYYY");
-            this.model.set('endDatePost', val.unix());
+            this.model.set('endDatePost', val.valueOf());
         }      
     },
 
@@ -247,24 +247,7 @@ var View = Marionette.View.extend({
 
     save() {
         if (!this.model.validate()) {
-            var model = this.model;
-            var photos = model.get('details').photos;
-            if (photos && !_.isEmpty(photos)) {               
-                $.ajax({
-                    type: "POST",
-                    url: "/Img/CommitUploadImage",
-                    contentType: "application/json",
-                    dataType: "json",
-                    data: JSON.stringify(photos)
-                }).done(resp => {
-                    var details = model.get('details');
-                    details.photos = resp;
-                    model.set('details', details);
-                    model.create();
-                });
-            } else {
-                model.create();
-            }
+            this.model.create();
         }
     },
 

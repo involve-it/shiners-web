@@ -5,7 +5,28 @@ export default Model.extend({
     create(options) {
         var self = this;
         if(!options || !options.silent)
-            self.trigger('before:save');
+            this.trigger('before:save');
+        var photos = this.get('details').photos;
+        if (photos && !_.isEmpty(photos)) {               
+            $.ajax({
+                type: "POST",
+                url: "/Img/CommitUploadImage",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(photos)
+            }).done(resp => {
+                var details = self.get('details');
+                details.photos = resp;
+                self.set('details', details);
+                self._create();
+            });
+        } else {
+            this._create();
+        }
+    },
+
+    _create() {
+        var self = this;
         return this.asteroid.call('addPost',this.attributes).result.then((resp) => {
             if (resp.success) {
                 self.set('_id',resp.result,options);

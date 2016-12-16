@@ -7,6 +7,7 @@ var View = Marionette.View.extend({
         var opts = options || {};
         this.model = new Backbone.Model({
             resultUrl:opts.resultUrl,
+            title:opts.title,
             message:opts.message
         });
     }
