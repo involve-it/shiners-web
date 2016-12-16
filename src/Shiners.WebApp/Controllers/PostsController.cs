@@ -9,7 +9,7 @@ using Shiners.WebApp.Renderers;
 
 namespace Shiners.WebApp.Controllers
 {
-    //[RequireHttps]
+    [RequireHttps]
     public class PostsController : Controller
     {
         private readonly UnderscoreRenderer Renderer;
