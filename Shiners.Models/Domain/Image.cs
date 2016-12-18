@@ -9,11 +9,8 @@ namespace Shiners.Models.Domain
 {
     //таблица с сылками на изображения(сами изображения хранятся на Amazon)
     //public необходимо для исподьзования в другом проекте 
-    public class Image
+    public class Image:MeteorModel
     {
-        //Id - поле _id в таблице images(ключевое поле)
-        [BsonElement("_id")]
-        public string Id { get; set; }
         //UserId - поле userId в таблице images, id пользователя загрузившего изображение
         [BsonElement("userId")]
         public string UserId { get; set; }

@@ -8,11 +8,10 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Shiners.Models.Domain
 {
     //анкетные данные пользователя ФИО, город, контактная информация
-    class ProfileDetail
+    class ProfileDetail : MeteorModel
     {
         //Id - поле _id в таблице profileDetails(ключевое поле)
-        [BsonElement("_id")]
-        public string Id { get; set; }
+
         //UserId - поле userId в таблице profileDetails, id пользователя обладателя данного свойства
         [BsonElement("userId")]
         public string UserId { get; set; }

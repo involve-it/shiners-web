@@ -10,6 +10,8 @@ namespace Shiners.WebApp.Controllers
     {
         public IActionResult Index(string id = null)
         {
+
+
             return View("../Home/Index");
         }
     }

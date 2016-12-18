@@ -5,11 +5,10 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Shiners.Models.Domain
 {
     //таблица пользователей проекта
-    class User
+    public class User : MeteorModel
     {
-        //userID - поле _id в таблице users(ключевое поле)
-        [BsonElement("_id")]
-        public string Id { get; set; }
+        //Id - поле _id в таблице users(ключевое поле)
+
 
         //username - поле username в таблице users(логин)
         [BsonElement("username")]
@@ -40,7 +39,7 @@ namespace Shiners.Models.Domain
     }
 
     //класс для сервисной информации
-    class Services
+    public class Services
     {
         public Services() {}
 
@@ -58,7 +57,7 @@ namespace Shiners.Models.Domain
     }
 
     //класс для пароля
-    class Password
+    public class Password
     {     
         public Password()
         {
@@ -73,7 +72,7 @@ namespace Shiners.Models.Domain
         public string Bcrypt { get; set; }
     }
 
-    class Resume
+    public class Resume
     {
         public Resume()
         {
@@ -87,7 +86,7 @@ namespace Shiners.Models.Domain
         public LoginTokens LoginTokens { get; set; }
     }
 
-    class LoginTokens
+    public class LoginTokens
     {
         public LoginTokens()
         {
@@ -106,7 +105,7 @@ namespace Shiners.Models.Domain
         public string HashedTokens { get; set; }
     }
     //класс для почтовых ящиков
-    class Email
+    public class Email
     {
         public Email()
         {
@@ -124,7 +123,7 @@ namespace Shiners.Models.Domain
         public bool Verified { get; set; }
     }
 
-    class Profile
+    public class Profile
     {
         public Profile()
         {
