@@ -12,18 +12,34 @@ namespace Shiners.WebApp.Controllers.api
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
+        private Repository.MongoRepository _db;
+
+        public UsersController(Repository.MongoRepository repository)
+        {
+            _db = repository;
+        }
+
         // GET: api/values
         [HttpGet]
         public JArray Get()
         {
+            
             return new JArray();
         }
 
-        // GET api/values/5
+        // GET api/users/dfsfdsdf
         [HttpGet("{id}")]
-        public JObject Get(string id)
+        public async Task<object> Get(string id)
         {
-            return null;
+            var user = await _db.Users.Get(id);
+            if (user != null)
+            {
+                return user.ToJObject();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         // POST api/values

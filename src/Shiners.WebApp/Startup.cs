@@ -50,7 +50,7 @@ namespace Shiners.WebApp
 
             services.AddMvc();
             services.AddScoped<UnderscoreRenderer>((provider) => Renderer);
-            services.AddSingleton<>()
+            services.AddSingleton<Repository.MongoRepository>(new Repository.MongoRepository(Configuration.GetConnectionString("Mongo")));
             //services.AddScoped<MeteorClient>((provider) => new MeteorClient(new Uri("wss://shiners.mobi/websocket")));
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
