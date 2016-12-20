@@ -23219,6 +23219,15 @@ textarea, select {
     -webkit-align-items: center;
     -ms-align-items: center;
     align-items: center; }
+    #footer.sh-footer .footer-section.footer-section-download .sh-download-buttons-bottom {
+      text-align: center;
+      padding-bottom: 25px; }
+      #footer.sh-footer .footer-section.footer-section-download .sh-download-buttons-bottom h3 {
+        color: #f4f4f4;
+        font-size: 28px;
+        letter-spacing: .7px;
+        font-weight: 200;
+        margin-bottom: 10px; }
     #footer.sh-footer .footer-section.footer-section-download .sh-footer-images {
       -webkit-box-direction: normal;
       -webkit-box-orient: vertical;
@@ -23688,6 +23697,34 @@ textarea, select {
     margin-bottom: 0; }
   #footer .row > div {
     margin-bottom: 0px; }
+  #footer.sh-footer .footer-section.footer-section-download .sh-download-buttons-bottom {
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+    #footer.sh-footer .footer-section.footer-section-download .sh-download-buttons-bottom h3 {
+      font-size: 18px; }
+    #footer.sh-footer .footer-section.footer-section-download .sh-download-buttons-bottom .sh-download-buttons-bottom-wrapper {
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-direction: normal;
+      -webkit-box-orient: vertical;
+      -webkit-flex-direction: column;
+      -moz-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      -moz-justify-content: center;
+      justify-content: center;
+      -webkit-align-items: center;
+      -ms-align-items: center;
+      align-items: center;
+      padding-bottom: 16px; }
+      #footer.sh-footer .footer-section.footer-section-download .sh-download-buttons-bottom .sh-download-buttons-bottom-wrapper a {
+        padding-bottom: 16px; }
+        #footer.sh-footer .footer-section.footer-section-download .sh-download-buttons-bottom .sh-download-buttons-bottom-wrapper a:last-child {
+          padding: 0; }
   #footer.sh-footer .footer-section.footer-section-nav {
     border-top: none; }
     #footer.sh-footer .footer-section.footer-section-nav .sh-footer-list {

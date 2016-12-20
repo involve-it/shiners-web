@@ -1032,6 +1032,11 @@ textarea, select {
       @include sh-align-items(center);
       
     }
+
+    .sh-header-navbar-submenu {
+
+        .sh-download-buttons-top {}
+    }
     
     .sh-header-navbar-info {
         @include sh-display-flex();
@@ -1692,6 +1697,21 @@ textarea, select {
         &.footer-section-download {
             @include sh-display-flex();
             @include sh-align-items(center);
+
+            .sh-download-buttons-bottom {
+                text-align: center;
+                padding-bottom: 25px;
+
+                h3 {
+                    color: $sh-main-super-light-color;
+                    font-size: 28px;
+                    letter-spacing: .7px;
+                    font-weight: 200;
+                    margin-bottom: 10px;
+                }
+
+                .sh-download-buttons-bottom-wrapper {}
+            }
 
             .sh-footer-images {
                 @include sh-flex-direction(column);
@@ -2407,6 +2427,34 @@ textarea, select {
 
         &.sh-footer  {
             .footer-section {
+                
+                &.footer-section-download {
+                    .sh-download-buttons-bottom {
+                        padding-bottom: 6px;
+                        border-bottom: 1px solid rgba(255,255,255, .1);
+
+                        h3 {
+                            font-size: 24px;
+                        }
+
+                        .sh-download-buttons-bottom-wrapper {
+                            @include sh-display-flex();
+                            @include sh-flex-direction(column);
+                            @include sh-justify-content(center);
+                            @include sh-align-items(center);
+                            padding-bottom: 16px;
+
+                            a {
+                                padding-bottom: 16px;
+
+                                &:last-child {
+                                    padding:0;
+                                }
+                            }
+                        }
+                    }
+                }
+
                 &.footer-section-nav {
                     border-top: none;
 
