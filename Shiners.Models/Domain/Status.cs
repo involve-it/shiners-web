@@ -19,7 +19,7 @@ namespace Shiners.Models.Domain
         public bool Online { get; set; }
         [BsonElement("idle")]
         public bool Idle { get; set; }
-        [BsonElement("lastlogin")]
+        [BsonElement("lastLogin")]
         public Lastlogin Lastlogin { get; set; }
     }
 }

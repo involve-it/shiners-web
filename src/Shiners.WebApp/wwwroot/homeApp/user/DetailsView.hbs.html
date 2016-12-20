@@ -1,0 +1,105 @@
+﻿<section class="sh-user-profile">
+    <div class="container">
+        <div class="sh-user-profile-wrapper">
+            <div class="sh-side-left">
+                <div class="sh-page-block sh-user-box">
+                    <div class="sh-user-avatar">
+                        <div class="sh-user-avatar-wrap">
+                            <a class="sh-user-profile-photo-link" href="#">
+                                <img src="{{=profile.image && profile.image.data?profile.image.data:'/images/noimage.jpg'}}" alt="#">
+                            </a>
+                            <div class="sh-avatar-user-status">
+                                <div class="sh-avatar-user-status-wrapper sh-offline"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sh-profile-action">
+                        <a href="#" class="ui sh-button sh-profile-send">Написать сообщение</a>
+                        <!--<a href="#" class="ui sh-button sh-profile-edit">Редактировать</a>-->
+                    </div>
+                </div>
+                <div class="sh-page-block">
+                    <ul class="sh-user-action">
+                        <li><a href="#">Пожаловаться</a></li>
+                        <li class="sh-user-action-exit"><a href="#">Выйти</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sh-side-right">
+                <div class="sh-page-block sh-user-info">
+                    <div class="sh-user-info-top">
+                        <small class="sh-user-was">Был 22 апреля в 22:00</small>
+                        <h2 class="sh-user-name">{{=username}}</h2>
+                    </div>
+                    <div class="sh-user-profile-info">
+                        <div class="sh-user-profile-info-wrapper">
+                            <!--Direct link to my profile-->
+                            <div class="sh-user-profile-info-row sh-col">
+                                <div class="sh-info-title">Прямая ссылка на профиль</div>
+                                <div class="sh-info-text">
+                                    <div class="sh-direct-link-block">
+                                        <div class="sh-direct-link-wrapper">
+                                            <div class="sh-icon-direct-link"><i class="fa fa-link" aria-hidden="true"></i></div>
+                                            http://wwww.shiners.ru/user/{{=_id}}
+                                        </div>
+                                        <div class="sh-direct-link-btn-copy"><a href="#" title="Копировать" class="ui sh-button"><i class="fa fa-clipboard" aria-hidden="true"></i></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--The publication available to all users-->
+                            <div class="sh-user-profile-info-row sh-col">
+                                <div class="sh-info-title">Настройка для постов</div>
+                                <div class="sh-info-text">
+                                    <div class="sh-direct-link-block">
+                                        <div class="sh-direct-link-wrapper">
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="1">
+                                                <label>Сделать мои публикации доступными для всех пользователей</label>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Public info-->
+                            <div class="sh-user-profile-info-row sh-profile-info-header">
+                                <div class="sh-profile-info-header-within">
+                                    <span>Публичная информация</span>
+                                </div>
+                            </div>
+
+                            <!--City-->
+                            <div class="sh-user-profile-info-row">
+                                <div class="sh-info-title">Город</div>
+                                <div class="sh-info-text">Белгород</div>
+                            </div>
+                            <!--Social links-->
+                            <div class="sh-user-profile-info-row">
+                                <div class="sh-info-title">Логин Skype</div>
+                                <div class="sh-info-text">SkypeAccount</div>
+                            </div>
+                            <div class="sh-user-profile-info-row sh-social-links sh-vk">
+                                <div class="sh-info-title">Вконтакте</div>
+                                <div class="sh-info-text">https://vk.com</div>
+                            </div>
+                            <div class="sh-user-profile-info-row sh-social-links sh-facebook">
+                                <div class="sh-info-title">Facebook</div>
+                                <div class="sh-info-text">https://facebook.com</div>
+                            </div>
+
+                            <!--<div class="sh-user-profile-info-row">-->
+                            <!--<div class="sh-info-title"></div>-->
+                            <!--<div class="sh-info-text"></div>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                    <div class="sh-user-profile-links">
+                        <div class="sh-user-profile-links-wrapper">
+                            <div class="sh-user-profile-links-item">Постов <span>15</span></div>
+                            <div class="sh-user-profile-links-item">Комментариев <span>50</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

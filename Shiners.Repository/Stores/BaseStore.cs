@@ -63,7 +63,7 @@ namespace Shiners.Repository.Stores
         {
             var collection = Db.GetCollection<BsonDocument>(CollectionName);
             var resultCollection = await collection.Find<BsonDocument>(filter).ToListAsync();
-            BsonSerializer.Deserialize<T>(resultCollection);    
+            return resultCollection.Select(p => BsonSerializer.Deserialize<T>(p)).ToList();
         }
 
         public async Task<IList<T>> GetCollection(FilterDefinition<T> filter)

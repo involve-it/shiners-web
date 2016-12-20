@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Shiners.Models.Domain
@@ -15,6 +16,7 @@ namespace Shiners.Models.Domain
         public string UserName { get; set; }
         //createdAt - поле createdAt в таблице users(дата создания аккаунта)
         [BsonElement("createdAt")]
+        //[BsonDateTimeOptions(DateOnly = false, Kind = DateTimeKind.Unspecified, Representation = BsonType.DateTime)]
         public DateTime CreatedAt { get; set; }
         //servicess - поле services в таблице users(хранение сервисной информации доступ только на сервере)
         [BsonElement("services")]
@@ -28,6 +30,34 @@ namespace Shiners.Models.Domain
         //status - данные по состоянию пользователя
         [BsonElement("status")]
         public Status Status { get; set; }
+
+        [BsonElement("lastSessionId")]
+        public string LastSessionId { get; set; }
+
+        [BsonElement("online")]
+        public bool Online { get; set; }
+
+        [BsonElement("sessionIds")]
+        public IList<string> SessionIds { get; set; }
+
+        [BsonElement("coords")]
+        public Coords Coords { get; set; }
+
+        [BsonElement("lastMobileLocationReport")]
+        [BsonIgnoreIfNull]
+        [BsonIgnoreIfDefault]
+        public object LastMobileLocationReport { get; set; }
+
+        [BsonElement("enableNearbyNotifications")]
+        public bool EnableNearbyNotifications { get; set; }
+        [BsonElement("lastNearbyNotification")]
+        
+        public BsonTimestamp LastNearbyNotification { get; set; }
+
+        [BsonElement("notifiedPostIds")]
+        public IList<string> NotifiedPostIds { get; set; }
+        [BsonElement("tokens")]
+        public IList<Token> Tokens { get; set; }
 
         public User()
         {
@@ -78,31 +108,31 @@ namespace Shiners.Models.Domain
         {
         }
 
-        public Resume(LoginTokens loginTokens)
+        public Resume(IEnumerable<LoginToken> loginTokens)
         {
-            LoginTokens = loginTokens;
+            LoginTokens = new List<LoginToken>(loginTokens);
         }
         [BsonElement("loginTokens")]
-        public LoginTokens LoginTokens { get; set; }
+        public IList<LoginToken> LoginTokens { get; set; }
     }
 
-    public class LoginTokens
+    public class LoginToken
     {
-        public LoginTokens()
+        public LoginToken()
         {
             When = DateTime.Now;
-            HashedTokens = "";
+            HashedToken = "";
         }
 
-        public LoginTokens(DateTime when, string hashedTokens)
+        public LoginToken(DateTime when, string hashedTokens)
         {
             this.When = when;
-            this.HashedTokens = hashedTokens;
+            this.HashedToken = hashedTokens;
         }
         [BsonElement("when")]
         public DateTime When { get; set; }
-        [BsonElement("hashedTokens")]
-        public string HashedTokens { get; set; }
+        [BsonElement("hashedToken")]
+        public string HashedToken { get; set; }
     }
     //класс для почтовых ящиков
     public class Email
@@ -117,7 +147,7 @@ namespace Shiners.Models.Domain
             this.Adress = adress;
             this.Verified = verified;
         }
-        [BsonElement("adress")]
+        [BsonElement("address")]
         public string Adress { get; set; }
         [BsonElement("verified")]
         public bool Verified { get; set; }
@@ -136,6 +166,16 @@ namespace Shiners.Models.Domain
         }
         [BsonElement("language")]
         public string Language { get; set; }
+        [BsonElement("image")]
+        public UserImage Image { get; set; }
+    }
+
+    public class UserImage
+    {
+        [BsonElement("data")]
+        public string Data { get; set; }
+        [BsonElement("thumbnail")]
+        public string Thumbnail { get; set; }
     }
 
     public class Lastlogin
@@ -159,5 +199,19 @@ namespace Shiners.Models.Domain
         public string IpAddr { get; set; }
         [BsonElement("userAgent")]
         public string UserAgent { get; set; }
+    }
+
+    public class Token
+    {
+        [BsonElement("deviceId")]
+        public string DeviceId { get; set; }
+        [BsonElement("token")]
+        public DeviceToken DeviceToken { get; set; }
+    }
+
+    public class DeviceToken
+    {
+        [BsonElement("apn")]
+        public string Apn { get; set; }
     }
 }

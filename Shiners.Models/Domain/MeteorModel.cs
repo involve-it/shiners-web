@@ -19,10 +19,11 @@ namespace Shiners.Models.Domain
         /// <summary>
         /// серриализует модель в  json объект
         /// </summary>
-        public JObject ToJObject()
-        {
-            var str = this.ToJson();
-            return JObject.Parse(str);
-        }
+        //public JObject ToJObject()
+        //{
+        //    var str = this.ToJson();
+        //    JToken json = JToken.Parse(str);        
+        //    return json as JObject;
+        //}
     }
 }

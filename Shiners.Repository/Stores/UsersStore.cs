@@ -13,7 +13,5 @@ namespace Shiners.Repository.Stores
         public UsersStore(IMongoDatabase db, string collectionName) : base(db, collectionName)
         {
         }
-
-
     }
 }

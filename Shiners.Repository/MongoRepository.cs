@@ -17,8 +17,9 @@ namespace Shiners.Repository
         public MongoRepository(string connectionString)
         {
             var client = new MongoClient(connectionString);           
-            Database = client.GetDatabase("Buzzar");
-            Images = new ImagesStore(Database);          
+            Database = client.GetDatabase("buzzar");
+            Images = new ImagesStore(Database);
+            Users=new UsersStore(Database,"users");
         }        
     }
 }

@@ -19,13 +19,12 @@ export default Marionette.AppRouter.extend({
         //'chats/my':'chatsMy',
         'chats/:id':'chatId',
         'posts/:id':'postDetails',
-        //'user/:id': 'profileDetails',
-        'user/:id': 'userDetailsPage',
+        'user/:id': 'userDetails',
         'Account/Login':'login',
         'Account/FogotPassword':'fogotPassword',
         'Home/HowItWorks':'howItWorks',
         'about-us':'about',
-        'profile': 'profilePage',
+        'profile': 'profileDetails',
         'messages/to/:remoteUserId?postId=:postId':'messagesTo',
         'messages/to/:remoteUserId':'messagesTo'
     }

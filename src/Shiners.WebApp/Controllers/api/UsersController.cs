@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Newtonsoft.Json.Linq;
-using Shiners.Models.Domain;
+using MongoDB.Bson;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -36,7 +36,7 @@ namespace Shiners.WebApp.Controllers.api
             var user = await _db.Users.Get(id);
             if (user != null)
             {
-                return user.ToJObject();
+                return user.ToJson();
             }
             else
             {

@@ -3,6 +3,7 @@ import IndexView from './index/indexView.js';
 import MobileIndexView from './index/MobileIndexView.js';
 import PostDetailsView from './posts/DetailsView.js';
 import AsteroidModel from '../data/AsteroidModel.js';
+import UserModel from '../data/Domain/User.js';
 import Post from '../data/Post/PostModel.js'
 import Collection from '../data/AsteroidCollection.js';
 import PreloaderView from '../sharedViews/PreloaderView.js';
@@ -11,16 +12,16 @@ import CreatePostView from './posts/create/CreatePostView.js';
 import PostsMytView from './posts/postsMy/PostsMyView.js';
 import ChatsMyView from './chats/ChatsMyView.js';
 import ChatIdView from './chats/ChatIdView.js';
-import ProfileDetailsView from './user/ProfileDetailsView.js';
+import UserDetailsView from './user/DetailsView.js';
 import MessagesToUserView from './chats/native/MessagesToUserView.js';
 
 import LoginView from './account/LoginView.js';
 import AboutView from './about/AboutView.js';
 import HowItWorksView from './howItWorks/HowItWorksView.js';
 import FogotPasswordView from './account/FogotPasswordView.js';
-import ProfilePageView from './user/ProfilePageView';
+//import ProfilePageView from './user/ProfilePageView';
 import MyMessagesPageView from './user/MyMessagesPageView';
-import UserDetailsPageView from './user/UserDetailsPageView';
+//import UserDetailsPageView from './user/UserDetailsPageView';
 import app from './app.js';
 
 export default Marionette.Object.extend({
@@ -104,21 +105,19 @@ export default Marionette.Object.extend({
         }        
     },
 
-    profileDetails(id){
-        app.layout.showChildView('content', new PreloaderView());
-        var userModel = new Backbone.Model({ _id:id });
-        app.layout.showChildView('content',new ProfileDetailsView( {model: userModel }));
-    },
-
-    profilePage() {
-        app.layout.showChildView('content',new ProfilePageView());
+    profileDetails(){
+        
     },
 
     myMessagesPage() {
         app.layout.showChildView('content',new MyMessagesPageView());
     },
 
-    userDetailsPage(id) {
-        app.layout.showChildView('content',new UserDetailsPageView({ id: id }));
+    userDetails(id) {
+        app.layout.showChildView('content', new PreloaderView());
+        var userModel = new UserModel({ _id:id });
+        window.currentUser = userModel;
+        userModel.fetch();
+        //.done(() => app.layout.showChildView('content', new UserDetailsView({ model: userModel })));
     }
 });
