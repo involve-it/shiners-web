@@ -12,9 +12,13 @@ namespace Shiners.Repository.Stores
     interface IStore<T> where T : MeteorModel
     {
         Task<T> Get(string id);
+        Task<T> Get(FilterDefinition<T> filter);
         Task<T> Get(FilterDefinition<BsonDocument> filter);
-        IList<T> GetCollection();
-        IList<T> GetCollection(FilterDefinition<BsonDocument> filter );
+        Task<T> Get(BsonDocument filter);
+        Task<IList<T>> GetCollection();
+        Task<IList<T>> GetCollection(FilterDefinition<BsonDocument> filter );
+        Task<IList<T>> GetCollection(FilterDefinition<T> filter);
+        Task<IList<T>> GetCollection(BsonDocument filter);
     }
 
 }

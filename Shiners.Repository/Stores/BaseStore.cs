@@ -30,19 +30,54 @@ namespace Shiners.Repository.Stores
             return result.FirstOrDefault();
         }
 
+        public async Task<T> Get(FilterDefinition<T> filter)
+        {
+            var collection = Db.GetCollection<T>(CollectionName);
+            var result = await collection.Find<T>(filter).ToListAsync();
+            return result.FirstOrDefault();
+        }
+
         public async Task<T> Get(FilterDefinition<BsonDocument> filter)
         {
-            throw new NotImplementedException();
+            var collection = Db.GetCollection<BsonDocument>(CollectionName);
+            var resultCollection = await collection.Find<BsonDocument>(filter).ToListAsync();
+            var result = resultCollection?.FirstOrDefault();
+            if (result != null)
+                return BsonSerializer.Deserialize<T>(result);
+            else return null;
         }
 
-        public IList<T> GetCollection()
+        public async Task<T> Get(BsonDocument filter)
+        {
+            var collection = Db.GetCollection<BsonDocument>(CollectionName);
+            var result= await collection.FindAsync<T>(filter);
+            return result?.FirstOrDefault();
+        }
+
+        public async Task<IList<T>> GetCollection()
         {
             throw new NotImplementedException();
         }
 
-        public IList<T> GetCollection(FilterDefinition<BsonDocument> filter)
+        public async Task<IList<T>> GetCollection(FilterDefinition<BsonDocument> filter)
         {
-            throw new NotImplementedException();
+            var collection = Db.GetCollection<BsonDocument>(CollectionName);
+            var resultCollection = await collection.Find<BsonDocument>(filter).ToListAsync();
+            BsonSerializer.Deserialize<T>(resultCollection);    
+        }
+
+        public async Task<IList<T>> GetCollection(FilterDefinition<T> filter)
+        {
+            var collection = Db.GetCollection<T>(CollectionName);
+            var result = await collection.Find<T>(filter).ToListAsync();
+            return result;
+        }
+
+        public async Task<IList<T>> GetCollection(BsonDocument filter)
+        {
+            var collection = Db.GetCollection<BsonDocument>(CollectionName);
+            var result = await collection.FindAsync<T>(filter);
+            return await result.ToListAsync();
         }
     }
 }
