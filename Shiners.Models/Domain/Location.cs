@@ -7,11 +7,8 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Shiners.Models.Domain
 {
-    class Location
+    public class Location:MeteorModel
     {
-        //Id - поле _id в таблице chats(ключевое поле)
-        [BsonElement("_id")]
-        public string Id { get; set; }
         //UserId - поле userId в таблице locations, id пользователя который добавлял локацию 
         [BsonElement("userId")]
         public string UserId { get; set; }
@@ -36,7 +33,7 @@ namespace Shiners.Models.Domain
             Сoords = new Coords();
         }
     }
-    class Coords
+    public class Coords
     {
         [BsonElement("lat")]
         public double Lat { get; set; }

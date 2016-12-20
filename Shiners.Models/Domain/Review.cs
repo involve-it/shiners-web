@@ -8,11 +8,10 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Shiners.Models.Domain
 {
     //комментарии к постам(только текст)
-    class Review
+    class Review : MeteorModel
     {
         //Id - поле _id в таблице reviews(ключевое поле)
-        [BsonElement("_id")]
-        public string Id { get; set; }
+
         //UserId - поле userId в таблице messages, id пользователя оставившего комментарий
         [BsonElement("userId")]
         public string UserId { get; set; }

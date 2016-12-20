@@ -5,27 +5,30 @@ import scriptjs from  'scriptjs'
 import ImagesView from './UploadedImagesView.js'
 import LocationView from './SelectedLocationView.js'
 import ModalView from '../../../sharedViews/ModalContainerView.js'
+import SuccessView from '../../../sharedViews/SuccessView.js'
 import LocationMapView from './LocationMapView.js'
 import 'bootstrap-datepicker'
+
 var View = Marionette.View.extend({
-    template:template,
-    tagName:'section',
-    className:'sh-create-post',
-    changeTimeOut:null,
-    images:null,
+    template: template,
+    tagName: 'section',
+    className: 'sh-create-post',
+    changeTimeOut: null,
+    images: null,
     events: {
-        'click #back':'back',
-        "change #detailsTitle":'setTitle',
-       // "change #detailsUrl":'setUrl',
+        'click #back': 'back',
+        "change #detailsTitle": 'setTitle',
+        // "change #detailsUrl":'setUrl',
         //"change #detailsPrice":'setPrice',
-        "change #postType":'setPostType',
-        "change #detailsDescription":'setDescription',
-        "click #saveShiner":'save',
-        'click #addImgButton':'showImageDialog',
-        'change #addImgInput':'uploadImage',
-        'click #selectLocation':'onSelectLocation',
-        'change #dateDurationSelect':'setFixedDuration',
-        'change #dateDuration':'setDate'
+        "change #postType": 'setPostType',
+        "change #detailsDescription": 'setDescription',
+        "click #saveShiner": 'save',
+        'click #addImgButton': 'showImageDialog',
+        'change #addImgInput': 'uploadImage',
+        'click #selectLocation': 'onSelectLocation',
+        'change #dateDurationSelect': 'setFixedDuration',
+        'change #dateDuration': 'setDate',
+        'change #anonymous-post':'setAnonimous'
     },
 
     regions: {
@@ -35,7 +38,9 @@ var View = Marionette.View.extend({
     },
 
     modelEvents: {
-        'validated':'toggleCreateButton'
+        'change':'toggleCreateButton',
+        'save':'showSuccess',
+        'error:save':'showError'
     },
 
     initialize() {
@@ -44,22 +49,37 @@ var View = Marionette.View.extend({
         this.selectedLocation = new Backbone.Model({
             coords:app.user.get('position')
         });
-        this.listenTo(this.selectedLocation, this.showLocation);
+        this.listenTo(this.selectedLocation,'change', this.showLocation);
+        this.listenTo(this.selectedLocation,'change', this.setLocation);
+        this.listenTo(this.images,'change',this.setImages);
         window.uploadedImages = this.images; // debug
     },
 
-    setLocation(coords) {
-        var model = this.selectedLocation;
-        app.geocoder.geocode({'location': coords},_.bind((results,status)=>{
-            if (status === window.google.maps.GeocoderStatus.OK) {
-                model.set({
-                    coords: coords,
-                    name:results[0].long_name,
-                    accurateAddress:results[0].long_name,
-                    placeType:'static'
-                });
+    setAnonimous(e) {
+        this.model.set('anonymousPost',e.target.checked);
+    },
+
+    setLocation() {
+        var details = this.model.get('details');
+        var location = this.selectedLocation.toJSON()||{};
+        if (location["name"]) {
+            location["userId"] = app.user.id;
+            location["public"] = false;
+            details.locations = [location];
+            this.model.set('details',details,{validate:true});
+        }       
+    },
+
+    setImages() {
+        var details = this.model.get('details');
+        var images = [];
+        this.images.each((img) => {
+            if (img.has('data')) {
+                images.push(img.toJSON());
             }
-        },this));
+        },this);
+        details.photos = images;
+        this.model.set('details', details);
     },
 
     setTitle(e) {
@@ -165,8 +185,8 @@ var View = Marionette.View.extend({
 
     setDate(e) {
         if (e.target.value && !_.isEmpty(e.target.value)) {
-            var val = moment(e.target.value);
-            this.model.set('endDatePost', val.unix());
+            var val = moment(e.target.value,"DD/MM/YYYY");
+            this.model.set('endDatePost', val.valueOf());
         }      
     },
 
@@ -214,14 +234,36 @@ var View = Marionette.View.extend({
     onSelectLocation(e) {
         this.showChildView('modal', new ModalView({view:new LocationMapView({model:this.selectedLocation}),title:'Выбор местоположения'}));
     },
-    toggleCreateButton(a,b,c) {
-        var i = 0;
+    toggleCreateButton() {
+        var errors = this.model.validate();
+        var $btn = this.$('#saveShiner');
+       if (!errors) {
+           $btn.removeClass('disabled');
+       } else {
+           if(!$btn.hasClass('disabled'))
+               $btn.addClass('disabled');
+       }
     },
 
     save() {
-        if (this.model.isValid()) {
-            
+        if (!this.model.validate()) {
+            this.model.create();
         }
+    },
+
+    showSuccess() {
+        this.showChildView('modal',new ModalView({
+            view:new SuccessView({
+                resultUrl:'/posts/'+this.model.id,
+                title:'Новый светлячок успешно установлен и доступен для пользователей.',
+                message:'Перейдите на персональную страницу Вашего объявления для просмотра визитов, комментариев и другой информации.'
+            }),
+            title:'Поздравляем, Вы добавили новый светлячок!'
+        }) );
+    },
+
+    showError(er) {
+        alert("Ошибка создания поста. "+er);
     },
 
     back() {

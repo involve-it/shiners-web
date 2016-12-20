@@ -8,11 +8,9 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Shiners.Models.Domain
 {
     //таблица для хранения сервисной информации о чатах(сообщения хранятся в отдельной таблице)
-    class Chat
+    class Chat : MeteorModel
     {
-        //Id - поле _id в таблице chats(ключевое поле)
-        [BsonElement("_id")]
-        public string Id { get; set; }
+
         //UserId - поле userId в таблице chats, id пользователя инициатора чата
         [BsonElement("userId")]
         public string UserId { get; set; } 

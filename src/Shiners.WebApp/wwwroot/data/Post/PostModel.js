@@ -1,38 +1,63 @@
 ﻿import Model from '../AsteroidModel.js';
 
 export default Model.extend({
-    save(options) {
+
+    create(options) {
         var self = this;
         if(!options || !options.silent)
-            self.trigger('before:save');
-        this.asteroid.call('addPost',this.attributes).result.then((resp) => {
+            this.trigger('before:save');
+        var photos = this.get('details').photos;
+        if (photos && !_.isEmpty(photos)) {               
+            $.ajax({
+                type: "POST",
+                url: "/Img/CommitUploadImage",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(photos)
+            }).done(resp => {
+                var details = self.get('details');
+                details.photos = resp;
+                self.set('details', details);
+                self._create();
+            });
+        } else {
+            this._create();
+        }
+    },
+
+    _create() {
+        var self = this;
+        return this.asteroid.call('addPost',this.attributes).result.then((resp) => {
             if (resp.success) {
-                self.model.set(resp.result,options);
+                self.set('_id',resp.result,options);
                 if(!options || !options.silent)
                     self.trigger('save',resp);
             } else {
                 if(!options || !options.silent)
-                    self.trigger('error:save',resp);
+                    self.trigger('error:save',resp.error);
                 throw new Error("Creating post error: "+resp.error);
             }
+        }).catch(err => {
+            if(!options || !options.silent)
+                self.trigger('error:save', err);
+            console.error(err);
+            throw new Error("Save fail from meteor! Custom error: " + err);
         });
     },
 
     validation: {
 
         type: {
-            required:true,
-            
+            required:true,            
             msg:'Введите категорию объявления'
         },
+
         endDatePost: {
-            required:true,
-            
+            required:true,            
             msg:'Введите длительность объявления'
         },
         'details.title': {
             required: true,
-            minLength:2,
             msg:'Введите название объявления'
         },
 

@@ -8,11 +8,8 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Shiners.Models.Domain
 {
     //хранение всех данных о постах
-    class Post
+    public class Post : MeteorModel
     {
-        //ID - поле _id в таблице posts(ключевое поле)
-        [BsonElement("_id")]
-        public string Id { get; set; }
         //userId - Id хозяина(автора) поста
         [BsonElement("userId")]
         public string UserId { get; set; }
@@ -63,7 +60,7 @@ namespace Shiners.Models.Domain
 
         }
     }
-    class Details
+    public class Details
     {
         [BsonElement("anonymousPost")]
         public bool AnonymousPost { get; set; }
@@ -93,7 +90,7 @@ namespace Shiners.Models.Domain
         }
 
     }
-    class Locations
+    public class Locations
     {
         //по сути дублирование класса Location и дублирование записей в таблице!!!!!!!!!!!!!!
         [BsonElement("_id")]
@@ -109,27 +106,27 @@ namespace Shiners.Models.Domain
             Сoords = new Coords();
         }
     }
-    class JobsDetails
+    public class JobsDetails
     {
         
     }
-    class TrainingsDetails
+    public class TrainingsDetails
     {
         [BsonElement("sectionLearning")]
         public string SectionLearning { get; set; }
         [BsonElement("typeCategory")]
         public string TypeCategory { get; set; }
     }
-    class PostStatus
+    public class PostStatus
     {
         [BsonElement("visible")]
         public string Visible { get; set; }
     }
-    class Presences
+    public class Presences
     {
 
     }
-    class Stats
+    public class Stats
     {
         [BsonElement("seenToday")]
         public Int32 SeenToday { get; set; }

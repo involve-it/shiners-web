@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Shiners.WebApp.Controllers
 {
-    //[RequireHttps]
+   // [RequireHttps]
     public class HomeController : Controller
     {
 
