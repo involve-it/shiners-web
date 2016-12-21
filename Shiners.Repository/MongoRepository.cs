@@ -12,13 +12,11 @@ namespace Shiners.Repository
     public class MongoRepository
     {
         public IMongoDatabase Database { get; protected set; }
-        public ImagesStore Images { get; protected set; }
         public UsersStore Users { get; protected set; }
         public MongoRepository(string connectionString)
         {
             var client = new MongoClient(connectionString);           
             Database = client.GetDatabase("buzzar");
-            Images = new ImagesStore(Database);
             Users=new UsersStore(Database,"users");
         }        
     }

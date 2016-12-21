@@ -105,7 +105,7 @@ export default Marionette.Object.extend({
         }        
     },
 
-    profileDetails(){
+    myProfile(){
         
     },
 
@@ -117,7 +117,6 @@ export default Marionette.Object.extend({
         app.layout.showChildView('content', new PreloaderView());
         var userModel = new UserModel({ _id:id });
         window.currentUser = userModel;
-        userModel.fetch();
-        //.done(() => app.layout.showChildView('content', new UserDetailsView({ model: userModel })));
+        userModel.fetch().done(() => app.layout.showChildView('content', new UserDetailsView({ model: userModel })));
     }
 });

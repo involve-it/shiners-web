@@ -2,7 +2,6 @@
   "userSecretsId": "aspnet-Shiners.WebApp-e5855ab4-1ffd-43f0-bc88-4cfe05aff911",
 
   "dependencies": {
-    "AspNet.Identity.MongoDB": "2.0.8",
     "BundlerMinifier.Core": "2.2.306",
     "DdpNet": "0.1.0",
     "ImageLibrary": "3.0.0",

@@ -3,19 +3,6 @@
   "version": 2,
   "targets": {
     ".NETFramework,Version=v4.6.1": {
-      "AspNet.Identity.MongoDB/2.0.8": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Identity.Core": "2.2.1",
-          "MongoDB.Driver": "2.0.0"
-        },
-        "compile": {
-          "lib/net45/AspNet.Identity.MongoDB.dll": {}
-        },
-        "runtime": {
-          "lib/net45/AspNet.Identity.MongoDB.dll": {}
-        }
-      },
       "BundlerMinifier.Core/2.2.306": {
         "type": "package",
         "dependencies": {
@@ -102,15 +89,6 @@
             "assetType": "native",
             "rid": "win7-x86"
           }
-        }
-      },
-      "Microsoft.AspNet.Identity.Core/2.2.1": {
-        "type": "package",
-        "compile": {
-          "lib/net45/Microsoft.AspNet.Identity.Core.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Microsoft.AspNet.Identity.Core.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/1.1.0": {
@@ -1743,31 +1721,6 @@
           "lib/net45/MongoDB.Bson.dll": {}
         }
       },
-      "MongoDB.Driver/2.0.0": {
-        "type": "package",
-        "dependencies": {
-          "MongoDB.Bson": "2.0.0",
-          "MongoDB.Driver.Core": "2.0.0"
-        },
-        "compile": {
-          "lib/net45/MongoDB.Driver.dll": {}
-        },
-        "runtime": {
-          "lib/net45/MongoDB.Driver.dll": {}
-        }
-      },
-      "MongoDB.Driver.Core/2.0.0": {
-        "type": "package",
-        "dependencies": {
-          "MongoDB.Bson": "2.0.0"
-        },
-        "compile": {
-          "lib/net45/MongoDB.Driver.Core.dll": {}
-        },
-        "runtime": {
-          "lib/net45/MongoDB.Driver.Core.dll": {}
-        }
-      },
       "Mono.Security/3.2.3": {
         "type": "package",
         "compile": {
@@ -2946,16 +2899,6 @@
     }
   },
   "libraries": {
-    "AspNet.Identity.MongoDB/2.0.8": {
-      "sha512": "3mNYCF0ZWEelniwGcuxPfVtAAEKzXKE5sSGTWLS2r1hfaWNw9dX4Cf85C1F85rqMsjKdrabG0yIzwEDUVMt+vA==",
-      "type": "package",
-      "path": "AspNet.Identity.MongoDB/2.0.8",
-      "files": [
-        "AspNet.Identity.MongoDB.2.0.8.nupkg.sha512",
-        "AspNet.Identity.MongoDB.nuspec",
-        "lib/net45/AspNet.Identity.MongoDB.dll"
-      ]
-    },
     "BundlerMinifier.Core/2.2.306": {
       "sha512": "3MhXe3qLroL+Fe4Uo/7cmtYQ3YPjSHIjfuHxpewVZUdU4mh73wLEKAgf9rr3OLTuEXCbJr8bOBdwjuNwfGR8qw==",
       "type": "package",
@@ -3022,17 +2965,6 @@
         "runtimes/win7-arm/native/libuv.dll",
         "runtimes/win7-x64/native/libuv.dll",
         "runtimes/win7-x86/native/libuv.dll"
-      ]
-    },
-    "Microsoft.AspNet.Identity.Core/2.2.1": {
-      "sha512": "jjurNglpmcv0SLBd4Fmar8ZoJ2yqfTf6iuP3p8wVH7Nvanfo8l3qTBzq3qRQz2BQlb6iXJiDWPjcnIImVz512g==",
-      "type": "package",
-      "path": "Microsoft.AspNet.Identity.Core/2.2.1",
-      "files": [
-        "Microsoft.AspNet.Identity.Core.2.2.1.nupkg.sha512",
-        "Microsoft.AspNet.Identity.Core.nuspec",
-        "lib/net45/Microsoft.AspNet.Identity.Core.dll",
-        "lib/net45/Microsoft.AspNet.Identity.Core.xml"
       ]
     },
     "Microsoft.AspNetCore.Antiforgery/1.1.0": {
@@ -4528,29 +4460,6 @@
         "lib/net45/MongoDB.Bson.dll",
         "lib/netstandard1.5/MongoDB.Bson.dll",
         "lib/netstandard1.5/MongoDB.Bson.xml"
-      ]
-    },
-    "MongoDB.Driver/2.0.0": {
-      "sha512": "MloX+kZsJsrDqtCRZShRRwcVbSUdj7II98gl7aXcXfCKXEFMWn3931o39YTMv6nwN/Z0MxkVJ0r68Vr1nO3pbw==",
-      "type": "package",
-      "path": "MongoDB.Driver/2.0.0",
-      "files": [
-        "License.rtf",
-        "MongoDB.Driver.2.0.0.nupkg.sha512",
-        "MongoDB.Driver.nuspec",
-        "lib/net45/MongoDB.Driver.XML",
-        "lib/net45/MongoDB.Driver.dll"
-      ]
-    },
-    "MongoDB.Driver.Core/2.0.0": {
-      "sha512": "mMU89OUiwuSsDW7A2vYEt2VNOpbrD0IR0dtnGyGlIj8IENjIDZG9uXRkIMipW9fl8XBRl8eKWss4AQvTPXtaKg==",
-      "type": "package",
-      "path": "MongoDB.Driver.Core/2.0.0",
-      "files": [
-        "License.rtf",
-        "MongoDB.Driver.Core.2.0.0.nupkg.sha512",
-        "MongoDB.Driver.Core.nuspec",
-        "lib/net45/MongoDB.Driver.Core.dll"
       ]
     },
     "Mono.Security/3.2.3": {
@@ -8194,7 +8103,6 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "AspNet.Identity.MongoDB >= 2.0.8",
       "BundlerMinifier.Core >= 2.2.306",
       "DdpNet >= 0.1.0",
       "ImageLibrary >= 3.0.0",

@@ -13,7 +13,7 @@ namespace Shiners.Models.Domain
 
         //username - поле username в таблице users(логин)
         [BsonElement("username")]
-        public string UserName { get; set; }
+        public string Username { get; set; }
         //createdAt - поле createdAt в таблице users(дата создания аккаунта)
         [BsonElement("createdAt")]
         //[BsonDateTimeOptions(DateOnly = false, Kind = DateTimeKind.Unspecified, Representation = BsonType.DateTime)]
@@ -58,6 +58,9 @@ namespace Shiners.Models.Domain
         public IList<string> NotifiedPostIds { get; set; }
         [BsonElement("tokens")]
         public IList<Token> Tokens { get; set; }
+
+        [BsonElement("details1"), BsonIgnoreIfNull]      
+        public IList<ProfileDetail> ProfileDetails { get; set; }
 
         public User()
         {
@@ -168,6 +171,7 @@ namespace Shiners.Models.Domain
         public string Language { get; set; }
         [BsonElement("image")]
         public UserImage Image { get; set; }
+
     }
 
     public class UserImage

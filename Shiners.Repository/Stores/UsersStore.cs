@@ -13,5 +13,15 @@ namespace Shiners.Repository.Stores
         public UsersStore(IMongoDatabase db, string collectionName) : base(db, collectionName)
         {
         }
+
+        public async Task<User> GetWithDetails(string id)
+        {
+            
+            var user = await this.Get(id);
+            var details =
+                await Db.GetCollection<ProfileDetail>("profileDetails").FindSync((p) => p.UserId == id && p.Policy!="0").ToListAsync();
+            user.ProfileDetails = details;
+            return user;
+        }
     }
 }

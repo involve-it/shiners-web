@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Shiners.WebApp.Controllers
 {
-    //[RequireHttps]
+    [RequireHttps]
     public class ChatsController : Controller
     {
         public IActionResult Index(string id = null)

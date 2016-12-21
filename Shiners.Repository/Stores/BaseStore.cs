@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using Shiners.Models.Domain;
 
 namespace Shiners.Repository.Stores
@@ -22,36 +24,14 @@ namespace Shiners.Repository.Stores
 
         public async Task<T>  Get(string id)
         {
-            //T ret = new T();
-            var filter = Builders<T>.Filter.Eq("_id", id);
-            var collection = Db.GetCollection<T>(CollectionName);
-            var result = await collection.Find(filter).ToListAsync();
-            //new BsonDocument() { { "_id", id } }
-            return result.FirstOrDefault();
+            return await Db.GetCollection<T>(CollectionName).FindSync((p) => p.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<T> Get(FilterDefinition<T> filter)
+        public async Task<T> Get(Expression<Func<T, bool>> filter)
         {
             var collection = Db.GetCollection<T>(CollectionName);
             var result = await collection.Find<T>(filter).ToListAsync();
             return result.FirstOrDefault();
-        }
-
-        public async Task<T> Get(FilterDefinition<BsonDocument> filter)
-        {
-            var collection = Db.GetCollection<BsonDocument>(CollectionName);
-            var resultCollection = await collection.Find<BsonDocument>(filter).ToListAsync();
-            var result = resultCollection?.FirstOrDefault();
-            if (result != null)
-                return BsonSerializer.Deserialize<T>(result);
-            else return null;
-        }
-
-        public async Task<T> Get(BsonDocument filter)
-        {
-            var collection = Db.GetCollection<BsonDocument>(CollectionName);
-            var result= await collection.FindAsync<T>(filter);
-            return result?.FirstOrDefault();
         }
 
         public async Task<IList<T>> GetCollection()
@@ -59,25 +39,11 @@ namespace Shiners.Repository.Stores
             throw new NotImplementedException();
         }
 
-        public async Task<IList<T>> GetCollection(FilterDefinition<BsonDocument> filter)
-        {
-            var collection = Db.GetCollection<BsonDocument>(CollectionName);
-            var resultCollection = await collection.Find<BsonDocument>(filter).ToListAsync();
-            return resultCollection.Select(p => BsonSerializer.Deserialize<T>(p)).ToList();
-        }
-
-        public async Task<IList<T>> GetCollection(FilterDefinition<T> filter)
+        public async Task<IList<T>> GetCollection(Expression<Func<T,bool>> filter)
         {
             var collection = Db.GetCollection<T>(CollectionName);
             var result = await collection.Find<T>(filter).ToListAsync();
             return result;
-        }
-
-        public async Task<IList<T>> GetCollection(BsonDocument filter)
-        {
-            var collection = Db.GetCollection<BsonDocument>(CollectionName);
-            var result = await collection.FindAsync<T>(filter);
-            return await result.ToListAsync();
         }
 
         public async Task<BsonDocument> GetBson(string id)
@@ -88,40 +54,6 @@ namespace Shiners.Repository.Stores
             //new BsonDocument() { { "_id", id } }
             return result.FirstOrDefault();
         }
-
-        public async Task<BsonDocument> GetBson(FilterDefinition<T> filter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<BsonDocument> GetBson(FilterDefinition<BsonDocument> filter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<BsonDocument> GetBson(BsonDocument filter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<BsonArray> GetBsonCollection()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<BsonArray> GetBsonCollection(FilterDefinition<BsonDocument> filter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<BsonArray> GetBsonCollection(FilterDefinition<T> filter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<BsonArray> GetBsonCollection(BsonDocument filter)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
