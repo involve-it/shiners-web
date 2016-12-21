@@ -79,5 +79,49 @@ namespace Shiners.Repository.Stores
             var result = await collection.FindAsync<T>(filter);
             return await result.ToListAsync();
         }
+
+        public async Task<BsonDocument> GetBson(string id)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", id);
+            var collection = Db.GetCollection<BsonDocument>(CollectionName);
+            var result = await collection.Find(filter).ToListAsync();
+            //new BsonDocument() { { "_id", id } }
+            return result.FirstOrDefault();
+        }
+
+        public async Task<BsonDocument> GetBson(FilterDefinition<T> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<BsonDocument> GetBson(FilterDefinition<BsonDocument> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<BsonDocument> GetBson(BsonDocument filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<BsonArray> GetBsonCollection()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<BsonArray> GetBsonCollection(FilterDefinition<BsonDocument> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<BsonArray> GetBsonCollection(FilterDefinition<T> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<BsonArray> GetBsonCollection(BsonDocument filter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

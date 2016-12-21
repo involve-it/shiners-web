@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-using Newtonsoft.Json.Linq;
 using MongoDB.Bson;
+
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,27 +21,13 @@ namespace Shiners.WebApp.Controllers.api
             _db = repository;
         }
 
-        // GET: api/values
-        [HttpGet]
-        public JArray Get()
-        {
-            
-            return new JArray();
-        }
 
         // GET api/users/dfsfdsdf
         [HttpGet("{id}")]
-        public async Task<object> Get(string id)
+        public async Task<BsonDocument> Get(string id)
         {
-            var user = await _db.Users.Get(id);
-            if (user != null)
-            {
-                return user.ToJson();
-            }
-            else
-            {
-                return NotFound();
-            }
+            var user = await _db.Users.GetBson(id);
+            return user;
         }
 
         // POST api/values
