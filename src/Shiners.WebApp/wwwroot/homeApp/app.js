@@ -12,7 +12,7 @@ import _ from 'underscore';
 import AsteroidModel from '../data/AsteroidModel.js';
 import PreloaderView from '../sharedViews/PreloaderView.js';
 import '../css/shiners-override.css';
-
+import i18n from './js/controllers/templateController.js';
 let App = Marionette.Application.extend({
     region:'body',
     layout:null,
@@ -28,6 +28,7 @@ let App = Marionette.Application.extend({
     router:null,
     //iframeLoaded:false,
     FbInitialized:false,
+    i18n:i18n
     views: {
         iframeView: null
     },
