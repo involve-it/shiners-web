@@ -243,7 +243,7 @@ var View = Marionette.View.extend({
                     lat:center.lat(),
                     lng:center.lng()
                 };
-            this.geocoder.geocode({'location': latLng},_.bind((results,status)=>{
+            this.geocoder.geocode({'location': latLng,'language':app.i18n.getLanguage()},_.bind((results,status)=>{
                 if (status === window.google.maps.GeocoderStatus.OK) {
                     var locationName = _.find(results[0].address_components,
                         (res) => {

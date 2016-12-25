@@ -106,6 +106,7 @@ var View = Marionette.View.extend({
 
     chooseLanguage(e) {
         app.i18n.setLanguage(e.target.value);
+        app.trigger('change:language', e.target.value);
     },
 
     _toggleUserInfo(user) {

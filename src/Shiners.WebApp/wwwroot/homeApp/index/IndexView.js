@@ -12,11 +12,11 @@ export default Marionette.View.extend({
     },
 
     regions: {
-        //'postTypes':'#postAdTypes'
+        'postTypes':'#postAdTypes'
     },
 
     onRender() {
-        //this.showChildView('postTypes', new PostTypesView({ collection: app.postAdTypes }));
+        this.showChildView('postTypes', new PostTypesView({ collection: app.postAdTypes }));
     },
 
     onAttach() {
