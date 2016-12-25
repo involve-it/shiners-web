@@ -20,26 +20,26 @@
 							<nav class="sh-nav-menu nav-main">
 								<ul id="topMain" class="nav nav-pills nav-main">
 									<li class="active">
-										<a href="/">Главная</a>
+										<a href="/">{{=i18n('mainPage')}}</a>
 									</li>
 									<li class="hidden-lg hidden-md">
 										<a href="/posts/new">
-											Создать
+											{{=i18n('create')}}
 										</a>
 									</li>
 									<li>
 										<a href="/about-us">
-											О сайте
+											{{=i18n('aboutSite')}}
 										</a>
 									</li>
 									<li class="js-need-auth" style="display: none;">
 										<a href="/chats/my">
-											Сообщения
+											{{=i18n('messages')}}
 										</a>
 									</li>
 									<li class="js-need-auth" style="display: none;">
 										<a href="/posts/my">
-											Мои Посты
+											{{=i18n('myPosts')}}
 										</a>
 									</li>
 								</ul>
@@ -67,7 +67,7 @@
 					<div class="sh-header-navbar-logo">
 						<a class="sh-logo-header" href="/">
 							<img src="/images/logo-home-logotype-short-dark.png" alt="logotype" height="45" width="45" />
-							Shiners
+							{{=i18n('SITE_NAME')}}
 						</a>
 					</div>
 
@@ -142,7 +142,7 @@
 		<div class="row footer-section footer-section-nav">
 			<div class="sh-footer-section-wrapper">
 				<div class="sh-f-col col-sm-3 col-md-3 col-lg-3">
-					<div class="sh-logo-footer">Shiners</div>
+					<div class="sh-logo-footer">{{=i18n('SITE_NAME')}}</div>
 				</div>
 
 				<div class="sh-f-col col-sm-1 col-md-3 col-lg-3">

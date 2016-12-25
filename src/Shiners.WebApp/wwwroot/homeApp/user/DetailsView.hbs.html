@@ -21,14 +21,14 @@
                     </div>
                 </div>
                 <div class="sh-profile-action">
-                    <a href="#" class="ui sh-button sh-profile-send">Написать сообщение</a>
+                    <a href="#" class="ui sh-button sh-profile-send"> {{=i18n('addMessage')}}</a>
                     <!--<a href="#" class="ui sh-button sh-profile-edit">Редактировать</a>-->
                 </div>
             </div>
             <div class="sh-page-block">
                 <ul class="sh-user-action">
-                    <li><a href="#">Пожаловаться</a></li>
-                    <li class="sh-user-action-exit"><a href="#">Выйти</a></li>
+                    <li><a href="#">{{=i18n('complain')}}</a></li>
+                    <li class="sh-user-action-exit"><a href="#">{{=i18n('exit')}}</a></li>
                 </ul>
             </div>
         </div>
@@ -36,13 +36,13 @@
             <div class="sh-page-block sh-user-info">
                 <div class="sh-user-info-top">
                     <small class="sh-user-was">Был {{=moment(status.lastlogin.date).calendar()}}</small>
-                    <h2 class="sh-user-name">{{= firstName}} {{=lastName}} {{=(!firstName && !lastName)?'Имя не указано':''}}</h2>
+                    <h2 class="sh-user-name">{{= firstName}} {{=lastName}} {{=(!firstName && !lastName)?i18n('NO_NAME'):''}}</h2>
                 </div>
                 <div class="sh-user-profile-info">
                     <div class="sh-user-profile-info-wrapper">
                         <!--Direct link to my profile-->
                         <div class="sh-user-profile-info-row sh-col">
-                            <div class="sh-info-title">Прямая ссылка на профиль</div>
+                            <div class="sh-info-title">{{=i18n('DIRECT_PROFILE_LINK')}}</div>
                             <div class="sh-info-text">
                                 <div class="sh-direct-link-block">
                                     <div class="sh-direct-link-wrapper">
