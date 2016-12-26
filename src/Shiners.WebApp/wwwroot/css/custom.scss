@@ -79,6 +79,20 @@
   flex-direction: $value;
 }
 
+@mixin sh-flex-grow($grow) {
+  -webkit-flex-grow: $grow;
+     -moz-flex-grow: $grow;
+      -ms-flex-grow: $grow;
+          flex-grow: $grow;
+}
+
+@mixin sh-flex-basis($width) {
+  -webkit-flex-basis: $width;
+     -moz-flex-basis: $width;
+      -ms-flex-basis: $width;
+          flex-basis: $width;
+}
+
 @mixin border-radius($radius) {
     -webkit-border-radius:  $radius;
     -moz-border-radius:     $radius;
@@ -113,7 +127,9 @@ $sh-main-black-color: rgba(54,54,54, 1);
 $sh-main-lightgray-color: rgba(143,142,148, 1);
 $sh-main-super-light-color: rgba(244,244,244, 1);
 $sh-main-header-light-bg: rgba(255,255,255, .85);
-//$sh-dropdown-footer-color: rgba(255,255,255, .1);
+$sh-dropdown-footer-color: rgba(255,255,255, .1);
+$sh-main-border-color: rgba(230,230,230, 1);
+$sh-main-color-icon: rgba(246, 172, 49, 1);
 
 $sh-section-padding: 65px 0;
 $sh-section-padding-xs: 35px 0;
@@ -358,6 +374,11 @@ input[type="tel"],
 textarea, select {
 	border-radius: 2px;
 	margin: 0;
+}
+
+input[type=checkbox] + label,
+input[type=radio] + label {
+	margin-left: 10px;
 }
 
 .sh-input-control,
@@ -1817,6 +1838,26 @@ textarea, select {
     //  COMPONENTS
     
   }
+
+  .sh-footer-bottom {
+      @include sh-display-flex();
+      @include sh-align-items(center);
+
+        .sh-choose-language {
+            padding-right: 30px;
+
+            #chooseLanguage {
+                background: rgba(255, 255, 255, .1);
+                color: $sh-footer-text-color;
+                border: none;
+                min-width: 150px;
+
+                option {
+                    color: $sh-main-gray-color;
+                }
+            }
+        }
+  }
 }
 
 /* ========================
@@ -2063,6 +2104,309 @@ textarea, select {
 */
 
 
+
+/* ========================
+    USER PROFILE
+======================== */
+
+
+.sh-page-block {
+	position: relative;
+	background: $sh-white-color;
+	margin-bottom: 16px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+	border-top: 1px solid $sh-white-color;
+
+	&:last-child {
+		margin: 0;
+	}
+}
+
+.sh-user-profile {
+	padding: 45px 0;
+    background: $sh-main-content-bg;
+	
+	.sh-user-profile-wrapper {
+        @include sh-display-flex();
+		
+		.sh-side-left {
+            @include sh-flex-basis(250px);
+            @include sh-flex-grow(0);
+            //max-width: 250px;
+			margin: 0 16px 16px 0;
+			
+			
+		}
+		
+		.sh-side-right {
+            @include sh-flex-grow(1);
+		}
+	}
+
+	.sh-user-info,
+	.sh-user-box {
+		padding: 16px;
+	}
+	
+	.sh-user-box {
+		
+		.sh-user-avatar {
+			.sh-user-avatar-wrap {
+				position: relative;
+				border-radius: 2px;
+				overflow: hidden;
+				text-align: center;
+				height: auto;
+				background-color: rgba(245,245,245, 1);
+				
+				.sh-user-profile-photo-link {
+					img {
+						border-radius: 2px;
+						max-width: 100%;
+						height: auto;
+						vertical-align: top;
+					}
+				}
+				
+				.sh-avatar-user-status {
+					position: absolute;
+					border-radius: 2px;
+					width: 24px;
+					height: 24px;
+					background-color: #ffffff;
+					right: -3px;
+					bottom: -3px;
+					
+					.sh-avatar-user-status-wrapper {
+						position: relative;
+						border-radius: 2px;
+						height: 17px;
+						width: 17px;
+						top: 3px;
+						left: 3px;
+						
+						&.sh-offline {
+							background-color: #969696;
+						}
+						&.sh-online {
+							background-color: #35cb4b;
+						}
+					}
+				}
+			}
+		}
+		
+		.sh-profile-action {
+			margin-top: 10px;
+			text-align: center;
+
+			.sh-profile-edit,
+			.sh-profile-send {
+				display: block;
+				font-size: 13px;
+			}
+			
+			.sh-profile-send {
+				background: $sh-main-blue-background;
+				color: $sh-white-color;
+			}
+			
+			.sh-profile-edit {}
+		}
+	}
+
+	.sh-user-action {
+        padding: 0;
+        margin: 0;
+		font-size: 14px;
+		list-style: none;
+
+		li {
+			border-bottom: 1px solid $sh-main-border-color;
+			
+			a {
+				padding: 8px 10px;
+				display: block;
+				
+				&:hover {
+					background-color: rgba(0,0,0, .05);
+				}
+			}
+			
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+		
+		.sh-user-action-exit {
+			a {
+				color: rgba(251,61,56, 1);
+			}
+		}
+	}
+	
+	.sh-user-info {
+		.sh-user-info-top {
+			padding: 0 0 16px;
+			border-bottom: 1px solid $sh-main-border-color;
+			
+			.sh-user-was {
+				font-size: 12px;
+				color: $sh-main-lightgray-color;
+				font-weight: 500;
+			}
+			.sh-user-name {
+				font-size: 24px;
+				font-weight: 500;
+				color: $sh-main-gray-color;
+				text-transform: capitalize;
+			}
+		}
+		
+		.sh-user-profile-info {
+			padding: 16px 0 0;
+			
+			.sh-user-profile-info-wrapper {
+				
+				.sh-user-profile-info-row {
+                    @include sh-display-flex();
+					margin-bottom: 16px;
+					
+					//Direct link to profile
+					.sh-direct-link-block {
+						background-color: $sh-footer-text-color;
+						border-radius: 4px;
+						@include sh-display-flex();
+                        @include sh-justify-content(space-between);
+						@include sh-align-items(center);
+						padding: 0 10px;
+						font-size: 14px;
+						min-height: 38px;
+						color: $sh-main-gray-color;
+						
+						.sh-direct-link-wrapper {
+							@include sh-display-flex();
+							
+							.sh-icon-direct-link {
+								padding-right: 10px;
+								
+								i {
+									color: $sh-main-color-icon;
+								}
+							}
+							
+							.sh-checkbox {
+								@include sh-display-flex();
+								@include sh-align-items(center);
+                                padding: 0;
+                                margin: 0;
+
+                                input {
+                                    margin: 0;
+                                }
+
+                                label {
+                                    margin-bottom: 0;
+                                }
+							}
+						}
+						
+						.sh-direct-link-btn-copy {
+							.sh-button {
+								margin-right: -5px;
+								padding: 8px 10px;
+								font-size: 13px;
+								color: $sh-main-black-color;
+								background-color: $sh-white-color;
+								box-shadow: 0 1px 2px rgba(0,0,0, .1);
+							}
+						}
+					}
+					
+					.sh-info-title {
+                        @include sh-flex-basis(170px);
+						color: $sh-main-lightgray-color;
+					}
+					
+					.sh-info-text {
+                        @include sh-flex-grow(1);
+						color: $sh-main-gray-color;
+					}
+					
+					&:last-child {
+						margin-bottom: 0;
+					}
+					
+					&.sh-col {
+						@include sh-flex-direction(column);
+						
+						.sh-info-title {
+							@include sh-flex-basis(auto);
+							margin-bottom: 3px;
+						}
+					}
+					
+					&.sh-profile-info-header {
+						border-top: 1px solid $sh-main-border-color;
+						margin-top: 26px;
+						
+						.sh-profile-info-header-within {
+							border-bottom: none;
+							position: relative;
+							margin: -13px 0 4px;
+							
+							span {
+                                color: $sh-main-gray-color;
+                                font-weight: 500;
+								padding-bottom: 4px;
+								padding-right: 7px;
+								background-color: #fff;
+							}
+						}
+					}
+					
+				}
+			}
+		}
+		
+		.sh-user-profile-links {
+			background-color: $sh-footer-text-color;
+			border-top: 1px solid $sh-main-border-color;
+			margin: 16px -16px -16px;
+			
+			.sh-user-profile-links-wrapper {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				
+				.sh-user-profile-links-item {
+					padding: 16px;
+					@include sh-display-flex();
+                    @include sh-justify-content(center);
+					color: $sh-main-lightgray-color;
+                    @include sh-flex-grow(1);
+					transition: background .15s ease-in-out;
+					
+					span {
+						color: $sh-main-gray-color;
+						font-weight: 500;
+						padding-left: 10px;
+					}
+					
+					&:hover {
+						cursor: pointer;
+						background-color: rgba(0,0,0, .1);
+					}
+				}
+			}
+		}
+	}
+}
+
+/*
+    END USER PROFILE
+*/
+
 @media screen and (max-width: 992px) {
 
     .container {
@@ -2165,6 +2509,18 @@ textarea, select {
     }
 
    
+    #footer {
+
+        &.sh-footer {
+            .sh-footer-bottom {
+                .sh-choose-language {
+                    padding: 0 30px 0 16px;
+                }
+            }
+        }
+    }
+
+ 
     
 }
 
@@ -2206,7 +2562,7 @@ textarea, select {
     }
 
    
-
+    /* create post */
 	.sh-create-post {
 
 		.sh-form {
@@ -2246,6 +2602,19 @@ textarea, select {
 		}
 	}
 	
+    /* user profile */
+    .sh-user-profile {
+		.sh-user-profile-wrapper {
+            @include sh-flex-direction(column);
+
+			.sh-side-left {
+                @include sh-flex-basis(auto);
+				margin: 0 0 16px 0;
+			}
+		}
+
+		
+	}
 
     #sh-works {
 
@@ -2483,7 +2852,8 @@ textarea, select {
                 margin-bottom: 30px;
             }
 
-            .sh-copyright {
+            .sh-footer-bottom {
+                @include sh-flex-direction(column);
                 letter-spacing: normal;
                 background: rgba(255,255,255, .05);
                 padding: 16px;
@@ -2491,6 +2861,12 @@ textarea, select {
                 .sh-usage-text {
                     margin-bottom: 16px;
                 }
+            }
+        }
+
+        .sh-footer-bottom {
+            .sh-choose-language {
+                padding: 0 0 8px 0;
             }
         }
     }
