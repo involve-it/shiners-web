@@ -1,13 +1,14 @@
 ﻿import Marionette from 'backbone.marionette';
 import Controller from './Controller.js';
-
+import app from './app'
 export default Marionette.AppRouter.extend({
 
     initialize(setts) {
         this.app = setts.app;
         this.controller = new Controller({app:this});
+        this.listenTo(app.user,'logout',this.redirectIfLogout);
     },
-
+    currentRoute:null,
     appRoutes: {
         '':'index',
         'mobileIndex':'mobileIndex',
@@ -21,11 +22,38 @@ export default Marionette.AppRouter.extend({
         'posts/:id':'postDetails',
         'user/:id': 'userDetails',
         'Account/Login':'login',
+        'Account/Login/:url':'login',
         'Account/FogotPassword':'fogotPassword',
         'Home/HowItWorks':'howItWorks',
         'about-us':'about',
         'profile': 'myProfile',
         'messages/to/:remoteUserId?postId=:postId':'messagesTo',
         'messages/to/:remoteUserId':'messagesTo'
+    },
+
+    policy: {
+        authorized:[
+            'createPost',
+            'postsMy',
+            'chatId',
+            'myProfile',
+            'messagesTo'
+        ]
+    },
+
+    onRoute(name, path, args) {
+        this.currentRoute = name;
+        if (_.contains(this.policy.authorized, name)) {
+            if (!app.user.id) {
+                this.navigate('Account/Login/'+encodeURIComponent(path), {trigger:true});
+            }
+        }
+    },
+
+    redirectIfLogout() {
+        if (_.contains(this.policy.authorized, this.currentRoute)) {
+            this.navigate('', {trigger:true});
+        }
     }
+
 });

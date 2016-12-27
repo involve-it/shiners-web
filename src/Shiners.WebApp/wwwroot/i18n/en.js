@@ -20,8 +20,8 @@ var json = {
     shiners_are: 'SHINERS - ARE',
     live_meetings: 'MEETING IN REAL-TIME',
     nearby_business: 'BUSINESSES IN TWO STEPS',
-    LIVE_ADS: '∆»¬€≈ Œ¡⁄ﬂ¬À≈Õ»ﬂ ¬Œ –”√',
-    NEARBY_SERVICES: 'LIVE ADS AROUND',
+    LIVE_ADS: 'LIVE ADS AROUND',
+    NEARBY_SERVICES: 'NEARBY SERVICES',
     undefined_place: 'The location is not defined',
     //home view
     how_it_works: 'How it works',

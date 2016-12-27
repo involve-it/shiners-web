@@ -24,8 +24,10 @@ var View = Marionette.View.extend({
     },
 
     redirect() {
-        history.back();
-        //app.router.navigate('/', true);
+        if(this.options.returnUrl)
+            app.router.navigate(decodeURIComponent(this.options.returnUrl),  {trigger:true,replace:true});
+        else
+            history.back();
     },
     showError(error) {
         alert(error);

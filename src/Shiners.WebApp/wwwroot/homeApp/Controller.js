@@ -60,8 +60,8 @@ export default Marionette.Object.extend({
           }
     },
 
-    login() {
-        app.layout.showChildView('content',new LoginView({model:app.user}));
+    login(url) {
+        app.layout.showChildView('content',new LoginView({model:app.user,returnUrl:url||null}));
     },
 
     fogotPassword() {

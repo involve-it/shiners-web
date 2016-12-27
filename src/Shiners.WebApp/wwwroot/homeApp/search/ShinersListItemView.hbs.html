@@ -1,4 +1,4 @@
-﻿<img class="thumbnail pull-left" src="{{=details.photosUrls && details.photosUrls.length>0?details.photosUrls[0]:'/images/no_image.png'}}" width="60" height="60" alt="" />
+﻿<img class="thumbnail pull-left" src="{{=details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/no_image.png'}}" width="60" height="60" alt="" />
 <h4 class="noborder nopadding"><a href="/posts/{{-_id}}">{{=details.title}}</a></h4>
 <div class="sh-shiners-list-footer">
     <span class="sh-shiners-list-time pull-right">{{=moment(timestamp).fromNow()}}</span>

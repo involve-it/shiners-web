@@ -1,7 +1,7 @@
 ﻿<div class="sh-map-item-view-wrapper">
     {{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}
 
-    <a title="{{=details.title}}" class="block height-250 text-right" style="background-image: url({{-details.photosUrls && details.photosUrls.length>0?details.photosUrls[0]:'/images/demo/300x250.png'}}); background-position: center; background-repeat: no-repeat; background-size: 120%"></a>
+    <a title="{{=details.title}}" class="block height-250 text-right" style="background-image: url({{-details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/demo/300x250.png'}}); background-position: center; background-repeat: no-repeat; background-size: 120%"></a>
 
     <div class="sh-map-item-view-info-panel">
         <div class="sh-map-item-view-info-panel-first">

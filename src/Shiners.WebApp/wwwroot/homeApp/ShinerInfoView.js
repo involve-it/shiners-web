@@ -7,7 +7,7 @@ var View = Marionette.View.extend({
     template:template,
 
     initialize() {
-        window.postInCollection = this.model.attributes;
+        window.postInCollection = this.model.attributes; // debug
     },
 
     events: {

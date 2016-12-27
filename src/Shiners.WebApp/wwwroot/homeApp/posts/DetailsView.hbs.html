@@ -50,7 +50,7 @@
                         <td>
                             {{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}
                             <span title="{{=isDynamic?'Динамическое объявление':'Статическое'}}">
-                                <i class="bz-icon bz-icon-{{=isDynamic?'dinamic':'flag' }} {{=isDynamic?'success':''}}"></i>
+                                <i class="bz-icon bz-icon-{{=isDynamic?'dinamic':'flag' }} text-{{=isDynamic?'success':'primary'}}"></i>
                             </span>
                         </td>
                     </tr>
