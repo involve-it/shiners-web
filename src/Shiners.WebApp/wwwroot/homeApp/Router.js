@@ -6,7 +6,7 @@ export default Marionette.AppRouter.extend({
     initialize(setts) {
         this.app = setts.app;
         this.controller = new Controller({app:this});
-        this.listenTo(app.user,'logout',this.redirectIfLogout);
+        this.listenTo(this.app.user,'logout',this.redirectIfLogout);
     },
     currentRoute:null,
     appRoutes: {
