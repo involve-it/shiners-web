@@ -9,6 +9,7 @@ using Shiners.Models.Domain;
 
 namespace Shiners.WebApp.Controllers.api
 {
+    [Route("api/[controller]")]
     public class PostsController : Controller
     {
         private Repository.MongoRepository _db;
