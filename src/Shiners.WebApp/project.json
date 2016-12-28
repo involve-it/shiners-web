@@ -2,6 +2,9 @@
   "userSecretsId": "aspnet-Shiners.WebApp-e5855ab4-1ffd-43f0-bc88-4cfe05aff911",
 
   "dependencies": {
+    "AWS.Extensions": "1.5.26.1",
+    "AWSSDK.Extensions.NETCore.Setup": "3.3.0.2",
+    "AWSSDK.S3": "3.3.5.2",
     "BundlerMinifier.Core": "2.2.306",
     "DdpNet": "0.1.0",
     "ImageLibrary": "3.0.0",

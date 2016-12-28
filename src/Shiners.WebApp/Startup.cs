@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Amazon.S3;
 using DdpNet;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,7 +48,8 @@ namespace Shiners.WebApp
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
+            services.AddDefaultAWSOptions(Configuration.GetAWSOptions("AWS"));
+            services.AddAWSService<IAmazonS3>();
             services.AddMvc();
             services.AddScoped<UnderscoreRenderer>((provider) => Renderer);
             services.AddSingleton(new Repository.MongoRepository(Configuration.GetConnectionString("Mongo")));
