@@ -11,19 +11,19 @@ namespace Shiners.WebApp
 {
     public class Program
     {
-        public static MeteorClient Meteor;
+        public static MeteorClient Meteor=null;
 
         public static void Main(string[] args)
         {
-            try
-            {
-                //Meteor = new MeteorClient(new Uri("wss://shiners.mobi/websocket"));
-                //Meteor.ConnectAsync().Wait();
-            }
-            catch (Exception e)
-            {
-                Meteor = null;
-            }
+            //try
+            //{
+            //    //Meteor = new MeteorClient(new Uri("wss://shiners.mobi/websocket"));
+            //    //Meteor.ConnectAsync().Wait();
+            //}
+            //catch (Exception e)
+            //{
+            //    Meteor = null;
+            //}
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())

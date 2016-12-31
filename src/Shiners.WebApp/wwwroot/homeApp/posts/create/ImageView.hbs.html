@@ -1,5 +1,5 @@
 ﻿{{if(obj.data) { }}
-<img width="120" src="{{=data}}"/>
+<img width="120" src="data:{{=type}};base64,{{=data}}"/>
 {{ } else { }}
 <img width="120" class="img-responsive" src="/images/working.gif" />
 {{ } }}

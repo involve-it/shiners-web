@@ -53,7 +53,7 @@ export default Marionette.Object.extend({
 
     createPost() {
        if (app.user.id) {
-                var model = new Post({details:{}},{asteroid:app.asteroid});
+           var model = new Post({details:{},stats:{seenToday: 0,seenTotal : 0,seenAll:0}},{asteroid:app.asteroid});
                 app.layout.showChildView('content', new CreatePostView({model:model}));
           } else {
               app.router.navigate('/', true);

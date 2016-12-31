@@ -17,15 +17,15 @@ export default Model.extend({
             }).done(resp => {
                 var details = self.get('details');
                 details.photos = resp;
-                self.set('details', details);
-                self._create();
+                self.set('details', details,{silent:true});
+                self._create(options);
             });
         } else {
-            this._create();
+            this._create(options);
         }
     },
 
-    _create() {
+    _create(options) {
         var self = this;
         return this.asteroid.call('addPost',this.attributes).result.then((resp) => {
             if (resp.success) {

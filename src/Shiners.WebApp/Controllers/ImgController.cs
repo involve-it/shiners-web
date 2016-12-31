@@ -5,24 +5,44 @@ using System.IO;
 using System.Linq;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using Amazon.S3;
+using Amazon.S3.Model;
 using Kaliko.ImageLibrary;
-using Kaliko.ImageLibrary.Scaling;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
-using Shiners.WebApp.Util;
 
 namespace Shiners.WebApp.Controllers
 {
     public class ImgController : Controller
     {
         private IHostingEnvironment environment;
+        private IAmazonS3 S3Client;
+        [NonAction]
+        private void _cropImage(KalikoImage img, int w, int h)
+        {
+            if (img.Width > img.Height)
+            {
+                float scaleIndex = (float)img.Height / h;
+                img.Resize((int)Math.Round(img.Width / scaleIndex, 0), h);
+                img.Crop((int)Math.Round((img.Width - w - 1) / 2.0), 0, w, h);
+            }
+            else if (img.Width < img.Height)
+            {
+                float scaleIndex = (float)img.Width / w;
+                img.Resize(w, (int)Math.Round(img.Height / scaleIndex, 0));
+                img.Crop(0, (int)Math.Round((img.Height - h - 1) / 2.0), w, h);
+            }
+            else
+            {
+                img.Resize(w, h);
+            }         
+        }
 
-        public ImgController(IHostingEnvironment env)
+        public ImgController(IHostingEnvironment env, IAmazonS3 s3Client)
         {
             environment = env;
+            S3Client = s3Client;
         }
 
         public FileResult GetCaptchaImage(string url, int w, int h)
@@ -42,22 +62,7 @@ namespace Shiners.WebApp.Controllers
                 if (string.IsNullOrWhiteSpace(url))
                     throw new NullReferenceException("url is null or empty");
                 var img = new KalikoImage(url);
-                if (img.Width > img.Height)
-                {
-                    float scaleIndex = (float) img.Height/h;
-                    img.Resize((int) Math.Round(img.Width/scaleIndex, 0), h);
-                    img.Crop((int) Math.Round((img.Width - w - 1)/2.0), 0, w, h);
-                }
-                else if (img.Width < img.Height)
-                {
-                    float scaleIndex = (float) img.Width/w;
-                    img.Resize(w, (int) Math.Round(img.Height/scaleIndex, 0));
-                    img.Crop(0, (int) Math.Round((img.Height - h - 1)/2.0), w, h);
-                }
-                else
-                {
-                    img.Resize(w, h);
-                }
+                _cropImage(img, w, h);
                 MemoryStream stream = new MemoryStream();
                 img.SavePng(stream);
                 stream.Seek(0, SeekOrigin.Begin);
@@ -76,68 +81,77 @@ namespace Shiners.WebApp.Controllers
         }
 
         [HttpPost]
-        public JObject UploadTempImage(string cid)
+        public JArray UploadTempImage()
         {
-
             if (Request.Form.Files.Count > 0)
             {
-                var file = Request.Form.Files[0];
-
-                var extension = Path.GetExtension(file.FileName);
-                var imgId = Guid.NewGuid();
-                var fileName = "/images/temp/" + imgId + extension;
-                var physicalPath = Path.Combine(environment.WebRootPath, "." + fileName);
-                var file1 = System.IO.File.Create(physicalPath);
-                file.CopyTo(file1);
-                file1.Flush();
-                file1.Close();
-                return new JObject()
+                var resp = new JArray();
+                foreach (var file in Request.Form.Files)
                 {
-                    {"path", fileName},
-                    {"cid", cid},
-                    {"name", imgId + extension}
-                };
+                    // var extension = Path.GetExtension(file.FileName);
+                    var stream = file.OpenReadStream();
+                    byte[] bufer = new byte[file.Length];
+                    stream.Read(bufer, 0, (int) file.Length);
+                    string base64 = Convert.ToBase64String(bufer);
+                    resp.Add(new JObject()
+                    {
+                        {"data", base64},
+                        {"id", file.FileName}
+                    });
+                }
+                return resp;
             }
             else
             {
                 throw new Exception("Не удалось загрузить файл. Длина файла 0");
             }
-
+            //{"data",$"data:image/{extension.Replace(".","")};base64,{base64}" },
         }
 
         [HttpPost]
-        public JArray CommitUploadImage([FromBody]JToken data)
+        public async Task<JArray> CommitUploadImage([FromBody] JToken data)
         {
             JArray jdata = JArray.FromObject(data);
-            
             foreach (JObject jImg in jdata)
             {
-                var physicalTempPath = Path.Combine(environment.WebRootPath, "." + jImg["data"]);
-                var fileName = Path.GetFileName(physicalTempPath);
-                var newFilePath = "/images/posts/userPhotos/" + fileName;
-                var newPhysicalPath = Path.Combine(environment.WebRootPath, "." + newFilePath);
+                var key = Guid.NewGuid().ToString();
+                string base64 = jImg["data"].ToObject<string>();
+                string imageType = jImg["type"].ToString();
+                string name = jImg["name"].ToString();
+                byte[] bytes = Convert.FromBase64String(base64);              
+                var imgStream = new MemoryStream(bytes);
+                // create thumbnail
+                var thumbnail = new KalikoImage(imgStream);
+                _cropImage(thumbnail, 70, 70);
+                MemoryStream thumbnailStream = new MemoryStream();
+                thumbnail.SavePng(thumbnailStream);
                 try
                 {
-                    System.IO.File.Copy(physicalTempPath, newPhysicalPath);
+                    await S3Client.PutObjectAsync(new PutObjectRequest
+                    {
+                        BucketName = "shiners/v1.0/public/images",
+                        Key = key,
+                        InputStream = imgStream,
+                        ContentType = imageType
+                    });
+                    await S3Client.PutObjectAsync(new PutObjectRequest
+                    {
+                        BucketName = "shiners/v1.0/public/images",
+                        Key = "thumbnail_"+key,
+                        InputStream = thumbnailStream,
+                        ContentType = imageType
+                    });
+                    jImg.Remove("id");
+                    jImg["name"] = name;
+                    jImg["data"] = "https://s3.amazonaws.com/shiners/v1.0/public/images/" +key;
+                    jImg["thumbnail"] = "https://s3.amazonaws.com/shiners/v1.0/public/images/" + "thumbnail_" + key;
                 }
                 catch (Exception e)
-                {
-                    throw new Exception("Не удалось записать файл",e);
-                }
-                try
-                {
-                    System.IO.File.Delete(physicalTempPath);
-                }
-                catch (Exception){}
-
-
-
-                //jImg["id"]='dsdsd'
-                jImg["data"] = newFilePath;
-                //jImg["thumbnail"] = somePath;
+                {                    
+                    throw e;
+                }               
             }
             return jdata;
         }
-
     }
 }

@@ -203,32 +203,38 @@ var View = Marionette.View.extend({
     uploadImage: function (e) {
         var re_text = /\.bmp|\.jpeg|\.jpg|\.png/i;
         if (e.target.value.search(re_text) == -1) {
+            console.error("Некорректное расширение картинки\n Должно быть  bmp, jpeg, jpg, png ");  
             alert("Некорректное расширение картинки\n Должно быть  bmp, jpeg, jpg, png ");
-            e.target.form.reset();
         } else {
             var data = new FormData();
             var files = $(e.target).get(0).files;
-            // Add the uploaded image content to the form data collection
-            if (files.length > 0) {
-                data.append("UploadedImage", files[0]);
-            }
-            var model = new Backbone.Model();
-            this.images.add(model);
-            var ajaxRequest = $.ajax({
+            _.each(files,(f) => {
+                data.append(f.name, f);
+                var model = new Backbone.Model({
+                    type:f.type,
+                    name:f.name,
+                    id:f.name
+                });
+                this.images.add(model);
+            },this);
+
+            var self = this;          
+            $.ajax({
                 type: "POST",
-                url: "/Img/UploadTempImage?cid="+model.cid,
+                url: "/Img/UploadTempImage",
                 contentType: false,
                 processData: false,
                 data: data
-            });
-            var self = this;
-            ajaxRequest.done(function (resp,textStatus, xhr) {
+            }).done(function (resp,textStatus, xhr) {
                 if (textStatus === 'success') {
-                    var m = self.images.get(resp.cid);
-                    m.set('data',resp.path);
+                    _.each(resp,item => {
+                        var m = self.images.get(item.id);
+                        m.set('data',item.data);
+                    });                    
                 }
             });
         }
+        e.target.value = null;
     },
 
     onSelectLocation(e) {
@@ -247,6 +253,7 @@ var View = Marionette.View.extend({
 
     save() {
         if (!this.model.validate()) {
+
             this.model.create();
         }
     },
