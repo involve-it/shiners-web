@@ -1,16 +1,17 @@
 ﻿import Marionette from 'backbone.marionette';
-import template from './LoginView.hbs.html';
+import template from './RegisterUserView.hbs.html';
 import app from '../app.js';
-import LoginModel from '../../data/viewModels/LoginModel'
+import RegisterModel from '../../data/viewModels/RegisterModel'
+
 var View = Marionette.View.extend({
 
     template:template,
 
-    model:new LoginModel,
+    model:new RegisterModel,
 
     initialize() {
         this.listenTo(app.user, 'login', this.redirect);
-        this.listenTo(app.user, 'error:login', this.showError);
+        this.listenTo(app.user, 'error:create', this.showError);
     },
 
     onAttach() {
@@ -22,34 +23,28 @@ var View = Marionette.View.extend({
         'change input':'onChange'
     },
 
-    onSubmit(e) {
-        e.preventDefault();
-        if (!this.model.validate()) {
-            app.authorize(this.model.get('email'), this.model.get('password'));
-        }
-    },
-
     onChange(e) {
         var val = e.target.value,
             name = e.target.name;
         this.model.set(name,val,{validate:true});
     },
 
-    onBeforeRender() {
-        this.templateContext= {
-            returnUrl:this.options.returnUrl?decodeURIComponent(this.options.returnUrl) :null
-        }
+    onSubmit(e) {
+        e.preventDefault();
+        if (!this.model.validate()) {
+            app.registerUser(this.model.attributes);
+        }       
     },
 
     redirect() {
         if(this.options.returnUrl)
-            app.router.navigate(decodeURIComponent(this.options.returnUrl),  {trigger:true,replace:true});
+            app.router.navigate(decodeURIComponent(this.options.returnUrl), {trigger:true,replace:true});
         else
             history.back();
     },
 
     showError(error) {
-        alert("Ошибка! Неверно указаны имя пользователя или пароль");
+        alert("Ошибка! Имя пользователя уже существует");
     },
 
     onBeforeRemove() {

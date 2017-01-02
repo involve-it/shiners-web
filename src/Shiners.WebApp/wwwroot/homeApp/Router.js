@@ -24,6 +24,8 @@ export default Marionette.AppRouter.extend({
         'Account/Login':'login',
         'Account/Login/:url':'login',
         'Account/FogotPassword':'fogotPassword',
+        'account/register?returnUrl=:url':'registerUser',
+        'account/register':'registerUser',
         'Home/HowItWorks':'howItWorks',
         'about-us':'about',
         'profile': 'myProfile',
@@ -55,5 +57,4 @@ export default Marionette.AppRouter.extend({
             this.navigate('', {trigger:true});
         }
     }
-
 });

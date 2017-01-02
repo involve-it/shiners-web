@@ -16,6 +16,7 @@ import UserDetailsView from './user/DetailsView.js';
 import MessagesToUserView from './chats/native/MessagesToUserView.js';
 
 import LoginView from './account/LoginView.js';
+import RegisterUserView from './account/RegisterUserView'
 import AboutView from './about/AboutView.js';
 import HowItWorksView from './howItWorks/HowItWorksView.js';
 import FogotPasswordView from './account/FogotPasswordView.js';
@@ -61,7 +62,11 @@ export default Marionette.Object.extend({
     },
 
     login(url) {
-        app.layout.showChildView('content',new LoginView({model:app.user,returnUrl:url||null}));
+        app.layout.showChildView('content',new LoginView({returnUrl:url||null}));
+    },
+
+    registerUser(url) {
+        app.layout.showChildView('content',new RegisterUserView({returnUrl:url||null}));
     },
 
     fogotPassword() {
