@@ -53,12 +53,17 @@ export default Marionette.Object.extend({
     },
 
     createPost() {
-       if (app.user.id) {
-           var model = new Post({details:{},stats:{seenToday: 0,seenTotal : 0,seenAll:0}},{asteroid:app.asteroid});
-                app.layout.showChildView('content', new CreatePostView({model:model}));
-          } else {
-              app.router.navigate('/', true);
-          }
+        var model = new Post({details:{},stats:{seenToday: 0,seenTotal : 0,seenAll:0}},{asteroid:app.asteroid});
+        app.layout.showChildView('content', new CreatePostView({model:model}));
+    },
+
+    editPost(id) {
+        var post = new Post({ _id: id });
+        post.isOwnerAsync(app.user.id).done(resp => {
+            if (resp) {
+                alert(resp);
+            }
+        });
     },
 
     login(url) {

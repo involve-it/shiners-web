@@ -1,0 +1,215 @@
+﻿<div id="modalContainer"></div>
+<div class="container">
+    <div class="sh-form">
+        <!--1-->
+        <div class="sh-form-step">
+            <div class="sh-form-row sh-caption">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Что
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text sh-padding-title">
+                        Информация из этой секции будет использоваться при поиске вашего объявления. Пожалуйста, указывайте точные сведения, чтобы найти подходящий вариант.
+                    </div>
+                </div>
+            </div>
+
+            <!--
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title"></div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text"></div>
+                </div>
+            </div>
+            -->
+
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Анонимный пост
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text">
+                        <div class="sh-checkbox">
+                            <input id="anonymous-post" type="checkbox" class="js-toggle-checked"> <span>Включить анонимный пост</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Заголовок
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text">
+                        <div class="sh-input">
+                            <input type="text" name="details.title" class="sh-input-control form-control" placeholder="Название должно быть конкретным" id="detailsTitle">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Описание
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text">
+                        <div class="sh-textarea">
+                            <textarea class="sh-textarea-control" id="detailsDescription" placeholder="Подробное описание – это обязательный параметр объявления"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Категория
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text">
+                        <div class="sh-select">
+                            <select class="js-ad-type-select" required="" id="postType" name="type">
+                                <option value=""> -- Выберите тип -- </option>
+                                {{_.each(postTypes,function(type) { }}
+                                <option value="{{=type._id}}">{{=type.i18n.ru.fullName}}</option>
+                                {{ }); }}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Фотографии
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text">
+                        <div class="sh-photos-upload">
+                            <div class="sh-photos-upload-wrapper">
+                                <div class="sh-photos-upload-image">
+                                    <i class="fa fa-camera"></i>
+                                </div>
+                                <div class="sh-photos-upload-description">
+                                    <span>Добавьте фотографии для объявления.<br />Вы всегда можете вернуться к сохраненному объявлению и добавить новые фотографии.</span>
+                                </div>
+                                <div class="sh-photos-upload-button">
+                                    <a class="ui sh-button" id="addImgButton"> Добавить фото</a>
+                                    <input id="addImgInput" type="file" style="display: none" />
+                                </div>
+                            </div>
+                            <div id="uploadedImages">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--2-->
+        <div class="sh-form-step">
+            <div class="sh-form-row sh-caption">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Где
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text sh-padding-title">
+                        Выберите надстройку для вашего объявления. С помощью этих данных пользователи найдут объявления в подходящем для них месте.
+                    </div>
+                </div>
+            </div>
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title"></div>
+                </div>
+                
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text text-center">
+                        <a id="selectLocation">Выбрать Местонахождение объявления</a>
+                        <div id="locationName" class="sh-location-name" name="details.locations"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--3-->
+        <div class="sh-form-step">
+            <div class="sh-form-row sh-caption">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Когда
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text sh-padding-title">
+                        Установите время, в течении которого ваше объявление будет активным.
+                    </div>
+                </div>
+            </div>
+            <div class="sh-form-row">
+                <div class="sh-form-label">
+                    <div class="sh-form-label-title">
+                        Продолжительность
+                    </div>
+                </div>
+                <div class="sh-form-content">
+                    <div class="sh-form-content-text">
+                        <div class="sh-datepicker">
+                            <div class="sh-datepicker-wrapper">
+                                <div class="sh-textfield-picker action l input">
+                                    <input id="dateDuration" type="text" class="sh-input-control form-control sh-datepicker" placeholder="Нажмите, чтобы выбрать дату" data-format="yyyy-mm-dd" data-lang="en" data-RTL="false">
+                                </div>
+                                <div class="sh-select sh-select-duration-picker">
+                                    <select class="form-control select2" id="dateDurationSelect">
+                                        <option value="24">Один день</option>
+                                        <option value="48">Два дня</option>
+                                        <option value="168">Неделя</option>
+                                        <option value="336">Две недели</option>
+                                        <option value="720">Месяц</option>
+                                        <option value="8760">Год</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sh-create-post-btn pull-right">
+            <button class="ui sh-button standard create big disabled" id="saveShiner">Установить Светлячок</button>
+        </div>
+
+
+    </div>
+
+
+    <!--
+    <div class="sh-work-wrapper">
+        <h1 class="sh-section-hero-headline sh-text-center">Как это работает</h1>
+        <p class="sh-section-intro sh-text-center">Сайт для поиска услуг, мероприятий и других объявлений от людей вокруг Вас</p>
+
+        <div class="sh-work-tabs"></div>
+    </div>
+    -->
+
+</div>
+
+
+
+

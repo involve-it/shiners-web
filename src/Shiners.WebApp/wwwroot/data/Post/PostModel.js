@@ -25,6 +25,15 @@ export default Model.extend({
         }
     },
 
+    isOwnerAsync(userId) {
+        return $.ajax({
+            url:'/api/posts/hasPost',
+            data:{userId:userId,postId:this.get('_id')},
+            method:'GET',
+            type:'json'
+        });
+    },
+
     _create(options) {
         var self = this;
         return this.asteroid.call('addPost',this.attributes).result.then((resp) => {

@@ -19,5 +19,11 @@ namespace Shiners.Repository.Stores
             return await this.GetCollection(p => p.UserId == userId);
         }
 
+        public async Task<bool> HasUserPost(string userId, string postId)
+        {
+            var result = await this.Get(p => p.UserId == userId && p.Id == postId);
+            return result != null;
+        }
+
     }
 }
