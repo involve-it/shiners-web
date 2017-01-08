@@ -39,7 +39,11 @@ var View = Marionette.View.extend({
     },
 
     onRender() {
+        var that = this;
         this.showChildView('search', new SearchView({collection:this.collection,model:this.model}));
+        $(window).on('sh:language:changed', ()=> {
+            that.showChildView('search', new SearchView({collection:this.collection,model:this.model}));
+        })
     },
 
     onAttach() {

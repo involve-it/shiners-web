@@ -120,7 +120,7 @@
 		<div class="row footer-section footer-section-download">
 			<div class="col-xs-12">
 				<div class="sh-download-buttons-bottom">
-                    <h3>Загрузите бесплатно из</h3>
+                    <h3>{{=i18n('footer_load_free')}}</h3>
                     <div class="sh-download-buttons-bottom-wrapper">
                         <a href="https://itunes.apple.com/ru/app/shiners/id1136502367?mt=8">
                             <img src="/images/buttons/app_store_RU_135x40@2x.png" width="135" height="40" alt="Загрузите в App Store">
@@ -152,8 +152,8 @@
 
 				<div class="sh-f-col col-sm-4 col-md-3 col-lg-3">
 					<dl class="sh-footer-list">
-						<dt class="sh-footer-list-title middle">Навигация</dt>
-						<dd class="sh-footer-list-item"><a class="" href="#">{{=i18n('aboutSite')}}</a></dd>
+						<dt class="sh-footer-list-title middle">{{=i18n('footer_menu_navigation')}}</dt>
+						<dd class="sh-footer-list-item"><a class="" href="/about-us">{{=i18n('aboutSite')}}</a></dd>
 						<dd class="sh-footer-list-item">
 							<a href="#" class="sh-store-link">
 								<!--<img src="images/download_app_store_RU_135x40@2x.png" width="135" height="40" alt="Download Shiners">-->
@@ -164,11 +164,11 @@
 
 				<div class="sh-f-col col-sm-4 col-md-3 col-lg-3">
 					<dl class="sh-footer-list">
-						<dt class="sh-footer-list-title middle">Наши контакты</dt>
+						<dt class="sh-footer-list-title middle">{{=i18n('footer_menu_contacts')}}</dt>
 						<dd class="sh-footer-list-item"><a class="sh-social-link" href="mailto:support@shiners.ru" title="support@shiners.ru"><span class="sh-social-link-text">support@shiners.ru</span></a></dd>
-						<dd class="sh-footer-list-item"><a class="" href="#">Посетите наш Справочный центр</a></dd>
-						<dd class="sh-footer-list-item"><a class="" href="#">Terms of Use</a></dd>
-						<dd class="sh-footer-list-item"><a class="" href="#">Privacy Policy</a></dd>
+						<!--<dd class="sh-footer-list-item"><a class="" href="#">Посетите наш Справочный центр</a></dd>-->
+						<dd class="sh-footer-list-item"><a class="" href="#">{{=i18n('footer_menu_terms_of_use')}}</a></dd>
+						<dd class="sh-footer-list-item"><a class="" href="#">{{=i18n('footer_menu_privacy_policy')}}</a></dd>
 					</dl>
 				</div>
 			</div>
@@ -184,8 +184,8 @@
                     </select>
                 </div>
                 <div class="col-xs-12 sh-copyright">
-                    <p class="sh-usage-text">Использование сайта, в том числе создание Светлячков (постов), означает согласие с <a href="#">пользовательским соглашением</a>.</p>
-                    <p class="margin-bottom-0">&#169; Shiners 2016, Все права защищены</p>
+                    <p class="sh-usage-text">{{=i18n('footer_disclaimer_text')}}<a href="#">{{=i18n('footer_disclaimer_text2')}}</a>.</p>
+                    <p class="margin-bottom-0">&#169; {{=i18n('footer_all_rights_reserved')}} </p>
                 </div>
             </div>
 		</div>

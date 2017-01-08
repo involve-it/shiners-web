@@ -3,6 +3,8 @@ import Template from './IndexView.hbs.html';
 import '../../lib/jquery-parallax/scripts/jquery.parallax-1.1.3.js';
 import PostTypesView from './PostTypesView.js';
 import app from '../app.js';
+import './i18n/ru';
+import './i18n/en';
 export default Marionette.View.extend({
 
     template:Template,

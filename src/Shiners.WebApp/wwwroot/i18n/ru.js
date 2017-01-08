@@ -34,6 +34,15 @@ var json = {
     connect_and_meet_descr: 'Твои будущие клиенты, единомышленники, партнеры рядом с тобой! Напиши им и договорись о встрече прямо здесь и прямо сейчас.',
     one_service_for_all: 'Один сервис для всех ресурсов',
     life_ads_nearby: 'Живые объявления поблизости',
-    quick_connects: 'Быстрые встречи и контакты'
+    quick_connects: 'Быстрые встречи и контакты',
+    footer_load_free: 'Загрузите бесплатно из',
+    footer_menu_navigation: 'Навигация',
+    footer_menu_contacts: 'Наши контакты',
+    footer_menu_terms_of_use: 'Пользовательское соглашение',
+    footer_menu_privacy_policy: 'Политика конфиденциальности',
+    footer_disclaimer_text: 'Использование сайта, в том числе создание Светлячков (постов), означает согласие с ',
+    footer_disclaimer_text2: 'пользовательским соглашением',
+    footer_all_rights_reserved: 'Светлячки 2017, Все права защищены'
+
 };
 i18n.add('ru', json);
