@@ -8,7 +8,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Shiners.Models.Domain
 {
     //таблица хранящая сообщения используется в чатах и для notifications
-    class Message:MeteorModel
+    public class Message:MeteorModel
     {
         //UserId - поле userId в таблице messages, id пользователя отправаителя сообщения
         [BsonElement("userId")]
