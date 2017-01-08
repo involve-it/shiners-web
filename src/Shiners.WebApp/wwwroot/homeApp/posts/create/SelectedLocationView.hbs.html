@@ -1,0 +1,7 @@
+﻿<i class="fa fa-map-marker"></i> {{=obj.accurateAddress||obj.name||'Местоположение не выбрано'}}
+{{if (obj.placeType) { }}
+    {{if (obj.placeType=='dynamic') { }}
+        <span class="label label-info">Привязано к местоположению пользователя</span>
+    {{ } }}
+{{ } }}
+

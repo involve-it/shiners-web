@@ -1,5 +1,6 @@
 ﻿import Marionette from 'backbone.marionette';
 import Backbone from 'backbone';
+import i18n from '../js/controllers/templateController.js';
 import '../i18n/en.js';
 import '../i18n/ru.js';
 import '../lib/detectmobile.js';
@@ -28,6 +29,7 @@ let App = Marionette.Application.extend({
     router:null,
     //iframeLoaded:false,
     FbInitialized:false,
+    i18n:i18n,
     views: {
         iframeView: null
     },
@@ -63,6 +65,8 @@ let App = Marionette.Application.extend({
             this.initVkApi();
             this.getPosition();  
             this.asteroid.on('login', _.bind(this.initUser,this));
+            this.asteroid.on('loginError', _.bind(()=>this.user.trigger('error:login'),this));
+            this.asteroid.on('createUserError', _.bind(()=>this.user.trigger('error:create'),this));
             this.asteroid.on('logout', _.bind(this.destroyUser,this));       
             if (this.asteroid.loggedIn) {
                 this.initUser(this.asteroid.userId);
@@ -114,6 +118,10 @@ let App = Marionette.Application.extend({
 
     authorize(email,password) {
         this.asteroid.loginWithPassword(email, password);
+    },
+
+    registerUser(accountData) {
+        this.asteroid.createUser(accountData);
     },
 
     initUser(userId) {

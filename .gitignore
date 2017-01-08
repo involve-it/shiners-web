@@ -5,3 +5,8 @@
 .vs/Shiners/v14/.suo
 
 src/Shiners.WebApp/Shiners.WebApp.xproj.user
+
+src/Shiners.WebApp/wwwroot/css/out/site.css
+
+src/Shiners.WebApp/wwwroot/css/out/main.js.map
+src/Shiners.WebApp/wwwroot/css/out/main.js.map

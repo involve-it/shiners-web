@@ -8,9 +8,7 @@
         "bin/Debug/Shiners.Models.dll": {}
       },
       "runtime": {
-        "../packages/MongoDB.Bson.2.2.4/lib/net45/MongoDB.Bson.dll": {},
-        "../packages/MongoDB.Driver.2.2.4/lib/net45/MongoDB.Driver.dll": {},
-        "../packages/MongoDB.Driver.Core.2.2.4/lib/net45/MongoDB.Driver.Core.dll": {},
+        "../packages/MongoDB.Bson.2.4.0/lib/net45/MongoDB.Bson.dll": {},
         "bin/Debug/Shiners.Models.dll": {}
       },
       "contentFiles": {
@@ -28,9 +26,11 @@
         "bin/Debug/Shiners.Repository.dll": {}
       },
       "runtime": {
-        "../packages/MongoDB.Bson.2.2.4/lib/net45/MongoDB.Bson.dll": {},
-        "../packages/MongoDB.Driver.2.2.4/lib/net45/MongoDB.Driver.dll": {},
-        "../packages/MongoDB.Driver.Core.2.2.4/lib/net45/MongoDB.Driver.Core.dll": {},
+        "../packages/MongoDB.Bson.2.4.0/lib/net45/MongoDB.Bson.dll": {},
+        "../packages/MongoDB.Driver.2.4.0/lib/net45/MongoDB.Driver.dll": {},
+        "../packages/MongoDB.Driver.Core.2.4.0/lib/net45/MongoDB.Driver.Core.dll": {},
+        "../packages/System.Runtime.InteropServices.RuntimeInformation.4.3.0/lib/net45/System.Runtime.InteropServices.RuntimeInformation.dll": {},
+        "../packages/mongocsharpdriver.2.4.0/lib/net45/MongoDB.Driver.Legacy.dll": {},
         "bin/Debug/Shiners.Repository.dll": {}
       },
       "contentFiles": {

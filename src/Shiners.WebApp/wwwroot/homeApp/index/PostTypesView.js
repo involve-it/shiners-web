@@ -2,7 +2,7 @@
 import ItemView from './PostTypeItemView.js';
 var View = Marionette.CollectionView.extend({
     childView:ItemView,
-    className:'list-unstyled',
-    tagName:'ul'
+    className:'sh-post-type',
+    tagName:'dl'
 });
 export default View;

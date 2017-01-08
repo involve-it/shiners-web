@@ -15,6 +15,11 @@ var View = Marionette.View.extend({
     template:template,
     id:"wrapper",
     mapView:null,
+
+    events: {
+        'change #chooseLanguage':'chooseLanguage'
+    },
+
     regions: {
         'content':'#appContent',
         'map':'#appMap',
@@ -99,11 +104,10 @@ var View = Marionette.View.extend({
         this.$('#footer').show();
     },
 
-
-
-
-
-
+    chooseLanguage(e) {
+        app.i18n.setLanguage(e.target.value);
+        app.trigger('change:language', e.target.value);
+    },
 
     _toggleUserInfo(user) {
         var view = new UserMenuView({ 

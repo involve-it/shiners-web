@@ -18,13 +18,17 @@ var i18n = function(name) {
 Object.assign(i18n, {
     init: function() {
         $.fn.translate = function(lang) {
+            var key = $(this).data('key');
+            console.info(key);
             if (key && lang) {
                 var newText = dataGlobal[lang][key];
                 this.text(newText);
             }
         }
         $(window).on('sh:language:changed', (e, lang) => {
-            $('tran').translate(lang);
+            $('tran').each(function() {
+                $(this).translate(lang);
+            });
         })
     },
     add: function(lang, data) {

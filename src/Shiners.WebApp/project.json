@@ -2,7 +2,9 @@
   "userSecretsId": "aspnet-Shiners.WebApp-e5855ab4-1ffd-43f0-bc88-4cfe05aff911",
 
   "dependencies": {
-    "AspNet.Identity.MongoDB": "2.0.8",
+    "AWSSDK.Core": "3.3.7.1",
+    "AWSSDK.Extensions.NETCore.Setup": "3.3.0.2",
+    "AWSSDK.S3": "3.3.5.2",
     "BundlerMinifier.Core": "2.2.306",
     "DdpNet": "0.1.0",
     "ImageLibrary": "3.0.0",
@@ -42,7 +44,9 @@
       "type": "build"
     },
     "MongoDB.Bson": "2.4.0",
-    "Newtonsoft.Json": "9.0.1"
+    "Newtonsoft.Json": "9.0.1",
+    "System.Reflection.TypeExtensions": "4.3.0",
+    "System.Runtime.InteropServices.RuntimeInformation": "4.3.0"
   },
 
   "tools": {
@@ -72,6 +76,7 @@
   },
 
   "buildOptions": {
+
     "emitEntryPoint": true,
     "preserveCompilationContext": true
   },

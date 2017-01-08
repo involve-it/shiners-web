@@ -1,6 +1,9 @@
-﻿{{if (obj.address) { }}
-{{=address}}
-{{ } else { }}
-Местоположение не определено
-{{ } }}
+﻿<i class="icon-map-marker"></i>&nbsp;
+<span class="sh-nav-location-value">
+    {{if (obj.address) { }}
+        {{=address}}
+    {{ } else { }}
+        {{=i18n('undefined_place')}}
+    {{ } }}
+</span>
 <i class="fa fa-angle-down icon"></i>

@@ -22,6 +22,22 @@
   align-items: $align;
 }
 
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+
+	$fg-boxflex: $fg;
+
+	@if type-of($fg) == 'list' {
+		$fg-boxflex: nth($fg, 1);
+	}
+
+	-webkit-box-flex: $fg-boxflex;
+	-webkit-flex: $fg $fs $fb;
+	-moz-box-flex: $fg-boxflex;
+	-moz-flex: $fg $fs $fb;
+	-ms-flex: $fg $fs $fb;
+	flex: $fg $fs $fb;
+}
+
 @mixin sh-justify-content($value: flex-start) {
   @if $value == flex-start {
     -webkit-box-pack: start;
@@ -63,11 +79,39 @@
   flex-direction: $value;
 }
 
+@mixin sh-flex-grow($grow) {
+  -webkit-flex-grow: $grow;
+     -moz-flex-grow: $grow;
+      -ms-flex-grow: $grow;
+          flex-grow: $grow;
+}
+
+@mixin sh-flex-basis($width) {
+  -webkit-flex-basis: $width;
+     -moz-flex-basis: $width;
+      -ms-flex-basis: $width;
+          flex-basis: $width;
+}
+
 @mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
+    -webkit-border-radius:  $radius;
+    -moz-border-radius:     $radius;
+    -ms-border-radius:      $radius;
+    border-radius:          $radius;
+}
+
+@mixin box-shadow ($string) {
+	-webkit-box-shadow: $string;
+	-moz-box-shadow:    $string;
+	box-shadow:         $string;
+}
+
+@mixin sh-transition ($transition) {
+    -webkit-transition: $transition;  
+    -moz-transition:    $transition;
+    -ms-transition:     $transition; 
+    -o-transition:      $transition;  
+    transition:         $transition; 
 }
 
 
@@ -83,7 +127,9 @@ $sh-main-black-color: rgba(54,54,54, 1);
 $sh-main-lightgray-color: rgba(143,142,148, 1);
 $sh-main-super-light-color: rgba(244,244,244, 1);
 $sh-main-header-light-bg: rgba(255,255,255, .85);
-//$sh-dropdown-footer-color: rgba(255,255,255, .1);
+$sh-dropdown-footer-color: rgba(255,255,255, .1);
+$sh-main-border-color: rgba(230,230,230, 1);
+$sh-main-color-icon: rgba(246, 172, 49, 1);
 
 $sh-section-padding: 65px 0;
 $sh-section-padding-xs: 35px 0;
@@ -204,12 +250,18 @@ a:active, a:focus {
   font-size: 24px;
 }
 
+.sh-btn-mobile-menu {
+    i {
+        font-size: 14px !important;
+    }
+}
+
 i {
     &.icon {
         font-size: 1em;
         display: inline-block;
         opacity: 1;
-        margin: 0 .25rem 0 0;
+        margin: 0 4px 0 0;
         width: 1.18em;
         height: 1em;
         font-style: normal;
@@ -300,6 +352,10 @@ i {
 	margin-bottom: 36px;
 }
 
+.sh-location-name {
+    padding-top: 16px;
+}
+
 input:not([type="checkbox"]), select {
 	height: 44px;
 }
@@ -320,6 +376,11 @@ textarea, select {
 	margin: 0;
 }
 
+input[type=checkbox] + label,
+input[type=radio] + label {
+	margin-left: 10px;
+}
+
 .sh-input-control,
 .sh-textarea-control {
 	outline: none;
@@ -334,10 +395,10 @@ textarea, select {
 	color: rgba(0, 0, 0, 0.75);
 	display: block;
 	font-family: inherit;
-	font-size: 0.875rem;
+	font-size: 14px;
 	height: 44px;
-	margin: 0 0 1rem 0;
-	padding: 0.5rem;
+	margin: 0 0 16px 0;
+	padding: 8px;
 	width: 100%;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -386,9 +447,9 @@ textarea, select {
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
-		padding: 0.5rem;
+		padding: 8px;
 		font-family: inherit;
-		font-size: 0.875rem;
+		font-size: 14px;
 		line-height: normal;
 		-webkit-transition: border-color 0.15s linear, background 0.15s linear;
 		-moz-transition: border-color 0.15s linear, background 0.15s linear;
@@ -444,6 +505,7 @@ textarea, select {
 				outline: none;
 				border-radius: 0 2px 2px 0;
 				padding-right: 20px;
+                min-height: 44px;
 				-webkit-tap-highlight-color: transparent;
 				-webkit-appearance: none !important;
 				-moz-appearance: none !important;
@@ -542,13 +604,21 @@ textarea, select {
     }
 }
 
-.sh-registers-buttons {}
+.sh-registers-buttons {
+
+    #logout {
+        padding: 9px 8px;
+    }
+}
 
 .sh-flex-center-items {
     @include sh-display-flex();
     @include sh-align-items(center);
 }
 
+.sh-flex-auto {
+    @include flex(1, 0, auto);
+}
 
 /* ------------------
     Class COMPONENTS
@@ -575,7 +645,7 @@ textarea, select {
     font-style: normal;
     text-align: center;
     text-decoration: none;
-    border-radius: 0.28571429rem;
+    border-radius: 4px;
     box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -749,7 +819,7 @@ textarea, select {
     } /* end disabled */
 
     /* Sizes */
-    font-size: 1rem;
+    font-size: 16px;
 
     &.mini {
       font-size: 0.785rem
@@ -778,7 +848,7 @@ textarea, select {
       background: transparent none !important;
       color: rgba(0, 0, 0, 0.6) !important;
       font-weight: normal;
-      border-radius: 0.28571429rem;
+      border-radius: 4px;
       text-transform: none;
       text-shadow: none !important;
       box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.15) inset;
@@ -923,12 +993,47 @@ textarea, select {
 
                 .sh-show-modal-city {
                     display: inline-block;
+                    width: 100%;
                     cursor: pointer;
                     padding-left: 8px;
 
                     .white-link {
                         color: $sh-white-color;
                     }
+
+                    .sh-nav-h {
+                        height: 52px;
+                        overflow: hidden;
+                        @include sh-display-flex();
+                        @include sh-align-items(center);
+                    }
+
+                    .sh-nav-location-value {
+                        max-width: 290px;
+                        position: relative;
+                        display: block;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        width: auto;
+
+                        &:after {
+                            content: "";
+                            width: 60px;
+                            height: 100%;
+                            position: absolute;
+                            top: 0;
+                            left: 230px;
+                            background: -moz-linear-gradient(left, rgba(106,170,245, 0) 0%, rgba(74,144,226, 1) 100%);
+                            background: -webkit-linear-gradient(left, rgba(106,170,245, 0) 0%, rgba(74,144,226, 1) 100%);
+                            background: linear-gradient(to right, rgba(106,170,245, 0) 0%, rgba(74,144,226, 1) 100%);
+                            pointer-events: none;
+                        }
+                    }
+                }
+
+                i {
+                    font-size: 13px;
                 }
             }
         }
@@ -947,6 +1052,11 @@ textarea, select {
       @include sh-justify-content(space-between);
       @include sh-align-items(center);
       
+    }
+
+    .sh-header-navbar-submenu {
+
+        .sh-download-buttons-top {}
     }
     
     .sh-header-navbar-info {
@@ -1609,6 +1719,21 @@ textarea, select {
             @include sh-display-flex();
             @include sh-align-items(center);
 
+            .sh-download-buttons-bottom {
+                text-align: center;
+                padding-bottom: 25px;
+
+                h3 {
+                    color: $sh-main-super-light-color;
+                    font-size: 28px;
+                    letter-spacing: .7px;
+                    font-weight: 200;
+                    margin-bottom: 10px;
+                }
+
+                .sh-download-buttons-bottom-wrapper {}
+            }
+
             .sh-footer-images {
                 @include sh-flex-direction(column);
                 text-align: center;
@@ -1713,6 +1838,26 @@ textarea, select {
     //  COMPONENTS
     
   }
+
+  .sh-footer-bottom {
+      @include sh-display-flex();
+      @include sh-align-items(center);
+
+        .sh-choose-language {
+            padding-right: 30px;
+
+            #chooseLanguage {
+                background: rgba(255, 255, 255, .1);
+                color: $sh-footer-text-color;
+                border: none;
+                min-width: 150px;
+
+                option {
+                    color: $sh-main-gray-color;
+                }
+            }
+        }
+  }
 }
 
 /* ========================
@@ -1729,71 +1874,69 @@ textarea, select {
   }
 }
 
-.sh-content {
-	background: $sh-main-content-bg;
-  
-	#sh-create-post {
-		padding-top: 45px;
+.sh-content {}
+
+.sh-create-post {
+	padding-top: 45px;
+    padding-bottom: 0;
+    background: $sh-main-content-bg;
 		
-		.sh-form {
-			max-width: 940px;
-			margin: 0 auto;
+	.sh-form {
+		max-width: 940px;
+		margin: 0 auto;
 			
-			.sh-form-step {
-				background-color: $sh-white-color;
-				margin-bottom: 36px;
-				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-				border-top: 1px solid $sh-white-color;
+		.sh-form-step {
+			background-color: $sh-white-color;
+			margin-bottom: 36px;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+			border-top: 1px solid $sh-white-color;
 				
-				.sh-form-row {
-					@include sh-display-flex();
+			.sh-form-row {
+				@include sh-display-flex();
 					
+				.sh-form-label {
+					flex-basis: 200px;
+					padding: 0 16px 16px;
+						
+					.sh-form-label-title {
+						color: $sh-main-black-color;
+						font-weight: 700;
+					}
+				}
+					
+				.sh-form-content {
+					flex-basis: 100%;
+					padding: 0 16px 16px;						
+				}
+					
+				//Caption
+				&.sh-caption {
+					min-height: 60px;
+						
 					.sh-form-label {
-						flex-basis: 200px;
-						padding: 0 16px 16px;
-						
+						padding: 0;
+						@include sh-display-flex();
+                        @include sh-justify-content(center);
+						@include sh-align-items(center);
+						background: rgba(0,0,0, .1);
+
 						.sh-form-label-title {
+							font-size: 28px;
+							font-weight: 400;
 							color: $sh-main-black-color;
-							font-weight: 500;
 						}
 					}
-					
 					.sh-form-content {
-						flex-basis: 100%;
-						padding: 0 16px 16px;
-
-						
-					}
-					
-					//Caption
-					&.sh-caption {
-						min-height: 60px;
-						
-						.sh-form-label {
-							padding: 0;
-							@include sh-display-flex();
-                            @include sh-justify-content(center);
-							@include sh-align-items(center);
-							background: rgba(0,0,0, .1);
-
-							.sh-form-label-title {
-								font-size: 28px;
-								font-weight: 400;
-								color: $sh-main-black-color;
-							}
-						}
-						.sh-form-content {
-							padding: 0;
-							@include sh-display-flex();
-                            @include sh-justify-content(flex-start);
-							@include sh-align-items(center);
-							background: rgba(0,0,0,.03);
+						padding: 0;
+						@include sh-display-flex();
+                        @include sh-justify-content(flex-start);
+						@include sh-align-items(center);
+						background: rgba(0,0,0,.03);
 							
-							.sh-form-content-text {
-								font-size: 16px;
-								padding-left: 16px;
-								color: $sh-main-gray-color;
-							}
+						.sh-form-content-text {
+							font-size: 16px;
+							padding-left: 16px;
+							color: $sh-main-gray-color;
 						}
 					}
 				}
@@ -1809,7 +1952,7 @@ textarea, select {
 	
 	.sh-photos-upload-wrapper {
         @include sh-display-flex();
-        @include sh-justify-content(column);
+        @include sh-flex-direction(column);
 		@include sh-align-items(center);
 		padding-top: 10px;
 		padding-bottom: 24px;
@@ -1834,11 +1977,6 @@ textarea, select {
 		}
 	}
 	
-	.sh-photos-upload-wrapper +
-	.sh-photos-upload-thumbs {
-		border-top: 1px solid rgba(0, 0, 0, 0.2);
-	}
-	
 	.sh-photos-upload-thumbs {
 		@include sh-display-flex();
 		flex-wrap: wrap;
@@ -1846,11 +1984,34 @@ textarea, select {
 		padding-top: 20px;
 
 		.img-item {
+            position: relative;
 			background: rgba(101,161,230, .1);
 			border-radius: 2px;
 			margin: 0 20px 24px;
-			height: 65px;
-			width: auto;
+
+            .removeImage {
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                width: 22px;
+                height: 22px;
+                text-align: center;
+                background: $sh-footer-text-color;
+                @include border-radius(50%);
+                @include box-shadow(0 1px 1px rgba(0,0,0, .2));
+            }
+
+            img {
+                height: 85px;
+			    width: auto;
+                @include border-radius(2px);
+                @include box-shadow(0 0 10px rgba(0,0,0, .15));
+                @include sh-transition(all .15s ease-in-out);
+
+                &:hover, &:focus {}
+
+                &:active {}
+            }
 		}
 	}
 }
@@ -1938,14 +2099,320 @@ textarea, select {
 	}
 }
 
+/*
+    END CREATE POST
+*/
 
+
+
+/* ========================
+    USER PROFILE
+======================== */
+
+
+.sh-page-block {
+	position: relative;
+	background: $sh-white-color;
+	margin-bottom: 16px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+	border-top: 1px solid $sh-white-color;
+
+	&:last-child {
+		margin: 0;
+	}
+}
+
+.sh-user-profile {
+	padding: 45px 0;
+    background: $sh-main-content-bg;
+	
+	.sh-user-profile-wrapper {
+        @include sh-display-flex();
+		
+		.sh-side-left {
+            @include sh-flex-basis(250px);
+            @include sh-flex-grow(0);
+            //max-width: 250px;
+			margin: 0 16px 16px 0;
+			
+			
+		}
+		
+		.sh-side-right {
+            @include sh-flex-grow(1);
+		}
+	}
+
+	.sh-user-info,
+	.sh-user-box {
+		padding: 16px;
+	}
+	
+	.sh-user-box {
+		
+		.sh-user-avatar {
+			.sh-user-avatar-wrap {
+				position: relative;
+				border-radius: 2px;
+				overflow: hidden;
+				text-align: center;
+				height: auto;
+				background-color: rgba(245,245,245, 1);
+				
+				.sh-user-profile-photo-link {
+					img {
+						border-radius: 2px;
+						max-width: 100%;
+						height: auto;
+						vertical-align: top;
+					}
+				}
+				
+				.sh-avatar-user-status {
+					position: absolute;
+					border-radius: 2px;
+					width: 24px;
+					height: 24px;
+					background-color: #ffffff;
+					right: -3px;
+					bottom: -3px;
+					
+					.sh-avatar-user-status-wrapper {
+						position: relative;
+						border-radius: 2px;
+						height: 17px;
+						width: 17px;
+						top: 3px;
+						left: 3px;
+						
+						&.sh-offline {
+							background-color: #969696;
+						}
+						&.sh-online {
+							background-color: #35cb4b;
+						}
+					}
+				}
+			}
+		}
+		
+		.sh-profile-action {
+			margin-top: 10px;
+			text-align: center;
+
+			.sh-profile-edit,
+			.sh-profile-send {
+				display: block;
+				font-size: 13px;
+			}
+			
+			.sh-profile-send {
+				background: $sh-main-blue-background;
+				color: $sh-white-color;
+			}
+			
+			.sh-profile-edit {}
+		}
+	}
+
+	.sh-user-action {
+        padding: 0;
+        margin: 0;
+		font-size: 14px;
+		list-style: none;
+
+		li {
+			border-bottom: 1px solid $sh-main-border-color;
+			
+			a {
+				padding: 8px 10px;
+				display: block;
+				
+				&:hover {
+					background-color: rgba(0,0,0, .05);
+				}
+			}
+			
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+		
+		.sh-user-action-exit {
+			a {
+				color: rgba(251,61,56, 1);
+			}
+		}
+	}
+	
+	.sh-user-info {
+		.sh-user-info-top {
+			padding: 0 0 16px;
+			border-bottom: 1px solid $sh-main-border-color;
+			
+			.sh-user-was {
+				font-size: 12px;
+				color: $sh-main-lightgray-color;
+				font-weight: 500;
+			}
+			.sh-user-name {
+				font-size: 24px;
+				font-weight: 500;
+				color: $sh-main-gray-color;
+				text-transform: capitalize;
+			}
+		}
+		
+		.sh-user-profile-info {
+			padding: 16px 0 0;
+			
+			.sh-user-profile-info-wrapper {
+				
+				.sh-user-profile-info-row {
+                    @include sh-display-flex();
+					margin-bottom: 16px;
+					
+					//Direct link to profile
+					.sh-direct-link-block {
+						background-color: $sh-footer-text-color;
+						border-radius: 4px;
+						@include sh-display-flex();
+                        @include sh-justify-content(space-between);
+						@include sh-align-items(center);
+						padding: 0 10px;
+						font-size: 14px;
+						min-height: 38px;
+						color: $sh-main-gray-color;
+						
+						.sh-direct-link-wrapper {
+							@include sh-display-flex();
+							
+							.sh-icon-direct-link {
+								padding-right: 10px;
+								
+								i {
+									color: $sh-main-color-icon;
+								}
+							}
+							
+							.sh-checkbox {
+								@include sh-display-flex();
+								@include sh-align-items(center);
+                                padding: 0;
+                                margin: 0;
+
+                                input {
+                                    margin: 0;
+                                }
+
+                                label {
+                                    margin-bottom: 0;
+                                }
+							}
+						}
+						
+						.sh-direct-link-btn-copy {
+							.sh-button {
+								margin-right: -5px;
+								padding: 8px 10px;
+								font-size: 13px;
+								color: $sh-main-black-color;
+								background-color: $sh-white-color;
+								box-shadow: 0 1px 2px rgba(0,0,0, .1);
+							}
+						}
+					}
+					
+					.sh-info-title {
+                        @include sh-flex-basis(170px);
+						color: $sh-main-lightgray-color;
+					}
+					
+					.sh-info-text {
+                        @include sh-flex-grow(1);
+						color: $sh-main-gray-color;
+					}
+					
+					&:last-child {
+						margin-bottom: 0;
+					}
+					
+					&.sh-col {
+						@include sh-flex-direction(column);
+						
+						.sh-info-title {
+							@include sh-flex-basis(auto);
+							margin-bottom: 3px;
+						}
+					}
+					
+					&.sh-profile-info-header {
+						border-top: 1px solid $sh-main-border-color;
+						margin-top: 26px;
+						
+						.sh-profile-info-header-within {
+							border-bottom: none;
+							position: relative;
+							margin: -13px 0 4px;
+							
+							span {
+                                color: $sh-main-gray-color;
+                                font-weight: 500;
+								padding-bottom: 4px;
+								padding-right: 7px;
+								background-color: #fff;
+							}
+						}
+					}
+					
+				}
+			}
+		}
+		
+		.sh-user-profile-links {
+			background-color: $sh-footer-text-color;
+			border-top: 1px solid $sh-main-border-color;
+			margin: 16px -16px -16px;
+			
+			.sh-user-profile-links-wrapper {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				
+				.sh-user-profile-links-item {
+					padding: 16px;
+					@include sh-display-flex();
+                    @include sh-justify-content(center);
+					color: $sh-main-lightgray-color;
+                    @include sh-flex-grow(1);
+					transition: background .15s ease-in-out;
+					
+					span {
+						color: $sh-main-gray-color;
+						font-weight: 500;
+						padding-left: 10px;
+					}
+					
+					&:hover {
+						cursor: pointer;
+						background-color: rgba(0,0,0, .1);
+					}
+				}
+			}
+		}
+	}
+}
+
+/*
+    END USER PROFILE
+*/
 
 @media screen and (max-width: 992px) {
 
     .container {
         width: 100% !important;
     }
-
+    
     #header {
         height: auto !important;
 
@@ -1962,6 +2429,25 @@ textarea, select {
 
         /* Mobile menu */
         #topNav {
+
+            //Width main menu
+            $width: 400px;
+
+            .sh-header-topline {
+                .sh-header-topline-main {
+                    .sh-header-topline-item {
+                        .sh-show-modal-city {
+                            .sh-nav-location-value {
+                                max-width: $width;
+
+                                &:after {
+                                    left: $width - 60px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             .sh-header-topline-main {
 
@@ -2023,6 +2509,18 @@ textarea, select {
     }
 
    
+    #footer {
+
+        &.sh-footer {
+            .sh-footer-bottom {
+                .sh-choose-language {
+                    padding: 0 30px 0 16px;
+                }
+            }
+        }
+    }
+
+ 
     
 }
 
@@ -2063,47 +2561,59 @@ textarea, select {
         padding-top: 16px;
     }
 
-    .sh-content {
+   
+    /* create post */
+	.sh-create-post {
 
-		#sh-create-post {
-
-			.sh-form {
-
-				.sh-form-step {
-					margin-bottom: 16px;
+		.sh-form {
+			.sh-form-step {
+				margin-bottom: 16px;
 					
-					.sh-form-row {
-						@include sh-flex-direction(column);
-						margin-bottom: 16px;
+				.sh-form-row {
+					@include sh-flex-direction(column);
+					margin-bottom: 16px;
 
-						.sh-form-label {
-							flex-basis: inherit;
-							padding: 0 16px 8px;
+					.sh-form-label {
+						flex-basis: inherit;
+						padding: 0 16px 8px;
 							
+						.sh-form-label-title {
+							font-weight: bold;
+						}
+					}
+					.sh-form-content {}
+						
+					&.sh-caption {
+							
+						.sh-form-label {
+                            @include sh-justify-content(flex-start);								
+								
 							.sh-form-label-title {
-								font-weight: bold;
+								padding: 10px 16px;
 							}
 						}
-						.sh-form-content {}
-						
-						&.sh-caption {
 							
-							.sh-form-label {
-                                @include sh-justify-content(flex-start);								
-								
-								.sh-form-label-title {
-									padding: 10px 16px;
-								}
-							}
-							
-							.sh-form-content {
-								.sh-form-content-text {}
-							}
+						.sh-form-content {
+							.sh-form-content-text {}
 						}
 					}
 				}
 			}
 		}
+	}
+	
+    /* user profile */
+    .sh-user-profile {
+		.sh-user-profile-wrapper {
+            @include sh-flex-direction(column);
+
+			.sh-side-left {
+                @include sh-flex-basis(auto);
+				margin: 0 0 16px 0;
+			}
+		}
+
+		
 	}
 
     #sh-works {
@@ -2237,6 +2747,28 @@ textarea, select {
     }
 
     #header {
+
+        #topNav {
+            //Width main menu
+            $width: 170px;
+
+            .sh-header-topline {
+                .sh-header-topline-main {
+                    .sh-header-topline-item {
+                        .sh-show-modal-city {
+                            .sh-nav-location-value {
+                                max-width: $width;
+
+                                &:after {
+                                    left: $width - 60px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         .map-frame {
             top: 60px;
             left: 0;
@@ -2264,6 +2796,34 @@ textarea, select {
 
         &.sh-footer  {
             .footer-section {
+                
+                &.footer-section-download {
+                    .sh-download-buttons-bottom {
+                        padding-bottom: 6px;
+                        border-bottom: 1px solid rgba(255,255,255, .1);
+
+                        h3 {
+                            font-size: 24px;
+                        }
+
+                        .sh-download-buttons-bottom-wrapper {
+                            @include sh-display-flex();
+                            @include sh-flex-direction(column);
+                            @include sh-justify-content(center);
+                            @include sh-align-items(center);
+                            padding-bottom: 16px;
+
+                            a {
+                                padding-bottom: 16px;
+
+                                &:last-child {
+                                    padding:0;
+                                }
+                            }
+                        }
+                    }
+                }
+
                 &.footer-section-nav {
                     border-top: none;
 
@@ -2292,7 +2852,8 @@ textarea, select {
                 margin-bottom: 30px;
             }
 
-            .sh-copyright {
+            .sh-footer-bottom {
+                @include sh-flex-direction(column);
                 letter-spacing: normal;
                 background: rgba(255,255,255, .05);
                 padding: 16px;
@@ -2302,12 +2863,41 @@ textarea, select {
                 }
             }
         }
+
+        .sh-footer-bottom {
+            .sh-choose-language {
+                padding: 0 0 8px 0;
+            }
+        }
     }
 
     .sh-set-position-map {}
 }
 
 @media screen and (max-width: 480px) {
+
+    #header {
+        #topNav {
+            //Width main menu
+            $width: 50px;
+
+            .sh-header-topline {
+                .sh-header-topline-main {
+                    .sh-header-topline-item {
+                        .sh-show-modal-city {
+                            .sh-nav-location-value {
+                                max-width: $width;
+
+                                &:after {
+                                    left: $width - 60px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 	.sh-body-wrapper {
 
@@ -2328,27 +2918,27 @@ textarea, select {
 		}
 	}
 	
-	.sh-content {
+
 		
-		#sh-create-post {
-			padding-top: 15px;
+	.sh-create-post {
+		padding-top: 15px;
 			
-			.container {
-				padding-left: 0;
-				padding-right: 0;
-			}
+		.container {
+			padding-left: 0;
+			padding-right: 0;
+		}
 			
-			.sh-form {
+		.sh-form {
 
-				.sh-form-step {
+			.sh-form-step {
 
-					.sh-form-row {
-						margin-bottom: 6px;
-					}
+				.sh-form-row {
+					margin-bottom: 6px;
 				}
 			}
 		}
 	}
+
 	
 	/* Dynamic & Static */
 	.sh-location-position {

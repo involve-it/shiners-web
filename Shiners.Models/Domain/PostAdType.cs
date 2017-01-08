@@ -8,11 +8,10 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Shiners.Models.Domain
 {
     //тип объявления
-    class PostAdType
+    class PostAdType : MeteorModel
     {
         //Id - поле _id в таблице PostAdTypes(ключевое поле)
-        [BsonElement("_id")]
-        public string Id { get; set; }
+
         //name - имя типа
         [BsonElement("name")]
         public string Name { get; set; }

@@ -61,7 +61,7 @@ var View = Marionette.View.extend({
                 url: url || '../images/shiners/shiner_marker.png',
                 scaledSize: new window.google.maps.Size(25, 33),
                 origin: new window.google.maps.Point(0, 0),
-                anchor: new window.google.maps.Point(0, 32)
+                anchor: new window.google.maps.Point(12, 33)
             };
             if (!_.find(this.shiners, (sh) => sh.modelId===model.id)) {
                 var details = model.get('details');
@@ -137,7 +137,7 @@ var View = Marionette.View.extend({
             });
             this.geocoder = new maps.Geocoder();
             app.map = this.map;
-            window.myMap = app.map;
+            window.myMap = app.map; // debug
             app.geocoder = this.geocoder;
             //this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
             this.map.addListener('bounds_changed',_.bind(this.findLocationName,this));
@@ -199,7 +199,7 @@ var View = Marionette.View.extend({
                 url: '../images/shiners/user.png',
                 scaledSize: new window.google.maps.Size(35, 35),
                 origin: new window.google.maps.Point(0, 0),
-                anchor: new window.google.maps.Point(20, 20)
+                anchor: new window.google.maps.Point(17, 17)
             };
             var marker =  this.userMarker || new window.google.maps.Marker({
                 map: this.map,
@@ -243,7 +243,7 @@ var View = Marionette.View.extend({
                     lat:center.lat(),
                     lng:center.lng()
                 };
-            this.geocoder.geocode({'location': latLng},_.bind((results,status)=>{
+            this.geocoder.geocode({'location': latLng,'language':app.i18n.getLanguage()},_.bind((results,status)=>{
                 if (status === window.google.maps.GeocoderStatus.OK) {
                     var locationName = _.find(results[0].address_components,
                         (res) => {

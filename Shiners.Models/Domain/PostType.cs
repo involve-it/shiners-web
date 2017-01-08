@@ -9,11 +9,10 @@ namespace Shiners.Models.Domain
 {
     //тип поста
     //!!!!!!!НЕОБХОДИМА ПРОВЕРКА НА ИСПОЛЬЗОВАНИЕ!!!!!!
-    class PostType
+    class PostType : MeteorModel
     {
         //Id - поле _id в таблице PostType(ключевое поле)
-        [BsonElement("_id")]
-        public string Id { get; set; }
+
         //name - тип поста
         [BsonElement("name")]
         public string Name { get; set; }

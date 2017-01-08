@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using Amazon;
+using Amazon.Extensions.NETCore.Setup;
+using Amazon.Runtime;
+using Amazon.S3;
 using DdpNet;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,7 +38,9 @@ namespace Shiners.WebApp
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
-            Renderer = new UnderscoreRenderer(env.WebRootPath.Contains("wwwroot")? env.WebRootPath:env.ContentRootPath, "./homeApp", "./sharedViews");
+            Renderer =
+                new UnderscoreRenderer(env.WebRootPath.Contains("wwwroot") ? env.WebRootPath : env.ContentRootPath,
+                    "./homeApp", "./sharedViews");
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -41,16 +48,32 @@ namespace Shiners.WebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //var credentials = new Credentials()
+            //{
+            //    AccessKeyId = "AKIAJRKMTZEEIOLOAJ5Q",
+            //    Expiration = DateTime.MaxValue,
+            //    SecretAccessKey = "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"
+            //};
+            //var credentials = new Credentials()
+            //{
+            //    AccessKeyId = "AKIAIW2ZXUO227ADO7EA",
+            //    Expiration = DateTime.MaxValue,
+            //    SecretAccessKey = "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"
+            //};
+            //Amazon.Util.ProfileManager.RegisterProfile("test-profile", "AKIAIW2ZXUO227ADO7EA", "LEEFNFwl7UcK3LrTA4ABf3jkSAkwaa9IBEh6ah6a");
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
+            var AWSConfig = Configuration.GetAWSOptions("AWS");
+            services.AddDefaultAWSOptions(AWSConfig);           
+            Amazon.Util.ProfileManager.RegisterProfile("shiners", "AKIAJRKMTZEEIOLOAJ5Q", "z/IQSVXZoHov5aQ+LWwktepidpWMVDnobmbC/Z6+");
+            services.AddAWSService<IAmazonS3>();
             services.AddMvc();
             services.AddScoped<UnderscoreRenderer>((provider) => Renderer);
-            //services.AddScoped<MeteorClient>((provider) => new MeteorClient(new Uri("wss://shiners.mobi/websocket")));
+            services.AddSingleton(new Repository.MongoRepository(Configuration.GetConnectionString("Mongo")));
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }
