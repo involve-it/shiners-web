@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Shiners.Models.Domain;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Shiners.WebApp.Controllers.api
 {
     [Route("api/[controller]")]
@@ -25,13 +23,9 @@ namespace Shiners.WebApp.Controllers.api
             return await _db.Posts.GetMy(userId);
         }
 
-<<<<<<< HEAD
-        [HttpGet("hasPost/{userId}/{postId}")]
-        public async Task<bool> HasUserPost(string userId,string postId)
-=======
         [HttpGet("hasPost")]
         public async Task<bool> HasUserPost([FromQuery] string userId, [FromQuery] string postId)
->>>>>>> origin/master
+
         {
             return await _db.Posts.HasUserPost(userId, postId);
         }
