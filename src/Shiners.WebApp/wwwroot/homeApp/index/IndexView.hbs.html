@@ -79,22 +79,23 @@
                     <div class="toggle active">
                         <label>{{=i18n('one_service_for_all')}}</label>
                         <div class="toggle-content" style="display:block">
-                            <p>Если у тебя уже есть пост на другом ресурсе–просто размести ссылку на него-и получи готовый Светлячок!</p>
+                            <p>
+                                {{=i18n('home_accordion_section1')}}
+                            </p>
                         </div>
                     </div>
                     <div class="toggle">
                         <label>{{=i18n('life_ads_nearby')}}</label>
                         <div class="toggle-content">
                             <p>
-                                Светлячки — это живые объявления от людей поблизости.
-                                Представь себе виртуальную визитку, только носят её не в кошельке, а в мобильном телефоне, и видят её не избранные, а все те, кто рядом
+                                {{=i18n('home_accordion_section2')}}
                             </p>
                         </div>
                     </div>
                     <div class="toggle">
                         <label>{{=i18n('quick_connects')}}</label>
                         <div class="toggle-content">
-                            <p>Используй Светлячки для установки быстрых живых контактов- встреч, в нужное время, в нужном месте.</p>
+                            <p>{{=i18n('home_accordion_section3')}}</p>
                         </div>
                     </div>
                 </div>
@@ -114,8 +115,8 @@
 <section id="sh-anywhere">
     <div class="container-fluid">
         <div class="sh-anywhere-wrapper">
-            <h1 class="sh-section-hero-headline sh-text-center">Светлячки повсюду</h1>
-            <p class="sh-section-intro sh-text-center">Множество возможностей для бизнеса вместе с Shiners</p>
+            <h1 class="sh-section-hero-headline sh-text-center">{{=i18n('home_shiners_are_around')}}</h1>
+            <p class="sh-section-intro sh-text-center">{{=i18n('home_lot_of_opportunities')}}</p>
         </div>
 
         <div class="sh-anywhere-bg">
@@ -144,11 +145,15 @@
     <div class="container">
         <div class="sh-set-shiners-wrapper">
             <div class="sh-text-group col-xs-12 col-md-8 col-lg-9">
-                <h3 class="sh-section-headline">Участвуй <a class="link" href="#">бесплатно</a> в проекте!</h3>
-                <h4 class="sh-section-subline">Контактируй с людьми, предложи свои услуги на сайте.</h4>
+                <h3 class="sh-section-headline">{{=i18n('home_participate')}} <a class="link">{{=i18n('home_free')}}</a>{{=i18n('home_in_project')}}</h3>
+                <h4 class="sh-section-subline">{{=i18n('home_contact_with_people')}}</h4>
             </div>
             <div class="sh-set-shiners-item col-xs-12 col-md-4 col-lg-3">
+<<<<<<< HEAD
                 <a href="/posts/new" class="ui sh-button standard create big">Установи свой Светячок</a>
+=======
+                <a class="ui sh-button standard create big" href="/posts/new">{{=i18n('home_set_your_shiner')}}</a>
+>>>>>>> origin/master
             </div>
         </div>
     </div>

@@ -12,13 +12,13 @@
             </a>
         </span>
         <span class="fancy-tooltip top-left">
-            <em>Свободный поиск по словам</em>
+            <em>{{=i18n('search_free_search')}}</em>
         </span>
     </div>
 </div>
 <div class="sh-map-distance">
     <div class="margin-bottom-10">
-        <label for="radius">Радиус поиска (км):</label>
+        <label for="radius">{{=i18n('search_choose_radius')}}</label>
         <input type="hidden" name="radius" id="radius" class="form-control">
     </div>
     <div class="slider-wrapper info-slider">
@@ -28,13 +28,13 @@
 <div id="searchParameters" style="display: none">
     <div class="ui sh-accordion toggle toggle-accordion">
         <div class="toggle">
-            <label>Параметры поиска</label>
+            <label>{{=i18n('search_parameters')}}</label>
             <div class="toggle-content">                
                 <div id="selectCategories"></div>
             </div>
         </div>
         <div class="toggle {{=isMobile?'':'active'}}">
-            <label>Найденные светлячки</label>
+            <label>{{=i18n('search_found')}}</label>
             <div class="toggle-content" id="searchResults" style="{{=isMobile?'':'display: block'}}">
                 <div id="shinersList" class="sh-shiners-list-items"></div>               
             </div>

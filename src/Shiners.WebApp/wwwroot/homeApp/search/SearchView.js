@@ -6,6 +6,8 @@ import '../../lib/jquery-slimscroll/jquery.slimscroll.min.js';
 import ShinersListView from './ShinersListView.js';
 import CategoriesListView from './CategoriesListView.js';
 import app from '../app.js';
+import './i18n/en';
+import './i18n/ru';
 var View = Backbone.Marionette.View.extend({
     fetchTimeOut:null,
     template:template,
@@ -82,13 +84,23 @@ var View = Backbone.Marionette.View.extend({
     },
 
     initRadiusSlider() {
-        this.sliderCases = [
-            {name:'200м',value:0.2,zoom:16},
-            {name:'1км',value:1,zoom:14},
-            {name:'5км',value:5,zoom:12},
-            {name:'20км',value:20,zoom:10},
-            {name:'везде',value:20000,zoom:3}
-        ];
+        if (i18n.getLanguage() === 'ru') {
+            this.sliderCases = [
+                {name: '200м', value: 0.2, zoom: 16},
+                {name: '1км', value: 1, zoom: 14},
+                {name: '5км', value: 5, zoom: 12},
+                {name: '20км', value: 20, zoom: 10},
+                {name: 'везде', value: 20000, zoom: 3}
+            ];
+        } else if (i18n.getLanguage() === 'en') {
+            this.sliderCases = [
+                {name: '200m', value: 0.2, zoom: 16},
+                {name: '1km', value: 1, zoom: 14},
+                {name: '5km', value: 5, zoom: 12},
+                {name: '20km', value: 20, zoom: 10},
+                {name: 'everywhere', value: 20000, zoom: 3}
+            ];
+        }
         this.$radiusSlider = this.$("#slider3").slider({
             range: "min",
             animate: true,

@@ -11,12 +11,12 @@ namespace Shiners.WebApp.Controllers
     {
         public IActionResult Index(string id = null)
         {
-            return View("../Home/Index");
+            return View("../Chats/My");
         }
 
         public IActionResult My()
         {
-            return View("../Home/Index");
+            return View("../Chats/My");
         }
 
         public ActionResult To(string id)

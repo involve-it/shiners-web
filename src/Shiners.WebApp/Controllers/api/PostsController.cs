@@ -25,8 +25,13 @@ namespace Shiners.WebApp.Controllers.api
             return await _db.Posts.GetMy(userId);
         }
 
+<<<<<<< HEAD
         [HttpGet("hasPost/{userId}/{postId}")]
         public async Task<bool> HasUserPost(string userId,string postId)
+=======
+        [HttpGet("hasPost")]
+        public async Task<bool> HasUserPost([FromQuery] string userId, [FromQuery] string postId)
+>>>>>>> origin/master
         {
             return await _db.Posts.HasUserPost(userId, postId);
         }
