@@ -40,7 +40,9 @@ export default Marionette.Object.extend({
     },
 
     postsMy(){
-        app.layout.showChildView('content',new PostsMytView());
+        app.myPosts.loadByMethod('getMyPosts',{skip:0,take:100},() => {
+            app.layout.showChildView('content',new PostsMytView({collection:app.myPosts}));
+        });        
     },
     
     postDetails(id) {
