@@ -112,6 +112,8 @@ _[Ss]cripts
 .idea/dynamic.xml
 .idea/uiDesigner.xml
 
+
+.idea/Shiners.WebApp.iml
 # Gradle:
 .idea/gradle.xml
 .idea/libraries
