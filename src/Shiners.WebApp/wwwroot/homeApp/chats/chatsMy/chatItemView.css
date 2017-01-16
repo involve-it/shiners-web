@@ -1,0 +1,32 @@
+.bz-chat-item .bz-user-avatar {
+  float: left;
+  top: 0;
+  left: 0;
+  padding-right: 10px;
+}
+
+.bz-chat-item .bz-avatar {
+
+  background-size: cover;
+  background-position: center;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.bz-chat-item .bz-avatar img {
+  width: 50px;
+  height: 50px;
+}
+.bz-chat-item .bz-last-timestamp {
+  font-style: italic;
+  font-size: 12px;
+  padding-top: 12px;
+}
+.bz-chat-item .bz-last-message {
+  font-weight: bold;
+}
+/* temp, not good solution: */
+div.blog-post-item {
+  margin-bottom: 10px;
+  padding-bottom: 30px;
+}

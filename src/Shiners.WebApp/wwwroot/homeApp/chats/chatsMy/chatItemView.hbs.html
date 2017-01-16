@@ -1,0 +1,24 @@
+﻿<div class="blog-post-item">
+    {{ obj.__otherParty = {} }}
+    {{ if(obj.otherParty && obj.otherParty[0]) { obj.__otherParty = obj.otherParty[0]; } }}
+    {{ obj.__lastMessage = obj.lastMessage || {} }}
+    <div class="bz-chat-item">
+        <a href="/messages/to/{{= obj.__otherParty._id }}">
+        <!--<a href="/messages/to/{{-_id }}?remoteUserId={{= obj.__otherParty.remoteUserId }}">-->
+            <div class="bz-meta">
+                <div class="bz-user-avatar">
+                    <div class="bz-avatar">
+                        <img src="{{= obj.__otherParty.image ? obj.__otherParty.image.thumbnail || obj.__otherParty.image.imageUrl || '/images/shiners/user.png' : '/images/shiners/user.png' }}"
+                             alt="null"/>
+                    </div>
+                </div>
+
+                <div class="bz-username">{{= obj.__otherParty.username }}</div>
+                <div class="bz-last-message">{{= obj.__lastMessage.text }}</div>
+                <div class="bz-last-timestamp">{{= moment(obj.lastMessageTs).fromNow() }}</div>
+
+            </div>
+        </a>
+    </div>
+
+</div>
