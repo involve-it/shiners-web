@@ -10,7 +10,7 @@ import PreloaderView from '../sharedViews/PreloaderView.js';
 import CreatePostView from './posts/create/CreatePostView.js';
 
 import PostsMytView from './posts/postsMy/PostsMyView.js';
-import ChatsMyView from './chats/ChatsMyView.js';
+import ChatsMyView from './chats/chatsMy/chatsMyView.js';
 import ChatIdView from './chats/ChatIdView.js';
 import UserDetailsView from './user/DetailsView.js';
 import MessagesToUserView from './chats/native/MessagesToUserView.js';
@@ -20,8 +20,12 @@ import RegisterUserView from './account/RegisterUserView'
 import AboutView from './about/AboutView.js';
 import HowItWorksView from './howItWorks/HowItWorksView.js';
 import FogotPasswordView from './account/FogotPasswordView.js';
+
+import LegalUserAgreementView from './legal/legalUserAgreementView';
+import LegalConfidentialView from './legal/legalConfidentialView';
+import LegalPostPublishingView from './legal/legalPostPublishingView';
 //import ProfilePageView from './user/ProfilePageView';
-import MyMessagesPageView from './user/MyMessagesPageView';
+//import MyMessagesPageView from './user/MyMessagesPageView';
 //import UserDetailsPageView from './user/UserDetailsPageView';
 import app from './app.js';
 
@@ -36,31 +40,31 @@ export default Marionette.Object.extend({
     },
 
     mobileIndex() {
-        app.layout.showChildView('content', new MobileIndexView({IndexView:IndexView}));
+        app.layout.showChildView('content', new MobileIndexView({IndexView: IndexView}));
     },
 
     postsMy(){
-        app.myPosts.loadByMethod('getMyPosts',{skip:0,take:100},() => {
-            app.layout.showChildView('content',new PostsMytView({collection:app.myPosts}));
-        });        
+        app.myPosts.loadByMethod('getMyPosts', {skip: 0, take: 100, type: 'all'}, () => {
+            app.layout.showChildView('content', new PostsMytView({collection: app.myPosts}));
+        });
     },
-    
+
     postDetails(id) {
         app.layout.showChildView('content', new PreloaderView());
-        var post = new AsteroidModel({_id:id},{asteroid:app.asteroid});
-        post.loadByMethod('getPost',null,() => {
-            window.detailsPost = post; // debug
-            app.layout.showChildView('content', new PostDetailsView({ model: post }));
+        var post = new AsteroidModel({_id: id}, {asteroid: app.asteroid});
+        post.loadByMethod('getPost', null, () => {
+            //window.detailsPost = post; // debug
+            app.layout.showChildView('content', new PostDetailsView({model: post}));
         });
     },
 
     createPost() {
-        var model = new Post({details:{},stats:{seenToday: 0,seenTotal : 0,seenAll:0}},{asteroid:app.asteroid});
-        app.layout.showChildView('content', new CreatePostView({model:model}));
+        var model = new Post({details: {}, stats: {seenToday: 0, seenTotal: 0, seenAll: 0}}, {asteroid: app.asteroid});
+        app.layout.showChildView('content', new CreatePostView({model: model}));
     },
 
     editPost(id) {
-        var post = new Post({ _id: id });
+        var post = new Post({_id: id});
         post.isOwnerAsync(app.user.id).done(resp => {
             if (resp) {
                 alert(resp);
@@ -69,66 +73,85 @@ export default Marionette.Object.extend({
     },
 
     login(url) {
-        app.layout.showChildView('content',new LoginView({returnUrl:url||null}));
+        app.layout.showChildView('content', new LoginView({returnUrl: url || null}));
     },
 
     registerUser(url) {
-        app.layout.showChildView('content',new RegisterUserView({returnUrl:url||null}));
+        app.layout.showChildView('content', new RegisterUserView({returnUrl: url || null}));
     },
 
     fogotPassword() {
-        app.layout.showChildView('content',new FogotPasswordView());
+        app.layout.showChildView('content', new FogotPasswordView());
     },
 
     about() {
-        app.layout.showChildView('content',new AboutView());
+        app.layout.showChildView('content', new AboutView());
     },
 
     howItWorks() {
-        app.layout.showChildView('content',new HowItWorksView());
+        app.layout.showChildView('content', new HowItWorksView());
     },
 
     chatsMy(){
-        app.layout.showChildView('content',new ChatsMyView());
+        app.myChats.loadByMethod('getChats', {skip: 0, take: 100}, (res) => {
+            app.layout.showChildView('content', new ChatsMyView({collection: app.myChats}));
+        });
     },
 
-    chatId(id){
+    chatId(chatId, remoteUserId){
+        //app.layout.showChildView('content', new PreloaderView());
+        //var chatModel = new Backbone.Model({ _id:id });
+        //app.layout.showChildView('content', new ChatIdView( {model: chatModel } ));
         app.layout.showChildView('content', new PreloaderView());
-        var chatModel = new Backbone.Model({ _id:id });
-        app.layout.showChildView('content', new ChatIdView( {model: chatModel } ));
+        var messages = new Collection(null, {asteroid: app.asteroid, comparator: 'timestamp'});
+        var remoteUser = new AsteroidModel({_id: remoteUserId}, {asteroid: app.asteroid});
+        messages.loadByMethod('getMessages', {chatId: chatId, skip: 0, take: 20}, () => {
+            remoteUser.loadByMethod('getUser', () => {
+                var chat = new AsteroidModel({
+                    _id: chatId,
+                    remoteUser: remoteUser.toJSON(),
+                    user: app.user.toJSON()/*,postId:postId*/
+                }, {asteroid: app.asteroid});
+                app.layout.showChildView('content', new MessagesToUserView({model: chat, collection: messages}));
+            });
+        });
     },
 
-    messagesTo(remoteUserId,postId) {
+    messagesTo(remoteUserId, postId) {
         app.layout.showChildView('content', new PreloaderView());
         if (app.asteroid.loggedIn) {
-            var remoteUser = new AsteroidModel({ _id: remoteUserId }, { asteroid: app.asteroid });
-            remoteUser.loadByMethod('getUser',() => {
-                window.remoteUser = remoteUser; // debug
-                app.asteroid.call('bz.chats.createChatIfFirstMessage',app.user.id, remoteUserId).result.then((chatId) => {
-                    var messages = new Collection(null,{asteroid:app.asteroid,comparator:'timestamp'});
-                    messages.loadByMethod('getMessages', {chatId:chatId,skip:0,take:20},() => {
-                        var chat = new AsteroidModel({_id:chatId,remoteUser:remoteUser.toJSON(),user:app.user.toJSON(),postId:postId}, { asteroid: app.asteroid });
-                        app.layout.showChildView('content', new MessagesToUserView({ model: chat,collection:messages }));
-                    });
-                });
+            var remoteUser = new AsteroidModel({_id: remoteUserId}, {asteroid: app.asteroid});
+            app.asteroid.call('bz.chats.createChatIfFirstMessage', app.user.id, remoteUserId).result.then((chatId) => {
+                app.router.navigate(`/chats/${ chatId }?remoteUserId=${ remoteUserId }`, { trigger: true, replace: true });
             });
         } else {
-            app.router.navigate("",{trigger:true});
-        }        
+            app.router.navigate('', {trigger: true});
+        }
     },
 
     myProfile(){
-        
+
     },
 
-    myMessagesPage() {
-        app.layout.showChildView('content',new MyMessagesPageView());
-    },
+    //myMessagesPage() {
+    //    app.layout.showChildView('content',new MyMessagesPageView());
+    //},
 
     userDetails(id) {
         app.layout.showChildView('content', new PreloaderView());
-        var userModel = new UserModel({ _id:id });
+        var userModel = new UserModel({_id: id});
         window.currentUser = userModel;
-        userModel.fetch().done(() => app.layout.showChildView('content', new UserDetailsView({ model: userModel })));
+        userModel.fetch().done(() => app.layout.showChildView('content', new UserDetailsView({model: userModel})));
+    },
+
+    // LEGAL:
+    legalConfidential() {
+        app.layout.showChildView('content', new LegalConfidentialView());
+    },
+    legalUserAgreement() {
+        app.layout.showChildView('content', new LegalUserAgreementView());
+    },
+    legalPostPublishingRules() {
+        app.layout.showChildView('content', new LegalPostPublishingView());
     }
 });

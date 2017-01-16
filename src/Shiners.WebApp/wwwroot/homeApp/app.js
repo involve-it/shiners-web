@@ -8,7 +8,7 @@ import '../lib/detectmobile.js';
 import Asteroid from '../lib/asteroid.browser.js';
 import RootView from './mainLayoutView.js';
 import Collection from '../data/AsteroidCollection.js';
-import Router from './Router.js';
+import Router from './router.js';
 import _ from 'underscore';
 import AsteroidModel from '../data/AsteroidModel.js';
 import PreloaderView from '../sharedViews/PreloaderView.js';
@@ -22,6 +22,7 @@ let App = Marionette.Application.extend({
     nearbyPosts:null,
     messagesSubscription:null,
     myPosts:null,
+    myChats:null,
     myMessages:null,
     user:null,
     postAdTypes:null,
@@ -39,6 +40,7 @@ let App = Marionette.Application.extend({
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
         this.postAdTypes = new Collection(null, { asteroid: this.asteroid });
         this.myPosts=new Collection(null, { asteroid: this.asteroid });  
+        this.myChats=new Collection(null, { asteroid: this.asteroid });
         this.nearbyPosts = new Collection(null,{asteroid:this.asteroid});
         this.myMessages = new Collection(null,{asteroid:this.asteroid});
         this.router = new Router({app:this});
@@ -151,4 +153,6 @@ let App = Marionette.Application.extend({
     }
 });
 
-export default new App();
+var app = new App()
+global.app = app;
+export default app;

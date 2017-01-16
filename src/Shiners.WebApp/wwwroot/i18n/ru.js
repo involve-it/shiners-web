@@ -43,7 +43,8 @@ var json = {
     footer_menu_privacy_policy: 'Политика конфиденциальности',
     footer_disclaimer_text: 'Использование сайта, в том числе создание Светлячков (постов), означает согласие с ',
     footer_disclaimer_text2: 'пользовательским соглашением',
-    footer_all_rights_reserved: 'Светлячки 2017, Все права защищены'
+    footer_all_rights_reserved: 'Светлячки 2017, Все права защищены',
+    footer_menu_post_publishing_rules: 'Правила размещения рекламных объявлений'
 
 };
 i18n.add('ru', json);

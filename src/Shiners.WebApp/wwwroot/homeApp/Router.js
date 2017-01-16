@@ -1,5 +1,5 @@
 ﻿import Marionette from 'backbone.marionette';
-import Controller from './Controller.js';
+import Controller from './controller';
 import app from './app'
 export default Marionette.AppRouter.extend({
 
@@ -16,9 +16,9 @@ export default Marionette.AppRouter.extend({
         //'Posts/new':'createPost',
         //'Posts/New':'createPost',
         'posts/my':'postsMy',
-        'chats/my':'myMessagesPage',
-        //'chats/my':'chatsMy',
-        'chats/:id':'chatId',
+        //'chats/my':'myMessagesPage',
+        'chats/my':'chatsMy',
+        'chats/:id?remoteUserId=:remoteUserId':'chatId',
         'posts/:id':'postDetails',
         'user/:id': 'userDetails',
         'Account/Login':'login',
@@ -30,7 +30,10 @@ export default Marionette.AppRouter.extend({
         'about-us':'about',
         'profile': 'myProfile',
         'messages/to/:remoteUserId?postId=:postId':'messagesTo',
-        'messages/to/:remoteUserId':'messagesTo'
+        'messages/to/:remoteUserId':'messagesTo',
+        'legal/confidential': 'legalConfidential', // same as Privacy Policy
+        'legal/user-agreement': 'legalUserAgreement', // Terms of Use?
+        'legal/post-publishing-rules': 'legalPostPublishingRules'
     },
 
     policy: {

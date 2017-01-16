@@ -44,6 +44,7 @@ var json = {
     footer_menu_privacy_policy: 'Privacy policy',
     footer_disclaimer_text: 'By using Shiners, including creating posts, I agree to the',
     footer_disclaimer_text2: ' Terms of Use',
-    footer_all_rights_reserved: 'Shiners 2017, all rights reserved'
+    footer_all_rights_reserved: 'Shiners 2017, all rights reserved',
+    footer_menu_post_publishing_rules: 'Post publishing rules'
 };
 i18n.add('en', json);
