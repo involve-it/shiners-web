@@ -30,7 +30,7 @@ var View = Marionette.View.extend({
         'mainMenu':'#bzMainMenu'
     },
     onClickLink() {
-        Backbone.$(document).on('click', 'a:not([data-direct-link])', function (e) {
+        Backbone.$(document).on('click', 'a:not([data-direct-link])a:not([href^=http])', function (e) {//not data-direct-link class AND not having http in beginning of href
             var href = Backbone.$(this).attr('href');
             var protocol = this.protocol + '//';
             if (href && !_.isEmpty(href) && href.slice(protocol.length) !== protocol) {
