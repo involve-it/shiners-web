@@ -110,6 +110,9 @@ namespace Shiners.WebApp
                 routes.MapRoute("posts", "posts/{id?}",new {controller="Posts",action="Index"});
                 
                 routes.MapRoute("profile", "profile", new { controller = "Profile", action = "Index" });
+
+
+
                 routes.MapRoute(name: "default",template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
