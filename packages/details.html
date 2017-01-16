@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/semantic.min.css">
+	<link rel="stylesheet/less" type="text/css" href="style/styles.less" />
+
+	<link rel="stylesheet/less" type="text/css" href="style/details.less" />
+	<link rel="stylesheet" type="text/css" href="fonts/shiners-font.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=cyrillic" rel="stylesheet">
+	<title>SHINERS template html</title>
+</head>
+<body>
+
+
+
+<div class="sh-body-wrapper">
+	<header class="sh-header">
+		<div class="sh-header-topline">
+			<div class="container-fluid">
+				<div class="sh-header-topline-main">
+					<div class="sh-header-topline-item">
+						<i class="icon-location"></i>
+						<span class="text-muted hidden-xs hidden-sm">Выбрать район для Светлячков</span>
+						<div class="sh-show-modal-city">
+							<span class="text-weight bold">Выбрать город</span><i class="angle down icon"></i>
+						</div>
+					</div>
+					<div class="sh-header-topline-item">
+						<div class="sh-header-dropdown-user">
+
+							<!-- IF ACCOUNT USER IS FALSE -->
+							<div class="sh-registers-buttons">
+								<a href="/profile.html" class="ui standard sign-up button">Douson</a>
+								<!--<button class="ui standard sign-up button">Регистрация</button>-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="sh-header-navbar">
+			<div class="sh-header-navbar-wrapper sh-blurred-bg">
+				<div class="container-fluid">
+					<!-- here will be a mobile menu -->
+					<div class="sh-header-navbar-items">
+						<div class="sh-header-navbar-logo">
+							<a class="sh-logo-header" href="/">Shiners</a>
+						</div>
+
+						<div class="sh-header-navbar-submenu"></div>
+
+						<div class="sh-header-navbar-create">
+							<a href="/create_post.html" class="ui button standard create big">Создать светячок</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<main class="sh-content">
+
+		<section class="sh-post-details">
+			<div class="container">
+				<div class="sh-page-block">
+					<div class="sh-post-details-wrapper">
+
+						<!-- SIDE LEFT -->
+						<div class="sh-side-left">
+							<h1>Пять уроков йоги или месяц безлимитных посещений в нашем клубе</h1>
+							<div class="sh-post-published">
+								<div class="sh-post-written">
+									<span>Опубликовано, среда 19:45</span>
+								</div>
+
+								<!-- sh-color-red, sh-color-yellow, sh-color-green -->
+								<div class="sh-post-item-left sh-color-yellow">
+									<span class="sh-item-left-text">Осталось 28 дней</span>
+									<span class="sh-item-left-track">
+									<span class="sh-item-left-fill" style="width: 42%"></span>
+								</span>
+								</div>
+							</div>
+
+							<div class="sh-photos">
+								<div class="single-photo"></div>
+							</div>
+
+							<div class="sh-post-tab-menu">
+								<div class="sh-post-tab-menu-wrapper">
+									<ul class="sh-post-tab-items">
+										<li class="sh-tab-item"><a class="active" href="#sh-description">Описание</a></li>
+										<li class="sh-tab-item"><a href="#sh-location">Местоположение</a></li>
+										<li class="sh-tab-item"><a href="#sh-review">Комментарии</a></li>
+									</ul>
+								</div>
+								
+								<!-- show if .sh-post-tab-menu-wrapper class have .stick-menu-->
+								<div class="sh-post-tab-menu-sticky hidden"></div>
+							</div>
+
+
+							<div class="sh-post-creator">
+								<div class="sh-post-creator-wrapper row">
+									<!-- AVATAR -->
+									<div class="sh-post-creator-avatar col-md-3">
+										<a class="sh-creator-photo" href="#">
+											<img class="sh-post-creator-username-avatar" src="http://fakeimg.pl/90x90/" alt="Фотография в профиле">
+										</a>
+									</div>
+
+									<!-- USERNAME, ACTION USER'S -->
+									<div class="sh-post-creator-info col-md-9">
+										<div class="sh-post-creator-username">Иван Шишкин</div>
+										<!-- Here Will be rating, location -->
+										<div class="sh-post-creator-display-loc-rew">
+											<a href="#">Белгородская обл., Белгород</a>
+										</div>
+
+										<div class="sh-post-creator-actions">
+											<div class="sh-actions-btn-group">
+												<a href="#" class="ui button standard action action-link">Связаться с пользователем</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<div id="sh-description" class="sh-post-description sh-section">
+								<div class="sh-post-description-wrapper">
+									<h4>Об этом посте</h4>
+									<p>Это слово означает мощную внутренную силу или что-то там еще. Наша стадуия готова предложить вам все что пожелаете. Мы трудимся ради вашей красоты, как внутрненней так и внешней. Наши студенты стремятся к идеалу во всем. Именно поэтому у нас так много студентов.</p>
+									<p>Что касается физической практики, преподаватели ведут занятия в нескольких потоков, которые связывают дыхание с движением. Динамические последовательности увеличивают прочность и гибкость при разработке движущейся медитации, в которой студенты сосредоточиться ни на чем, но наблюдение за выравнивание каждого движения. Хотя каждый уровень класса включает в себя ряд асан, таких как стоячих позах и инверсий, продвинутые сессии ввести глубже держит, центровка дыхательные упражнения, и философии йоги. НУ в общем вы поняли, бла-бла-бла...</p>
+
+								</div>
+							</div>
+
+
+							<div id="sh-location" class="sh-post-location sh-section">
+								<div class="sh-post-location-wrapper">
+									<h4>Местоположение</h4>
+									<div class="sh-post-location-info">
+										<div class="sh-post-location-distance">
+											<i class="fa fa-location-arrow" aria-hidden="true"></i> От вас <span>2,5 км.</span>
+										</div>
+
+										<!-- Static or dynamic -->
+										<div class="sh-post-location-address dynamic">
+											<span><i class="fa fa-map-marker" aria-hidden="true"></i> Белгородская обл., Белгород</span>
+										</div>
+									</div>
+									<div id="sh-map"></div>
+								</div>
+							</div>
+
+							<div id="sh-review" class="sh-post-review sh-section">
+								<div class="sh-post-reviews-wrapper">
+									<h4>Комментарии <span>2</span></h4>
+
+									<div class="sh-post-form-review"></div>
+
+									<div class="sh-post-reviews">
+										<div class="sh-reviews-items">
+											<!--1-->
+											<div class="sh-reviews-item">
+												<div class="sh-reviews-avatar">
+													<a class="sh-creator-photo" href="#link-to-user-profile">
+														<img src="http://fakeimg.pl/65x65/" alt="Фотография в профиле">
+													</a>
+												</div>
+												<div class="sh-reviews-content">
+													<div class="sh-reviews-content-inner">
+														<p class="sh-reviews-content-message">
+															Это было мое первое занятие. Просто удивительно, как быстро можно получить результат от физических упражнений.
+															Честно сказать, никогда бы не подумал, что эффект может быть таким ))) В любом случае всем советую этого парня - он профи своего дела. Респект тренеру.
+														</p>
+													</div>
+													<div class="sh-reviews-content-footer">
+														<a class="sh-reviews-content-user" href="#">Теска Пупкин</a>
+														<span>·</span>
+														<span class="sh-reviews-content-meta">9 января 2017 г., 12:22:37</span>
+													</div>
+												</div>
+											</div>
+
+											<!--2-->
+											<div class="sh-reviews-item">
+												<div class="sh-reviews-avatar">
+													<a class="sh-creator-photo" href="#link-to-user-profile">
+														<img src="http://fakeimg.pl/65x65/" alt="Фотография в профиле">
+													</a>
+												</div>
+												<div class="sh-reviews-content">
+													<div class="sh-reviews-content-inner">
+														<p class="sh-reviews-content-message">
+															Я воспользовался вашим советом и могу подтвердить комментарий выше. Тренировки - агонь, именно через "а".
+														</p>
+													</div>
+													<div class="sh-reviews-content-footer">
+														<a class="sh-reviews-content-user" href="#">Жека Космос</a>
+														<span>·</span>
+														<span class="sh-reviews-content-meta">9 января 2017 г., 15:00</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							
+						</div>
+
+						<!-- SIDE RIGHT -->
+						<div class="sh-side-right">
+							<div class="sh-post-widget">
+								<!-- 1 -->
+								<div class="sh-post-top-price">
+									<div class="sh-price-wrapper sh-rub">
+										<div class="sh-price-number">499</div>
+										<div class="sh-price-prefix"></div>
+									</div>
+									<div class="sh-price-footer">за месяц</div>
+								</div>
+							</div>
+
+
+							<div class="sh-post-summary-information sh-info-header">
+								<div class="sh-info-header-within">
+									<span>Сводная информация</span>
+								</div>
+
+								<ul class="sh-post-info sh-with-dotted">
+									<li><div><span class="sh-item">Просмотров</span><span class="sh-item-right">83</span></div></li>
+									<li><div><span class="sh-item">Статус</span><span class="sh-item-right">Динамический</span></div></li>
+									<li><div><span class="sh-item">Тип</span><span class="sh-item-right">Тренинги</span></div></li>
+									<li><div><span class="sh-item">Дистанция</span><span class="sh-item-right">2,5 км.</span></div></li>
+								</ul>
+							</div>
+
+							<div class="sh-post-wish-and-more">
+								<div class="sh-post-wish hidden"></div>
+								<div class="sh-post-more">
+									<div class="sh-post-more-wrapper">
+										<a href="#" class="sh-share-btn sh-text-center">
+											<span>E-mail</span>
+										</a>
+										<a href="#" class="sh-share-btn sh-text-center">
+											<span>Вконтакте</span>
+										</a>
+										<span class="sh-more-btn sh-text-center">
+										··· <span>Ещё</span>
+									</span>
+									</div>
+
+									<div class="sh-report-message">
+										<i class="fa fa-exclamation" aria-hidden="true"></i>
+										<a href="#">Сообщите об этом объявлении</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					
+					<div class="sh-same-posts hidden">
+						<div class="container">
+							<div class="sh-same-posts-wrapper">
+								<h4>Похожие посты</h4>
+								
+								<div class="sh-text-center">Скоро на всех устройствах мира</div>
+								<br>
+								
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<footer class="sh-footer">
+		<div class="container-fluid">
+			<div class="row footer-section footer-section-nav">
+				<div class="col-xs-12 col-md-3">
+					<div class="sh-logo-footer">Shiners</div>
+				</div>
+			</div>
+			<div class="row footer-section">
+				<div class="col-md-4 col-lg-6">
+					<div class="sh-choose-language">
+						<div class="ui selection dropdown">
+							<input type="hidden" name="gender">
+							<i class="dropdown icon"></i>
+							<div class="default text">Language</div>
+							<div class="menu">
+								<div class="item" data-value="0">Russian</div>
+								<div class="item" data-value="1">English</div>
+							</div>
+						</div>
+					</div>
+
+					<p class="sh-usage-text">Использование сайта, в том числе создание Светлячков (постов), означает согласие с <a href="#">пользовательским соглашением</a>.</p>
+
+				</div>
+
+				<div class="col-md-4 col-lg-3">
+					<dl class="sh-footer-list">
+						<dt class="sh-footer-list-title middle">Приложение</dt>
+						<dd class="sh-footer-list-item">
+							<a href="#" class="sh-store-link">
+								<img src="images/download_app_store_RU_135x40@2x.png" width="135" height="40" alt="Download Shiners">
+							</a>
+						</dd>
+					</dl>
+				</div>
+
+				<div class="col-md-4 col-lg-3">
+					<dl class="sh-footer-list">
+						<dt class="sh-footer-list-title middle">Наши контакты</dt>
+						<dd class="sh-footer-list-item"><a class="sh-social-link" href="mailto:support@shiners.ru" title="support@shiners.ru"><span class="sh-social-link-text">support@shiners.ru</span></a></dd>
+						<dd class="sh-footer-list-item"><a class="" href="#">Посетите наш Справочный центр</a></dd>
+						<dd class="sh-footer-list-item"><a class="" href="#">Terms of Use</a></dd>
+						<dd class="sh-footer-list-item"><a class="" href="#">Privacy Policy</a></dd>
+					</dl>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 sh-copyright">
+					<p>&#169; Shiners 2016, Все права защищены</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+
+
+
+<!-- include jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- include less -->
+<script>less = { env: 'development'};</script>
+<script src="js/less.min.js"></script>
+<script>less.watch();</script>
+
+<!-- include semantic -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/semantic.min.js"></script>
+<script src="js/shiners.js"></script>
+
+</body>
+</html>
