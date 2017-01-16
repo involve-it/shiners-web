@@ -1,12 +1,13 @@
 ﻿import Marionette from 'backbone.marionette';
 import template from './PostItemView.hbs.html';
+import app from '../../app.js';
+import locationHelper from '../../../helpers/locationHelper.js';
 
 var View = Marionette.View.extend({
     template:template,
     onBeforeRender() {
         this.getDistance();
     },
-
     getDistance() {
         var locations = this.model.get('details').locations;
         if (locations && _.size(locations) > 0 && app.user.has('position')) {
@@ -26,5 +27,13 @@ var View = Marionette.View.extend({
             this.model.set('progress',0);
         }
     },
+    events: {
+        '.js-remove-my-post click': ()=>{
+            debugger;
+        },
+        '.js-edit-my-post click': ()=>{
+            debugger;
+        }
+    }
 });
 export default View;

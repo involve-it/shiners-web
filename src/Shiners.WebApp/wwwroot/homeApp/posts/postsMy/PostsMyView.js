@@ -6,6 +6,8 @@ import app from '../../app.js';
 var View = Marionette.CompositeView.extend({
     template:template,
     childView:ItemView,
-    childViewContainer:'#myPostsContaner'
+    childViewContainer:'#myPostsContaner',
+    onRender() {
+    }
 });
 export default View;
