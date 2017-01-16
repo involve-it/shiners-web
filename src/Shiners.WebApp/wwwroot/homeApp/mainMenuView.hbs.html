@@ -1,0 +1,35 @@
+<!-- Menu -->
+<div class="navbar-collapse pull-right nav-main-collapse collapse submenu-dark">
+    <nav class="sh-nav-menu nav-main">
+        <ul id="topMain" class="nav nav-pills nav-main">
+            <li class="main-menu-item active" data-route-name="index">
+                <a href="/">{{=i18n('mainPage')}}</a>
+            </li>
+            <li class="main-menu-item hidden-lg hidden-md" data-route-name="createPost">
+                <a href="/posts/new">
+                    {{=i18n('create')}}
+                </a>
+            </li>
+            <li сlass="main-menu-item">
+                <a href="/about-us" data-route-name="about">
+                    {{=i18n('aboutSite')}}
+                </a>
+            </li>
+            <li class="main-menu-item js-need-auth" style="display: none;" data-route-name="chatsMy">
+                <a href="/chats/my">
+                    {{=i18n('messages')}}
+                </a>
+            </li>
+            <li class="main-menu-item js-need-auth" style="display: none;" data-route-name="postsMy">
+                <a href="/posts/my">
+                    {{=i18n('myPosts')}}
+                </a>
+            </li>
+            <li class="main-menu-item" data-route-name="blog">
+                <a href="https://blog.shiners.ru">
+                    {{=i18n('mainMenuBlog')}}
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

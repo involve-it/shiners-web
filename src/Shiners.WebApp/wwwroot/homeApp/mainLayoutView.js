@@ -9,6 +9,7 @@ import NavLocationView from './NavLocationView.js';
 import app from './app.js';
 import IframeView from './shared/iframeView.js';
 import UserMenuView from './layout/userMenuView';
+import MainMenuView from './mainMenuView';
 
 var View = Marionette.View.extend({
 
@@ -25,7 +26,8 @@ var View = Marionette.View.extend({
         'map':'#appMap',
         'banner':'#appBanner',
         'userBar':'#userBar',
-        'navLocation':'#navLocation'
+        'navLocation':'#navLocation',
+        'mainMenu':'#bzMainMenu'
     },
     onClickLink() {
         Backbone.$(document).on('click', 'a:not([data-direct-link])', function (e) {
@@ -40,9 +42,8 @@ var View = Marionette.View.extend({
 
     onRender() {
         this.renderMapAndBanner();
+        this.renderMainMenu();
         this.listenTo(app.router,'route',this.toggleMapAndBanner);
-        this.listenTo(app.user, 'login', this.toggleMenuItems);
-        this.listenTo(app.user, 'logout', this.toggleMenuItems);
         //this._adaptUiIfIsIframe();
         //this.listenTo(app.user, 'receivedMeteorUser', this._toggleUserInfo);
         //this._loadIframeView();
@@ -50,15 +51,6 @@ var View = Marionette.View.extend({
 
     onAttach() {
         this.onClickLink();
-        this.toggleMenuItems();
-    },
-
-    toggleMenuItems() {
-        if(app.user.has('_id'))
-            this.$('.js-need-auth').show();
-        else {
-            this.$('.js-need-auth').hide();
-        }
     },
 
     renderMapAndBanner() {
@@ -67,6 +59,9 @@ var View = Marionette.View.extend({
         this.showChildView('banner',new BannerView({model:searchModel}));
         this.showChildView('navLocation', new NavLocationView({model:searchModel}));
         this.showChildView('userBar', new UserBarView({ model: app.user }));
+    },
+    renderMainMenu() {
+        this.showChildView('mainMenu',new MainMenuView());
     },
 
     showChangeLocation() {
