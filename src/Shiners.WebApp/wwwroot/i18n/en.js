@@ -10,6 +10,7 @@ var json = {
     aboutSite: 'About',
     messages: 'Messages',
     myPosts: 'My posts',
+    mainMenuBlog: 'Blog',
     exit: 'Exit',
     complain: 'To complain',
     NO_NAME: 'Name is not entered',

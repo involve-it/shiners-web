@@ -9,6 +9,7 @@ var json = {
     aboutSite: 'О сайте',
     messages: 'Сообщения',
     myPosts: 'Мои Посты',
+    mainMenuBlog: 'Блог',
     exit: 'Выйти',
     complain: 'Пожаловаться',
     NO_NAME: 'Имя не указано',
