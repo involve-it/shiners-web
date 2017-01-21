@@ -18,7 +18,12 @@ var View = Marionette.View.extend({
     },
 
     events:{
-        'submit form':'sendMessage'
+        'submit form':'sendMessage',
+        'keypress #messageText': function(e) {
+            if (e.charCode === 13 || e.keyCode === 13) {
+                this.sendMessage(e);
+            }
+        }
     },
 
     sendMessage(e) {
@@ -33,7 +38,7 @@ var View = Marionette.View.extend({
                 toUserId: this.model.get('remoteUser')._id,
                 chatId: this.model.id
             },{asteroid:app.asteroid});
-            this.collection.add(model);
+            //this.collection.add(model);
             model.save('addMessage',{destinationUserId:this.model.get('remoteUser')._id,message:value,type:'text',associatedPostId:this.model.get('postId')});
             $textEl.val('');
             $textEl.focus();

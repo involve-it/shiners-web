@@ -1,5 +1,5 @@
 ﻿import Marionette from 'backbone.marionette'
-import ItemView from './MessagesItemView.js'
+import ItemView from './messagesItemView.js'
 import EmptyView from './NoMessagesView.js'
 import app from '../../app.js'
 var View = Marionette.CollectionView.extend({

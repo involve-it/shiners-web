@@ -4,7 +4,9 @@ import template from './MessagesItemView.hbs.html';
 var View = Marionette.View.extend({
     template:template,
     tagName:'li',
-    className:'comment',
+    className: function() {
+      return `sh-message ${ this.model.get('userId') === this.options.chat.get('user')._id? 'sh-message-my': 'sh-message-remote' }`;
+    },
     status:null,
     onBeforeRender() {
         this.templateContext = {
