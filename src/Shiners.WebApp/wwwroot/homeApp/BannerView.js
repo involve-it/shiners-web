@@ -7,7 +7,7 @@ import app from './app.js';
 import SuggestionsView from './selectLocation/SuggestionListView.js'
 var View = Marionette.View.extend({
     tagName: 'div',
-    className: 'sh-header-navbar-info',
+    className: 'sh-header-navbar-info visible-md-block visible-lg-block',
     template: template,
     searchTimeOut: null,
     osmCollection:null,
