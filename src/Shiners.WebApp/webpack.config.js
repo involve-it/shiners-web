@@ -39,8 +39,8 @@ module.exports = {
                         //SockJS: "SockJS"
                         //'window.Tether': "tether",
                         //'Tether': "tether"
-                    }),
-                    new webpack.optimize.DedupePlugin()
+                    })
+                    //new webpack.optimize.DedupePlugin()
                     //isProduction()? new webpack.optimize.UglifyJsPlugin(): function() {}
                    // ,new ExtractTextPlugin('bundle.css')
                 ],

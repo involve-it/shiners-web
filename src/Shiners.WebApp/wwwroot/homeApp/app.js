@@ -13,6 +13,8 @@ import _ from 'underscore';
 import AsteroidModel from '../data/AsteroidModel.js';
 import PreloaderView from '../sharedViews/PreloaderView.js';
 import '../css/shiners-override.css';
+import $ from 'jquery';
+
 
 let App = Marionette.Application.extend({
     region:'body',
@@ -155,4 +157,5 @@ let App = Marionette.Application.extend({
 
 var app = new App()
 global.app = app;
+global.$ = $;
 export default app;
