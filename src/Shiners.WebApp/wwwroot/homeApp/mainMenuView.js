@@ -3,6 +3,7 @@
  */
 import Marionette from 'backbone.marionette';
 import template from './mainMenuView.hbs.html';
+import _asdf from './mainMenuView.css';
 import app from './app.js';
 
 var View = Marionette.View.extend({
@@ -33,8 +34,10 @@ var View = Marionette.View.extend({
             this.$('.js-need-auth').hide();
         }
     },
-    hideMobileCollapsableMenu() {
-        this.$('.navbar-collapse').collapse('hide');
+    hideMobileCollapsableMenu(e) {
+        if (e.target !== $('.sh-btn-mobile-menu').get(0)) {
+            this.$('.navbar-collapse').collapse('hide');
+        }
     },
     setActiveItemForCurrentRoute() {
         this.$('.main-menu-item').each((i, el) => {
@@ -46,6 +49,7 @@ var View = Marionette.View.extend({
     },
     events: {
         'click .main-menu-item': function(e) {
+
             $(e.target).find('>a').click();
         }
 
