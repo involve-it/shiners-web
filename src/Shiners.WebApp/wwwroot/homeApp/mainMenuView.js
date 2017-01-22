@@ -3,7 +3,7 @@
  */
 import Marionette from 'backbone.marionette';
 import template from './mainMenuView.hbs.html';
-import _asdf from './mainMenuView.css';
+import  './mainMenuView.less';
 import app from './app.js';
 
 var View = Marionette.View.extend({
