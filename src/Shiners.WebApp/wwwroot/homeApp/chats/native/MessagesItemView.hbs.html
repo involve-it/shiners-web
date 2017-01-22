@@ -38,7 +38,9 @@
 {{ break; default: throw new Error("Unknown status"); } }}
         
     </li>
+    {{ if (obj.userId === user._id) { }}
     <li class="pull-right">
         <a class="text-danger removeMessage"> Удалить</a>
     </li>
+    {{ } }}
 </ul>
