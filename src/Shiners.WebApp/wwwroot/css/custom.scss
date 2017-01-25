@@ -252,7 +252,7 @@ a:active, a:focus {
 
 .sh-btn-mobile-menu {
     i {
-        font-size: 14px !important;
+        font-size: 20px !important;
     }
 }
 
@@ -687,13 +687,32 @@ input[type=radio] + label {
         &.create {
             background: $sh-create-btn;
             color: $sh-white-color;
+            @include sh-transition(opacity .25s);
       
             &.big {
                 font-size: 16px;
                 padding: .875em 1.5em;
             }
 
+            &:hover {
+				opacity: 0.8;
+			}
         }
+
+        &.action {
+			color: $sh-white-color;
+			background: $sh-main-blue-background;
+            @include sh-transition(opacity .25s);
+
+			&.big {
+				font-size: 16px;
+				padding: .875em 1.5em;
+			}
+			
+			&:hover {
+				opacity: 0.8;
+			}
+		}
 
         
     }
@@ -1702,7 +1721,8 @@ input[type=radio] + label {
     //font-family: 'Lato', sans-serif;
 
     .container {
-         margin-bottom: 10px;
+        padding-top: 20px;
+        margin-bottom: 10px;
     }
 
   &.sh-footer {
@@ -2406,6 +2426,34 @@ input[type=radio] + label {
 /*
     END USER PROFILE
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 992px) {
 

@@ -1,0 +1,995 @@
+﻿
+//@import (less) url("/css/sh-mixins.less");
+
+@sh-main-white-color: rgba(255,255,255, 1);
+@sh-main-lightgray-color: rgba(143,142,148, 1);
+@sh-main-gray-color: rgba(74,74,74, 1);
+@sh-main-content-bg: rgba(245, 245, 245, 1);
+
+// Links
+@a-color-link: rgba(74,144,226, 1);
+@a-color-link-hover: rgba(34,105,191, 1);
+@a-color-link-active: #4A90E2;
+
+// Backgrounds and colors
+@sh-main-blue-background: rgba(74,144,226, 1);
+@sh-main-red: rgba(251,61,56, 1);
+@sh-main-orange: rgba(252,147,38, 1);
+@sh-main-second-blue-background: rgba(79,114,213, 1);
+@sh-create-btn: rgba(251,61,56, 1);
+@sh-main-border-color: rgba(230,230,230, 1);
+@sh-main-color-icon: rgba(246, 172, 49, 1);
+
+/* ==================
+	MIXINS LESS
+===================== */
+
+
+
+// flex or inline-flex
+.sh-flex-display(@display: flex) {
+	display: ~"-webkit-@{display}";
+	display: ~"-ms-@{display}box"; // IE10 uses -ms-flexbox
+	display: ~"-ms-@{display}"; // IE11
+	display: @display;
+}
+
+// <positive-number>, initial, auto, or none
+.sh-flex(@columns: initial) {
+  -webkit-flex: @columns;
+      -ms-flex: @columns;
+          flex: @columns;
+}
+
+// row | row-reverse | column | column-reverse
+.sh-flex-direction(@direction: row) {
+  -webkit-flex-direction: @direction;
+      -ms-flex-direction: @direction;
+          flex-direction: @direction;
+}
+
+// flex-start | flex-end | center | space-between | space-around | stretch 
+.sh-align-content(@align: stretch) {
+  -webkit-align-content: @align;
+      -ms-align-content: @align;
+          align-content: @align;
+}
+
+// flex-start | flex-end | center | baseline | stretch 
+.sh-align-items(@align: stretch) {
+  -webkit-align-items: @align;
+      -ms-align-items: @align;
+          align-items: @align;
+}
+
+// flex-start | flex-end | center | space-between | space-around 
+.sh-justify-content(@justify: flex-start) {
+  -webkit-justify-content: @justify;
+      -ms-justify-content: @justify;
+          justify-content: @justify;
+}
+
+
+
+
+.box-shadow (@string) {
+	-webkit-box-shadow: @string;
+	-moz-box-shadow:    @string;
+	box-shadow:         @string;
+}
+
+.transition (@transition) {
+	-webkit-transition: @transition;  
+	-moz-transition:    @transition; 
+	-o-transition:      @transition;
+    transition:         @transition;  
+}
+
+.border-radius (@radius: 2px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius:    @radius;
+	border-radius:         @radius;
+
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+}
+
+/* ==================
+	******* END *******
+===================== */
+
+.sh-content {
+	background: @sh-main-content-bg;
+	
+	&.has-top-margin {
+		margin-top: 70px;
+	}
+}
+
+
+/* ==================
+	ABOUT US PAGE
+===================== */
+
+body.page--about {
+    
+    .sh-header-navbar-wrapper {
+	    display: none;
+    }
+
+    #sh-intro {
+        height: 600px;
+	    background: url(/images/about-us/sh-intro-bg.jpg) no-repeat center center;
+	    background-size: cover;
+	    z-index: 2;
+
+        .sh-intro-wrapper {
+		    .sh-flex-display();
+		    position: relative;
+		    height: 100%;
+            max-width: 95%;
+		    overflow: hidden;
+	    }
+
+        .sh-intro-tagline {
+            width: 100%;
+		    max-width: 400px;
+		    .sh-flex-display();
+            .sh-flex-direction(column);
+		    .sh-justify-content(center);
+		    padding: 40px 0 0 0;
+
+            .sh-intro-tagline-wrapper {}
+
+            //for animated
+		    .sh-logo-about-us {
+			
+			    &.is-hidden {
+				    display: block;
+				    opacity: 0;
+				    position: fixed;
+				    left: -20%;
+				    top: 17px;
+                    line-height: 1;
+				    margin: 0;
+                    z-index: 6;
+                    transition: left .25s, opacity .25s;
+				
+				
+				    a {
+					    font-size: 34px;
+				    }
+			    }
+			
+			    &.slide-in {
+				    left: 3%;
+				    opacity: 1;
+			    }
+		    }
+
+            .sh-create-about-us {
+			
+			    &.is-hidden {
+				    display: block;
+				    opacity: 0;
+				    position: fixed;
+				    right: -20%;
+				    top: 0;
+                    z-index: 6;
+				    padding: .8em 1.2em;
+				    margin: 14px 0 0;
+				    transition: right .25s, opacity .25s;
+			    }
+
+			    &.slide-in {
+				    right: 3%;
+				    opacity: 1;
+			    }
+		    }
+
+            h1 {
+			    margin-bottom: 16px;
+			
+			    a {
+				    font-size: 54px;
+				    line-height: 1;
+				    text-transform: uppercase;
+				    text-decoration: none;
+				    color: @sh-main-white-color;
+				    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			    }
+		    }
+		
+		    .sh-sub-intro-text {
+			    color: @sh-main-white-color;
+			    margin-bottom: 25px;
+                font-size: 20px;
+		    }
+        }
+
+        .sh-intro-mockup {
+		    position: absolute;
+		    height: 100%;
+		    width: 440px;
+		    bottom: -85px;
+		    right: 0;
+		    background: url(/images/about-us/sh-intro-mockup.png) no-repeat center center;
+		    background-size: contain;
+		    z-index: 2;
+	    }
+    } /* END #sh-intro */
+
+    .sh-page-block {
+	    position: relative;
+	    background: @sh-main-white-color;
+	    margin-bottom: 16px;
+        .box-shadow( 0 1px 3px rgba(0, 0, 0, 0.2) );
+	    border-top: 1px solid @sh-main-white-color;
+
+	    &:last-child {
+		    margin: 0;
+	    }
+    } /* END .sh-page-block */
+
+    //Clear header background
+    #wrapper {
+	    position: relative;
+
+        //For stick down footer, part I
+        .sh-flex-display();
+        .sh-flex-direction(column);
+        min-height: 100vh;
+	
+	    #header {
+		    position: absolute;
+		    top: 0;
+		    width: 100%;
+		    z-index: 3;
+		
+		    .sh-header-topline {
+			    background: transparent;
+
+                .sh-header-topline-main {
+                    .sh-header-topline-item {
+                        &:first-child {
+                            .sh-show-modal-city {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+		    }
+	    }
+
+        //For stick down footer, part II
+        #appContent {
+            .sh-flex(1 0 auto);
+        }
+    }
+
+    //Secondary navigation
+    .sh-secondary-nav {
+	    position: relative;
+	    height: 70px;
+	    background-color: rgba(3,13,24, .95);
+        .transition(height 0.3s);
+	    z-index: 5;
+	    -webkit-font-smoothing: antialiased;
+	    -moz-osx-font-smoothing: grayscale;
+	
+	    nav, ul {
+		    height: 100%;
+	    }
+	
+	    ul {
+            .sh-flex-display();
+		    .sh-align-items(center);
+            .sh-justify-content(center);
+		    position: static;
+		    width: auto;
+		    max-width: 100%;
+		    visibility: visible;
+		    text-align: center;
+		    background-color: transparent;
+		    right: 5%;
+		    bottom: 20px;
+		    backface-visibility: hidden;
+            padding: 0;
+            margin: 0;
+		
+		    li {
+			    display: inline-block;
+			    margin-left: -4px;
+			
+			    a {
+				    text-transform: uppercase;
+				    position: relative;
+				    text-align: center;
+				    display: block;
+				    padding: 0 16px;
+				    font-size: 14px;
+				    font-weight: 500;
+				    color: rgba(240, 238, 225, .3);
+				    text-decoration: none;
+				
+				    &:hover, &:focus {
+					    color: @sh-main-white-color;
+				    }
+				
+				    &.active {
+					    color: @sh-main-white-color;
+				    }
+			    }
+		    }
+	    }
+
+	    &.is-fixed {
+		    position: fixed;
+		    left: 0;
+		    top: 0;
+		    width: 100%;
+		    z-index: 5;
+	    }
+	
+	    &.sh-animated {
+		    box-shadow: 0 1px 2px rgba(0,0,0, .2);
+	    }
+    } /* END .sh-secondary-nav */
+
+
+    .sh-about-us {
+	    padding: 45px 0;
+
+        .sh-about-us-wrapper {
+            .sh-flex-display();
+            .sh-flex-direction(column);
+
+            .sh-intro-description {
+			    text-align: center;
+			    margin-bottom: 0;
+
+                .sh-intro-description-wrapper {
+				    position: relative;
+                    background: rgba(74,144,226, .05);
+				    width: 100%;
+				    padding: 0 15px;
+
+                    h1, p {
+					    padding: 0 45px;
+				    }
+				
+				    h1 {
+					    padding-top: 45px;
+					    padding-bottom: 35px;
+					    font-size: 28px;
+					    font-weight: 400;
+					    color: @sh-main-gray-color;
+				    }
+
+                    p {
+					    padding-bottom: 16px;
+					    font-size: 20px;
+					    font-weight: 400;
+					    color: @sh-main-gray-color;
+					
+					    &:last-child {
+						    padding-bottom: 0;
+					    }
+				    }
+				
+				    &:before {
+					    content: '';
+					    position: absolute;
+					    top: 100%;
+					    left: 0;
+					    right: 0;
+					    padding-bottom: 7%;
+					    background: rgba(74,144,226, .05);
+					    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+				    }
+                }
+            }
+
+            .sh-intro-how-it-work,
+		    .sh-what-we-are-useful,
+		    .sh-contact-us {
+			    padding: 65px 0;
+		    }
+
+            .sh-intro-how-it-work {
+			    .sh-intro-how-it-work-wrapper {
+				    padding: 0 15px;
+				
+				    .sh-intro-how-it-work-ul {
+					    margin: 45px 0 0;
+					
+					    .sh-intro-how-it-work-list {
+						    border: 0;
+						    padding: 0;
+						    margin: 0;
+						    text-align: center;
+						    list-style: none;
+						
+						    li {
+							    text-align: center;
+							    display: table-cell;
+							    width: 1%;
+							
+							    a {
+								    font-size: 30px;
+								    line-height: 30px;
+                                    .sh-flex-display(inline-flex);
+                                    .sh-align-items(center);
+                                    .sh-justify-content(center);
+                                    .border-radius(50%);
+								    color: @sh-main-gray-color;
+								    background: @sh-main-blue-background;
+								    height: 150px;
+								    width: 150px;
+                                    .box-shadow( 0 2px 20px rgba(0,0,0, .1) );
+
+                                    i {
+                                        color: @sh-main-white-color;
+                                        padding: 0;
+                                        margin: 0;
+                                        font-size: 85px;
+                                    }
+							    }
+							
+							    h5 {
+								    color: @sh-main-gray-color;
+								    font-size: 16px;
+								    margin: 20px 0 0;
+								    text-transform: uppercase;
+							    }
+						    }
+					    }
+				    }
+			    }
+		    } /* END .sh-intro-how-it-work */
+
+            .sh-what-we-are-useful {
+			    background: rgba(74,144,226, .05);
+			
+			    .sh-what-we-are-useful-wrapper {
+				    padding: 0 15px;
+				
+				    .sh-what-we-are-useful-bg {
+					    position: relative;
+					    height: 352px;
+					    width: 90%;
+					    margin: 45px auto;
+					    background-position: 50% 50%;
+					    background-repeat: no-repeat;
+					    background-image: url(/images/about-us/sh-usefull-hor.png);
+					    background-size: contain;
+				    }
+				
+				    .sh-what-we-are-useful-features {
+                        .sh-flex-display();
+                        .sh-flex-direction(row);
+					    .sh-justify-content(center);
+					    margin: 60px 45px;
+					
+					    .sh-features-left,
+					    .sh-features-right {
+						    .sh-flex-display();
+                            .sh-flex-direction(column);
+					    }
+					
+					    .sh-features-left {}
+					
+					    .sh-features-center {
+                            .sh-flex-display();
+                            .sh-align-items(center);
+					        .sh-justify-content(center);
+						    padding: 0 50px;
+						
+						    .sh-is-sh {
+							    .sh-flex-display();
+                                .sh-align-items(center);
+					            .sh-justify-content(center);
+							    background: @sh-main-blue-background;
+							    height: 150px;
+							    width: 150px;
+							    border-radius: 50%;
+							    box-shadow: 0 2px 20px rgba(0,0,0, .1);
+							
+							    span {
+								    background-image: url("/images/sh-logo.png");
+								    background-repeat: no-repeat;
+								    background-position: center center;
+								    background-size: contain;
+								    height: 110px;
+								    width: 110px;								
+							    }
+						    }
+					    }
+					
+					    .sh-features-right {}
+					
+					    .sh-features-block {
+						    background: @sh-main-white-color;
+                            .border-radius(2px);
+						    box-shadow: 0 2px 20px rgba(0,0,0, .1);
+						    padding: 15px;
+						    margin-bottom: 20px;
+						    text-align: center;
+                            .sh-flex(1);
+						
+						    h5 {
+							    color: @sh-main-gray-color;
+							    font-size: 16px;
+							    margin-bottom: 10px;
+							    text-transform: uppercase;
+						    }
+						
+						    p {
+							    font-size: 14px;
+							    color: @sh-main-lightgray-color;
+						    }
+						
+						    &:last-child {
+							    margin-bottom: 0;
+						    }
+						
+					    }
+				    }
+
+                    .sh-set-sh {
+                        .create {
+                            box-shadow: 0 4px 20px rgba(0,0,0, .1);
+                            padding: 18px;
+                        }
+                    }
+
+			    }
+		    } /* END .sh-what-we-are-useful */
+
+		    .sh-who-we-are {
+			    border-top: 5px solid @sh-main-border-color;
+			
+			    .sh-who-we-are-wrapper {
+				    padding: 0 15px;
+				    margin-top: -5px;
+				    text-align: center;
+				
+				    > div {
+					    padding: 30px 15px;
+					
+					    h5 {
+						    color: @sh-main-gray-color;
+						    font-size: 16px;
+						    margin-bottom: 10px;
+						    text-transform: uppercase;
+					    }
+
+					    p {
+						    font-size: 14px;
+						    color: @sh-main-lightgray-color;
+					    }
+				    }
+				
+				    .sh-red {border-top: 5px solid @sh-main-red;}
+				    .sh-blue {border-top: 5px solid @sh-main-blue-background;}
+				    .sh-orange {border-top: 5px solid @sh-main-orange;}
+			    }
+		    } /* END .sh-who-we-are */
+
+		    .sh-contact-us {
+			    position: relative;
+			    //background-color: rgba(74,144,226, .05);
+			
+			    .sh-contact-us-bg {
+				    position: absolute;
+				    background-image: url("/images/about-us/map-trans.png");
+				    background-position: 50% 0%;
+				    background-size: contain;
+				    background-repeat: no-repeat;
+				    top: 0;
+				    bottom: 0;
+				    left: 0;
+				    right: 0;
+				    z-index: 0;
+				    opacity: .1;
+			    }
+			
+			    .sh-contact-us-wrapper {
+				    position: relative;
+				    padding: 0 15px;
+				    z-index: 2;
+				
+				    form {
+					    width: 90%;
+					    margin: 60px auto 0 auto;
+				    }
+
+				    .form-group {
+                        .sh-flex-display();
+					    margin-bottom: 30px;
+				    }
+				
+				    .form-control {
+					    outline: none;
+					    display: block;
+					    width: 100%;
+					    padding: 6px 12px;
+					    font-size: 16px;
+					    height: 60px;
+					    border: 1px solid @sh-main-border-color;
+					    box-shadow: 0 0 40px rgba(0,0,0, .05);
+                        .transition( box-shadow .25s ease-in-out );
+					
+					    &:focus, &:active {
+                            .box-shadow(none);
+					    }
+				    }
+
+				    textarea {
+					    &.form-control {
+						    height: auto;
+					    }
+				    }
+			    }
+		    }
+        }
+    }
+
+} /* END .page--about-us */
+
+
+
+@media screen and (max-width: 992px) {
+	
+     body.page--about {
+
+	    #sh-intro {
+		    height: 400px;
+
+		    .sh-intro-mockup {
+			    width: 350px;
+		    }
+		
+		    .sh-intro-tagline {
+			    max-width: 350px;
+
+			    .sh-logo-about-us {
+				    &.is-hidden {
+					    display: none;
+				    }
+			    }
+
+			    .sh-create-about-us {
+				    &.is-hidden {
+					    display: none;
+				    }
+			    }
+		    }
+	    }
+
+	    .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work, 
+	    .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful, 
+	    .sh-about-us .sh-about-us-wrapper .sh-contact-us {
+		    padding: 25px 0;
+	    }
+
+	    .sh-about-us {
+		    .sh-about-us-wrapper {
+			    .sh-what-we-are-useful {
+				    .sh-what-we-are-useful-wrapper {
+					    .sh-what-we-are-useful-bg {
+						    margin: 0 auto;
+						    height: 300px;
+					    }
+
+					    .sh-what-we-are-useful-features {
+						    margin: 40px 15px;
+						
+						    .sh-features-left {
+							    margin-right: 15px;
+						    }
+						
+						    .sh-features-right {
+							    .sh-features-block {}
+						    }
+						
+						    .sh-features-center {
+							    display: none;
+						    }
+					    }
+				    }
+			    }
+		    }
+	    }
+
+	    .sh-secondary-nav {
+		    &.is-fixed {
+			    z-index: 5;
+		    }
+	    }
+
+    }
+	
+}
+
+
+@media screen and (max-width: 767px) {
+
+    body.page--about {
+
+	    #sh-intro {
+		    height: 350px;
+		
+		    .sh-intro-tagline {
+			    max-width: 100%;
+			    padding: 20px 0 0 0;
+			
+			    .sh-intro-tagline-wrapper {
+                    .sh-flex-display();
+                    .sh-justify-content(center);
+                    .sh-flex-direction(column);
+                    .sh-align-items(center);
+				    text-align: center;
+			    }
+		    }
+		
+		    .sh-intro-mockup {
+			    display: none;
+		    }
+	    }
+
+	    .sh-about-us {
+		    .sh-about-us-wrapper {
+			    .sh-intro-description {
+				    margin-bottom: 25px;
+				
+				    .sh-intro-description-wrapper {
+					    h1 {
+						    font-size: 22px;
+						    padding: 25px 15px;
+					    }
+					
+					    p {
+						    font-size: 18px;
+						    padding: 0 0 15px 0;
+					    }
+				    }
+			    }
+
+			    .sh-what-we-are-useful {
+				    .sh-what-we-are-useful-wrapper {
+					
+					    .sh-what-we-are-useful-features {
+						    .sh-flex-direction(column);
+						    margin: 40px 0;
+						
+						    .sh-features-left {
+							    margin-right: 0;
+							    margin-bottom: 20px;
+						    }
+					    }
+					
+					    .sh-what-we-are-useful-bg {
+						    height: 200px;
+					    }
+				    }
+			    }
+			
+			    .sh-intro-how-it-work {
+				    .sh-intro-how-it-work-wrapper {
+					    .sh-intro-how-it-work-ul {
+						    .sh-intro-how-it-work-list {
+							    li {
+								    width: auto;
+								    display: block;
+								    margin-bottom: 25px;
+								
+								    &:last-child {
+									    margin-bottom: 0;
+								    }
+							    }
+						    }
+					    }
+				    }
+			    }
+
+			    .sh-contact-us {
+				    .sh-contact-us-wrapper {
+
+					    .form-group {
+                            .sh-flex-direction(column);
+						
+						    div {
+							    :first-child {
+								    margin-bottom: 20px;
+							    }
+						    }
+					    }
+					
+					    form {
+						    width: 95%;
+					    }
+				    }
+			    }
+		    }
+	    }
+	 
+	    .sh-section-hero-headline {
+		    font-size: 36px;
+	    }
+
+	    .sh-section-intro {
+		    font-size: 22px;
+	    }
+    }
+}
+
+@media screen and (max-width: 480px) {
+	
+     body.page--about {
+
+	    #sh-intro {
+		    height: 350px;
+	    }
+	
+	    .container {
+		    padding: 0;
+	    }
+	
+	    .sh-secondary-nav {
+            
+		    ul {
+			    li {
+				    margin: 0;
+				
+				    a {
+					    padding: 0 6px;
+					    font-size: 12px;
+				    }
+			    }
+		    }
+	    }
+	
+	    .sh-about-us {
+		    .sh-about-us-wrapper {
+
+			    .sh-intro-how-it-work {
+				    .sh-intro-how-it-work-wrapper {
+					    .sh-intro-how-it-work-ul {
+						    margin: 25px 0 0;
+
+						    .sh-intro-how-it-work-list {
+							    li {
+								    a {
+									    height: 100px;
+									    width: 100px;
+
+                                        i {
+                                            font-size: 45px;
+                                        }
+								    }
+								
+								    h5 {
+									    font-size: 14px;
+								    }
+							    }
+						    }
+					    }
+				    }
+			    }
+			
+			    .sh-intro-description {
+				    .sh-intro-description-wrapper {
+					    h1 {
+						    font-size: 20px;
+						    padding: 25px 15px;
+					    }
+
+					    p {
+						    font-size: 16px;
+						    padding: 0 0 15px 0;
+					    }
+				    }
+			    }
+		    }
+	    }
+
+
+	    .sh-section-hero-headline {
+		    font-size: 28px;
+	    }
+
+	    .sh-section-intro {
+		    font-size: 20px;
+	    }
+	
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+	
+     body.page--about {
+
+        .container {
+		    width: 100%;
+	    }
+
+	    #sh-intro {
+		    .sh-intro-tagline {
+			    .sh-logo-about-us {
+				
+				    &.is-hidden {
+					    top: 13px;
+
+					    a {
+						    font-size: 28px;
+					    }
+				    }
+
+				    &.slide-in {
+					    left: 2%;
+				    }
+				
+			    }
+
+			    .sh-create-about-us {
+				
+				    &.is-hidden {
+					    font-size: 14px;
+				    }
+
+				    &.slide-in {
+					    right: 2%;
+				    }
+			    }
+		    }
+	    }
+
+	    .sh-secondary-nav  {
+		    ul {
+			    li {
+				    margin-left: -15px;
+				
+				    a {
+					    font-size: 14px;
+				    }
+			    }
+		    }
+	    }
+    }
+}
+
+@media (min-width: 1200px) {
+
+    body.page--about {
+
+	    .container {
+		    width: 1170px;
+	    }
+
+        .sh-secondary-nav  {
+		    ul {
+			    li {
+				
+				    a {
+					    font-size: 16px;
+				    }
+			    }
+		    }
+	    }
+
+    }
+}
+
+@media (min-width: 1540px) {
+	
+    body.page--about {
+
+        #sh-intro {
+		    height: 600px;
+	    }
+
+    }
+	
+}
