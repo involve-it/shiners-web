@@ -8,130 +8,303 @@
         </ol>
     </div>
 </section>-->
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <span class="font-lato weight-300"><i class="fa fa-clock-o"></i> Опубликовано {{=moment(obj.timestamp).fromNow()}}</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="owl-carousel buttons-autohide controlls-over nomargin" id="postImages" data-plugin-options='{"items": 1, "autoPlay": {{-_.size(details.photo)>1?'3500':'false'}}, "autoHeight": false, "navigation": true, "pagination": false, "transitionStyle":"fade", "progressBar":"false"}'>
-                    {{ if (_.size(details.photos)>0){ }}
-                        {{_.each(details.photos,function(photo){ }}
-                            <div>
-                                <img class="img-responsive" src="{{=photo.data}}" alt="">
+
+
+<main class="sh-content">
+    <div class="sh-post-details">
+        <div class="container">
+            <div class="sh-page-block">
+                <div class="sh-post-details-wrapper">
+                    <!-- SIDE LEFT -->
+                    <div class="sh-side-left">                  
+                        <h1>{{=details.title}}</h1>
+                        <div class="sh-post-published">
+                            <div class="sh-post-written">
+                                <span><i class="fa fa-clock-o"></i> Опубликовано, {{=moment(obj.timestamp).fromNow()}}, - до {{=moment(endDatePost).format("ll")}}</span>
                             </div>
-                        {{});}}                 
-                    {{ } else { }}
-                        <div>
-                            <img class="img-responsive" src="/images/no_image.png" alt="">
+                            <!-- sh-color-red, sh-color-yellow, sh-color-green -->
+                            <div class="sh-post-item-left sh-color-yellow">
+                                <span class="sh-item-left-text">Осталось 28 дней</span>
+                                <span class="sh-item-left-track">
+                                    <span class="sh-item-left-fill" style="width: 42%"></span>
+                                </span>
+                            </div>
                         </div>
-                    {{ } }}
+
+                        <div class="sh-photos">
+                            <div class="single-photo"></div>
+
+                            <!--
+                            <div class="single-photo owl-carousel buttons-autohide controlls-over nomargin" id="postImages" data-plugin-options='{"items": 1, "autoPlay": {{-_.size(details.photo)>1?'3500':'false'}}, "autoHeight": false, "navigation": true, "pagination": false, "transitionStyle":"fade", "progressBar":"false"}'>
+                                {{ if (_.size(details.photos)>0){ }}
+                                {{_.each(details.photos,function(photo){ }}
+                                <div>
+                                    <img class="img-responsive" src="{{=photo.data}}" alt="">
+                                </div>
+                                {{});}}
+                                {{ } else { }}
+                                <div>
+                                    <img class="img-responsive" src="/images/no_image.png" alt="">
+                                </div>
+                                {{ } }}
+                            </div>
+                             -->
+
+                            <div class="owl-carousel buttons-autohide controlls-over" data-plugin-options='{"singleItem": true, "autoPlay": true, "navigation": true, "pagination": true, "transitionStyle":"fade"}'>
+                                <div>
+                                    <img class="img-responsive" src="http://theme.stepofweb.com/Smarty/v1.1.4/HTML/assets/images/demo/1200x800/5-min.jpg" alt="">
+                                </div>
+                                <div>
+                                    <img class="img-responsive" src="http://theme.stepofweb.com/Smarty/v1.1.4/HTML/assets/images/demo/1200x800/6-min.jpg" alt="">
+                                </div>
+                                <div>
+                                    <img class="img-responsive" src="http://theme.stepofweb.com/Smarty/v1.1.4/HTML/assets/images/demo/1200x800/7-min.jpg" alt="">
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                        </div>
+
+                        <!-- VISIBLE only until 992px -->
+                        <div class="sh-post-widget-composed hidden-md hidden-lg">
+
+                            <!-- SUMMARY information -->
+                            <div class="sh-post-summary-information sh-info-header">
+                                <div class="sh-info-header-within">
+                                    <span>Сводная информация</span>
+                                </div>
+
+                                <ul class="sh-post-info sh-with-dotted">
+                                    {{if(obj.stats) { }}
+                                        <li><div><span class="sh-item">Просмотров</span><span class="sh-item-right">{{=stats.seenTotal}}</span></div></li>
+                                    {{ } }}
+                                    {{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}
+                                    <li><div><span class="sh-item">Статус</span><span class="sh-item-right">{{=isDynamic?'Динамический':'Статический'}}</span></div></li>
+                                    {{if (obj.type) { }}
+                                        <li><div><span class="sh-item">Тип</span><span class="sh-item-right"><span class="label bg-type-category-{{=obj.type}}">{{=obj.type}}</span></span></div></li>
+                                    {{ } }}
+                                    <li><div><span class="sh-item">Дистанция</span><span class="sh-item-right">{{if(obj.distance && obj.distanceType){ }} {{=distance>=0?distance.toFixed(1):'Не определена'}} {{=distanceType==='km'?'км':'miles'}} {{ } }}</span></div></li>
+                                </ul>
+                            </div>
+
+                            {{if (details.price) { }}
+                                <!-- PRICE -->
+                                <div class="sh-post-widget">
+                                    <div class="sh-post-top-price">
+                                        <div class="sh-price-wrapper sh-rub">
+                                            <div class="sh-price-number">{{=details.price}}</div>
+                                            <div class="sh-price-prefix"></div>
+                                        </div>
+                                        <div class="sh-price-footer">за месяц</div>
+                                    </div>
+                                </div>
+                            {{ } }}
+
+                        </div>
+
+                        <div class="sh-post-tab-menu">
+                            <div class="sh-post-tab-menu-wrapper">
+                                <ul class="sh-post-tab-items">
+                                    <li class="sh-tab-item"><a class="active" href="#sh-description">Описание</a></li>
+                                    <li class="sh-tab-item"><a href="#sh-location">Местоположение</a></li>
+                                    <li class="sh-tab-item"><a href="#sh-review">Комментарии</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- show if .sh-post-tab-menu-wrapper class have .stick-menu-->
+                            <div class="sh-post-tab-menu-sticky hidden"></div>
+                        </div>
+
+                        <div class="sh-post-creator">
+                            <div class="sh-post-creator-wrapper row">
+                                <!-- AVATAR -->
+                                <div class="sh-post-creator-avatar col-md-3">
+                                    <a class="sh-creator-photo" href="/user/{{=user._id}}">
+                                        <img class="sh-post-creator-username-avatar" src="{{=user.image && user.image.imageUrl?'/Img/Index?url='+encodeURIComponent(user.image.imageUrl)+'&w=90&h=90':'/images/avatar.png'}}" alt="Фотография в профиле">
+                                    </a>
+                                </div>
+
+                                <!-- USERNAME, ACTION USER'S -->
+                                <div class="sh-post-creator-info col-md-9">
+                                    <div class="sh-post-creator-username">{{=user.username}}</div>
+                                    <!-- Here Will be rating, location -->
+                                    <div class="sh-post-creator-display-loc-rew">
+                                        <a href="#">Белгородская обл., Белгород</a>
+                                    </div>
+
+                                    {{if (obj.currentUser) { }}
+                                        <div class="sh-post-creator-actions">
+                                            <div class="sh-actions-btn-group">                                            
+                                                <a href="/messages/to/{{=user._id}}?postId={{=_id}}" class="ui sh-button standard action action-link">Связаться с пользователем</a>                                                                                    
+                                            </div>
+                                        </div>
+                                    {{ } }}
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="sh-description" class="sh-post-description sh-section">
+                            <div class="sh-post-description-wrapper">
+                                <h4>Об этом посте</h4>
+                                <p>{{=details.description}}</p>
+
+                            </div>
+                        </div>
+
+
+                        <div id="sh-location" class="sh-post-location sh-section">
+                            <div class="sh-post-location-wrapper">
+                                <h4>Местоположение</h4>
+                                <div class="sh-post-location-info">
+                                    <div class="sh-post-location-distance">
+                                        <i class="fa fa-location-arrow" aria-hidden="true"></i> От вас <span>{{if(obj.distance && obj.distanceType){ }} {{=distance>=0?distance.toFixed(1):'Дистанция не определена'}} {{=distanceType==='km'?'км':'miles'}} {{ } }}</span>
+                                    </div>
+
+                                    <!-- Static or dynamic -->
+                                    <div class="sh-post-location-address dynamic">
+                                        <span><i class="fa fa-map-marker" aria-hidden="true"></i> Белгородская обл., Белгород</span>
+                                    </div>
+
+                                </div>
+                                <div id="sh-map"></div>
+                            </div>
+                        </div>
+
+                        <div id="sh-review" class="sh-post-review sh-section hidden">
+                            <div class="sh-post-reviews-wrapper">
+                                <h4>Комментарии <span>2</span></h4>
+
+                                <div class="sh-post-form-review"></div>
+
+                                <div class="sh-post-reviews">
+                                    <div class="sh-reviews-items">
+                                        <!--1-->
+                                        <div class="sh-reviews-item">
+                                            <div class="sh-reviews-avatar">
+                                                <a class="sh-creator-photo" href="#link-to-user-profile">
+                                                    <img src="http://fakeimg.pl/65x65/" alt="Фотография в профиле">
+                                                </a>
+                                            </div>
+                                            <div class="sh-reviews-content">
+                                                <div class="sh-reviews-content-inner">
+                                                    <p class="sh-reviews-content-message">
+                                                        Это было мое первое занятие. Просто удивительно, как быстро можно получить результат от физических упражнений.
+                                                        Честно сказать, никогда бы не подумал, что эффект может быть таким ))) В любом случае всем советую этого парня - он профи своего дела. Респект тренеру.
+                                                    </p>
+                                                </div>
+                                                <div class="sh-reviews-content-footer">
+                                                    <a class="sh-reviews-content-user" href="#">Теска Пупкин</a>
+                                                    <span>·</span>
+                                                    <span class="sh-reviews-content-meta">9 января 2017 г., 12:22:37</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--2-->
+                                        <div class="sh-reviews-item">
+                                            <div class="sh-reviews-avatar">
+                                                <a class="sh-creator-photo" href="#link-to-user-profile">
+                                                    <img src="http://fakeimg.pl/65x65/" alt="Фотография в профиле">
+                                                </a>
+                                            </div>
+                                            <div class="sh-reviews-content">
+                                                <div class="sh-reviews-content-inner">
+                                                    <p class="sh-reviews-content-message">
+                                                        Я воспользовался вашим советом и могу подтвердить комментарий выше. Тренировки - агонь, именно через "а".
+                                                    </p>
+                                                </div>
+                                                <div class="sh-reviews-content-footer">
+                                                    <a class="sh-reviews-content-user" href="#">Жека Космос</a>
+                                                    <span>·</span>
+                                                    <span class="sh-reviews-content-meta">9 января 2017 г., 15:00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- SIDE RIGHT -->
+                    <div class="sh-side-right">
+                        <div class="sh-post-widget sh-visible-md-flex sh-visible-lg-flex">
+                            {{if (details.price) { }}
+                                <!-- PRICE -->
+                                <div class="sh-post-top-price">
+                                    <div class="sh-price-wrapper sh-rub">
+                                        <div class="sh-price-number">{{=details.price}}</div>
+                                        <div class="sh-price-prefix"></div>
+                                    </div>
+                                    <div class="sh-price-footer">за месяц</div>
+                                </div>
+                            {{ } }}
+                        </div>
+
+                        <div class="sh-post-summary-information sh-info-header visible-md visible-lg">
+                            <div class="sh-info-header-within">
+                                <span>Сводная информация</span>
+                            </div>
+
+                            <ul class="sh-post-info sh-with-dotted">
+                                {{if(obj.stats) { }}
+                                <li><div><span class="sh-item">Просмотров</span><span class="sh-item-right">{{=stats.seenTotal}}</span></div></li>
+                                {{ } }}
+                                {{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}
+                                <li><div><span class="sh-item">Статус</span><span class="sh-item-right">{{=isDynamic?'Динамический':'Статический'}}</span></div></li>
+                                {{if (obj.type) { }}
+                                <li><div><span class="sh-item">Тип</span><span class="sh-item-right"><span class="label bg-type-category-{{=obj.type}}">{{=obj.type}}</span></span></div></li>
+                                {{ } }}
+                                <li><div><span class="sh-item">Дистанция</span><span class="sh-item-right">{{if(obj.distance && obj.distanceType){ }} {{=distance>=0?distance.toFixed(1):'Не определена'}} {{=distanceType==='km'?'км':'miles'}} {{ } }}</span></div></li>
+                            </ul>
+                        </div>
+
+                        <div class="sh-post-wish-and-more">
+                            <div class="sh-post-wish hidden"></div>
+                            <div class="sh-post-more">
+                                <div class="sh-post-more-wrapper">
+                                    <a href="#" class="sh-share-btn sh-text-center">
+                                        <span>E-mail</span>
+                                    </a>
+                                    <a href="#" class="sh-share-btn sh-text-center">
+                                        <span>Вконтакте</span>
+                                    </a>
+                                    <span class="sh-more-btn sh-text-center">
+                                        ··· <span>Ещё</span>
+                                    </span>
+                                </div>
+
+                                <div class="sh-report-message">
+                                    <i class="fa fa-exclamation" aria-hidden="true"></i>
+                                    <a href="#">Сообщите об этом объявлении</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <table class="table table-striped">
-                    {{if(obj.stats) { }}
-                        <tr>
-                            <td>
-                                <i class="fa fa-eye"></i> Просмотров
-                            </td>
-                            <td>
-                                Всего: {{=stats.seenTotal}} Сегодня: {{=stats.seenToday}}
-                            </td>
-                        </tr>
-                    {{ } }}
-                    <tr>
-                        <td>
-                            <i class="fa fa-street-view"></i> Статус
-                        </td>
-                        <td>
-                            {{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}
-                            <span title="{{=isDynamic?'Динамическое объявление':'Статическое'}}">
-                                <i class="bz-icon bz-icon-{{=isDynamic?'dinamic':'flag' }} text-{{=isDynamic?'success':'primary'}}"></i>
-                            </span>
-                        </td>
-                    </tr>
-                    {{if (obj.type) { }}
-                        <tr>
-                            <td>
-                                <i class="fa fa-list-alt"></i> Тип
-                            </td>
-                            <td>
-                                <span class="label bg-type-category-{{=obj.type}}">{{=obj.type}}</span>
-                            </td>
-                        </tr>
-                    {{ } }}
-                    
-                    <tr>
-                        <td>
-                            <i class="fa fa-location-arrow"></i> Дистанция
-                        </td>
-                        {{if(obj.distance && obj.distanceType){ }}
-                            <td> {{=distance>=0?distance.toFixed(1):'Не определена'}} {{=distanceType==='km'?'км':'miles'}} </td>
-                        {{ } }}
-                    </tr>
-                    {{if(obj.social) { }}
-                        <tr>
-                            <td>
-                                <i class="fa fa-heart"></i> Нравится
-                            </td>
-                            <td>
-                                {{=_.size(social.likes)}}
-                            </td>
-                        </tr>
-                    {{ } }}
-                    <tr>
-                        <td>
-                            <div id="vk_like"></div>
-                        </td>
-                        <td id="fb_like">
-                            <div class="fb-like" data-href="https://shiners.ru/posts/{{=_id}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="weight-300">{{=details.title}}</h2>
-                <!--<div class="rating rating-4 size-20 margin-top-10 text-blue"></div>-->
-                <ul class="portfolio-detail-list list-unstyled nomargin">
-                    <li><span><i class="fa fa-calendar"></i>Действует до:</span> {{=moment(endDatePost).format("ll")}}</li>
-                    {{if (details.price) { }}
-                        <li><span><i class="fa fa-money"></i>Стоимость:</span> {{=details.price}}</li>
-                    {{ } }}
-                    {{if (details.locations){ }}
-                    {{_.each(details.locations,function(loc){ }}
-                        <li>
-                            <span>
-                                <i class="fa fa-map-marker"></i> Адрес
-                            </span>
-                            {{=loc.name}}
-                        </li>
-                    {{});}}
-                    {{ } }}
-                </ul>
-                <p class="font-lato weight-300 size-15">{{=details.description}}</p>
-            </div>
-        </div>
-        <div class="row alternate">
-            <div class="col-md-12">
-                <span class="margin-right-20">
-                    <a href="/user/{{=user._id}}">
-                        <img class="" src="{{=user.image && user.image.imageUrl?'/Img/Index?url='+encodeURIComponent(user.image.imageUrl)+'&w=50&h=50':'/images/avatar.png'}}" alt="" width="50" height="50">
-                    </a>
-                    <span><strong>{{=user.username}}</strong> </span>
-                </span>
-                {{if (obj.currentUser) { }}
-                    <a href="/messages/to/{{=user._id}}?postId={{=_id}}" class="btn btn-blue">Написать сообщение</a>
-                {{ } }}
-                
-                <!--<button type="button" class="btn btn-leaf"><i class="fa fa-heart-o"></i> Нравится</button>-->
+
+                <div class="sh-same-posts hidden">
+                    <div class="container">
+                        <div class="sh-same-posts-wrapper">
+                            <h4>Похожие посты</h4>
+
+                            <div class="sh-text-center">Скоро на всех устройствах мира</div>
+                            <br>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-    <div class="container margin-top-20" id="relatedPostsContainer"></div>
-</section>
+</main>
+
+
