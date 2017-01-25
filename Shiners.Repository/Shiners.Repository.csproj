@@ -66,6 +66,7 @@
     <Compile Include="Stores\MessagesStore.cs" />
     <Compile Include="Stores\IStore.cs" />
     <Compile Include="Stores\ChatsStore.cs" />
+    <Compile Include="Stores\BlogStore.cs" />
     <Compile Include="Stores\PostsStore.cs" />
     <Compile Include="Stores\UsersStore.cs" />
   </ItemGroup>
