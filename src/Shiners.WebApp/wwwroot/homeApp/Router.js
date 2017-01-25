@@ -33,7 +33,10 @@ export default Marionette.AppRouter.extend({
         'messages/to/:remoteUserId':'messagesTo',
         'legal/confidential': 'legalConfidential', // same as Privacy Policy
         'legal/user-agreement': 'legalUserAgreement', // Terms of Use?
-        'legal/post-publishing-rules': 'legalPostPublishingRules'
+        'legal/post-publishing-rules': 'legalPostPublishingRules',
+        //blog:
+        'blog': 'blogHome',
+        'blog/post/:id': 'blogPostId',
     },
 
     policy: {
