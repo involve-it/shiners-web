@@ -291,3 +291,738 @@
     overflow-y: auto;
   }
 }
+/* ==================
+	MIXINS LESS
+===================== */
+/* ==================
+	******* END *******
+===================== */
+.sh-content {
+  background: #f5f5f5;
+}
+.sh-content.has-top-margin {
+  margin-top: 70px;
+}
+/* ==================
+	ABOUT US PAGE
+===================== */
+body.page--about {
+  /* END #sh-intro */
+  /* END .sh-page-block */
+  /* END .sh-secondary-nav */
+}
+body.page--about .sh-header-navbar-wrapper {
+  display: none;
+}
+body.page--about #sh-intro {
+  height: 600px;
+  background: url(/images/about-us/sh-intro-bg.jpg) no-repeat center center;
+  background-size: cover;
+  z-index: 2;
+}
+body.page--about #sh-intro .sh-intro-wrapper {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  position: relative;
+  height: 100%;
+  max-width: 95%;
+  overflow: hidden;
+}
+body.page--about #sh-intro .sh-intro-tagline {
+  width: 100%;
+  max-width: 400px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  padding: 40px 0 0 0;
+}
+body.page--about #sh-intro .sh-intro-tagline .sh-logo-about-us.is-hidden {
+  display: block;
+  opacity: 0;
+  position: fixed;
+  left: -20%;
+  top: 17px;
+  line-height: 1;
+  margin: 0;
+  z-index: 6;
+  transition: left .25s, opacity .25s;
+}
+body.page--about #sh-intro .sh-intro-tagline .sh-logo-about-us.is-hidden a {
+  font-size: 34px;
+}
+body.page--about #sh-intro .sh-intro-tagline .sh-logo-about-us.slide-in {
+  left: 3%;
+  opacity: 1;
+}
+body.page--about #sh-intro .sh-intro-tagline .sh-create-about-us.is-hidden {
+  display: block;
+  opacity: 0;
+  position: fixed;
+  right: -20%;
+  top: 0;
+  z-index: 6;
+  padding: .8em 1.2em;
+  margin: 14px 0 0;
+  transition: right .25s, opacity .25s;
+}
+body.page--about #sh-intro .sh-intro-tagline .sh-create-about-us.slide-in {
+  right: 3%;
+  opacity: 1;
+}
+body.page--about #sh-intro .sh-intro-tagline h1 {
+  margin-bottom: 16px;
+}
+body.page--about #sh-intro .sh-intro-tagline h1 a {
+  font-size: 54px;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text {
+  color: #ffffff;
+  margin-bottom: 25px;
+  font-size: 20px;
+}
+body.page--about #sh-intro .sh-intro-mockup {
+  position: absolute;
+  height: 100%;
+  width: 440px;
+  bottom: -85px;
+  right: 0;
+  background: url(/images/about-us/sh-intro-mockup.png) no-repeat center center;
+  background-size: contain;
+  z-index: 2;
+}
+body.page--about .sh-page-block {
+  position: relative;
+  background: #ffffff;
+  margin-bottom: 16px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid #ffffff;
+}
+body.page--about .sh-page-block:last-child {
+  margin: 0;
+}
+body.page--about #wrapper {
+  position: relative;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100vh;
+}
+body.page--about #wrapper #header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+}
+body.page--about #wrapper #header .sh-header-topline {
+  background: transparent;
+}
+body.page--about #wrapper #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item:first-child .sh-show-modal-city {
+  display: none;
+}
+body.page--about #wrapper #appContent {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+body.page--about .sh-secondary-nav {
+  position: relative;
+  height: 70px;
+  background-color: rgba(3, 13, 24, 0.95);
+  -webkit-transition: height 0.3s;
+  -moz-transition: height 0.3s;
+  -o-transition: height 0.3s;
+  transition: height 0.3s;
+  z-index: 5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body.page--about .sh-secondary-nav nav,
+body.page--about .sh-secondary-nav ul {
+  height: 100%;
+}
+body.page--about .sh-secondary-nav ul {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  position: static;
+  width: auto;
+  max-width: 100%;
+  visibility: visible;
+  text-align: center;
+  background-color: transparent;
+  right: 5%;
+  bottom: 20px;
+  backface-visibility: hidden;
+  padding: 0;
+  margin: 0;
+}
+body.page--about .sh-secondary-nav ul li {
+  display: inline-block;
+  margin-left: -4px;
+}
+body.page--about .sh-secondary-nav ul li a {
+  text-transform: uppercase;
+  position: relative;
+  text-align: center;
+  display: block;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(240, 238, 225, 0.3);
+  text-decoration: none;
+}
+body.page--about .sh-secondary-nav ul li a:hover,
+body.page--about .sh-secondary-nav ul li a:focus {
+  color: #ffffff;
+}
+body.page--about .sh-secondary-nav ul li a.active {
+  color: #ffffff;
+}
+body.page--about .sh-secondary-nav.is-fixed {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}
+body.page--about .sh-secondary-nav.sh-animated {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+body.page--about .sh-about-us {
+  padding: 45px 0;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  /* END .sh-intro-how-it-work */
+  /* END .sh-what-we-are-useful */
+  /* END .sh-who-we-are */
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description {
+  text-align: center;
+  margin-bottom: 0;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-intro-description-wrapper {
+  position: relative;
+  background: rgba(74, 144, 226, 0.05);
+  width: 100%;
+  padding: 0 15px;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-intro-description-wrapper h1,
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-intro-description-wrapper p {
+  padding: 0 45px;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-intro-description-wrapper h1 {
+  padding-top: 45px;
+  padding-bottom: 35px;
+  font-size: 28px;
+  font-weight: 400;
+  color: #4a4a4a;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-intro-description-wrapper p {
+  padding-bottom: 16px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #4a4a4a;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-intro-description-wrapper p:last-child {
+  padding-bottom: 0;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-intro-description-wrapper:before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding-bottom: 7%;
+  background: rgba(74, 144, 226, 0.05);
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work,
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful,
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us {
+  padding: 65px 0;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-intro-how-it-work-wrapper {
+  padding: 0 15px;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-intro-how-it-work-wrapper .sh-intro-how-it-work-ul {
+  margin: 45px 0 0;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-intro-how-it-work-wrapper .sh-intro-how-it-work-ul .sh-intro-how-it-work-list {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  list-style: none;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-intro-how-it-work-wrapper .sh-intro-how-it-work-ul .sh-intro-how-it-work-list li {
+  text-align: center;
+  display: table-cell;
+  width: 1%;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-intro-how-it-work-wrapper .sh-intro-how-it-work-ul .sh-intro-how-it-work-list li a {
+  font-size: 30px;
+  line-height: 30px;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: -ms-inline-flex;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  color: #4a4a4a;
+  background: #4a90e2;
+  height: 150px;
+  width: 150px;
+  -webkit-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-intro-how-it-work-wrapper .sh-intro-how-it-work-ul .sh-intro-how-it-work-list li a i {
+  color: #ffffff;
+  padding: 0;
+  margin: 0;
+  font-size: 85px;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-intro-how-it-work-wrapper .sh-intro-how-it-work-ul .sh-intro-how-it-work-list li h5 {
+  color: #4a4a4a;
+  font-size: 16px;
+  margin: 20px 0 0;
+  text-transform: uppercase;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful {
+  background: rgba(74, 144, 226, 0.05);
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper {
+  padding: 0 15px;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-bg {
+  position: relative;
+  height: 352px;
+  width: 90%;
+  margin: 45px auto;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-image: url(/images/about-us/sh-usefull-hor.png);
+  background-size: contain;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  margin: 60px 45px;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-left,
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-right {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-center {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  padding: 0 50px;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-center .sh-is-sh {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  background: #4a90e2;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-center .sh-is-sh span {
+  background-image: url("/images/sh-logo.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  height: 110px;
+  width: 110px;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-block {
+  background: #ffffff;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-block h5 {
+  color: #4a4a4a;
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-block p {
+  font-size: 14px;
+  color: #8f8e94;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-block:last-child {
+  margin-bottom: 0;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-set-sh .create {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-who-we-are {
+  border-top: 5px solid #e6e6e6;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-who-we-are .sh-who-we-are-wrapper {
+  padding: 0 15px;
+  margin-top: -5px;
+  text-align: center;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-who-we-are .sh-who-we-are-wrapper > div {
+  padding: 30px 15px;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-who-we-are .sh-who-we-are-wrapper > div h5 {
+  color: #4a4a4a;
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-who-we-are .sh-who-we-are-wrapper > div p {
+  font-size: 14px;
+  color: #8f8e94;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-who-we-are .sh-who-we-are-wrapper .sh-red {
+  border-top: 5px solid #fb3d38;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-who-we-are .sh-who-we-are-wrapper .sh-blue {
+  border-top: 5px solid #4a90e2;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-who-we-are .sh-who-we-are-wrapper .sh-orange {
+  border-top: 5px solid #fc9326;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us {
+  position: relative;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-bg {
+  position: absolute;
+  background-image: url("/images/about-us/map-trans.png");
+  background-position: 50% 0%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  opacity: .1;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-wrapper {
+  position: relative;
+  padding: 0 15px;
+  z-index: 2;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-wrapper form {
+  width: 90%;
+  margin: 60px auto 0 auto;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-wrapper .form-group {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  margin-bottom: 30px;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-wrapper .form-control {
+  outline: none;
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 16px;
+  height: 60px;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+  -webkit-transition: box-shadow 0.25s ease-in-out;
+  -moz-transition: box-shadow 0.25s ease-in-out;
+  -o-transition: box-shadow 0.25s ease-in-out;
+  transition: box-shadow 0.25s ease-in-out;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-wrapper .form-control:focus,
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-wrapper .form-control:active {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-wrapper textarea.form-control {
+  height: auto;
+}
+/* END .page--about-us */
+@media screen and (max-width: 992px) {
+  body.page--about #sh-intro {
+    height: 400px;
+  }
+  body.page--about #sh-intro .sh-intro-mockup {
+    width: 350px;
+  }
+  body.page--about #sh-intro .sh-intro-tagline {
+    max-width: 350px;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-logo-about-us.is-hidden {
+    display: none;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-create-about-us.is-hidden {
+    display: none;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work,
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful,
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us {
+    padding: 25px 0;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-bg {
+    margin: 0 auto;
+    height: 300px;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features {
+    margin: 40px 15px;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-left {
+    margin-right: 15px;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-center {
+    display: none;
+  }
+  body.page--about .sh-secondary-nav.is-fixed {
+    z-index: 5;
+  }
+}
+@media screen and (max-width: 767px) {
+  body.page--about #sh-intro {
+    height: 350px;
+  }
+  body.page--about #sh-intro .sh-intro-tagline {
+    max-width: 100%;
+    padding: 20px 0 0 0;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-intro-tagline-wrapper {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -ms-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    text-align: center;
+  }
+  body.page--about #sh-intro .sh-intro-mockup {
+    display: none;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description {
+    margin-bottom: 25px;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-intro-description-wrapper h1 {
+    font-size: 22px;
+    padding: 25px 15px;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-intro-description-wrapper p {
+    font-size: 18px;
+    padding: 0 0 15px 0;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 40px 0;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-left {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-bg {
+    height: 200px;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-intro-how-it-work-wrapper .sh-intro-how-it-work-ul .sh-intro-how-it-work-list li {
+    width: auto;
+    display: block;
+    margin-bottom: 25px;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-intro-how-it-work-wrapper .sh-intro-how-it-work-ul .sh-intro-how-it-work-list li:last-child {
+    margin-bottom: 0;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-wrapper .form-group {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-wrapper .form-group div :first-child {
+    margin-bottom: 20px;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-wrapper form {
+    width: 95%;
+  }
+  body.page--about .sh-section-hero-headline {
+    font-size: 36px;
+  }
+  body.page--about .sh-section-intro {
+    font-size: 22px;
+  }
+}
+@media screen and (max-width: 480px) {
+  body.page--about #sh-intro {
+    height: 350px;
+  }
+  body.page--about .container {
+    padding: 0;
+  }
+  body.page--about .sh-secondary-nav ul li {
+    margin: 0;
+  }
+  body.page--about .sh-secondary-nav ul li a {
+    padding: 0 6px;
+    font-size: 12px;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-intro-how-it-work-wrapper .sh-intro-how-it-work-ul {
+    margin: 25px 0 0;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-intro-how-it-work-wrapper .sh-intro-how-it-work-ul .sh-intro-how-it-work-list li a {
+    height: 100px;
+    width: 100px;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-intro-how-it-work-wrapper .sh-intro-how-it-work-ul .sh-intro-how-it-work-list li a i {
+    font-size: 45px;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-intro-how-it-work-wrapper .sh-intro-how-it-work-ul .sh-intro-how-it-work-list li h5 {
+    font-size: 14px;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-intro-description-wrapper h1 {
+    font-size: 20px;
+    padding: 25px 15px;
+  }
+  body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-intro-description-wrapper p {
+    font-size: 16px;
+    padding: 0 0 15px 0;
+  }
+  body.page--about .sh-section-hero-headline {
+    font-size: 28px;
+  }
+  body.page--about .sh-section-intro {
+    font-size: 20px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+  body.page--about .container {
+    width: 100%;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-logo-about-us.is-hidden {
+    top: 13px;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-logo-about-us.is-hidden a {
+    font-size: 28px;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-logo-about-us.slide-in {
+    left: 2%;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-create-about-us.is-hidden {
+    font-size: 14px;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-create-about-us.slide-in {
+    right: 2%;
+  }
+  body.page--about .sh-secondary-nav ul li {
+    margin-left: -15px;
+  }
+  body.page--about .sh-secondary-nav ul li a {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1200px) {
+  body.page--about .container {
+    width: 1170px;
+  }
+  body.page--about .sh-secondary-nav ul li a {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1540px) {
+  body.page--about #sh-intro {
+    height: 600px;
+  }
+}
+
+/*# sourceMappingURL=bundle.less.css.map*/
