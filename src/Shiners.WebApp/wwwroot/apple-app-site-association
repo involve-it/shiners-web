@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+    {
+      "appID": "L37DAD4AS6.org.buzzar.app",
+      "paths": ["/posts/*"]
+    }
+    ]
+  }
+}

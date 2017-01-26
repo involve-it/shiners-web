@@ -84,3 +84,16 @@ Helpers.makeNamespace({
     path: '$h.help',
     object: Helpers
 });
+
+Helpers.getParamURL = function () {
+    var queries = {};
+    $.each(document.location.search.substr(1).split('&'), function (c, q) {
+        var i = q.split('=');
+        if (i[0] && i[1]) {
+            queries[i[0].toString()] = i[1].toString();
+        }
+    });
+    return queries;
+}
+
+module.exports = Helpers;

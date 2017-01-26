@@ -62,6 +62,8 @@ namespace Shiners.Models.Domain
         [BsonElement("details1"), BsonIgnoreIfNull]      
         public IList<ProfileDetail> ProfileDetails { get; set; }
 
+        [BsonElement("presences"), BsonIgnoreIfNull]      
+        public BsonDocument Presences { get; set; }
         public User()
         {
             Emails = new Email[5];

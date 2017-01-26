@@ -68,8 +68,8 @@ namespace Shiners.WebApp
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             var AWSConfig = Configuration.GetAWSOptions("AWS");
-            services.AddDefaultAWSOptions(AWSConfig);           
-            Amazon.Util.ProfileManager.RegisterProfile("shiners", "AKIAJRKMTZEEIOLOAJ5Q", "z/IQSVXZoHov5aQ+LWwktepidpWMVDnobmbC/Z6+");
+            services.AddDefaultAWSOptions(AWSConfig);
+            //Amazon.Util.ProfileManager.RegisterProfile("shiners", "AKIAIJBPXU4KPCGKBLRA", "NDPmfHSTmIXnQStSUWTwNV40GwVXstDusMRidcsZ");
             services.AddAWSService<IAmazonS3>();
             services.AddMvc();
             services.AddScoped<UnderscoreRenderer>((provider) => Renderer);
@@ -111,9 +111,10 @@ namespace Shiners.WebApp
                 
                 routes.MapRoute("profile", "profile", new { controller = "Profile", action = "Index" });
 
-
+                routes.MapRoute("apple-app-site-association", "apple-app-site-association", new { controller = "Home", action = "AppleAppSiteAssociation" });
 
                 routes.MapRoute(name: "default",template: "{controller=Home}/{action=Index}/{id?}");
+                
             });
         }
     }

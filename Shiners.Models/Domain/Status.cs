@@ -11,12 +11,14 @@ namespace Shiners.Models.Domain
 
         public Status(bool online, Lastlogin lastlogin, bool idle)
         {
-            this.Online = online;
+            this.Online = online || onlineFake;
             this.Lastlogin = lastlogin;
             this.Idle = idle;
         }
         [BsonElement("online")]
         public bool Online { get; set; }
+        [BsonElement("onlineFake")]
+        public bool onlineFake { get; set; }
         [BsonElement("idle")]
         public bool Idle { get; set; }
         [BsonElement("lastLogin")]
