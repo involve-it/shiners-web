@@ -5,6 +5,7 @@ import Collection from '../../data/AsteroidCollection.js';
 import RelatedPostsView from './RelatedPostsView.js';
 import _ from 'underscore';
 import app from '../app.js';
+import  './DetailsView.less';
 import locationHelper from '../../helpers/locationHelper.js';
 var View = Marionette.View.extend({
     
@@ -38,7 +39,7 @@ var View = Marionette.View.extend({
     },
 
     onAttach() {
-        
+        this.initStickMenu();
     },
 
     initVkSocialButton(){     
@@ -137,6 +138,54 @@ var View = Marionette.View.extend({
         };
         var config = $.extend({}, defaults, options, slider.data("plugin-options"));
         slider.owlCarousel(config).addClass("owl-carousel-init");
+    },
+
+    initStickMenu() {
+        var navTabMenu = $('.sh-post-tab-menu-wrapper');
+
+        if(navTabMenu.length > 0) {
+            var navTabMenuTopPosition = navTabMenu.offset().top,
+                    contentSections = $('.sh-section');
+		
+            $(window).scroll(function() {
+
+                if ($(window).scrollTop() > $('.sh-post-tab-menu').offset().top) {
+                    $('.sh-post-tab-menu-wrapper').addClass('stick-menu');
+                    $('.sh-post-tab-menu-sticky').removeClass('hidden')
+                }
+                else {
+                    $('.sh-post-tab-menu-wrapper').removeClass('stick-menu');
+                    $('.sh-post-tab-menu-sticky').addClass('hidden')
+                }
+
+                updateNavigation();
+            });
+
+            //smooth scroll when clicking navTabMenu
+            navTabMenu.find('ul a').on('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                var target= $(this.hash);
+                $('body, html').animate({
+                    'scrollTop': target.offset().top - navTabMenu.height() + 1
+                }, 400);
+            });
+
+            function updateNavigation() {
+                contentSections.each(function() {
+                    var actual = $(this),
+                            actualHeight = actual.height() + parseInt(actual.css('paddingTop').replace('px', '')) + parseInt(actual.css('paddingBottom').replace('px', '')),
+                            actualAnchor = navTabMenu.find('a[href="#'+actual.attr('id')+'"]');
+
+                    if ( ( actual.offset().top - navTabMenu.height() - 12 <= $(window).scrollTop() ) && ( actual.offset().top +  actualHeight - navTabMenu.height() - 12 > $(window).scrollTop() ) ) {
+                        actualAnchor.addClass('active');
+                    } else {
+                        actualAnchor.removeClass('active');
+                    }
+                });
+            }
+        }    
     },
 
     showRelatedPosts() {

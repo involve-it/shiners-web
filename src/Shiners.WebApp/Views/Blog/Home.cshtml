@@ -1,0 +1,43 @@
+﻿﻿@model IList<Shiners.Models.Domain.Blog>
+
+<body class="smoothscroll enable-animation sh-body">
+    <h1>Welcome to Shiners Blog!</h1>
+
+    <table class="table">
+        <tr>
+            <th>
+                asdf
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                asdf
+            </th>
+            <th></th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Body)
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+
+</body>

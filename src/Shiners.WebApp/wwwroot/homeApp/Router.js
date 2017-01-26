@@ -33,7 +33,10 @@ export default Marionette.AppRouter.extend({
         'messages/to/:remoteUserId':'messagesTo',
         'legal/confidential': 'legalConfidential', // same as Privacy Policy
         'legal/user-agreement': 'legalUserAgreement', // Terms of Use?
-        'legal/post-publishing-rules': 'legalPostPublishingRules'
+        'legal/post-publishing-rules': 'legalPostPublishingRules',
+        //blog:
+        'blog': 'blogHome',
+        'blog/post/:id': 'blogPostId',
     },
 
     policy: {
@@ -48,11 +51,18 @@ export default Marionette.AppRouter.extend({
 
     onRoute(name, path, args) {
         this.currentRoute = name;
+
         if (_.contains(this.policy.authorized, name)) {
             if (!app.user.id) {
                 this.navigate('Account/Login/'+encodeURIComponent(path), {trigger:true});
             }
         }
+
+       $('body').removeClass(function(index, className) {
+            return (className.match(/(^|\s)page--\S+/g) || []).join(' ');
+        });
+
+        $('body').addClass('page--' + name);
     },
 
     redirectIfLogout() {

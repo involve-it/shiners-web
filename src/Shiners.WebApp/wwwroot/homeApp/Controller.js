@@ -3,9 +3,10 @@ import IndexView from './index/indexView.js';
 import MobileIndexView from './index/MobileIndexView.js';
 import PostDetailsView from './posts/DetailsView.js';
 import AsteroidModel from '../data/AsteroidModel.js';
+import AsteroidCollection from '../data/AsteroidCollection.js';
 import UserModel from '../data/Domain/User.js';
 import Post from '../data/Post/PostModel.js'
-import Collection from '../data/AsteroidCollection.js';
+//import Collection from '../data/AsteroidCollection.js';
 import PreloaderView from '../sharedViews/PreloaderView.js';
 import CreatePostView from './posts/create/CreatePostView.js';
 
@@ -24,6 +25,9 @@ import FogotPasswordView from './account/FogotPasswordView.js';
 import LegalUserAgreementView from './legal/legalUserAgreementView';
 import LegalConfidentialView from './legal/legalConfidentialView';
 import LegalPostPublishingView from './legal/legalPostPublishingView';
+
+import BlogHomeView from './blog/blogHomeView';
+import BlogPostIdView from './blog/blogPostIdView';
 //import ProfilePageView from './user/ProfilePageView';
 //import MyMessagesPageView from './user/MyMessagesPageView';
 //import UserDetailsPageView from './user/UserDetailsPageView';
@@ -103,7 +107,7 @@ export default Marionette.Object.extend({
         //var chatModel = new Backbone.Model({ _id:id });
         //app.layout.showChildView('content', new ChatIdView( {model: chatModel } ));
         app.layout.showChildView('content', new PreloaderView());
-        var messages = new Collection(null, {asteroid: app.asteroid, comparator: 'timestamp'});
+        var messages = new AsteroidCollection(null, {asteroid: app.asteroid, comparator: 'timestamp'});
         var remoteUser = new AsteroidModel({_id: remoteUserId}, {asteroid: app.asteroid});
         messages.loadByMethod('getMessages', {chatId: chatId, skip: 0, take: 20}, () => {
             remoteUser.loadByMethod('getUser', () => {
@@ -153,5 +157,48 @@ export default Marionette.Object.extend({
     },
     legalPostPublishingRules() {
         app.layout.showChildView('content', new LegalPostPublishingView());
+    },
+    // BLOG:
+    blogHome() {
+        /*debugger;
+        var ceres = app.asteroid;
+        ceres.subscribe("blog.posts");
+        var blogPosts = ceres.getCollection("blog_posts");
+        window.bp = blogPosts;
+        //tasks.insert({
+        //    description: "Do the laundry"
+        //});
+// Get the task
+        var laundryTaskRQ = blogPosts.reactiveQuery({ mode: 'public' });
+// Log the array of results
+        console.log(laundryTaskRQ.result);
+// Listen for changes
+        laundryTaskRQ.on("change", function () {
+            debugger;
+            console.log(laundryTaskRQ.result);
+        });*/
+        debugger;
+        var subscription = app.asteroid.subscribe('blog.posts');
+        subscription.ready.done(function(a, b, c) {
+            console.log('ready - posts')
+        });
+        var a = new AsteroidCollection(null, { asteroid: app.asteroid });
+        debugger;
+        /*a.sub('blog.authors');
+        var s = a.subscriptions[0];
+        s.ready.done(function() {
+            console.log('ready - authors')
+        });*/
+        var c = app.asteroid.getCollection('blog_posts').find().fetch();
+        console.log(c)
+        app.layout.showChildView('content', new BlogHomeView());
+        /*var c = new AsteroidCollection(null, { asteroid: app.asteroid });
+        c.loadByMethod('getBlogPosts', () => {
+            debugger;
+            app.layout.showChildView('content', new BlogHomeView({collection: c}));
+        });*/
+    },
+    blogPostId() {
+        app.layout.showChildView('content', new BlogPostIdView());
     }
 });

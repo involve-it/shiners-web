@@ -6,7 +6,7 @@ import './chatItemView.css';
 var View = Marionette.View.extend({
     template:template,
     onBeforeRender() {
-        this.getDistance();
+        //this.getDistance();
     },
     getDistance() {
         // todo

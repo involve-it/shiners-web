@@ -54,6 +54,7 @@
     <Compile Include="Domain\PostType.cs" />
     <Compile Include="Domain\ProfileDetail.cs" />
     <Compile Include="Domain\Review.cs" />
+    <Compile Include="Domain\Blog.cs" />
     <Compile Include="Domain\Status.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
