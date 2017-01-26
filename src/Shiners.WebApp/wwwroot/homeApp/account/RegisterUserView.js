@@ -32,19 +32,24 @@ var View = Marionette.View.extend({
     onSubmit(e) {
         e.preventDefault();
         if (!this.model.validate()) {
+            $h.ui.spinnerShowOn$element(this.$('button i.fa'));
+            
             app.registerUser(this.model.attributes);
         }       
     },
 
     redirect() {
-        if(this.options.returnUrl)
-            app.router.navigate(decodeURIComponent(this.options.returnUrl), {trigger:true,replace:true});
-        else
+        if(this.options.returnUrl){
+            var returnUrl = decodeURIComponent($h.help.getUrlParams()['returnUrl']);
+            app.router.navigate(returnUrl, {trigger:true, replace:true});
+        } else {
             history.back();
+        }
     },
 
     showError(error) {
-        alert("Ошибка! Имя пользователя уже существует");
+        $h.ui.spinnerHideOn$element(this.$('button i.fa'));
+        $h.ui.alert("Ошибка! Имя пользователя уже существует");
     },
 
     onBeforeRemove() {
