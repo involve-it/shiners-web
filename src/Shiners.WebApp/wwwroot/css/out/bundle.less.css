@@ -1016,7 +1016,7 @@ body.page--about #wrapper #header {
   z-index: 3;
 }
 body.page--about #wrapper #header .sh-header-topline {
-  background: transparent;
+  background-color: rgba(0, 150, 219, 0.8) !important;
 }
 body.page--about #wrapper #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item:first-child .sh-show-modal-city {
   display: none;
@@ -1606,5 +1606,3 @@ body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us
     height: 600px;
   }
 }
-
-/*# sourceMappingURL=bundle.less.css.map*/
