@@ -306,9 +306,12 @@ body.page--postDetails {
 body.page--postDetails .sh-content {
   background: #f5f5f5;
 }
+<<<<<<< HEAD
 body.page--postDetails .sh-content.has-top-margin {
   margin-top: 50px;
 }
+=======
+>>>>>>> origin/master
 body.page--postDetails .sh-info-header {
   border-top: 1px solid #e6e6e6;
   margin-top: 26px;
@@ -338,12 +341,18 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-side-left {
   -webkit-flex-grow: 1;
   -ms-flex-grow: 1;
   flex-grow: 1;
+<<<<<<< HEAD
   overflow: hidden;
   max-width: 100%;
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-side-left h1 {
   font-size: 28px;
   line-height: 1.2;
+=======
+}
+body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-side-left h1 {
+  font-size: 28px;
+>>>>>>> origin/master
   font-weight: 400;
   color: #4a4a4a;
 }
@@ -405,13 +414,19 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-publis
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-photos {
   position: relative;
+<<<<<<< HEAD
   width: 100%;
   overflow: hidden;
+=======
+  height: 335px;
+  width: 100%;
+>>>>>>> origin/master
   transition: height .2s;
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-photos .single-photo {
   background-position: 50% 50%;
   height: 100%;
+<<<<<<< HEAD
   min-height: 335px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -441,6 +456,11 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-photos .sin
   background-size: contain;
   height: 220px;
   width: 220px;
+=======
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #F4F4F4;
+>>>>>>> origin/master
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-tab-menu {
   padding-top: 12px;
@@ -534,8 +554,11 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-creato
   font-weight: 700;
   font-size: 24px;
   line-height: 1;
+<<<<<<< HEAD
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-creator .sh-post-creator-wrapper .sh-post-creator-info .sh-post-creator-username a {
+=======
+>>>>>>> origin/master
   color: #4a4a4a;
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-creator .sh-post-creator-wrapper .sh-post-creator-info .sh-post-creator-display-loc-rew a {
@@ -913,6 +936,15 @@ body.page--postDetails .sh-post-details .sh-same-posts .sh-same-posts-wrapper h4
 /* ==================
 	CONSTANTS LESS
 ===================== */
+<<<<<<< HEAD
+=======
+.sh-content {
+  background: #f5f5f5;
+}
+.sh-content.has-top-margin {
+  margin-top: 70px;
+}
+>>>>>>> origin/master
 /* ==================
 	ABOUT US PAGE
 ===================== */
@@ -924,12 +956,15 @@ body.page--about {
 body.page--about .sh-header-navbar-wrapper {
   display: none;
 }
+<<<<<<< HEAD
 body.page--about .sh-content {
   background: #f5f5f5;
 }
 body.page--about .sh-content.has-top-margin {
   margin-top: 70px;
 }
+=======
+>>>>>>> origin/master
 body.page--about #sh-intro {
   height: 600px;
   background: url(/images/about-us/sh-intro-bg.jpg) no-repeat center center;
@@ -970,7 +1005,11 @@ body.page--about #sh-intro .sh-intro-tagline .sh-logo-about-us.is-hidden {
   line-height: 1;
   margin: 0;
   z-index: 6;
+<<<<<<< HEAD
   transition: left .15s, opacity .15s;
+=======
+  transition: left .25s, opacity .25s;
+>>>>>>> origin/master
 }
 body.page--about #sh-intro .sh-intro-tagline .sh-logo-about-us.is-hidden a {
   font-size: 34px;
@@ -988,7 +1027,11 @@ body.page--about #sh-intro .sh-intro-tagline .sh-create-about-us.is-hidden {
   z-index: 6;
   padding: .8em 1.2em;
   margin: 14px 0 0;
+<<<<<<< HEAD
   transition: right .15s, opacity .15s;
+=======
+  transition: right .25s, opacity .25s;
+>>>>>>> origin/master
 }
 body.page--about #sh-intro .sh-intro-tagline .sh-create-about-us.slide-in {
   right: 3%;
@@ -1050,7 +1093,11 @@ body.page--about #wrapper #header {
   z-index: 3;
 }
 body.page--about #wrapper #header .sh-header-topline {
+<<<<<<< HEAD
   background: transparent;
+=======
+  background-color: rgba(0, 150, 219, 0.8) !important;
+>>>>>>> origin/master
 }
 body.page--about #wrapper #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item:first-child .sh-show-modal-city {
   display: none;
@@ -1443,6 +1490,7 @@ body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us
 body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-wrapper textarea.form-control {
   height: auto;
 }
+<<<<<<< HEAD
 body.page--about .sh-woman-shiners {
   display: inline-block;
   width: 500px;
@@ -1464,6 +1512,8 @@ body.page--about .sh-woman-shiners {
     height: 121px;
   }
 }
+=======
+>>>>>>> origin/master
 /* END .page--about-us */
 @media screen and (max-width: 992px) {
   body.page--about #sh-intro {
@@ -1661,5 +1711,8 @@ body.page--about .sh-woman-shiners {
     height: 600px;
   }
 }
+<<<<<<< HEAD
 
 /*# sourceMappingURL=bundle.less.css.map*/
+=======
+>>>>>>> origin/master

@@ -19,6 +19,9 @@ using Shiners.WebApp.Data;
 using Shiners.WebApp.Models;
 using Shiners.WebApp.Services;
 using Shiners.WebApp.Renderers;
+using Microsoft.Extensions.Configuration.UserSecrets;
+
+[assembly: UserSecretsId("aspnet-Shiners.WebApp-ce345b64-19cf-4972-b34f-d16f2e7976ed")]
 
 namespace Shiners.WebApp
 {
@@ -33,7 +36,7 @@ namespace Shiners.WebApp
 
             if (env.IsDevelopment())
             {
-                builder.AddUserSecrets();
+                builder.AddUserSecrets<Startup>();
             }
 
             builder.AddEnvironmentVariables();
