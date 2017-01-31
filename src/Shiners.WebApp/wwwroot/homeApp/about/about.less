@@ -4,16 +4,6 @@
 
 
 
-
-.sh-content {
-	background: @sh-main-content-bg;
-	
-	&.has-top-margin {
-		margin-top: 70px;
-	}
-}
-
-
 /* ==================
 	ABOUT US PAGE
 ===================== */
@@ -23,6 +13,14 @@ body.page--about {
     .sh-header-navbar-wrapper {
 	    display: none;
     }
+
+    .sh-content {
+	background: @sh-main-content-bg;
+	
+	&.has-top-margin {
+		margin-top: 70px;
+	}
+}
 
     #sh-intro {
         height: 600px;
@@ -60,7 +58,7 @@ body.page--about {
                     line-height: 1;
 				    margin: 0;
                     z-index: 6;
-                    transition: left .25s, opacity .25s;
+                    transition: left .15s, opacity .15s;
 				
 				
 				    a {
@@ -85,7 +83,7 @@ body.page--about {
                     z-index: 6;
 				    padding: .8em 1.2em;
 				    margin: 14px 0 0;
-				    transition: right .25s, opacity .25s;
+				    transition: right .15s, opacity .15s;
 			    }
 
 			    &.slide-in {
@@ -539,6 +537,28 @@ body.page--about {
 				    }
 			    }
 		    }
+        }
+    }
+
+    .sh-woman-shiners {
+        display: inline-block;
+        width: 500px;
+        height: 242px;
+        background-image: url(/images/about-us/woman-shiners.png);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        @media screen and (max-width: 992px) {}
+
+        @media screen and (max-width: 767px) {
+            width: 350px;
+            height: 169px;
+        }
+
+        @media screen and (max-width: 480px) {
+            width: 250px;
+            height: 121px;
         }
     }
 

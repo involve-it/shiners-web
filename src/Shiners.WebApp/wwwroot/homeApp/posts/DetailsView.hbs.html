@@ -31,44 +31,22 @@
                             </div>
                         </div>
 
-                        <div class="sh-photos">
-                            <div class="single-photo"></div>
-
-                            <!--
-                            <div class="single-photo owl-carousel buttons-autohide controlls-over nomargin" id="postImages" data-plugin-options='{"items": 1, "autoPlay": {{-_.size(details.photo)>1?'3500':'false'}}, "autoHeight": false, "navigation": true, "pagination": false, "transitionStyle":"fade", "progressBar":"false"}'>
-                                {{ if (_.size(details.photos)>0){ }}
-                                {{_.each(details.photos,function(photo){ }}
-                                <div>
-                                    <img class="img-responsive" src="{{=photo.data}}" alt="">
-                                </div>
-                                {{});}}
-                                {{ } else { }}
-                                <div>
-                                    <img class="img-responsive" src="/images/no_image.png" alt="">
-                                </div>
-                                {{ } }}
-                            </div>
-                             -->
-
-                            <div class="owl-carousel buttons-autohide controlls-over" data-plugin-options='{"singleItem": true, "autoPlay": true, "navigation": true, "pagination": true, "transitionStyle":"fade"}'>
-                                <div>
-                                    <img class="img-responsive" src="http://theme.stepofweb.com/Smarty/v1.1.4/HTML/assets/images/demo/1200x800/5-min.jpg" alt="">
-                                </div>
-                                <div>
-                                    <img class="img-responsive" src="http://theme.stepofweb.com/Smarty/v1.1.4/HTML/assets/images/demo/1200x800/6-min.jpg" alt="">
-                                </div>
-                                <div>
-                                    <img class="img-responsive" src="http://theme.stepofweb.com/Smarty/v1.1.4/HTML/assets/images/demo/1200x800/7-min.jpg" alt="">
+                        <div class="sh-photos">                   
+                            <div class="single-photo">
+                                <div id="sh-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options='{"singleItem": true, "autoPlay": false, "navigation": true, "pagination": true, "transitionStyle":"fade"}'>
+                                    {{ if (_.size(details.photos)>0){ }}
+                                    {{_.each(details.photos,function(photo){ }}
+                                    <div>
+                                        <img class="img-responsive" src="{{=photo.data}}" alt="">
+                                    </div>
+                                    {{});}}
+                                    {{ } else { }}
+                                    <div>
+                                        <div class="sh-responsive-no-image"><span></span></div>
+                                    </div>
+                                    {{ } }}
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
                         </div>
 
                         <!-- VISIBLE only until 992px -->
@@ -132,10 +110,10 @@
 
                                 <!-- USERNAME, ACTION USER'S -->
                                 <div class="sh-post-creator-info col-md-9">
-                                    <div class="sh-post-creator-username">{{=user.username}}</div>
+                                    <div class="sh-post-creator-username"><a href="/user/{{=user._id}}">{{=user.username}}</a></div>
                                     <!-- Here Will be rating, location -->
                                     <div class="sh-post-creator-display-loc-rew">
-                                        <a href="#">Белгородская обл., Белгород</a>
+                                        <a href="/user/{{=user._id}}">{{=user.online?'online':'offline'}}</a>
                                     </div>
 
                                     {{if (obj.currentUser) { }}
@@ -154,7 +132,6 @@
                             <div class="sh-post-description-wrapper">
                                 <h4>Об этом посте</h4>
                                 <p>{{=details.description}}</p>
-
                             </div>
                         </div>
 
@@ -167,17 +144,26 @@
                                         <i class="fa fa-location-arrow" aria-hidden="true"></i> От вас <span>{{if(obj.distance && obj.distanceType){ }} {{=distance>=0?distance.toFixed(1):'Дистанция не определена'}} {{=distanceType==='km'?'км':'miles'}} {{ } }}</span>
                                     </div>
 
-                                    <!-- Static or dynamic -->
-                                    <div class="sh-post-location-address dynamic">
-                                        <span><i class="fa fa-map-marker" aria-hidden="true"></i> Белгородская обл., Белгород</span>
+                                    <!-- static or dynamic -->
+                                    <div class="sh-post-location-address {{=isDynamic?'dynamic':'static'}}">
+                                        {{ if (_.size(details.locations) > 0) { }}
+                                        {{_.each(details.locations, function(location){ }}
+                                            <span><i class="fa fa-map-marker" aria-hidden="true"></i> {{=location.name}}</span>                                       
+                                        {{});}}
+                                        {{ } else { }}
+                                            <span>Местоположение не определено</span>
+                                        {{ } }}
                                     </div>
 
+
                                 </div>
+
+                                <!-- MAP -->
                                 <div id="sh-map"></div>
                             </div>
                         </div>
 
-                        <div id="sh-review" class="sh-post-review sh-section hidden">
+                        <div id="sh-review" class="sh-post-review sh-section">
                             <div class="sh-post-reviews-wrapper">
                                 <h4>Комментарии <span>2</span></h4>
 

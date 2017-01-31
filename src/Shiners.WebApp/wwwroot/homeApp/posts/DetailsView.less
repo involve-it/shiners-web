@@ -13,6 +13,10 @@ body {
 
         .sh-content {
 	        background: @sh-main-content-bg;
+
+            &.has-top-margin {
+                margin-top: 50px;
+            }
         }
 
         .sh-info-header {
@@ -40,10 +44,13 @@ body {
 
                 .sh-side-left {
 			        padding: 16px;
-                    .sh-flex-grow(1);	
+                    .sh-flex-grow(1);
+                    overflow: hidden;
+                    max-width: 100%;	
 			
 			        h1 {
 				        font-size: 28px;
+                        line-height: 1.2;
 				        font-weight: 400;
 				        color: @sh-main-gray-color;
 			        }
@@ -123,16 +130,39 @@ body {
                 //Photos
 	            .sh-photos {
 		            position: relative;
-		            height: 335px;
+		            //height: 335px;
 		            width: 100%;
+                    overflow: hidden;
 		            transition: height .2s;
 			
 		            .single-photo {
 			            background-position: 50% 50%;
 			            height: 100%;
+                        min-height: 335px;
 			            background-repeat: no-repeat;
 			            background-size: cover;
-			            background-color: #F4F4F4;
+			            background-color: #F0F0F0;
+
+                        #sh-carousel {
+                            margin-bottom: 0;
+
+                            .sh-responsive-no-image {
+                                width: 100%;
+                                min-height: 335px;
+                                .sh-flex-display();
+                                .sh-align-items(center);
+                                .sh-justify-content(center);
+
+                                span {
+                                    background-image: url(/images/sh-logo.png);
+                                    background-repeat: no-repeat;
+                                    background-position: center center;
+                                    background-size: contain;
+                                    height: 220px;
+                                    width: 220px;
+                                }
+                            }
+                        }
 		            }
 	            }
                  
@@ -235,7 +265,10 @@ body {
 						        font-weight: 700;
 						        font-size: 24px;
 						        line-height: 1;
-						        color: @sh-main-gray-color;
+						        
+                                a {
+                                    color: @sh-main-gray-color;
+                                }
 					        }
 					
 					        .sh-post-creator-display-loc-rew {
