@@ -16,7 +16,7 @@
             <div class="sh-page-block">
                 <div class="sh-post-details-wrapper">
                     <!-- SIDE LEFT -->
-                    <div class="sh-side-left">                  
+                    <div class="sh-side-left">
                         <h1>{{=details.title}}</h1>
                         <div class="sh-post-published">
                             <div class="sh-post-written">
@@ -31,8 +31,7 @@
                             </div>
                         </div>
 
-<<<<<<< HEAD
-                        <div class="sh-photos">                   
+                        <div class="sh-photos">
                             <div class="single-photo">
                                 <div id="sh-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options='{"singleItem": true, "autoPlay": false, "navigation": true, "pagination": true, "transitionStyle":"fade"}'>
                                     {{ if (_.size(details.photos)>0){ }}
@@ -46,38 +45,6 @@
                                         <div class="sh-responsive-no-image"><span></span></div>
                                     </div>
                                     {{ } }}
-=======
-                        <div class="sh-photos">
-                            <div class="single-photo" style="background-image: url(http://theme.stepofweb.com/Smarty/v1.1.4/HTML/assets/images/demo/1200x800/5-min.jpg);">
-
-                        </div>
-
-                            <!--
-                            <div class="single-photo owl-carousel buttons-autohide controlls-over nomargin" id="postImages" data-plugin-options='{"items": 1, "autoPlay": {{-_.size(details.photo)>1?'3500':'false'}}, "autoHeight": false, "navigation": true, "pagination": false, "transitionStyle":"fade", "progressBar":"false"}'>
-                                {{ if (_.size(details.photos)>0){ }}
-                                {{_.each(details.photos,function(photo){ }}
-                                <div>
-                                    <img class="img-responsive" src="{{=photo.data}}" alt="">
-                                </div>
-                                {{});}}
-                                {{ } else { }}
-                                <div>
-                                    <img class="img-responsive" src="/images/no_image.png" alt="">
-                                </div>
-                                {{ } }}
-                            </div>
-                             -->
-
-                            <div class="owl-carousel buttons-autohide controlls-over" data-plugin-options='{"singleItem": true, "autoPlay": true, "navigation": true, "pagination": true, "transitionStyle":"fade"}'>
-                                <div>
-                                    <img class="img-responsive" src="http://theme.stepofweb.com/Smarty/v1.1.4/HTML/assets/images/demo/1200x800/5-min.jpg" alt="">
-                                </div>
-                                <div>
-                                    <img class="img-responsive" src="http://theme.stepofweb.com/Smarty/v1.1.4/HTML/assets/images/demo/1200x800/6-min.jpg" alt="">
-                                </div>
-                                <div>
-                                    <img class="img-responsive" src="http://theme.stepofweb.com/Smarty/v1.1.4/HTML/assets/images/demo/1200x800/7-min.jpg" alt="">
->>>>>>> origin/master
                                 </div>
                             </div>
                         </div>
@@ -93,28 +60,28 @@
 
                                 <ul class="sh-post-info sh-with-dotted">
                                     {{if(obj.stats) { }}
-                                        <li><div><span class="sh-item">Просмотров</span><span class="sh-item-right">{{=stats.seenTotal}}</span></div></li>
+                                    <li><div><span class="sh-item">Просмотров</span><span class="sh-item-right">{{=stats.seenTotal}}</span></div></li>
                                     {{ } }}
                                     {{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}
                                     <li><div><span class="sh-item">Статус</span><span class="sh-item-right">{{=isDynamic?'Динамический':'Статический'}}</span></div></li>
                                     {{if (obj.type) { }}
-                                        <li><div><span class="sh-item">Тип</span><span class="sh-item-right"><span class="label bg-type-category-{{=obj.type}}">{{=obj.type}}</span></span></div></li>
+                                    <li><div><span class="sh-item">Тип</span><span class="sh-item-right"><span class="label bg-type-category-{{=obj.type}}">{{=obj.type}}</span></span></div></li>
                                     {{ } }}
                                     <li><div><span class="sh-item">Дистанция</span><span class="sh-item-right">{{if(obj.distance && obj.distanceType){ }} {{=distance>=0?distance.toFixed(1):'Не определена'}} {{=distanceType==='km'?'км':'miles'}} {{ } }}</span></div></li>
                                 </ul>
                             </div>
 
                             {{if (details.price) { }}
-                                <!-- PRICE -->
-                                <div class="sh-post-widget">
-                                    <div class="sh-post-top-price">
-                                        <div class="sh-price-wrapper sh-rub">
-                                            <div class="sh-price-number">{{=details.price}}</div>
-                                            <div class="sh-price-prefix"></div>
-                                        </div>
-                                        <div class="sh-price-footer">за месяц</div>
+                            <!-- PRICE -->
+                            <div class="sh-post-widget">
+                                <div class="sh-post-top-price">
+                                    <div class="sh-price-wrapper sh-rub">
+                                        <div class="sh-price-number">{{=details.price}}</div>
+                                        <div class="sh-price-prefix"></div>
                                     </div>
+                                    <div class="sh-price-footer">за месяц</div>
                                 </div>
+                            </div>
                             {{ } }}
 
                         </div>
@@ -150,11 +117,11 @@
                                     </div>
 
                                     {{if (obj.currentUser) { }}
-                                        <div class="sh-post-creator-actions">
-                                            <div class="sh-actions-btn-group">                                            
-                                                <a href="/messages/to/{{=user._id}}?postId={{=_id}}" class="ui sh-button standard action action-link">Связаться с пользователем</a>                                                                                    
-                                            </div>
+                                    <div class="sh-post-creator-actions">
+                                        <div class="sh-actions-btn-group">
+                                            <a href="/messages/to/{{=user._id}}?postId={{=_id}}" class="ui sh-button standard action action-link">Связаться с пользователем</a>
                                         </div>
+                                    </div>
                                     {{ } }}
 
                                 </div>
@@ -181,10 +148,10 @@
                                     <div class="sh-post-location-address {{=isDynamic?'dynamic':'static'}}">
                                         {{ if (_.size(details.locations) > 0) { }}
                                         {{_.each(details.locations, function(location){ }}
-                                            <span><i class="fa fa-map-marker" aria-hidden="true"></i> {{=location.name}}</span>                                       
+                                        <span><i class="fa fa-map-marker" aria-hidden="true"></i> {{=location.name}}</span>
                                         {{});}}
                                         {{ } else { }}
-                                            <span>Местоположение не определено</span>
+                                        <span>Местоположение не определено</span>
                                         {{ } }}
                                     </div>
 
@@ -256,14 +223,14 @@
                     <div class="sh-side-right">
                         <div class="sh-post-widget sh-visible-md-flex sh-visible-lg-flex">
                             {{if (details.price) { }}
-                                <!-- PRICE -->
-                                <div class="sh-post-top-price">
-                                    <div class="sh-price-wrapper sh-rub">
-                                        <div class="sh-price-number">{{=details.price}}</div>
-                                        <div class="sh-price-prefix"></div>
-                                    </div>
-                                    <div class="sh-price-footer">за месяц</div>
+                            <!-- PRICE -->
+                            <div class="sh-post-top-price">
+                                <div class="sh-price-wrapper sh-rub">
+                                    <div class="sh-price-number">{{=details.price}}</div>
+                                    <div class="sh-price-prefix"></div>
                                 </div>
+                                <div class="sh-price-footer">за месяц</div>
+                            </div>
                             {{ } }}
                         </div>
 

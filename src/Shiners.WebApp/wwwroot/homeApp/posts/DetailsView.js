@@ -64,7 +64,7 @@ var View = Marionette.View.extend({
         app.FbButton(this.$('#fb_like').get(0));
     },
 
-    setModelPostComments() {},
+    setModelPostComments() {}, 
 
     initMapPost() {
         var defaultCoords = { lat: 55.75396, lng: 37.620393 };
