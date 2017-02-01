@@ -864,7 +864,62 @@ body.page--postDetails .sh-post-details .sh-same-posts .sh-same-posts-wrapper h4
     display: flex !important;
   }
 }
-/* mobile style here */
+@media screen and (max-width: 991px) {
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-side-left {
+    flex-basis: auto;
+    margin: 0 0 16px 0;
+  }
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-side-right {
+    padding: 16px;
+  }
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-side-right .sh-post-wish-and-more {
+    margin: 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0;
+  }
+  body.page--postDetails .sh-post-details {
+    padding: 15px 0;
+  }
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper {
+    font-size: 14px;
+  }
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-creator .sh-post-creator-wrapper .sh-post-creator-info .sh-post-creator-display-loc-rew a {
+    font-size: 13px;
+  }
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-creator .sh-post-creator-wrapper .sh-post-creator-info .sh-post-creator-username {
+    font-size: 20px;
+  }
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-widget .sh-post-top-price .sh-price-wrapper .sh-price-number {
+    font-size: 26px;
+    padding: 6px 10px;
+  }
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-widget .sh-post-top-price .sh-price-wrapper .sh-price-prefix {
+    font-size: 20px;
+    padding: 10px;
+  }
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-tab-menu .sh-post-tab-menu-wrapper .sh-post-tab-items .sh-tab-item a {
+    padding: 12px 8px;
+  }
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-description .sh-post-description-wrapper p {
+    font-size: 14px;
+  }
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-description .sh-post-description-wrapper h4,
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-review .sh-post-reviews-wrapper h4,
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-location .sh-post-location-wrapper h4 {
+    font-size: 16px;
+  }
+  body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-side-left h1 {
+    font-size: 22px;
+  }
+}
 @media (min-width: 992px) {
   .container {
     width: 100%;
