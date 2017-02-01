@@ -28,6 +28,7 @@ export default Marionette.AppRouter.extend({
         'account/register':'registerUser',
         'Home/HowItWorks':'howItWorks',
         'about-us':'about',
+        'mass-media':'massMedia',
         'profile': 'myProfile',
         'messages/to/:remoteUserId?postId=:postId':'messagesTo',
         'messages/to/:remoteUserId':'messagesTo',

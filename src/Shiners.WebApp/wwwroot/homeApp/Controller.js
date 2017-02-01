@@ -19,6 +19,7 @@ import MessagesToUserView from './chats/native/MessagesToUserView.js';
 import LoginView from './account/LoginView.js';
 import RegisterUserView from './account/RegisterUserView'
 import AboutView from './about/AboutView.js';
+import MassMediaView from './massMedia/MassMediaView.js';
 import HowItWorksView from './howItWorks/HowItWorksView.js';
 import FogotPasswordView from './account/FogotPasswordView.js';
 
@@ -90,6 +91,10 @@ export default Marionette.Object.extend({
 
     about() {
         app.layout.showChildView('content', new AboutView());
+    },
+
+    massMedia() {
+        app.layout.showChildView('content', new MassMediaView());
     },
 
     howItWorks() {
