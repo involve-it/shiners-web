@@ -1,3 +1,7 @@
+.sh-view--banner .sh-red-bg {
+  background-color: #fb3d38;
+  color: white !important;
+}
 /** Page Menu
  **************************************************************** **/
 #page-menu {
