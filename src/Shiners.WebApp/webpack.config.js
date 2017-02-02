@@ -33,21 +33,21 @@ module.exports = {
             _: "underscore",
             moment: "moment"
         }),
-        extractCSS,
+        //extractCSS,
         extractLESS,
         //new webpack.optimize.DedupePlugin()
         //isProduction()? new webpack.optimize.UglifyJsPlugin(): function() {}
         // ,new ExtractTextPlugin('bundle.css')
     ],
-    devServer: {
-        contentBase: "/",
-        host: "localhost",
-        port: 9000
-    },
+    //devServer: {
+    //    contentBase: "/",
+    //    host: "localhost",
+    //    port: 9000
+    //},
     //debug: isProduction()? false: true,
     module: {
         loaders: [
-            {test: /\.scss$/i, loader: extractCSS.extract(['css-loader', 'sass-loader'])},
+            //{test: /\.scss$/i, loader: extractCSS.extract(['css-loader', 'sass-loader'])},
             {test: /\.less$/i, loader: extractLESS.extract(['css-loader', 'less-loader'])},
             //{
             //    test: /\.scss$/,

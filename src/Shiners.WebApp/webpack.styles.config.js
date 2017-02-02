@@ -25,11 +25,11 @@ module.exports = {
                     }),
                     new ExtractTextPlugin("site.css")
                 ],
-    devServer: {
-        contentBase: "/",
-        host: "localhost",
-        port: 9000
-    },
+    //devServer: {
+    //    contentBase: "/",
+    //    host: "localhost",
+    //    port: 9000
+    //},
     module: {
         loaders: [
             
