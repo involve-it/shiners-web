@@ -1015,9 +1015,6 @@ body.page--about #wrapper #header {
   width: 100%;
   z-index: 3;
 }
-body.page--about #wrapper #header .sh-header-topline {
-  background: transparent;
-}
 body.page--about #wrapper #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item:first-child .sh-show-modal-city {
   display: none;
 }
