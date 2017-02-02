@@ -44,7 +44,23 @@ var json = {
     footer_disclaimer_text: 'Использование сайта, в том числе создание Светлячков (постов), означает согласие с ',
     footer_disclaimer_text2: 'пользовательским соглашением',
     footer_all_rights_reserved: 'Светлячки 2017, Все права защищены',
-    footer_menu_post_publishing_rules: 'Правила размещения рекламных объявлений'
+    footer_menu_post_publishing_rules: 'Правила размещения рекламных объявлений',
+    //MASS MEDIA
+    h_information_for_smi: 'Информация для СМИ',
+    massMedia: 'Пресса о нас',
+    press_release: 'Пресс-релизы',
+    press_contacts: 'Контакты для прессы',
+    h_meet_us: 'Знакомство с нами',
+    h_mass_media: 'Пресса о нас',
+    m_about_us: 'О нас',
+    m_help: 'Помощь',
+    m_confidentiality: 'Конфиденциальность',
+    m_terms_of_use: 'Правила пользования',
+    site_published: 'Сайт публикации',
+    download_press_release: 'Скачать пресс-релиз',
+    ashot_a: 'Ашот Арутюнян',
+    tatyana_u: 'Татьяна Урусова'
+
 
 };
 i18n.add('ru', json);

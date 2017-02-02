@@ -8,6 +8,7 @@ var json = {
     mainPage: 'Main',
     create: 'Create',
     aboutSite: 'About',
+    massMedia: 'Press about us',
     messages: 'Messages',
     myPosts: 'My posts',
     mainMenuBlog: 'Blog',
@@ -45,6 +46,21 @@ var json = {
     footer_disclaimer_text: 'By using Shiners, including creating posts, I agree to the',
     footer_disclaimer_text2: ' Terms of Use',
     footer_all_rights_reserved: 'Shiners 2017, all rights reserved',
-    footer_menu_post_publishing_rules: 'Post publishing rules'
+    footer_menu_post_publishing_rules: 'Post publishing rules',
+    //MASS MEDIA
+    h_information_for_smi: 'Информация для СМИ',
+    massMedia: 'Пресса о нас',
+    press_release: 'Пресс-релизы',
+    press_contacts: 'Контакты для прессы',
+    h_meet_us: 'Знакомство с нами',
+    h_mass_media: 'Пресса о нас',
+    m_about_us: 'О нас',
+    m_help: 'Помощь',
+    m_confidentiality: 'Конфиденциальность',
+    m_terms_of_use: 'Правила пользования',
+    site_published: 'Сайт публикации',
+    download_press_release: 'Скачать пресс-релиз',
+    ashot_a: 'Ашот Арутюнян',
+    tatyana_u: 'Татьяна Урусова'
 };
 i18n.add('en', json);

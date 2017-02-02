@@ -13,6 +13,10 @@ body {
 
         .sh-content {
 	        background: @sh-main-content-bg;
+
+            &.has-top-margin {
+                margin-top: 50px;
+            }
         }
 
         .sh-info-header {
@@ -40,10 +44,13 @@ body {
 
                 .sh-side-left {
 			        padding: 16px;
-                    .sh-flex-grow(1);	
+                    .sh-flex-grow(1);
+                    overflow: hidden;
+                    max-width: 100%;	
 			
 			        h1 {
 				        font-size: 28px;
+                        line-height: 1.2;
 				        font-weight: 400;
 				        color: @sh-main-gray-color;
 			        }
@@ -123,16 +130,39 @@ body {
                 //Photos
 	            .sh-photos {
 		            position: relative;
-		            height: 335px;
+		            //height: 335px;
 		            width: 100%;
+                    overflow: hidden;
 		            transition: height .2s;
 			
 		            .single-photo {
 			            background-position: 50% 50%;
 			            height: 100%;
+                        min-height: 335px;
 			            background-repeat: no-repeat;
 			            background-size: cover;
-			            background-color: #F4F4F4;
+			            background-color: #F0F0F0;
+
+                        #sh-carousel {
+                            margin-bottom: 0;
+
+                            .sh-responsive-no-image {
+                                width: 100%;
+                                min-height: 335px;
+                                .sh-flex-display();
+                                .sh-align-items(center);
+                                .sh-justify-content(center);
+
+                                span {
+                                    background-image: url(/images/sh-logo.png);
+                                    background-repeat: no-repeat;
+                                    background-position: center center;
+                                    background-size: contain;
+                                    height: 220px;
+                                    width: 220px;
+                                }
+                            }
+                        }
 		            }
 	            }
                  
@@ -235,7 +265,10 @@ body {
 						        font-weight: 700;
 						        font-size: 24px;
 						        line-height: 1;
-						        color: @sh-main-gray-color;
+						        
+                                a {
+                                    color: @sh-main-gray-color;
+                                }
 					        }
 					
 					        .sh-post-creator-display-loc-rew {
@@ -614,7 +647,122 @@ body {
 
 
 
-/* mobile style here */
+
+@media screen and (max-width: 991px) {    
+    body {
+        &.page--postDetails {
+            .sh-post-details {
+		        .sh-post-details-wrapper {
+                    .sh-flex-direction(column);
+
+			        .sh-side-left {
+				        flex-basis: auto;
+				        margin: 0 0 16px 0;
+			        }
+
+			        .sh-side-right {
+				        padding: 16px;
+				
+				        .sh-post-wish-and-more {
+					        margin: 0;
+				        }
+			        }
+		        }
+	        }
+        }
+    }
+}
+
+
+@media screen and (max-width: 767px) {}
+
+@media screen and (max-width: 480px) {
+	
+	.container {
+		padding: 0;
+	}
+
+    body {
+        &.page--postDetails {
+            .sh-post-details {
+		        padding: 15px 0;
+		
+		        .sh-post-details-wrapper {
+			        font-size: 14px;
+			
+			        .sh-post-creator {
+				        .sh-post-creator-wrapper {
+					        .sh-post-creator-info {
+
+						        .sh-post-creator-display-loc-rew {
+							        a {
+								        font-size: 13px;
+							        }
+						        }
+						
+						        .sh-post-creator-username {
+							        font-size: 20px;
+						        }
+					        }
+				        }
+			        }
+
+			        .sh-post-widget {
+				        .sh-post-top-price {
+					        .sh-price-wrapper {
+						        .sh-price-number {
+							        font-size: 26px;
+							        padding: 6px 10px;
+						        }
+
+						        .sh-price-prefix {
+							        font-size: 20px;
+							        padding: 10px;
+						        }
+					        }
+				        }
+			        }
+
+			        .sh-post-tab-menu {
+				        .sh-post-tab-menu-wrapper {
+					        .sh-post-tab-items {
+						        .sh-tab-item {
+							        a {
+								        padding: 12px 8px;
+							        }
+						        }
+					        }
+				        }
+			        }
+
+			        .sh-post-description {
+				        .sh-post-description-wrapper {
+					        p {
+						        font-size: 14px;
+					        }
+				        }
+			        }
+
+			        .sh-post-description .sh-post-description-wrapper h4,
+			        .sh-post-review .sh-post-reviews-wrapper h4,
+			        .sh-post-location .sh-post-location-wrapper h4 {
+				        font-size: 16px;
+			        }
+
+
+			        .sh-side-left {
+
+				        h1 {
+					        font-size: 22px;
+				        }
+			        }
+		        }
+	        }
+        }
+    }
+	
+	
+}
 
 
 

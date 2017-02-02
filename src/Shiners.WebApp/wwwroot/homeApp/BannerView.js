@@ -5,6 +5,8 @@ import selectionTemplate from './selectLocation/BannerViewLocationSelect.hbs.htm
 import '../lib/jquery.countTo.js';
 import app from './app.js';
 import SuggestionsView from './selectLocation/SuggestionListView.js'
+import './BannerView.less';
+
 var View = Marionette.View.extend({
     tagName: 'div',
     className: 'sh-header-navbar-info visible-md-block visible-lg-block',
