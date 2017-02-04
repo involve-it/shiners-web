@@ -8,13 +8,13 @@ var webpack = require('webpack'),
     ExtractTextPlugin = require("extract-text-webpack-plugin"),
     path = require('path');
 
-let extractCSS = new ExtractTextPlugin('[name].css');
-let extractLESS = new ExtractTextPlugin('css/out/bundle.less.css'); // path where bundle will be saved
+//let extractCSS = new ExtractTextPlugin('[name].css');
+let extractLESS = new ExtractTextPlugin('bundle.less.css'); // path where bundle will be saved
 
 module.exports = {
     entry: './wwwroot/index.js',
     output: {
-        path: "./wwwroot/",
+        path: "./wwwroot/build/",
         filename: "bundle.js"
     },
     resolve: {
