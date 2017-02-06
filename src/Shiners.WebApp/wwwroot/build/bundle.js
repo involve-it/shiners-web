@@ -57,15 +57,17 @@
 	
 	__webpack_require__(/*! ./helpers/ui */ 8);
 	
-	__webpack_require__(/*! ./lib/bootstrap/dist/js/bootstrap.min.js */ 9);
+	__webpack_require__(/*! ./helpers/locationHelper */ 9);
 	
-	__webpack_require__(/*! ./lib/jquery-ui-only-slider/jquery-ui.min.js */ 10);
+	__webpack_require__(/*! ./lib/bootstrap/dist/js/bootstrap.min.js */ 10);
 	
-	var _moment = __webpack_require__(/*! moment */ 11);
+	__webpack_require__(/*! ./lib/jquery-ui-only-slider/jquery-ui.min.js */ 11);
+	
+	var _moment = __webpack_require__(/*! moment */ 12);
 	
 	var _moment2 = _interopRequireDefault(_moment);
 	
-	var _app = __webpack_require__(/*! ./homeApp/app.js */ 12);
+	var _app = __webpack_require__(/*! ./homeApp/app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -11368,6 +11370,42 @@
 
 /***/ },
 /* 9 */
+/*!*******************************************!*\
+  !*** ./wwwroot/helpers/locationHelper.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, global) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var helper = {
+	    getDistance: function getDistance(lat1, lon1, lat2, lon2, measure) {
+	        measure = measure || 'km';
+	        var radlat1 = lat1 * Math.PI / 180;
+	        var radlon1 = lon1 * Math.PI / 180;
+	        var radlat2 = lat2 * Math.PI / 180;
+	        var radlon2 = lon2 * Math.PI / 180;
+	
+	        var dlat = radlat2 - radlat1;
+	        var dlon = radlon2 - radlon1;
+	
+	        var a = Math.pow(Math.sin(dlat / 2), 2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.pow(Math.sin(dlon / 2), 2);
+	        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); // great circle distance in radians
+	        // great circle distance in miles
+	        return c * (measure === 'km' ? this.earthRadiusKm : this.earthRadius);
+	    },
+	    earthRadius: 3961,
+	    earthRadiusKm: 6371,
+	    MAXRADIUS: 10000
+	};
+	_.extend(global.$h.help, helper); // put to global
+	exports.default = helper;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), (function() { return this; }())))
+
+/***/ },
+/* 10 */
 /*!********************************************************!*\
   !*** ./wwwroot/lib/bootstrap/dist/js/bootstrap.min.js ***!
   \********************************************************/
@@ -11960,7 +11998,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 10 */
+/* 11 */
 /*!************************************************************!*\
   !*** ./wwwroot/lib/jquery-ui-only-slider/jquery-ui.min.js ***!
   \************************************************************/
@@ -12681,7 +12719,7 @@
 	});
 
 /***/ },
-/* 11 */
+/* 12 */
 /*!*******************************************************!*\
   !*** ./wwwroot/lib/moment/moment-with-locales.min.js ***!
   \*******************************************************/
@@ -15806,7 +15844,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! ./../../../~/webpack/buildin/module.js */ 4)(module)))
 
 /***/ },
-/* 12 */
+/* 13 */
 /*!********************************!*\
   !*** ./wwwroot/homeApp/app.js ***!
   \********************************/
@@ -15818,29 +15856,29 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _backbone3 = __webpack_require__(/*! backbone */ 14);
+	var _backbone3 = __webpack_require__(/*! backbone */ 15);
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
 	
-	var _templateController = __webpack_require__(/*! ../js/controllers/templateController.js */ 16);
+	var _templateController = __webpack_require__(/*! ../js/controllers/templateController.js */ 17);
 	
 	var _templateController2 = _interopRequireDefault(_templateController);
 	
-	__webpack_require__(/*! ../i18n/en.js */ 17);
+	__webpack_require__(/*! ../i18n/en.js */ 18);
 	
-	__webpack_require__(/*! ../i18n/ru.js */ 18);
+	__webpack_require__(/*! ../i18n/ru.js */ 19);
 	
-	__webpack_require__(/*! ../lib/detectmobile.js */ 19);
+	__webpack_require__(/*! ../lib/detectmobile.js */ 20);
 	
-	var _asteroidBrowser = __webpack_require__(/*! ../lib/asteroid.browser.js */ 20);
+	var _asteroidBrowser = __webpack_require__(/*! ../lib/asteroid.browser.js */ 21);
 	
 	var _asteroidBrowser2 = _interopRequireDefault(_asteroidBrowser);
 	
-	var _mainLayoutView = __webpack_require__(/*! ./mainLayoutView.js */ 26);
+	var _mainLayoutView = __webpack_require__(/*! ./mainLayoutView.js */ 27);
 	
 	var _mainLayoutView2 = _interopRequireDefault(_mainLayoutView);
 	
@@ -16027,7 +16065,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 13 */
+/* 14 */
 /*!**********************************************************!*\
   !*** ./~/backbone.marionette/lib/backbone.marionette.js ***!
   \**********************************************************/
@@ -16048,7 +16086,7 @@
 	
 	
 	(function (global, factory) {
-		( false ? 'undefined' : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory(__webpack_require__(/*! backbone */ 14), __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone.radio */ 15)) :  true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! backbone */ 14), __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone.radio */ 15)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : global.Marionette = global['Mn'] = factory(global.Backbone, global._, global.Backbone.Radio);
+		( false ? 'undefined' : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory(__webpack_require__(/*! backbone */ 15), __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone.radio */ 16)) :  true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! backbone */ 15), __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone.radio */ 16)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : global.Marionette = global['Mn'] = factory(global.Backbone, global._, global.Backbone.Radio);
 	})(undefined, function (Backbone, _, Radio) {
 		'use strict';
 	
@@ -19156,7 +19194,7 @@
 	//# sourceMappingURL=backbone.marionette.js.map
 
 /***/ },
-/* 14 */
+/* 15 */
 /*!********************************!*\
   !*** ./~/backbone/backbone.js ***!
   \********************************/
@@ -21117,7 +21155,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 15 */
+/* 16 */
 /*!**************************************************!*\
   !*** ./~/backbone.radio/build/backbone.radio.js ***!
   \**************************************************/
@@ -21130,7 +21168,7 @@
 	// Backbone.Radio v2.0.0
 	
 	(function (global, factory) {
-	  ( false ? 'undefined' : _typeof2(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory(__webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone */ 14)) :  true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone */ 14)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : (global.Backbone = global.Backbone || {}, global.Backbone.Radio = factory(global._, global.Backbone));
+	  ( false ? 'undefined' : _typeof2(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory(__webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone */ 15)) :  true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone */ 15)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : (global.Backbone = global.Backbone || {}, global.Backbone.Radio = factory(global._, global.Backbone));
 	})(undefined, function (_, Backbone) {
 	  'use strict';
 	
@@ -21477,7 +21515,7 @@
 	//# sourceMappingURL=./backbone.radio.js.map
 
 /***/ },
-/* 16 */
+/* 17 */
 /*!******************************************************!*\
   !*** ./wwwroot/js/controllers/templateController.js ***!
   \******************************************************/
@@ -21557,7 +21595,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 17 */
+/* 18 */
 /*!****************************!*\
   !*** ./wwwroot/i18n/en.js ***!
   \****************************/
@@ -21624,7 +21662,7 @@
 	i18n.add('en', json);
 
 /***/ },
-/* 18 */
+/* 19 */
 /*!****************************!*\
   !*** ./wwwroot/i18n/ru.js ***!
   \****************************/
@@ -21699,7 +21737,7 @@
 	i18n.add('ru', json);
 
 /***/ },
-/* 19 */
+/* 20 */
 /*!*************************************!*\
   !*** ./wwwroot/lib/detectmobile.js ***!
   \*************************************/
@@ -21719,7 +21757,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 20 */
+/* 21 */
 /*!*****************************************!*\
   !*** ./wwwroot/lib/asteroid.browser.js ***!
   \*****************************************/
@@ -21731,7 +21769,7 @@
 	
 	(function (root, factory) {
 		if (true) {
-			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! ddp.js */ 21), __webpack_require__(/*! q */ 22)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! ddp.js */ 22), __webpack_require__(/*! q */ 23)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 		} else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === "object") {
 			var DDP = require('ddp.js');
 			var Q = require('q');
@@ -22916,7 +22954,7 @@
 	});
 
 /***/ },
-/* 21 */
+/* 22 */
 /*!*****************************!*\
   !*** ./~/ddp.js/src/ddp.js ***!
   \*****************************/
@@ -23254,7 +23292,7 @@
 	});
 
 /***/ },
-/* 22 */
+/* 23 */
 /*!******************!*\
   !*** ./~/q/q.js ***!
   \******************/
@@ -25265,10 +25303,10 @@
 	
 	    return Q;
 	});
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 23), __webpack_require__(/*! ./../timers-browserify/main.js */ 24).setImmediate, __webpack_require__(/*! ./../webpack/buildin/module.js */ 4)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 24), __webpack_require__(/*! ./../timers-browserify/main.js */ 25).setImmediate, __webpack_require__(/*! ./../webpack/buildin/module.js */ 4)(module)))
 
 /***/ },
-/* 23 */
+/* 24 */
 /*!******************************!*\
   !*** ./~/process/browser.js ***!
   \******************************/
@@ -25457,7 +25495,7 @@
 	};
 
 /***/ },
-/* 24 */
+/* 25 */
 /*!*************************************!*\
   !*** ./~/timers-browserify/main.js ***!
   \*************************************/
@@ -25513,12 +25551,12 @@
 	};
 	
 	// setimmediate attaches itself to the global object
-	__webpack_require__(/*! setimmediate */ 25);
+	__webpack_require__(/*! setimmediate */ 26);
 	exports.setImmediate = setImmediate;
 	exports.clearImmediate = clearImmediate;
 
 /***/ },
-/* 25 */
+/* 26 */
 /*!****************************************!*\
   !*** ./~/setimmediate/setImmediate.js ***!
   \****************************************/
@@ -25708,10 +25746,10 @@
 	    attachTo.setImmediate = setImmediate;
 	    attachTo.clearImmediate = clearImmediate;
 	})(typeof self === "undefined" ? typeof global === "undefined" ? undefined : global : self);
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(/*! ./../process/browser.js */ 23)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(/*! ./../process/browser.js */ 24)))
 
 /***/ },
-/* 26 */
+/* 27 */
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/mainLayoutView.js ***!
   \*******************************************/
@@ -25723,15 +25761,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone */ 14);
+	var _backbone = __webpack_require__(/*! backbone */ 15);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _backbone3 = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone3 = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
 	
-	var _mainLayoutViewHbs = __webpack_require__(/*! ./mainLayoutView.hbs.html */ 27);
+	var _mainLayoutViewHbs = __webpack_require__(/*! ./mainLayoutView.hbs.html */ 28);
 	
 	var _mainLayoutViewHbs2 = _interopRequireDefault(_mainLayoutViewHbs);
 	
@@ -25739,7 +25777,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _MapView = __webpack_require__(/*! ./MapView.js */ 28);
+	var _MapView = __webpack_require__(/*! ./MapView.js */ 29);
 	
 	var _MapView2 = _interopRequireDefault(_MapView);
 	
@@ -25755,7 +25793,7 @@
 	
 	var _NavLocationView2 = _interopRequireDefault(_NavLocationView);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 12);
+	var _app = __webpack_require__(/*! ./app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -25895,7 +25933,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 27 */
+/* 28 */
 /*!*************************************************!*\
   !*** ./wwwroot/homeApp/mainLayoutView.hbs.html ***!
   \*************************************************/
@@ -25943,7 +25981,7 @@
 
 
 /***/ },
-/* 28 */
+/* 29 */
 /*!************************************!*\
   !*** ./wwwroot/homeApp/MapView.js ***!
   \************************************/
@@ -25955,31 +25993,31 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _backbone3 = __webpack_require__(/*! backbone */ 14);
+	var _backbone3 = __webpack_require__(/*! backbone */ 15);
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
 	
-	var _MapViewHbs = __webpack_require__(/*! ./MapView.hbs.html */ 29);
+	var _MapViewHbs = __webpack_require__(/*! ./MapView.hbs.html */ 30);
 	
 	var _MapViewHbs2 = _interopRequireDefault(_MapViewHbs);
 	
-	var _CreateButtonHbs = __webpack_require__(/*! ./CreateButton.hbs.html */ 30);
+	var _CreateButtonHbs = __webpack_require__(/*! ./CreateButton.hbs.html */ 31);
 	
 	var _CreateButtonHbs2 = _interopRequireDefault(_CreateButtonHbs);
 	
-	var _SetPositionMapButtonHbs = __webpack_require__(/*! ./SetPositionMapButton.hbs.html */ 31);
+	var _SetPositionMapButtonHbs = __webpack_require__(/*! ./SetPositionMapButton.hbs.html */ 32);
 	
 	var _SetPositionMapButtonHbs2 = _interopRequireDefault(_SetPositionMapButtonHbs);
 	
-	var _MobileShowInfoButtonHbs = __webpack_require__(/*! ./MobileShowInfoButton.hbs.html */ 32);
+	var _MobileShowInfoButtonHbs = __webpack_require__(/*! ./MobileShowInfoButton.hbs.html */ 33);
 	
 	var _MobileShowInfoButtonHbs2 = _interopRequireDefault(_MobileShowInfoButtonHbs);
 	
-	var _SearchView = __webpack_require__(/*! ./search/SearchView.js */ 33);
+	var _SearchView = __webpack_require__(/*! ./search/SearchView.js */ 34);
 	
 	var _SearchView2 = _interopRequireDefault(_SearchView);
 	
@@ -25995,7 +26033,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 12);
+	var _app = __webpack_require__(/*! ./app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -26235,6 +26273,14 @@
 	                lat: center.lat(),
 	                lng: center.lng()
 	            };
+	            var measureUnit,
+	                radius,
+	                bounds = _this4.map.getBounds();
+	            if (bounds) {
+	                measureUnit = i18n.getLanguage() === 'ru' ? 'km' : 'mi';
+	                radius = $h.help.getDistance(bounds.getNorthEast().lat(), bounds.getNorthEast().lng(), bounds.getSouthWest().lat(), bounds.getSouthWest().lng(), measureUnit) / 2;
+	            }
+	
 	            _this4.geocoder.geocode({ 'location': latLng, 'language': _app2.default.i18n.getLanguage() }, _underscore2.default.bind(function (results, status) {
 	                if (status === window.google.maps.GeocoderStatus.OK) {
 	                    var locationName = _underscore2.default.find(results[0].address_components, function (res) {
@@ -26244,7 +26290,8 @@
 	                    }, _this4);
 	                    _this4.model.set({
 	                        position: latLng,
-	                        address: locationName.long_name
+	                        address: locationName.long_name,
+	                        radius: radius
 	                    });
 	                } else {
 	                    _this4.model.set({
@@ -26260,7 +26307,8 @@
 	            method = 'getNearbyPostsTest',
 	            activeCats = this.model.get('activeCats'),
 	            args,
-	            radius = this.model.get('radius') * 0.6215;
+	            radius = this.model.get('radius');
+	        //radius = this.model.get('radius') * 0.6215;
 	        if (query && !_underscore2.default.isEmpty(query.trim()) || activeCats && !_underscore2.default.isEmpty(activeCats)) {
 	            method = 'searchPosts';
 	            args = {
@@ -26274,7 +26322,9 @@
 	            args = {
 	                lat: this.model.get('position').lat,
 	                lng: this.model.get('position').lng,
-	                radius: radius
+	                radius: radius,
+	                take: 200
+	                //limit: 200
 	            };
 	        }
 	        this.collection.loadByMethod(method, args);
@@ -26284,7 +26334,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 29 */
+/* 30 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/MapView.hbs.html ***!
   \******************************************/
@@ -26300,7 +26350,7 @@
 
 
 /***/ },
-/* 30 */
+/* 31 */
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/CreateButton.hbs.html ***!
   \***********************************************/
@@ -26316,7 +26366,7 @@
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/SetPositionMapButton.hbs.html ***!
   \*******************************************************/
@@ -26332,7 +26382,7 @@
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/MobileShowInfoButton.hbs.html ***!
   \*******************************************************/
@@ -26348,7 +26398,7 @@
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/search/SearchView.js ***!
   \**********************************************/
@@ -26360,21 +26410,21 @@
 	    value: true
 	});
 	
-	var _SearchViewHbs = __webpack_require__(/*! ./SearchView.hbs.html */ 34);
+	var _SearchViewHbs = __webpack_require__(/*! ./SearchView.hbs.html */ 35);
 	
 	var _SearchViewHbs2 = _interopRequireDefault(_SearchViewHbs);
 	
-	var _backbone = __webpack_require__(/*! backbone */ 14);
+	var _backbone = __webpack_require__(/*! backbone */ 15);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css */ 35);
+	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css */ 36);
 	
-	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js */ 39);
+	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js */ 40);
 	
-	__webpack_require__(/*! ../../lib/jquery-slimscroll/jquery.slimscroll.min.js */ 40);
+	__webpack_require__(/*! ../../lib/jquery-slimscroll/jquery.slimscroll.min.js */ 41);
 	
-	var _ShinersListView = __webpack_require__(/*! ./ShinersListView.js */ 41);
+	var _ShinersListView = __webpack_require__(/*! ./ShinersListView.js */ 42);
 	
 	var _ShinersListView2 = _interopRequireDefault(_ShinersListView);
 	
@@ -26382,7 +26432,7 @@
 	
 	var _CategoriesListView2 = _interopRequireDefault(_CategoriesListView);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 12);
+	var _app = __webpack_require__(/*! ../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -26518,7 +26568,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 34 */
+/* 35 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/search/SearchView.hbs.html ***!
   \****************************************************/
@@ -26546,7 +26596,7 @@
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /*!******************************************************************************!*\
   !*** ./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css ***!
   \******************************************************************************/
@@ -26555,10 +26605,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./jquery-ui-slider-pips.min.css */ 36);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./jquery-ui-slider-pips.min.css */ 37);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 38)(content, {});
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 39)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -26575,17 +26625,17 @@
 	}
 
 /***/ },
-/* 36 */
+/* 37 */
 /*!*********************************************************************************************!*\
   !*** ./~/css-loader!./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css ***!
   \*********************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 37)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 38)();
 	exports.push([module.id, "/*! jQuery-ui-Slider-Pips - v1.11.4 - 2016-09-04\r\n* Copyright (c) 2016 Simon Goellner <simey.me@gmail.com>; Licensed MIT */\r\n\r\n.ui-slider-horizontal.ui-slider-pips{margin-bottom:1.4em}.ui-slider-pips .ui-slider-label,.ui-slider-pips .ui-slider-pip-hide{display:none}.ui-slider-pips .ui-slider-pip-label .ui-slider-label{display:block}.ui-slider-pips .ui-slider-pip{width:2em;height:1em;line-height:1em;position:absolute;font-size:0.8em;color:#999;overflow:visible;text-align:center;top:20px;left:20px;margin-left:-1em;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.ui-state-disabled.ui-slider-pips .ui-slider-pip{cursor:default}.ui-slider-pips .ui-slider-line{background:#999;width:1px;height:3px;position:absolute;left:50%}.ui-slider-pips .ui-slider-label{position:absolute;top:5px;left:50%;margin-left:-1em;width:2em}.ui-slider-pips:not(.ui-slider-disabled) .ui-slider-pip:hover .ui-slider-label{color:black;font-weight:bold}.ui-slider-vertical.ui-slider-pips{margin-bottom:1em;margin-right:2em}.ui-slider-vertical.ui-slider-pips .ui-slider-pip{text-align:left;top:auto;left:20px;margin-left:0;margin-bottom:-0.5em}.ui-slider-vertical.ui-slider-pips .ui-slider-line{width:3px;height:1px;position:absolute;top:50%;left:0}.ui-slider-vertical.ui-slider-pips .ui-slider-label{top:50%;left:0.5em;margin-left:0;margin-top:-0.5em;width:2em}.ui-slider-float .ui-slider-handle:focus,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip-label .ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label{outline:none}.ui-slider-float .ui-slider-tip,.ui-slider-float .ui-slider-tip-label{position:absolute;visibility:hidden;top:-40px;display:block;width:34px;margin-left:-18px;left:50%;height:20px;line-height:20px;background:white;border-radius:3px;border:1px solid #888;text-align:center;font-size:12px;opacity:0;color:#333;-webkit-transition-property:opacity, top, visibility;transition-property:opacity, top, visibility;-webkit-transition-timing-function:ease-in;transition-timing-function:ease-in;-webkit-transition-duration:200ms, 200ms, 0ms;transition-duration:200ms, 200ms, 0ms;-webkit-transition-delay:0ms, 0ms, 200ms;transition-delay:0ms, 0ms, 200ms}.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{opacity:1;top:-30px;visibility:visible;-webkit-transition-timing-function:ease-out;transition-timing-function:ease-out;-webkit-transition-delay:200ms, 200ms, 0ms;transition-delay:200ms, 200ms, 0ms}.ui-slider-float .ui-slider-pip .ui-slider-tip-label{top:42px}.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:32px;font-weight:normal}.ui-slider-float .ui-slider-tip:after,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#fff;position:absolute;bottom:-10px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-tip:before,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#888;position:absolute;bottom:-11px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-bottom-color:#fff;top:-10px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-bottom-color:#888;top:-11px}.ui-slider-vertical.ui-slider-float .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-tip-label{top:50%;margin-top:-11px;width:34px;margin-left:0px;left:-60px;color:#333;-webkit-transition-duration:200ms, 200ms, 0;transition-duration:200ms, 200ms, 0;-webkit-transition-property:opacity, left, visibility;transition-property:opacity, left, visibility;-webkit-transition-delay:0, 0, 200ms;transition-delay:0, 0, 200ms}.ui-slider-vertical.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:50%;margin-top:-11px;left:-50px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label{left:47px}.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{left:37px}.ui-slider-vertical.ui-slider-float .ui-slider-tip:after,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-left-color:#fff;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-10px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-tip:before,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-left-color:#888;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-11px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-right-color:#fff;right:auto;left:-10px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-right-color:#888;right:auto;left:-11px}.ui-slider-pips [class*=ui-slider-pip-initial]{font-weight:bold;color:#14CA82}.ui-slider-pips .ui-slider-pip-initial-2{color:#1897C9}.ui-slider-pips [class*=ui-slider-pip-selected]{font-weight:bold;color:#FF7A00}.ui-slider-pips .ui-slider-pip-inrange{color:black}.ui-slider-pips .ui-slider-pip-selected-2{color:#E70081}.ui-slider-pips [class*=ui-slider-pip-selected] .ui-slider-line,.ui-slider-pips .ui-slider-pip-inrange .ui-slider-line{background:black}\r\n", ""]);
 
 /***/ },
-/* 37 */
+/* 38 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -26643,7 +26693,7 @@
 	};
 
 /***/ },
-/* 38 */
+/* 39 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -26898,7 +26948,7 @@
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /*!*************************************************************************!*\
   !*** ./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js ***!
   \*************************************************************************/
@@ -27559,7 +27609,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 40 */
+/* 41 */
 /*!****************************************************************!*\
   !*** ./wwwroot/lib/jquery-slimscroll/jquery.slimscroll.min.js ***!
   \****************************************************************/
@@ -27650,7 +27700,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 41 */
+/* 42 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersListView.js ***!
   \***************************************************/
@@ -27662,11 +27712,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ShinersListItemView = __webpack_require__(/*! ./ShinersListItemView.js */ 42);
+	var _ShinersListItemView = __webpack_require__(/*! ./ShinersListItemView.js */ 43);
 	
 	var _ShinersListItemView2 = _interopRequireDefault(_ShinersListItemView);
 	
@@ -27722,7 +27772,7 @@
 	exports.default = View;
 
 /***/ },
-/* 42 */
+/* 43 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersListItemView.js ***!
   \*******************************************************/
@@ -27734,19 +27784,19 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ShinersListItemViewHbs = __webpack_require__(/*! ./ShinersListItemView.hbs.html */ 43);
+	var _ShinersListItemViewHbs = __webpack_require__(/*! ./ShinersListItemView.hbs.html */ 44);
 	
 	var _ShinersListItemViewHbs2 = _interopRequireDefault(_ShinersListItemViewHbs);
 	
-	var _app = __webpack_require__(/*! ../app */ 12);
+	var _app = __webpack_require__(/*! ../app */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _locationHelper = __webpack_require__(/*! ../../helpers/locationHelper.js */ 44);
+	var _locationHelper = __webpack_require__(/*! ../../helpers/locationHelper.js */ 9);
 	
 	var _locationHelper2 = _interopRequireDefault(_locationHelper);
 	
@@ -27780,7 +27830,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 43 */
+/* 44 */
 /*!*************************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersListItemView.hbs.html ***!
   \*************************************************************/
@@ -27818,41 +27868,7 @@
 	return __p;
 	};
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 11)))
-
-/***/ },
-/* 44 */
-/*!*******************************************!*\
-  !*** ./wwwroot/helpers/locationHelper.js ***!
-  \*******************************************/
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	var helper = {
-	    getDistance: function getDistance(lat1, lon1, lat2, lon2, measure) {
-	        measure = measure || 'km';
-	        var radlat1 = lat1 * Math.PI / 180;
-	        var radlon1 = lon1 * Math.PI / 180;
-	        var radlat2 = lat2 * Math.PI / 180;
-	        var radlon2 = lon2 * Math.PI / 180;
-	
-	        var dlat = radlat2 - radlat1;
-	        var dlon = radlon2 - radlon1;
-	
-	        var a = Math.pow(Math.sin(dlat / 2), 2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.pow(Math.sin(dlon / 2), 2);
-	        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); // great circle distance in radians
-	        // great circle distance in miles
-	        return c * (measure === 'km' ? this.earthRadiusKm : this.earthRadius);
-	    },
-	    earthRadius: 3961,
-	    earthRadiusKm: 6371,
-	    MAXRADIUS: 10000
-	};
-	exports.default = helper;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
 /* 45 */
@@ -27867,7 +27883,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -27915,7 +27931,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -27960,7 +27976,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -28089,7 +28105,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -28097,11 +28113,11 @@
 	
 	var _ShinerInfoViewHbs2 = _interopRequireDefault(_ShinerInfoViewHbs);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 12);
+	var _app = __webpack_require__(/*! ./app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _locationHelper = __webpack_require__(/*! ../helpers/locationHelper.js */ 44);
+	var _locationHelper = __webpack_require__(/*! ../helpers/locationHelper.js */ 9);
 	
 	var _locationHelper2 = _interopRequireDefault(_locationHelper);
 	
@@ -28201,7 +28217,7 @@
 	return __p;
 	};
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 11)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
 /* 54 */
@@ -28284,7 +28300,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -28302,7 +28318,7 @@
 	
 	__webpack_require__(/*! ../lib/jquery.countTo.js */ 59);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 12);
+	var _app = __webpack_require__(/*! ./app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -28430,7 +28446,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone */ 14);
+	var _backbone = __webpack_require__(/*! backbone */ 15);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -28647,7 +28663,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -28655,7 +28671,7 @@
 	
 	var _SuggestionItemView2 = _interopRequireDefault(_SuggestionItemView);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 12);
+	var _app = __webpack_require__(/*! ../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -28692,7 +28708,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -28764,7 +28780,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -28772,7 +28788,7 @@
 	
 	var _UserBarViewHbs2 = _interopRequireDefault(_UserBarViewHbs);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 12);
+	var _app = __webpack_require__(/*! ./app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -28842,7 +28858,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -28850,7 +28866,7 @@
 	
 	var _NavLocationViewHbs2 = _interopRequireDefault(_NavLocationViewHbs);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 12);
+	var _app = __webpack_require__(/*! ./app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -28914,11 +28930,11 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _backbone3 = __webpack_require__(/*! backbone */ 14);
+	var _backbone3 = __webpack_require__(/*! backbone */ 15);
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
 	
@@ -28928,7 +28944,7 @@
 	
 	__webpack_require__(/*! ./iframeView.css */ 70);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 12);
+	var _app = __webpack_require__(/*! ../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -29106,7 +29122,7 @@
 	var content = __webpack_require__(/*! !./../../../~/css-loader!./iframeView.css */ 71);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 38)(content, {});
+	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 39)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -29129,7 +29145,7 @@
   \**************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 37)();
+	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 38)();
 	exports.push([module.id, ".sh-iframe-view {\r\n    padding: 0 !important;\r\n}\r\n\r\n.sh-iframe-view .container {\r\n    width: auto !important;\r\n}\r\n\r\nbody.sh-hidden-overflow {\r\n    overflow: hidden !important;\r\n}\r\nbody.sh-hidden-overflow #wrapper {\r\n    background-color: #eaeaea;\r\n}\r\nbody.sh-hidden-overflow #iframeHolder section {\r\n    padding: 0 !important;\r\n    margin: 0 !important;\r\n}\r\nbody.sh-hidden-overflow #iframeHolder .container {\r\n    padding: 0 !important;\r\n    margin: 0 !important;\r\n}", ""]);
 
 /***/ },
@@ -29145,7 +29161,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone */ 14);
+	var _backbone = __webpack_require__(/*! backbone */ 15);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -29153,7 +29169,7 @@
 	
 	var _userMenuViewHbs2 = _interopRequireDefault(_userMenuViewHbs);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 12);
+	var _app = __webpack_require__(/*! ../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -29198,7 +29214,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -29208,7 +29224,7 @@
 	
 	__webpack_require__(/*! ./mainMenuView.less */ 76);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 12);
+	var _app = __webpack_require__(/*! ./app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -29321,7 +29337,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone */ 14);
+	var _backbone = __webpack_require__(/*! backbone */ 15);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -29548,7 +29564,7 @@
 	
 	var _backboneValidation2 = _interopRequireDefault(_backboneValidation);
 	
-	var _backbone = __webpack_require__(/*! backbone */ 14);
+	var _backbone = __webpack_require__(/*! backbone */ 15);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -29580,9 +29596,9 @@
 	// http://thedersen.com/projects/backbone-validation
 	(function (factory) {
 	  if (( false ? 'undefined' : _typeof(exports)) === 'object') {
-	    module.exports = factory(__webpack_require__(/*! backbone */ 14), __webpack_require__(/*! underscore */ 7));
+	    module.exports = factory(__webpack_require__(/*! backbone */ 15), __webpack_require__(/*! underscore */ 7));
 	  } else if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! backbone */ 14), __webpack_require__(/*! underscore */ 7)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! backbone */ 15), __webpack_require__(/*! underscore */ 7)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  }
 	})(function (Backbone, _) {
 	  Backbone.Validation = function (_) {
@@ -30282,7 +30298,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
 	
-	var _backbone = __webpack_require__(/*! backbone */ 14);
+	var _backbone = __webpack_require__(/*! backbone */ 15);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -30620,7 +30636,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
 	
-	var _backbone = __webpack_require__(/*! backbone */ 14);
+	var _backbone = __webpack_require__(/*! backbone */ 15);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -30701,7 +30717,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -30709,7 +30725,7 @@
 	
 	var _controller2 = _interopRequireDefault(_controller);
 	
-	var _app = __webpack_require__(/*! ./app */ 12);
+	var _app = __webpack_require__(/*! ./app */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -30794,7 +30810,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -30898,7 +30914,7 @@
 	
 	var _blogPostIdView2 = _interopRequireDefault(_blogPostIdView);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 12);
+	var _app = __webpack_require__(/*! ./app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -31081,7 +31097,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -31095,7 +31111,7 @@
 	
 	var _PostTypesView2 = _interopRequireDefault(_PostTypesView);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 12);
+	var _app = __webpack_require__(/*! ../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -31336,7 +31352,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -31366,7 +31382,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -31374,7 +31390,7 @@
 	
 	var _PostTypeItemView2 = _interopRequireDefault(_PostTypeItemView);
 	
-	var _app = __webpack_require__(/*! ../app */ 12);
+	var _app = __webpack_require__(/*! ../app */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -31480,7 +31496,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -31539,7 +31555,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -31565,13 +31581,13 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 12);
+	var _app = __webpack_require__(/*! ../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
 	__webpack_require__(/*! ./DetailsView.less */ 101);
 	
-	var _locationHelper = __webpack_require__(/*! ../../helpers/locationHelper.js */ 44);
+	var _locationHelper = __webpack_require__(/*! ../../helpers/locationHelper.js */ 9);
 	
 	var _locationHelper2 = _interopRequireDefault(_locationHelper);
 	
@@ -31975,7 +31991,7 @@
 	return __p;
 	};
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 11), __webpack_require__(/*! underscore */ 7)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12), __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
 /* 98 */
@@ -32677,7 +32693,7 @@
 	            value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -32989,7 +33005,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -33035,7 +33051,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -33043,7 +33059,7 @@
 	
 	var _CreatePostViewHbs2 = _interopRequireDefault(_CreatePostViewHbs);
 	
-	var _app = __webpack_require__(/*! ../../app.js */ 12);
+	var _app = __webpack_require__(/*! ../../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -33325,7 +33341,7 @@
 	    }
 	});
 	exports.default = View;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 11), __webpack_require__(/*! jquery */ 3)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
 /* 107 */
@@ -33501,7 +33517,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -33530,7 +33546,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -33593,7 +33609,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -33658,7 +33674,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -33737,7 +33753,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -33745,7 +33761,7 @@
 	
 	var _SuccessView2 = _interopRequireDefault(_SuccessView);
 	
-	var _backbone3 = __webpack_require__(/*! backbone */ 14);
+	var _backbone3 = __webpack_require__(/*! backbone */ 15);
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
 	
@@ -33803,7 +33819,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -33811,7 +33827,7 @@
 	
 	var _LocationMapViewHbs2 = _interopRequireDefault(_LocationMapViewHbs);
 	
-	var _app = __webpack_require__(/*! ../../app.js */ 12);
+	var _app = __webpack_require__(/*! ../../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -35861,7 +35877,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -35873,7 +35889,7 @@
 	
 	var _PostItemView2 = _interopRequireDefault(_PostItemView);
 	
-	var _app = __webpack_require__(/*! ../../app.js */ 12);
+	var _app = __webpack_require__(/*! ../../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -35916,7 +35932,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -35924,11 +35940,11 @@
 	
 	var _PostItemViewHbs2 = _interopRequireDefault(_PostItemViewHbs);
 	
-	var _app = __webpack_require__(/*! ../../app.js */ 12);
+	var _app = __webpack_require__(/*! ../../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _locationHelper = __webpack_require__(/*! ../../../helpers/locationHelper.js */ 44);
+	var _locationHelper = __webpack_require__(/*! ../../../helpers/locationHelper.js */ 9);
 	
 	var _locationHelper2 = _interopRequireDefault(_locationHelper);
 	
@@ -36027,7 +36043,7 @@
 	return __p;
 	};
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 11)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
 /* 127 */
@@ -36042,7 +36058,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -36093,7 +36109,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -36101,7 +36117,7 @@
 	
 	var _chatItemViewHbs2 = _interopRequireDefault(_chatItemViewHbs);
 	
-	var _app = __webpack_require__(/*! ../../app.js */ 12);
+	var _app = __webpack_require__(/*! ../../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -36164,7 +36180,7 @@
 	return __p;
 	};
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 11)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
 /* 131 */
@@ -36179,7 +36195,7 @@
 	var content = __webpack_require__(/*! !./../../../../~/css-loader!./chatItemView.css */ 132);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 38)(content, {});
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 39)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -36202,7 +36218,7 @@
   \***********************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 37)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 38)();
 	exports.push([module.id, ".bz-chat-item .bz-user-avatar {\r\n  float: left;\r\n  top: 0;\r\n  left: 0;\r\n  padding-right: 10px;\r\n}\r\n\r\n.bz-chat-item .bz-avatar {\r\n\r\n  background-size: cover;\r\n  background-position: center;\r\n  -webkit-border-radius: 2px;\r\n  -moz-border-radius: 2px;\r\n  border-radius: 2px;\r\n}\r\n.bz-chat-item .bz-avatar img {\r\n  width: 50px;\r\n  height: 50px;\r\n}\r\n.bz-chat-item .bz-last-timestamp {\r\n  font-style: italic;\r\n  font-size: 12px;\r\n  padding-top: 12px;\r\n}\r\n.bz-chat-item .bz-last-message {\r\n  font-weight: bold;\r\n}\r\n/* temp, not good solution: */\r\ndiv.blog-post-item {\r\n  margin-bottom: 10px;\r\n  padding-bottom: 30px;\r\n}", ""]);
 
 /***/ },
@@ -36218,7 +36234,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -36283,7 +36299,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -36291,7 +36307,7 @@
 	
 	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 12);
+	var _app = __webpack_require__(/*! ../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -36369,7 +36385,7 @@
 	return __p;
 	};
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 11)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
 /* 137 */
@@ -36384,7 +36400,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -36400,7 +36416,7 @@
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	var _app = __webpack_require__(/*! ../../app.js */ 12);
+	var _app = __webpack_require__(/*! ../../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -36487,7 +36503,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -36499,7 +36515,7 @@
 	
 	var _NoMessagesView2 = _interopRequireDefault(_NoMessagesView);
 	
-	var _app = __webpack_require__(/*! ../../app.js */ 12);
+	var _app = __webpack_require__(/*! ../../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -36540,7 +36556,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -36652,7 +36668,7 @@
 	return __p;
 	};
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 11)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
 
 /***/ },
 /* 142 */
@@ -36667,7 +36683,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -36713,7 +36729,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -36723,7 +36739,7 @@
 	
 	__webpack_require__(/*! ./loginView.less */ 146);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 12);
+	var _app = __webpack_require__(/*! ../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -36832,7 +36848,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone */ 14);
+	var _backbone = __webpack_require__(/*! backbone */ 15);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -36865,7 +36881,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -36873,7 +36889,7 @@
 	
 	var _RegisterUserViewHbs2 = _interopRequireDefault(_RegisterUserViewHbs);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 12);
+	var _app = __webpack_require__(/*! ../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -36963,7 +36979,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone */ 14);
+	var _backbone = __webpack_require__(/*! backbone */ 15);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -37006,7 +37022,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -37014,7 +37030,7 @@
 	
 	var _AboutViewHbs2 = _interopRequireDefault(_AboutViewHbs);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 12);
+	var _app = __webpack_require__(/*! ../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -37153,7 +37169,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -37161,7 +37177,7 @@
 	
 	var _MassMediaViewHbs2 = _interopRequireDefault(_MassMediaViewHbs);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 12);
+	var _app = __webpack_require__(/*! ../app.js */ 13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -37311,7 +37327,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -37355,7 +37371,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -37399,7 +37415,7 @@
 	  value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -37446,7 +37462,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -37496,7 +37512,7 @@
 	  value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -37543,7 +37559,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -37614,7 +37630,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 13);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -37674,7 +37690,7 @@
 	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 174);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 38)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 39)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -37697,7 +37713,7 @@
   \*********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 37)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 38)();
 	exports.push([module.id, "/*this file contains rules that override template/bootstrap etc.*/\r\nbody.sh-body #topNav button.btn-mobile {\r\n    color: #f7fafb;\r\n}\r\n", ""]);
 
 /***/ }

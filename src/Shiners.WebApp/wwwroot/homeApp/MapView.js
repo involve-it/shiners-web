@@ -247,6 +247,13 @@ var View = Marionette.View.extend({
                     lat:center.lat(),
                     lng:center.lng()
                 };
+            var measureUnit, radius, bounds = this.map.getBounds();
+            if (bounds) {
+                measureUnit = i18n.getLanguage() === 'ru'? 'km': 'mi';
+                radius = $h.help.getDistance(bounds.getNorthEast().lat(), bounds.getNorthEast().lng(),
+                        bounds.getSouthWest().lat(), bounds.getSouthWest().lng(), measureUnit) / 2;
+            }
+
             this.geocoder.geocode({'location': latLng,'language':app.i18n.getLanguage()},_.bind((results,status)=>{
                 if (status === window.google.maps.GeocoderStatus.OK) {
                     var locationName = _.find(results[0].address_components,
@@ -255,7 +262,8 @@ var View = Marionette.View.extend({
                         },this);
                     this.model.set({
                         position: latLng,
-                        address:locationName.long_name
+                        address:locationName.long_name,
+                        radius: radius
                     });
                 } else {
                     this.model.set({
@@ -272,8 +280,9 @@ var View = Marionette.View.extend({
             method='getNearbyPostsTest',
             activeCats=this.model.get('activeCats'),
             args,
-            radius = this.model.get('radius')* 0.6215;
-        if ((query && !_.isEmpty(query.trim()))||(activeCats&&!_.isEmpty(activeCats))) {          
+            radius = this.model.get('radius');
+            //radius = this.model.get('radius') * 0.6215;
+        if ((query && !_.isEmpty(query.trim()))||(activeCats&&!_.isEmpty(activeCats))) {
             method = 'searchPosts';
             args = {
                 query:query||"",
@@ -286,7 +295,9 @@ var View = Marionette.View.extend({
             args={
                 lat:this.model.get('position').lat,
                 lng:this.model.get('position').lng,
-                radius:radius
+                radius:radius,
+                take: 200
+                //limit: 200
             };
         }        
         this.collection.loadByMethod(method,args);
