@@ -67,9 +67,9 @@
 	
 	var _moment2 = _interopRequireDefault(_moment);
 	
-	__webpack_require__(/*! ./css/bootstrap-override.less */ 175);
+	__webpack_require__(/*! ./css/bootstrap-override.less */ 13);
 	
-	var _app = __webpack_require__(/*! ./homeApp/app.js */ 13);
+	var _app = __webpack_require__(/*! ./homeApp/app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -15847,6 +15847,73 @@
 
 /***/ },
 /* 13 */
+/*!*********************************************!*\
+  !*** ./wwwroot/css/bootstrap-override.less ***!
+  \*********************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 14 */
+/*!**************************************!*\
+  !*** ./~/css-loader/lib/css-base.js ***!
+  \**************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function () {
+		var list = [];
+	
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for (var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if (item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+	
+		// import a list of modules into the list
+		list.i = function (modules, mediaQuery) {
+			if (typeof modules === "string") modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for (var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if (typeof id === "number") alreadyImportedModules[id] = true;
+			}
+			for (i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if (mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if (mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+/***/ },
+/* 15 */
 /*!********************************!*\
   !*** ./wwwroot/homeApp/app.js ***!
   \********************************/
@@ -15858,37 +15925,37 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _backbone3 = __webpack_require__(/*! backbone */ 15);
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
 	
-	var _templateController = __webpack_require__(/*! ../js/controllers/templateController.js */ 17);
+	var _templateController = __webpack_require__(/*! ../js/controllers/templateController.js */ 19);
 	
 	var _templateController2 = _interopRequireDefault(_templateController);
 	
-	__webpack_require__(/*! ../i18n/en.js */ 18);
+	__webpack_require__(/*! ../i18n/en.js */ 20);
 	
-	__webpack_require__(/*! ../i18n/ru.js */ 19);
+	__webpack_require__(/*! ../i18n/ru.js */ 21);
 	
-	__webpack_require__(/*! ../lib/detectmobile.js */ 20);
+	__webpack_require__(/*! ../lib/detectmobile.js */ 22);
 	
-	var _asteroidBrowser = __webpack_require__(/*! ../lib/asteroid.browser.js */ 21);
+	var _asteroidBrowser = __webpack_require__(/*! ../lib/asteroid.browser.js */ 23);
 	
 	var _asteroidBrowser2 = _interopRequireDefault(_asteroidBrowser);
 	
-	var _mainLayoutView = __webpack_require__(/*! ./mainLayoutView.js */ 27);
+	var _mainLayoutView = __webpack_require__(/*! ./mainLayoutView.js */ 29);
 	
 	var _mainLayoutView2 = _interopRequireDefault(_mainLayoutView);
 	
-	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 77);
+	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 78);
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
-	var _router = __webpack_require__(/*! ./router.js */ 84);
+	var _router = __webpack_require__(/*! ./router.js */ 85);
 	
 	var _router2 = _interopRequireDefault(_router);
 	
@@ -15896,15 +15963,15 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 78);
+	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 79);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 104);
+	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 108);
 	
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
-	__webpack_require__(/*! ../css/shiners-override.css */ 173);
+	__webpack_require__(/*! ../css/shiners-override.css */ 177);
 	
 	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
@@ -16067,7 +16134,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 14 */
+/* 16 */
 /*!**********************************************************!*\
   !*** ./~/backbone.marionette/lib/backbone.marionette.js ***!
   \**********************************************************/
@@ -16088,7 +16155,7 @@
 	
 	
 	(function (global, factory) {
-		( false ? 'undefined' : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory(__webpack_require__(/*! backbone */ 15), __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone.radio */ 16)) :  true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! backbone */ 15), __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone.radio */ 16)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : global.Marionette = global['Mn'] = factory(global.Backbone, global._, global.Backbone.Radio);
+		( false ? 'undefined' : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory(__webpack_require__(/*! backbone */ 17), __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone.radio */ 18)) :  true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! backbone */ 17), __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone.radio */ 18)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : global.Marionette = global['Mn'] = factory(global.Backbone, global._, global.Backbone.Radio);
 	})(undefined, function (Backbone, _, Radio) {
 		'use strict';
 	
@@ -19196,7 +19263,7 @@
 	//# sourceMappingURL=backbone.marionette.js.map
 
 /***/ },
-/* 15 */
+/* 17 */
 /*!********************************!*\
   !*** ./~/backbone/backbone.js ***!
   \********************************/
@@ -21157,7 +21224,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 16 */
+/* 18 */
 /*!**************************************************!*\
   !*** ./~/backbone.radio/build/backbone.radio.js ***!
   \**************************************************/
@@ -21170,7 +21237,7 @@
 	// Backbone.Radio v2.0.0
 	
 	(function (global, factory) {
-	  ( false ? 'undefined' : _typeof2(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory(__webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone */ 15)) :  true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone */ 15)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : (global.Backbone = global.Backbone || {}, global.Backbone.Radio = factory(global._, global.Backbone));
+	  ( false ? 'undefined' : _typeof2(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory(__webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone */ 17)) :  true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! underscore */ 7), __webpack_require__(/*! backbone */ 17)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : (global.Backbone = global.Backbone || {}, global.Backbone.Radio = factory(global._, global.Backbone));
 	})(undefined, function (_, Backbone) {
 	  'use strict';
 	
@@ -21517,7 +21584,7 @@
 	//# sourceMappingURL=./backbone.radio.js.map
 
 /***/ },
-/* 17 */
+/* 19 */
 /*!******************************************************!*\
   !*** ./wwwroot/js/controllers/templateController.js ***!
   \******************************************************/
@@ -21597,7 +21664,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 18 */
+/* 20 */
 /*!****************************!*\
   !*** ./wwwroot/i18n/en.js ***!
   \****************************/
@@ -21664,7 +21731,7 @@
 	i18n.add('en', json);
 
 /***/ },
-/* 19 */
+/* 21 */
 /*!****************************!*\
   !*** ./wwwroot/i18n/ru.js ***!
   \****************************/
@@ -21739,7 +21806,7 @@
 	i18n.add('ru', json);
 
 /***/ },
-/* 20 */
+/* 22 */
 /*!*************************************!*\
   !*** ./wwwroot/lib/detectmobile.js ***!
   \*************************************/
@@ -21759,7 +21826,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 21 */
+/* 23 */
 /*!*****************************************!*\
   !*** ./wwwroot/lib/asteroid.browser.js ***!
   \*****************************************/
@@ -21771,7 +21838,7 @@
 	
 	(function (root, factory) {
 		if (true) {
-			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! ddp.js */ 22), __webpack_require__(/*! q */ 23)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! ddp.js */ 24), __webpack_require__(/*! q */ 25)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 		} else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === "object") {
 			var DDP = require('ddp.js');
 			var Q = require('q');
@@ -22956,7 +23023,7 @@
 	});
 
 /***/ },
-/* 22 */
+/* 24 */
 /*!*****************************!*\
   !*** ./~/ddp.js/src/ddp.js ***!
   \*****************************/
@@ -23294,7 +23361,7 @@
 	});
 
 /***/ },
-/* 23 */
+/* 25 */
 /*!******************!*\
   !*** ./~/q/q.js ***!
   \******************/
@@ -25305,10 +25372,10 @@
 	
 	    return Q;
 	});
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 24), __webpack_require__(/*! ./../timers-browserify/main.js */ 25).setImmediate, __webpack_require__(/*! ./../webpack/buildin/module.js */ 4)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 26), __webpack_require__(/*! ./../timers-browserify/main.js */ 27).setImmediate, __webpack_require__(/*! ./../webpack/buildin/module.js */ 4)(module)))
 
 /***/ },
-/* 24 */
+/* 26 */
 /*!******************************!*\
   !*** ./~/process/browser.js ***!
   \******************************/
@@ -25497,7 +25564,7 @@
 	};
 
 /***/ },
-/* 25 */
+/* 27 */
 /*!*************************************!*\
   !*** ./~/timers-browserify/main.js ***!
   \*************************************/
@@ -25553,12 +25620,12 @@
 	};
 	
 	// setimmediate attaches itself to the global object
-	__webpack_require__(/*! setimmediate */ 26);
+	__webpack_require__(/*! setimmediate */ 28);
 	exports.setImmediate = setImmediate;
 	exports.clearImmediate = clearImmediate;
 
 /***/ },
-/* 26 */
+/* 28 */
 /*!****************************************!*\
   !*** ./~/setimmediate/setImmediate.js ***!
   \****************************************/
@@ -25748,10 +25815,10 @@
 	    attachTo.setImmediate = setImmediate;
 	    attachTo.clearImmediate = clearImmediate;
 	})(typeof self === "undefined" ? typeof global === "undefined" ? undefined : global : self);
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(/*! ./../process/browser.js */ 24)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(/*! ./../process/browser.js */ 26)))
 
 /***/ },
-/* 27 */
+/* 29 */
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/mainLayoutView.js ***!
   \*******************************************/
@@ -25763,15 +25830,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone */ 15);
+	var _backbone = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _backbone3 = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone3 = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
 	
-	var _mainLayoutViewHbs = __webpack_require__(/*! ./mainLayoutView.hbs.html */ 28);
+	var _mainLayoutViewHbs = __webpack_require__(/*! ./mainLayoutView.hbs.html */ 30);
 	
 	var _mainLayoutViewHbs2 = _interopRequireDefault(_mainLayoutViewHbs);
 	
@@ -25779,35 +25846,35 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _MapView = __webpack_require__(/*! ./MapView.js */ 29);
+	var _MapView = __webpack_require__(/*! ./MapView.js */ 31);
 	
 	var _MapView2 = _interopRequireDefault(_MapView);
 	
-	var _BannerView = __webpack_require__(/*! ./BannerView.js */ 55);
+	var _BannerView = __webpack_require__(/*! ./BannerView.js */ 56);
 	
 	var _BannerView2 = _interopRequireDefault(_BannerView);
 	
-	var _UserBarView = __webpack_require__(/*! ./UserBarView.js */ 64);
+	var _UserBarView = __webpack_require__(/*! ./UserBarView.js */ 65);
 	
 	var _UserBarView2 = _interopRequireDefault(_UserBarView);
 	
-	var _NavLocationView = __webpack_require__(/*! ./NavLocationView.js */ 66);
+	var _NavLocationView = __webpack_require__(/*! ./NavLocationView.js */ 67);
 	
 	var _NavLocationView2 = _interopRequireDefault(_NavLocationView);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 13);
+	var _app = __webpack_require__(/*! ./app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _iframeView = __webpack_require__(/*! ./shared/iframeView.js */ 68);
+	var _iframeView = __webpack_require__(/*! ./shared/iframeView.js */ 69);
 	
 	var _iframeView2 = _interopRequireDefault(_iframeView);
 	
-	var _userMenuView = __webpack_require__(/*! ./layout/userMenuView */ 72);
+	var _userMenuView = __webpack_require__(/*! ./layout/userMenuView */ 73);
 	
 	var _userMenuView2 = _interopRequireDefault(_userMenuView);
 	
-	var _mainMenuView = __webpack_require__(/*! ./mainMenuView */ 74);
+	var _mainMenuView = __webpack_require__(/*! ./mainMenuView */ 75);
 	
 	var _mainMenuView2 = _interopRequireDefault(_mainMenuView);
 	
@@ -25935,7 +26002,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 28 */
+/* 30 */
 /*!*************************************************!*\
   !*** ./wwwroot/homeApp/mainLayoutView.hbs.html ***!
   \*************************************************/
@@ -25944,46 +26011,46 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='\r\n<div id="header" class="sticky clearfix header-md">\r\n	<header id="topNav">\r\n		\r\n		<div class="sh-header-topline">\r\n			<div class="container">\r\n				<div class="sh-header-topline-main">\r\n					<div class="sh-header-topline-item sh-flex-auto">\r\n						<div class="sh-show-modal-city"> \r\n							<span class="text-weight bold">\r\n								<span id="navLocation"></span>\r\n							</span>\r\n						</div>\r\n					</div>\r\n\r\n					<div class="sh-header-topline-item sh-flex-center-items">\r\n\r\n						<div id="bzMainMenu"></div>\r\n\r\n						<div class="sh-header-dropdown-user">                        \r\n							<div id="userBar"></div>\r\n						</div>\r\n\r\n						<!-- here will be a mobile menu -->\r\n						<button class="sh-btn-mobile-menu btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">\r\n							<i class="fa fa-bars"></i>\r\n						</button>\r\n\r\n					</div>\r\n				</div>\r\n			</div>\r\n		</div>\r\n		\r\n		<div class="sh-header-navbar-wrapper sh-blurred-bg">\r\n			<div class="container">\r\n\r\n				<div class="sh-header-navbar-items">\r\n					<div class="sh-header-navbar-logo">\r\n						<a class="sh-logo-header" href="/">\r\n							<img src="/images/logo-home-medium-blue-bg.jpg" alt="logotype" height="45" width="45" />\r\n							'+
+	__p+='\n<div id="header" class="sticky clearfix header-md">\n	<header id="topNav">\n		\n		<div class="sh-header-topline">\n			<div class="container">\n				<div class="sh-header-topline-main">\n					<div class="sh-header-topline-item sh-flex-auto">\n						<div class="sh-show-modal-city"> \n							<span class="text-weight bold">\n								<span id="navLocation"></span>\n							</span>\n						</div>\n					</div>\n\n					<div class="sh-header-topline-item sh-flex-center-items">\n\n						<div id="bzMainMenu"></div>\n\n						<div class="sh-header-dropdown-user">                        \n							<div id="userBar"></div>\n						</div>\n\n						<button class="sh-btn-mobile-menu btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">\n							<i class="fa fa-bars"></i>\n						</button>\n\n					</div>\n				</div>\n			</div>\n		</div>\n		\n		<div class="sh-header-navbar-wrapper sh-blurred-bg">\n			<div class="container">\n\n				<div class="sh-header-navbar-items">\n					<div class="sh-header-navbar-logo">\n						<a class="sh-logo-header" href="/">\n							<img src="/images/sh-logo.png" alt="logotype Shiners" height="50" width="50" />\n							'+
 	((__t=(i18n('SITE_NAME')))==null?'':__t)+
-	'\r\n						</a>\r\n					</div>\r\n\r\n					<div class="sh-header-navbar-submenu">\r\n                        <div class="sh-download-buttons-top hidden-xs">\r\n\r\n                            <a target="_blank" data-direct-link href="https://itunes.apple.com/ru/app/shiners/id1136502367?mt=8">\r\n                                <img src="/images/buttons/app_store_RU_135x40@2x.png" width="135" height="40" alt="Загрузите в App Store">\r\n                            </a>\r\n\r\n                            <a target="_blank" data-direct-link href=\'https://play.google.com/store/apps/details?id=org.buzzar.app&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1\'>\r\n                                <img src="/images/buttons/google_play_RU_135x40@2x.png" width="135" height="40" alt=\'Доступно в Google Play\' />\r\n                            </a>\r\n                        </div>\r\n                    </div>\r\n\r\n					<div class="sh-header-navbar-create">\r\n						<a class="ui sh-button standard create big hidden-sm hidden-xs" href="/posts/new">'+
+	'\n						</a>\n					</div>\n\n					<div class="sh-header-navbar-submenu">\n                        <div class="sh-download-buttons-top hidden-xs">\n\n                            <a target="_blank" data-direct-link href="https://itunes.apple.com/ru/app/shiners/id1136502367?mt=8">\n                                <img src="/images/buttons/app_store_RU_135x40@2x.png" width="135" height="40" alt="Загрузите в App Store">\n                            </a>\n\n                            <a target="_blank" data-direct-link href=\'https://play.google.com/store/apps/details?id=org.buzzar.app&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1\'>\n                                <img src="/images/buttons/google_play_RU_135x40@2x.png" width="135" height="40" alt=\'Доступно в Google Play\' />\n                            </a>\n                        </div>\n                    </div>\n\n					<div class="sh-header-navbar-create">\n						<a class="ui sh-button standard create big hidden-sm hidden-xs" href="/posts/new">'+
 	((__t=(i18n('CREATE_SHINER')))==null?'':__t)+
-	'</a>\r\n					</div>\r\n				</div>\r\n\r\n				<div class="header-hr-line"></div>\r\n				<div id="appBanner" style="display: none;">\r\n					<!--=serverRender(\'~/homeApp/BannerView.hbs.html\',{},\'section\',\'class="page-header page-header-xs"\')-->\r\n					'+
+	'</a>\n					</div>\n				</div>\n\n				<div class="header-hr-line"></div>\n				<div id="appBanner" style="display: none;">\n					<!--=serverRender(\'~/homeApp/BannerView.hbs.html\',{},\'section\',\'class="page-header page-header-xs"\')-->\n					'+
 	((__t=(serverRender('~/homeApp/BannerView.hbs.html',{},'div','class="sh-header-navbar-info visible-md-block visible-lg-block"')))==null?'':__t)+
-	'\r\n				</div>\r\n			</div>\r\n\r\n		</div>\r\n\r\n		<div class="sh-header-navbar">\r\n			<div class="sh-header-map">\r\n				<div class="">\r\n					<div id="appMap" style="display: none;"></div>\r\n				</div>\r\n			</div>\r\n		</div>\r\n\r\n	</header>\r\n</div>\r\n\r\n<div id="appContent">\r\n	'+
+	'\n				</div>\n			</div>\n\n		</div>\n\n		<div class="sh-header-navbar">\n			<div class="sh-header-map">\n				<div id="appMap" style="display: none;"></div>\n			</div>\n		</div>\n\n	</header>\n</div>\n\n<div id="appContent">\n	'+
 	((__t=(serverRender(obj.routeViewPath,obj.routeViewData,obj.routeViewTag,obj.routeViewHtmlAttrs)))==null?'':__t)+
-	'\r\n</div>\r\n<div id="iframeHolder" style="display: none;"></div>\r\n\r\n<footer id="footer" class="sh-footer">\r\n	<div class="container">\r\n		<!--1-->\r\n		<div class="row footer-section footer-section-download">\r\n			<div class="col-xs-12">\r\n				<div class="sh-download-buttons-bottom">\r\n                    <h3>'+
+	'\n</div>\n<div id="iframeHolder" style="display: none;"></div>\n\n<footer id="footer" class="sh-footer">\n	<div class="container">\n		<!--1-->\n		<div class="row footer-section footer-section-download">\n			<div class="col-xs-12">\n				<div class="sh-download-buttons-bottom">\n                    <h3>'+
 	((__t=(i18n('footer_load_free')))==null?'':__t)+
-	'</h3>\r\n                    <div class="sh-download-buttons-bottom-wrapper">\r\n                        <a target="_blank" data-direct-link href="https://itunes.apple.com/ru/app/shiners/id1136502367?mt=8">\r\n                            <img src="/images/buttons/app_store_RU_135x40@2x.png" width="135" height="40" alt="Загрузите в App Store">\r\n                        </a>\r\n\r\n                        <a target="_blank" data-direct-link href=\'https://play.google.com/store/apps/details?id=org.buzzar.app&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1\'>\r\n                            <img src="/images/buttons/google_play_RU_135x40@2x.png" width="135" height="40" alt=\'Доступно в Google Play\' />\r\n                        </a>\r\n                    </div>\r\n                </div>\r\n\r\n				<!--<div class="sh-footer-images">\r\n					<div class="sh-footer-images-browser"></div>\r\n				</div>-->\r\n			</div>\r\n		</div>\r\n\r\n		<!--2-->\r\n		<div class="row footer-section footer-section-nav">\r\n			<div class="sh-footer-section-wrapper">\r\n				<div class="sh-f-col col-sm-3 col-md-3 col-lg-3">\r\n					<div class="sh-logo-footer">'+
+	'</h3>\n                    <div class="sh-download-buttons-bottom-wrapper">\n                        <a target="_blank" data-direct-link href="https://itunes.apple.com/ru/app/shiners/id1136502367?mt=8">\n                            <img src="/images/buttons/app_store_RU_135x40@2x.png" width="135" height="40" alt="Загрузите в App Store">\n                        </a>\n\n                        <a target="_blank" data-direct-link href=\'https://play.google.com/store/apps/details?id=org.buzzar.app&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1\'>\n                            <img src="/images/buttons/google_play_RU_135x40@2x.png" width="135" height="40" alt=\'Доступно в Google Play\' />\n                        </a>\n                    </div>\n                </div>\n\n				<!--<div class="sh-footer-images">\n					<div class="sh-footer-images-browser"></div>\n				</div>-->\n			</div>\n		</div>\n\n		<!--2-->\n		<div class="row footer-section footer-section-nav">\n			<div class="sh-footer-section-wrapper">\n				<div class="sh-f-col col-sm-3 col-md-3 col-lg-3">\n					<div class="sh-logo-footer">'+
 	((__t=(i18n('SITE_NAME')))==null?'':__t)+
-	'</div>\r\n				</div>\r\n\r\n				<div class="sh-f-col col-sm-1 col-md-3 col-lg-3">\r\n					<!--https://www.facebook.com/shinersapp-->\r\n					<!--https://vk.com/shinersnews-->\r\n				</div>\r\n\r\n				<div class="sh-f-col col-sm-4 col-md-3 col-lg-3">\r\n					<dl class="sh-footer-list">\r\n						<dt class="sh-footer-list-title middle">'+
+	'</div>\n				</div>\n\n				<div class="sh-f-col col-sm-1 col-md-3 col-lg-3">\n					<!--https://www.facebook.com/shinersapp-->\n					<!--https://vk.com/shinersnews-->\n				</div>\n\n				<div class="sh-f-col col-sm-4 col-md-3 col-lg-3">\n					<dl class="sh-footer-list">\n						<dt class="sh-footer-list-title middle">'+
 	((__t=(i18n('footer_menu_navigation')))==null?'':__t)+
-	'</dt>\r\n						<dd class="sh-footer-list-item"><a class="" href="/about-us">'+
+	'</dt>\n						<dd class="sh-footer-list-item"><a class="" href="/about-us">'+
 	((__t=(i18n('aboutSite')))==null?'':__t)+
-	'</a></dd>\r\n                        <dd class="sh-footer-list-item"><a class="" href="/mass-media">'+
+	'</a></dd>\n                        <dd class="sh-footer-list-item"><a class="" href="/mass-media">'+
 	((__t=(i18n('massMedia')))==null?'':__t)+
-	'</a></dd>\r\n						<dd class="sh-footer-list-item">\r\n							<a href="#" class="sh-store-link">\r\n								<!--<img src="images/download_app_store_RU_135x40@2x.png" width="135" height="40" alt="Download Shiners">-->\r\n							</a>\r\n						</dd>\r\n					</dl>\r\n				</div>\r\n\r\n				<div class="sh-f-col col-sm-4 col-md-3 col-lg-3">\r\n					<dl class="sh-footer-list">\r\n						<dt class="sh-footer-list-title middle">'+
+	'</a></dd>\n						<dd class="sh-footer-list-item">\n							<a href="#" class="sh-store-link">\n								<!--<img src="images/download_app_store_RU_135x40@2x.png" width="135" height="40" alt="Download Shiners">-->\n							</a>\n						</dd>\n					</dl>\n				</div>\n\n				<div class="sh-f-col col-sm-4 col-md-3 col-lg-3">\n					<dl class="sh-footer-list">\n						<dt class="sh-footer-list-title middle">'+
 	((__t=(i18n('footer_menu_contacts')))==null?'':__t)+
-	'</dt>\r\n						<dd class="sh-footer-list-item"><a class="sh-social-link" href="mailto:support@shiners.ru" title="support@shiners.ru"><span class="sh-social-link-text">support@shiners.ru</span></a></dd>\r\n						<!--<dd class="sh-footer-list-item"><a class="" href="#">Посетите наш Справочный центр</a></dd>-->\r\n						<dd class="sh-footer-list-item"><a class="" href="/legal/user-agreement">'+
+	'</dt>\n						<dd class="sh-footer-list-item"><a class="sh-social-link" href="mailto:support@shiners.ru" title="support@shiners.ru"><span class="sh-social-link-text">support@shiners.ru</span></a></dd>\n						<!--<dd class="sh-footer-list-item"><a class="" href="#">Посетите наш Справочный центр</a></dd>-->\n						<dd class="sh-footer-list-item"><a class="" href="/legal/user-agreement">'+
 	((__t=(i18n('footer_menu_terms_of_use')))==null?'':__t)+
-	'</a></dd>\r\n						<dd class="sh-footer-list-item"><a class="" href="/legal/confidential">'+
+	'</a></dd>\n						<dd class="sh-footer-list-item"><a class="" href="/legal/confidential">'+
 	((__t=(i18n('footer_menu_privacy_policy')))==null?'':__t)+
-	'</a></dd>\r\n						<dd class="sh-footer-list-item"><a class="" href="/legal/post-publishing-rules">'+
+	'</a></dd>\n						<dd class="sh-footer-list-item"><a class="" href="/legal/post-publishing-rules">'+
 	((__t=(i18n('footer_menu_post_publishing_rules')))==null?'':__t)+
-	'</a></dd>\r\n					</dl>\r\n				</div>\r\n			</div>\r\n		</div>\r\n\r\n		<!--3-->\r\n		<div class="row">\r\n            <div class="sh-footer-bottom">\r\n                <div class="sh-choose-language">\r\n                    <select id="chooseLanguage">\r\n                        <option selected="selected" value="ru">Русский</option>\r\n                        <option value="en">English</option>\r\n                    </select>\r\n                </div>\r\n                <div class="col-xs-12 sh-copyright">\r\n                    <p class="sh-usage-text">'+
+	'</a></dd>\n					</dl>\n				</div>\n			</div>\n		</div>\n\n		<!--3-->\n		<div class="row">\n            <div class="sh-footer-bottom">\n                <div class="sh-choose-language">\n                    <select id="chooseLanguage">\n                        <option selected="selected" value="ru">Русский</option>\n                        <option value="en">English</option>\n                    </select>\n                </div>\n                <div class="col-xs-12 sh-copyright">\n                    <p class="sh-usage-text">'+
 	((__t=(i18n('footer_disclaimer_text')))==null?'':__t)+
 	'<a href="/legal/user-agreement">'+
 	((__t=(i18n('footer_disclaimer_text2')))==null?'':__t)+
-	'</a>.</p>\r\n                    <p class="margin-bottom-0">&#169; '+
+	'</a>.</p>\n                    <p class="margin-bottom-0">&#169; '+
 	((__t=(i18n('footer_all_rights_reserved')))==null?'':__t)+
-	' </p>\r\n                </div>\r\n            </div>\r\n		</div>\r\n	</div>\r\n</footer>\r\n\r\n<a href="#" id="toTop"></a>\r\n<div id="fb-root"></div>';
+	' </p>\n                </div>\n            </div>\n		</div>\n	</div>\n</footer>\n\n<a href="#" id="toTop"></a>\n<div id="fb-root"></div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 29 */
+/* 31 */
 /*!************************************!*\
   !*** ./wwwroot/homeApp/MapView.js ***!
   \************************************/
@@ -25995,39 +26062,39 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _backbone3 = __webpack_require__(/*! backbone */ 15);
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
 	
-	var _MapViewHbs = __webpack_require__(/*! ./MapView.hbs.html */ 30);
+	var _MapViewHbs = __webpack_require__(/*! ./MapView.hbs.html */ 32);
 	
 	var _MapViewHbs2 = _interopRequireDefault(_MapViewHbs);
 	
-	var _CreateButtonHbs = __webpack_require__(/*! ./CreateButton.hbs.html */ 31);
+	var _CreateButtonHbs = __webpack_require__(/*! ./CreateButton.hbs.html */ 33);
 	
 	var _CreateButtonHbs2 = _interopRequireDefault(_CreateButtonHbs);
 	
-	var _SetPositionMapButtonHbs = __webpack_require__(/*! ./SetPositionMapButton.hbs.html */ 32);
+	var _SetPositionMapButtonHbs = __webpack_require__(/*! ./SetPositionMapButton.hbs.html */ 34);
 	
 	var _SetPositionMapButtonHbs2 = _interopRequireDefault(_SetPositionMapButtonHbs);
 	
-	var _MobileShowInfoButtonHbs = __webpack_require__(/*! ./MobileShowInfoButton.hbs.html */ 33);
+	var _MobileShowInfoButtonHbs = __webpack_require__(/*! ./MobileShowInfoButton.hbs.html */ 35);
 	
 	var _MobileShowInfoButtonHbs2 = _interopRequireDefault(_MobileShowInfoButtonHbs);
 	
-	var _SearchView = __webpack_require__(/*! ./search/SearchView.js */ 34);
+	var _SearchView = __webpack_require__(/*! ./search/SearchView.js */ 36);
 	
 	var _SearchView2 = _interopRequireDefault(_SearchView);
 	
-	var _ShinerInfoView = __webpack_require__(/*! ./ShinerInfoView.js */ 52);
+	var _ShinerInfoView = __webpack_require__(/*! ./ShinerInfoView.js */ 53);
 	
 	var _ShinerInfoView2 = _interopRequireDefault(_ShinerInfoView);
 	
-	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 54);
+	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 55);
 	
 	var _loadGoogleMapsApi2 = _interopRequireDefault(_loadGoogleMapsApi);
 	
@@ -26035,7 +26102,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 13);
+	var _app = __webpack_require__(/*! ./app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -26183,7 +26250,12 @@
 	                _this3.mobile_CreateInfoButton();
 	                _this3.mobile_mapResize();
 	                _this3.mobile_listenToResize();
+	
+	                $('body').addClass('isMobile');
+	            } else {
+	                $('body').removeClass('isMobile');
 	            }
+	
 	            _this3.mapAddPostButton();
 	            _this3.mapSetPositionButton();
 	
@@ -26219,7 +26291,9 @@
 	        this.map.controls[window.google.maps.ControlPosition.BOTTOM_CENTER].push(el);
 	    },
 	    mobile_mapResize: function mobile_mapResize() {
-	        this.$('#map2').height($(window).height() - $('#header').height());
+	        //this.$('#map2').height( $(window).height() - $('#header').height() );
+	
+	        this.$('#map2').height($(window).height() - ($('.sh-header-topline').height() + $('.sh-header-navbar-wrapper').height()));
 	        window.google.maps.event.trigger(_app2.default.map, 'resize');
 	    },
 	    mobile_listenToResize: function mobile_listenToResize() {
@@ -26336,7 +26410,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 30 */
+/* 32 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/MapView.hbs.html ***!
   \******************************************/
@@ -26352,7 +26426,7 @@
 
 
 /***/ },
-/* 31 */
+/* 33 */
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/CreateButton.hbs.html ***!
   \***********************************************/
@@ -26368,7 +26442,7 @@
 
 
 /***/ },
-/* 32 */
+/* 34 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/SetPositionMapButton.hbs.html ***!
   \*******************************************************/
@@ -26377,14 +26451,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<button class="sh-set-position-map" title="Уточнить моё местоположение"><i class="fa fa-crosshairs"></i></button>';
+	__p+='<button class="sh-set-position-map margin-bottom-20" title="Уточнить моё местоположение"><i class="fa fa-crosshairs"></i></button>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 33 */
+/* 35 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/MobileShowInfoButton.hbs.html ***!
   \*******************************************************/
@@ -26393,14 +26467,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<button class="btn btn-white margin-bottom-10" title="Главная"><i class="fa fa-home"></i></button>';
+	__p+='<button class="sh-mobile-show-info margin-bottom-20" title="Главная">\r\n    <i class="fa fa-home"></i>\r\n</button>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 34 */
+/* 36 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/search/SearchView.js ***!
   \**********************************************/
@@ -26412,35 +26486,35 @@
 	    value: true
 	});
 	
-	var _SearchViewHbs = __webpack_require__(/*! ./SearchView.hbs.html */ 35);
+	var _SearchViewHbs = __webpack_require__(/*! ./SearchView.hbs.html */ 37);
 	
 	var _SearchViewHbs2 = _interopRequireDefault(_SearchViewHbs);
 	
-	var _backbone = __webpack_require__(/*! backbone */ 15);
+	var _backbone = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css */ 36);
+	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css */ 38);
 	
-	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js */ 40);
+	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js */ 41);
 	
-	__webpack_require__(/*! ../../lib/jquery-slimscroll/jquery.slimscroll.min.js */ 41);
+	__webpack_require__(/*! ../../lib/jquery-slimscroll/jquery.slimscroll.min.js */ 42);
 	
-	var _ShinersListView = __webpack_require__(/*! ./ShinersListView.js */ 42);
+	var _ShinersListView = __webpack_require__(/*! ./ShinersListView.js */ 43);
 	
 	var _ShinersListView2 = _interopRequireDefault(_ShinersListView);
 	
-	var _CategoriesListView = __webpack_require__(/*! ./CategoriesListView.js */ 47);
+	var _CategoriesListView = __webpack_require__(/*! ./CategoriesListView.js */ 48);
 	
 	var _CategoriesListView2 = _interopRequireDefault(_CategoriesListView);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 13);
+	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./i18n/en */ 50);
+	__webpack_require__(/*! ./i18n/en */ 51);
 	
-	__webpack_require__(/*! ./i18n/ru */ 51);
+	__webpack_require__(/*! ./i18n/ru */ 52);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -26570,7 +26644,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 35 */
+/* 37 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/search/SearchView.hbs.html ***!
   \****************************************************/
@@ -26579,26 +26653,26 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="sh-map-search-form fancy-form">\r\n    <div class="input-group">\r\n        <span class="input-group-btn">\r\n            <button title="Фильтр поиска" id="searchParametersButton" class="btn btn-default" type="button">\r\n                <i class="fa fa-cog"></i>\r\n            </button>\r\n        </span>\r\n        <input type="text" placeholder="Поиск..." class="form-control" name="query" id="query">\r\n        <span class="input-group-btn hidden-lg hidden-md">\r\n            <a id="userLocation" title="Местоположение" class="sh-user-location btn btn-default btn-block size-14">\r\n                <i class="fa fa-map-marker text-success"></i>\r\n            </a>\r\n        </span>\r\n        <span class="fancy-tooltip top-left">\r\n            <em>'+
+	__p+='<div class="sh-map-search-form fancy-form">\n    <div class="input-group">\n        <span class="input-group-btn">\n            <button title="Фильтр поиска" id="searchParametersButton" class="btn btn-default" type="button">\n                <i class="fa fa-cog"></i>\n            </button>\n        </span>\n        <input type="text" placeholder="Поиск..." class="form-control" name="query" id="query">\n        <span class="input-group-btn hidden-lg hidden-md">\n            <a id="userLocation" title="Местоположение" class="sh-user-location btn btn-default btn-block size-14">\n                <i class="fa fa-map-marker text-success"></i>\n            </a>\n        </span>\n        <span class="fancy-tooltip top-left">\n            <em>'+
 	((__t=(i18n('search_free_search')))==null?'':__t)+
-	'</em>\r\n        </span>\r\n    </div>\r\n</div>\r\n<div class="sh-map-distance">\r\n    <div class="margin-bottom-10">\r\n        <label for="radius">'+
+	'</em>\n        </span>\n    </div>\n</div>\n<div class="sh-map-distance">\n    <div class="margin-bottom-10">\n        <label for="radius">'+
 	((__t=(i18n('search_choose_radius')))==null?'':__t)+
-	'</label>\r\n        <input type="hidden" name="radius" id="radius" class="form-control">\r\n    </div>\r\n    <div class="slider-wrapper info-slider">\r\n        <div id="slider3"></div>\r\n    </div>\r\n</div>\r\n<div id="searchParameters" style="display: none">\r\n    <div class="ui sh-accordion toggle toggle-accordion">\r\n        <div class="toggle">\r\n            <label>'+
+	'</label>\n        <input type="hidden" name="radius" id="radius" class="form-control">\n    </div>\n    <div class="slider-wrapper info-slider">\n        <div id="slider3"></div>\n    </div>\n</div>\n<div id="searchParameters" style="display: none">\n    <div class="ui sh-accordion toggle toggle-accordion">\n        <div class="toggle">\n            <label>'+
 	((__t=(i18n('search_parameters')))==null?'':__t)+
-	'</label>\r\n            <div class="toggle-content">                \r\n                <div id="selectCategories"></div>\r\n            </div>\r\n        </div>\r\n        <div class="toggle '+
+	'</label>\n            <div class="toggle-content">                \n                <div id="selectCategories"></div>\n            </div>\n        </div>\n        <div class="toggle '+
 	((__t=(isMobile?'':'active'))==null?'':__t)+
-	'">\r\n            <label>'+
+	'">\n            <label>'+
 	((__t=(i18n('search_found')))==null?'':__t)+
-	'</label>\r\n            <div class="toggle-content" id="searchResults" style="'+
+	'</label>\n            <div class="toggle-content" id="searchResults" style="'+
 	((__t=(isMobile?'':'display: block'))==null?'':__t)+
-	'">\r\n                <div id="shinersList" class="sh-shiners-list-items"></div>               \r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>';
+	'">\n                <div id="shinersList" class="sh-shiners-list-items"></div>               \n            </div>\n        </div>\n    </div>\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 36 */
+/* 38 */
 /*!******************************************************************************!*\
   !*** ./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css ***!
   \******************************************************************************/
@@ -26607,10 +26681,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./jquery-ui-slider-pips.min.css */ 37);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./jquery-ui-slider-pips.min.css */ 39);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 39)(content, {});
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 40)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -26627,75 +26701,17 @@
 	}
 
 /***/ },
-/* 37 */
+/* 39 */
 /*!*********************************************************************************************!*\
   !*** ./~/css-loader!./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css ***!
   \*********************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 38)();
-	exports.push([module.id, "/*! jQuery-ui-Slider-Pips - v1.11.4 - 2016-09-04\r\n* Copyright (c) 2016 Simon Goellner <simey.me@gmail.com>; Licensed MIT */\r\n\r\n.ui-slider-horizontal.ui-slider-pips{margin-bottom:1.4em}.ui-slider-pips .ui-slider-label,.ui-slider-pips .ui-slider-pip-hide{display:none}.ui-slider-pips .ui-slider-pip-label .ui-slider-label{display:block}.ui-slider-pips .ui-slider-pip{width:2em;height:1em;line-height:1em;position:absolute;font-size:0.8em;color:#999;overflow:visible;text-align:center;top:20px;left:20px;margin-left:-1em;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.ui-state-disabled.ui-slider-pips .ui-slider-pip{cursor:default}.ui-slider-pips .ui-slider-line{background:#999;width:1px;height:3px;position:absolute;left:50%}.ui-slider-pips .ui-slider-label{position:absolute;top:5px;left:50%;margin-left:-1em;width:2em}.ui-slider-pips:not(.ui-slider-disabled) .ui-slider-pip:hover .ui-slider-label{color:black;font-weight:bold}.ui-slider-vertical.ui-slider-pips{margin-bottom:1em;margin-right:2em}.ui-slider-vertical.ui-slider-pips .ui-slider-pip{text-align:left;top:auto;left:20px;margin-left:0;margin-bottom:-0.5em}.ui-slider-vertical.ui-slider-pips .ui-slider-line{width:3px;height:1px;position:absolute;top:50%;left:0}.ui-slider-vertical.ui-slider-pips .ui-slider-label{top:50%;left:0.5em;margin-left:0;margin-top:-0.5em;width:2em}.ui-slider-float .ui-slider-handle:focus,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip-label .ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label{outline:none}.ui-slider-float .ui-slider-tip,.ui-slider-float .ui-slider-tip-label{position:absolute;visibility:hidden;top:-40px;display:block;width:34px;margin-left:-18px;left:50%;height:20px;line-height:20px;background:white;border-radius:3px;border:1px solid #888;text-align:center;font-size:12px;opacity:0;color:#333;-webkit-transition-property:opacity, top, visibility;transition-property:opacity, top, visibility;-webkit-transition-timing-function:ease-in;transition-timing-function:ease-in;-webkit-transition-duration:200ms, 200ms, 0ms;transition-duration:200ms, 200ms, 0ms;-webkit-transition-delay:0ms, 0ms, 200ms;transition-delay:0ms, 0ms, 200ms}.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{opacity:1;top:-30px;visibility:visible;-webkit-transition-timing-function:ease-out;transition-timing-function:ease-out;-webkit-transition-delay:200ms, 200ms, 0ms;transition-delay:200ms, 200ms, 0ms}.ui-slider-float .ui-slider-pip .ui-slider-tip-label{top:42px}.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:32px;font-weight:normal}.ui-slider-float .ui-slider-tip:after,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#fff;position:absolute;bottom:-10px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-tip:before,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#888;position:absolute;bottom:-11px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-bottom-color:#fff;top:-10px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-bottom-color:#888;top:-11px}.ui-slider-vertical.ui-slider-float .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-tip-label{top:50%;margin-top:-11px;width:34px;margin-left:0px;left:-60px;color:#333;-webkit-transition-duration:200ms, 200ms, 0;transition-duration:200ms, 200ms, 0;-webkit-transition-property:opacity, left, visibility;transition-property:opacity, left, visibility;-webkit-transition-delay:0, 0, 200ms;transition-delay:0, 0, 200ms}.ui-slider-vertical.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:50%;margin-top:-11px;left:-50px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label{left:47px}.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{left:37px}.ui-slider-vertical.ui-slider-float .ui-slider-tip:after,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-left-color:#fff;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-10px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-tip:before,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-left-color:#888;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-11px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-right-color:#fff;right:auto;left:-10px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-right-color:#888;right:auto;left:-11px}.ui-slider-pips [class*=ui-slider-pip-initial]{font-weight:bold;color:#14CA82}.ui-slider-pips .ui-slider-pip-initial-2{color:#1897C9}.ui-slider-pips [class*=ui-slider-pip-selected]{font-weight:bold;color:#FF7A00}.ui-slider-pips .ui-slider-pip-inrange{color:black}.ui-slider-pips .ui-slider-pip-selected-2{color:#E70081}.ui-slider-pips [class*=ui-slider-pip-selected] .ui-slider-line,.ui-slider-pips .ui-slider-pip-inrange .ui-slider-line{background:black}\r\n", ""]);
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 14)();
+	exports.push([module.id, "/*! jQuery-ui-Slider-Pips - v1.11.4 - 2016-09-04\n* Copyright (c) 2016 Simon Goellner <simey.me@gmail.com>; Licensed MIT */\n\n.ui-slider-horizontal.ui-slider-pips{margin-bottom:1.4em}.ui-slider-pips .ui-slider-label,.ui-slider-pips .ui-slider-pip-hide{display:none}.ui-slider-pips .ui-slider-pip-label .ui-slider-label{display:block}.ui-slider-pips .ui-slider-pip{width:2em;height:1em;line-height:1em;position:absolute;font-size:0.8em;color:#999;overflow:visible;text-align:center;top:20px;left:20px;margin-left:-1em;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.ui-state-disabled.ui-slider-pips .ui-slider-pip{cursor:default}.ui-slider-pips .ui-slider-line{background:#999;width:1px;height:3px;position:absolute;left:50%}.ui-slider-pips .ui-slider-label{position:absolute;top:5px;left:50%;margin-left:-1em;width:2em}.ui-slider-pips:not(.ui-slider-disabled) .ui-slider-pip:hover .ui-slider-label{color:black;font-weight:bold}.ui-slider-vertical.ui-slider-pips{margin-bottom:1em;margin-right:2em}.ui-slider-vertical.ui-slider-pips .ui-slider-pip{text-align:left;top:auto;left:20px;margin-left:0;margin-bottom:-0.5em}.ui-slider-vertical.ui-slider-pips .ui-slider-line{width:3px;height:1px;position:absolute;top:50%;left:0}.ui-slider-vertical.ui-slider-pips .ui-slider-label{top:50%;left:0.5em;margin-left:0;margin-top:-0.5em;width:2em}.ui-slider-float .ui-slider-handle:focus,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip-label .ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label{outline:none}.ui-slider-float .ui-slider-tip,.ui-slider-float .ui-slider-tip-label{position:absolute;visibility:hidden;top:-40px;display:block;width:34px;margin-left:-18px;left:50%;height:20px;line-height:20px;background:white;border-radius:3px;border:1px solid #888;text-align:center;font-size:12px;opacity:0;color:#333;-webkit-transition-property:opacity, top, visibility;transition-property:opacity, top, visibility;-webkit-transition-timing-function:ease-in;transition-timing-function:ease-in;-webkit-transition-duration:200ms, 200ms, 0ms;transition-duration:200ms, 200ms, 0ms;-webkit-transition-delay:0ms, 0ms, 200ms;transition-delay:0ms, 0ms, 200ms}.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{opacity:1;top:-30px;visibility:visible;-webkit-transition-timing-function:ease-out;transition-timing-function:ease-out;-webkit-transition-delay:200ms, 200ms, 0ms;transition-delay:200ms, 200ms, 0ms}.ui-slider-float .ui-slider-pip .ui-slider-tip-label{top:42px}.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:32px;font-weight:normal}.ui-slider-float .ui-slider-tip:after,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#fff;position:absolute;bottom:-10px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-tip:before,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#888;position:absolute;bottom:-11px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-bottom-color:#fff;top:-10px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-bottom-color:#888;top:-11px}.ui-slider-vertical.ui-slider-float .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-tip-label{top:50%;margin-top:-11px;width:34px;margin-left:0px;left:-60px;color:#333;-webkit-transition-duration:200ms, 200ms, 0;transition-duration:200ms, 200ms, 0;-webkit-transition-property:opacity, left, visibility;transition-property:opacity, left, visibility;-webkit-transition-delay:0, 0, 200ms;transition-delay:0, 0, 200ms}.ui-slider-vertical.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:50%;margin-top:-11px;left:-50px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label{left:47px}.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{left:37px}.ui-slider-vertical.ui-slider-float .ui-slider-tip:after,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-left-color:#fff;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-10px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-tip:before,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-left-color:#888;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-11px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-right-color:#fff;right:auto;left:-10px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-right-color:#888;right:auto;left:-11px}.ui-slider-pips [class*=ui-slider-pip-initial]{font-weight:bold;color:#14CA82}.ui-slider-pips .ui-slider-pip-initial-2{color:#1897C9}.ui-slider-pips [class*=ui-slider-pip-selected]{font-weight:bold;color:#FF7A00}.ui-slider-pips .ui-slider-pip-inrange{color:black}.ui-slider-pips .ui-slider-pip-selected-2{color:#E70081}.ui-slider-pips [class*=ui-slider-pip-selected] .ui-slider-line,.ui-slider-pips .ui-slider-pip-inrange .ui-slider-line{background:black}\n", ""]);
 
 /***/ },
-/* 38 */
-/*!**************************************!*\
-  !*** ./~/css-loader/lib/css-base.js ***!
-  \**************************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	// css base code, injected by the css-loader
-	module.exports = function () {
-		var list = [];
-	
-		// return the list of modules as css string
-		list.toString = function toString() {
-			var result = [];
-			for (var i = 0; i < this.length; i++) {
-				var item = this[i];
-				if (item[2]) {
-					result.push("@media " + item[2] + "{" + item[1] + "}");
-				} else {
-					result.push(item[1]);
-				}
-			}
-			return result.join("");
-		};
-	
-		// import a list of modules into the list
-		list.i = function (modules, mediaQuery) {
-			if (typeof modules === "string") modules = [[null, modules, ""]];
-			var alreadyImportedModules = {};
-			for (var i = 0; i < this.length; i++) {
-				var id = this[i][0];
-				if (typeof id === "number") alreadyImportedModules[id] = true;
-			}
-			for (i = 0; i < modules.length; i++) {
-				var item = modules[i];
-				// skip already imported module
-				// this implementation is not 100% perfect for weird media query combinations
-				//  when a module is imported multiple times with different media queries.
-				//  I hope this will never occur (Hey this way we have smaller bundles)
-				if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-					if (mediaQuery && !item[2]) {
-						item[2] = mediaQuery;
-					} else if (mediaQuery) {
-						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-					}
-					list.push(item);
-				}
-			}
-		};
-		return list;
-	};
-
-/***/ },
-/* 39 */
+/* 40 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -26950,7 +26966,7 @@
 
 
 /***/ },
-/* 40 */
+/* 41 */
 /*!*************************************************************************!*\
   !*** ./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js ***!
   \*************************************************************************/
@@ -26963,655 +26979,655 @@
 	
 	(function ($) {
 	
-	                "use strict";
+	    "use strict";
 	
-	                var extensionMethods = {
+	    var extensionMethods = {
 	
-	                                // pips
+	        // pips
 	
-	                                pips: function pips(settings) {
+	        pips: function pips(settings) {
 	
-	                                                var slider = this,
-	                                                    i,
-	                                                    j,
-	                                                    p,
-	                                                    collection = "",
-	                                                    mousedownHandlers,
-	                                                    min = slider._valueMin(),
-	                                                    max = slider._valueMax(),
-	                                                    pips = (max - min) / slider.options.step,
-	                                                    $handles = slider.element.find(".ui-slider-handle"),
-	                                                    $pips;
+	            var slider = this,
+	                i,
+	                j,
+	                p,
+	                collection = "",
+	                mousedownHandlers,
+	                min = slider._valueMin(),
+	                max = slider._valueMax(),
+	                pips = (max - min) / slider.options.step,
+	                $handles = slider.element.find(".ui-slider-handle"),
+	                $pips;
 	
-	                                                var options = {
+	            var options = {
 	
-	                                                                first: "label",
-	                                                                /* "label", "pip", false */
+	                first: "label",
+	                /* "label", "pip", false */
 	
-	                                                                last: "label",
-	                                                                /* "label", "pip", false */
+	                last: "label",
+	                /* "label", "pip", false */
 	
-	                                                                rest: "pip",
-	                                                                /* "label", "pip", false */
+	                rest: "pip",
+	                /* "label", "pip", false */
 	
-	                                                                labels: false,
-	                                                                /* [array], { first: "string", rest: [array], last: "string" }, false */
+	                labels: false,
+	                /* [array], { first: "string", rest: [array], last: "string" }, false */
 	
-	                                                                prefix: "",
-	                                                                /* "", string */
+	                prefix: "",
+	                /* "", string */
 	
-	                                                                suffix: "",
-	                                                                /* "", string */
+	                suffix: "",
+	                /* "", string */
 	
-	                                                                step: pips > 100 ? Math.floor(pips * 0.05) : 1,
-	                                                                /* number */
+	                step: pips > 100 ? Math.floor(pips * 0.05) : 1,
+	                /* number */
 	
-	                                                                formatLabel: function formatLabel(value) {
-	                                                                                return this.prefix + value + this.suffix;
-	                                                                }
-	                                                                /* function
-	                                                                    must return a value to display in the pip labels */
+	                formatLabel: function formatLabel(value) {
+	                    return this.prefix + value + this.suffix;
+	                }
+	                /* function
+	                    must return a value to display in the pip labels */
 	
-	                                                };
+	            };
 	
-	                                                if ($.type(settings) === "object" || $.type(settings) === "undefined") {
+	            if ($.type(settings) === "object" || $.type(settings) === "undefined") {
 	
-	                                                                $.extend(options, settings);
-	                                                                slider.element.data("pips-options", options);
-	                                                } else {
+	                $.extend(options, settings);
+	                slider.element.data("pips-options", options);
+	            } else {
 	
-	                                                                if (settings === "destroy") {
+	                if (settings === "destroy") {
 	
-	                                                                                destroy();
-	                                                                } else if (settings === "refresh") {
+	                    destroy();
+	                } else if (settings === "refresh") {
 	
-	                                                                                slider.element.slider("pips", slider.element.data("pips-options"));
-	                                                                }
+	                    slider.element.slider("pips", slider.element.data("pips-options"));
+	                }
 	
-	                                                                return;
-	                                                }
+	                return;
+	            }
 	
-	                                                // we don't want the step ever to be a floating point or negative
-	                                                // (or 0 actually, so we'll set it to 1 in that case).
-	                                                slider.options.pipStep = Math.abs(Math.round(options.step)) || 1;
+	            // we don't want the step ever to be a floating point or negative
+	            // (or 0 actually, so we'll set it to 1 in that case).
+	            slider.options.pipStep = Math.abs(Math.round(options.step)) || 1;
 	
-	                                                // get rid of all pips that might already exist.
-	                                                slider.element.off(".selectPip").addClass("ui-slider-pips").find(".ui-slider-pip").remove();
+	            // get rid of all pips that might already exist.
+	            slider.element.off(".selectPip").addClass("ui-slider-pips").find(".ui-slider-pip").remove();
 	
-	                                                // small object with functions for marking pips as selected.
+	            // small object with functions for marking pips as selected.
 	
-	                                                var selectPip = {
+	            var selectPip = {
 	
-	                                                                single: function single(value) {
+	                single: function single(value) {
 	
-	                                                                                this.resetClasses();
+	                    this.resetClasses();
 	
-	                                                                                $pips.filter(".ui-slider-pip-" + this.classLabel(value)).addClass("ui-slider-pip-selected");
+	                    $pips.filter(".ui-slider-pip-" + this.classLabel(value)).addClass("ui-slider-pip-selected");
 	
-	                                                                                if (slider.options.range) {
+	                    if (slider.options.range) {
 	
-	                                                                                                $pips.each(function (k, v) {
+	                        $pips.each(function (k, v) {
 	
-	                                                                                                                var pipVal = $(v).children(".ui-slider-label").data("value");
+	                            var pipVal = $(v).children(".ui-slider-label").data("value");
 	
-	                                                                                                                if (slider.options.range === "min" && pipVal < value || slider.options.range === "max" && pipVal > value) {
+	                            if (slider.options.range === "min" && pipVal < value || slider.options.range === "max" && pipVal > value) {
 	
-	                                                                                                                                $(v).addClass("ui-slider-pip-inrange");
-	                                                                                                                }
-	                                                                                                });
-	                                                                                }
-	                                                                },
+	                                $(v).addClass("ui-slider-pip-inrange");
+	                            }
+	                        });
+	                    }
+	                },
 	
-	                                                                range: function range(values) {
+	                range: function range(values) {
 	
-	                                                                                this.resetClasses();
+	                    this.resetClasses();
 	
-	                                                                                for (i = 0; i < values.length; i++) {
+	                    for (i = 0; i < values.length; i++) {
 	
-	                                                                                                $pips.filter(".ui-slider-pip-" + this.classLabel(values[i])).addClass("ui-slider-pip-selected-" + (i + 1));
-	                                                                                }
+	                        $pips.filter(".ui-slider-pip-" + this.classLabel(values[i])).addClass("ui-slider-pip-selected-" + (i + 1));
+	                    }
 	
-	                                                                                if (slider.options.range) {
+	                    if (slider.options.range) {
 	
-	                                                                                                $pips.each(function (k, v) {
+	                        $pips.each(function (k, v) {
 	
-	                                                                                                                var pipVal = $(v).children(".ui-slider-label").data("value");
+	                            var pipVal = $(v).children(".ui-slider-label").data("value");
 	
-	                                                                                                                if (pipVal > values[0] && pipVal < values[1]) {
+	                            if (pipVal > values[0] && pipVal < values[1]) {
 	
-	                                                                                                                                $(v).addClass("ui-slider-pip-inrange");
-	                                                                                                                }
-	                                                                                                });
-	                                                                                }
-	                                                                },
+	                                $(v).addClass("ui-slider-pip-inrange");
+	                            }
+	                        });
+	                    }
+	                },
 	
-	                                                                classLabel: function classLabel(value) {
+	                classLabel: function classLabel(value) {
 	
-	                                                                                return value.toString().replace(".", "-");
-	                                                                },
+	                    return value.toString().replace(".", "-");
+	                },
 	
-	                                                                resetClasses: function resetClasses() {
+	                resetClasses: function resetClasses() {
 	
-	                                                                                var regex = /(^|\s*)(ui-slider-pip-selected|ui-slider-pip-inrange)(-{1,2}\d+|\s|$)/gi;
+	                    var regex = /(^|\s*)(ui-slider-pip-selected|ui-slider-pip-inrange)(-{1,2}\d+|\s|$)/gi;
 	
-	                                                                                $pips.removeClass(function (index, css) {
-	                                                                                                return (css.match(regex) || []).join(" ");
-	                                                                                });
-	                                                                }
+	                    $pips.removeClass(function (index, css) {
+	                        return (css.match(regex) || []).join(" ");
+	                    });
+	                }
 	
-	                                                };
+	            };
 	
-	                                                function getClosestHandle(val) {
+	            function getClosestHandle(val) {
 	
-	                                                                var h,
-	                                                                    k,
-	                                                                    sliderVals,
-	                                                                    comparedVals,
-	                                                                    closestVal,
-	                                                                    tempHandles = [],
-	                                                                    closestHandle = 0;
+	                var h,
+	                    k,
+	                    sliderVals,
+	                    comparedVals,
+	                    closestVal,
+	                    tempHandles = [],
+	                    closestHandle = 0;
 	
-	                                                                if (slider.values() && slider.values().length) {
+	                if (slider.values() && slider.values().length) {
 	
-	                                                                                // get the current values of the slider handles
-	                                                                                sliderVals = slider.values();
+	                    // get the current values of the slider handles
+	                    sliderVals = slider.values();
 	
-	                                                                                // find the offset value from the `val` for each
-	                                                                                // handle, and store it in a new array
-	                                                                                comparedVals = $.map(sliderVals, function (v) {
-	                                                                                                return Math.abs(v - val);
-	                                                                                });
+	                    // find the offset value from the `val` for each
+	                    // handle, and store it in a new array
+	                    comparedVals = $.map(sliderVals, function (v) {
+	                        return Math.abs(v - val);
+	                    });
 	
-	                                                                                // figure out the closest handles to the value
-	                                                                                closestVal = Math.min.apply(Math, comparedVals);
+	                    // figure out the closest handles to the value
+	                    closestVal = Math.min.apply(Math, comparedVals);
 	
-	                                                                                // if a comparedVal is the closestVal, then
-	                                                                                // set the value accordingly, and set the closest handle.
-	                                                                                for (h = 0; h < comparedVals.length; h++) {
-	                                                                                                if (comparedVals[h] === closestVal) {
-	                                                                                                                tempHandles.push(h);
-	                                                                                                }
-	                                                                                }
+	                    // if a comparedVal is the closestVal, then
+	                    // set the value accordingly, and set the closest handle.
+	                    for (h = 0; h < comparedVals.length; h++) {
+	                        if (comparedVals[h] === closestVal) {
+	                            tempHandles.push(h);
+	                        }
+	                    }
 	
-	                                                                                // set the closest handle to the first handle in array,
-	                                                                                // just incase we have no _lastChangedValue to compare to.
-	                                                                                closestHandle = tempHandles[0];
+	                    // set the closest handle to the first handle in array,
+	                    // just incase we have no _lastChangedValue to compare to.
+	                    closestHandle = tempHandles[0];
 	
-	                                                                                // now we want to find out if any of the closest handles were
-	                                                                                // the last changed handle, if so we specify that handle to change
-	                                                                                for (k = 0; k < tempHandles.length; k++) {
-	                                                                                                if (slider._lastChangedValue === tempHandles[k]) {
-	                                                                                                                closestHandle = tempHandles[k];
-	                                                                                                }
-	                                                                                }
+	                    // now we want to find out if any of the closest handles were
+	                    // the last changed handle, if so we specify that handle to change
+	                    for (k = 0; k < tempHandles.length; k++) {
+	                        if (slider._lastChangedValue === tempHandles[k]) {
+	                            closestHandle = tempHandles[k];
+	                        }
+	                    }
 	
-	                                                                                if (slider.options.range && tempHandles.length === 2) {
+	                    if (slider.options.range && tempHandles.length === 2) {
 	
-	                                                                                                if (val > sliderVals[1]) {
+	                        if (val > sliderVals[1]) {
 	
-	                                                                                                                closestHandle = tempHandles[1];
-	                                                                                                } else if (val < sliderVals[0]) {
+	                            closestHandle = tempHandles[1];
+	                        } else if (val < sliderVals[0]) {
 	
-	                                                                                                                closestHandle = tempHandles[0];
-	                                                                                                }
-	                                                                                }
-	                                                                }
+	                            closestHandle = tempHandles[0];
+	                        }
+	                    }
+	                }
 	
-	                                                                return closestHandle;
-	                                                }
+	                return closestHandle;
+	            }
 	
-	                                                function destroy() {
+	            function destroy() {
 	
-	                                                                slider.element.off(".selectPip").on("mousedown.slider", slider.element.data("mousedown-original")).removeClass("ui-slider-pips").find(".ui-slider-pip").remove();
-	                                                }
+	                slider.element.off(".selectPip").on("mousedown.slider", slider.element.data("mousedown-original")).removeClass("ui-slider-pips").find(".ui-slider-pip").remove();
+	            }
 	
-	                                                // when we click on a label, we want to make sure the
-	                                                // slider's handle actually goes to that label!
-	                                                // so we check all the handles and see which one is closest
-	                                                // to the label we clicked. If 2 handles are equidistant then
-	                                                // we move both of them. We also want to trigger focus on the
-	                                                // handle.
+	            // when we click on a label, we want to make sure the
+	            // slider's handle actually goes to that label!
+	            // so we check all the handles and see which one is closest
+	            // to the label we clicked. If 2 handles are equidistant then
+	            // we move both of them. We also want to trigger focus on the
+	            // handle.
 	
-	                                                // without this method the label is just treated like a part
-	                                                // of the slider and there's no accuracy in the selected value
+	            // without this method the label is just treated like a part
+	            // of the slider and there's no accuracy in the selected value
 	
-	                                                function labelClick(label, e) {
+	            function labelClick(label, e) {
 	
-	                                                                if (slider.option("disabled")) {
-	                                                                                return;
-	                                                                }
+	                if (slider.option("disabled")) {
+	                    return;
+	                }
 	
-	                                                                var val = $(label).data("value"),
-	                                                                    indexToChange = getClosestHandle(val);
+	                var val = $(label).data("value"),
+	                    indexToChange = getClosestHandle(val);
 	
-	                                                                if (slider.values() && slider.values().length) {
+	                if (slider.values() && slider.values().length) {
 	
-	                                                                                slider.options.values[indexToChange] = slider._trimAlignValue(val);
-	                                                                } else {
+	                    slider.options.values[indexToChange] = slider._trimAlignValue(val);
+	                } else {
 	
-	                                                                                slider.options.value = slider._trimAlignValue(val);
-	                                                                }
+	                    slider.options.value = slider._trimAlignValue(val);
+	                }
 	
-	                                                                slider._refreshValue();
-	                                                                slider._change(e, indexToChange);
-	                                                }
+	                slider._refreshValue();
+	                slider._change(e, indexToChange);
+	            }
 	
-	                                                // method for creating a pip. We loop this for creating all
-	                                                // the pips.
+	            // method for creating a pip. We loop this for creating all
+	            // the pips.
 	
-	                                                function createPip(which) {
+	            function createPip(which) {
 	
-	                                                                var label,
-	                                                                    percent,
-	                                                                    number = which,
-	                                                                    classes = "ui-slider-pip",
-	                                                                    css = "",
-	                                                                    value = slider.value(),
-	                                                                    values = slider.values(),
-	                                                                    labelValue,
-	                                                                    classLabel,
-	                                                                    labelIndex;
+	                var label,
+	                    percent,
+	                    number = which,
+	                    classes = "ui-slider-pip",
+	                    css = "",
+	                    value = slider.value(),
+	                    values = slider.values(),
+	                    labelValue,
+	                    classLabel,
+	                    labelIndex;
 	
-	                                                                if (which === "first") {
+	                if (which === "first") {
 	
-	                                                                                number = 0;
-	                                                                } else if (which === "last") {
+	                    number = 0;
+	                } else if (which === "last") {
 	
-	                                                                                number = pips;
-	                                                                }
+	                    number = pips;
+	                }
 	
-	                                                                // labelValue is the actual value of the pip based on the min/step
-	                                                                labelValue = min + slider.options.step * number;
+	                // labelValue is the actual value of the pip based on the min/step
+	                labelValue = min + slider.options.step * number;
 	
-	                                                                // classLabel replaces any decimals with hyphens
-	                                                                classLabel = labelValue.toString().replace(".", "-");
+	                // classLabel replaces any decimals with hyphens
+	                classLabel = labelValue.toString().replace(".", "-");
 	
-	                                                                // get the index needed for selecting labels out of the array
-	                                                                labelIndex = number + min - min;
+	                // get the index needed for selecting labels out of the array
+	                labelIndex = number + min - min;
 	
-	                                                                // we need to set the human-readable label to either the
-	                                                                // corresponding element in the array, or the appropriate
-	                                                                // item in the object... or an empty string.
+	                // we need to set the human-readable label to either the
+	                // corresponding element in the array, or the appropriate
+	                // item in the object... or an empty string.
 	
-	                                                                if ($.type(options.labels) === "array") {
+	                if ($.type(options.labels) === "array") {
 	
-	                                                                                label = options.labels[labelIndex] || "";
-	                                                                } else if ($.type(options.labels) === "object") {
+	                    label = options.labels[labelIndex] || "";
+	                } else if ($.type(options.labels) === "object") {
 	
-	                                                                                if (which === "first") {
+	                    if (which === "first") {
 	
-	                                                                                                // set first label
-	                                                                                                label = options.labels.first || "";
-	                                                                                } else if (which === "last") {
+	                        // set first label
+	                        label = options.labels.first || "";
+	                    } else if (which === "last") {
 	
-	                                                                                                // set last label
-	                                                                                                label = options.labels.last || "";
-	                                                                                } else if ($.type(options.labels.rest) === "array") {
+	                        // set last label
+	                        label = options.labels.last || "";
+	                    } else if ($.type(options.labels.rest) === "array") {
 	
-	                                                                                                // set other labels, but our index should start at -1
-	                                                                                                // because of the first pip.
-	                                                                                                label = options.labels.rest[labelIndex - 1] || "";
-	                                                                                } else {
+	                        // set other labels, but our index should start at -1
+	                        // because of the first pip.
+	                        label = options.labels.rest[labelIndex - 1] || "";
+	                    } else {
 	
-	                                                                                                // urrggh, the options must be f**ked, just show nothing.
-	                                                                                                label = labelValue;
-	                                                                                }
-	                                                                } else {
+	                        // urrggh, the options must be f**ked, just show nothing.
+	                        label = labelValue;
+	                    }
+	                } else {
 	
-	                                                                                label = labelValue;
-	                                                                }
+	                    label = labelValue;
+	                }
 	
-	                                                                if (which === "first") {
+	                if (which === "first") {
 	
-	                                                                                // first Pip on the Slider
-	                                                                                percent = "0%";
+	                    // first Pip on the Slider
+	                    percent = "0%";
 	
-	                                                                                classes += " ui-slider-pip-first";
-	                                                                                classes += options.first === "label" ? " ui-slider-pip-label" : "";
-	                                                                                classes += options.first === false ? " ui-slider-pip-hide" : "";
-	                                                                } else if (which === "last") {
+	                    classes += " ui-slider-pip-first";
+	                    classes += options.first === "label" ? " ui-slider-pip-label" : "";
+	                    classes += options.first === false ? " ui-slider-pip-hide" : "";
+	                } else if (which === "last") {
 	
-	                                                                                // last Pip on the Slider
-	                                                                                percent = "100%";
+	                    // last Pip on the Slider
+	                    percent = "100%";
 	
-	                                                                                classes += " ui-slider-pip-last";
-	                                                                                classes += options.last === "label" ? " ui-slider-pip-label" : "";
-	                                                                                classes += options.last === false ? " ui-slider-pip-hide" : "";
-	                                                                } else {
+	                    classes += " ui-slider-pip-last";
+	                    classes += options.last === "label" ? " ui-slider-pip-label" : "";
+	                    classes += options.last === false ? " ui-slider-pip-hide" : "";
+	                } else {
 	
-	                                                                                // all other Pips
-	                                                                                percent = (100 / pips * which).toFixed(4) + "%";
+	                    // all other Pips
+	                    percent = (100 / pips * which).toFixed(4) + "%";
 	
-	                                                                                classes += options.rest === "label" ? " ui-slider-pip-label" : "";
-	                                                                                classes += options.rest === false ? " ui-slider-pip-hide" : "";
-	                                                                }
+	                    classes += options.rest === "label" ? " ui-slider-pip-label" : "";
+	                    classes += options.rest === false ? " ui-slider-pip-hide" : "";
+	                }
 	
-	                                                                classes += " ui-slider-pip-" + classLabel;
+	                classes += " ui-slider-pip-" + classLabel;
 	
-	                                                                // add classes for the initial-selected values.
-	                                                                if (values && values.length) {
+	                // add classes for the initial-selected values.
+	                if (values && values.length) {
 	
-	                                                                                for (i = 0; i < values.length; i++) {
+	                    for (i = 0; i < values.length; i++) {
 	
-	                                                                                                if (labelValue === values[i]) {
+	                        if (labelValue === values[i]) {
 	
-	                                                                                                                classes += " ui-slider-pip-initial-" + (i + 1);
-	                                                                                                                classes += " ui-slider-pip-selected-" + (i + 1);
-	                                                                                                }
-	                                                                                }
+	                            classes += " ui-slider-pip-initial-" + (i + 1);
+	                            classes += " ui-slider-pip-selected-" + (i + 1);
+	                        }
+	                    }
 	
-	                                                                                if (slider.options.range) {
+	                    if (slider.options.range) {
 	
-	                                                                                                if (labelValue > values[0] && labelValue < values[1]) {
+	                        if (labelValue > values[0] && labelValue < values[1]) {
 	
-	                                                                                                                classes += " ui-slider-pip-inrange";
-	                                                                                                }
-	                                                                                }
-	                                                                } else {
+	                            classes += " ui-slider-pip-inrange";
+	                        }
+	                    }
+	                } else {
 	
-	                                                                                if (labelValue === value) {
+	                    if (labelValue === value) {
 	
-	                                                                                                classes += " ui-slider-pip-initial";
-	                                                                                                classes += " ui-slider-pip-selected";
-	                                                                                }
+	                        classes += " ui-slider-pip-initial";
+	                        classes += " ui-slider-pip-selected";
+	                    }
 	
-	                                                                                if (slider.options.range) {
+	                    if (slider.options.range) {
 	
-	                                                                                                if (slider.options.range === "min" && labelValue < value || slider.options.range === "max" && labelValue > value) {
+	                        if (slider.options.range === "min" && labelValue < value || slider.options.range === "max" && labelValue > value) {
 	
-	                                                                                                                classes += " ui-slider-pip-inrange";
-	                                                                                                }
-	                                                                                }
-	                                                                }
+	                            classes += " ui-slider-pip-inrange";
+	                        }
+	                    }
+	                }
 	
-	                                                                css = slider.options.orientation === "horizontal" ? "left: " + percent : "bottom: " + percent;
+	                css = slider.options.orientation === "horizontal" ? "left: " + percent : "bottom: " + percent;
 	
-	                                                                // add this current pip to the collection
-	                                                                return "<span class=\"" + classes + "\" style=\"" + css + "\">" + "<span class=\"ui-slider-line\"></span>" + "<span class=\"ui-slider-label\" data-value=\"" + labelValue + "\">" + options.formatLabel(label) + "</span>" + "</span>";
-	                                                }
+	                // add this current pip to the collection
+	                return "<span class=\"" + classes + "\" style=\"" + css + "\">" + "<span class=\"ui-slider-line\"></span>" + "<span class=\"ui-slider-label\" data-value=\"" + labelValue + "\">" + options.formatLabel(label) + "</span>" + "</span>";
+	            }
 	
-	                                                // create our first pip
-	                                                collection += createPip("first");
+	            // create our first pip
+	            collection += createPip("first");
 	
-	                                                // for every stop in the slider where we need a pip; create one.
-	                                                for (p = slider.options.pipStep; p < pips; p += slider.options.pipStep) {
-	                                                                collection += createPip(p);
-	                                                }
+	            // for every stop in the slider where we need a pip; create one.
+	            for (p = slider.options.pipStep; p < pips; p += slider.options.pipStep) {
+	                collection += createPip(p);
+	            }
 	
-	                                                // create our last pip
-	                                                collection += createPip("last");
+	            // create our last pip
+	            collection += createPip("last");
 	
-	                                                // append the collection of pips.
-	                                                slider.element.append(collection);
+	            // append the collection of pips.
+	            slider.element.append(collection);
 	
-	                                                // store the pips for setting classes later.
-	                                                $pips = slider.element.find(".ui-slider-pip");
+	            // store the pips for setting classes later.
+	            $pips = slider.element.find(".ui-slider-pip");
 	
-	                                                // store the mousedown handlers for later, just in case we reset
-	                                                // the slider, the handler would be lost!
+	            // store the mousedown handlers for later, just in case we reset
+	            // the slider, the handler would be lost!
 	
-	                                                if ($._data(slider.element.get(0), "events").mousedown && $._data(slider.element.get(0), "events").mousedown.length) {
+	            if ($._data(slider.element.get(0), "events").mousedown && $._data(slider.element.get(0), "events").mousedown.length) {
 	
-	                                                                mousedownHandlers = $._data(slider.element.get(0), "events").mousedown;
-	                                                } else {
+	                mousedownHandlers = $._data(slider.element.get(0), "events").mousedown;
+	            } else {
 	
-	                                                                mousedownHandlers = slider.element.data("mousedown-handlers");
-	                                                }
+	                mousedownHandlers = slider.element.data("mousedown-handlers");
+	            }
 	
-	                                                slider.element.data("mousedown-handlers", mousedownHandlers.slice());
+	            slider.element.data("mousedown-handlers", mousedownHandlers.slice());
 	
-	                                                // loop through all the mousedown handlers on the slider,
-	                                                // and store the original namespaced (.slider) event handler so
-	                                                // we can trigger it later.
-	                                                for (j = 0; j < mousedownHandlers.length; j++) {
-	                                                                if (mousedownHandlers[j].namespace === "slider") {
-	                                                                                slider.element.data("mousedown-original", mousedownHandlers[j].handler);
-	                                                                }
-	                                                }
+	            // loop through all the mousedown handlers on the slider,
+	            // and store the original namespaced (.slider) event handler so
+	            // we can trigger it later.
+	            for (j = 0; j < mousedownHandlers.length; j++) {
+	                if (mousedownHandlers[j].namespace === "slider") {
+	                    slider.element.data("mousedown-original", mousedownHandlers[j].handler);
+	                }
+	            }
 	
-	                                                // unbind the mousedown.slider event, because it interferes with
-	                                                // the labelClick() method (stops smooth animation), and decide
-	                                                // if we want to trigger the original event based on which element
-	                                                // was clicked.
-	                                                slider.element.off("mousedown.slider").on("mousedown.selectPip", function (e) {
+	            // unbind the mousedown.slider event, because it interferes with
+	            // the labelClick() method (stops smooth animation), and decide
+	            // if we want to trigger the original event based on which element
+	            // was clicked.
+	            slider.element.off("mousedown.slider").on("mousedown.selectPip", function (e) {
 	
-	                                                                var $target = $(e.target),
-	                                                                    closest = getClosestHandle($target.data("value")),
-	                                                                    $handle = $handles.eq(closest);
+	                var $target = $(e.target),
+	                    closest = getClosestHandle($target.data("value")),
+	                    $handle = $handles.eq(closest);
 	
-	                                                                $handle.addClass("ui-state-active");
+	                $handle.addClass("ui-state-active");
 	
-	                                                                if ($target.is(".ui-slider-label")) {
+	                if ($target.is(".ui-slider-label")) {
 	
-	                                                                                labelClick($target, e);
+	                    labelClick($target, e);
 	
-	                                                                                slider.element.one("mouseup.selectPip", function () {
+	                    slider.element.one("mouseup.selectPip", function () {
 	
-	                                                                                                $handle.removeClass("ui-state-active").focus();
-	                                                                                });
-	                                                                } else {
+	                        $handle.removeClass("ui-state-active").focus();
+	                    });
+	                } else {
 	
-	                                                                                var originalMousedown = slider.element.data("mousedown-original");
-	                                                                                originalMousedown(e);
-	                                                                }
-	                                                });
+	                    var originalMousedown = slider.element.data("mousedown-original");
+	                    originalMousedown(e);
+	                }
+	            });
 	
-	                                                slider.element.on("slide.selectPip slidechange.selectPip", function (e, ui) {
+	            slider.element.on("slide.selectPip slidechange.selectPip", function (e, ui) {
 	
-	                                                                var $slider = $(this),
-	                                                                    value = $slider.slider("value"),
-	                                                                    values = $slider.slider("values");
+	                var $slider = $(this),
+	                    value = $slider.slider("value"),
+	                    values = $slider.slider("values");
 	
-	                                                                if (ui) {
+	                if (ui) {
 	
-	                                                                                value = ui.value;
-	                                                                                values = ui.values;
-	                                                                }
+	                    value = ui.value;
+	                    values = ui.values;
+	                }
 	
-	                                                                if (slider.values() && slider.values().length) {
+	                if (slider.values() && slider.values().length) {
 	
-	                                                                                selectPip.range(values);
-	                                                                } else {
+	                    selectPip.range(values);
+	                } else {
 	
-	                                                                                selectPip.single(value);
-	                                                                }
-	                                                });
-	                                },
+	                    selectPip.single(value);
+	                }
+	            });
+	        },
 	
-	                                // floats
+	        // floats
 	
-	                                float: function float(settings) {
+	        float: function float(settings) {
 	
-	                                                var i,
-	                                                    slider = this,
-	                                                    min = slider._valueMin(),
-	                                                    max = slider._valueMax(),
-	                                                    value = slider._value(),
-	                                                    values = slider._values(),
-	                                                    tipValues = [],
-	                                                    $handles = slider.element.find(".ui-slider-handle");
+	            var i,
+	                slider = this,
+	                min = slider._valueMin(),
+	                max = slider._valueMax(),
+	                value = slider._value(),
+	                values = slider._values(),
+	                tipValues = [],
+	                $handles = slider.element.find(".ui-slider-handle");
 	
-	                                                var options = {
+	            var options = {
 	
-	                                                                handle: true,
-	                                                                /* false */
+	                handle: true,
+	                /* false */
 	
-	                                                                pips: false,
-	                                                                /* true */
+	                pips: false,
+	                /* true */
 	
-	                                                                labels: false,
-	                                                                /* [array], { first: "string", rest: [array], last: "string" }, false */
+	                labels: false,
+	                /* [array], { first: "string", rest: [array], last: "string" }, false */
 	
-	                                                                prefix: "",
-	                                                                /* "", string */
+	                prefix: "",
+	                /* "", string */
 	
-	                                                                suffix: "",
-	                                                                /* "", string */
+	                suffix: "",
+	                /* "", string */
 	
-	                                                                event: "slidechange slide",
-	                                                                /* "slidechange", "slide", "slidechange slide" */
+	                event: "slidechange slide",
+	                /* "slidechange", "slide", "slidechange slide" */
 	
-	                                                                formatLabel: function formatLabel(value) {
-	                                                                                return this.prefix + value + this.suffix;
-	                                                                }
-	                                                                /* function
-	                                                                    must return a value to display in the floats */
+	                formatLabel: function formatLabel(value) {
+	                    return this.prefix + value + this.suffix;
+	                }
+	                /* function
+	                    must return a value to display in the floats */
 	
-	                                                };
+	            };
 	
-	                                                if ($.type(settings) === "object" || $.type(settings) === "undefined") {
+	            if ($.type(settings) === "object" || $.type(settings) === "undefined") {
 	
-	                                                                $.extend(options, settings);
-	                                                                slider.element.data("float-options", options);
-	                                                } else {
+	                $.extend(options, settings);
+	                slider.element.data("float-options", options);
+	            } else {
 	
-	                                                                if (settings === "destroy") {
+	                if (settings === "destroy") {
 	
-	                                                                                destroy();
-	                                                                } else if (settings === "refresh") {
+	                    destroy();
+	                } else if (settings === "refresh") {
 	
-	                                                                                slider.element.slider("float", slider.element.data("float-options"));
-	                                                                }
+	                    slider.element.slider("float", slider.element.data("float-options"));
+	                }
 	
-	                                                                return;
-	                                                }
+	                return;
+	            }
 	
-	                                                if (value < min) {
-	                                                                value = min;
-	                                                }
+	            if (value < min) {
+	                value = min;
+	            }
 	
-	                                                if (value > max) {
-	                                                                value = max;
-	                                                }
+	            if (value > max) {
+	                value = max;
+	            }
 	
-	                                                if (values && values.length) {
+	            if (values && values.length) {
 	
-	                                                                for (i = 0; i < values.length; i++) {
+	                for (i = 0; i < values.length; i++) {
 	
-	                                                                                if (values[i] < min) {
-	                                                                                                values[i] = min;
-	                                                                                }
+	                    if (values[i] < min) {
+	                        values[i] = min;
+	                    }
 	
-	                                                                                if (values[i] > max) {
-	                                                                                                values[i] = max;
-	                                                                                }
-	                                                                }
-	                                                }
+	                    if (values[i] > max) {
+	                        values[i] = max;
+	                    }
+	                }
+	            }
 	
-	                                                // add a class for the CSS
-	                                                slider.element.addClass("ui-slider-float").find(".ui-slider-tip, .ui-slider-tip-label").remove();
+	            // add a class for the CSS
+	            slider.element.addClass("ui-slider-float").find(".ui-slider-tip, .ui-slider-tip-label").remove();
 	
-	                                                function destroy() {
+	            function destroy() {
 	
-	                                                                slider.element.off(".sliderFloat").removeClass("ui-slider-float").find(".ui-slider-tip, .ui-slider-tip-label").remove();
-	                                                }
+	                slider.element.off(".sliderFloat").removeClass("ui-slider-float").find(".ui-slider-tip, .ui-slider-tip-label").remove();
+	            }
 	
-	                                                function getPipLabels(values) {
+	            function getPipLabels(values) {
 	
-	                                                                // when checking the array we need to divide
-	                                                                // by the step option, so we store those values here.
+	                // when checking the array we need to divide
+	                // by the step option, so we store those values here.
 	
-	                                                                var vals = [],
-	                                                                    steppedVals = $.map(values, function (v) {
-	                                                                                return Math.ceil((v - min) / slider.options.step);
-	                                                                });
+	                var vals = [],
+	                    steppedVals = $.map(values, function (v) {
+	                    return Math.ceil((v - min) / slider.options.step);
+	                });
 	
-	                                                                // now we just get the values we need to return
-	                                                                // by looping through the values array and assigning the
-	                                                                // label if it exists.
+	                // now we just get the values we need to return
+	                // by looping through the values array and assigning the
+	                // label if it exists.
 	
-	                                                                if ($.type(options.labels) === "array") {
+	                if ($.type(options.labels) === "array") {
 	
-	                                                                                for (i = 0; i < values.length; i++) {
+	                    for (i = 0; i < values.length; i++) {
 	
-	                                                                                                vals[i] = options.labels[steppedVals[i]] || values[i];
-	                                                                                }
-	                                                                } else if ($.type(options.labels) === "object") {
+	                        vals[i] = options.labels[steppedVals[i]] || values[i];
+	                    }
+	                } else if ($.type(options.labels) === "object") {
 	
-	                                                                                for (i = 0; i < values.length; i++) {
+	                    for (i = 0; i < values.length; i++) {
 	
-	                                                                                                if (values[i] === min) {
+	                        if (values[i] === min) {
 	
-	                                                                                                                vals[i] = options.labels.first || min;
-	                                                                                                } else if (values[i] === max) {
+	                            vals[i] = options.labels.first || min;
+	                        } else if (values[i] === max) {
 	
-	                                                                                                                vals[i] = options.labels.last || max;
-	                                                                                                } else if ($.type(options.labels.rest) === "array") {
+	                            vals[i] = options.labels.last || max;
+	                        } else if ($.type(options.labels.rest) === "array") {
 	
-	                                                                                                                vals[i] = options.labels.rest[steppedVals[i] - 1] || values[i];
-	                                                                                                } else {
+	                            vals[i] = options.labels.rest[steppedVals[i] - 1] || values[i];
+	                        } else {
 	
-	                                                                                                                vals[i] = values[i];
-	                                                                                                }
-	                                                                                }
-	                                                                } else {
+	                            vals[i] = values[i];
+	                        }
+	                    }
+	                } else {
 	
-	                                                                                for (i = 0; i < values.length; i++) {
+	                    for (i = 0; i < values.length; i++) {
 	
-	                                                                                                vals[i] = values[i];
-	                                                                                }
-	                                                                }
+	                        vals[i] = values[i];
+	                    }
+	                }
 	
-	                                                                return vals;
-	                                                }
+	                return vals;
+	            }
 	
-	                                                // apply handle tip if settings allows.
-	                                                if (options.handle) {
+	            // apply handle tip if settings allows.
+	            if (options.handle) {
 	
-	                                                                // we need to set the human-readable label to either the
-	                                                                // corresponding element in the array, or the appropriate
-	                                                                // item in the object... or an empty string.
+	                // we need to set the human-readable label to either the
+	                // corresponding element in the array, or the appropriate
+	                // item in the object... or an empty string.
 	
-	                                                                tipValues = slider.values() && slider.values().length ? getPipLabels(values) : getPipLabels([value]);
+	                tipValues = slider.values() && slider.values().length ? getPipLabels(values) : getPipLabels([value]);
 	
-	                                                                for (i = 0; i < tipValues.length; i++) {
+	                for (i = 0; i < tipValues.length; i++) {
 	
-	                                                                                $handles.eq(i).append($("<span class=\"ui-slider-tip\">" + options.formatLabel(tipValues[i]) + "</span>"));
-	                                                                }
-	                                                }
+	                    $handles.eq(i).append($("<span class=\"ui-slider-tip\">" + options.formatLabel(tipValues[i]) + "</span>"));
+	                }
+	            }
 	
-	                                                if (options.pips) {
+	            if (options.pips) {
 	
-	                                                                // if this slider also has pip-labels, we make those into tips, too.
-	                                                                slider.element.find(".ui-slider-label").each(function (k, v) {
+	                // if this slider also has pip-labels, we make those into tips, too.
+	                slider.element.find(".ui-slider-label").each(function (k, v) {
 	
-	                                                                                var $this = $(v),
-	                                                                                    val = [$this.data("value")],
-	                                                                                    label,
-	                                                                                    $tip;
+	                    var $this = $(v),
+	                        val = [$this.data("value")],
+	                        label,
+	                        $tip;
 	
-	                                                                                label = options.formatLabel(getPipLabels(val)[0]);
+	                    label = options.formatLabel(getPipLabels(val)[0]);
 	
-	                                                                                // create a tip element
-	                                                                                $tip = $("<span class=\"ui-slider-tip-label\">" + label + "</span>").insertAfter($this);
-	                                                                });
-	                                                }
+	                    // create a tip element
+	                    $tip = $("<span class=\"ui-slider-tip-label\">" + label + "</span>").insertAfter($this);
+	                });
+	            }
 	
-	                                                // check that the event option is actually valid against our
-	                                                // own list of the slider's events.
-	                                                if (options.event !== "slide" && options.event !== "slidechange" && options.event !== "slide slidechange" && options.event !== "slidechange slide") {
+	            // check that the event option is actually valid against our
+	            // own list of the slider's events.
+	            if (options.event !== "slide" && options.event !== "slidechange" && options.event !== "slide slidechange" && options.event !== "slidechange slide") {
 	
-	                                                                options.event = "slidechange slide";
-	                                                }
+	                options.event = "slidechange slide";
+	            }
 	
-	                                                // when slider changes, update handle tip label.
-	                                                slider.element.off(".sliderFloat").on(options.event + ".sliderFloat", function (e, ui) {
+	            // when slider changes, update handle tip label.
+	            slider.element.off(".sliderFloat").on(options.event + ".sliderFloat", function (e, ui) {
 	
-	                                                                var uiValue = $.type(ui.value) === "array" ? ui.value : [ui.value],
-	                                                                    val = options.formatLabel(getPipLabels(uiValue)[0]);
+	                var uiValue = $.type(ui.value) === "array" ? ui.value : [ui.value],
+	                    val = options.formatLabel(getPipLabels(uiValue)[0]);
 	
-	                                                                $(ui.handle).find(".ui-slider-tip").html(val);
-	                                                });
-	                                }
+	                $(ui.handle).find(".ui-slider-tip").html(val);
+	            });
+	        }
 	
-	                };
+	    };
 	
-	                $.extend(true, $.ui.slider.prototype, extensionMethods);
+	    $.extend(true, $.ui.slider.prototype, extensionMethods);
 	})(jQuery);
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 41 */
+/* 42 */
 /*!****************************************************************!*\
   !*** ./wwwroot/lib/jquery-slimscroll/jquery.slimscroll.min.js ***!
   \****************************************************************/
@@ -27702,7 +27718,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 42 */
+/* 43 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersListView.js ***!
   \***************************************************/
@@ -27714,15 +27730,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ShinersListItemView = __webpack_require__(/*! ./ShinersListItemView.js */ 43);
+	var _ShinersListItemView = __webpack_require__(/*! ./ShinersListItemView.js */ 44);
 	
 	var _ShinersListItemView2 = _interopRequireDefault(_ShinersListItemView);
 	
-	var _ShinersEmptyView = __webpack_require__(/*! ./ShinersEmptyView.js */ 45);
+	var _ShinersEmptyView = __webpack_require__(/*! ./ShinersEmptyView.js */ 46);
 	
 	var _ShinersEmptyView2 = _interopRequireDefault(_ShinersEmptyView);
 	
@@ -27774,7 +27790,7 @@
 	exports.default = View;
 
 /***/ },
-/* 43 */
+/* 44 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersListItemView.js ***!
   \*******************************************************/
@@ -27786,15 +27802,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ShinersListItemViewHbs = __webpack_require__(/*! ./ShinersListItemView.hbs.html */ 44);
+	var _ShinersListItemViewHbs = __webpack_require__(/*! ./ShinersListItemView.hbs.html */ 45);
 	
 	var _ShinersListItemViewHbs2 = _interopRequireDefault(_ShinersListItemViewHbs);
 	
-	var _app = __webpack_require__(/*! ../app */ 13);
+	var _app = __webpack_require__(/*! ../app */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -27832,7 +27848,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 44 */
+/* 45 */
 /*!*************************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersListItemView.hbs.html ***!
   \*************************************************************/
@@ -27843,29 +27859,29 @@
 	with(obj||{}){
 	__p+='<img class="thumbnail pull-left" src="'+
 	((__t=(details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/no_image.png'))==null?'':__t)+
-	'" width="60" height="60" alt="" />\r\n<h4 class="noborder nopadding"><a href="/posts/'+
+	'" width="60" height="60" alt="" />\n<h4 class="noborder nopadding"><a href="/posts/'+
 	((__t=(_id))==null?'':_.escape(__t))+
 	'">'+
 	((__t=(details.title))==null?'':__t)+
-	'</a></h4>\r\n<div class="sh-shiners-list-footer">\r\n    <span class="sh-shiners-list-time pull-right">\r\n        '+
+	'</a></h4>\n<div class="sh-shiners-list-footer">\n    <span class="sh-shiners-list-time pull-right">\n        '+
 	((__t=(moment(timestamp).fromNow()))==null?'':__t)+
-	' &nbsp;\r\n        ';
+	' &nbsp;\n        ';
 	if(obj.distance && obj.distanceType){ 
-	__p+='\r\n            <i class="fa fa-location-arrow"></i> '+
+	__p+='\n            <i class="fa fa-location-arrow"></i> '+
 	((__t=(distance>=0?distance.toFixed(1):'Не определена'))==null?'':__t)+
 	' '+
 	((__t=(distanceType==='km'?'км':'miles'))==null?'':__t)+
-	'\r\n        ';
+	'\n        ';
 	 } 
-	__p+='\r\n    </span>\r\n    ';
+	__p+='\n    </span>\n    ';
 	if(obj.type) { 
-	__p+='\r\n    <span class="pull-right label bg-type-category-'+
+	__p+='\n    <span class="pull-right label bg-type-category-'+
 	((__t=(type))==null?'':__t)+
 	'">'+
 	((__t=(type))==null?'':__t)+
-	'</span>\r\n    ';
+	'</span>\n    ';
 	 } 
-	__p+='\r\n    \r\n</div>';
+	__p+='\n    \n</div>';
 	}
 	return __p;
 	};
@@ -27873,7 +27889,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 45 */
+/* 46 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersEmptyView.js ***!
   \****************************************************/
@@ -27885,11 +27901,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ShinersEmptyViewHbs = __webpack_require__(/*! ./ShinersEmptyView.hbs.html */ 46);
+	var _ShinersEmptyViewHbs = __webpack_require__(/*! ./ShinersEmptyView.hbs.html */ 47);
 	
 	var _ShinersEmptyViewHbs2 = _interopRequireDefault(_ShinersEmptyViewHbs);
 	
@@ -27903,7 +27919,7 @@
 	exports.default = View;
 
 /***/ },
-/* 46 */
+/* 47 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersEmptyView.hbs.html ***!
   \**********************************************************/
@@ -27912,16 +27928,16 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<i class="fa fa-search" aria-hidden="true"></i>\r\n<h4 class="sh-shiners-noitem-text text-center">'+
+	__p+='<i class="fa fa-search" aria-hidden="true"></i>\n<h4 class="sh-shiners-noitem-text text-center">'+
 	((__t=(i18n('search_not_found')))==null?'':__t)+
-	'</h4>\r\n';
+	'</h4>\n';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 47 */
+/* 48 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/search/CategoriesListView.js ***!
   \******************************************************/
@@ -27933,11 +27949,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _CategoriesItemView = __webpack_require__(/*! ./CategoriesItemView.js */ 48);
+	var _CategoriesItemView = __webpack_require__(/*! ./CategoriesItemView.js */ 49);
 	
 	var _CategoriesItemView2 = _interopRequireDefault(_CategoriesItemView);
 	
@@ -27966,7 +27982,7 @@
 	exports.default = View;
 
 /***/ },
-/* 48 */
+/* 49 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/search/CategoriesItemView.js ***!
   \******************************************************/
@@ -27978,11 +27994,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _CategoriesItemViewHbs = __webpack_require__(/*! ./CategoriesItemView.hbs.html */ 49);
+	var _CategoriesItemViewHbs = __webpack_require__(/*! ./CategoriesItemView.hbs.html */ 50);
 	
 	var _CategoriesItemViewHbs2 = _interopRequireDefault(_CategoriesItemViewHbs);
 	
@@ -28011,7 +28027,7 @@
 	exports.default = View;
 
 /***/ },
-/* 49 */
+/* 50 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/search/CategoriesItemView.hbs.html ***!
   \************************************************************/
@@ -28020,11 +28036,11 @@
 	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<a class="">\r\n    <span class="pull-right"><i class="fa '+
+	__p+='<a class="">\n    <span class="pull-right"><i class="fa '+
 	((__t=(isChecked?'fa-check-square text-success':'fa-square-o'))==null?'':_.escape(__t))+
 	'"></i></span> '+
 	((__t=(i18n.ru.name))==null?'':__t)+
-	'\r\n</a> ';
+	'\n</a> ';
 	}
 	return __p;
 	};
@@ -28032,7 +28048,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 50 */
+/* 51 */
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/search/i18n/en.js ***!
   \*******************************************/
@@ -28064,7 +28080,7 @@
 	i18n.add('en', json);
 
 /***/ },
-/* 51 */
+/* 52 */
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/search/i18n/ru.js ***!
   \*******************************************/
@@ -28095,7 +28111,7 @@
 	i18n.add('ru', json);
 
 /***/ },
-/* 52 */
+/* 53 */
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/ShinerInfoView.js ***!
   \*******************************************/
@@ -28107,15 +28123,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ShinerInfoViewHbs = __webpack_require__(/*! ./ShinerInfoView.hbs.html */ 53);
+	var _ShinerInfoViewHbs = __webpack_require__(/*! ./ShinerInfoView.hbs.html */ 54);
 	
 	var _ShinerInfoViewHbs2 = _interopRequireDefault(_ShinerInfoViewHbs);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 13);
+	var _app = __webpack_require__(/*! ./app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -28169,7 +28185,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 53 */
+/* 54 */
 /*!*************************************************!*\
   !*** ./wwwroot/homeApp/ShinerInfoView.hbs.html ***!
   \*************************************************/
@@ -28178,43 +28194,43 @@
 	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="sh-map-item-view-wrapper">\r\n    ';
+	__p+='<div class="sh-map-item-view-wrapper">\n    ';
 	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
-	__p+='\r\n\r\n    <a title="'+
+	__p+='\n\n    <a title="'+
 	((__t=(details.title))==null?'':__t)+
 	'" class="block height-250 text-right" style="background-image: url('+
 	((__t=(details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/demo/300x250.png'))==null?'':_.escape(__t))+
-	'); background-position: center; background-repeat: no-repeat; background-size: 120%"></a>\r\n\r\n    <div class="sh-map-item-view-info-panel">\r\n        <div class="sh-map-item-view-info-panel-first">\r\n            <span class="sh-label-box transparent-dark">\r\n                <i class="fa fa-calendar"></i> '+
+	'); background-position: center; background-repeat: no-repeat; background-size: 120%"></a>\n\n    <div class="sh-map-item-view-info-panel">\n        <div class="sh-map-item-view-info-panel-first">\n            <span class="sh-label-box transparent-dark">\n                <i class="fa fa-calendar"></i> '+
 	((__t=(moment(timestamp).fromNow()))==null?'':__t)+
-	'\r\n            </span>\r\n        </div>\r\n        <div class="sh-map-item-view-info-panel-second">\r\n            <span class="sh-label-box transparent-dark">\r\n                <i class="fa fa-eye"></i> '+
+	'\n            </span>\n        </div>\n        <div class="sh-map-item-view-info-panel-second">\n            <span class="sh-label-box transparent-dark">\n                <i class="fa fa-eye"></i> '+
 	((__t=(obj.stats?stats.seenAll:0))==null?'':__t)+
-	'\r\n            </span>\r\n            <span title="'+
+	'\n            </span>\n            <span title="'+
 	((__t=(isDynamic?'Динамическое объявление':'Статическое'))==null?'':__t)+
-	'" class="sh-label-box transparent-dark margin-left-3">\r\n                <i class="fa fa-'+
+	'" class="sh-label-box transparent-dark margin-left-3">\n                <i class="fa fa-'+
 	((__t=(isDynamic?'man':'flag' ))==null?'':__t)+
 	' '+
 	((__t=(isDynamic?'success':''))==null?'':__t)+
-	'"></i>\r\n            </span>\r\n            <span class="sh-label-box transparent-dark margin-left-3">\r\n                <i class="fa fa-location-arrow"></i> '+
+	'"></i>\n            </span>\n            <span class="sh-label-box transparent-dark margin-left-3">\n                <i class="fa fa-location-arrow"></i> '+
 	((__t=(distance>-1?distance.toFixed(1) + ' '+distanceType:''))==null?'':__t)+
-	'\r\n            </span>\r\n        </div>\r\n    </div>\r\n\r\n    <h3 class="sh-item-title elipsis" style="border: none">\r\n        <a>'+
+	'\n            </span>\n        </div>\n    </div>\n\n    <h3 class="sh-item-title elipsis" style="border: none">\n        <a>'+
 	((__t=(details.title))==null?'':__t)+
-	'</a>\r\n    </h3>\r\n    \r\n    <p class="sh-item-text">        \r\n        ';
+	'</a>\n    </h3>\n    \n    <p class="sh-item-text">        \n        ';
 	var loc = _.find(details.locations,function(l) { return l.placeType==='dynamic' })||details.locations[0]; 
-	__p+='\r\n        ';
+	__p+='\n        ';
 	 if (loc) { 
-	__p+='\r\n        '+
+	__p+='\n        '+
 	((__t=(loc.name))==null?'':__t)+
-	'\r\n        ';
+	'\n        ';
 	 } 
-	__p+='\r\n    </p>\r\n\r\n    <div class="sh-progress-bar progress">\r\n        <div class="progress-bar '+
+	__p+='\n    </p>\n\n    <div class="sh-progress-bar progress">\n        <div class="progress-bar '+
 	((__t=(progress>=70?'progress-bar-success':(progress>=25&&progress<70?'progress-bar-warning':'progress-bar-danger')))==null?'':__t)+
 	'" role="progressbar" style="width: '+
 	((__t=(progress))==null?'':__t)+
-	'%; min-width: 1em; ">\r\n            <span class="sr-only"></span>\r\n        </div>\r\n    </div>\r\n\r\n    <div class="sh-map-item-view-info-panel-bottom">\r\n        <div class="sh-map-item-view-info-panel-bottom-wrapper">\r\n            <div>\r\n                <span class="label bg-type-category-'+
+	'%; min-width: 1em; ">\n            <span class="sr-only"></span>\n        </div>\n    </div>\n\n    <div class="sh-map-item-view-info-panel-bottom">\n        <div class="sh-map-item-view-info-panel-bottom-wrapper">\n            <div>\n                <span class="label bg-type-category-'+
 	((__t=(type))==null?'':__t)+
 	' pull-left">'+
 	((__t=(type))==null?'':__t)+
-	'</span>\r\n            </div>\r\n            <div>\r\n                <a class="sh-info-panel-send-message">Написать сообщение</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n</div>';
+	'</span>\n            </div>\n            <div>\n                <a class="sh-info-panel-send-message">Написать сообщение</a>\n            </div>\n        </div>\n    </div>\n\n</div>';
 	}
 	return __p;
 	};
@@ -28222,7 +28238,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 54 */
+/* 55 */
 /*!*********************************************!*\
   !*** ./~/load-google-maps-api/lib/index.js ***!
   \*********************************************/
@@ -28290,7 +28306,7 @@
 	};
 
 /***/ },
-/* 55 */
+/* 56 */
 /*!***************************************!*\
   !*** ./wwwroot/homeApp/BannerView.js ***!
   \***************************************/
@@ -28302,33 +28318,33 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _OsmSearchCollection = __webpack_require__(/*! ../data/OsmSearchCollection.js */ 56);
+	var _OsmSearchCollection = __webpack_require__(/*! ../data/OsmSearchCollection.js */ 57);
 	
 	var _OsmSearchCollection2 = _interopRequireDefault(_OsmSearchCollection);
 	
-	var _BannerViewHbs = __webpack_require__(/*! ./BannerView.hbs.html */ 57);
+	var _BannerViewHbs = __webpack_require__(/*! ./BannerView.hbs.html */ 58);
 	
 	var _BannerViewHbs2 = _interopRequireDefault(_BannerViewHbs);
 	
-	var _BannerViewLocationSelectHbs = __webpack_require__(/*! ./selectLocation/BannerViewLocationSelect.hbs.html */ 58);
+	var _BannerViewLocationSelectHbs = __webpack_require__(/*! ./selectLocation/BannerViewLocationSelect.hbs.html */ 59);
 	
 	var _BannerViewLocationSelectHbs2 = _interopRequireDefault(_BannerViewLocationSelectHbs);
 	
-	__webpack_require__(/*! ../lib/jquery.countTo.js */ 59);
+	__webpack_require__(/*! ../lib/jquery.countTo.js */ 60);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 13);
+	var _app = __webpack_require__(/*! ./app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _SuggestionListView = __webpack_require__(/*! ./selectLocation/SuggestionListView.js */ 60);
+	var _SuggestionListView = __webpack_require__(/*! ./selectLocation/SuggestionListView.js */ 61);
 	
 	var _SuggestionListView2 = _interopRequireDefault(_SuggestionListView);
 	
-	__webpack_require__(/*! ./BannerView.less */ 63);
+	__webpack_require__(/*! ./BannerView.less */ 64);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -28436,7 +28452,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 56 */
+/* 57 */
 /*!*********************************************!*\
   !*** ./wwwroot/data/OsmSearchCollection.js ***!
   \*********************************************/
@@ -28448,7 +28464,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone */ 15);
+	var _backbone = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -28466,7 +28482,7 @@
 	});
 
 /***/ },
-/* 57 */
+/* 58 */
 /*!*********************************************!*\
   !*** ./wwwroot/homeApp/BannerView.hbs.html ***!
   \*********************************************/
@@ -28475,24 +28491,24 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<h1 class="sh-text-rotate hidden-xs hidden-sm sh-view--banner">\r\n    <span class="sh-red-bg">'+
+	__p+='<h1 class="sh-text-rotate hidden-xs hidden-sm sh-view--banner">\n    <span class="sh-red-bg">'+
 	((__t=(i18n('shiners_are')))==null?'':__t)+
-	'</span>\r\n    <span class="word-rotator" data-delay="4000">\r\n        <span class="items">\r\n            <span>'+
+	'</span>\n    <span class="word-rotator" data-delay="4000">\n        <span class="items">\n            <span>'+
 	((__t=(i18n('live_meetings')))==null?'':__t)+
-	'</span>\r\n            <span>'+
+	'</span>\n            <span>'+
 	((__t=(i18n('nearby_business')))==null?'':__t)+
-	'</span>\r\n            <span>'+
+	'</span>\n            <span>'+
 	((__t=(i18n('LIVE_ADS')))==null?'':__t)+
-	'</span>\r\n            <span>'+
+	'</span>\n            <span>'+
 	((__t=(i18n('NEARBY_SERVICES')))==null?'':__t)+
-	'</span>\r\n        </span>\r\n    </span>\r\n</h1>';
+	'</span>\n        </span>\n    </span>\n</h1>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 58 */
+/* 59 */
 /*!**************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/BannerViewLocationSelect.hbs.html ***!
   \**************************************************************************/
@@ -28501,9 +28517,9 @@
 	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="container text-center">\r\n    <div class="input-group">   \r\n        <input placeholder="'+
+	__p+='<div class="container text-center">\n    <div class="input-group">   \n        <input placeholder="'+
 	((__t=(obj.address||'Поиск по городам и регионам'))==null?'':_.escape(__t))+
-	'" class="form-control" id="locationQuery" type="text">\r\n        <span class="input-group-btn">\r\n            <button title="Отмена" id="cancelSelection" class="btn btn-default" type="button"><i class="fa fa-remove"></i></button>\r\n        </span>\r\n        <div class="suggestion-box" id="suggestionsBox">\r\n            <h5>Поиск городов, регионов</h5>\r\n            <div id="suggestionsListBox"></div>\r\n        </div>\r\n    </div>\r\n</div>';
+	'" class="form-control" id="locationQuery" type="text">\n        <span class="input-group-btn">\n            <button title="Отмена" id="cancelSelection" class="btn btn-default" type="button"><i class="fa fa-remove"></i></button>\n        </span>\n        <div class="suggestion-box" id="suggestionsBox">\n            <h5>Поиск городов, регионов</h5>\n            <div id="suggestionsListBox"></div>\n        </div>\n    </div>\n</div>';
 	}
 	return __p;
 	};
@@ -28511,7 +28527,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 59 */
+/* 60 */
 /*!***************************************!*\
   !*** ./wwwroot/lib/jquery.countTo.js ***!
   \***************************************/
@@ -28653,7 +28669,7 @@
 	});
 
 /***/ },
-/* 60 */
+/* 61 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/SuggestionListView.js ***!
   \**************************************************************/
@@ -28665,15 +28681,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SuggestionItemView = __webpack_require__(/*! ./SuggestionItemView.js */ 61);
+	var _SuggestionItemView = __webpack_require__(/*! ./SuggestionItemView.js */ 62);
 	
 	var _SuggestionItemView2 = _interopRequireDefault(_SuggestionItemView);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 13);
+	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -28698,7 +28714,7 @@
 	exports.default = View;
 
 /***/ },
-/* 61 */
+/* 62 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/SuggestionItemView.js ***!
   \**************************************************************/
@@ -28710,11 +28726,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SuggestionItemViewHbs = __webpack_require__(/*! ./SuggestionItemView.hbs.html */ 62);
+	var _SuggestionItemViewHbs = __webpack_require__(/*! ./SuggestionItemView.hbs.html */ 63);
 	
 	var _SuggestionItemViewHbs2 = _interopRequireDefault(_SuggestionItemViewHbs);
 	
@@ -28740,7 +28756,7 @@
 	exports.default = View;
 
 /***/ },
-/* 62 */
+/* 63 */
 /*!********************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/SuggestionItemView.hbs.html ***!
   \********************************************************************/
@@ -28751,9 +28767,9 @@
 	with(obj||{}){
 	__p+='<h6>'+
 	((__t=(name))==null?'':__t)+
-	'</h6>\r\n<small>'+
+	'</h6>\n<small>'+
 	((__t=(country))==null?'':_.escape(__t))+
-	'</small>\r\n';
+	'</small>\n';
 	}
 	return __p;
 	};
@@ -28761,7 +28777,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 63 */
+/* 64 */
 /*!*****************************************!*\
   !*** ./wwwroot/homeApp/BannerView.less ***!
   \*****************************************/
@@ -28770,7 +28786,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 64 */
+/* 65 */
 /*!****************************************!*\
   !*** ./wwwroot/homeApp/UserBarView.js ***!
   \****************************************/
@@ -28782,15 +28798,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _UserBarViewHbs = __webpack_require__(/*! ./UserBarView.hbs.html */ 65);
+	var _UserBarViewHbs = __webpack_require__(/*! ./UserBarView.hbs.html */ 66);
 	
 	var _UserBarViewHbs2 = _interopRequireDefault(_UserBarViewHbs);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 13);
+	var _app = __webpack_require__(/*! ./app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -28823,7 +28839,7 @@
 	exports.default = View;
 
 /***/ },
-/* 65 */
+/* 66 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/UserBarView.hbs.html ***!
   \**********************************************/
@@ -28848,7 +28864,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 66 */
+/* 67 */
 /*!********************************************!*\
   !*** ./wwwroot/homeApp/NavLocationView.js ***!
   \********************************************/
@@ -28860,15 +28876,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _NavLocationViewHbs = __webpack_require__(/*! ./NavLocationView.hbs.html */ 67);
+	var _NavLocationViewHbs = __webpack_require__(/*! ./NavLocationView.hbs.html */ 68);
 	
 	var _NavLocationViewHbs2 = _interopRequireDefault(_NavLocationViewHbs);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 13);
+	var _app = __webpack_require__(/*! ./app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -28892,7 +28908,7 @@
 	exports.default = View;
 
 /***/ },
-/* 67 */
+/* 68 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/NavLocationView.hbs.html ***!
   \**************************************************/
@@ -28901,24 +28917,24 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<i class="icon-map-marker"></i>&nbsp;\r\n<span class="sh-nav-location-value">\r\n    ';
+	__p+='<i class="icon-map-marker"></i>&nbsp;\n<span class="sh-nav-location-value">\n    ';
 	if (obj.address) { 
-	__p+='\r\n        '+
+	__p+='\n        '+
 	((__t=(address))==null?'':__t)+
-	'\r\n    ';
+	'\n    ';
 	 } else { 
-	__p+='\r\n        '+
+	__p+='\n        '+
 	((__t=(i18n('undefined_place')))==null?'':__t)+
-	'\r\n    ';
+	'\n    ';
 	 } 
-	__p+='\r\n</span>\r\n<i class="fa fa-angle-down icon"></i>';
+	__p+='\n</span>\n<i class="fa fa-angle-down icon"></i>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 68 */
+/* 69 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/shared/iframeView.js ***!
   \**********************************************/
@@ -28932,21 +28948,21 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _backbone3 = __webpack_require__(/*! backbone */ 15);
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
 	
-	var _iframeViewHbs = __webpack_require__(/*! ./iframeView.hbs.html */ 69);
+	var _iframeViewHbs = __webpack_require__(/*! ./iframeView.hbs.html */ 70);
 	
 	var _iframeViewHbs2 = _interopRequireDefault(_iframeViewHbs);
 	
-	__webpack_require__(/*! ./iframeView.css */ 70);
+	__webpack_require__(/*! ./iframeView.css */ 71);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 13);
+	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -29090,7 +29106,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 69 */
+/* 70 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/shared/iframeView.hbs.html ***!
   \****************************************************/
@@ -29099,20 +29115,20 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<section style ="height:100%;" class="sh-iframe-view">\r\n    <div class="container"; style ="height:100%;">\r\n        <iframe name="iframeView" width="'+
+	__p+='<section style ="height:100%;" class="sh-iframe-view">\n    <div class="container"; style ="height:100%;">\n        <iframe name="iframeView" width="'+
 	((__t=( width ))==null?'':__t)+
 	'"  height="'+
 	((__t=( height ))==null?'':__t)+
 	'" src="'+
 	((__t=( src ))==null?'':__t)+
-	'"></iframe>\r\n    </div>\r\n</section>';
+	'"></iframe>\n    </div>\n</section>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 70 */
+/* 71 */
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/shared/iframeView.css ***!
   \***********************************************/
@@ -29121,10 +29137,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../~/css-loader!./iframeView.css */ 71);
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./iframeView.css */ 72);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 39)(content, {});
+	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 40)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -29141,17 +29157,17 @@
 	}
 
 /***/ },
-/* 71 */
+/* 72 */
 /*!**************************************************************!*\
   !*** ./~/css-loader!./wwwroot/homeApp/shared/iframeView.css ***!
   \**************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 38)();
-	exports.push([module.id, ".sh-iframe-view {\r\n    padding: 0 !important;\r\n}\r\n\r\n.sh-iframe-view .container {\r\n    width: auto !important;\r\n}\r\n\r\nbody.sh-hidden-overflow {\r\n    overflow: hidden !important;\r\n}\r\nbody.sh-hidden-overflow #wrapper {\r\n    background-color: #eaeaea;\r\n}\r\nbody.sh-hidden-overflow #iframeHolder section {\r\n    padding: 0 !important;\r\n    margin: 0 !important;\r\n}\r\nbody.sh-hidden-overflow #iframeHolder .container {\r\n    padding: 0 !important;\r\n    margin: 0 !important;\r\n}", ""]);
+	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 14)();
+	exports.push([module.id, ".sh-iframe-view {\n    padding: 0 !important;\n}\n\n.sh-iframe-view .container {\n    width: auto !important;\n}\n\nbody.sh-hidden-overflow {\n    overflow: hidden !important;\n}\nbody.sh-hidden-overflow #wrapper {\n    background-color: #eaeaea;\n}\nbody.sh-hidden-overflow #iframeHolder section {\n    padding: 0 !important;\n    margin: 0 !important;\n}\nbody.sh-hidden-overflow #iframeHolder .container {\n    padding: 0 !important;\n    margin: 0 !important;\n}", ""]);
 
 /***/ },
-/* 72 */
+/* 73 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/layout/userMenuView.js ***!
   \************************************************/
@@ -29163,15 +29179,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone */ 15);
+	var _backbone = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _userMenuViewHbs = __webpack_require__(/*! ./userMenuView.hbs.html */ 73);
+	var _userMenuViewHbs = __webpack_require__(/*! ./userMenuView.hbs.html */ 74);
 	
 	var _userMenuViewHbs2 = _interopRequireDefault(_userMenuViewHbs);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 13);
+	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -29186,7 +29202,7 @@
 	exports.default = View;
 
 /***/ },
-/* 73 */
+/* 74 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/layout/userMenuView.hbs.html ***!
   \******************************************************/
@@ -29195,16 +29211,16 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<a href="/profile" style="color:#fff">\r\n    Welcome,\r\n    '+
+	__p+='<a href="/profile" style="color:#fff">\n    Welcome,\n    '+
 	((__t=( username ))==null?'':__t)+
-	'\r\n</a>\r\n';
+	'\n</a>\n';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 74 */
+/* 75 */
 /*!*****************************************!*\
   !*** ./wwwroot/homeApp/mainMenuView.js ***!
   \*****************************************/
@@ -29216,17 +29232,17 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _mainMenuViewHbs = __webpack_require__(/*! ./mainMenuView.hbs.html */ 75);
+	var _mainMenuViewHbs = __webpack_require__(/*! ./mainMenuView.hbs.html */ 76);
 	
 	var _mainMenuViewHbs2 = _interopRequireDefault(_mainMenuViewHbs);
 	
-	__webpack_require__(/*! ./mainMenuView.less */ 76);
+	__webpack_require__(/*! ./mainMenuView.less */ 77);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 13);
+	var _app = __webpack_require__(/*! ./app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -29290,7 +29306,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 75 */
+/* 76 */
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/mainMenuView.hbs.html ***!
   \***********************************************/
@@ -29299,26 +29315,26 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<!-- Menu -->\r\n<div class="navbar-collapse pull-right nav-main-collapse collapse submenu-dark">\r\n    <nav class="sh-nav-menu nav-main">\r\n        <ul id="topMain" class="nav nav-pills nav-main">\r\n            <li class="main-menu-item active" data-route-name="index">\r\n                <a href="/">'+
+	__p+='<!-- Menu -->\n<div class="navbar-collapse pull-right nav-main-collapse collapse submenu-dark">\n    <nav class="sh-nav-menu nav-main">\n        <ul id="topMain" class="nav nav-pills nav-main">\n            <li class="main-menu-item active" data-route-name="index">\n                <a href="/">'+
 	((__t=(i18n('mainPage')))==null?'':__t)+
-	'</a>\r\n            </li>\r\n            <li class="main-menu-item hidden-lg hidden-md" data-route-name="createPost">\r\n                <a href="/posts/new">\r\n                    '+
+	'</a>\n            </li>\n            <li class="main-menu-item hidden-lg hidden-md" data-route-name="createPost">\n                <a href="/posts/new">\n                    '+
 	((__t=(i18n('create')))==null?'':__t)+
-	'\r\n                </a>\r\n            </li>\r\n            <li class="main-menu-item" data-route-name="about">\r\n                <a href="/about-us" >\r\n                    '+
+	'\n                </a>\n            </li>\n            <li class="main-menu-item" data-route-name="about">\n                <a href="/about-us" >\n                    '+
 	((__t=(i18n('aboutSite')))==null?'':__t)+
-	'\r\n                </a>\r\n            </li>\r\n            <li class="main-menu-item js-need-auth" style="display: none;" data-route-name="chatsMy">\r\n                <a href="/chats/my">\r\n                    '+
+	'\n                </a>\n            </li>\n            <li class="main-menu-item js-need-auth" style="display: none;" data-route-name="chatsMy">\n                <a href="/chats/my">\n                    '+
 	((__t=(i18n('messages')))==null?'':__t)+
-	'\r\n                </a>\r\n            </li>\r\n            <li class="main-menu-item js-need-auth" style="display: none;" data-route-name="postsMy">\r\n                <a href="/posts/my">\r\n                    '+
+	'\n                </a>\n            </li>\n            <li class="main-menu-item js-need-auth" style="display: none;" data-route-name="postsMy">\n                <a href="/posts/my">\n                    '+
 	((__t=(i18n('myPosts')))==null?'':__t)+
-	'\r\n                </a>\r\n            </li>\r\n            <li class="main-menu-item" data-route-name="blog">\r\n                <a href="/blog">\r\n                    '+
+	'\n                </a>\n            </li>\n            <li class="main-menu-item" data-route-name="blog">\n                <a href="/blog">\n                    '+
 	((__t=(i18n('mainMenuBlog')))==null?'':__t)+
-	'\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </nav>\r\n</div>';
+	'\n                </a>\n            </li>\n        </ul>\n    </nav>\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 76 */
+/* 77 */
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/mainMenuView.less ***!
   \*******************************************/
@@ -29327,7 +29343,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 77 */
+/* 78 */
 /*!********************************************!*\
   !*** ./wwwroot/data/AsteroidCollection.js ***!
   \********************************************/
@@ -29339,7 +29355,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone */ 15);
+	var _backbone = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -29347,7 +29363,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _AsteroidModel = __webpack_require__(/*! ./AsteroidModel.js */ 78);
+	var _AsteroidModel = __webpack_require__(/*! ./AsteroidModel.js */ 79);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
@@ -29418,7 +29434,7 @@
 	});
 
 /***/ },
-/* 78 */
+/* 79 */
 /*!***************************************!*\
   !*** ./wwwroot/data/AsteroidModel.js ***!
   \***************************************/
@@ -29434,7 +29450,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _MongoModel = __webpack_require__(/*! ./MongoModel.js */ 79);
+	var _MongoModel = __webpack_require__(/*! ./MongoModel.js */ 80);
 	
 	var _MongoModel2 = _interopRequireDefault(_MongoModel);
 	
@@ -29516,7 +29532,7 @@
 	});
 
 /***/ },
-/* 79 */
+/* 80 */
 /*!************************************!*\
   !*** ./wwwroot/data/MongoModel.js ***!
   \************************************/
@@ -29528,7 +29544,7 @@
 	    value: true
 	});
 	
-	var _BaseModel = __webpack_require__(/*! ./BaseModel.js */ 80);
+	var _BaseModel = __webpack_require__(/*! ./BaseModel.js */ 81);
 	
 	var _BaseModel2 = _interopRequireDefault(_BaseModel);
 	
@@ -29546,7 +29562,7 @@
 	});
 
 /***/ },
-/* 80 */
+/* 81 */
 /*!***********************************!*\
   !*** ./wwwroot/data/BaseModel.js ***!
   \***********************************/
@@ -29562,24 +29578,24 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _backboneValidation = __webpack_require__(/*! backbone-validation */ 81);
+	var _backboneValidation = __webpack_require__(/*! backbone-validation */ 82);
 	
 	var _backboneValidation2 = _interopRequireDefault(_backboneValidation);
 	
-	var _backbone = __webpack_require__(/*! backbone */ 15);
+	var _backbone = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	__webpack_require__(/*! ./backbone-deffered.js */ 82);
+	__webpack_require__(/*! ./backbone-deffered.js */ 83);
 	
-	__webpack_require__(/*! ../helpers/ConfigureBackboneValidation.js */ 83);
+	__webpack_require__(/*! ../helpers/ConfigureBackboneValidation.js */ 84);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _backbone2.default.Model.extend(_backboneValidation2.default.mixin);
 
 /***/ },
-/* 81 */
+/* 82 */
 /*!***************************************************************!*\
   !*** ./~/backbone-validation/dist/backbone-validation-amd.js ***!
   \***************************************************************/
@@ -29598,9 +29614,9 @@
 	// http://thedersen.com/projects/backbone-validation
 	(function (factory) {
 	  if (( false ? 'undefined' : _typeof(exports)) === 'object') {
-	    module.exports = factory(__webpack_require__(/*! backbone */ 15), __webpack_require__(/*! underscore */ 7));
+	    module.exports = factory(__webpack_require__(/*! backbone */ 17), __webpack_require__(/*! underscore */ 7));
 	  } else if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! backbone */ 15), __webpack_require__(/*! underscore */ 7)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! backbone */ 17), __webpack_require__(/*! underscore */ 7)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  }
 	})(function (Backbone, _) {
 	  Backbone.Validation = function (_) {
@@ -30292,7 +30308,7 @@
 	});
 
 /***/ },
-/* 82 */
+/* 83 */
 /*!*******************************************!*\
   !*** ./wwwroot/data/backbone-deffered.js ***!
   \*******************************************/
@@ -30300,7 +30316,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
 	
-	var _backbone = __webpack_require__(/*! backbone */ 15);
+	var _backbone = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -30630,7 +30646,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 83 */
+/* 84 */
 /*!********************************************************!*\
   !*** ./wwwroot/helpers/ConfigureBackboneValidation.js ***!
   \********************************************************/
@@ -30638,11 +30654,11 @@
 
 	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
 	
-	var _backbone = __webpack_require__(/*! backbone */ 15);
+	var _backbone = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	__webpack_require__(/*! backbone-validation */ 81);
+	__webpack_require__(/*! backbone-validation */ 82);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -30707,7 +30723,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 84 */
+/* 85 */
 /*!***********************************!*\
   !*** ./wwwroot/homeApp/router.js ***!
   \***********************************/
@@ -30719,15 +30735,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _controller = __webpack_require__(/*! ./controller */ 85);
+	var _controller = __webpack_require__(/*! ./controller */ 86);
 	
 	var _controller2 = _interopRequireDefault(_controller);
 	
-	var _app = __webpack_require__(/*! ./app */ 13);
+	var _app = __webpack_require__(/*! ./app */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -30800,7 +30816,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 85 */
+/* 86 */
 /*!***************************************!*\
   !*** ./wwwroot/homeApp/controller.js ***!
   \***************************************/
@@ -30812,111 +30828,111 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _indexView = __webpack_require__(/*! ./index/indexView.js */ 86);
+	var _indexView = __webpack_require__(/*! ./index/indexView.js */ 87);
 	
 	var _indexView2 = _interopRequireDefault(_indexView);
 	
-	var _MobileIndexView = __webpack_require__(/*! ./index/MobileIndexView.js */ 94);
+	var _MobileIndexView = __webpack_require__(/*! ./index/MobileIndexView.js */ 95);
 	
 	var _MobileIndexView2 = _interopRequireDefault(_MobileIndexView);
 	
-	var _DetailsView = __webpack_require__(/*! ./posts/DetailsView.js */ 96);
+	var _DetailsView = __webpack_require__(/*! ./posts/DetailsView.js */ 97);
 	
 	var _DetailsView2 = _interopRequireDefault(_DetailsView);
 	
-	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 78);
+	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 79);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 77);
+	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 78);
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
-	var _User = __webpack_require__(/*! ../data/Domain/User.js */ 102);
+	var _User = __webpack_require__(/*! ../data/Domain/User.js */ 106);
 	
 	var _User2 = _interopRequireDefault(_User);
 	
-	var _PostModel = __webpack_require__(/*! ../data/Post/PostModel.js */ 103);
+	var _PostModel = __webpack_require__(/*! ../data/Post/PostModel.js */ 107);
 	
 	var _PostModel2 = _interopRequireDefault(_PostModel);
 	
-	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 104);
+	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 108);
 	
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
-	var _CreatePostView = __webpack_require__(/*! ./posts/create/CreatePostView.js */ 106);
+	var _CreatePostView = __webpack_require__(/*! ./posts/create/CreatePostView.js */ 110);
 	
 	var _CreatePostView2 = _interopRequireDefault(_CreatePostView);
 	
-	var _PostsMyView = __webpack_require__(/*! ./posts/postsMy/PostsMyView.js */ 123);
+	var _PostsMyView = __webpack_require__(/*! ./posts/postsMy/PostsMyView.js */ 127);
 	
 	var _PostsMyView2 = _interopRequireDefault(_PostsMyView);
 	
-	var _chatsMyView = __webpack_require__(/*! ./chats/chatsMy/chatsMyView.js */ 127);
+	var _chatsMyView = __webpack_require__(/*! ./chats/chatsMy/chatsMyView.js */ 131);
 	
 	var _chatsMyView2 = _interopRequireDefault(_chatsMyView);
 	
-	var _ChatIdView = __webpack_require__(/*! ./chats/ChatIdView.js */ 133);
+	var _ChatIdView = __webpack_require__(/*! ./chats/ChatIdView.js */ 137);
 	
 	var _ChatIdView2 = _interopRequireDefault(_ChatIdView);
 	
-	var _DetailsView3 = __webpack_require__(/*! ./user/DetailsView.js */ 135);
+	var _DetailsView3 = __webpack_require__(/*! ./user/DetailsView.js */ 139);
 	
 	var _DetailsView4 = _interopRequireDefault(_DetailsView3);
 	
-	var _MessagesToUserView = __webpack_require__(/*! ./chats/native/MessagesToUserView.js */ 137);
+	var _MessagesToUserView = __webpack_require__(/*! ./chats/native/MessagesToUserView.js */ 141);
 	
 	var _MessagesToUserView2 = _interopRequireDefault(_MessagesToUserView);
 	
-	var _LoginView = __webpack_require__(/*! ./account/LoginView.js */ 144);
+	var _LoginView = __webpack_require__(/*! ./account/LoginView.js */ 148);
 	
 	var _LoginView2 = _interopRequireDefault(_LoginView);
 	
-	var _RegisterUserView = __webpack_require__(/*! ./account/RegisterUserView */ 148);
+	var _RegisterUserView = __webpack_require__(/*! ./account/RegisterUserView */ 152);
 	
 	var _RegisterUserView2 = _interopRequireDefault(_RegisterUserView);
 	
-	var _AboutView = __webpack_require__(/*! ./about/AboutView.js */ 151);
+	var _AboutView = __webpack_require__(/*! ./about/AboutView.js */ 155);
 	
 	var _AboutView2 = _interopRequireDefault(_AboutView);
 	
-	var _MassMediaView = __webpack_require__(/*! ./massMedia/MassMediaView.js */ 154);
+	var _MassMediaView = __webpack_require__(/*! ./massMedia/MassMediaView.js */ 158);
 	
 	var _MassMediaView2 = _interopRequireDefault(_MassMediaView);
 	
-	var _HowItWorksView = __webpack_require__(/*! ./howItWorks/HowItWorksView.js */ 157);
+	var _HowItWorksView = __webpack_require__(/*! ./howItWorks/HowItWorksView.js */ 161);
 	
 	var _HowItWorksView2 = _interopRequireDefault(_HowItWorksView);
 	
-	var _FogotPasswordView = __webpack_require__(/*! ./account/FogotPasswordView.js */ 159);
+	var _FogotPasswordView = __webpack_require__(/*! ./account/FogotPasswordView.js */ 163);
 	
 	var _FogotPasswordView2 = _interopRequireDefault(_FogotPasswordView);
 	
-	var _legalUserAgreementView = __webpack_require__(/*! ./legal/legalUserAgreementView */ 161);
+	var _legalUserAgreementView = __webpack_require__(/*! ./legal/legalUserAgreementView */ 165);
 	
 	var _legalUserAgreementView2 = _interopRequireDefault(_legalUserAgreementView);
 	
-	var _legalConfidentialView = __webpack_require__(/*! ./legal/legalConfidentialView */ 163);
+	var _legalConfidentialView = __webpack_require__(/*! ./legal/legalConfidentialView */ 167);
 	
 	var _legalConfidentialView2 = _interopRequireDefault(_legalConfidentialView);
 	
-	var _legalPostPublishingView = __webpack_require__(/*! ./legal/legalPostPublishingView */ 165);
+	var _legalPostPublishingView = __webpack_require__(/*! ./legal/legalPostPublishingView */ 169);
 	
 	var _legalPostPublishingView2 = _interopRequireDefault(_legalPostPublishingView);
 	
-	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 167);
+	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 171);
 	
 	var _blogHomeView2 = _interopRequireDefault(_blogHomeView);
 	
-	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 170);
+	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 174);
 	
 	var _blogPostIdView2 = _interopRequireDefault(_blogPostIdView);
 	
-	var _app = __webpack_require__(/*! ./app.js */ 13);
+	var _app = __webpack_require__(/*! ./app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -31087,7 +31103,7 @@
 	//import Collection from '../data/AsteroidCollection.js';
 
 /***/ },
-/* 86 */
+/* 87 */
 /*!********************************************!*\
   !*** ./wwwroot/homeApp/index/indexView.js ***!
   \********************************************/
@@ -31099,27 +31115,27 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _IndexViewHbs = __webpack_require__(/*! ./IndexView.hbs.html */ 87);
+	var _IndexViewHbs = __webpack_require__(/*! ./IndexView.hbs.html */ 88);
 	
 	var _IndexViewHbs2 = _interopRequireDefault(_IndexViewHbs);
 	
-	__webpack_require__(/*! ../../lib/jquery-parallax/scripts/jquery.parallax-1.1.3.js */ 88);
+	__webpack_require__(/*! ../../lib/jquery-parallax/scripts/jquery.parallax-1.1.3.js */ 89);
 	
-	var _PostTypesView = __webpack_require__(/*! ./PostTypesView.js */ 89);
+	var _PostTypesView = __webpack_require__(/*! ./PostTypesView.js */ 90);
 	
 	var _PostTypesView2 = _interopRequireDefault(_PostTypesView);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 13);
+	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./i18n/ru */ 92);
+	__webpack_require__(/*! ./i18n/ru */ 93);
 	
-	__webpack_require__(/*! ./i18n/en */ 93);
+	__webpack_require__(/*! ./i18n/en */ 94);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -31196,7 +31212,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 87 */
+/* 88 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/index/IndexView.hbs.html ***!
   \**************************************************/
@@ -31205,64 +31221,64 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='\r\n<!-- How its work -->\r\n<section id="sh-works">\r\n    <div class="container">\r\n        <div class="sh-work-wrapper">\r\n            <h1 class="sh-section-hero-headline sh-text-center">'+
+	__p+='\n<!-- How its work -->\n<section id="sh-works">\n    <div class="container">\n        <div class="sh-work-wrapper">\n            <h1 class="sh-section-hero-headline sh-text-center">'+
 	((__t=(i18n('how_it_works')))==null?'':__t)+
-	'</h1>\r\n            <p class="sh-section-intro sh-text-center">'+
+	'</h1>\n            <p class="sh-section-intro sh-text-center">'+
 	((__t=(i18n('SITE_SUBTITLE')))==null?'':__t)+
-	'</p>\r\n\r\n            <div class="sh-work-tabs">\r\n                <ul class="sh-progress-steps process-steps nav nav-justified">\r\n                    <li class="active">\r\n                        <a data-toggle="tab" href="#step1" data-direct-link><i class="icon-plus"></i></a>\r\n                        <h5>'+
+	'</p>\n\n            <div class="sh-work-tabs">\n                <ul class="sh-progress-steps process-steps nav nav-justified">\n                    <li class="active">\n                        <a data-toggle="tab" href="#step1" data-direct-link><i class="icon-plus"></i></a>\n                        <h5>'+
 	((__t=(i18n('create_your_post')))==null?'':__t)+
-	'</h5>\r\n                    </li>\r\n                    <li>\r\n                        <a data-toggle="tab" href="#step2" data-direct-link><i class="icon-map-marker"></i></a>\r\n                        <h5>'+
+	'</h5>\n                    </li>\n                    <li>\n                        <a data-toggle="tab" href="#step2" data-direct-link><i class="icon-map-marker"></i></a>\n                        <h5>'+
 	((__t=(i18n('you_found')))==null?'':__t)+
-	'</h5>\r\n                    </li>\r\n                    <li>\r\n                        <a data-toggle="tab" href="#step3" data-direct-link><i class="icon-ok"></i></a>\r\n                        <h5>'+
+	'</h5>\n                    </li>\n                    <li>\n                        <a data-toggle="tab" href="#step3" data-direct-link><i class="icon-ok"></i></a>\n                        <h5>'+
 	((__t=(i18n('connect_and_meet')))==null?'':__t)+
-	'</h5>\r\n                    </li>\r\n                </ul>\r\n\r\n                <div class="tab-content margin-top-60">\r\n                    <div role="tabpanel" class="tab-pane active" id="step1">\r\n                        <h4>'+
+	'</h5>\n                    </li>\n                </ul>\n\n                <div class="tab-content margin-top-60">\n                    <div role="tabpanel" class="tab-pane active" id="step1">\n                        <h4>'+
 	((__t=(i18n('create_your_post')))==null?'':__t)+
-	'</h4>\r\n                        <div class="text-content">\r\n                            '+
+	'</h4>\n                        <div class="text-content">\n                            '+
 	((__t=(i18n('create_your_post_descr')))==null?'':__t)+
-	'\r\n                        </div>\r\n                    </div>\r\n\r\n                    <div role="tabpanel" class="tab-pane" id="step2">\r\n                        <h4>'+
+	'\n                        </div>\n                    </div>\n\n                    <div role="tabpanel" class="tab-pane" id="step2">\n                        <h4>'+
 	((__t=(i18n('you_found')))==null?'':__t)+
-	'</h4>\r\n                        <div class="text-content">\r\n                            '+
+	'</h4>\n                        <div class="text-content">\n                            '+
 	((__t=(i18n('you_found_descr')))==null?'':__t)+
-	'\r\n                        </div>\r\n                    </div>\r\n\r\n                    <div role="tabpanel" class="tab-pane" id="step3">\r\n                        <h4>'+
+	'\n                        </div>\n                    </div>\n\n                    <div role="tabpanel" class="tab-pane" id="step3">\n                        <h4>'+
 	((__t=(i18n('connect_and_meet')))==null?'':__t)+
-	'</h4>\r\n                        <div class="text-content">\r\n                            '+
+	'</h4>\n                        <div class="text-content">\n                            '+
 	((__t=(i18n('connect_and_meet_descr')))==null?'':__t)+
-	'\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n\r\n<section id="sh-service">\r\n    <div class="container">\r\n        <div class="sh-service-wrapper">\r\n            <div class="sh-service-item col-xs-12 col-sm-5 col-md-6">\r\n\r\n\r\n                <!--\r\n                <div class="ui sh-styled styled accordion sh-accordion">\r\n                    <div class="active title"><i class="dropdown icon"></i> Один сервис для всех ресурсов </div>\r\n                    <div class="active content">\r\n                        <p class="transition">Если у тебя уже есть пост на другом ресурсе–просто размести ссылку на него-и получи готовый Светлячок!</p>\r\n                    </div>\r\n                    <div class="title"><i class="dropdown icon"></i> Живые объявления поблизости </div>\r\n                    <div class="content">\r\n                        <p class="transition hidden">There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n                    </div>\r\n                    <div class="title"><i class="dropdown icon"></i> Быстрые встречи и контакты </div>\r\n                    <div class="content">\r\n                        <p class="transition hidden">Three common ways for a prospective owner to acquire a dog is from pet shops, private owners, or shelters.</p>\r\n                        <p class="transition hidden">A pet shop may be the most convenient way to buy a dog. Buying a dog from a private owner allows you to assess the pedigree and upbringing of your dog before choosing to take it home. Lastly, finding your dog from a shelter, helps give a good home to a dog who may not find one so readily.</p>\r\n                    </div>\r\n                </div>\r\n                -->\r\n\r\n\r\n                <div class="ui sh-accordion toggle toggle-accordion toggle-transparent">\r\n                    <div class="toggle active">\r\n                        <label>'+
+	'\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n\n\n<section id="sh-service">\n    <div class="container">\n        <div class="sh-service-wrapper">\n            <div class="sh-service-item col-xs-12 col-sm-5 col-md-6">\n\n\n                <!--\n                <div class="ui sh-styled styled accordion sh-accordion">\n                    <div class="active title"><i class="dropdown icon"></i> Один сервис для всех ресурсов </div>\n                    <div class="active content">\n                        <p class="transition">Если у тебя уже есть пост на другом ресурсе–просто размести ссылку на него-и получи готовый Светлячок!</p>\n                    </div>\n                    <div class="title"><i class="dropdown icon"></i> Живые объявления поблизости </div>\n                    <div class="content">\n                        <p class="transition hidden">There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\n                    </div>\n                    <div class="title"><i class="dropdown icon"></i> Быстрые встречи и контакты </div>\n                    <div class="content">\n                        <p class="transition hidden">Three common ways for a prospective owner to acquire a dog is from pet shops, private owners, or shelters.</p>\n                        <p class="transition hidden">A pet shop may be the most convenient way to buy a dog. Buying a dog from a private owner allows you to assess the pedigree and upbringing of your dog before choosing to take it home. Lastly, finding your dog from a shelter, helps give a good home to a dog who may not find one so readily.</p>\n                    </div>\n                </div>\n                -->\n\n\n                <div class="ui sh-accordion toggle toggle-accordion toggle-transparent">\n                    <div class="toggle active">\n                        <label>'+
 	((__t=(i18n('one_service_for_all')))==null?'':__t)+
-	'</label>\r\n                        <div class="toggle-content" style="display:block">\r\n                            <p>\r\n                                '+
+	'</label>\n                        <div class="toggle-content" style="display:block">\n                            <p>\n                                '+
 	((__t=(i18n('home_accordion_section1')))==null?'':__t)+
-	'\r\n                            </p>\r\n                        </div>\r\n                    </div>\r\n                    <div class="toggle">\r\n                        <label>'+
+	'\n                            </p>\n                        </div>\n                    </div>\n                    <div class="toggle">\n                        <label>'+
 	((__t=(i18n('life_ads_nearby')))==null?'':__t)+
-	'</label>\r\n                        <div class="toggle-content">\r\n                            <p>\r\n                                '+
+	'</label>\n                        <div class="toggle-content">\n                            <p>\n                                '+
 	((__t=(i18n('home_accordion_section2')))==null?'':__t)+
-	'\r\n                            </p>\r\n                        </div>\r\n                    </div>\r\n                    <div class="toggle">\r\n                        <label>'+
+	'\n                            </p>\n                        </div>\n                    </div>\n                    <div class="toggle">\n                        <label>'+
 	((__t=(i18n('quick_connects')))==null?'':__t)+
-	'</label>\r\n                        <div class="toggle-content">\r\n                            <p>'+
+	'</label>\n                        <div class="toggle-content">\n                            <p>'+
 	((__t=(i18n('home_accordion_section3')))==null?'':__t)+
-	'</p>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n            <div class="sh-service-item col-xs-12 col-sm-7 col-md-6">\r\n                <dl class="sh-post-type">\r\n                    <dt class="sh-section-headline">'+
+	'</p>\n                        </div>\n                    </div>\n                </div>\n\n            </div>\n            <div class="sh-service-item col-xs-12 col-sm-7 col-md-6">\n                <dl class="sh-post-type">\n                    <dt class="sh-section-headline">'+
 	((__t=(i18n('post_types')))==null?'':__t)+
-	'</dt>\r\n                    <span id="postAdTypes"></span>                    \r\n                </dl>               \r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n<!-- Shiners anywhere -->\r\n<section id="sh-anywhere">\r\n    <div class="container-fluid">\r\n        <div class="sh-anywhere-wrapper">\r\n            <h1 class="sh-section-hero-headline sh-text-center">'+
+	'</dt>\n                    <span id="postAdTypes"></span>                    \n                </dl>               \n            </div>\n        </div>\n    </div>\n</section>\n\n<!-- Shiners anywhere -->\n<section id="sh-anywhere">\n    <div class="container-fluid">\n        <div class="sh-anywhere-wrapper">\n            <h1 class="sh-section-hero-headline sh-text-center">'+
 	((__t=(i18n('home_shiners_are_around')))==null?'':__t)+
-	'</h1>\r\n            <p class="sh-section-intro sh-text-center">'+
+	'</h1>\n            <p class="sh-section-intro sh-text-center">'+
 	((__t=(i18n('home_lot_of_opportunities')))==null?'':__t)+
-	'</p>\r\n        </div>\r\n\r\n        <div class="sh-anywhere-bg">\r\n            <div class="sh-anywhere-bg-clouds">\r\n                <div class="cloud x1"></div>\r\n                <div class="cloud x2"></div>\r\n                <div class="cloud x3"></div>\r\n                <div class="cloud x4"></div>\r\n                <div class="cloud x5"></div>\r\n            </div>\r\n            <div class="sh-anywhere-bg-city">\r\n                <div class="sh-anywhere-bg-shs">\r\n                    <div class="shs-1"></div>\r\n                    <div class="shs-2"></div>\r\n                    <div class="shs-3"></div>\r\n                    <div class="shs-4"></div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n</section>\r\n\r\n<!-- Set shiners -->\r\n<section id="sh-set-shiners">\r\n    <div class="container">\r\n        <div class="sh-set-shiners-wrapper">\r\n            <div class="sh-text-group col-xs-12 col-md-8 col-lg-9">\r\n                <h3 class="sh-section-headline">'+
+	'</p>\n        </div>\n\n        <div class="sh-anywhere-bg">\n            <div class="sh-anywhere-bg-clouds">\n                <div class="cloud x1"></div>\n                <div class="cloud x2"></div>\n                <div class="cloud x3"></div>\n                <div class="cloud x4"></div>\n                <div class="cloud x5"></div>\n            </div>\n            <div class="sh-anywhere-bg-city">\n                <div class="sh-anywhere-bg-shs">\n                    <div class="shs-1"></div>\n                    <div class="shs-2"></div>\n                    <div class="shs-3"></div>\n                    <div class="shs-4"></div>\n                </div>\n            </div>\n        </div>\n\n    </div>\n</section>\n\n<!-- Set shiners -->\n<section id="sh-set-shiners">\n    <div class="container">\n        <div class="sh-set-shiners-wrapper">\n            <div class="sh-text-group col-xs-12 col-md-8 col-lg-9">\n                <h3 class="sh-section-headline">'+
 	((__t=(i18n('home_participate')))==null?'':__t)+
 	' <a class="link">'+
 	((__t=(i18n('home_free')))==null?'':__t)+
 	'</a>'+
 	((__t=(i18n('home_in_project')))==null?'':__t)+
-	'</h3>\r\n                <h4 class="sh-section-subline">'+
+	'</h3>\n                <h4 class="sh-section-subline">'+
 	((__t=(i18n('home_contact_with_people')))==null?'':__t)+
-	'</h4>\r\n            </div>\r\n            <div class="sh-set-shiners-item col-xs-12 col-md-4 col-lg-3">\r\n                <a class="ui sh-button standard create big" href="/posts/new">'+
+	'</h4>\n            </div>\n            <div class="sh-set-shiners-item col-xs-12 col-md-4 col-lg-3">\n                <a class="ui sh-button standard create big" href="/posts/new">'+
 	((__t=(i18n('home_set_your_shiner')))==null?'':__t)+
-	'</a>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>';
+	'</a>\n\n            </div>\n        </div>\n    </div>\n</section>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 88 */
+/* 89 */
 /*!**********************************************************************!*\
   !*** ./wwwroot/lib/jquery-parallax/scripts/jquery.parallax-1.1.3.js ***!
   \**********************************************************************/
@@ -31342,7 +31358,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 89 */
+/* 90 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/index/PostTypesView.js ***!
   \************************************************/
@@ -31354,11 +31370,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.js */ 90);
+	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.js */ 91);
 	
 	var _PostTypeItemView2 = _interopRequireDefault(_PostTypeItemView);
 	
@@ -31372,7 +31388,7 @@
 	exports.default = View;
 
 /***/ },
-/* 90 */
+/* 91 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/index/PostTypeItemView.js ***!
   \***************************************************/
@@ -31384,15 +31400,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.html */ 91);
+	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.html */ 92);
 	
 	var _PostTypeItemView2 = _interopRequireDefault(_PostTypeItemView);
 	
-	var _app = __webpack_require__(/*! ../app */ 13);
+	var _app = __webpack_require__(/*! ../app */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -31413,7 +31429,7 @@
 	exports.default = View;
 
 /***/ },
-/* 91 */
+/* 92 */
 /*!*****************************************************!*\
   !*** ./wwwroot/homeApp/index/PostTypeItemView.html ***!
   \*****************************************************/
@@ -31426,14 +31442,14 @@
 	((__t=(name))==null?'':__t)+
 	'">'+
 	((__t=(obj.i18n[currentLang]? obj.i18n[currentLang].fullName:obj.fullName))==null?'':__t)+
-	'</dd>\r\n<br>';
+	'</dd>\n<br>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 92 */
+/* 93 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/index/i18n/ru.js ***!
   \******************************************/
@@ -31459,7 +31475,7 @@
 	i18n.add('ru', json);
 
 /***/ },
-/* 93 */
+/* 94 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/index/i18n/en.js ***!
   \******************************************/
@@ -31486,7 +31502,7 @@
 	i18n.add('en', json);
 
 /***/ },
-/* 94 */
+/* 95 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/index/MobileIndexView.js ***!
   \**************************************************/
@@ -31498,11 +31514,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MobileIndexViewHbs = __webpack_require__(/*! ./MobileIndexView.hbs.html */ 95);
+	var _MobileIndexViewHbs = __webpack_require__(/*! ./MobileIndexView.hbs.html */ 96);
 	
 	var _MobileIndexViewHbs2 = _interopRequireDefault(_MobileIndexViewHbs);
 	
@@ -31527,7 +31543,7 @@
 	exports.default = View;
 
 /***/ },
-/* 95 */
+/* 96 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/index/MobileIndexView.hbs.html ***!
   \********************************************************/
@@ -31538,14 +31554,14 @@
 	with(obj||{}){
 	__p+='<a href="/" class="btn btn-block"><i class="fa fa-map-marker"></i> '+
 	((__t=(i18n('map')))==null?'':__t)+
-	'</a>\r\n<div id="indexContainer"></div>';
+	'</a>\n<div id="indexContainer"></div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 96 */
+/* 97 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/posts/DetailsView.js ***!
   \**********************************************/
@@ -31557,25 +31573,29 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 97);
+	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 98);
 	
 	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
 	
-	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 98);
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 99);
 	
-	var _AsteroidCollection = __webpack_require__(/*! ../../data/AsteroidCollection.js */ 77);
+	var _AsteroidCollection = __webpack_require__(/*! ../../data/AsteroidCollection.js */ 78);
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
-	var _RelatedPostsView = __webpack_require__(/*! ./RelatedPostsView.js */ 99);
+	var _RelatedPostsView = __webpack_require__(/*! ./RelatedPostsView.js */ 100);
 	
 	var _RelatedPostsView2 = _interopRequireDefault(_RelatedPostsView);
 	
-	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 54);
+	var _CommentsListView = __webpack_require__(/*! ./CommentsListView.js */ 102);
+	
+	var _CommentsListView2 = _interopRequireDefault(_CommentsListView);
+	
+	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 55);
 	
 	var _loadGoogleMapsApi2 = _interopRequireDefault(_loadGoogleMapsApi);
 	
@@ -31583,11 +31603,11 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 13);
+	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./DetailsView.less */ 101);
+	__webpack_require__(/*! ./DetailsView.less */ 105);
 	
 	var _locationHelper = __webpack_require__(/*! ../../helpers/locationHelper.js */ 9);
 	
@@ -31603,20 +31623,22 @@
 	    geocoder: null,
 	    template: _DetailsViewHbs2.default,
 	    collection: null,
+	    comments: null,
 	    regions: {
-	        'related': '#relatedPostsContainer'
+	        'related': '#relatedPostsContainer',
+	        'comments': '#sh-comments'
 	    },
 	
 	    initialize: function initialize() {
 	        window.postDetails = this.model.toJSON();
 	        this.collection = new _AsteroidCollection2.default(null, { asteroid: this.model.asteroid });
+	        this.comments = new _AsteroidCollection2.default(null, { asteroid: this.model.asteroid });
 	        this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
 	        this.listenTo(_app2.default.user, 'login', this.render);
 	        this.listenTo(_app2.default.user, 'logout', this.render);
 	    },
 	    onBeforeRender: function onBeforeRender() {
 	        this.setModelDistance();
-	        this.setModelPostComments();
 	
 	        if (_app2.default.asteroid.loggedIn) {
 	            this.templateContext = {
@@ -31629,6 +31651,9 @@
 	        this.collection.loadByMethod('getPopularPosts', [center.lat(), center.lng(), 200, 0, 10]);
 	        this.initVkSocialButton();
 	        this.initCarousel();
+	
+	        this.comments.loadByMethod('getComments', { postId: this.model.get('_id'), take: 100, skip: 0 });
+	        this.showChildView('comments', new _CommentsListView2.default({ collection: this.comments }));
 	    },
 	    onAttach: function onAttach() {
 	        this.initStickMenu();
@@ -31645,7 +31670,6 @@
 	        VK.Widgets.Like("vk_like", options, this.model.id);
 	        _app2.default.FbButton(this.$('#fb_like').get(0));
 	    },
-	    setModelPostComments: function setModelPostComments() {},
 	    initMapPost: function initMapPost() {
 	        var defaultCoords = { lat: 55.75396, lng: 37.620393 };
 	        var postLocation = this.postLocation;
@@ -31849,7 +31873,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 97 */
+/* 98 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/posts/DetailsView.hbs.html ***!
   \****************************************************/
@@ -31858,16 +31882,12 @@
 	/* WEBPACK VAR INJECTION */(function(moment, _) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<!--<section class="page-header page-header-xs">\r\n    <div class="container">\r\n        <h1>'+
-	((__t=(details.title))==null?'':__t)+
-	'</h1>\r\n        <ol class="breadcrumb">\r\n            <li><a href="/">Главная</a></li>\r\n            <li><a href="/Posts">Объявления</a></li>\r\n            <li class="active">'+
-	((__t=(details.title))==null?'':__t)+
-	'</li>\r\n        </ol>\r\n    </div>\r\n</section>-->\r\n\r\n\r\n<main class="sh-content">\r\n    <div class="sh-post-details">\r\n        <div class="container">\r\n            <div class="sh-page-block">\r\n                <div class="sh-post-details-wrapper">\r\n                    <!-- SIDE LEFT -->\r\n                    <div class="sh-side-left">\r\n                        <h1>'+
+	__p+='\r\n<main class="sh-content">\r\n    <div class="sh-post-details">\r\n        <div class="container">\r\n            <div class="sh-page-block">\r\n                <div class="sh-post-details-wrapper">\r\n                    \r\n                    <div class="sh-side-left">\r\n                        <h1>'+
 	((__t=(details.title))==null?'':__t)+
 	'</h1>\r\n                        <div class="sh-post-published">\r\n                            <div class="sh-post-written">\r\n                                <span><i class="fa fa-clock-o"></i> Опубликовано, '+
-	((__t=(moment(obj.timestamp).fromNow()))==null?'':__t)+
+	((__t=(moment(obj.timestamp.$date).fromNow()))==null?'':__t)+
 	', - до '+
-	((__t=(moment(endDatePost).format("ll")))==null?'':__t)+
+	((__t=(moment(obj.endDatePost.$date).format("ll")))==null?'':__t)+
 	'</span>\r\n                            </div>\r\n                            <!-- sh-color-red, sh-color-yellow, sh-color-green -->\r\n                            <div class="sh-post-item-left sh-color-yellow">\r\n                                <span class="sh-item-left-text">Осталось 28 дней</span>\r\n                                <span class="sh-item-left-track">\r\n                                    <span class="sh-item-left-fill" style="width: 42%"></span>\r\n                                </span>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class="sh-photos">\r\n                            <div class="single-photo">\r\n                                <div id="sh-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"singleItem": true, "autoPlay": false, "navigation": true, "pagination": true, "transitionStyle":"fade"}\'>\r\n                                    ';
 	 if (_.size(details.photos)>0){ 
 	__p+='\r\n                                    ';
@@ -31880,7 +31900,7 @@
 	 } else { 
 	__p+='\r\n                                    <div>\r\n                                        <div class="sh-responsive-no-image"><span></span></div>\r\n                                    </div>\r\n                                    ';
 	 } 
-	__p+='\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <!-- VISIBLE only until 992px -->\r\n                        <div class="sh-post-widget-composed hidden-md hidden-lg">\r\n\r\n                            <!-- SUMMARY information -->\r\n                            <div class="sh-post-summary-information sh-info-header">\r\n                                <div class="sh-info-header-within">\r\n                                    <span>Сводная информация</span>\r\n                                </div>\r\n\r\n                                <ul class="sh-post-info sh-with-dotted">\r\n                                    ';
+	__p+='\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                                               \r\n                        <div class="sh-post-widget-composed hidden-md hidden-lg">\r\n                                                        \r\n                            <div class="sh-post-summary-information sh-info-header">\r\n                                <div class="sh-info-header-within">\r\n                                    <span>Сводная информация</span>\r\n                                </div>\r\n\r\n                                <ul class="sh-post-info sh-with-dotted">\r\n                                    ';
 	if(obj.stats) { 
 	__p+='\r\n                                    <li><div><span class="sh-item">Просмотров</span><span class="sh-item-right">'+
 	((__t=(stats.seenTotal))==null?'':__t)+
@@ -31908,19 +31928,19 @@
 	 } 
 	__p+='</span></div></li>\r\n                                </ul>\r\n                            </div>\r\n\r\n                            ';
 	if (details.price) { 
-	__p+='\r\n                            <!-- PRICE -->\r\n                            <div class="sh-post-widget">\r\n                                <div class="sh-post-top-price">\r\n                                    <div class="sh-price-wrapper sh-rub">\r\n                                        <div class="sh-price-number">'+
+	__p+='\r\n\r\n                            <div class="sh-post-widget">\r\n                                <div class="sh-post-top-price">\r\n                                    <div class="sh-price-wrapper sh-rub">\r\n                                        <div class="sh-price-number">'+
 	((__t=(details.price))==null?'':__t)+
 	'</div>\r\n                                        <div class="sh-price-prefix"></div>\r\n                                    </div>\r\n                                    <div class="sh-price-footer">за месяц</div>\r\n                                </div>\r\n                            </div>\r\n                            ';
 	 } 
-	__p+='\r\n\r\n                        </div>\r\n\r\n                        <div class="sh-post-tab-menu">\r\n                            <div class="sh-post-tab-menu-wrapper">\r\n                                <ul class="sh-post-tab-items">\r\n                                    <li class="sh-tab-item"><a class="active" href="#sh-description">Описание</a></li>\r\n                                    <li class="sh-tab-item"><a href="#sh-location">Местоположение</a></li>\r\n                                    <li class="sh-tab-item"><a href="#sh-review">Комментарии</a></li>\r\n                                </ul>\r\n                            </div>\r\n\r\n                            <!-- show if .sh-post-tab-menu-wrapper class have .stick-menu-->\r\n                            <div class="sh-post-tab-menu-sticky hidden"></div>\r\n                        </div>\r\n\r\n                        <div class="sh-post-creator">\r\n                            <div class="sh-post-creator-wrapper row">\r\n                                <!-- AVATAR -->\r\n                                <div class="sh-post-creator-avatar col-md-3">\r\n                                    <a class="sh-creator-photo" href="/user/'+
+	__p+='\r\n\r\n                        </div>\r\n\r\n                        <div class="sh-post-tab-menu">\r\n                            <div class="sh-post-tab-menu-wrapper">\r\n                                <ul class="sh-post-tab-items">\r\n                                    <li class="sh-tab-item"><a class="active" href="#sh-description">Описание</a></li>\r\n                                    <li class="sh-tab-item"><a href="#sh-location">Местоположение</a></li>\r\n                                    <li class="sh-tab-item"><a href="#sh-review">Комментарии</a></li>\r\n                                </ul>\r\n                            </div>\r\n                           \r\n                            <div class="sh-post-tab-menu-sticky hidden"></div>\r\n                        </div>\r\n\r\n                        <div class="sh-post-creator">\r\n                            <div class="sh-post-creator-wrapper row">\r\n                                <div class="sh-post-creator-avatar col-md-3">\r\n                                    <a class="sh-creator-photo" href="/user/'+
 	((__t=(user._id))==null?'':__t)+
 	'">\r\n                                        <img class="sh-post-creator-username-avatar" src="'+
 	((__t=(user.image && user.image.imageUrl?'/Img/Index?url='+encodeURIComponent(user.image.imageUrl)+'&w=90&h=90':'/images/avatar.png'))==null?'':__t)+
-	'" alt="Фотография в профиле">\r\n                                    </a>\r\n                                </div>\r\n\r\n                                <!-- USERNAME, ACTION USER\'S -->\r\n                                <div class="sh-post-creator-info col-md-9">\r\n                                    <div class="sh-post-creator-username"><a href="/user/'+
+	'" alt="Фотография в профиле">\r\n                                    </a>\r\n                                </div>\r\n\r\n                                <div class="sh-post-creator-info col-md-9">\r\n                                    <div class="sh-post-creator-username"><a href="/user/'+
 	((__t=(user._id))==null?'':__t)+
 	'">'+
 	((__t=(user.username))==null?'':__t)+
-	'</a></div>\r\n                                    <!-- Here Will be rating, location -->\r\n                                    <div class="sh-post-creator-display-loc-rew">\r\n                                        <a href="/user/'+
+	'</a></div>                                   \r\n                                    <div class="sh-post-creator-display-loc-rew">\r\n                                        <a href="/user/'+
 	((__t=(user._id))==null?'':__t)+
 	'">'+
 	((__t=(user.online?'online':'offline'))==null?'':__t)+
@@ -31942,7 +31962,7 @@
 	((__t=(distanceType==='km'?'км':'miles'))==null?'':__t)+
 	' ';
 	 } 
-	__p+='</span>\r\n                                    </div>\r\n\r\n                                    <!-- static or dynamic -->\r\n                                    <div class="sh-post-location-address '+
+	__p+='</span>\r\n                                    </div>\r\n                                    <div class="sh-post-location-address '+
 	((__t=(isDynamic?'dynamic':'static'))==null?'':__t)+
 	'">\r\n                                        ';
 	 if (_.size(details.locations) > 0) { 
@@ -31956,9 +31976,9 @@
 	 } else { 
 	__p+='\r\n                                        <span>Местоположение не определено</span>\r\n                                        ';
 	 } 
-	__p+='\r\n                                    </div>\r\n\r\n\r\n                                </div>\r\n\r\n                                <!-- MAP -->\r\n                                <div id="sh-map"></div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div id="sh-review" class="sh-post-review sh-section" style="display: none;">\r\n                            <div class="sh-post-reviews-wrapper">\r\n                                <h4>Комментарии <span>2</span></h4>\r\n\r\n                                <div class="sh-post-form-review"></div>\r\n\r\n                                <div class="sh-post-reviews">\r\n                                    <div class="sh-reviews-items">\r\n                                        <!--1-->\r\n                                        <div class="sh-reviews-item">\r\n                                            <div class="sh-reviews-avatar">\r\n                                                <a class="sh-creator-photo" href="#link-to-user-profile">\r\n                                                    <img src="http://fakeimg.pl/65x65/" alt="Фотография в профиле">\r\n                                                </a>\r\n                                            </div>\r\n                                            <div class="sh-reviews-content">\r\n                                                <div class="sh-reviews-content-inner">\r\n                                                    <p class="sh-reviews-content-message">\r\n                                                        Это было мое первое занятие. Просто удивительно, как быстро можно получить результат от физических упражнений.\r\n                                                        Честно сказать, никогда бы не подумал, что эффект может быть таким ))) В любом случае всем советую этого парня - он профи своего дела. Респект тренеру.\r\n                                                    </p>\r\n                                                </div>\r\n                                                <div class="sh-reviews-content-footer">\r\n                                                    <a class="sh-reviews-content-user" href="#">Теска Пупкин</a>\r\n                                                    <span>·</span>\r\n                                                    <span class="sh-reviews-content-meta">9 января 2017 г., 12:22:37</span>\r\n                                                </div>\r\n                                            </div>\r\n                                        </div>\r\n\r\n                                        <!--2-->\r\n                                        <div class="sh-reviews-item">\r\n                                            <div class="sh-reviews-avatar">\r\n                                                <a class="sh-creator-photo" href="#link-to-user-profile">\r\n                                                    <img src="http://fakeimg.pl/65x65/" alt="Фотография в профиле">\r\n                                                </a>\r\n                                            </div>\r\n                                            <div class="sh-reviews-content">\r\n                                                <div class="sh-reviews-content-inner">\r\n                                                    <p class="sh-reviews-content-message">\r\n                                                        Я воспользовался вашим советом и могу подтвердить комментарий выше. Тренировки - агонь, именно через "а".\r\n                                                    </p>\r\n                                                </div>\r\n                                                <div class="sh-reviews-content-footer">\r\n                                                    <a class="sh-reviews-content-user" href="#">Жека Космос</a>\r\n                                                    <span>·</span>\r\n                                                    <span class="sh-reviews-content-meta">9 января 2017 г., 15:00</span>\r\n                                                </div>\r\n                                            </div>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                    </div>\r\n                    <!-- SIDE RIGHT -->\r\n                    <div class="sh-side-right">\r\n                        <div class="sh-post-widget sh-visible-md-flex sh-visible-lg-flex">\r\n                            ';
+	__p+='\r\n                                    </div>\r\n                                </div>\r\n\r\n                                <div id="sh-map"></div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <!-- if comments > 0 -->\r\n                        <div id="sh-review" class="sh-post-review sh-section">\r\n                            <div class="sh-post-reviews-wrapper">\r\n                                <h4>Комментарии <span></span></h4>\r\n                                <div class="sh-post-form-review">\r\n                                    <div id="sh-comments" class="sh-post-reviews"></div>\r\n                                </div>\r\n                            </div>\r\n                        </div>                       \r\n\r\n                    </div>\r\n                    \r\n                    <div class="sh-side-right">\r\n                        <div class="sh-post-widget sh-visible-md-flex sh-visible-lg-flex">\r\n                            ';
 	if (details.price) { 
-	__p+='\r\n                            <!-- PRICE -->\r\n                            <div class="sh-post-top-price">\r\n                                <div class="sh-price-wrapper sh-rub">\r\n                                    <div class="sh-price-number">'+
+	__p+='                            \r\n                            <div class="sh-post-top-price">\r\n                                <div class="sh-price-wrapper sh-rub">\r\n                                    <div class="sh-price-number">'+
 	((__t=(details.price))==null?'':__t)+
 	'</div>\r\n                                    <div class="sh-price-prefix"></div>\r\n                                </div>\r\n                                <div class="sh-price-footer">за месяц</div>\r\n                            </div>\r\n                            ';
 	 } 
@@ -31996,7 +32016,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12), __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 98 */
+/* 99 */
 /*!******************************************************!*\
   !*** ./wwwroot/lib/owl-carousel/owl.carousel.min.js ***!
   \******************************************************/
@@ -32683,7 +32703,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 99 */
+/* 100 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/posts/RelatedPostsView.js ***!
   \***************************************************/
@@ -32692,18 +32712,18 @@
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	            value: true
+	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _RelatedPostsViewHbs = __webpack_require__(/*! ./RelatedPostsView.hbs.html */ 100);
+	var _RelatedPostsViewHbs = __webpack_require__(/*! ./RelatedPostsView.hbs.html */ 101);
 	
 	var _RelatedPostsViewHbs2 = _interopRequireDefault(_RelatedPostsViewHbs);
 	
-	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 98);
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 99);
 	
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
@@ -32712,85 +32732,85 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.View.extend({
-	            collection: null,
-	            template: _RelatedPostsViewHbs2.default,
+	    collection: null,
+	    template: _RelatedPostsViewHbs2.default,
 	
-	            onAttach: function onAttach() {
+	    onAttach: function onAttach() {
 	
-	                        this.initCarousel();
-	            },
-	            initCarousel: function initCarousel() {
-	                        var slider = this.$('#relatedPosts');
-	                        var options = slider.attr('data-plugin-options');
-	                        var defaults = {
-	                                    items: 5,
-	                                    itemsCustom: false,
-	                                    itemsDesktop: [1199, 4],
-	                                    itemsDesktopSmall: [980, 3],
-	                                    itemsTablet: [768, 2],
-	                                    itemsTabletSmall: false,
-	                                    itemsMobile: [479, 1],
-	                                    singleItem: true,
-	                                    itemsScaleUp: false,
+	        this.initCarousel();
+	    },
+	    initCarousel: function initCarousel() {
+	        var slider = this.$('#relatedPosts');
+	        var options = slider.attr('data-plugin-options');
+	        var defaults = {
+	            items: 5,
+	            itemsCustom: false,
+	            itemsDesktop: [1199, 4],
+	            itemsDesktopSmall: [980, 3],
+	            itemsTablet: [768, 2],
+	            itemsTabletSmall: false,
+	            itemsMobile: [479, 1],
+	            singleItem: true,
+	            itemsScaleUp: false,
 	
-	                                    slideSpeed: 200,
-	                                    paginationSpeed: 800,
-	                                    rewindSpeed: 1000,
+	            slideSpeed: 200,
+	            paginationSpeed: 800,
+	            rewindSpeed: 1000,
 	
-	                                    autoPlay: false,
-	                                    stopOnHover: false,
+	            autoPlay: false,
+	            stopOnHover: false,
 	
-	                                    navigation: false,
-	                                    navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-	                                    rewindNav: true,
-	                                    scrollPerPage: false,
+	            navigation: false,
+	            navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+	            rewindNav: true,
+	            scrollPerPage: false,
 	
-	                                    pagination: true,
-	                                    paginationNumbers: false,
+	            pagination: true,
+	            paginationNumbers: false,
 	
-	                                    responsive: true,
-	                                    responsiveRefreshRate: 200,
-	                                    responsiveBaseWidth: window,
+	            responsive: true,
+	            responsiveRefreshRate: 200,
+	            responsiveBaseWidth: window,
 	
-	                                    baseClass: "owl-carousel",
-	                                    theme: "owl-theme",
+	            baseClass: "owl-carousel",
+	            theme: "owl-theme",
 	
-	                                    lazyLoad: false,
-	                                    lazyFollow: true,
-	                                    lazyEffect: "fade",
+	            lazyLoad: false,
+	            lazyFollow: true,
+	            lazyEffect: "fade",
 	
-	                                    autoHeight: false,
+	            autoHeight: false,
 	
-	                                    jsonPath: false,
-	                                    jsonSuccess: false,
+	            jsonPath: false,
+	            jsonSuccess: false,
 	
-	                                    dragBeforeAnimFinish: true,
-	                                    mouseDrag: true,
-	                                    touchDrag: true,
+	            dragBeforeAnimFinish: true,
+	            mouseDrag: true,
+	            touchDrag: true,
 	
-	                                    transitionStyle: false,
+	            transitionStyle: false,
 	
-	                                    addClassActive: false,
+	            addClassActive: false,
 	
-	                                    beforeUpdate: false,
-	                                    afterUpdate: false,
-	                                    beforeInit: false,
-	                                    afterInit: false,
-	                                    beforeMove: false,
-	                                    afterMove: false,
-	                                    afterAction: false,
-	                                    startDragging: false,
-	                                    afterLazyLoad: false
-	                        };
-	                        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
-	                        slider.owlCarousel(config).addClass("owl-carousel-init");
-	            }
+	            beforeUpdate: false,
+	            afterUpdate: false,
+	            beforeInit: false,
+	            afterInit: false,
+	            beforeMove: false,
+	            afterMove: false,
+	            afterAction: false,
+	            startDragging: false,
+	            afterLazyLoad: false
+	        };
+	        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+	        slider.owlCarousel(config).addClass("owl-carousel-init");
+	    }
 	});
 	exports.default = View;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 100 */
+/* 101 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/RelatedPostsView.hbs.html ***!
   \*********************************************************/
@@ -32799,23 +32819,23 @@
 	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="heading-title heading-border">\r\n    <h3 class="weight-300">Похожие <span>объявления</span></h3>\r\n</div>\r\n<div class="text-center">\r\n    \r\n    <div class="owl-carousel owl-padding-1 nomargin buttons-autohide controlls-over" id="relatedPosts" data-plugin-options=\'{"singleItem": false, "items": "4", "autoPlay": 3500, "navigation": true, "pagination": false}\'>\r\n        ';
+	__p+='<div class="heading-title heading-border">\n    <h3 class="weight-300">Похожие <span>объявления</span></h3>\n</div>\n<div class="text-center">\n    \n    <div class="owl-carousel owl-padding-1 nomargin buttons-autohide controlls-over" id="relatedPosts" data-plugin-options=\'{"singleItem": false, "items": "4", "autoPlay": 3500, "navigation": true, "pagination": false}\'>\n        ';
 	_.each(items,function(item) { 
-	__p+='\r\n        <div class="item-box">\r\n            <figure class="height-150" style="background-image: url('+
+	__p+='\n        <div class="item-box">\n            <figure class="height-150" style="background-image: url('+
 	((__t=(encodeURI((item.details.photosUrls?item.details.photosUrls[0]:null)||'/images/noimage.jpg')))==null?'':_.escape(__t))+
-	'); background-position: center; background-repeat: no-repeat; background-size: 115%">\r\n                <span class="item-hover">\r\n                    <span class="overlay dark-5"></span>\r\n                    <span class="inner">\r\n                        <a title="'+
+	'); background-position: center; background-repeat: no-repeat; background-size: 115%">\n                <span class="item-hover">\n                    <span class="overlay dark-5"></span>\n                    <span class="inner">\n                        <a title="'+
 	((__t=(item.details.title))==null?'':__t)+
 	'" class="ico-rounded" href="/posts/'+
 	((__t=(item._id))==null?'':__t)+
-	'">\r\n                            <span class="glyphicon glyphicon-option-horizontal size-20"></span>\r\n                        </a>\r\n                    </span>\r\n                </span>\r\n            </figure>\r\n            <div class="item-box-desc">\r\n                <h3 title="'+
+	'">\n                            <span class="glyphicon glyphicon-option-horizontal size-20"></span>\n                        </a>\n                    </span>\n                </span>\n            </figure>\n            <div class="item-box-desc">\n                <h3 title="'+
 	((__t=(item.details.title))==null?'':__t)+
 	'">'+
 	((__t=(item.details.title.length <= 21? item.details.title:item.details.title.substring(0,18)+'...'))==null?'':__t)+
-	'</h3>\r\n                <ul class="list-inline categories nomargin">\r\n                    <li><a >'+
+	'</h3>\n                <ul class="list-inline categories nomargin">\n                    <li><a >'+
 	((__t=(item.type))==null?'':__t)+
-	'</a></li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        ';
+	'</a></li>\n                </ul>\n            </div>\n        </div>\n        ';
 	});
-	__p+='\r\n    </div>\r\n</div>';
+	__p+='\n    </div>\n</div>';
 	}
 	return __p;
 	};
@@ -32823,7 +32843,107 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 101 */
+/* 102 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/posts/CommentsListView.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _CommentsItemView = __webpack_require__(/*! ./CommentsItemView.js */ 103);
+	
+	var _CommentsItemView2 = _interopRequireDefault(_CommentsItemView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	
+	    childView: _CommentsItemView2.default,
+	    className: 'sh-reviews-items',
+	    tagName: 'div'
+	
+	});
+	
+	exports.default = View;
+
+/***/ },
+/* 103 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/posts/CommentsItemView.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _CommentsItemViewHbs = __webpack_require__(/*! ./CommentsItemView.hbs.html */ 104);
+	
+	var _CommentsItemViewHbs2 = _interopRequireDefault(_CommentsItemViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    className: 'sh-reviews-item',
+	    template: _CommentsItemViewHbs2.default
+	
+	});
+	
+	exports.default = View;
+
+/***/ },
+/* 104 */
+/*!*********************************************************!*\
+  !*** ./wwwroot/homeApp/posts/CommentsItemView.hbs.html ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n<div class="sh-reviews-avatar">\r\n    <a class="sh-creator-photo" href="/user/'+
+	((__t=(user._id))==null?'':__t)+
+	'">\r\n        ';
+	if(user.image.imageUrl != null) { 
+	__p+='\r\n            <img src="'+
+	((__t=(user.image.imageUrl))==null?'':__t)+
+	'" alt="Фотография в профиле"> \r\n        ';
+	 } else { 
+	__p+=' \r\n            <img src="/images/avatar2.jpg" alt="Фотография отсутствует"> \r\n        ';
+	 } 
+	__p+='\r\n    </a>\r\n</div>\r\n<div class="sh-reviews-content">\r\n    <div class="sh-reviews-content-inner">\r\n        <p class="sh-reviews-content-message">'+
+	((__t=(text))==null?'':__t)+
+	'</p>\r\n    </div>\r\n    <div class="sh-reviews-content-footer">\r\n        <a class="sh-reviews-content-user" href="/user/'+
+	((__t=(user._id))==null?'':__t)+
+	'">'+
+	((__t=(user.username))==null?'':__t)+
+	'</a>\r\n        <span>·</span>\r\n        <span class="sh-reviews-content-meta">'+
+	((__t=(moment(dateTime).fromNow()))==null?'':__t)+
+	'</span>\r\n    </div>\r\n</div>\r\n';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 105 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/posts/DetailsView.less ***!
   \************************************************/
@@ -32832,7 +32952,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 102 */
+/* 106 */
 /*!*************************************!*\
   !*** ./wwwroot/data/Domain/User.js ***!
   \*************************************/
@@ -32844,7 +32964,7 @@
 	    value: true
 	});
 	
-	var _MongoModel = __webpack_require__(/*! ../MongoModel.js */ 79);
+	var _MongoModel = __webpack_require__(/*! ../MongoModel.js */ 80);
 	
 	var _MongoModel2 = _interopRequireDefault(_MongoModel);
 	
@@ -32859,7 +32979,7 @@
 	});
 
 /***/ },
-/* 103 */
+/* 107 */
 /*!****************************************!*\
   !*** ./wwwroot/data/Post/PostModel.js ***!
   \****************************************/
@@ -32871,7 +32991,7 @@
 	    value: true
 	});
 	
-	var _AsteroidModel = __webpack_require__(/*! ../AsteroidModel.js */ 78);
+	var _AsteroidModel = __webpack_require__(/*! ../AsteroidModel.js */ 79);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
@@ -32995,7 +33115,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 104 */
+/* 108 */
 /*!**********************************************!*\
   !*** ./wwwroot/sharedViews/PreloaderView.js ***!
   \**********************************************/
@@ -33007,11 +33127,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PreloaderViewHbs = __webpack_require__(/*! ./PreloaderView.hbs.html */ 105);
+	var _PreloaderViewHbs = __webpack_require__(/*! ./PreloaderView.hbs.html */ 109);
 	
 	var _PreloaderViewHbs2 = _interopRequireDefault(_PreloaderViewHbs);
 	
@@ -33025,7 +33145,7 @@
 	exports.default = View;
 
 /***/ },
-/* 105 */
+/* 109 */
 /*!****************************************************!*\
   !*** ./wwwroot/sharedViews/PreloaderView.hbs.html ***!
   \****************************************************/
@@ -33034,14 +33154,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="inner">\r\n    <span class="loader"></span>\r\n</div>';
+	__p+='<div class="inner">\n    <span class="loader"></span>\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 106 */
+/* 110 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/CreatePostView.js ***!
   \********************************************************/
@@ -33053,43 +33173,43 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _CreatePostViewHbs = __webpack_require__(/*! ./CreatePostView.hbs.html */ 107);
+	var _CreatePostViewHbs = __webpack_require__(/*! ./CreatePostView.hbs.html */ 111);
 	
 	var _CreatePostViewHbs2 = _interopRequireDefault(_CreatePostViewHbs);
 	
-	var _app = __webpack_require__(/*! ../../app.js */ 13);
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _scriptjs = __webpack_require__(/*! scriptjs */ 108);
+	var _scriptjs = __webpack_require__(/*! scriptjs */ 112);
 	
 	var _scriptjs2 = _interopRequireDefault(_scriptjs);
 	
-	var _UploadedImagesView = __webpack_require__(/*! ./UploadedImagesView.js */ 109);
+	var _UploadedImagesView = __webpack_require__(/*! ./UploadedImagesView.js */ 113);
 	
 	var _UploadedImagesView2 = _interopRequireDefault(_UploadedImagesView);
 	
-	var _SelectedLocationView = __webpack_require__(/*! ./SelectedLocationView.js */ 112);
+	var _SelectedLocationView = __webpack_require__(/*! ./SelectedLocationView.js */ 116);
 	
 	var _SelectedLocationView2 = _interopRequireDefault(_SelectedLocationView);
 	
-	var _ModalContainerView = __webpack_require__(/*! ../../../sharedViews/ModalContainerView.js */ 114);
+	var _ModalContainerView = __webpack_require__(/*! ../../../sharedViews/ModalContainerView.js */ 118);
 	
 	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
 	
-	var _SuccessView = __webpack_require__(/*! ../../../sharedViews/SuccessView.js */ 116);
+	var _SuccessView = __webpack_require__(/*! ../../../sharedViews/SuccessView.js */ 120);
 	
 	var _SuccessView2 = _interopRequireDefault(_SuccessView);
 	
-	var _LocationMapView = __webpack_require__(/*! ./LocationMapView.js */ 118);
+	var _LocationMapView = __webpack_require__(/*! ./LocationMapView.js */ 122);
 	
 	var _LocationMapView2 = _interopRequireDefault(_LocationMapView);
 	
-	__webpack_require__(/*! bootstrap-datepicker */ 122);
+	__webpack_require__(/*! bootstrap-datepicker */ 126);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33346,7 +33466,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 107 */
+/* 111 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/CreatePostView.hbs.html ***!
   \**************************************************************/
@@ -33371,7 +33491,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 108 */
+/* 112 */
 /*!***********************************!*\
   !*** ./~/scriptjs/dist/script.js ***!
   \***********************************/
@@ -33507,7 +33627,7 @@
 	});
 
 /***/ },
-/* 109 */
+/* 113 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/UploadedImagesView.js ***!
   \************************************************************/
@@ -33519,11 +33639,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ImageView = __webpack_require__(/*! ./ImageView.js */ 110);
+	var _ImageView = __webpack_require__(/*! ./ImageView.js */ 114);
 	
 	var _ImageView2 = _interopRequireDefault(_ImageView);
 	
@@ -33536,7 +33656,7 @@
 	});
 
 /***/ },
-/* 110 */
+/* 114 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/ImageView.js ***!
   \***************************************************/
@@ -33548,11 +33668,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ImageViewHbs = __webpack_require__(/*! ./ImageView.hbs.html */ 111);
+	var _ImageViewHbs = __webpack_require__(/*! ./ImageView.hbs.html */ 115);
 	
 	var _ImageViewHbs2 = _interopRequireDefault(_ImageViewHbs);
 	
@@ -33573,7 +33693,7 @@
 	});
 
 /***/ },
-/* 111 */
+/* 115 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/ImageView.hbs.html ***!
   \*********************************************************/
@@ -33584,22 +33704,22 @@
 	with(obj||{}){
 	__p+='';
 	if(obj.data) { 
-	__p+='\r\n<img width="120" src="data:'+
+	__p+='\n<img width="120" src="data:'+
 	((__t=(type))==null?'':__t)+
 	';base64,'+
 	((__t=(data))==null?'':__t)+
-	'"/>\r\n';
+	'"/>\n';
 	 } else { 
-	__p+='\r\n<img width="120" class="img-responsive" src="/images/working.gif" />\r\n';
+	__p+='\n<img width="120" class="img-responsive" src="/images/working.gif" />\n';
 	 } 
-	__p+='\r\n<a title="Удалить" class="removeImage"><i class="fa fa-remove text-danger"></i></a>';
+	__p+='\n<a title="Удалить" class="removeImage"><i class="fa fa-remove text-danger"></i></a>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 112 */
+/* 116 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.js ***!
   \**************************************************************/
@@ -33611,11 +33731,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SelectedLocationViewHbs = __webpack_require__(/*! ./SelectedLocationView.hbs.html */ 113);
+	var _SelectedLocationViewHbs = __webpack_require__(/*! ./SelectedLocationView.hbs.html */ 117);
 	
 	var _SelectedLocationViewHbs2 = _interopRequireDefault(_SelectedLocationViewHbs);
 	
@@ -33638,7 +33758,7 @@
 	//              obscuredCoords
 
 /***/ },
-/* 113 */
+/* 117 */
 /*!********************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.hbs.html ***!
   \********************************************************************/
@@ -33649,22 +33769,22 @@
 	with(obj||{}){
 	__p+='<i class="fa fa-map-marker"></i> '+
 	((__t=(obj.accurateAddress||obj.name||'Местоположение не выбрано'))==null?'':__t)+
-	'\r\n';
+	'\n';
 	if (obj.placeType) { 
-	__p+='\r\n    ';
+	__p+='\n    ';
 	if (obj.placeType=='dynamic') { 
-	__p+='\r\n        <span class="label label-info">Привязано к местоположению пользователя</span>\r\n    ';
+	__p+='\n        <span class="label label-info">Привязано к местоположению пользователя</span>\n    ';
 	 } 
-	__p+='\r\n';
+	__p+='\n';
 	 } 
-	__p+='\r\n\r\n';
+	__p+='\n\n';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 114 */
+/* 118 */
 /*!***************************************************!*\
   !*** ./wwwroot/sharedViews/ModalContainerView.js ***!
   \***************************************************/
@@ -33676,11 +33796,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ModalContainerViewHbs = __webpack_require__(/*! ./ModalContainerView.hbs.html */ 115);
+	var _ModalContainerViewHbs = __webpack_require__(/*! ./ModalContainerView.hbs.html */ 119);
 	
 	var _ModalContainerViewHbs2 = _interopRequireDefault(_ModalContainerViewHbs);
 	
@@ -33725,7 +33845,7 @@
 	});
 
 /***/ },
-/* 115 */
+/* 119 */
 /*!*********************************************************!*\
   !*** ./wwwroot/sharedViews/ModalContainerView.hbs.html ***!
   \*********************************************************/
@@ -33734,16 +33854,16 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="modal-dialog modal-lg">\r\n    <div class="modal-content">\r\n\r\n        <div class="modal-header">\r\n            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\r\n            <h4 class="modal-title" id="myLargeModalLabel">'+
+	__p+='<div class="modal-dialog modal-lg">\n    <div class="modal-content">\n\n        <div class="modal-header">\n            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\n            <h4 class="modal-title" id="myLargeModalLabel">'+
 	((__t=(obj.title||''))==null?'':__t)+
-	'</h4>\r\n        </div>\r\n\r\n        <div class="modal-body">\r\n            \r\n        </div>\r\n\r\n    </div>\r\n</div>';
+	'</h4>\n        </div>\n\n        <div class="modal-body">\n            \n        </div>\n\n    </div>\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 116 */
+/* 120 */
 /*!********************************************!*\
   !*** ./wwwroot/sharedViews/SuccessView.js ***!
   \********************************************/
@@ -33755,15 +33875,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SuccessView = __webpack_require__(/*! ./SuccessView.html */ 117);
+	var _SuccessView = __webpack_require__(/*! ./SuccessView.html */ 121);
 	
 	var _SuccessView2 = _interopRequireDefault(_SuccessView);
 	
-	var _backbone3 = __webpack_require__(/*! backbone */ 15);
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
 	
@@ -33783,7 +33903,7 @@
 	exports.default = View;
 
 /***/ },
-/* 117 */
+/* 121 */
 /*!**********************************************!*\
   !*** ./wwwroot/sharedViews/SuccessView.html ***!
   \**********************************************/
@@ -33792,24 +33912,24 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="alert alert-success margin-bottom-30" style="min-height: 250px">\r\n\r\n    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Закрыть</span></button>\r\n\r\n    <h4>'+
+	__p+='<div class="alert alert-success margin-bottom-30" style="min-height: 250px">\n\n    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Закрыть</span></button>\n\n    <h4>'+
 	((__t=(obj.title))==null?'':__t)+
-	'</h4>\r\n\r\n    <p>\r\n        '+
+	'</h4>\n\n    <p>\n        '+
 	((__t=(obj.message))==null?'':__t)+
-	'\r\n    </p>\r\n\r\n    ';
+	'\n    </p>\n\n    ';
 	if(obj.resultUrl) { 
-	__p+='\r\n        <a href="'+
+	__p+='\n        <a href="'+
 	((__t=(resultUrl))==null?'':__t)+
-	'" class="btn btn-info btn-sm margin-top-10">Перейти</a>\r\n    ';
+	'" class="btn btn-info btn-sm margin-top-10">Перейти</a>\n    ';
 	 } 
-	__p+='\r\n\r\n</div>';
+	__p+='\n\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 118 */
+/* 122 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationMapView.js ***!
   \*********************************************************/
@@ -33821,23 +33941,23 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _LocationMapViewHbs = __webpack_require__(/*! ./LocationMapView.hbs.html */ 119);
+	var _LocationMapViewHbs = __webpack_require__(/*! ./LocationMapView.hbs.html */ 123);
 	
 	var _LocationMapViewHbs2 = _interopRequireDefault(_LocationMapViewHbs);
 	
-	var _app = __webpack_require__(/*! ../../app.js */ 13);
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _LocationBindToUserPositionHbs = __webpack_require__(/*! ./LocationBindToUserPosition.hbs.html */ 120);
+	var _LocationBindToUserPositionHbs = __webpack_require__(/*! ./LocationBindToUserPosition.hbs.html */ 124);
 	
 	var _LocationBindToUserPositionHbs2 = _interopRequireDefault(_LocationBindToUserPositionHbs);
 	
-	var _LocationSetButtonHbs = __webpack_require__(/*! ./LocationSetButton.hbs.html */ 121);
+	var _LocationSetButtonHbs = __webpack_require__(/*! ./LocationSetButton.hbs.html */ 125);
 	
 	var _LocationSetButtonHbs2 = _interopRequireDefault(_LocationSetButtonHbs);
 	
@@ -33974,7 +34094,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 119 */
+/* 123 */
 /*!***************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationMapView.hbs.html ***!
   \***************************************************************/
@@ -33990,7 +34110,7 @@
 
 
 /***/ },
-/* 120 */
+/* 124 */
 /*!**************************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationBindToUserPosition.hbs.html ***!
   \**************************************************************************/
@@ -33999,14 +34119,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<label style="background-color: white;" class="switch switch-primary margin-top-6" data-toggle="tooltip" data-placement="bottom" title="Объявление будет менять свое местоположение с Вами">\r\n    <input type="checkbox">\r\n    <span class="switch-label" data-on="Да" data-off="Нет"></span>\r\n    <span> Привязать к Вашему местоположению?</span>\r\n    <small class="text-muted"></small>\r\n</label>';
+	__p+='<label style="background-color: white;" class="switch switch-primary margin-top-6" data-toggle="tooltip" data-placement="bottom" title="Объявление будет менять свое местоположение с Вами">\n    <input type="checkbox">\n    <span class="switch-label" data-on="Да" data-off="Нет"></span>\n    <span> Привязать к Вашему местоположению?</span>\n    <small class="text-muted"></small>\n</label>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 121 */
+/* 125 */
 /*!*****************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationSetButton.hbs.html ***!
   \*****************************************************************/
@@ -34022,7 +34142,7 @@
 
 
 /***/ },
-/* 122 */
+/* 126 */
 /*!****************************************************************!*\
   !*** ./~/bootstrap-datepicker/dist/js/bootstrap-datepicker.js ***!
   \****************************************************************/
@@ -35867,7 +35987,7 @@
 	});
 
 /***/ },
-/* 123 */
+/* 127 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostsMyView.js ***!
   \******************************************************/
@@ -35879,19 +35999,19 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PostsMyViewHbs = __webpack_require__(/*! ./PostsMyView.hbs.html */ 124);
+	var _PostsMyViewHbs = __webpack_require__(/*! ./PostsMyView.hbs.html */ 128);
 	
 	var _PostsMyViewHbs2 = _interopRequireDefault(_PostsMyViewHbs);
 	
-	var _PostItemView = __webpack_require__(/*! ./PostItemView */ 125);
+	var _PostItemView = __webpack_require__(/*! ./PostItemView */ 129);
 	
 	var _PostItemView2 = _interopRequireDefault(_PostItemView);
 	
-	var _app = __webpack_require__(/*! ../../app.js */ 13);
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -35906,7 +36026,7 @@
 	exports.default = View;
 
 /***/ },
-/* 124 */
+/* 128 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostsMyView.hbs.html ***!
   \************************************************************/
@@ -35915,14 +36035,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="container">\r\n    <div class="col-md-12" id="myPostsContaner">\r\n        \r\n    </div>\r\n</div>';
+	__p+='<div class="container">\n    <div class="col-md-12" id="myPostsContaner">\n        \n    </div>\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 125 */
+/* 129 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostItemView.js ***!
   \*******************************************************/
@@ -35934,15 +36054,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PostItemViewHbs = __webpack_require__(/*! ./PostItemView.hbs.html */ 126);
+	var _PostItemViewHbs = __webpack_require__(/*! ./PostItemView.hbs.html */ 130);
 	
 	var _PostItemViewHbs2 = _interopRequireDefault(_PostItemViewHbs);
 	
-	var _app = __webpack_require__(/*! ../../app.js */ 13);
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -35991,7 +36111,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 126 */
+/* 130 */
 /*!*************************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostItemView.hbs.html ***!
   \*************************************************************/
@@ -36000,13 +36120,13 @@
 	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="blog-post-item">\r\n    ';
+	__p+='<div class="blog-post-item">\n    ';
 	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
-	__p+='\r\n    <figure class="blog-item-small-image margin-bottom-20">\r\n        <a href="/posts/'+
+	__p+='\n    <figure class="blog-item-small-image margin-bottom-20">\n        <a href="/posts/'+
 	((__t=(_id))==null?'':_.escape(__t))+
-	'">\r\n            <img class="img-responsive" src="'+
+	'">\n            <img class="img-responsive" src="'+
 	((__t=(details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/demo/300x250.png'))==null?'':_.escape(__t))+
-	'" alt="">\r\n        </a>\r\n    </figure>\r\n\r\n    <div class="blog-item-small-content">\r\n\r\n        <h2><a href="/posts/'+
+	'" alt="">\n        </a>\n    </figure>\n\n    <div class="blog-item-small-content">\n\n        <h2><a href="/posts/'+
 	((__t=(_id))==null?'':_.escape(__t))+
 	'">'+
 	((__t=(details.title))==null?'':__t)+
@@ -36014,33 +36134,33 @@
 	((__t=(type))==null?'':__t)+
 	' pull-right">'+
 	((__t=(type))==null?'':__t)+
-	'</span></h2>\r\n\r\n\r\n        <ul class="blog-post-info list-inline">\r\n            <li>\r\n                <a href="#">\r\n                    <i class="fa fa-clock-o"></i>\r\n                    <span class="font-lato">'+
+	'</span></h2>\n\n\n        <ul class="blog-post-info list-inline">\n            <li>\n                <a href="#">\n                    <i class="fa fa-clock-o"></i>\n                    <span class="font-lato">'+
 	((__t=(moment(timestamp).fromNow()))==null?'':__t)+
-	'</span>\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a href="#">\r\n                    <i class="fa fa-eye"></i>\r\n                    <span class="font-lato"> '+
+	'</span>\n                </a>\n            </li>\n            <li>\n                <a href="#">\n                    <i class="fa fa-eye"></i>\n                    <span class="font-lato"> '+
 	((__t=(obj.stats?stats.seenAll:0))==null?'':__t)+
-	'</span>\r\n                </a>\r\n            </li>\r\n            <li title="'+
+	'</span>\n                </a>\n            </li>\n            <li title="'+
 	((__t=(isDynamic?'Динамическое объявление':'Статическое'))==null?'':__t)+
-	'" class="sh-label-box transparent-dark margin-left-3">\r\n                <a href="#">\r\n                    <i class="fa fa-'+
+	'" class="sh-label-box transparent-dark margin-left-3">\n                <a href="#">\n                    <i class="fa fa-'+
 	((__t=(isDynamic?'man':'flag' ))==null?'':__t)+
-	'"></i>\r\n                    <span class="font-lato">'+
+	'"></i>\n                    <span class="font-lato">'+
 	((__t=(isDynamic?'success':''))==null?'':__t)+
-	'</span>\r\n                </a>\r\n            </li>\r\n            <li class="sh-label-box transparent-dark margin-left-3">\r\n                <a href="#">\r\n                    <i class="fa fa-location-arrow"></i>\r\n                    <span class="font-lato">\r\n                        '+
+	'</span>\n                </a>\n            </li>\n            <li class="sh-label-box transparent-dark margin-left-3">\n                <a href="#">\n                    <i class="fa fa-location-arrow"></i>\n                    <span class="font-lato">\n                        '+
 	((__t=(distance>-1?distance.toFixed(1) + ' '+distanceType:''))==null?'':__t)+
-	'\r\n                    </span>\r\n                </a>\r\n            </li>\r\n        </ul>\r\n        <p class="sh-item-text">\r\n            ';
+	'\n                    </span>\n                </a>\n            </li>\n        </ul>\n        <p class="sh-item-text">\n            ';
 	var loc = _.find(details.locations,function(l) { return l.placeType==='dynamic' })||details.locations[0]; 
-	__p+='\r\n            ';
+	__p+='\n            ';
 	 if (loc) { 
-	__p+='\r\n            '+
+	__p+='\n            '+
 	((__t=(loc.name))==null?'':__t)+
-	'\r\n            ';
+	'\n            ';
 	 } 
-	__p+='\r\n        </p>\r\n        <div class="sh-progress-bar progress">\r\n            <div class="progress-bar '+
+	__p+='\n        </p>\n        <div class="sh-progress-bar progress">\n            <div class="progress-bar '+
 	((__t=(progress>=70?'progress-bar-success':(progress>=25&&progress<70?'progress-bar-warning':'progress-bar-danger')))==null?'':__t)+
 	'" role="progressbar" style="width: '+
 	((__t=(progress))==null?'':__t)+
-	'%; min-width: 1em; ">\r\n                <span class="sr-only"></span>\r\n            </div>\r\n        </div>\r\n        <p>'+
+	'%; min-width: 1em; ">\n                <span class="sr-only"></span>\n            </div>\n        </div>\n        <p>'+
 	((__t=(details.description))==null?'':__t)+
-	'</p>\r\n\r\n        <!--<a href="#" class="btn btn-reveal btn-default js-edit-my-chat">\r\n            <i class="fa fa-edit"></i>\r\n            <span>Редактировать</span>\r\n        </a>\r\n        <a href="#" class="btn btn-reveal btn-danger js-remove-my-post">\r\n            <i class="fa fa-remove"></i>\r\n            <span>Удалить</span>\r\n        </a>-->\r\n    </div>\r\n\r\n</div>';
+	'</p>\n\n        <!--<a href="#" class="btn btn-reveal btn-default js-edit-my-chat">\n            <i class="fa fa-edit"></i>\n            <span>Редактировать</span>\n        </a>\n        <a href="#" class="btn btn-reveal btn-danger js-remove-my-post">\n            <i class="fa fa-remove"></i>\n            <span>Удалить</span>\n        </a>-->\n    </div>\n\n</div>';
 	}
 	return __p;
 	};
@@ -36048,7 +36168,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 127 */
+/* 131 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.js ***!
   \******************************************************/
@@ -36060,15 +36180,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _chatsMyViewHbs = __webpack_require__(/*! ./chatsMyView.hbs.html */ 128);
+	var _chatsMyViewHbs = __webpack_require__(/*! ./chatsMyView.hbs.html */ 132);
 	
 	var _chatsMyViewHbs2 = _interopRequireDefault(_chatsMyViewHbs);
 	
-	var _chatItemView = __webpack_require__(/*! ./chatItemView */ 129);
+	var _chatItemView = __webpack_require__(/*! ./chatItemView */ 133);
 	
 	var _chatItemView2 = _interopRequireDefault(_chatItemView);
 	
@@ -36083,7 +36203,7 @@
 	exports.default = View;
 
 /***/ },
-/* 128 */
+/* 132 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.hbs.html ***!
   \************************************************************/
@@ -36092,14 +36212,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<section>\r\n    <div class="container" id="myChatsContaner">\r\n    </div>\r\n</section>';
+	__p+='<section>\n    <div class="container" id="myChatsContaner">\n    </div>\n</section>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 129 */
+/* 133 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.js ***!
   \*******************************************************/
@@ -36111,19 +36231,19 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _chatItemViewHbs = __webpack_require__(/*! ./chatItemView.hbs.html */ 130);
+	var _chatItemViewHbs = __webpack_require__(/*! ./chatItemView.hbs.html */ 134);
 	
 	var _chatItemViewHbs2 = _interopRequireDefault(_chatItemViewHbs);
 	
-	var _app = __webpack_require__(/*! ../../app.js */ 13);
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./chatItemView.css */ 131);
+	__webpack_require__(/*! ./chatItemView.css */ 135);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36148,7 +36268,7 @@
 	exports.default = View;
 
 /***/ },
-/* 130 */
+/* 134 */
 /*!*************************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.hbs.html ***!
   \*************************************************************/
@@ -36157,27 +36277,27 @@
 	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="blog-post-item">\r\n    ';
+	__p+='<div class="blog-post-item">\n    ';
 	 obj.__otherParty = {} 
-	__p+='\r\n    ';
+	__p+='\n    ';
 	 if(obj.otherParty && obj.otherParty[0]) { obj.__otherParty = obj.otherParty[0]; } 
-	__p+='\r\n    ';
+	__p+='\n    ';
 	 obj.__lastMessage = obj.lastMessage || {} 
-	__p+='\r\n    <div class="bz-chat-item">\r\n        <a href="/messages/to/'+
+	__p+='\n    <div class="bz-chat-item">\n        <a href="/messages/to/'+
 	((__t=( obj.__otherParty._id ))==null?'':__t)+
-	'">\r\n        <!--<a href="/messages/to/'+
+	'">\n        <!--<a href="/messages/to/'+
 	((__t=(_id ))==null?'':_.escape(__t))+
 	'?remoteUserId='+
 	((__t=( obj.__otherParty.remoteUserId ))==null?'':__t)+
-	'">-->\r\n            <div class="bz-meta">\r\n                <div class="bz-user-avatar">\r\n                    <div class="bz-avatar">\r\n                        <img src="'+
+	'">-->\n            <div class="bz-meta">\n                <div class="bz-user-avatar">\n                    <div class="bz-avatar">\n                        <img src="'+
 	((__t=( obj.__otherParty.image ? obj.__otherParty.image.thumbnail || obj.__otherParty.image.imageUrl || '/images/shiners/user.png' : '/images/shiners/user.png' ))==null?'':__t)+
-	'"\r\n                             alt="null"/>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="bz-username">'+
+	'"\n                             alt="null"/>\n                    </div>\n                </div>\n\n                <div class="bz-username">'+
 	((__t=( obj.__otherParty.username ))==null?'':__t)+
-	'</div>\r\n                <div class="bz-last-message">'+
+	'</div>\n                <div class="bz-last-message">'+
 	((__t=( obj.__lastMessage.text ))==null?'':__t)+
-	'</div>\r\n                <div class="bz-last-timestamp">'+
+	'</div>\n                <div class="bz-last-timestamp">'+
 	((__t=( moment(obj.lastMessageTs).fromNow() ))==null?'':__t)+
-	'</div>\r\n\r\n            </div>\r\n        </a>\r\n    </div>\r\n\r\n</div>';
+	'</div>\n\n            </div>\n        </a>\n    </div>\n\n</div>';
 	}
 	return __p;
 	};
@@ -36185,7 +36305,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 131 */
+/* 135 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.css ***!
   \********************************************************/
@@ -36194,10 +36314,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./chatItemView.css */ 132);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./chatItemView.css */ 136);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 39)(content, {});
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 40)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -36214,17 +36334,17 @@
 	}
 
 /***/ },
-/* 132 */
+/* 136 */
 /*!***********************************************************************!*\
   !*** ./~/css-loader!./wwwroot/homeApp/chats/chatsMy/chatItemView.css ***!
   \***********************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 38)();
-	exports.push([module.id, ".bz-chat-item .bz-user-avatar {\r\n  float: left;\r\n  top: 0;\r\n  left: 0;\r\n  padding-right: 10px;\r\n}\r\n\r\n.bz-chat-item .bz-avatar {\r\n\r\n  background-size: cover;\r\n  background-position: center;\r\n  -webkit-border-radius: 2px;\r\n  -moz-border-radius: 2px;\r\n  border-radius: 2px;\r\n}\r\n.bz-chat-item .bz-avatar img {\r\n  width: 50px;\r\n  height: 50px;\r\n}\r\n.bz-chat-item .bz-last-timestamp {\r\n  font-style: italic;\r\n  font-size: 12px;\r\n  padding-top: 12px;\r\n}\r\n.bz-chat-item .bz-last-message {\r\n  font-weight: bold;\r\n}\r\n/* temp, not good solution: */\r\ndiv.blog-post-item {\r\n  margin-bottom: 10px;\r\n  padding-bottom: 30px;\r\n}", ""]);
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 14)();
+	exports.push([module.id, ".bz-chat-item .bz-user-avatar {\n  float: left;\n  top: 0;\n  left: 0;\n  padding-right: 10px;\n}\n\n.bz-chat-item .bz-avatar {\n\n  background-size: cover;\n  background-position: center;\n  -webkit-border-radius: 2px;\n  -moz-border-radius: 2px;\n  border-radius: 2px;\n}\n.bz-chat-item .bz-avatar img {\n  width: 50px;\n  height: 50px;\n}\n.bz-chat-item .bz-last-timestamp {\n  font-style: italic;\n  font-size: 12px;\n  padding-top: 12px;\n}\n.bz-chat-item .bz-last-message {\n  font-weight: bold;\n}\n/* temp, not good solution: */\ndiv.blog-post-item {\n  margin-bottom: 10px;\n  padding-bottom: 30px;\n}", ""]);
 
 /***/ },
-/* 133 */
+/* 137 */
 /*!*********************************************!*\
   !*** ./wwwroot/homeApp/chats/ChatIdView.js ***!
   \*********************************************/
@@ -36236,11 +36356,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ChatIdViewHbs = __webpack_require__(/*! ./ChatIdView.hbs.html */ 134);
+	var _ChatIdViewHbs = __webpack_require__(/*! ./ChatIdView.hbs.html */ 138);
 	
 	var _ChatIdViewHbs2 = _interopRequireDefault(_ChatIdViewHbs);
 	
@@ -36251,7 +36371,7 @@
 	    initialize: function initialize() {},
 	
 	    /*  tagName:'iframe',
-	        attributes: {
+	       attributes: {
 	          width:'100%',
 	          src:'https://shiners.mobi/chat/'+chatId._id+'?isiframe=true'
 	      },
@@ -36273,7 +36393,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 134 */
+/* 138 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/chats/ChatIdView.hbs.html ***!
   \***************************************************/
@@ -36282,14 +36402,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<section style ="height:100%;">\r\n    <div class="container">\r\n    </div>\r\n</section>';
+	__p+='<section style ="height:100%;">\n    <div class="container">\n    </div>\n</section>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 135 */
+/* 139 */
 /*!*********************************************!*\
   !*** ./wwwroot/homeApp/user/DetailsView.js ***!
   \*********************************************/
@@ -36301,15 +36421,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 136);
+	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 140);
 	
 	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 13);
+	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -36329,7 +36449,7 @@
 	exports.default = View;
 
 /***/ },
-/* 136 */
+/* 140 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/user/DetailsView.hbs.html ***!
   \***************************************************/
@@ -36340,49 +36460,49 @@
 	with(obj||{}){
 	__p+='';
 	var firstName = (_.find(obj.profileDetails,{key:'firstName'})||{}).value;
-	__p+='\r\n';
+	__p+='\n';
 	var lastName = (_.findWhere(obj.profileDetails,{key:'lastName'})||{}).value; 
-	__p+='\r\n';
+	__p+='\n';
 	var city = (_.find(obj.profileDetails,{key:'city'})||{}).value;
-	__p+='\r\n';
+	__p+='\n';
 	var phone = (_.findWhere(obj.profileDetails,{key:'phone'})||{}).value; 
-	__p+='\r\n';
+	__p+='\n';
 	var skype = (_.find(obj.profileDetails,{key:'skype'})||{}).value;
-	__p+='\r\n';
+	__p+='\n';
 	var vk = (_.findWhere(obj.profileDetails,{key:'vk'})||{}).value; 
-	__p+='\r\n';
+	__p+='\n';
 	var twitter = (_.find(obj.profileDetails,{key:'twitter'})||{}).value;
-	__p+='\r\n';
+	__p+='\n';
 	var facebook = (_.findWhere(obj.profileDetails,{key:'facebook'})||{}).value; 
-	__p+='\r\n<div class="container">\r\n    <div class="sh-user-profile-wrapper">\r\n        <div class="sh-side-left">\r\n            <div class="sh-page-block sh-user-box">\r\n                <div class="sh-user-avatar">\r\n                    <div class="sh-user-avatar-wrap">\r\n                        <a class="sh-user-profile-photo-link" href="#">\r\n                            <img src="'+
+	__p+='\n<div class="container">\n    <div class="sh-user-profile-wrapper">\n        <div class="sh-side-left">\n            <div class="sh-page-block sh-user-box">\n                <div class="sh-user-avatar">\n                    <div class="sh-user-avatar-wrap">\n                        <a class="sh-user-profile-photo-link" href="#">\n                            <img src="'+
 	((__t=(profile.image && profile.image.data?profile.image.data:'/images/noimage.jpg'))==null?'':__t)+
-	'" alt="#">\r\n                        </a>\r\n                        <div class="sh-avatar-user-status">\r\n                            <div class="sh-avatar-user-status-wrapper sh-offline"></div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class="sh-profile-action">\r\n                    <a href="#" class="ui sh-button sh-profile-send"> '+
+	'" alt="#">\n                        </a>\n                        <div class="sh-avatar-user-status">\n                            <div class="sh-avatar-user-status-wrapper sh-offline"></div>\n                        </div>\n                    </div>\n                </div>\n                <div class="sh-profile-action">\n                    <a href="#" class="ui sh-button sh-profile-send"> '+
 	((__t=(i18n('addMessage')))==null?'':__t)+
-	'</a>\r\n                    <!--<a href="#" class="ui sh-button sh-profile-edit">Редактировать</a>-->\r\n                </div>\r\n            </div>\r\n            <div class="sh-page-block">\r\n                <ul class="sh-user-action">\r\n                    <li><a href="#">'+
+	'</a>\n                    <!--<a href="#" class="ui sh-button sh-profile-edit">Редактировать</a>-->\n                </div>\n            </div>\n            <div class="sh-page-block">\n                <ul class="sh-user-action">\n                    <li><a href="#">'+
 	((__t=(i18n('complain')))==null?'':__t)+
-	'</a></li>\r\n                    <li class="sh-user-action-exit"><a href="#">'+
+	'</a></li>\n                    <li class="sh-user-action-exit"><a href="#">'+
 	((__t=(i18n('exit')))==null?'':__t)+
-	'</a></li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class="sh-side-right">\r\n            <div class="sh-page-block sh-user-info">\r\n                <div class="sh-user-info-top">\r\n                    <small class="sh-user-was">Был '+
+	'</a></li>\n                </ul>\n            </div>\n        </div>\n        <div class="sh-side-right">\n            <div class="sh-page-block sh-user-info">\n                <div class="sh-user-info-top">\n                    <small class="sh-user-was">Был '+
 	((__t=(moment(status.lastlogin.date).calendar()))==null?'':__t)+
-	'</small>\r\n                    <h2 class="sh-user-name">'+
+	'</small>\n                    <h2 class="sh-user-name">'+
 	((__t=( firstName))==null?'':__t)+
 	' '+
 	((__t=(lastName))==null?'':__t)+
 	' '+
 	((__t=((!firstName && !lastName)?i18n('NO_NAME'):''))==null?'':__t)+
-	'</h2>\r\n                </div>\r\n                <div class="sh-user-profile-info">\r\n                    <div class="sh-user-profile-info-wrapper">\r\n                        <!--Direct link to my profile-->\r\n                        <div class="sh-user-profile-info-row sh-col">\r\n                            <div class="sh-info-title">'+
+	'</h2>\n                </div>\n                <div class="sh-user-profile-info">\n                    <div class="sh-user-profile-info-wrapper">\n                        <!--Direct link to my profile-->\n                        <div class="sh-user-profile-info-row sh-col">\n                            <div class="sh-info-title">'+
 	((__t=(i18n('DIRECT_PROFILE_LINK')))==null?'':__t)+
-	'</div>\r\n                            <div class="sh-info-text">\r\n                                <div class="sh-direct-link-block">\r\n                                    <div class="sh-direct-link-wrapper">\r\n                                        <div class="sh-icon-direct-link"><i class="fa fa-link" aria-hidden="true"></i></div>\r\n                                        https://wwww.shiners.ru/user/'+
+	'</div>\n                            <div class="sh-info-text">\n                                <div class="sh-direct-link-block">\n                                    <div class="sh-direct-link-wrapper">\n                                        <div class="sh-icon-direct-link"><i class="fa fa-link" aria-hidden="true"></i></div>\n                                        https://wwww.shiners.ru/user/'+
 	((__t=(_id))==null?'':__t)+
-	'\r\n                                    </div>\r\n                                    <div class="sh-direct-link-btn-copy"><a href="#" title="Копировать" class="ui sh-button"><i class="fa fa-clipboard" aria-hidden="true"></i></a></div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <!--The publication available to all users-->\r\n                        <div class="sh-user-profile-info-row sh-col">\r\n                            <div class="sh-info-title">Настройка для постов</div>\r\n                            <div class="sh-info-text">\r\n                                <div class="sh-direct-link-block">\r\n                                    <div class="sh-direct-link-wrapper">\r\n                                        <label class="sh-checkbox">\r\n                                            <input type="checkbox" value="1">\r\n                                            <label>Сделать мои публикации доступными для всех пользователей</label>\r\n                                        </label>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <!--Public info-->\r\n                        <div class="sh-user-profile-info-row sh-profile-info-header">\r\n                            <div class="sh-profile-info-header-within">\r\n                                <span>Публичная информация</span>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <!--City-->\r\n                        <div class="sh-user-profile-info-row">\r\n                            <div class="sh-info-title">Город</div>\r\n                            <div class="sh-info-text">'+
+	'\n                                    </div>\n                                    <div class="sh-direct-link-btn-copy"><a href="#" title="Копировать" class="ui sh-button"><i class="fa fa-clipboard" aria-hidden="true"></i></a></div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--The publication available to all users-->\n                        <div class="sh-user-profile-info-row sh-col">\n                            <div class="sh-info-title">Настройка для постов</div>\n                            <div class="sh-info-text">\n                                <div class="sh-direct-link-block">\n                                    <div class="sh-direct-link-wrapper">\n                                        <label class="sh-checkbox">\n                                            <input type="checkbox" value="1">\n                                            <label>Сделать мои публикации доступными для всех пользователей</label>\n                                        </label>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Public info-->\n                        <div class="sh-user-profile-info-row sh-profile-info-header">\n                            <div class="sh-profile-info-header-within">\n                                <span>Публичная информация</span>\n                            </div>\n                        </div>\n\n                        <!--City-->\n                        <div class="sh-user-profile-info-row">\n                            <div class="sh-info-title">Город</div>\n                            <div class="sh-info-text">'+
 	((__t=(city||'не указано/скрыто'))==null?'':__t)+
-	'</div>\r\n                        </div>\r\n                        <!--Social links-->\r\n                        <div class="sh-user-profile-info-row">\r\n                            <div class="sh-info-title">Логин Skype</div>\r\n                            <div class="sh-info-text">'+
+	'</div>\n                        </div>\n                        <!--Social links-->\n                        <div class="sh-user-profile-info-row">\n                            <div class="sh-info-title">Логин Skype</div>\n                            <div class="sh-info-text">'+
 	((__t=(skype||'не указано/скрыто'))==null?'':__t)+
-	'</div>\r\n                        </div>\r\n                        <div class="sh-user-profile-info-row sh-social-links sh-vk">\r\n                            <div class="sh-info-title">Вконтакте</div>\r\n                            <div class="sh-info-text">'+
+	'</div>\n                        </div>\n                        <div class="sh-user-profile-info-row sh-social-links sh-vk">\n                            <div class="sh-info-title">Вконтакте</div>\n                            <div class="sh-info-text">'+
 	((__t=(vk||'не указано/скрыто'))==null?'':__t)+
-	'</div>\r\n                        </div>\r\n                        <div class="sh-user-profile-info-row sh-social-links sh-facebook">\r\n                            <div class="sh-info-title">Facebook</div>\r\n                            <div class="sh-info-text">'+
+	'</div>\n                        </div>\n                        <div class="sh-user-profile-info-row sh-social-links sh-facebook">\n                            <div class="sh-info-title">Facebook</div>\n                            <div class="sh-info-text">'+
 	((__t=(facebook||'не указано/скрыто'))==null?'':__t)+
-	'</div>\r\n                        </div>\r\n\r\n                        <!--<div class="sh-user-profile-info-row">-->\r\n                        <!--<div class="sh-info-title"></div>-->\r\n                        <!--<div class="sh-info-text"></div>-->\r\n                        <!--</div>-->\r\n                    </div>\r\n                </div>\r\n                <div class="sh-user-profile-links">\r\n                    <div class="sh-user-profile-links-wrapper">\r\n                        <div class="sh-user-profile-links-item">Постов <span>0</span></div>\r\n                        <div class="sh-user-profile-links-item">Комментариев <span>0</span></div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>';
+	'</div>\n                        </div>\n\n                        <!--<div class="sh-user-profile-info-row">-->\n                        <!--<div class="sh-info-title"></div>-->\n                        <!--<div class="sh-info-text"></div>-->\n                        <!--</div>-->\n                    </div>\n                </div>\n                <div class="sh-user-profile-links">\n                    <div class="sh-user-profile-links-wrapper">\n                        <div class="sh-user-profile-links-item">Постов <span>0</span></div>\n                        <div class="sh-user-profile-links-item">Комментариев <span>0</span></div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>';
 	}
 	return __p;
 	};
@@ -36390,7 +36510,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 137 */
+/* 141 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.js ***!
   \************************************************************/
@@ -36402,23 +36522,23 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MessagesToUserViewHbs = __webpack_require__(/*! ./MessagesToUserView.hbs.html */ 138);
+	var _MessagesToUserViewHbs = __webpack_require__(/*! ./MessagesToUserView.hbs.html */ 142);
 	
 	var _MessagesToUserViewHbs2 = _interopRequireDefault(_MessagesToUserViewHbs);
 	
-	var _MessagesListView = __webpack_require__(/*! ./MessagesListView.js */ 139);
+	var _MessagesListView = __webpack_require__(/*! ./MessagesListView.js */ 143);
 	
 	var _MessagesListView2 = _interopRequireDefault(_MessagesListView);
 	
-	var _AsteroidModel = __webpack_require__(/*! ../../../data/AsteroidModel.js */ 78);
+	var _AsteroidModel = __webpack_require__(/*! ../../../data/AsteroidModel.js */ 79);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	var _app = __webpack_require__(/*! ../../app.js */ 13);
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -36471,7 +36591,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 138 */
+/* 142 */
 /*!******************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.hbs.html ***!
   \******************************************************************/
@@ -36493,7 +36613,7 @@
 
 
 /***/ },
-/* 139 */
+/* 143 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesListView.js ***!
   \**********************************************************/
@@ -36505,19 +36625,19 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _messagesItemView = __webpack_require__(/*! ./messagesItemView.js */ 140);
+	var _messagesItemView = __webpack_require__(/*! ./messagesItemView.js */ 144);
 	
 	var _messagesItemView2 = _interopRequireDefault(_messagesItemView);
 	
-	var _NoMessagesView = __webpack_require__(/*! ./NoMessagesView.js */ 142);
+	var _NoMessagesView = __webpack_require__(/*! ./NoMessagesView.js */ 146);
 	
 	var _NoMessagesView2 = _interopRequireDefault(_NoMessagesView);
 	
-	var _app = __webpack_require__(/*! ../../app.js */ 13);
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -36546,7 +36666,7 @@
 	exports.default = View;
 
 /***/ },
-/* 140 */
+/* 144 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messagesItemView.js ***!
   \**********************************************************/
@@ -36558,11 +36678,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 141);
+	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 145);
 	
 	var _MessagesItemViewHbs2 = _interopRequireDefault(_MessagesItemViewHbs);
 	
@@ -36618,7 +36738,7 @@
 	exports.default = View;
 
 /***/ },
-/* 141 */
+/* 145 */
 /*!****************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesItemView.hbs.html ***!
   \****************************************************************/
@@ -36673,7 +36793,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 142 */
+/* 146 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/NoMessagesView.js ***!
   \********************************************************/
@@ -36685,11 +36805,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 143);
+	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 147);
 	
 	var _NoMessagesViewHbs2 = _interopRequireDefault(_NoMessagesViewHbs);
 	
@@ -36703,7 +36823,7 @@
 	exports.default = View;
 
 /***/ },
-/* 143 */
+/* 147 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/NoMessagesView.hbs.html ***!
   \**************************************************************/
@@ -36712,14 +36832,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<p class="text-center">\r\n    Нет сообщений\r\n</p>';
+	__p+='<p class="text-center">\n    Нет сообщений\n</p>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 144 */
+/* 148 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/account/LoginView.js ***!
   \**********************************************/
@@ -36731,21 +36851,21 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _LoginViewHbs = __webpack_require__(/*! ./LoginView.hbs.html */ 145);
+	var _LoginViewHbs = __webpack_require__(/*! ./LoginView.hbs.html */ 149);
 	
 	var _LoginViewHbs2 = _interopRequireDefault(_LoginViewHbs);
 	
-	__webpack_require__(/*! ./loginView.less */ 146);
+	__webpack_require__(/*! ./loginView.less */ 150);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 13);
+	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _LoginModel = __webpack_require__(/*! ../../data/viewModels/LoginModel */ 147);
+	var _LoginModel = __webpack_require__(/*! ../../data/viewModels/LoginModel */ 151);
 	
 	var _LoginModel2 = _interopRequireDefault(_LoginModel);
 	
@@ -36811,7 +36931,7 @@
 	exports.default = View;
 
 /***/ },
-/* 145 */
+/* 149 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/account/LoginView.hbs.html ***!
   \****************************************************/
@@ -36820,16 +36940,16 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<section style="background:url(\'/images/backgrounds/wall2.jpg\')">\r\n    <div class="display-table">\r\n        <div class="display-table-cell vertical-align-middle">\r\n            <div class="container">\r\n                <div class="row">\r\n                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4 col-md-push-7 col-lg-push-8 col-sm-push-7">\r\n                        <!-- ALERT -->\r\n                        <!--\r\n                        <div class="alert alert-mini alert-danger margin-bottom-30">\r\n                            <strong>Oh snap!</strong> Login Incorrect!\r\n                        </div>\r\n                        -->\r\n                        <!-- /ALERT -->\r\n                        <!-- login form -->\r\n                        <form method="post" class="sky-form boxed">\r\n                            <header><i class="fa fa-users"></i> Вход на сайт</header>\r\n                            <fieldset class="nomargin">\r\n                                <label class="label margin-top-20">E-mail /  Имя пользователя</label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-envelope"></i>\r\n                                    <input type="text" name="email" id="userLogin">\r\n                                    <span class="tooltip tooltip-top-right">Email адрес / Имя пользователя</span>\r\n                                </label>\r\n                                <label class="label margin-top-20">Пароль</label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-lock"></i>\r\n                                    <input type="password" id="userPassword" name="password">\r\n                                    <b class="tooltip tooltip-top-right">Укажите Ваш пароль</b>\r\n                                </label>\r\n                                <label class="checkbox margin-top-20">\r\n                                    <input type="checkbox" name="checkbox-inline" id="rememberMe">\r\n                                    <i></i> Запомнить меня\r\n                                </label>\r\n                            </fieldset>\r\n\r\n                            <footer class="celarfix">\r\n                                <button type="submit" class="btn btn-primary noradius pull-right">\r\n                                    <i class="fa fa-check"></i>\r\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                    ВОЙТИ\r\n                                </button>\r\n                                <div class="login-forgot-password pull-left">\r\n                                    <a href="/Account/FogotPassword">Забыли пароль?</a>\r\n                                </div>\r\n                            </footer>\r\n                            <div class="celarfix">\r\n                                <a type="submit" class="js-login-register-link btn btn-secondary btn-secondary-danger pull-right" href="/account/register?returnUrl=/">\r\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                    Регистрация\r\n                                </a>\r\n                                <div class="login-forgot-password pull-left">\r\n                                    <span style="color: #d9534f">Впервые на сайте?</span>\r\n                                </div>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                    <div class="col-xs-12 col-md-7 col-sm-7 col-lg-8 col-lg-pull-4 col-md-pull-5 col-sm-pull-5">\r\n                        <h2 class="size-20 text-center-xs">Преимущества авторизованных пользователей</h2>\r\n                        <ul class="list-unstyled login-features">\r\n                            <li>\r\n                                <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления\r\n                            </li>\r\n                            <li>\r\n                                <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)\r\n                            </li>\r\n                            <li>\r\n                                <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками\r\n                            </li>\r\n                            <li>\r\n                                <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным\r\n                            </li>\r\n                            <li>\r\n                                <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий\r\n                            </li>\r\n                            <li>\r\n                                <i class="glyphicon glyphicon-user"></i> Ещё не регистрировались? <a href="/account/register?returnUrl=somedata'+
+	__p+='<section style="background:url(\'/images/backgrounds/wall2.jpg\')">\n    <div class="display-table">\n        <div class="display-table-cell vertical-align-middle">\n            <div class="container">\n                <div class="row">\n                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4 col-md-push-7 col-lg-push-8 col-sm-push-7">\n                        <!-- ALERT -->\n                        <!--\n                        <div class="alert alert-mini alert-danger margin-bottom-30">\n                            <strong>Oh snap!</strong> Login Incorrect!\n                        </div>\n                        -->\n                        <!-- /ALERT -->\n                        <!-- login form -->\n                        <form method="post" class="sky-form boxed">\n                            <header><i class="fa fa-users"></i> Вход на сайт</header>\n                            <fieldset class="nomargin">\n                                <label class="label margin-top-20">E-mail /  Имя пользователя</label>\n                                <label class="input">\n                                    <i class="ico-append fa fa-envelope"></i>\n                                    <input type="text" name="email" id="userLogin">\n                                    <span class="tooltip tooltip-top-right">Email адрес / Имя пользователя</span>\n                                </label>\n                                <label class="label margin-top-20">Пароль</label>\n                                <label class="input">\n                                    <i class="ico-append fa fa-lock"></i>\n                                    <input type="password" id="userPassword" name="password">\n                                    <b class="tooltip tooltip-top-right">Укажите Ваш пароль</b>\n                                </label>\n                                <label class="checkbox margin-top-20">\n                                    <input type="checkbox" name="checkbox-inline" id="rememberMe">\n                                    <i></i> Запомнить меня\n                                </label>\n                            </fieldset>\n\n                            <footer class="celarfix">\n                                <button type="submit" class="btn btn-primary noradius pull-right">\n                                    <i class="fa fa-check"></i>\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\n                                    ВОЙТИ\n                                </button>\n                                <div class="login-forgot-password pull-left">\n                                    <a href="/Account/FogotPassword">Забыли пароль?</a>\n                                </div>\n                            </footer>\n                            <div class="celarfix">\n                                <a type="submit" class="js-login-register-link btn btn-secondary btn-secondary-danger pull-right" href="/account/register?returnUrl=/">\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\n                                    Регистрация\n                                </a>\n                                <div class="login-forgot-password pull-left">\n                                    <span style="color: #d9534f">Впервые на сайте?</span>\n                                </div>\n                            </div>\n                        </form>\n                    </div>\n                    <div class="col-xs-12 col-md-7 col-sm-7 col-lg-8 col-lg-pull-4 col-md-pull-5 col-sm-pull-5">\n                        <h2 class="size-20 text-center-xs">Преимущества авторизованных пользователей</h2>\n                        <ul class="list-unstyled login-features">\n                            <li>\n                                <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-user"></i> Ещё не регистрировались? <a href="/account/register?returnUrl=somedata'+
 	((__t=( returnUrl ? '?returnUrl='+returnUrl:''))==null?'':__t)+
-	'">Регистрация</a>\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>';
+	'">Регистрация</a>\n                            </li>\n                        </ul>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 146 */
+/* 150 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/account/loginView.less ***!
   \************************************************/
@@ -36838,7 +36958,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 147 */
+/* 151 */
 /*!***********************************************!*\
   !*** ./wwwroot/data/viewModels/LoginModel.js ***!
   \***********************************************/
@@ -36850,7 +36970,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone */ 15);
+	var _backbone = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -36871,7 +36991,7 @@
 	});
 
 /***/ },
-/* 148 */
+/* 152 */
 /*!*****************************************************!*\
   !*** ./wwwroot/homeApp/account/RegisterUserView.js ***!
   \*****************************************************/
@@ -36883,19 +37003,19 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _RegisterUserViewHbs = __webpack_require__(/*! ./RegisterUserView.hbs.html */ 149);
+	var _RegisterUserViewHbs = __webpack_require__(/*! ./RegisterUserView.hbs.html */ 153);
 	
 	var _RegisterUserViewHbs2 = _interopRequireDefault(_RegisterUserViewHbs);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 13);
+	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _RegisterModel = __webpack_require__(/*! ../../data/viewModels/RegisterModel */ 150);
+	var _RegisterModel = __webpack_require__(/*! ../../data/viewModels/RegisterModel */ 154);
 	
 	var _RegisterModel2 = _interopRequireDefault(_RegisterModel);
 	
@@ -36953,7 +37073,7 @@
 	exports.default = View;
 
 /***/ },
-/* 149 */
+/* 153 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/account/RegisterUserView.hbs.html ***!
   \***********************************************************/
@@ -36962,14 +37082,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<section style="background:url(\'/images/backgrounds/wall2.jpg\')">\r\n    <div class="display-table">\r\n        <div class="display-table-cell vertical-align-middle">\r\n            <div class="container">\r\n                <div class="row">\r\n                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4 col-md-push-7 col-lg-push-8 col-sm-push-7">\r\n\r\n                        <!-- ALERT -->\r\n                        <!--\r\n                        <div class="alert alert-mini alert-danger margin-bottom-30">\r\n                            <strong>Oh snap!</strong> Login Incorrect!\r\n                        </div>\r\n                        -->\r\n                        <!-- /ALERT -->\r\n                        <!-- register form -->\r\n                        <form class="nomargin sky-form boxed">\r\n                            <header>\r\n                                <i class="fa fa-users"></i> Регистрация\r\n                            </header>\r\n\r\n                            <fieldset class="nomargin">\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-envelope"></i>\r\n                                    <input type="text" placeholder="Имя пользователя" id="userLogin" name="username">\r\n                                    <b class="tooltip tooltip-bottom-right">Уникальное имя пользователя</b>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-envelope"></i>\r\n                                    <input type="text" placeholder="Email адрес" id="userEmail" name="email">\r\n                                    <b class="tooltip tooltip-bottom-right">email адрес</b>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-lock"></i>\r\n                                    <input type="password" placeholder="Пароль" id="userPassword" name="password">\r\n                                    <b class="tooltip tooltip-bottom-right">Пароль</b>\r\n                                </label>\r\n\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-lock"></i>\r\n                                    <input type="password" placeholder="Подтвердите пароль" id="confirmPassword" name="confirmPassword">\r\n                                    <b class="tooltip tooltip-bottom-right">Подтверждение пароля</b>\r\n                                </label>\r\n                            </fieldset>\r\n\r\n                            <div class="row margin-bottom-20">\r\n                                <div class="col-md-12 pull-right">\r\n                                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Регистрироваться</button>\r\n                                </div>\r\n                            </div>\r\n                            <div class="celarfix" style="color: #d9534f">\r\n                                <a type="submit" class="btn btn-secondary btn-secondary-danger pull-right" href="/Account/Login?returnUrl=/">\r\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                    Вход\r\n                                </a>\r\n                                <div class="login-forgot-password pull-left">\r\n                                    <span style="color: #d9534f">Уже есть аккаунт?</span>\r\n                                </div>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n\r\n                    <div class="col-xs-12 col-md-7 col-sm-7 col-lg-8 col-lg-pull-4 col-md-pull-5 col-sm-pull-5">\r\n                        <h2 class="size-20 text-center-xs">Преимущества авторизованных пользователей</h2>\r\n                        <ul class="list-unstyled login-features">\r\n                            <li>\r\n                                <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления\r\n                            </li>\r\n                            <li>\r\n                                <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)\r\n                            </li>\r\n                            <li>\r\n                                <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками\r\n                            </li>\r\n                            <li>\r\n                                <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным\r\n                            </li>\r\n                            <li>\r\n                                <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>';
+	__p+='<section style="background:url(\'/images/backgrounds/wall2.jpg\')">\n    <div class="display-table">\n        <div class="display-table-cell vertical-align-middle">\n            <div class="container">\n                <div class="row">\n                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4 col-md-push-7 col-lg-push-8 col-sm-push-7">\n\n                        <!-- ALERT -->\n                        <!--\n                        <div class="alert alert-mini alert-danger margin-bottom-30">\n                            <strong>Oh snap!</strong> Login Incorrect!\n                        </div>\n                        -->\n                        <!-- /ALERT -->\n                        <!-- register form -->\n                        <form class="nomargin sky-form boxed">\n                            <header>\n                                <i class="fa fa-users"></i> Регистрация\n                            </header>\n\n                            <fieldset class="nomargin">\n                                <label class="input">\n                                    <i class="ico-append fa fa-envelope"></i>\n                                    <input type="text" placeholder="Имя пользователя" id="userLogin" name="username">\n                                    <b class="tooltip tooltip-bottom-right">Уникальное имя пользователя</b>\n                                </label>\n                                <label class="input">\n                                    <i class="ico-append fa fa-envelope"></i>\n                                    <input type="text" placeholder="Email адрес" id="userEmail" name="email">\n                                    <b class="tooltip tooltip-bottom-right">email адрес</b>\n                                </label>\n                                <label class="input">\n                                    <i class="ico-append fa fa-lock"></i>\n                                    <input type="password" placeholder="Пароль" id="userPassword" name="password">\n                                    <b class="tooltip tooltip-bottom-right">Пароль</b>\n                                </label>\n\n                                <label class="input">\n                                    <i class="ico-append fa fa-lock"></i>\n                                    <input type="password" placeholder="Подтвердите пароль" id="confirmPassword" name="confirmPassword">\n                                    <b class="tooltip tooltip-bottom-right">Подтверждение пароля</b>\n                                </label>\n                            </fieldset>\n\n                            <div class="row margin-bottom-20">\n                                <div class="col-md-12 pull-right">\n                                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Регистрироваться</button>\n                                </div>\n                            </div>\n                            <div class="celarfix" style="color: #d9534f">\n                                <a type="submit" class="btn btn-secondary btn-secondary-danger pull-right" href="/Account/Login?returnUrl=/">\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\n                                    Вход\n                                </a>\n                                <div class="login-forgot-password pull-left">\n                                    <span style="color: #d9534f">Уже есть аккаунт?</span>\n                                </div>\n                            </div>\n                        </form>\n                    </div>\n\n                    <div class="col-xs-12 col-md-7 col-sm-7 col-lg-8 col-lg-pull-4 col-md-pull-5 col-sm-pull-5">\n                        <h2 class="size-20 text-center-xs">Преимущества авторизованных пользователей</h2>\n                        <ul class="list-unstyled login-features">\n                            <li>\n                                <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий\n                            </li>\n                        </ul>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 150 */
+/* 154 */
 /*!**************************************************!*\
   !*** ./wwwroot/data/viewModels/RegisterModel.js ***!
   \**************************************************/
@@ -36981,7 +37101,7 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone */ 15);
+	var _backbone = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
@@ -37012,7 +37132,7 @@
 	});
 
 /***/ },
-/* 151 */
+/* 155 */
 /*!********************************************!*\
   !*** ./wwwroot/homeApp/about/AboutView.js ***!
   \********************************************/
@@ -37024,19 +37144,19 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 152);
+	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 156);
 	
 	var _AboutViewHbs2 = _interopRequireDefault(_AboutViewHbs);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 13);
+	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./about.less */ 153);
+	__webpack_require__(/*! ./about.less */ 157);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37134,7 +37254,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 152 */
+/* 156 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/about/AboutView.hbs.html ***!
   \**************************************************/
@@ -37150,7 +37270,7 @@
 
 
 /***/ },
-/* 153 */
+/* 157 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/about/about.less ***!
   \******************************************/
@@ -37159,7 +37279,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 154 */
+/* 158 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.js ***!
   \****************************************************/
@@ -37171,19 +37291,19 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MassMediaViewHbs = __webpack_require__(/*! ./MassMediaView.hbs.html */ 155);
+	var _MassMediaViewHbs = __webpack_require__(/*! ./MassMediaView.hbs.html */ 159);
 	
 	var _MassMediaViewHbs2 = _interopRequireDefault(_MassMediaViewHbs);
 	
-	var _app = __webpack_require__(/*! ../app.js */ 13);
+	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./MassMediaView.less */ 156);
+	__webpack_require__(/*! ./MassMediaView.less */ 160);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37252,7 +37372,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 155 */
+/* 159 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.hbs.html ***!
   \**********************************************************/
@@ -37308,7 +37428,7 @@
 
 
 /***/ },
-/* 156 */
+/* 160 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.less ***!
   \******************************************************/
@@ -37317,7 +37437,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 157 */
+/* 161 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.js ***!
   \******************************************************/
@@ -37329,11 +37449,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 158);
+	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 162);
 	
 	var _HowItWorksViewHbs2 = _interopRequireDefault(_HowItWorksViewHbs);
 	
@@ -37345,7 +37465,7 @@
 	exports.default = View;
 
 /***/ },
-/* 158 */
+/* 162 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.hbs.html ***!
   \************************************************************/
@@ -37354,14 +37474,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div>\r\n    <h2>Как это работает</h2>\r\n</div>';
+	__p+='<div>\n    <h2>Как это работает</h2>\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 159 */
+/* 163 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/account/FogotPasswordView.js ***!
   \******************************************************/
@@ -37373,11 +37493,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 160);
+	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 164);
 	
 	var _FogotPasswordViewHbs2 = _interopRequireDefault(_FogotPasswordViewHbs);
 	
@@ -37389,7 +37509,7 @@
 	exports.default = View;
 
 /***/ },
-/* 160 */
+/* 164 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/account/FogotPasswordView.hbs.html ***!
   \************************************************************/
@@ -37398,14 +37518,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div>\r\n    <h2>Забыли пароль? Печалька</h2>\r\n</div>';
+	__p+='<div>\n    <h2>Забыли пароль? Печалька</h2>\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 161 */
+/* 165 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.js ***!
   \*********************************************************/
@@ -37417,11 +37537,11 @@
 	  value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 162);
+	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 166);
 	
 	var _legalUserAgreementViewHbs2 = _interopRequireDefault(_legalUserAgreementViewHbs);
 	
@@ -37436,7 +37556,7 @@
 	exports.default = View;
 
 /***/ },
-/* 162 */
+/* 166 */
 /*!***************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.hbs.html ***!
   \***************************************************************/
@@ -37445,14 +37565,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="page--legal-confidential">\r\n    <iframe src="https://docs.google.com/document/d/1MKCBacnlxgWNHX9NWy7Eoco64q5FH6RITTm_E2kDnYE/pub?embedded=true" width="100%" height="500"></iframe>\r\n</div>';
+	__p+='<div class="page--legal-confidential">\n    <iframe src="https://docs.google.com/document/d/1MKCBacnlxgWNHX9NWy7Eoco64q5FH6RITTm_E2kDnYE/pub?embedded=true" width="100%" height="500"></iframe>\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 163 */
+/* 167 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalConfidentialView.js ***!
   \********************************************************/
@@ -37464,11 +37584,11 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalConfidentialViewHbs = __webpack_require__(/*! ./legalConfidentialView.hbs.html */ 164);
+	var _legalConfidentialViewHbs = __webpack_require__(/*! ./legalConfidentialView.hbs.html */ 168);
 	
 	var _legalConfidentialViewHbs2 = _interopRequireDefault(_legalConfidentialViewHbs);
 	
@@ -37486,7 +37606,7 @@
 	exports.default = View;
 
 /***/ },
-/* 164 */
+/* 168 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalConfidentialView.hbs.html ***!
   \**************************************************************/
@@ -37495,14 +37615,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="page--legal-confidential">\r\n    <iframe src="https://docs.google.com/document/d/1MKCBacnlxgWNHX9NWy7Eoco64q5FH6RITTm_E2kDnYE/pub?embedded=true" width="100%" height="500"></iframe>\r\n\r\n    <!--<iframe src="https://drive.google.com/file/d/0B55GYt-og1BUVzRZNWFlVVE0U21SYnExYlhYMzNKV2ZIUnRN/preview" width="100%" height="500"></iframe>-->\r\n</div>';
+	__p+='<div class="page--legal-confidential">\n    <iframe src="https://docs.google.com/document/d/1MKCBacnlxgWNHX9NWy7Eoco64q5FH6RITTm_E2kDnYE/pub?embedded=true" width="100%" height="500"></iframe>\n\n    <!--<iframe src="https://drive.google.com/file/d/0B55GYt-og1BUVzRZNWFlVVE0U21SYnExYlhYMzNKV2ZIUnRN/preview" width="100%" height="500"></iframe>-->\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 165 */
+/* 169 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.js ***!
   \**********************************************************/
@@ -37514,11 +37634,11 @@
 	  value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 166);
+	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 170);
 	
 	var _legalPostPublishingViewHbs2 = _interopRequireDefault(_legalPostPublishingViewHbs);
 	
@@ -37533,7 +37653,7 @@
 	exports.default = View;
 
 /***/ },
-/* 166 */
+/* 170 */
 /*!****************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.hbs.html ***!
   \****************************************************************/
@@ -37542,14 +37662,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="page--legal-confidential">\r\n    <iframe src="https://docs.google.com/document/d/1fi04pKKonBP_O7zakR5m0NJqVXvscwqGbWZUV_0yCr4/pub?embedded=true" width="100%" height="500"></iframe>\r\n</div>';
+	__p+='<div class="page--legal-confidential">\n    <iframe src="https://docs.google.com/document/d/1fi04pKKonBP_O7zakR5m0NJqVXvscwqGbWZUV_0yCr4/pub?embedded=true" width="100%" height="500"></iframe>\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 167 */
+/* 171 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.js ***!
   \**********************************************/
@@ -37561,15 +37681,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 168);
+	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 172);
 	
 	var _blogHomeViewHbs2 = _interopRequireDefault(_blogHomeViewHbs);
 	
-	__webpack_require__(/*! ./blogHomeView.less */ 169);
+	__webpack_require__(/*! ./blogHomeView.less */ 173);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37595,7 +37715,7 @@
 	exports.default = View;
 
 /***/ },
-/* 168 */
+/* 172 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.hbs.html ***!
   \****************************************************/
@@ -37604,14 +37724,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="page--blog-home">\r\n    blog home\r\n    <!--<iframe src="https://drive.google.com/file/d/0B55GYt-og1BUVzRZNWFlVVE0U21SYnExYlhYMzNKV2ZIUnRN/preview" width="100%" height="500"></iframe>-->\r\n</div>';
+	__p+='<div class="page--blog-home">\n    blog home\n    <!--<iframe src="https://drive.google.com/file/d/0B55GYt-og1BUVzRZNWFlVVE0U21SYnExYlhYMzNKV2ZIUnRN/preview" width="100%" height="500"></iframe>-->\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 169 */
+/* 173 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.less ***!
   \************************************************/
@@ -37620,7 +37740,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 170 */
+/* 174 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.js ***!
   \************************************************/
@@ -37632,15 +37752,15 @@
 	    value: true
 	});
 	
-	var _backbone = __webpack_require__(/*! backbone.marionette */ 14);
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 171);
+	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 175);
 	
 	var _blogPostIdViewHbs2 = _interopRequireDefault(_blogPostIdViewHbs);
 	
-	__webpack_require__(/*! ./blogPostIdView.less */ 172);
+	__webpack_require__(/*! ./blogPostIdView.less */ 176);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37655,7 +37775,7 @@
 	exports.default = View;
 
 /***/ },
-/* 171 */
+/* 175 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.hbs.html ***!
   \******************************************************/
@@ -37664,14 +37784,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="page--blog-post-id">\r\n    blog post id\r\n    <!--<iframe src="https://drive.google.com/file/d/0B55GYt-og1BUVzRZNWFlVVE0U21SYnExYlhYMzNKV2ZIUnRN/preview" width="100%" height="500"></iframe>-->\r\n</div>';
+	__p+='<div class="page--blog-post-id">\n    blog post id\n    <!--<iframe src="https://drive.google.com/file/d/0B55GYt-og1BUVzRZNWFlVVE0U21SYnExYlhYMzNKV2ZIUnRN/preview" width="100%" height="500"></iframe>-->\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 172 */
+/* 176 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.less ***!
   \**************************************************/
@@ -37680,7 +37800,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 173 */
+/* 177 */
 /*!******************************************!*\
   !*** ./wwwroot/css/shiners-override.css ***!
   \******************************************/
@@ -37689,10 +37809,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 174);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 178);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 39)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 40)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -37709,23 +37829,14 @@
 	}
 
 /***/ },
-/* 174 */
+/* 178 */
 /*!*********************************************************!*\
   !*** ./~/css-loader!./wwwroot/css/shiners-override.css ***!
   \*********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 38)();
-	exports.push([module.id, "/*this file contains rules that override template/bootstrap etc.*/\r\nbody.sh-body #topNav button.btn-mobile {\r\n    color: #f7fafb;\r\n}\r\n", ""]);
-
-/***/ },
-/* 175 */
-/*!*********************************************!*\
-  !*** ./wwwroot/css/bootstrap-override.less ***!
-  \*********************************************/
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 14)();
+	exports.push([module.id, "/*this file contains rules that override template/bootstrap etc.*/\nbody.sh-body #topNav button.btn-mobile {\n    color: #f7fafb;\n}\n", ""]);
 
 /***/ }
 /******/ ]);
