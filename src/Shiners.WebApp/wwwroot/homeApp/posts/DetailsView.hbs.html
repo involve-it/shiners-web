@@ -1,26 +1,15 @@
-﻿<!--<section class="page-header page-header-xs">
-    <div class="container">
-        <h1>{{=details.title}}</h1>
-        <ol class="breadcrumb">
-            <li><a href="/">Главная</a></li>
-            <li><a href="/Posts">Объявления</a></li>
-            <li class="active">{{=details.title}}</li>
-        </ol>
-    </div>
-</section>-->
-
-
+﻿
 <main class="sh-content">
     <div class="sh-post-details">
         <div class="container">
             <div class="sh-page-block">
                 <div class="sh-post-details-wrapper">
-                    <!-- SIDE LEFT -->
+                    
                     <div class="sh-side-left">
                         <h1>{{=details.title}}</h1>
                         <div class="sh-post-published">
                             <div class="sh-post-written">
-                                <span><i class="fa fa-clock-o"></i> Опубликовано, {{=moment(obj.timestamp).fromNow()}}, - до {{=moment(endDatePost).format("ll")}}</span>
+                                <span><i class="fa fa-clock-o"></i> Опубликовано, {{=moment(obj.timestamp.$date).fromNow()}}, - до {{=moment(obj.endDatePost.$date).format("ll")}}</span>
                             </div>
                             <!-- sh-color-red, sh-color-yellow, sh-color-green -->
                             <div class="sh-post-item-left sh-color-yellow">
@@ -48,11 +37,9 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- VISIBLE only until 992px -->
+                                               
                         <div class="sh-post-widget-composed hidden-md hidden-lg">
-
-                            <!-- SUMMARY information -->
+                                                        
                             <div class="sh-post-summary-information sh-info-header">
                                 <div class="sh-info-header-within">
                                     <span>Сводная информация</span>
@@ -72,7 +59,7 @@
                             </div>
 
                             {{if (details.price) { }}
-                            <!-- PRICE -->
+
                             <div class="sh-post-widget">
                                 <div class="sh-post-top-price">
                                     <div class="sh-price-wrapper sh-rub">
@@ -94,24 +81,20 @@
                                     <li class="sh-tab-item"><a href="#sh-review">Комментарии</a></li>
                                 </ul>
                             </div>
-
-                            <!-- show if .sh-post-tab-menu-wrapper class have .stick-menu-->
+                           
                             <div class="sh-post-tab-menu-sticky hidden"></div>
                         </div>
 
                         <div class="sh-post-creator">
                             <div class="sh-post-creator-wrapper row">
-                                <!-- AVATAR -->
                                 <div class="sh-post-creator-avatar col-md-3">
                                     <a class="sh-creator-photo" href="/user/{{=user._id}}">
                                         <img class="sh-post-creator-username-avatar" src="{{=user.image && user.image.imageUrl?'/Img/Index?url='+encodeURIComponent(user.image.imageUrl)+'&w=90&h=90':'/images/avatar.png'}}" alt="Фотография в профиле">
                                     </a>
                                 </div>
 
-                                <!-- USERNAME, ACTION USER'S -->
                                 <div class="sh-post-creator-info col-md-9">
-                                    <div class="sh-post-creator-username"><a href="/user/{{=user._id}}">{{=user.username}}</a></div>
-                                    <!-- Here Will be rating, location -->
+                                    <div class="sh-post-creator-username"><a href="/user/{{=user._id}}">{{=user.username}}</a></div>                                   
                                     <div class="sh-post-creator-display-loc-rew">
                                         <a href="/user/{{=user._id}}">{{=user.online?'online':'offline'}}</a>
                                     </div>
@@ -143,8 +126,6 @@
                                     <div class="sh-post-location-distance">
                                         <i class="fa fa-location-arrow" aria-hidden="true"></i> От вас <span>{{if(obj.distance && obj.distanceType){ }} {{=distance>=0?distance.toFixed(1):'Дистанция не определена'}} {{=distanceType==='km'?'км':'miles'}} {{ } }}</span>
                                     </div>
-
-                                    <!-- static or dynamic -->
                                     <div class="sh-post-location-address {{=isDynamic?'dynamic':'static'}}">
                                         {{ if (_.size(details.locations) > 0) { }}
                                         {{_.each(details.locations, function(location){ }}
@@ -154,76 +135,26 @@
                                         <span>Местоположение не определено</span>
                                         {{ } }}
                                     </div>
-
-
                                 </div>
 
-                                <!-- MAP -->
                                 <div id="sh-map"></div>
                             </div>
                         </div>
-
+                       
                         <div id="sh-review" class="sh-post-review sh-section">
                             <div class="sh-post-reviews-wrapper">
-                                <h4>Комментарии <span>2</span></h4>
-
-                                <div class="sh-post-form-review"></div>
-
-                                <div class="sh-post-reviews">
-                                    <div class="sh-reviews-items">
-                                        <!--1-->
-                                        <div class="sh-reviews-item">
-                                            <div class="sh-reviews-avatar">
-                                                <a class="sh-creator-photo" href="#link-to-user-profile">
-                                                    <img src="http://fakeimg.pl/65x65/" alt="Фотография в профиле">
-                                                </a>
-                                            </div>
-                                            <div class="sh-reviews-content">
-                                                <div class="sh-reviews-content-inner">
-                                                    <p class="sh-reviews-content-message">
-                                                        Это было мое первое занятие. Просто удивительно, как быстро можно получить результат от физических упражнений.
-                                                        Честно сказать, никогда бы не подумал, что эффект может быть таким ))) В любом случае всем советую этого парня - он профи своего дела. Респект тренеру.
-                                                    </p>
-                                                </div>
-                                                <div class="sh-reviews-content-footer">
-                                                    <a class="sh-reviews-content-user" href="#">Теска Пупкин</a>
-                                                    <span>·</span>
-                                                    <span class="sh-reviews-content-meta">9 января 2017 г., 12:22:37</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!--2-->
-                                        <div class="sh-reviews-item">
-                                            <div class="sh-reviews-avatar">
-                                                <a class="sh-creator-photo" href="#link-to-user-profile">
-                                                    <img src="http://fakeimg.pl/65x65/" alt="Фотография в профиле">
-                                                </a>
-                                            </div>
-                                            <div class="sh-reviews-content">
-                                                <div class="sh-reviews-content-inner">
-                                                    <p class="sh-reviews-content-message">
-                                                        Я воспользовался вашим советом и могу подтвердить комментарий выше. Тренировки - агонь, именно через "а".
-                                                    </p>
-                                                </div>
-                                                <div class="sh-reviews-content-footer">
-                                                    <a class="sh-reviews-content-user" href="#">Жека Космос</a>
-                                                    <span>·</span>
-                                                    <span class="sh-reviews-content-meta">9 января 2017 г., 15:00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <h4>Комментарии <span></span></h4>
+                                <div class="sh-post-form-review">
+                                    <div id="sh-comments" class="sh-post-reviews"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div>                       
 
                     </div>
-                    <!-- SIDE RIGHT -->
+                    
                     <div class="sh-side-right">
                         <div class="sh-post-widget sh-visible-md-flex sh-visible-lg-flex">
-                            {{if (details.price) { }}
-                            <!-- PRICE -->
+                            {{if (details.price) { }}                            
                             <div class="sh-post-top-price">
                                 <div class="sh-price-wrapper sh-rub">
                                     <div class="sh-price-number">{{=details.price}}</div>

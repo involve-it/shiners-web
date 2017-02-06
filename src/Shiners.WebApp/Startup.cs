@@ -103,7 +103,8 @@ namespace Shiners.WebApp
             
             app.UseMvc(routes =>
             {
-                routes.MapRoute("about", "about-us", new { controller = "Home", action = "About" });
+                routes.MapRoute("about", "about-us", new { controller = "About", action = "About" });
+                routes.MapRoute("massMedia", "mass-media", new { controller = "About", action = "MassMedia" });
                 routes.MapRoute("user","user/{id?}", new { controller = "Profile", action = "Index" });
                 routes.MapRoute("myChats", "chats/my", new { controller = "Chats", action = "My" });
                 routes.MapRoute("chats", "chats/{id?}", new { controller = "Chats", action = "Index" });

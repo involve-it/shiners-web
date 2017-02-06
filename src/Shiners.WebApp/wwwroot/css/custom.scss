@@ -319,15 +319,15 @@ i {
 }
 
 .sh-set-position-map {
-    margin: 10px 0 0 0;
+    margin: 10px 0 0 0;    
+    line-height:1;
     height: 44px;
     width: 44px;
-    line-height: 44px;
     font-size: 28px;
     color: $sh-main-header-light-bg;
     @include gradient(#65a1e6, #4a90e2);
     @include border-radius(4px);
-    box-shadow: 0 2px 4px rgba(0,0,0, .3);
+    box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
     transition: 0.2s ease-in-out;
 
     &:hover {
@@ -335,6 +335,30 @@ i {
     }
 }
 
+.sh-mobile-show-info {
+    background: $sh-white-color;
+    color: $sh-main-gray-color;
+    @include border-radius(4px);
+    margin-right: 8px;
+    box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+
+    i {
+        font-size: 18px;
+        padding: 8px 10px;
+        margin: 0;
+    }
+}
+
+.isMobile {
+
+    .sh-set-position-map {
+        font-size: 18px;
+        margin: 0 0 0 8px;
+        padding: 8px 10px;
+        height: auto;
+        width: auto;
+    }
+}
 
 .disabled {
 	cursor: not-allowed !important;
@@ -551,7 +575,7 @@ input[type=radio] + label {
 
         .sh-shiners-list-item {
             position: relative;
-            padding: 10px 20px;
+            padding: 10px;
 
             .thumbnail {
                 padding: 0;
@@ -636,7 +660,7 @@ input[type=radio] + label {
     background: #E0E1E2 none;
     color: rgba(0, 0, 0, 0.6);
     font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    margin: 0em 0.25em 0em 0em;
+    margin: 0;
     padding: 0.78571429em 1.5em 0.78571429em;
     text-transform: none;
     text-shadow: none;
@@ -669,7 +693,7 @@ input[type=radio] + label {
   
     &.standard {
         font-size: 13px;
-        padding: .786em 1.5em;
+        padding: 10px 16px;
         font-weight: 400;
         @include gradient(#FFFFFF, #ECECEC);
         transition: 0.2s ease-in-out;
@@ -1099,8 +1123,12 @@ input[type=radio] + label {
         height: 58px !important;  
       }
 
-        > span {
+        > span {         
           color: $sh-main-blue-background;
+
+          tran {
+              padding: 4px 8px;
+          }
         }
       }
 
@@ -1157,12 +1185,16 @@ input[type=radio] + label {
       @include sh-display-flex();
       @include sh-align-items(center);
 
-      img {
-          margin-right: 8px;
-      }
+        img {
+            margin-right: 8px;
+            padding: 6px;
+            background: $sh-main-blue-background;
+            @include border-radius(50%);
+        }
     }
 
      $map-height: 590px;
+
 
     .sh-header-navbar {
       position: relative;
@@ -1211,7 +1243,7 @@ input[type=radio] + label {
         padding: 0;
         @include border-radius(2px);
         background-color: $sh-footer-text-color;
-        box-shadow: 0 2px 10px rgba(0,0,0, .25);
+        box-shadow: 0 1px 30px rgba(0,0,0, .15);
         z-index:5;
 
         .sh-map-search-form {
@@ -1925,7 +1957,9 @@ input[type=radio] + label {
 				}
 					
 				.sh-form-content {
-					flex-basis: 100%;
+                    -webkit-flex-basis: auto;
+	                -ms-flex-basis: auto;
+	                flex-basis: auto;
 					padding: 0 16px 16px;						
 				}
 					
@@ -2134,8 +2168,8 @@ input[type=radio] + label {
 	position: relative;
 	background: $sh-white-color;
 	margin-bottom: 16px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-	border-top: 1px solid $sh-white-color;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	//border-top: 1px solid $sh-white-color;
 
 	&:last-child {
 		margin: 0;
@@ -2462,10 +2496,11 @@ input[type=radio] + label {
     }
     
     #header {
-        height: auto !important;
+        height: auto;
 
         .sh-logo-header {
             font-size: 30px;
+            padding-left: 16px;
 
             img {
                 height: 30px;
@@ -2940,6 +2975,26 @@ input[type=radio] + label {
                                     left: $width - 60px;
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    body {
+        &.page--index {
+            #header {
+                #topNav {
+                    .sh-header-navbar-wrapper {
+                        .sh-header-navbar-items {
+                            //@include sh-flex-direction(column);
+                            min-height: 52px;
+					        padding:0;
+					
+					        .sh-header-navbar-create {
+						        padding-top: 6px;
+					        }
                         }
                     }
                 }

@@ -149,7 +149,13 @@ var View = Marionette.View.extend({
                 this.mobile_CreateInfoButton();
                 this.mobile_mapResize();
                 this.mobile_listenToResize();
+
+                $('body').addClass('isMobile');
+            } else {
+                $('body').removeClass('isMobile');
             }
+
+
             this.mapAddPostButton();
             this.mapSetPositionButton();
             
@@ -189,7 +195,9 @@ var View = Marionette.View.extend({
     },
 
     mobile_mapResize() {
-        this.$('#map2').height($(window).height()-$('#header').height());
+        //this.$('#map2').height( $(window).height() - $('#header').height() );
+
+        this.$('#map2').height( $(window).height() - ($('.sh-header-topline').height() + $('.sh-header-navbar-wrapper').height()) );
         window.google.maps.event.trigger(app.map, 'resize');
     },
 

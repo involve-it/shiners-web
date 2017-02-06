@@ -3,13 +3,13 @@ import template from './DetailsView.hbs.html';
 import '../../lib/owl-carousel/owl.carousel.min.js';
 import Collection from '../../data/AsteroidCollection.js';
 import RelatedPostsView from './RelatedPostsView.js';
-
+import CommentsListView from './CommentsListView.js';
 import MapLoader from 'load-google-maps-api';
-
 import _ from 'underscore';
 import app from '../app.js';
 import  './DetailsView.less';
 import locationHelper from '../../helpers/locationHelper.js';
+
 var View = Marionette.View.extend({
     
     map: null,
@@ -18,20 +18,22 @@ var View = Marionette.View.extend({
     geocoder: null,
     template:template,
     collection:null,
+    comments: null,
     regions: {
-        'related':'#relatedPostsContainer'
+        'related':'#relatedPostsContainer',
+        'comments': '#sh-comments'
     },
 
     initialize() {
         window.postDetails = this.model.toJSON();
         this.collection = new Collection(null,{asteroid:this.model.asteroid});
+        this.comments = new Collection(null, {asteroid: this.model.asteroid});
         this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
         this.listenTo(app.user,'login',this.render);
         this.listenTo(app.user, 'logout', this.render);
     },
     onBeforeRender() {
-        this.setModelDistance();
-        this.setModelPostComments();
+        this.setModelDistance();        
 
         if (app.asteroid.loggedIn) {
             this.templateContext = {
@@ -45,6 +47,9 @@ var View = Marionette.View.extend({
         this.collection.loadByMethod('getPopularPosts',[center.lat(),center.lng(),200,0,10]);
         this.initVkSocialButton(); 
         this.initCarousel();
+
+        this.comments.loadByMethod('getComments', { postId: this.model.get('_id'), take: 100, skip: 0 });
+        this.showChildView('comments', new CommentsListView({collection: this.comments}));        
     },
 
     onAttach() {
@@ -63,8 +68,6 @@ var View = Marionette.View.extend({
         VK.Widgets.Like("vk_like",options,this.model.id);
         app.FbButton(this.$('#fb_like').get(0));
     },
-
-    setModelPostComments() {}, 
 
     initMapPost() {
         var defaultCoords = { lat: 55.75396, lng: 37.620393 };

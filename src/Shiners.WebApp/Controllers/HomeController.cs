@@ -16,15 +16,10 @@ namespace Shiners.WebApp.Controllers
             return View();
         }
 
-        public IActionResult About()
-        {
-            return View("Index");
-        }
-
-        public IActionResult MassMedia()
-        {
-            return View("Index");
-        }
+        //public IActionResult About()
+        //{
+        //    return View("Index");
+        //}
 
         public IActionResult HowItWorks()
         {

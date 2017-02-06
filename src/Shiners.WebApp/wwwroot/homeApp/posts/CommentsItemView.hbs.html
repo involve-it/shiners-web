@@ -1,0 +1,20 @@
+﻿
+<div class="sh-reviews-avatar">
+    <a class="sh-creator-photo" href="/user/{{=user._id}}">
+        {{if(user.image.imageUrl != null) { }}
+            <img src="{{=user.image.imageUrl}}" alt="Фотография в профиле"> 
+        {{ } else { }} 
+            <img src="/images/avatar2.jpg" alt="Фотография отсутствует"> 
+        {{ } }}
+    </a>
+</div>
+<div class="sh-reviews-content">
+    <div class="sh-reviews-content-inner">
+        <p class="sh-reviews-content-message">{{=text}}</p>
+    </div>
+    <div class="sh-reviews-content-footer">
+        <a class="sh-reviews-content-user" href="/user/{{=user._id}}">{{=user.username}}</a>
+        <span>·</span>
+        <span class="sh-reviews-content-meta">{{=moment(dateTime).fromNow()}}</span>
+    </div>
+</div>
