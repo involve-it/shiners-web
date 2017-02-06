@@ -18,7 +18,7 @@ var View = Marionette.View.extend({
         Backbone.Validation.bind(this);
         // add returnUrl for navigating from register page:
         if (this.options.returnUrl) {
-            this.$('.js-login-register-link a').attr('href', this.$('.js-login-register-link a').attr('href') + this.options.returnUrl);
+            this.$('.js-login-register-link').attr('href', this.$('.js-login-register-link').attr('href') + this.options.returnUrl);
         }
     },
 

@@ -8,23 +8,22 @@ var webpack = require('webpack'),
 module.exports = {
     entry: './wwwroot/style.js',
     output: {
-        path: "./wwwroot/css/out/",
-
+        path: "./wwwroot/build/",
         filename: "[name].js"
     },
     resolve: {
         modulesDirectories: ["node_modules"]
     },
     plugins: [
-                    new BowerWebpackPlugin({
-                        modulesDirectories: ["/wwwroot/lib"],
-                        manifestFiles:      "bower.json",
-                        includes:           /.*/,
-                        excludes:           [],
-                        searchResolveModulesDirectories: true
-                    }),
-                    new ExtractTextPlugin("site.css")
-                ],
+        new BowerWebpackPlugin({
+            modulesDirectories: ["/wwwroot/lib"],
+            manifestFiles:      "bower.json",
+            includes:           /.*/,
+            excludes:           [],
+            searchResolveModulesDirectories: true
+        }),
+        new ExtractTextPlugin("site.css")
+    ],
     //devServer: {
     //    contentBase: "/",
     //    host: "localhost",

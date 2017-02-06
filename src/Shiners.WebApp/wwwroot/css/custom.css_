@@ -872,8 +872,8 @@ input[type=radio] + label {
     /* BLURRED BG */ }
   #header .map-frame {
     position: relative;
-    top: 55px;
-    left: 20px;
+    top: 5px;
+    left: 5px;
     padding: 0;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;

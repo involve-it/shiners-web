@@ -18,4 +18,5 @@
     earthRadiusKm:6371 ,
     MAXRADIUS :10000
 }
+_.extend(global.$h.help, helper); // put to global
 export default helper;

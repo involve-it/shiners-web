@@ -1,3 +1,17 @@
+/* ==================
+	CONSTANTS LESS
+===================== */
+.sh-body .btn {
+  border: 1px solid #179BD7;
+}
+.sh-body .btn-secondary-danger {
+  border: 1px solid #d9534f;
+  color: #d9534f;
+}
+.sh-view--banner .sh-red-bg {
+  background-color: #fb3d38;
+  color: white !important;
+}
 /** Page Menu
  **************************************************************** **/
 #page-menu {
@@ -304,7 +318,7 @@ body.page--postDetails {
   /* END .sh-post-details */
 }
 body.page--postDetails .sh-content {
-  background: #f5f5f5;
+  background: #f2f5f7;
 }
 body.page--postDetails .sh-content.has-top-margin {
   margin-top: 50px;
@@ -345,7 +359,7 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-side-left h
   font-size: 28px;
   line-height: 1.2;
   font-weight: 400;
-  color: #4a4a4a;
+  color: #3a4751;
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-side-right {
   padding: 16px 16px 16px 0;
@@ -375,7 +389,7 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-publis
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-published .sh-post-item-left .sh-item-left-text {
   position: relative;
-  color: #4a4a4a;
+  color: #3a4751;
   font-size: 12px;
   white-space: nowrap;
   z-index: 1;
@@ -449,7 +463,7 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-tab-me
   margin: 0;
   padding: 0;
   font-size: 16px;
-  color: #4a4a4a;
+  color: #3a4751;
   list-style: none;
   display: flex;
   border-bottom: 1px solid #e6e6e6;
@@ -536,7 +550,7 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-creato
   line-height: 1;
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-creator .sh-post-creator-wrapper .sh-post-creator-info .sh-post-creator-username a {
-  color: #4a4a4a;
+  color: #3a4751;
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-creator .sh-post-creator-wrapper .sh-post-creator-info .sh-post-creator-display-loc-rew a {
   font-size: 14px;
@@ -566,7 +580,7 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-descri
   padding-bottom: 12px;
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-description .sh-post-description-wrapper p {
-  color: #4a4a4a;
+  color: #3a4751;
   padding-bottom: 6px;
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-location {
@@ -591,7 +605,7 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-locati
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-location .sh-post-location-wrapper .sh-post-location-info .sh-post-location-distance span {
   background: rgba(0, 0, 0, 0.1);
-  color: #4a4a4a;
+  color: #3a4751;
   font-size: 12px;
   line-height: 1;
   -webkit-border-radius: 2px;
@@ -655,11 +669,12 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-review
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-review .sh-post-reviews-wrapper .sh-post-reviews .sh-reviews-items .sh-reviews-item .sh-reviews-content .sh-reviews-content-inner .sh-reviews-content-message {
   font-size: 14px;
-  color: #4a4a4a;
+  color: #3a4751;
+  margin-bottom: 0;
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-review .sh-post-reviews-wrapper .sh-post-reviews .sh-reviews-items .sh-reviews-item .sh-reviews-content .sh-reviews-content-footer {
   color: #8f8e94;
-  margin-top: 8px;
+  margin-top: 6px;
   font-size: 12px;
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-review .sh-post-reviews-wrapper .sh-post-reviews .sh-reviews-items .sh-reviews-item .sh-reviews-content .sh-reviews-content-footer .sh-reviews-content-user {
@@ -701,13 +716,13 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-widget
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-widget .sh-post-top-price .sh-price-wrapper .sh-price-number {
   padding: 8px 16px;
-  color: #4a4a4a;
+  color: #3a4751;
   font-size: 36px;
   line-height: 1;
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-widget .sh-post-top-price .sh-price-wrapper .sh-price-prefix {
   position: relative;
-  color: #4a4a4a;
+  color: #3a4751;
   font-family: FontAwesome;
   font-size: 30px;
   line-height: 1;
@@ -791,7 +806,7 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-summar
   padding-right: 7px;
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-summary-information .sh-post-info.sh-with-dotted li .sh-item-right {
-  color: #4a4a4a;
+  color: #3a4751;
   background: #ffffff;
   padding-left: 7px;
 }
@@ -828,11 +843,11 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-wish-a
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-wish-and-more .sh-report-message {
   text-align: center;
   padding-top: 16px;
-  color: #4a4a4a;
+  color: #3a4751;
   font-size: 14px;
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-wish-and-more .sh-report-message a {
-  color: #4a4a4a;
+  color: #3a4751;
   font-size: 14px;
 }
 body.page--postDetails .sh-post-details .sh-creator-photo {
@@ -962,6 +977,9 @@ body.page--postDetails .sh-post-details .sh-same-posts .sh-same-posts-wrapper h4
 .has-spinner.btn-large.active .spinner {
   width: 19px;
 }
+.sky-form .error {
+  color: #fb3d38;
+}
 /* ==================
 	MIXINS LESS
 ===================== */
@@ -986,7 +1004,7 @@ body.page--about .sh-content.has-top-margin {
   margin-top: 70px;
 }
 body.page--about #sh-intro {
-  height: 600px;
+  height: 400px;
   background: url(/images/about-us/sh-intro-bg.jpg) no-repeat center center;
   background-size: cover;
   z-index: 2;
@@ -1216,13 +1234,13 @@ body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-int
   padding-bottom: 35px;
   font-size: 28px;
   font-weight: 400;
-  color: #4a4a4a;
+  color: #3a4751;
 }
 body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-intro-description-wrapper p {
   padding-bottom: 16px;
   font-size: 20px;
   font-weight: 400;
-  color: #4a4a4a;
+  color: #3a4751;
 }
 body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-intro-description-wrapper p:last-child {
   padding-bottom: 0;
@@ -1279,7 +1297,7 @@ body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-int
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  color: #4a4a4a;
+  color: #3a4751;
   background: #4a90e2;
   height: 150px;
   width: 150px;
@@ -1294,7 +1312,7 @@ body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-int
   font-size: 85px;
 }
 body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-how-it-work .sh-intro-how-it-work-wrapper .sh-intro-how-it-work-ul .sh-intro-how-it-work-list li h5 {
-  color: #4a4a4a;
+  color: #3a4751;
   font-size: 16px;
   margin: 20px 0 0;
   text-transform: uppercase;
@@ -1393,7 +1411,7 @@ body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-wh
   flex: 1;
 }
 body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-block h5 {
-  color: #4a4a4a;
+  color: #3a4751;
   font-size: 16px;
   margin-bottom: 10px;
   text-transform: uppercase;
@@ -1421,7 +1439,7 @@ body.page--about .sh-about-us .sh-about-us-wrapper .sh-who-we-are .sh-who-we-are
   padding: 30px 15px;
 }
 body.page--about .sh-about-us .sh-about-us-wrapper .sh-who-we-are .sh-who-we-are-wrapper > div h5 {
-  color: #4a4a4a;
+  color: #3a4751;
   font-size: 16px;
   margin-bottom: 10px;
   text-transform: uppercase;
@@ -1496,8 +1514,8 @@ body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us
 }
 body.page--about .sh-woman-shiners {
   display: inline-block;
-  width: 500px;
-  height: 242px;
+  width: 300px;
+  height: 142px;
   background-image: url(/images/about-us/woman-shiners.png);
   background-position: center center;
   background-repeat: no-repeat;
@@ -1853,7 +1871,7 @@ body.page--massMedia .sh-mass-media .sh-tab-content .tab-pane.active .sh-tab-con
 }
 body.page--massMedia .sh-mass-media .sh-side-menu h2 {
   padding: 12px 16px;
-  color: #4a4a4a;
+  color: #3a4751;
   font-size: 26px;
   line-height: 1;
   font-weight: 200;
@@ -1929,7 +1947,7 @@ body.page--massMedia .sh-mass-media .sh-contact-press .sh-contact-press-wrapper 
 }
 body.page--massMedia .sh-mass-media .sh-contact-press .sh-contact-press-wrapper .sh-items .sh-item .sh-contact-name {
   font-weight: 700;
-  color: #4a4a4a;
+  color: #3a4751;
 }
 body.page--massMedia .sh-mass-media .sh-contact-press .sh-contact-press-wrapper .sh-items .sh-item .sh-contact-email {
   font-size: 14px;
@@ -1944,7 +1962,7 @@ body.page--massMedia .sh-mass-media .sh-quotes .sh-quotes-wrapper .sh-quote {
   border-bottom: 1px solid #e6e6e6;
 }
 body.page--massMedia .sh-mass-media .sh-quotes .sh-quotes-wrapper .sh-quote a {
-  color: #4a4a4a;
+  color: #3a4751;
 }
 body.page--massMedia .sh-mass-media .sh-quotes .sh-quotes-wrapper .sh-quote .sh-press-site {
   margin-top: 6px;
