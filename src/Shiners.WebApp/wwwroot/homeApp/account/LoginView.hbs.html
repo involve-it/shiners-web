@@ -14,16 +14,13 @@
                         <!-- login form -->
                         <form method="post" class="sky-form boxed">
                             <header><i class="fa fa-users"></i> Вход на сайт</header>
-
                             <fieldset class="nomargin">
-
                                 <label class="label margin-top-20">E-mail /  Имя пользователя</label>
                                 <label class="input">
                                     <i class="ico-append fa fa-envelope"></i>
                                     <input type="text" name="email" id="userLogin">
                                     <span class="tooltip tooltip-top-right">Email адрес / Имя пользователя</span>
                                 </label>
-
                                 <label class="label margin-top-20">Пароль</label>
                                 <label class="input">
                                     <i class="ico-append fa fa-lock"></i>
@@ -34,7 +31,6 @@
                                     <input type="checkbox" name="checkbox-inline" id="rememberMe">
                                     <i></i> Запомнить меня
                                 </label>
-
                             </fieldset>
 
                             <footer class="celarfix">
@@ -46,10 +42,16 @@
                                 <div class="login-forgot-password pull-left">
                                     <a href="/Account/FogotPassword">Забыли пароль?</a>
                                 </div>
-                                <div class="login-forgot-password js-login-register-link pull-right">
-                                    <a href="/account/register?returnUrl=/">Регистрация</a>
-                                </div>
                             </footer>
+                            <div class="celarfix">
+                                <a type="submit" class="btn btn-secondary btn-secondary-danger pull-right" href="/account/register?returnUrl=/">
+                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
+                                    Регистрация
+                                </a>
+                                <div class="login-forgot-password pull-left">
+                                    <span style="color: #d9534f">Впервые на сайте?</span>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="col-xs-12 col-md-7 col-sm-7 col-lg-8 col-lg-pull-4 col-md-pull-5 col-sm-pull-5">

@@ -1,3 +1,13 @@
+/* ==================
+	CONSTANTS LESS
+===================== */
+.sh-body .btn {
+  border: 1px solid #179BD7;
+}
+.sh-body .btn-secondary-danger {
+  border: 1px solid #d9534f;
+  color: #d9534f;
+}
 .sh-view--banner .sh-red-bg {
   background-color: #fb3d38;
   color: white !important;
@@ -965,6 +975,9 @@ body.page--postDetails .sh-post-details .sh-same-posts .sh-same-posts-wrapper h4
 }
 .has-spinner.btn-large.active .spinner {
   width: 19px;
+}
+.sky-form .error {
+  color: #fb3d38;
 }
 /* ==================
 	MIXINS LESS

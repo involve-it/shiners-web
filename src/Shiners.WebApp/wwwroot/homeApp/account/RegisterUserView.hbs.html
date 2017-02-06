@@ -22,17 +22,17 @@
                                 <label class="input">
                                     <i class="ico-append fa fa-envelope"></i>
                                     <input type="text" placeholder="Имя пользователя" id="userLogin" name="username">
-                                    <b class="tooltip tooltip-bottom-right">Требуется ввести уникальное имя пользователя</b>
+                                    <b class="tooltip tooltip-bottom-right">Уникальное имя пользователя</b>
                                 </label>
                                 <label class="input">
                                     <i class="ico-append fa fa-envelope"></i>
                                     <input type="text" placeholder="Email адрес" id="userEmail" name="email">
-                                    <b class="tooltip tooltip-bottom-right">Укажите email адрес для верификации</b>
+                                    <b class="tooltip tooltip-bottom-right">email адрес</b>
                                 </label>
                                 <label class="input">
                                     <i class="ico-append fa fa-lock"></i>
                                     <input type="password" placeholder="Пароль" id="userPassword" name="password">
-                                    <b class="tooltip tooltip-bottom-right">Придумайте сложный пароль</b>
+                                    <b class="tooltip tooltip-bottom-right">Пароль</b>
                                 </label>
 
                                 <label class="input">
@@ -44,7 +44,16 @@
 
                             <div class="row margin-bottom-20">
                                 <div class="col-md-12 pull-right">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Регистрация</button>
+                                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Регистрироваться</button>
+                                </div>
+                            </div>
+                            <div class="celarfix" style="color: #d9534f">
+                                <a type="submit" class="btn btn-secondary btn-secondary-danger pull-right" href="/Account/Login?returnUrl=/">
+                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
+                                    Вход
+                                </a>
+                                <div class="login-forgot-password pull-left">
+                                    <span style="color: #d9534f">Уже есть аккаунт?</span>
                                 </div>
                             </div>
                         </form>
