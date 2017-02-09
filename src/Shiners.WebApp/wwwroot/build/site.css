@@ -21659,6 +21659,28 @@ p:first-child {
 
 body {
   letter-spacing: 0.5px; }
+  body #wrapper {
+    position: relative;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 100vh; }
+    body #wrapper #appContent {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1 0 auto;
+      -moz-box-flex: 1;
+      -moz-flex: 1 0 auto;
+      -ms-flex: 1 0 auto;
+      flex: 1 0 auto;
+      background: #f2f5f7; }
+  body.page--index #wrapper #appContent {
+    background: white !important; }
 
 a, .link {
   color: #4a90e2;
@@ -22510,8 +22532,8 @@ input[type=radio] + label {
     /* BLURRED BG */ }
   #header .map-frame {
     position: relative;
-    top: 5px;
-    left: 5px;
+    top: 55px;
+    left: 20px;
     padding: 0;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
@@ -23502,7 +23524,7 @@ input[type=radio] + label {
   .container {
     width: 100% !important; }
   #header {
-    height: auto;
+    height: auto !important;
     /* Mobile menu */ }
     #header .sh-logo-header {
       font-size: 30px;

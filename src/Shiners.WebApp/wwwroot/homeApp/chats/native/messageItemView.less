@@ -1,3 +1,215 @@
-.sh-message-remote {
+@import (less) url("../../../css/sh-mixins.less");
+@import (less) url("../../../css/sh-constants.less");
 
+
+/* ==================
+	MESSAGE CONTAINER
+===================== */
+body {
+
+    &.page--chatId {
+        .sh-messages-to-user {
+            .sh-messages-to-user-wrapper {
+                .sh-messages-to-user-content {
+
+                    .sh-message {
+                        position: relative;
+
+                        .sh-message-wrapper {
+                            max-width: 80%;
+                            position: relative;
+
+                            .sh-message-photo {
+                                position: absolute;
+                                top: 0;
+
+                                .sh-message-photo-wrapper {
+                                    img {
+                                        background: @sh-main-border-color;
+                                        .border-radius(50%);
+                                    }
+                                }
+                            }
+
+                            .sh-message-content {
+                                .sh-message-content-wrapper {
+                                    .sh-message-content-info {
+                                        .sh-flex-display();
+                                        .sh-align-items(center);
+
+                                        .sh-message-content-username {
+                                            a {
+                                                line-height: 1;
+                                                font-size: 13px;
+                                                font-weight: 700;
+                                                text-transform: capitalize;
+                                                color: @sh-main-gray-color;
+                                            }
+                                        }
+
+                                        .sh-message-content-dot {
+                                            line-height: 1;
+                                            padding: 0 4px;
+                                        }
+
+                                        .sh-message-content-tools {
+                                            font-size: 11px;
+                                            color: @sh-main-lightgray-color;
+                                        }
+                                    }
+                                    .sh-message-content-messages {
+                                        font-size: 14px;
+                                        padding: 6px 10px;
+                                        .border-radius();
+                                    }
+                                }
+                            }
+                        }
+
+                    
+                        &.sh-message-remote {
+                            .sh-message-wrapper {
+                                padding-left: 62px;
+                                left: 30px;
+
+                                .sh-message-photo {
+                                    left: 0;
+                                }
+
+                                .sh-message-content {
+                                    .sh-message-content-wrapper {
+                                        .sh-message-content-info {
+                                            .sh-flex-direction(row);
+
+                                            .sh-message-content-username {}
+                                            .sh-message-content-dot {}
+                                            .sh-message-content-tools {}
+                                        }
+                                        .sh-message-content-messages {
+                                            background: rgba(0,0,0, .05);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        &.sh-message-my {
+                            .sh-message-wrapper {
+                                padding-right: 62px;
+                                right: 30px;
+
+                                .sh-message-photo {
+                                    right: 0;
+                                }
+
+                                .sh-message-content {
+                                    .sh-message-content-wrapper {
+                                        .sh-message-content-info {
+                                            .sh-flex-direction(row-reverse);
+
+                                            .sh-message-content-username {}
+                                            .sh-message-content-dot {}
+                                            .sh-message-content-tools {}
+                                        }
+                                        .sh-message-content-messages {
+                                            background: rgba(74,144,226, .1);
+                                        }
+                                    }
+                                }
+                            }
+
+                            &:hover {
+                                .sh-messages-tools {
+                                    .removeMessage {
+                                        visibility: visible;
+                                        opacity: 1;
+                                        .transition(opacity .25s ease-in-out);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            .sh-messages-tools {
+                position: absolute;
+                margin: 0;
+                padding: 0;
+
+                li {
+                    list-style: none;
+                }
+
+                .removeMessage {
+                    visibility: hidden;
+                    opacity: 0;
+
+                    i {
+                        color: @sh-main-red;
+                        font-size: 18px;
+                        opacity: .85;
+
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.isMobile {}
+} 
+
+
+@media (max-width: 992px) {}
+
+@media screen and (max-width: 768px) {
+    body {
+        &.page--chatId {
+            .sh-messages-to-user {
+                padding: 16px 0 !important;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .container {padding: 0;}
+
+    body {
+        &.page--chatId {
+            .sh-messages-to-user {
+                padding: 0 !important;
+
+                .sh-messages-to-user-wrapper {
+                    .sh-messages-to-user-content {
+                        .sh-message {
+                            .sh-message-wrapper {                                
+
+                                .sh-message-photo {
+                                    display: none;
+                                }
+                            }
+
+                            &.sh-message-my {
+                                .sh-message-wrapper {
+                                    padding-right: 0;
+                                }
+                            }
+
+                            .sh-message-remote {
+                                .sh-message-wrapper {
+                                    padding-left: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -1,0 +1,163 @@
+﻿
+@import (less) url("../../../css/sh-mixins.less");
+@import (less) url("../../../css/sh-constants.less");
+
+
+/* ==================
+	MESSAGES TO USER
+===================== */
+
+body {
+    &.page--chatId {
+
+        .sh-messages-to-user {
+            padding: 45px 0;
+
+            #sh-messages-empty {}
+
+            .sh-messages-to-user-wrapper {
+                display: block;
+                width: 100%;
+                height: 100%;
+
+                .sh-messages-to-user-header {
+                    position: relative;
+                    z-index: 2;
+                    max-width: 100%;
+                    width: 100%;                   
+                    white-space: nowrap;
+                    font-size: 13px;
+                    line-height: 18px;
+
+                    .sh-messages-to-user-header-wrapper {
+                        padding: 8px 0;
+                        border-bottom: 1px solid @sh-main-border-color;
+
+                        .sh-messages-to-user-avatar {
+                            float: left;
+                            overflow: hidden;
+                            margin: 0px 0 0 16px;
+
+                            img {
+                                background: @sh-main-border-color;
+                            }
+                        }
+
+                        .sh-messages-to-user-info {
+                            .sh-flex-display();
+                            .sh-align-items(center);
+                            max-width: 100%;                            
+                            margin-left: 82px;
+                            min-height: 50px;
+
+                            .sh-messages-to-user-username {
+                                .sh-flex-display(inline-flex);
+                                .sh-align-items(center);
+                                .sh-flex(1 1 auto);
+                                max-width: 100%;                                
+                                overflow: hidden;
+                                font-size:16px;
+
+                                span {
+                                    .sh-flex(1 1 auto);
+                                    overflow: hidden;
+                                    color: @sh-main-gray-color;
+                                    text-overflow: ellipsis;
+                                    font-weight: 700;
+                                    text-transform: capitalize;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .sh-messages-to-user-content {
+                    display: block;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    height: 100%;
+                    width: 100%;
+                    position: relative;
+
+                    .sh-messages-container {
+                        position: relative;                                                
+                        padding: 16px 16px 30px;
+                        margin: 0;
+
+                        .sh-message {
+                            .sh-flex-display();
+                            .sh-flex-wrap(nowrap);
+                            margin-bottom: 16px;
+
+                            &.sh-message-remote {
+                                .sh-justify-content(flex-start);
+                            }
+
+                            &.sh-message-my {
+                                .sh-justify-content(flex-end);
+                            }
+
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
+
+                .sh-messages-to-user-input {
+                        display: block;
+                        width: 100%;
+                        background: rgba(0,0,0, .05);
+                        
+                        form {
+                            margin: 0;
+                            padding: 0;
+                        }                        
+
+                        .sh-messages-to-user-input-wrapper {
+                            .sh-flex-display();
+                            padding: 8px;
+                            border-top: 1px solid @sh-main-border-color;
+
+                            .sh-messages-input-textarea {
+                                padding-right: 16px;
+                                .sh-flex(1 1 auto);
+
+                                textarea {
+                                    outline: none;
+                                    resize: none;
+                                    min-height: 36px;
+                                    height: inherit;
+                                    width: 100%;
+                                    overflow-y: auto;
+                                    overflow-x: hidden;
+                                    .border-radius();
+                                    line-height: 17px;
+                                    padding: 9px 72px 10px 11px;
+                                    margin-bottom: 0;
+                                    word-wrap: break-word;
+                                    border: 1px solid @sh-main-border-color;
+
+                                    &:hover {}
+
+                                    &:focus {}
+                                }
+                            }
+
+                            .sh-messages-input-action {
+                                .sh-flex-display();
+                                .sh-align-items(flex-end);
+
+                                button {
+                                    padding: 12px 16px;
+                                }
+                            }
+                        }
+                }
+            }
+        }
+    }
+
+    &.isMobile {}
+}

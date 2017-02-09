@@ -6,7 +6,7 @@ var View = Marionette.CollectionView.extend({
     childView:ItemView,
     emptyView:EmptyView,
     tagName:'ul',
-    className:'comment list-unstyled',
+    className:'sh-messages-container list-unstyled',
 
     initialize() {
         this.listenTo(app, 'add:message',fields=> this.collection.add(fields));

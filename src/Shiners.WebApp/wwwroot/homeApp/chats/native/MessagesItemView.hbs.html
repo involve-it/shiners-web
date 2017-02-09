@@ -1,46 +1,60 @@
-﻿{{if (userId===user._id) { }}
-<img class="avatar" src="{{= user.image && user.image.imageUrl ? '/Img/Index?url='+encodeURIComponent(user.image.imageUrl) +'&w=50&h=50' : '/images/shiners/user.png'}}" alt="{{=user.username}}" width="50" height="50">
-{{ } else { }}
-<img class="avatar" src="{{= remoteUser.image &&remoteUser.image.imageUrl ?'/Img/Index?url='+ encodeURIComponent(remoteUser.image.imageUrl)+'&w=50&h=50' : '/images/shiners/user.png'}}" alt="{{=remoteUser.username}}" width="50" height="50">
-{{ } }}
+﻿
 
-<div class="comment-body">
-    <a href="/profile/{{=userId}}" class="comment-author">
-        <small class="text-muted pull-right"> {{=moment(timestamp).calendar()}} </small>
-        <span>{{= userId==user._id?user.username:remoteUser.username}}</span>
-    </a>
-    <p>
-        {{=text}}
-    </p>
+<div class="sh-message-wrapper">
+    <div class="sh-message-photo">
+        <div class="sh-message-photo-wrapper">
+            <!--<a href="/profile/{{=userId}}">555555</a>-->
+            <!--{{= user.image && user.image.imageUrl ? '/Img/Index?url='+encodeURIComponent(user.image.imageUrl) +'&w=50&h=50' : '/images/no_avatar.png'}}-->
+            {{if (userId===user._id) { }}
+            <img class="avatar" src="{{= user.image && user.image.imageUrl ? user.image.imageUrl : '/images/no_avatar.png'}}" alt="{{=user.username}}" width="50" height="50">
+            {{ } else { }}
+            <img class="avatar" src="{{= remoteUser.image && remoteUser.image.imageUrl ? remoteUser.image.imageUrl : '/images/no_avatar.png'}}" alt="{{=remoteUser.username}}" width="50" height="50">
+            {{ } }}
+        </div>
+    </div>
+
+    <div class="sh-message-content">
+        <div class="sh-message-content-wrapper">
+            <div class="sh-message-content-info">
+                <div class="sh-message-content-username"><a href="/profile/{{=userId}}">{{= userId==user._id?user.username:remoteUser.username}}</a></div>
+                <span class="sh-message-content-dot"> · </span>
+                <span class="sh-message-content-tools">{{=moment(timestamp).calendar()}}</span>
+            </div>
+            <div class="sh-message-content-messages">{{=text}}</div>
+        </div>
+    </div>
 </div>
 
-<ul class="list-inline size-11 margin-top-10">
+
+
+
+
+<ul class="sh-messages-tools">
     <li>
-{{ switch (status) { case 'sending': }}
+        {{ switch (status) { case 'sending': }}
 
-        <a class="text-muted"><i class="fa fa-time"></i> отправка</a>
+                <a class="text-muted"><i class="fa fa-time"></i> отправка</a>
 
-{{ break; case 'success': }}
+        {{ break; case 'success': }}
 
-        <a class="text-success"><i class="fa fa-check"></i> отправлено</a>
+                <a class="text-success"><i class="fa fa-check"></i> отправлено</a>
 
-{{ break; case 'error': }}
+        {{ break; case 'error': }}
 
-        <a class="text-danger"><i class="fa fa-remove"></i> не отправлено</a>
+                <a class="text-danger"><i class="fa fa-remove"></i> не отправлено</a>
 
-{{ break; case 'remote': }}
+        {{ break; case 'remote': }}
 
-        <span class="text-muted">&nbsp;</span>
-{{ break; case 'old': }}
+                <span class="text-muted">&nbsp;</span>
+        {{ break; case 'old': }}
 
-    <span class="text-muted">&nbsp;</span>
+            <span class="text-muted">&nbsp;</span>
 
-{{ break; default: throw new Error("Unknown status"); } }}
-        
+        {{ break; default: throw new Error("Unknown status"); } }}
     </li>
     {{ if (obj.userId === user._id) { }}
-    <li class="pull-right">
-        <a class="text-danger removeMessage"> Удалить</a>
+    <li>
+        <a class="removeMessage" title="Удалить сообщение"><i class="fa fa-times" aria-hidden="true"></i></a>
     </li>
     {{ } }}
 </ul>

@@ -2,6 +2,7 @@
 import template from './chatItemView.hbs.html';
 import app from '../../app.js';
 import './chatItemView.css';
+import './myChatItemView.less';
 
 var View = Marionette.View.extend({
     template:template,

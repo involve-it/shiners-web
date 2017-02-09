@@ -1,5 +1,6 @@
 ﻿import Marionette from 'backbone.marionette';
 import template from './MessagesItemView.hbs.html';
+import './messageItemView.less';
 
 var View = Marionette.View.extend({
     template:template,

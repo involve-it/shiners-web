@@ -1,17 +1,42 @@
-﻿<div class="container">
-    <div class="col-md-12">
-        <div class="box-icon box-icon-center box-icon-round box-icon-large text-center nomargin">           
-            <h2><img class="rounded" src="{{=remoteUser.image && remoteUser.image.imageUrl?'/Img?url='+encodeURIComponent(remoteUser.image.imageUrl)+'&w=70&h=70':'/images/avatar.png'}}" alt="" width="70" height="70"> {{=remoteUser.username}}</h2>
-        </div>
-
-        <div class="box-light">
-            <div class="box-inner" id="messagesList"></div> 
-        </div>
-        <form method="post" action="#" class="box-light margin-top-10">
-            <div class="box-inner">
-                <textarea id="messageText" required="" class="form-control" data-maxlength="100" rows="3" placeholder="Ваше сообщение для пользователя {{=remoteUser.username}}"></textarea>
-                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Отправить</button>
+﻿
+<div class="sh-messages-to-user">
+    <div class="container">
+        <!-- Вынести в отдельный VIEW #sh-messages-empty -->
+        <div id="sh-messages-empty"></div>
+        <div class="sh-messages-to-user-wrapper sh-page-block">
+            <div class="sh-messages-to-user-header">
+                <div class="sh-messages-to-user-header-wrapper">
+                    <div class="sh-messages-to-user-avatar">
+                        <img class="rounded" src="{{=remoteUser.image && remoteUser.image.imageUrl ? remoteUser.image.imageUrl : '/images/no_avatar.png'}}" alt="" width="50" height="50">
+                    </div>
+                    <div class="sh-messages-to-user-info">
+                        <div class="sh-messages-to-user-username">
+                            <span>{{=remoteUser.username}}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
+            <div id="messagesList" class="sh-messages-to-user-content"></div>
+            <div class="sh-messages-to-user-input">
+                <form method="post" action="#" class="">
+                    <div class="sh-messages-to-user-input-wrapper">
+                        <div class="sh-messages-input-textarea">
+                            <textarea id="messageText" required="" data-autoresize class="form-control" data-maxlength="100" rows="1" placeholder="Сообщение для {{=remoteUser.username}}"></textarea>
+                        </div>
+                        <div class="sh-messages-input-action">
+                            <button type="submit" class="ui sh-button standard action disabled">Отправить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+
+
+<!--
+<img class="rounded" src="{{=remoteUser.image && remoteUser.image.imageUrl?'/Img?url='+encodeURIComponent(remoteUser.image.imageUrl)+'&w=70&h=70':'/images/avatar.png'}}" alt="" width="70" height="70"> {{=remoteUser.username}}
+-->

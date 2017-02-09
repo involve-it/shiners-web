@@ -187,6 +187,26 @@ p:first-child {
 
 body {
     letter-spacing: 0.5px;
+
+    #wrapper {
+        position: relative;
+        @include sh-display-flex();
+        @include sh-flex-direction(column);
+        min-height: 100vh;
+
+        #appContent {
+            @include flex(1 0 auto);
+            background: #f2f5f7;
+        }
+    }
+
+    &.page--index {
+         #wrapper {
+             #appContent {                
+                background: $sh-white-color !important;
+            }
+         }
+    }
 }
 
 a, .link {
@@ -651,34 +671,34 @@ input[type=radio] + label {
 
     /* Standard button */
     &.sh-button {
-    cursor: pointer;
-    display: inline-block;
-    min-height: 1em;
-    outline: none;
-    border: none;
-    vertical-align: baseline;
-    background: #E0E1E2 none;
-    color: rgba(0, 0, 0, 0.6);
-    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0.78571429em 1.5em 0.78571429em;
-    text-transform: none;
-    text-shadow: none;
-    font-weight: bold;
-    line-height: 1em;
-    font-style: normal;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 4px;
-    box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
-    transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
-    will-change: '';
-    -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
+        display: inline-block;
+        min-height: 1em;
+        outline: none;
+        border: none;
+        vertical-align: baseline;
+        background: #E0E1E2 none;
+        color: rgba(0, 0, 0, 0.6);
+        font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0.78571429em 1.5em 0.78571429em;
+        text-transform: none;
+        text-shadow: none;
+        font-weight: bold;
+        line-height: 1em;
+        font-style: normal;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 4px;
+        box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+        transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+        will-change: '';
+        -webkit-tap-highlight-color: transparent;
 
     &.basic {
     padding: .786em 1.5em;
@@ -2496,7 +2516,7 @@ input[type=radio] + label {
     }
     
     #header {
-        height: auto;
+        height: auto !important;
 
         .sh-logo-header {
             font-size: 30px;

@@ -1,0 +1,140 @@
+﻿
+@import (less) url("../../../css/sh-mixins.less");
+@import (less) url("../../../css/sh-constants.less");
+
+
+/* ==================
+	MY CHAT ITEM
+===================== */
+
+body {
+
+    &.page--chatsMy {
+        
+        .sh-content {
+	        //background: @sh-main-content-bg2;
+
+            .sh-page-chats {
+                padding: 45px 0;
+
+                .sh-section-hero-headline {
+                    font-size: 36px;
+                    padding-bottom: 16px;
+                }
+
+                .sh-pages-chats-wrapper {
+                    > div {
+                        border-bottom: 1px solid @sh-main-border-color;
+
+                        &:last-child {
+                            border-bottom: none;
+                        }
+                    }
+                }
+
+                .sh-chat-item-container {
+
+                    .sh-chat-item {
+                        
+                        a {
+                            display: block;
+                            padding: 10px 16px;
+                        }
+
+                        .sh-meta-info {
+                            position: relative;
+
+                            .sh-chat-user {
+                                margin: 2px 16px 0 0;
+                                overflow: hidden;
+                                float:left;
+
+                                .sh-avatar {
+                                    img {
+                                        height: 50px;
+                                        width: 50px;
+                                        .border-radius(50%);
+                                    }
+                                }
+                            }
+
+                            .sh-chat-content {
+                                margin-left: 57px;
+                                min-height: 52px;
+
+                                .sh-username {
+                                    padding: 0;
+                                    font-weight: 700;
+                                    font-size: 14px;
+                                    color: @sh-main-blue-background;
+                                    text-transform: capitalize;
+                                }
+
+                                .sh-last-timestamp {
+                                    font-size: 12px;
+                                    color: @sh-main-lightgray-color;
+                                    float: right;
+                                    text-align: right;
+                                }
+
+                                .sh-users-messages {
+                                    padding: 3px 0 0;
+                                    line-height: 1.4em;
+                                    word-wrap: break-word;
+
+                                    .sh-last-message {
+                                        font-weight:700;
+                                        color: @sh-main-gray-color
+                                    }
+                                }
+                            }
+                        }
+                    } 
+                    
+                    &:hover, &:focus {
+                        background: @sh-main-hover-bg;
+                    }                   
+                }
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 480px) {
+    body.page--chatsMy {
+        .sh-content {
+            .sh-page-chats {
+                 padding: 16px 0;
+
+                .sh-chat-item-container {
+                    .sh-chat-item {
+                        a {
+                            padding: 8px 10px;
+
+                            .sh-meta-info {
+                                .sh-chat-user {
+                                    margin: 1px 7px 0 0;
+
+                                    .sh-avatar {
+                                        img {
+                                            height: 40px;
+                                            width: 40px;
+                                            .border-radius(50%);
+                                        }
+                                    }
+                                }
+
+                                .sh-chat-content {
+                                    margin-left: 47px;
+                                    min-height: 42px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

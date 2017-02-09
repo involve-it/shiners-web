@@ -1,22 +1,25 @@
-﻿<div class="blog-post-item">
+﻿<div class="sh-chat-item-container">
     {{ obj.__otherParty = {} }}
     {{ if(obj.otherParty && obj.otherParty[0]) { obj.__otherParty = obj.otherParty[0]; } }}
     {{ obj.__lastMessage = obj.lastMessage || {} }}
-    <div class="bz-chat-item">
+    <div class="sh-chat-item">
         <a href="/messages/to/{{= obj.__otherParty._id }}">
         <!--<a href="/messages/to/{{-_id }}?remoteUserId={{= obj.__otherParty.remoteUserId }}">-->
-            <div class="bz-meta">
-                <div class="bz-user-avatar">
-                    <div class="bz-avatar">
-                        <img src="{{= obj.__otherParty.image ? obj.__otherParty.image.thumbnail || obj.__otherParty.image.imageUrl || '/images/shiners/user.png' : '/images/shiners/user.png' }}"
-                             alt="null"/>
+            <div class="sh-meta-info">                
+                <div class="sh-chat-user">
+                    <div class="sh-avatar">
+                        <img src="{{= obj.__otherParty.image ? obj.__otherParty.image.thumbnail || obj.__otherParty.image.imageUrl || '/images/no_avatar.png' : '/images/no_avatar.png' }}"
+                                alt="null" />
+                    </div>                   
+                </div>               
+                
+                <div class="sh-chat-content">
+                    <span class="sh-last-timestamp">{{= moment(obj.lastMessageTs).fromNow() }}</span>
+                    <div class="sh-username">{{= obj.__otherParty.username }}</div>
+                    <div class="sh-users-messages">
+                        <div class="sh-last-message">{{= obj.__lastMessage.text }}</div>
                     </div>
-                </div>
-
-                <div class="bz-username">{{= obj.__otherParty.username }}</div>
-                <div class="bz-last-message">{{= obj.__lastMessage.text }}</div>
-                <div class="bz-last-timestamp">{{= moment(obj.lastMessageTs).fromNow() }}</div>
-
+                </div>        
             </div>
         </a>
     </div>
