@@ -952,6 +952,245 @@ body.page--postDetails .sh-post-details .sh-same-posts .sh-same-posts-wrapper h4
 	CONSTANTS LESS
 ===================== */
 /* ==================
+	MY POSTS ITEM & VIEW
+===================== */
+body.page--postsMy .sh-my-posts {
+  padding: 45px 0;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item {
+  position: relative;
+  margin: 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  width: 100%;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-photo {
+  position: relative;
+  -webkit-flex-basis: 150px;
+  -ms-flex-basis: 150px;
+  flex-basis: 150px;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+  -webkit-flex-shrink: 0;
+  -ms-flex-shrink: 0;
+  flex-shrink: 0;
+  width: 150px;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-photo .sh-my-posts-item-photo-wrapper {
+  padding: 16px 0 16px 16px;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-photo .sh-my-posts-item-photo-wrapper .img {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+  background-color: #c0c8cc;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  height: 107px;
+  max-width: 100%;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-photo .sh-my-posts-item-photo-count {
+  position: absolute;
+  bottom: 25px;
+  left: calc(50% + 8px);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-photo .sh-my-posts-item-photo-count span {
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  color: #ffffff;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+  margin-left: 16px;
+  word-wrap: break-word;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header {
+  margin-top: 2px;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header .sh-my-posts-item-content-header-wrapper {
+  margin-top: 10px;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header .sh-my-posts-item-content-header-wrapper .sh-my-posts-item-content-title h2 {
+  line-height: 1;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header .sh-my-posts-item-content-header-wrapper .sh-my-posts-item-content-title a {
+  color: #3a4751;
+  font-size: 24px;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header .sh-my-posts-item-content-header-wrapper span {
+  font-size: 12px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  padding: 6px 8px;
+  margin-right: 12px;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header .sh-my-posts-item-content-header-stat {
+  margin-bottom: 16px;
+  margin-top: 2px;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header .sh-my-posts-item-content-header-stat .sh-my-posts-item-stat {
+  padding: 0;
+  margin: 0;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header .sh-my-posts-item-content-header-stat .sh-my-posts-item-stat li {
+  list-style: none;
+  padding-right: 8px;
+  display: inline-block;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header .sh-my-posts-item-content-header-stat .sh-my-posts-item-stat li a {
+  font-size: 14px;
+  font-weight: 400;
+  color: #8f8e94;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header .sh-my-posts-item-content-header-stat .sh-my-posts-item-stat li a span {
+  color: #8f8e94;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header .sh-my-posts-item-content-header-stat .sh-my-posts-item-stat li:last-child {
+  padding-right: 0;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer {
+  margin-bottom: 16px;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper .sh-my-posts-item-content-footer-location .sh-my-posts-item-content-footer-location-wrapper {
+  font-size: 12px;
+  background: rgba(51, 71, 81, 0.3);
+  color: #ffffff;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  padding: 2px 6px;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper .sh-my-posts-item-content-footer-progress {
+  -webkit-flex: 1 1 0;
+  -ms-flex: 1 1 0;
+  flex: 1 1 0;
+  padding-right: 16px;
+  width: 100%;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper .sh-my-posts-item-content-footer-progress .progress {
+  margin-bottom: 0;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper > div {
+  margin-right: 16px;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper > div:last-child {
+  margin-right: 0;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+@media screen and (max-width: 768px) {
+  body.page--postsMy .sh-my-posts {
+    padding: 15px 0;
+  }
+  body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-photo {
+    -webkit-flex-basis: 130px;
+    -ms-flex-basis: 130px;
+    flex-basis: 130px;
+    width: 130px;
+  }
+  body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-photo .sh-my-posts-item-photo-wrapper .img {
+    height: 85px;
+  }
+  body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header .sh-my-posts-item-content-header-stat .sh-my-posts-item-stat li a {
+    font-size: 12px;
+  }
+  body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header .sh-my-posts-item-content-header-wrapper {
+    margin-top: 0px;
+  }
+  body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header .sh-my-posts-item-content-header-wrapper .sh-my-posts-item-content-title a {
+    font-size: 18px;
+  }
+  body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-header .sh-my-posts-item-content-header-wrapper span {
+    font-size: 10px;
+    padding: 4px 6px;
+    margin-top: 10px;
+  }
+  body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper .sh-my-posts-item-content-footer-location .sh-my-posts-item-content-footer-location-wrapper {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0;
+  }
+  body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-photo {
+    -webkit-flex-basis: auto;
+    -ms-flex-basis: auto;
+    flex-basis: auto;
+    width: 100%;
+  }
+  body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-photo .sh-my-posts-item-photo-wrapper {
+    padding: 10px;
+  }
+  body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-photo .sh-my-posts-item-photo-wrapper .img {
+    height: 225px;
+  }
+  body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content {
+    margin-left: 10px;
+  }
+}
+/* ==================
+	MIXINS LESS
+===================== */
+/* ==================
+	CONSTANTS LESS
+===================== */
+/* ==================
 	MY CHAT ITEM
 ===================== */
 body.page--chatsMy .sh-content .sh-page-chats {
@@ -969,7 +1208,7 @@ body.page--chatsMy .sh-content .sh-page-chats .sh-pages-chats-wrapper > div:last
 }
 body.page--chatsMy .sh-content .sh-page-chats .sh-chat-item-container .sh-chat-item a {
   display: block;
-  padding: 8px 16px;
+  padding: 10px 16px;
 }
 body.page--chatsMy .sh-content .sh-page-chats .sh-chat-item-container .sh-chat-item .sh-meta-info {
   position: relative;
@@ -1024,7 +1263,7 @@ body.page--chatsMy .sh-content .sh-page-chats .sh-chat-item-container:focus {
     padding: 16px 0;
   }
   body.page--chatsMy .sh-content .sh-page-chats .sh-chat-item-container .sh-chat-item a {
-    padding: 5px 7px 7px;
+    padding: 8px 10px;
   }
   body.page--chatsMy .sh-content .sh-page-chats .sh-chat-item-container .sh-chat-item a .sh-meta-info .sh-chat-user {
     margin: 1px 7px 0 0;

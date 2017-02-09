@@ -2,6 +2,7 @@
 import template from './PostsMyView.hbs.html';
 import ItemView from  './PostItemView'
 import app from '../../app.js';
+import  './PostMyView.less';
 
 var View = Marionette.CompositeView.extend({
     template:template,

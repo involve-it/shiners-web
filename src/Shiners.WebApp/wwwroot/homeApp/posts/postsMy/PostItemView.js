@@ -5,10 +5,14 @@ import locationHelper from '../../../helpers/locationHelper.js';
 
 var View = Marionette.View.extend({
     template:template,
+    className: 'sh-my-posts-item',
     onBeforeRender() {
         this.getDistance();
     },
     getDistance() {
+
+        window.mypost = this.model.toJSON(); //debug
+
         var locations = this.model.get('details').locations;
         if (locations && _.size(locations) > 0 && app.user.has('position')) {
             var location = _.find(locations, function(l) { return l.placeType === 'dynamic'; });

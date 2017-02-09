@@ -1,0 +1,295 @@
+﻿
+
+@import (less) url("../../../css/sh-mixins.less");
+@import (less) url("../../../css/sh-constants.less");
+
+
+/* ==================
+	MY POSTS ITEM & VIEW
+===================== */
+
+body {
+    &.page--postsMy {
+        .sh-my-posts {
+            padding: 45px 0;
+
+            .sh-my-posts-wrapper {
+                .sh-my-posts-item {
+                    position: relative;
+                    margin: 0;
+                    border-bottom: 1px solid @sh-main-border-color;
+
+                    .sh-my-posts-item-wrapper {
+                        .sh-flex-display();
+                        width: 100%;
+
+                        .sh-my-posts-item-photo {
+                            position: relative;
+                            .sh-flex-basis(150px);
+                            .sh-flex-grow(0);
+                            .sh-flex-shrink(0);
+                            width: 150px;
+
+                            .sh-my-posts-item-photo-wrapper {
+                                padding: 16px 0 16px 16px;
+
+                                a {}
+
+                                .img {
+                                    background-position: center center;
+                                    background-repeat: no-repeat;
+                                    background-size: cover;
+                                    display: block;
+                                    background-color: rgba(192,200,204, 1);
+                                    .border-radius(4px);
+                                    height: 107px;
+                                    max-width: 100%;
+                                }
+                            }
+
+                            .sh-my-posts-item-photo-count {
+                                position: absolute;
+                                bottom: 25px;
+                                left: calc(~"50% + 8px");
+                                -webkit-transform: translateX(-50%);
+                                transform: translateX(-50%);
+
+                                span {
+                                    background: rgba(0,0,0, .5);
+                                    .border-radius();
+                                    color: @sh-main-white-color;
+                                    padding: 2px 8px;
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+
+                        .sh-my-posts-item-content {
+                            .sh-flex-display();
+                            .sh-flex-direction(column);
+                            .sh-justify-content(space-between);
+                            margin-left: 16px;
+                            word-wrap: break-word;
+                            .sh-flex(1 1 auto);
+
+                            .sh-my-posts-item-content-header {
+                                margin-top: 2px;
+
+                                .sh-my-posts-item-content-header-wrapper {
+                                    margin-top: 10px;
+
+                                    .sh-my-posts-item-content-title {
+
+                                        h2 {line-height: 1;}
+
+                                        a {
+                                            color: @sh-main-gray-color;
+                                            font-size: 24px;                                            
+                                        }
+                                    }
+
+                                    span {
+                                        font-size: 12px;
+                                        .border-radius();
+                                        padding: 6px 8px;
+                                        margin-right: 12px;
+                                    }
+                                }
+                                
+                                .sh-my-posts-item-content-header-stat {
+                                    margin-bottom: 16px;
+                                    margin-top: 2px;
+
+                                    .sh-my-posts-item-stat {
+                                        padding: 0;
+                                        margin: 0;
+
+                                        li {
+                                            list-style: none;
+                                            padding-right: 8px;
+                                            display: inline-block;
+
+                                            a {                                                
+                                                font-size: 14px;
+                                                font-weight: 400;
+                                                color: @sh-main-lightgray-color;
+
+                                                span {
+                                                    color: @sh-main-lightgray-color;
+                                                }
+                                            }
+
+                                            &:last-child {
+                                                padding-right: 0;
+                                            }
+                                        }
+                                    }
+                                }                                
+                            }
+
+                            .sh-my-posts-item-content-body {}
+
+                            .sh-my-posts-item-content-footer {
+                                margin-bottom: 16px;
+
+                                .sh-my-posts-item-content-footer-wrapper {
+                                    .sh-flex-display();
+                                    .sh-align-items(center);
+
+                                    .sh-my-posts-item-content-footer-location {                                        
+                                        .sh-my-posts-item-content-footer-location-wrapper {
+                                            font-size: 12px;
+                                            background: rgba(51,71,81, .3);
+                                            color: @sh-main-white-color;
+                                            .border-radius();
+                                            padding: 2px 6px;
+                                        }
+                                    }
+
+                                    .sh-my-posts-item-content-footer-progress {
+                                        .sh-flex(1 1 0);
+                                        padding-right: 16px;
+                                        width: 100%;
+
+                                        .progress {
+                                            margin-bottom: 0;
+                                        }
+                                    }
+
+                                    > div {
+                                        margin-right: 16px;
+
+                                        &:last-child {
+                                            margin-right: 0;
+                                        }
+                                    }
+                                }                                
+                            }
+                        }
+
+                        &.sh-post-live {}
+
+                        &.sh-post-away {}
+
+                        &.sh-type-category- {}
+                    }
+
+                    &:last-child {
+                        border-bottom: none;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    body {
+        &.page--postsMy {
+            .sh-my-posts {
+		        padding: 15px 0;
+
+                .sh-my-posts-wrapper {
+                    .sh-my-posts-item {
+                        .sh-my-posts-item-wrapper {
+                            .sh-my-posts-item-photo {
+                                .sh-flex-basis(130px);                                
+                                width: 130px;
+
+                                .sh-my-posts-item-photo-wrapper {
+                                     .img {
+                                         height: 85px;
+                                     }
+                                }
+                            }
+
+                            .sh-my-posts-item-content {
+                                .sh-my-posts-item-content-header {
+
+                                    .sh-my-posts-item-content-header-stat {
+                                        .sh-my-posts-item-stat {
+                                            li {
+                                                a {
+                                                    font-size: 12px;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .sh-my-posts-item-content-header-wrapper {
+                                            margin-top: 0px;
+
+                                            .sh-my-posts-item-content-title {
+                                                a {
+                                                    font-size: 18px;
+                                                }
+                                            }
+                                        
+                                            span {
+                                                font-size: 10px;
+                                                padding: 4px 6px;
+                                                margin-top: 10px;
+                                            }
+                                    }
+                                }
+
+                                .sh-my-posts-item-content-footer {
+                                    .sh-my-posts-item-content-footer-wrapper {
+                                        .sh-my-posts-item-content-footer-location {
+                                            .sh-my-posts-item-content-footer-location-wrapper {
+                                                font-size: 10px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .container {
+		padding: 0;
+	}
+
+    body {
+        &.page--postsMy {
+             .sh-my-posts {
+                 .sh-my-posts-wrapper {
+                     .sh-my-posts-item {
+                         .sh-my-posts-item-wrapper {
+                             .sh-flex-direction(column);
+
+                             .sh-my-posts-item-photo {
+                                 .sh-flex-basis(auto);
+                                 width: 100%;
+
+                                 .sh-my-posts-item-photo-wrapper {
+                                     padding: 10px;
+
+                                     .img {
+                                         height: 225px;
+                                     }
+                                 }
+                             }
+
+                             .sh-my-posts-item-content {
+                                 margin-left: 10px;
+                             }
+                         }
+                     }
+                 }
+             }
+        }
+    }
+}
+
+ 

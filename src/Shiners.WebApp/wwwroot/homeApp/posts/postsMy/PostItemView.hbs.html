@@ -1,56 +1,68 @@
-﻿<div class="blog-post-item">
+﻿<!-- class .sh-my-posts-item-wrapper include .sh-post-live or .sh-post-away -->
+<div class="sh-my-posts-item-wrapper sh-type-category-{{=type}}">
     {{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}
-    <figure class="blog-item-small-image margin-bottom-20">
-        <a href="/posts/{{-_id}}">
-            <img class="img-responsive" src="{{-details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/demo/300x250.png'}}" alt="">
-        </a>
-    </figure>
-
-    <div class="blog-item-small-content">
-
-        <h2><a href="/posts/{{-_id}}">{{=details.title}}</a><span class="label bg-type-category-{{=type}} pull-right">{{=type}}</span></h2>
-
-
-        <ul class="blog-post-info list-inline">
-            <li>
-                <a href="#">
-                    <i class="fa fa-clock-o"></i>
-                    <span class="font-lato">{{=moment(timestamp).fromNow()}}</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-eye"></i>
-                    <span class="font-lato"> {{=obj.stats?stats.seenAll:0}}</span>
-                </a>
-            </li>
-            <li title="{{=isDynamic?'Динамическое объявление':'Статическое'}}" class="sh-label-box transparent-dark margin-left-3">
-                <a href="#">
-                    <i class="fa fa-{{=isDynamic?'man':'flag' }}"></i>
-                    <span class="font-lato">{{=isDynamic?'success':''}}</span>
-                </a>
-            </li>
-            <li class="sh-label-box transparent-dark margin-left-3">
-                <a href="#">
-                    <i class="fa fa-location-arrow"></i>
-                    <span class="font-lato">
-                        {{=distance>-1?distance.toFixed(1) + ' '+distanceType:''}}
-                    </span>
-                </a>
-            </li>
-        </ul>
-        <p class="sh-item-text">
-            {{var loc = _.find(details.locations,function(l) { return l.placeType==='dynamic' })||details.locations[0]; }}
-            {{ if (loc) { }}
-            {{=loc.name}}
-            {{ } }}
-        </p>
-        <div class="sh-progress-bar progress">
-            <div class="progress-bar {{=progress>=70?'progress-bar-success':(progress>=25&&progress<70?'progress-bar-warning':'progress-bar-danger')}}" role="progressbar" style="width: {{=progress}}%; min-width: 1em; ">
-                <span class="sr-only"></span>
+    <div class="sh-my-posts-item-photo">        
+        <div class="sh-my-posts-item-photo-wrapper">
+            <a href="/posts/{{-_id}}">
+                <div class="img img-responsive" style="background-image:url('{{= details.photos && details.photos.length > 0 ? details.photos[0].thumbnail||details.photos[0].data : '/images/no_image.jpg'}}')" alt="Photo of the post"></div>
+            </a>
+        </div> 
+        {{ if (_.size(details.photos) > 0){ }}
+            <div class="sh-my-posts-item-photo-count">
+                <span>
+                    {{=details.photos.length}}
+                </span>
             </div>
+        {{ } }}       
+    </div>
+
+    <div class="sh-my-posts-item-content">
+        <div class="sh-my-posts-item-content-header">
+            <div class="sh-my-posts-item-content-header-wrapper">
+                <span class="label bg-type-category-{{=type}} pull-right">{{=type}}</span>
+                <div class="sh-my-posts-item-content-title">
+                    <h2><a href="/posts/{{-_id}}">{{=details.title}}</a></h2>
+                </div>
+            </div>
+            <div class="sh-my-posts-item-content-header-stat">
+                <ul class="sh-my-posts-item-stat">
+                    <li><a href="#"><i class="fa fa-clock-o"></i> <span class="">{{=moment(obj.timestamp.$date).fromNow()}}</span></a></li>
+                    <li><a href="#"><i class="fa fa-eye"></i> <span class="">{{=obj.stats?stats.seenAll:0}}</span></a></li>
+                    <li><a title="{{=isDynamic ? 'Динамическое объявление' : 'Статическое'}}" href="#"><i class="fa fa-{{=isDynamic?'man':'flag' }}"></i> <span class="">{{=isDynamic ? 'success' : ''}}</span></a></li>
+                    <li><a href="#"><i class="fa fa-location-arrow"></i> <span class="">{{=distance>-1?distance.toFixed(1) + ' '+distanceType:''}}</span></a></li>
+                </ul>
+            </div>            
         </div>
+
+        <div class="sh-my-posts-item-content-body"></div>
+
+        <div class="sh-my-posts-item-content-footer">
+            <div class="sh-my-posts-item-content-footer-wrapper">
+                <div class="sh-my-posts-item-content-footer-location">
+                    <div class="sh-my-posts-item-content-footer-location-wrapper">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> 
+                        {{var loc = _.find(details.locations,function(l) { return l.placeType==='dynamic' })||details.locations[0]; }}
+                        {{ if (loc) { }}
+                            <span>{{=loc.name}}</span>
+                        {{ } }}
+                    </div>
+                </div>
+                <div class="sh-my-posts-item-content-footer-progress">
+                    <div class="sh-progress-bar progress">
+                        <div class="progress-bar {{=progress>=70?'progress-bar-success':(progress>=25&&progress<70?'progress-bar-warning':'progress-bar-danger')}}" role="progressbar" style="width: {{=progress}}%; min-width: 1em; ">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        
+        <!--
+
         <p>{{=details.description}}</p>
+
+        -->
+
 
         <!--<a href="#" class="btn btn-reveal btn-default js-edit-my-chat">
             <i class="fa fa-edit"></i>

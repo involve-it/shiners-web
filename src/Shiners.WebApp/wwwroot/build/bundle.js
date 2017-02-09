@@ -15971,7 +15971,7 @@
 	
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
-	__webpack_require__(/*! ../css/shiners-override.css */ 180);
+	__webpack_require__(/*! ../css/shiners-override.css */ 181);
 	
 	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
@@ -30872,63 +30872,63 @@
 	
 	var _PostsMyView2 = _interopRequireDefault(_PostsMyView);
 	
-	var _chatsMyView = __webpack_require__(/*! ./chats/chatsMy/chatsMyView.js */ 131);
+	var _chatsMyView = __webpack_require__(/*! ./chats/chatsMy/chatsMyView.js */ 132);
 	
 	var _chatsMyView2 = _interopRequireDefault(_chatsMyView);
 	
-	var _ChatIdView = __webpack_require__(/*! ./chats/ChatIdView.js */ 138);
+	var _ChatIdView = __webpack_require__(/*! ./chats/ChatIdView.js */ 139);
 	
 	var _ChatIdView2 = _interopRequireDefault(_ChatIdView);
 	
-	var _DetailsView3 = __webpack_require__(/*! ./user/DetailsView.js */ 140);
+	var _DetailsView3 = __webpack_require__(/*! ./user/DetailsView.js */ 141);
 	
 	var _DetailsView4 = _interopRequireDefault(_DetailsView3);
 	
-	var _MessagesToUserView = __webpack_require__(/*! ./chats/native/MessagesToUserView.js */ 142);
+	var _MessagesToUserView = __webpack_require__(/*! ./chats/native/MessagesToUserView.js */ 143);
 	
 	var _MessagesToUserView2 = _interopRequireDefault(_MessagesToUserView);
 	
-	var _LoginView = __webpack_require__(/*! ./account/LoginView.js */ 151);
+	var _LoginView = __webpack_require__(/*! ./account/LoginView.js */ 152);
 	
 	var _LoginView2 = _interopRequireDefault(_LoginView);
 	
-	var _RegisterUserView = __webpack_require__(/*! ./account/RegisterUserView */ 155);
+	var _RegisterUserView = __webpack_require__(/*! ./account/RegisterUserView */ 156);
 	
 	var _RegisterUserView2 = _interopRequireDefault(_RegisterUserView);
 	
-	var _AboutView = __webpack_require__(/*! ./about/AboutView.js */ 158);
+	var _AboutView = __webpack_require__(/*! ./about/AboutView.js */ 159);
 	
 	var _AboutView2 = _interopRequireDefault(_AboutView);
 	
-	var _MassMediaView = __webpack_require__(/*! ./massMedia/MassMediaView.js */ 161);
+	var _MassMediaView = __webpack_require__(/*! ./massMedia/MassMediaView.js */ 162);
 	
 	var _MassMediaView2 = _interopRequireDefault(_MassMediaView);
 	
-	var _HowItWorksView = __webpack_require__(/*! ./howItWorks/HowItWorksView.js */ 164);
+	var _HowItWorksView = __webpack_require__(/*! ./howItWorks/HowItWorksView.js */ 165);
 	
 	var _HowItWorksView2 = _interopRequireDefault(_HowItWorksView);
 	
-	var _FogotPasswordView = __webpack_require__(/*! ./account/FogotPasswordView.js */ 166);
+	var _FogotPasswordView = __webpack_require__(/*! ./account/FogotPasswordView.js */ 167);
 	
 	var _FogotPasswordView2 = _interopRequireDefault(_FogotPasswordView);
 	
-	var _legalUserAgreementView = __webpack_require__(/*! ./legal/legalUserAgreementView */ 168);
+	var _legalUserAgreementView = __webpack_require__(/*! ./legal/legalUserAgreementView */ 169);
 	
 	var _legalUserAgreementView2 = _interopRequireDefault(_legalUserAgreementView);
 	
-	var _legalConfidentialView = __webpack_require__(/*! ./legal/legalConfidentialView */ 170);
+	var _legalConfidentialView = __webpack_require__(/*! ./legal/legalConfidentialView */ 171);
 	
 	var _legalConfidentialView2 = _interopRequireDefault(_legalConfidentialView);
 	
-	var _legalPostPublishingView = __webpack_require__(/*! ./legal/legalPostPublishingView */ 172);
+	var _legalPostPublishingView = __webpack_require__(/*! ./legal/legalPostPublishingView */ 173);
 	
 	var _legalPostPublishingView2 = _interopRequireDefault(_legalPostPublishingView);
 	
-	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 174);
+	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 175);
 	
 	var _blogHomeView2 = _interopRequireDefault(_blogHomeView);
 	
-	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 177);
+	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 178);
 	
 	var _blogPostIdView2 = _interopRequireDefault(_blogPostIdView);
 	
@@ -36015,6 +36015,8 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
+	__webpack_require__(/*! ./PostMyView.less */ 131);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.CompositeView.extend({
@@ -36035,7 +36037,7 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="container">\n    <div class="col-md-12" id="myPostsContaner">\n        \n    </div>\n</div>';
+	__p+='<div class="sh-content">\n    <div class="sh-my-posts">\n        <div class="container">\n            <div id="myPostsContaner" class="sh-page-block sh-my-posts-wrapper"></div>\n        </div>\n    </div>\n</div>';
 	}
 	return __p;
 	};
@@ -36074,10 +36076,14 @@
 	
 	var View = _backbone2.default.View.extend({
 	    template: _PostItemViewHbs2.default,
+	    className: 'sh-my-posts-item',
 	    onBeforeRender: function onBeforeRender() {
 	        this.getDistance();
 	    },
 	    getDistance: function getDistance() {
+	
+	        window.mypost = this.model.toJSON(); //debug
+	
 	        var locations = this.model.get('details').locations;
 	        if (locations && _.size(locations) > 0 && _app2.default.user.has('position')) {
 	            var location = _.find(locations, function (l) {
@@ -36120,47 +36126,55 @@
 	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="blog-post-item">\n    ';
+	__p+='<!-- class .sh-my-posts-item-wrapper include .sh-post-live or .sh-post-away -->\n<div class="sh-my-posts-item-wrapper sh-type-category-'+
+	((__t=(type))==null?'':__t)+
+	'">\n    ';
 	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
-	__p+='\n    <figure class="blog-item-small-image margin-bottom-20">\n        <a href="/posts/'+
+	__p+='\n    <div class="sh-my-posts-item-photo">        \n        <div class="sh-my-posts-item-photo-wrapper">\n            <a href="/posts/'+
 	((__t=(_id))==null?'':_.escape(__t))+
-	'">\n            <img class="img-responsive" src="'+
-	((__t=(details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/demo/300x250.png'))==null?'':_.escape(__t))+
-	'" alt="">\n        </a>\n    </figure>\n\n    <div class="blog-item-small-content">\n\n        <h2><a href="/posts/'+
-	((__t=(_id))==null?'':_.escape(__t))+
-	'">'+
-	((__t=(details.title))==null?'':__t)+
-	'</a><span class="label bg-type-category-'+
+	'">\r\n                <div class="img img-responsive" style="background-image:url(\''+
+	((__t=( details.photos && details.photos.length > 0 ? details.photos[0].thumbnail||details.photos[0].data : '/images/no_image.jpg'))==null?'':__t)+
+	'\')" alt="Photo of the post"></div>\r\n            </a>\n        </div> \n        ';
+	 if (_.size(details.photos) > 0){ 
+	__p+='\n            <div class="sh-my-posts-item-photo-count">\n                <span>\n                    '+
+	((__t=(details.photos.length))==null?'':__t)+
+	'\n                </span>\n            </div>\n        ';
+	 } 
+	__p+='       \n    </div>\n\n    <div class="sh-my-posts-item-content">\n        <div class="sh-my-posts-item-content-header">\n            <div class="sh-my-posts-item-content-header-wrapper">\n                <span class="label bg-type-category-'+
 	((__t=(type))==null?'':__t)+
 	' pull-right">'+
 	((__t=(type))==null?'':__t)+
-	'</span></h2>\n\n\n        <ul class="blog-post-info list-inline">\n            <li>\n                <a href="#">\n                    <i class="fa fa-clock-o"></i>\n                    <span class="font-lato">'+
-	((__t=(moment(timestamp).fromNow()))==null?'':__t)+
-	'</span>\n                </a>\n            </li>\n            <li>\n                <a href="#">\n                    <i class="fa fa-eye"></i>\n                    <span class="font-lato"> '+
+	'</span>\r\n                <div class="sh-my-posts-item-content-title">\r\n                    <h2><a href="/posts/'+
+	((__t=(_id))==null?'':_.escape(__t))+
+	'">'+
+	((__t=(details.title))==null?'':__t)+
+	'</a></h2>\r\n                </div>\n            </div>\n            <div class="sh-my-posts-item-content-header-stat">\n                <ul class="sh-my-posts-item-stat">\r\n                    <li><a href="#"><i class="fa fa-clock-o"></i> <span class="">'+
+	((__t=(moment(obj.timestamp.$date).fromNow()))==null?'':__t)+
+	'</span></a></li>\r\n                    <li><a href="#"><i class="fa fa-eye"></i> <span class="">'+
 	((__t=(obj.stats?stats.seenAll:0))==null?'':__t)+
-	'</span>\n                </a>\n            </li>\n            <li title="'+
-	((__t=(isDynamic?'Динамическое объявление':'Статическое'))==null?'':__t)+
-	'" class="sh-label-box transparent-dark margin-left-3">\n                <a href="#">\n                    <i class="fa fa-'+
+	'</span></a></li>\r\n                    <li><a title="'+
+	((__t=(isDynamic ? 'Динамическое объявление' : 'Статическое'))==null?'':__t)+
+	'" href="#"><i class="fa fa-'+
 	((__t=(isDynamic?'man':'flag' ))==null?'':__t)+
-	'"></i>\n                    <span class="font-lato">'+
-	((__t=(isDynamic?'success':''))==null?'':__t)+
-	'</span>\n                </a>\n            </li>\n            <li class="sh-label-box transparent-dark margin-left-3">\n                <a href="#">\n                    <i class="fa fa-location-arrow"></i>\n                    <span class="font-lato">\n                        '+
+	'"></i> <span class="">'+
+	((__t=(isDynamic ? 'success' : ''))==null?'':__t)+
+	'</span></a></li>\r\n                    <li><a href="#"><i class="fa fa-location-arrow"></i> <span class="">'+
 	((__t=(distance>-1?distance.toFixed(1) + ' '+distanceType:''))==null?'':__t)+
-	'\n                    </span>\n                </a>\n            </li>\n        </ul>\n        <p class="sh-item-text">\n            ';
+	'</span></a></li>\r\n                </ul>\n            </div>            \n        </div>\n\n        <div class="sh-my-posts-item-content-body"></div>\n\n        <div class="sh-my-posts-item-content-footer">\n            <div class="sh-my-posts-item-content-footer-wrapper">\n                <div class="sh-my-posts-item-content-footer-location">\r\n                    <div class="sh-my-posts-item-content-footer-location-wrapper">\r\n                        <i class="fa fa-map-marker" aria-hidden="true"></i> \r\n                        ';
 	var loc = _.find(details.locations,function(l) { return l.placeType==='dynamic' })||details.locations[0]; 
-	__p+='\n            ';
+	__p+='\r\n                        ';
 	 if (loc) { 
-	__p+='\n            '+
+	__p+='\r\n                            <span>'+
 	((__t=(loc.name))==null?'':__t)+
-	'\n            ';
+	'</span>\r\n                        ';
 	 } 
-	__p+='\n        </p>\n        <div class="sh-progress-bar progress">\n            <div class="progress-bar '+
+	__p+='\r\n                    </div>\r\n                </div>\r\n                <div class="sh-my-posts-item-content-footer-progress">\r\n                    <div class="sh-progress-bar progress">\r\n                        <div class="progress-bar '+
 	((__t=(progress>=70?'progress-bar-success':(progress>=25&&progress<70?'progress-bar-warning':'progress-bar-danger')))==null?'':__t)+
 	'" role="progressbar" style="width: '+
 	((__t=(progress))==null?'':__t)+
-	'%; min-width: 1em; ">\n                <span class="sr-only"></span>\n            </div>\n        </div>\n        <p>'+
+	'%; min-width: 1em; ">\r\n                            <span class="sr-only"></span>\r\n                        </div>\r\n                    </div>\r\n                </div>\n            </div>            \n        </div>\n        \n        <!--\n\n        <p>'+
 	((__t=(details.description))==null?'':__t)+
-	'</p>\n\n        <!--<a href="#" class="btn btn-reveal btn-default js-edit-my-chat">\n            <i class="fa fa-edit"></i>\n            <span>Редактировать</span>\n        </a>\n        <a href="#" class="btn btn-reveal btn-danger js-remove-my-post">\n            <i class="fa fa-remove"></i>\n            <span>Удалить</span>\n        </a>-->\n    </div>\n\n</div>';
+	'</p>\n\n        -->\n\n\n        <!--<a href="#" class="btn btn-reveal btn-default js-edit-my-chat">\n            <i class="fa fa-edit"></i>\n            <span>Редактировать</span>\n        </a>\n        <a href="#" class="btn btn-reveal btn-danger js-remove-my-post">\n            <i class="fa fa-remove"></i>\n            <span>Удалить</span>\n        </a>-->\n    </div>\n\n</div>';
 	}
 	return __p;
 	};
@@ -36169,6 +36183,15 @@
 
 /***/ },
 /* 131 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/posts/postsMy/PostMyView.less ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 132 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.js ***!
   \******************************************************/
@@ -36184,11 +36207,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _chatsMyViewHbs = __webpack_require__(/*! ./chatsMyView.hbs.html */ 132);
+	var _chatsMyViewHbs = __webpack_require__(/*! ./chatsMyView.hbs.html */ 133);
 	
 	var _chatsMyViewHbs2 = _interopRequireDefault(_chatsMyViewHbs);
 	
-	var _chatItemView = __webpack_require__(/*! ./chatItemView */ 133);
+	var _chatItemView = __webpack_require__(/*! ./chatItemView */ 134);
 	
 	var _chatItemView2 = _interopRequireDefault(_chatItemView);
 	
@@ -36203,7 +36226,7 @@
 	exports.default = View;
 
 /***/ },
-/* 132 */
+/* 133 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.hbs.html ***!
   \************************************************************/
@@ -36221,7 +36244,7 @@
 
 
 /***/ },
-/* 133 */
+/* 134 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.js ***!
   \*******************************************************/
@@ -36237,7 +36260,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _chatItemViewHbs = __webpack_require__(/*! ./chatItemView.hbs.html */ 134);
+	var _chatItemViewHbs = __webpack_require__(/*! ./chatItemView.hbs.html */ 135);
 	
 	var _chatItemViewHbs2 = _interopRequireDefault(_chatItemViewHbs);
 	
@@ -36245,9 +36268,9 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./chatItemView.css */ 135);
+	__webpack_require__(/*! ./chatItemView.css */ 136);
 	
-	__webpack_require__(/*! ./myChatItemView.less */ 137);
+	__webpack_require__(/*! ./myChatItemView.less */ 138);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36272,7 +36295,7 @@
 	exports.default = View;
 
 /***/ },
-/* 134 */
+/* 135 */
 /*!*************************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.hbs.html ***!
   \*************************************************************/
@@ -36309,7 +36332,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 135 */
+/* 136 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.css ***!
   \********************************************************/
@@ -36318,7 +36341,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./chatItemView.css */ 136);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./chatItemView.css */ 137);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 40)(content, {});
@@ -36338,7 +36361,7 @@
 	}
 
 /***/ },
-/* 136 */
+/* 137 */
 /*!***********************************************************************!*\
   !*** ./~/css-loader!./wwwroot/homeApp/chats/chatsMy/chatItemView.css ***!
   \***********************************************************************/
@@ -36348,7 +36371,7 @@
 	exports.push([module.id, ".bz-chat-item .bz-user-avatar {\n  float: left;\n  top: 0;\n  left: 0;\n  padding-right: 10px;\n}\n\n.bz-chat-item .bz-avatar {\n\n  background-size: cover;\n  background-position: center;\n  -webkit-border-radius: 2px;\n  -moz-border-radius: 2px;\n  border-radius: 2px;\n}\n.bz-chat-item .bz-avatar img {\n  width: 50px;\n  height: 50px;\n}\n.bz-chat-item .bz-last-timestamp {\n  font-style: italic;\n  font-size: 12px;\n  padding-top: 12px;\n}\n.bz-chat-item .bz-last-message {\n  font-weight: bold;\n}\n/* temp, not good solution: */\ndiv.blog-post-item {\n  margin-bottom: 10px;\n  padding-bottom: 30px;\n}", ""]);
 
 /***/ },
-/* 137 */
+/* 138 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/myChatItemView.less ***!
   \***********************************************************/
@@ -36357,7 +36380,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 138 */
+/* 139 */
 /*!*********************************************!*\
   !*** ./wwwroot/homeApp/chats/ChatIdView.js ***!
   \*********************************************/
@@ -36373,7 +36396,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ChatIdViewHbs = __webpack_require__(/*! ./ChatIdView.hbs.html */ 139);
+	var _ChatIdViewHbs = __webpack_require__(/*! ./ChatIdView.hbs.html */ 140);
 	
 	var _ChatIdViewHbs2 = _interopRequireDefault(_ChatIdViewHbs);
 	
@@ -36406,7 +36429,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 139 */
+/* 140 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/chats/ChatIdView.hbs.html ***!
   \***************************************************/
@@ -36422,7 +36445,7 @@
 
 
 /***/ },
-/* 140 */
+/* 141 */
 /*!*********************************************!*\
   !*** ./wwwroot/homeApp/user/DetailsView.js ***!
   \*********************************************/
@@ -36438,7 +36461,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 141);
+	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 142);
 	
 	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
 	
@@ -36462,7 +36485,7 @@
 	exports.default = View;
 
 /***/ },
-/* 141 */
+/* 142 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/user/DetailsView.hbs.html ***!
   \***************************************************/
@@ -36523,7 +36546,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 142 */
+/* 143 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.js ***!
   \************************************************************/
@@ -36539,11 +36562,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MessagesToUserViewHbs = __webpack_require__(/*! ./MessagesToUserView.hbs.html */ 143);
+	var _MessagesToUserViewHbs = __webpack_require__(/*! ./MessagesToUserView.hbs.html */ 144);
 	
 	var _MessagesToUserViewHbs2 = _interopRequireDefault(_MessagesToUserViewHbs);
 	
-	var _MessagesListView = __webpack_require__(/*! ./MessagesListView.js */ 144);
+	var _MessagesListView = __webpack_require__(/*! ./MessagesListView.js */ 145);
 	
 	var _MessagesListView2 = _interopRequireDefault(_MessagesListView);
 	
@@ -36551,7 +36574,7 @@
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	__webpack_require__(/*! ./messagesToUserView.less */ 150);
+	__webpack_require__(/*! ./messagesToUserView.less */ 151);
 	
 	var _app = __webpack_require__(/*! ../../app.js */ 15);
 	
@@ -36674,7 +36697,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3), __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 143 */
+/* 144 */
 /*!******************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.hbs.html ***!
   \******************************************************************/
@@ -36700,7 +36723,7 @@
 
 
 /***/ },
-/* 144 */
+/* 145 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesListView.js ***!
   \**********************************************************/
@@ -36716,11 +36739,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _messagesItemView = __webpack_require__(/*! ./messagesItemView.js */ 145);
+	var _messagesItemView = __webpack_require__(/*! ./messagesItemView.js */ 146);
 	
 	var _messagesItemView2 = _interopRequireDefault(_messagesItemView);
 	
-	var _NoMessagesView = __webpack_require__(/*! ./NoMessagesView.js */ 148);
+	var _NoMessagesView = __webpack_require__(/*! ./NoMessagesView.js */ 149);
 	
 	var _NoMessagesView2 = _interopRequireDefault(_NoMessagesView);
 	
@@ -36753,7 +36776,7 @@
 	exports.default = View;
 
 /***/ },
-/* 145 */
+/* 146 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messagesItemView.js ***!
   \**********************************************************/
@@ -36769,11 +36792,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 146);
+	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 147);
 	
 	var _MessagesItemViewHbs2 = _interopRequireDefault(_MessagesItemViewHbs);
 	
-	__webpack_require__(/*! ./messageItemView.less */ 147);
+	__webpack_require__(/*! ./messageItemView.less */ 148);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36827,7 +36850,7 @@
 	exports.default = View;
 
 /***/ },
-/* 146 */
+/* 147 */
 /*!****************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesItemView.hbs.html ***!
   \****************************************************************/
@@ -36886,7 +36909,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 147 */
+/* 148 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messageItemView.less ***!
   \***********************************************************/
@@ -36895,7 +36918,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 148 */
+/* 149 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/NoMessagesView.js ***!
   \********************************************************/
@@ -36911,7 +36934,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 149);
+	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 150);
 	
 	var _NoMessagesViewHbs2 = _interopRequireDefault(_NoMessagesViewHbs);
 	
@@ -36925,7 +36948,7 @@
 	exports.default = View;
 
 /***/ },
-/* 149 */
+/* 150 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/NoMessagesView.hbs.html ***!
   \**************************************************************/
@@ -36941,7 +36964,7 @@
 
 
 /***/ },
-/* 150 */
+/* 151 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messagesToUserView.less ***!
   \**************************************************************/
@@ -36950,7 +36973,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 151 */
+/* 152 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/account/LoginView.js ***!
   \**********************************************/
@@ -36966,17 +36989,17 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _LoginViewHbs = __webpack_require__(/*! ./LoginView.hbs.html */ 152);
+	var _LoginViewHbs = __webpack_require__(/*! ./LoginView.hbs.html */ 153);
 	
 	var _LoginViewHbs2 = _interopRequireDefault(_LoginViewHbs);
 	
-	__webpack_require__(/*! ./loginView.less */ 153);
+	__webpack_require__(/*! ./loginView.less */ 154);
 	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _LoginModel = __webpack_require__(/*! ../../data/viewModels/LoginModel */ 154);
+	var _LoginModel = __webpack_require__(/*! ../../data/viewModels/LoginModel */ 155);
 	
 	var _LoginModel2 = _interopRequireDefault(_LoginModel);
 	
@@ -37042,7 +37065,7 @@
 	exports.default = View;
 
 /***/ },
-/* 152 */
+/* 153 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/account/LoginView.hbs.html ***!
   \****************************************************/
@@ -37060,7 +37083,7 @@
 
 
 /***/ },
-/* 153 */
+/* 154 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/account/loginView.less ***!
   \************************************************/
@@ -37069,7 +37092,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 154 */
+/* 155 */
 /*!***********************************************!*\
   !*** ./wwwroot/data/viewModels/LoginModel.js ***!
   \***********************************************/
@@ -37102,7 +37125,7 @@
 	});
 
 /***/ },
-/* 155 */
+/* 156 */
 /*!*****************************************************!*\
   !*** ./wwwroot/homeApp/account/RegisterUserView.js ***!
   \*****************************************************/
@@ -37118,7 +37141,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _RegisterUserViewHbs = __webpack_require__(/*! ./RegisterUserView.hbs.html */ 156);
+	var _RegisterUserViewHbs = __webpack_require__(/*! ./RegisterUserView.hbs.html */ 157);
 	
 	var _RegisterUserViewHbs2 = _interopRequireDefault(_RegisterUserViewHbs);
 	
@@ -37126,7 +37149,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _RegisterModel = __webpack_require__(/*! ../../data/viewModels/RegisterModel */ 157);
+	var _RegisterModel = __webpack_require__(/*! ../../data/viewModels/RegisterModel */ 158);
 	
 	var _RegisterModel2 = _interopRequireDefault(_RegisterModel);
 	
@@ -37184,7 +37207,7 @@
 	exports.default = View;
 
 /***/ },
-/* 156 */
+/* 157 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/account/RegisterUserView.hbs.html ***!
   \***********************************************************/
@@ -37200,7 +37223,7 @@
 
 
 /***/ },
-/* 157 */
+/* 158 */
 /*!**************************************************!*\
   !*** ./wwwroot/data/viewModels/RegisterModel.js ***!
   \**************************************************/
@@ -37243,7 +37266,7 @@
 	});
 
 /***/ },
-/* 158 */
+/* 159 */
 /*!********************************************!*\
   !*** ./wwwroot/homeApp/about/AboutView.js ***!
   \********************************************/
@@ -37259,7 +37282,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 159);
+	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 160);
 	
 	var _AboutViewHbs2 = _interopRequireDefault(_AboutViewHbs);
 	
@@ -37267,7 +37290,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./about.less */ 160);
+	__webpack_require__(/*! ./about.less */ 161);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37365,7 +37388,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 159 */
+/* 160 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/about/AboutView.hbs.html ***!
   \**************************************************/
@@ -37381,7 +37404,7 @@
 
 
 /***/ },
-/* 160 */
+/* 161 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/about/about.less ***!
   \******************************************/
@@ -37390,7 +37413,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 161 */
+/* 162 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.js ***!
   \****************************************************/
@@ -37406,7 +37429,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MassMediaViewHbs = __webpack_require__(/*! ./MassMediaView.hbs.html */ 162);
+	var _MassMediaViewHbs = __webpack_require__(/*! ./MassMediaView.hbs.html */ 163);
 	
 	var _MassMediaViewHbs2 = _interopRequireDefault(_MassMediaViewHbs);
 	
@@ -37414,7 +37437,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./MassMediaView.less */ 163);
+	__webpack_require__(/*! ./MassMediaView.less */ 164);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37483,7 +37506,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 162 */
+/* 163 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.hbs.html ***!
   \**********************************************************/
@@ -37539,7 +37562,7 @@
 
 
 /***/ },
-/* 163 */
+/* 164 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.less ***!
   \******************************************************/
@@ -37548,7 +37571,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 164 */
+/* 165 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.js ***!
   \******************************************************/
@@ -37564,7 +37587,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 165);
+	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 166);
 	
 	var _HowItWorksViewHbs2 = _interopRequireDefault(_HowItWorksViewHbs);
 	
@@ -37576,7 +37599,7 @@
 	exports.default = View;
 
 /***/ },
-/* 165 */
+/* 166 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.hbs.html ***!
   \************************************************************/
@@ -37592,7 +37615,7 @@
 
 
 /***/ },
-/* 166 */
+/* 167 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/account/FogotPasswordView.js ***!
   \******************************************************/
@@ -37608,7 +37631,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 167);
+	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 168);
 	
 	var _FogotPasswordViewHbs2 = _interopRequireDefault(_FogotPasswordViewHbs);
 	
@@ -37620,7 +37643,7 @@
 	exports.default = View;
 
 /***/ },
-/* 167 */
+/* 168 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/account/FogotPasswordView.hbs.html ***!
   \************************************************************/
@@ -37636,7 +37659,7 @@
 
 
 /***/ },
-/* 168 */
+/* 169 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.js ***!
   \*********************************************************/
@@ -37652,7 +37675,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 169);
+	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 170);
 	
 	var _legalUserAgreementViewHbs2 = _interopRequireDefault(_legalUserAgreementViewHbs);
 	
@@ -37667,7 +37690,7 @@
 	exports.default = View;
 
 /***/ },
-/* 169 */
+/* 170 */
 /*!***************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.hbs.html ***!
   \***************************************************************/
@@ -37683,7 +37706,7 @@
 
 
 /***/ },
-/* 170 */
+/* 171 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalConfidentialView.js ***!
   \********************************************************/
@@ -37699,7 +37722,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalConfidentialViewHbs = __webpack_require__(/*! ./legalConfidentialView.hbs.html */ 171);
+	var _legalConfidentialViewHbs = __webpack_require__(/*! ./legalConfidentialView.hbs.html */ 172);
 	
 	var _legalConfidentialViewHbs2 = _interopRequireDefault(_legalConfidentialViewHbs);
 	
@@ -37717,7 +37740,7 @@
 	exports.default = View;
 
 /***/ },
-/* 171 */
+/* 172 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalConfidentialView.hbs.html ***!
   \**************************************************************/
@@ -37733,7 +37756,7 @@
 
 
 /***/ },
-/* 172 */
+/* 173 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.js ***!
   \**********************************************************/
@@ -37749,7 +37772,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 173);
+	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 174);
 	
 	var _legalPostPublishingViewHbs2 = _interopRequireDefault(_legalPostPublishingViewHbs);
 	
@@ -37764,7 +37787,7 @@
 	exports.default = View;
 
 /***/ },
-/* 173 */
+/* 174 */
 /*!****************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.hbs.html ***!
   \****************************************************************/
@@ -37780,7 +37803,7 @@
 
 
 /***/ },
-/* 174 */
+/* 175 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.js ***!
   \**********************************************/
@@ -37796,11 +37819,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 175);
+	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 176);
 	
 	var _blogHomeViewHbs2 = _interopRequireDefault(_blogHomeViewHbs);
 	
-	__webpack_require__(/*! ./blogHomeView.less */ 176);
+	__webpack_require__(/*! ./blogHomeView.less */ 177);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37826,7 +37849,7 @@
 	exports.default = View;
 
 /***/ },
-/* 175 */
+/* 176 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.hbs.html ***!
   \****************************************************/
@@ -37842,7 +37865,7 @@
 
 
 /***/ },
-/* 176 */
+/* 177 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.less ***!
   \************************************************/
@@ -37851,7 +37874,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 177 */
+/* 178 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.js ***!
   \************************************************/
@@ -37867,11 +37890,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 178);
+	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 179);
 	
 	var _blogPostIdViewHbs2 = _interopRequireDefault(_blogPostIdViewHbs);
 	
-	__webpack_require__(/*! ./blogPostIdView.less */ 179);
+	__webpack_require__(/*! ./blogPostIdView.less */ 180);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37886,7 +37909,7 @@
 	exports.default = View;
 
 /***/ },
-/* 178 */
+/* 179 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.hbs.html ***!
   \******************************************************/
@@ -37902,7 +37925,7 @@
 
 
 /***/ },
-/* 179 */
+/* 180 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.less ***!
   \**************************************************/
@@ -37911,7 +37934,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 180 */
+/* 181 */
 /*!******************************************!*\
   !*** ./wwwroot/css/shiners-override.css ***!
   \******************************************/
@@ -37920,7 +37943,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 181);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 182);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 40)(content, {});
@@ -37940,7 +37963,7 @@
 	}
 
 /***/ },
-/* 181 */
+/* 182 */
 /*!*********************************************************!*\
   !*** ./~/css-loader!./wwwroot/css/shiners-override.css ***!
   \*********************************************************/
