@@ -6,6 +6,11 @@
 			<div class="container">
 				<div class="sh-header-topline-main">
 					<div class="sh-header-topline-item">
+                        <div class="sh-header-navbar-logo">
+                            <a class="sh-logo-header" href="/">
+                                <img src="/images/sh-logo.png" alt="logotype Shiners" height="35" width="35" /> <span>{{=i18n('SITE_NAME')}}</span>
+                            </a>
+                        </div>
 						<div class="sh-show-modal-city"> 
 							<span class="text-weight bold">
 								<span id="navLocation"></span>
@@ -30,19 +35,19 @@
 			</div>
 		</div>
 		
-		<div class="sh-header-navbar-wrapper sh-blurred-bg">
+		<div class="sh-header-navbar-wrapper sh-blurred-bg hidden-xs">
 			<div class="container">
 
 				<div class="sh-header-navbar-items">
-					<div class="sh-header-navbar-logo">
+					<!--<div class="sh-header-navbar-logo">
 						<a class="sh-logo-header" href="/">
 							<img src="/images/sh-logo.png" alt="logotype Shiners" height="50" width="50" />
 							{{=i18n('SITE_NAME')}}
 						</a>
-					</div>
+					</div>-->
 
 					<div class="sh-header-navbar-submenu">
-                        <div class="sh-download-buttons-top hidden-xs">
+                        <div class="sh-download-buttons-top">
 
                             <a target="_blank" data-direct-link href="https://itunes.apple.com/ru/app/shiners/id1136502367?mt=8">
                                 <img src="/images/buttons/app_store_RU_135x40@2x.png" width="135" height="40" alt="Загрузите в App Store">
@@ -55,7 +60,7 @@
                     </div>
 
 					<div class="sh-header-navbar-create">
-						<a class="ui sh-button standard create big hidden-sm hidden-xs" href="/posts/new">{{=i18n('CREATE_SHINER')}}</a>
+						<a class="ui sh-button standard create big hidden-sm" href="/posts/new">{{=i18n('CREATE_SHINER')}}</a>
 					</div>
 				</div>
 

@@ -21787,9 +21787,9 @@ i.icon {
 .sh-set-position-map {
   margin: 0 10px 0 0;
   line-height: 1;
-  height: 44px;
-  width: 44px;
-  font-size: 28px;
+  height: 40px;
+  width: 40px;
+  font-size: 24px;
   color: rgba(255, 255, 255, 0.85);
   background-color: #65a1e6;
   background: -webkit-gradient(linear, left top, left bottom, from(#65a1e6), to(#4a90e2));
@@ -21805,6 +21805,29 @@ i.icon {
   transition: 0.2s ease-in-out; }
   .sh-set-position-map:hover {
     color: white; }
+
+.sh-zoom-in-button, .sh-zoom-out-button {
+  position: relative;
+  font-family: 'FontAwesome';
+  color: #4a4a4a; }
+  .sh-zoom-in-button:after, .sh-zoom-out-button:after {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    font-size: 24px; }
+  .sh-zoom-in-button:hover, .sh-zoom-out-button:hover {
+    background: rgba(0, 0, 0, 0.05); }
+
+.sh-zoom-in-button {
+  border-bottom: 1px solid #e6e6e6; }
+  .sh-zoom-in-button:after {
+    content: '\f067'; }
+
+.sh-zoom-out-button:after {
+  content: '\f068'; }
 
 .sh-mobile-show-info {
   background: white;
@@ -22353,11 +22376,10 @@ input[type=radio] + label {
   #header #topNav .sh-nav-menu #topMain > li.active > a {
     background: rgba(0, 0, 0, 0.1); }
   #header .sh-header-topline {
-    height: 52px;
-    line-height: 52px;
     background: #4a90e2;
     background-image: none; }
     #header .sh-header-topline .sh-header-topline-main {
+      padding: 10px 0;
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
@@ -22369,6 +22391,10 @@ input[type=radio] + label {
       -webkit-align-items: center;
       -ms-align-items: center;
       align-items: center; }
+      #header .sh-header-topline .sh-header-topline-main .nav-main-collapse .sh-nav-menu #topMain {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex; }
       #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item:first-child {
         -webkit-box-flex: 1;
         -webkit-flex: 1 1 auto;
@@ -22380,6 +22406,10 @@ input[type=radio] + label {
         padding-right: 10px; }
       #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item.sh-header-buttons-tools {
         white-space: nowrap; }
+      #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-header-navbar-logo .sh-logo-header {
+        color: white;
+        font-size: 28px;
+        padding-left: 0; }
       #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city {
         display: inline-block;
         width: 100%;
@@ -22388,7 +22418,6 @@ input[type=radio] + label {
         #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .white-link {
           color: white; }
         #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-h {
-          height: 52px;
           overflow: hidden;
           display: -webkit-flex;
           display: -ms-flexbox;
@@ -22401,7 +22430,8 @@ input[type=radio] + label {
           display: block;
           overflow: hidden;
           white-space: nowrap;
-          text-overflow: ellipsis; }
+          text-overflow: ellipsis;
+          border-bottom: 1px dashed white; }
       #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item i {
         font-size: 13px; }
   #header .sh-header-topline-main,
@@ -23305,6 +23335,9 @@ input[type=radio] + label {
 .sh-user-profile {
   padding: 45px 0;
   background: whitesmoke; }
+  @media screen and (max-width: 768px) {
+    .sh-user-profile {
+      padding: 15px 0; } }
   .sh-user-profile .sh-user-profile-wrapper {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -23424,9 +23457,17 @@ input[type=radio] + label {
         .sh-user-profile .sh-user-info .sh-user-profile-info .sh-user-profile-info-wrapper .sh-user-profile-info-row .sh-direct-link-block .sh-direct-link-wrapper {
           display: -webkit-flex;
           display: -ms-flexbox;
-          display: flex; }
+          display: flex;
+          padding: 4px 0;
+          overflow: hidden; }
           .sh-user-profile .sh-user-info .sh-user-profile-info .sh-user-profile-info-wrapper .sh-user-profile-info-row .sh-direct-link-block .sh-direct-link-wrapper .sh-icon-direct-link {
-            padding-right: 10px; }
+            padding-right: 10px;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -ms-align-items: center;
+            align-items: center; }
             .sh-user-profile .sh-user-info .sh-user-profile-info .sh-user-profile-info-wrapper .sh-user-profile-info-row .sh-direct-link-block .sh-direct-link-wrapper .sh-icon-direct-link i {
               color: #f6ac31; }
           .sh-user-profile .sh-user-info .sh-user-profile-info .sh-user-profile-info-wrapper .sh-user-profile-info-row .sh-direct-link-block .sh-direct-link-wrapper .sh-checkbox {
@@ -23442,13 +23483,15 @@ input[type=radio] + label {
               margin: 0; }
             .sh-user-profile .sh-user-info .sh-user-profile-info .sh-user-profile-info-wrapper .sh-user-profile-info-row .sh-direct-link-block .sh-direct-link-wrapper .sh-checkbox label {
               margin-bottom: 0; }
-        .sh-user-profile .sh-user-info .sh-user-profile-info .sh-user-profile-info-wrapper .sh-user-profile-info-row .sh-direct-link-block .sh-direct-link-btn-copy .sh-button {
-          margin-right: -5px;
-          padding: 8px 10px;
-          font-size: 13px;
-          color: #363636;
-          background-color: white;
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }
+        .sh-user-profile .sh-user-info .sh-user-profile-info .sh-user-profile-info-wrapper .sh-user-profile-info-row .sh-direct-link-block .sh-direct-link-btn-copy {
+          padding: 0 0 0 5px; }
+          .sh-user-profile .sh-user-info .sh-user-profile-info .sh-user-profile-info-wrapper .sh-user-profile-info-row .sh-direct-link-block .sh-direct-link-btn-copy .sh-button {
+            margin-right: -5px;
+            padding: 8px 10px;
+            font-size: 13px;
+            color: #363636;
+            background-color: white;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }
       .sh-user-profile .sh-user-info .sh-user-profile-info .sh-user-profile-info-wrapper .sh-user-profile-info-row .sh-info-title {
         -webkit-flex-basis: 170px;
         -moz-flex-basis: 170px;
@@ -23533,9 +23576,6 @@ input[type=radio] + label {
     #header .sh-logo-header {
       font-size: 30px;
       padding-left: 16px; }
-      #header .sh-logo-header img {
-        height: 30px;
-        width: 30px; }
     #header #topNav .sh-header-topline-main .sh-btn-mobile-menu {
       position: relative;
       margin: 0;
@@ -23547,21 +23587,23 @@ input[type=radio] + label {
       position: absolute;
       left: 0;
       right: 0;
-      top: 53px;
+      top: 72px;
       height: auto;
       z-index: 102; }
-      #header #topNav .sh-header-topline-main .nav-main-collapse .sh-nav-menu #topMain li a {
-        color: #363636; }
-      #header #topNav .sh-header-topline-main .nav-main-collapse .sh-nav-menu #topMain li.active {
-        background: rgba(0, 0, 0, 0.1);
-        border-color: transparent !important; }
-        #header #topNav .sh-header-topline-main .nav-main-collapse .sh-nav-menu #topMain li.active a {
-          background: transparent !important; }
-      #header #topNav .sh-header-topline-main .nav-main-collapse .sh-nav-menu #topMain li:hover {
-        border-color: transparent !important;
-        background: rgba(0, 0, 0, 0.05); }
-        #header #topNav .sh-header-topline-main .nav-main-collapse .sh-nav-menu #topMain li:hover a {
-          background: transparent !important; }
+      #header #topNav .sh-header-topline-main .nav-main-collapse .sh-nav-menu #topMain {
+        display: block; }
+        #header #topNav .sh-header-topline-main .nav-main-collapse .sh-nav-menu #topMain li a {
+          color: #363636; }
+        #header #topNav .sh-header-topline-main .nav-main-collapse .sh-nav-menu #topMain li.active {
+          background: rgba(0, 0, 0, 0.1);
+          border-color: transparent !important; }
+          #header #topNav .sh-header-topline-main .nav-main-collapse .sh-nav-menu #topMain li.active a {
+            background: transparent !important; }
+        #header #topNav .sh-header-topline-main .nav-main-collapse .sh-nav-menu #topMain li:hover {
+          border-color: transparent !important;
+          background: rgba(0, 0, 0, 0.05); }
+          #header #topNav .sh-header-topline-main .nav-main-collapse .sh-nav-menu #topMain li:hover a {
+            background: transparent !important; }
       #header #topNav .sh-header-topline-main .nav-main-collapse.in {
         display: block; }
   #footer.sh-footer .sh-footer-bottom .sh-choose-language {
@@ -23698,7 +23740,7 @@ input[type=radio] + label {
     #sh-set-shiners .sh-set-shiners-wrapper div + div {
       padding-top: 20px; }
   #header .map-frame {
-    top: 60px;
+    top: 10px;
     left: 0;
     margin: 0 10px; }
     #header .map-frame .sh-map-search-form .sh-user-location {
@@ -23776,6 +23818,8 @@ input[type=radio] + label {
     padding: 0 0 8px 0; } }
 
 @media screen and (max-width: 480px) {
+  #header #topNav .sh-header-topline .sh-header-topline-main .sh-header-navbar-logo {
+    display: none; }
   body.page--index #header #topNav .sh-header-navbar-wrapper .sh-header-navbar-items {
     min-height: 52px;
     padding: 0; }

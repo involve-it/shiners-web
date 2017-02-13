@@ -138,13 +138,11 @@ var View = Marionette.View.extend({
                 center: center,
                 zoom: 14,
                 scrollwheel: false,
-                mapTypeControl: false,
-                scaleControl: false,
-                streetViewControl: false,
-                zoomControl: true,
-                zoomControlOptions: {
-                    position: google.maps.ControlPosition.RIGHT_BOTTOM
-                }
+                disableDefaultUI: true,
+                //zoomControl: true,
+                //zoomControlOptions: {
+                //    position: google.maps.ControlPosition.RIGHT_BOTTOM
+                //}
             });
 
             this.geocoder = new maps.Geocoder();
@@ -163,6 +161,11 @@ var View = Marionette.View.extend({
                 $('body').removeClass('isMobile');
             }
 
+            var zoomControlDiv = document.createElement('div');
+            var zoomControl = new this.ZoomControl(zoomControlDiv, this.map);
+
+            zoomControlDiv.index = 1;
+            this.map.controls[window.google.maps.ControlPosition.RIGHT_BOTTOM].push(zoomControlDiv);
 
             this.mapAddPostButton();
             this.mapSetPositionButton();
@@ -170,6 +173,45 @@ var View = Marionette.View.extend({
             this.showUser();
             this.listenTo(app.user,'change:position',this.showUser);
         },this));
+    },
+
+    ZoomControl(controlDiv, map) {
+        controlDiv.style.padding = '10px';
+
+        // Set CSS for the control wrapper
+        var controlWrapper = document.createElement('div');
+        controlWrapper.style.backgroundColor = 'white';
+        controlWrapper.style.cursor = 'pointer';
+        controlWrapper.style.textAlign = 'center';
+        controlWrapper.style.width = '40px'; 
+        controlWrapper.style.height = '80px';
+        controlWrapper.style.borderRadius = '2px';
+        controlWrapper.style.position = 'relative';
+        controlDiv.appendChild(controlWrapper);
+  
+        // Set CSS for the zoomIn
+        var zoomInButton = document.createElement('div');
+        zoomInButton.style.width = '40px'; 
+        zoomInButton.style.height = '40px';
+        zoomInButton.className = 'sh-zoom-in-button';
+        controlWrapper.appendChild(zoomInButton);
+    
+        // Set CSS for the zoomOut
+        var zoomOutButton = document.createElement('div');
+        zoomOutButton.style.width = '40px'; 
+        zoomOutButton.style.height = '40px';
+        zoomOutButton.className = 'sh-zoom-out-button';
+        controlWrapper.appendChild(zoomOutButton);
+        
+        // Setup the click event listener - zoomIn
+        google.maps.event.addDomListener(zoomInButton, 'click', function() {
+            map.setZoom(map.getZoom() + 1);
+        });
+    
+        // Setup the click event listener - zoomOut
+        google.maps.event.addDomListener(zoomOutButton, 'click', function() {
+            map.setZoom(map.getZoom() - 1);
+        });
     },
 
     mapAddPostButton() {

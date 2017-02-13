@@ -341,9 +341,9 @@ i {
 .sh-set-position-map {
     margin: 0 10px 0 0;    
     line-height:1;
-    height: 44px;
-    width: 44px;
-    font-size: 28px;
+    height: 40px;
+    width: 40px;
+    font-size: 24px;
     color: $sh-main-header-light-bg;
     @include gradient(#65a1e6, #4a90e2);
     @include border-radius(4px);
@@ -352,6 +352,40 @@ i {
 
     &:hover {
         color: $sh-white-color;
+    }
+}
+
+.sh-zoom-in-button, .sh-zoom-out-button {
+    position: relative;
+    font-family: 'FontAwesome';
+    color: $sh-main-gray-color;
+
+    &:after {
+        position: absolute;
+        text-align: center;
+        left: 0;
+        height: 40px;
+        width: 40px;
+        line-height: 40px;
+        font-size: 24px; 
+    }
+
+    &:hover {
+        background: rgba(0,0,0, .05);
+    }
+}
+
+.sh-zoom-in-button {
+    border-bottom: 1px solid $sh-main-border-color;
+
+    &:after {        
+        content: '\f067';       
+    }
+}
+
+.sh-zoom-out-button {
+    &:after {        
+        content: '\f068';       
     }
 }
 
@@ -1049,15 +1083,24 @@ input[type=radio] + label {
     }
 
     .sh-header-topline {
-        height: 52px;
-        line-height: 52px;
+        //height: 52px;
+        //line-height: 52px;
         background: $sh-main-blue-background;
         background-image: none;
 
         .sh-header-topline-main {
+            padding: 10px 0;
             @include sh-display-flex();
             @include sh-justify-content(space-between);
             @include sh-align-items(center);
+
+            .nav-main-collapse {
+                .sh-nav-menu {
+                    #topMain {
+                        @include sh-display-flex();
+                    }
+                }
+            }
             
             .sh-header-topline-item {
 
@@ -1071,6 +1114,14 @@ input[type=radio] + label {
                     white-space: nowrap;
                 }
 
+                .sh-header-navbar-logo {
+                    .sh-logo-header {
+                        color: $sh-white-color;
+                        font-size: 28px;
+                        padding-left: 0;
+                    }
+                }
+
                 .sh-show-modal-city {
                     display: inline-block;
                     width: 100%;
@@ -1082,7 +1133,7 @@ input[type=radio] + label {
                     }
 
                     .sh-nav-h {
-                        height: 52px;
+                        //height: 52px;
                         overflow: hidden;
                         @include sh-display-flex();
                         @include sh-align-items(center);
@@ -1093,7 +1144,8 @@ input[type=radio] + label {
                         display: block;
                         overflow: hidden;
                         white-space: nowrap;
-                        text-overflow: ellipsis;                        
+                        text-overflow: ellipsis;
+                        border-bottom: 1px dashed $sh-white-color ;                        
                     }
                 }
 
@@ -2201,6 +2253,10 @@ input[type=radio] + label {
 .sh-user-profile {
 	padding: 45px 0;
     background: $sh-main-content-bg;
+
+    @media screen and (max-width: 768px) {
+        padding: 15px 0;
+    }
 	
 	.sh-user-profile-wrapper {
         @include sh-display-flex();
@@ -2362,9 +2418,13 @@ input[type=radio] + label {
 						
 						.sh-direct-link-wrapper {
 							@include sh-display-flex();
+                            padding: 4px 0;
+                            overflow: hidden;
 							
 							.sh-icon-direct-link {
 								padding-right: 10px;
+                                @include sh-display-flex();
+                                @include sh-align-items(center);
 								
 								i {
 									color: $sh-main-color-icon;
@@ -2388,6 +2448,8 @@ input[type=radio] + label {
 						}
 						
 						.sh-direct-link-btn-copy {
+                            padding: 0 0 0 5px;
+
 							.sh-button {
 								margin-right: -5px;
 								padding: 8px 10px;
@@ -2483,34 +2545,6 @@ input[type=radio] + label {
     END USER PROFILE
 */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media screen and (max-width: 992px) {
 
     .container {
@@ -2525,8 +2559,8 @@ input[type=radio] + label {
             padding-left: 16px;
 
             img {
-                height: 30px;
-                width: 30px;
+                //height: 30px;
+                //width: 30px;
             }
         }
 
@@ -2563,12 +2597,15 @@ input[type=radio] + label {
                     position: absolute;
                     left: 0;
                     right: 0;
-                    top: 53px;
+                    top: 72px;
                     height: auto;
                     z-index: 102;
 
                     .sh-nav-menu {
+
                         #topMain {
+                            display: block;
+
                             li {
                                 a {color: $sh-main-black-color;}
                                 &.active {
@@ -2864,7 +2901,7 @@ input[type=radio] + label {
         }
 
         .map-frame {
-            top: 60px;
+            top: 10px;
             left: 0;
             margin: 0 10px;
 
@@ -2977,6 +3014,11 @@ input[type=radio] + label {
 
             .sh-header-topline {
                 .sh-header-topline-main {
+
+                    .sh-header-navbar-logo {
+                        display: none;
+                    }
+
                     .sh-header-topline-item {
                         .sh-show-modal-city {
                             .sh-nav-location-value {}

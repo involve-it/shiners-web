@@ -26011,9 +26011,11 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='\n<div id="header" class="sticky clearfix header-md">\n	<header id="topNav">\n		\n		<div class="sh-header-topline">\n			<div class="container">\n				<div class="sh-header-topline-main">\n					<div class="sh-header-topline-item">\n						<div class="sh-show-modal-city"> \n							<span class="text-weight bold">\n								<span id="navLocation"></span>\n							</span>\n						</div>\n					</div>\n\n					<div class="sh-header-topline-item sh-header-buttons-tools sh-flex-center-items">\n\n						<div id="bzMainMenu"></div>\n\n						<div class="sh-header-dropdown-user">                        \n							<div id="userBar"></div>\n						</div>\n\n						<button class="sh-btn-mobile-menu btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">\n							<i class="fa fa-bars"></i>\n						</button>\n\n					</div>\n				</div>\n			</div>\n		</div>\n		\n		<div class="sh-header-navbar-wrapper sh-blurred-bg">\n			<div class="container">\n\n				<div class="sh-header-navbar-items">\n					<div class="sh-header-navbar-logo">\n						<a class="sh-logo-header" href="/">\n							<img src="/images/sh-logo.png" alt="logotype Shiners" height="50" width="50" />\n							'+
+	__p+='\n<div id="header" class="sticky clearfix header-md">\n	<header id="topNav">\n		\n		<div class="sh-header-topline">\n			<div class="container">\n				<div class="sh-header-topline-main">\n					<div class="sh-header-topline-item">\n                        <div class="sh-header-navbar-logo">\r\n                            <a class="sh-logo-header" href="/">\r\n                                <img src="/images/sh-logo.png" alt="logotype Shiners" height="35" width="35" /> <span>'+
 	((__t=(i18n('SITE_NAME')))==null?'':__t)+
-	'\n						</a>\n					</div>\n\n					<div class="sh-header-navbar-submenu">\n                        <div class="sh-download-buttons-top hidden-xs">\n\n                            <a target="_blank" data-direct-link href="https://itunes.apple.com/ru/app/shiners/id1136502367?mt=8">\n                                <img src="/images/buttons/app_store_RU_135x40@2x.png" width="135" height="40" alt="Загрузите в App Store">\n                            </a>\n\n                            <a target="_blank" data-direct-link href=\'https://play.google.com/store/apps/details?id=org.buzzar.app&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1\'>\n                                <img src="/images/buttons/google_play_RU_135x40@2x.png" width="135" height="40" alt=\'Доступно в Google Play\' />\n                            </a>\n                        </div>\n                    </div>\n\n					<div class="sh-header-navbar-create">\n						<a class="ui sh-button standard create big hidden-sm hidden-xs" href="/posts/new">'+
+	'</span>\r\n                            </a>\r\n                        </div>\n						<div class="sh-show-modal-city"> \n							<span class="text-weight bold">\n								<span id="navLocation"></span>\n							</span>\n						</div>\n					</div>\n\n					<div class="sh-header-topline-item sh-header-buttons-tools sh-flex-center-items">\n\n						<div id="bzMainMenu"></div>\n\n						<div class="sh-header-dropdown-user">                        \n							<div id="userBar"></div>\n						</div>\n\n						<button class="sh-btn-mobile-menu btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">\n							<i class="fa fa-bars"></i>\n						</button>\n\n					</div>\n				</div>\n			</div>\n		</div>\n		\n		<div class="sh-header-navbar-wrapper sh-blurred-bg hidden-xs">\n			<div class="container">\n\n				<div class="sh-header-navbar-items">\n					<!--<div class="sh-header-navbar-logo">\n						<a class="sh-logo-header" href="/">\n							<img src="/images/sh-logo.png" alt="logotype Shiners" height="50" width="50" />\n							'+
+	((__t=(i18n('SITE_NAME')))==null?'':__t)+
+	'\n						</a>\n					</div>-->\n\n					<div class="sh-header-navbar-submenu">\n                        <div class="sh-download-buttons-top">\n\n                            <a target="_blank" data-direct-link href="https://itunes.apple.com/ru/app/shiners/id1136502367?mt=8">\n                                <img src="/images/buttons/app_store_RU_135x40@2x.png" width="135" height="40" alt="Загрузите в App Store">\n                            </a>\n\n                            <a target="_blank" data-direct-link href=\'https://play.google.com/store/apps/details?id=org.buzzar.app&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1\'>\n                                <img src="/images/buttons/google_play_RU_135x40@2x.png" width="135" height="40" alt=\'Доступно в Google Play\' />\n                            </a>\n                        </div>\n                    </div>\n\n					<div class="sh-header-navbar-create">\n						<a class="ui sh-button standard create big hidden-sm" href="/posts/new">'+
 	((__t=(i18n('CREATE_SHINER')))==null?'':__t)+
 	'</a>\n					</div>\n				</div>\n\n				<div class="header-hr-line"></div>\n				<div id="appBanner" style="display: none;">\n					<!--=serverRender(\'~/homeApp/BannerView.hbs.html\',{},\'section\',\'class="page-header page-header-xs"\')-->\n					'+
 	((__t=(serverRender('~/homeApp/BannerView.hbs.html',{},'div','class="sh-header-navbar-info visible-md-block visible-lg-block"')))==null?'':__t)+
@@ -26240,13 +26242,7 @@
 	                center: center,
 	                zoom: 14,
 	                scrollwheel: false,
-	                mapTypeControl: false,
-	                scaleControl: false,
-	                streetViewControl: false,
-	                zoomControl: true,
-	                zoomControlOptions: {
-	                    position: google.maps.ControlPosition.RIGHT_BOTTOM
-	                }
+	                disableDefaultUI: true
 	            });
 	
 	            _this3.geocoder = new maps.Geocoder();
@@ -26265,12 +26261,56 @@
 	                $('body').removeClass('isMobile');
 	            }
 	
+	            var zoomControlDiv = document.createElement('div');
+	            var zoomControl = new _this3.ZoomControl(zoomControlDiv, _this3.map);
+	
+	            zoomControlDiv.index = 1;
+	            _this3.map.controls[window.google.maps.ControlPosition.RIGHT_BOTTOM].push(zoomControlDiv);
+	
 	            _this3.mapAddPostButton();
 	            _this3.mapSetPositionButton();
 	
 	            _this3.showUser();
 	            _this3.listenTo(_app2.default.user, 'change:position', _this3.showUser);
 	        }, this));
+	    },
+	    ZoomControl: function ZoomControl(controlDiv, map) {
+	        controlDiv.style.padding = '10px';
+	
+	        // Set CSS for the control wrapper
+	        var controlWrapper = document.createElement('div');
+	        controlWrapper.style.backgroundColor = 'white';
+	        controlWrapper.style.cursor = 'pointer';
+	        controlWrapper.style.textAlign = 'center';
+	        controlWrapper.style.width = '40px';
+	        controlWrapper.style.height = '80px';
+	        controlWrapper.style.borderRadius = '2px';
+	        controlWrapper.style.position = 'relative';
+	        controlDiv.appendChild(controlWrapper);
+	
+	        // Set CSS for the zoomIn
+	        var zoomInButton = document.createElement('div');
+	        zoomInButton.style.width = '40px';
+	        zoomInButton.style.height = '40px';
+	        zoomInButton.className = 'sh-zoom-in-button';
+	        controlWrapper.appendChild(zoomInButton);
+	
+	        // Set CSS for the zoomOut
+	        var zoomOutButton = document.createElement('div');
+	        zoomOutButton.style.width = '40px';
+	        zoomOutButton.style.height = '40px';
+	        zoomOutButton.className = 'sh-zoom-out-button';
+	        controlWrapper.appendChild(zoomOutButton);
+	
+	        // Setup the click event listener - zoomIn
+	        google.maps.event.addDomListener(zoomInButton, 'click', function () {
+	            map.setZoom(map.getZoom() + 1);
+	        });
+	
+	        // Setup the click event listener - zoomOut
+	        google.maps.event.addDomListener(zoomOutButton, 'click', function () {
+	            map.setZoom(map.getZoom() - 1);
+	        });
 	    },
 	    mapAddPostButton: function mapAddPostButton() {
 	        var el = $((0, _CreateButtonHbs2.default)()).get(0);
@@ -36476,6 +36516,10 @@
 	
 	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
 	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
@@ -36486,13 +36530,18 @@
 	    template: _DetailsViewHbs2.default,
 	    tagName: 'section',
 	    className: 'sh-user-profile',
+	
 	    initialize: function initialize() {},
 	    onBeforeRender: function onBeforeRender() {
 	        this.templateContext = {
 	            user: _app2.default.user.toJSON()
 	        };
+	    },
+	    onRender: function onRender() {
+	        window.user = this.templateContext; //debug
 	    }
 	});
+	
 	exports.default = View;
 
 /***/ },
