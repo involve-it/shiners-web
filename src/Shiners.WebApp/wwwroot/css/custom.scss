@@ -339,7 +339,7 @@ i {
 }
 
 .sh-set-position-map {
-    margin: 10px 0 0 0;    
+    margin: 0 10px 0 0;    
     line-height:1;
     height: 44px;
     width: 44px;
@@ -649,9 +649,16 @@ input[type=radio] + label {
 }
 
 .sh-registers-buttons {
+    margin-right: 10px;
+
+    .sign-up {
+        margin-right: 6px !important;
+    }
 
     #logout {
-        padding: 9px 8px;
+        padding: 9px 12px;
+        box-shadow: none;
+        background: rgba(0,0,0, .2) !important;
     }
 }
 
@@ -1054,6 +1061,16 @@ input[type=radio] + label {
             
             .sh-header-topline-item {
 
+                &:first-child {
+                    @include flex(1 1 auto);
+                    min-width: 0;
+                    padding-right: 10px;
+                }
+
+                &.sh-header-buttons-tools {
+                    white-space: nowrap;
+                }
+
                 .sh-show-modal-city {
                     display: inline-block;
                     width: 100%;
@@ -1071,27 +1088,12 @@ input[type=radio] + label {
                         @include sh-align-items(center);
                     }
 
-                    .sh-nav-location-value {
-                        max-width: 290px;
+                    .sh-nav-location-value {                       
                         position: relative;
                         display: block;
                         overflow: hidden;
                         white-space: nowrap;
-                        text-overflow: ellipsis;
-                        width: auto;
-
-                        &:after {
-                            content: "";
-                            width: 60px;
-                            height: 100%;
-                            position: absolute;
-                            top: 0;
-                            left: 230px;
-                            background: -moz-linear-gradient(left, rgba(106,170,245, 0) 0%, rgba(74,144,226, 1) 100%);
-                            background: -webkit-linear-gradient(left, rgba(106,170,245, 0) 0%, rgba(74,144,226, 1) 100%);
-                            background: linear-gradient(to right, rgba(106,170,245, 0) 0%, rgba(74,144,226, 1) 100%);
-                            pointer-events: none;
-                        }
+                        text-overflow: ellipsis;                        
                     }
                 }
 
@@ -1258,7 +1260,7 @@ input[type=radio] + label {
     /* MAP SETTINGS */
     .map-frame {
         position: relative;
-        top: 55px;
+        top: 30px;
         left: 20px;
         padding: 0;
         @include border-radius(2px);
@@ -2540,13 +2542,7 @@ input[type=radio] + label {
                 .sh-header-topline-main {
                     .sh-header-topline-item {
                         .sh-show-modal-city {
-                            .sh-nav-location-value {
-                                max-width: $width;
-
-                                &:after {
-                                    left: $width - 60px;
-                                }
-                            }
+                            .sh-nav-location-value {}
                         }
                     }
                 }
@@ -2559,6 +2555,7 @@ input[type=radio] + label {
                     margin: 0;
                     right: 0px;
                     top: 2px;
+                    border: none;
                     box-shadow: none;
                 }
 
@@ -2859,13 +2856,7 @@ input[type=radio] + label {
                 .sh-header-topline-main {
                     .sh-header-topline-item {
                         .sh-show-modal-city {
-                            .sh-nav-location-value {
-                                max-width: $width;
-
-                                &:after {
-                                    left: $width - 60px;
-                                }
-                            }
+                            .sh-nav-location-value {}
                         }
                     }
                 }
@@ -2988,13 +2979,7 @@ input[type=radio] + label {
                 .sh-header-topline-main {
                     .sh-header-topline-item {
                         .sh-show-modal-city {
-                            .sh-nav-location-value {
-                                max-width: $width;
-
-                                &:after {
-                                    left: $width - 60px;
-                                }
-                            }
+                            .sh-nav-location-value {}
                         }
                     }
                 }

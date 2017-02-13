@@ -182,21 +182,25 @@ export default Marionette.Object.extend({
             debugger;
             console.log(laundryTaskRQ.result);
         });*/
-        debugger;
+        //debugger;
         var subscription = app.asteroid.subscribe('blog.posts');
         subscription.ready.done(function(a, b, c) {
             console.log('ready - posts')
         });
         var a = new AsteroidCollection(null, { asteroid: app.asteroid });
-        debugger;
+        //debugger;
         /*a.sub('blog.authors');
         var s = a.subscriptions[0];
         s.ready.done(function() {
             console.log('ready - authors')
         });*/
-        var c = app.asteroid.getCollection('blog_posts').find().fetch();
-        console.log(c)
+        
+        
+       // var c = app.asteroid.getCollection('blog_posts').find().fetch();
+        //console.log(c)
         app.layout.showChildView('content', new BlogHomeView());
+        
+        
         /*var c = new AsteroidCollection(null, { asteroid: app.asteroid });
         c.loadByMethod('getBlogPosts', () => {
             debugger;

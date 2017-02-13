@@ -133,12 +133,20 @@ var View = Marionette.View.extend({
         var defaultCoords = { lat: 55.75396, lng: 37.620393 };
         MapLoader({key:'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY'}).then( _.bind((maps) => {
             var center = app.user.get('position') || defaultCoords;
-            this.map = new maps.Map(document.getElementById('map2'),
-            {
+
+            this.map = new maps.Map(document.getElementById('map2'), {
                 center: center,
                 zoom: 14,
-                scrollwheel: false
+                scrollwheel: false,
+                mapTypeControl: false,
+                scaleControl: false,
+                streetViewControl: false,
+                zoomControl: true,
+                zoomControlOptions: {
+                    position: google.maps.ControlPosition.RIGHT_BOTTOM
+                }
             });
+
             this.geocoder = new maps.Geocoder();
             app.map = this.map;
             window.myMap = app.map; // debug
@@ -183,7 +191,7 @@ var View = Marionette.View.extend({
                 }, ()=> {});
             }
         });
-        this.map.controls[app.isMobile?window.google.maps.ControlPosition.BOTTOM_CENTER: window.google.maps.ControlPosition.TOP_CENTER].push(el);
+        this.map.controls[app.isMobile?window.google.maps.ControlPosition.BOTTOM_CENTER: window.google.maps.ControlPosition.RIGHT_BOTTOM].push(el);
     },
 
     mobile_CreateInfoButton() {

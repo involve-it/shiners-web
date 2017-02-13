@@ -21785,7 +21785,7 @@ i.icon {
     box-shadow: none; }
 
 .sh-set-position-map {
-  margin: 10px 0 0 0;
+  margin: 0 10px 0 0;
   line-height: 1;
   height: 44px;
   width: 44px;
@@ -22041,8 +22041,14 @@ input[type=radio] + label {
   opacity: 0.95 !important;
   background: white !important; }
 
-.sh-registers-buttons #logout {
-  padding: 9px 8px; }
+.sh-registers-buttons {
+  margin-right: 10px; }
+  .sh-registers-buttons .sign-up {
+    margin-right: 6px !important; }
+  .sh-registers-buttons #logout {
+    padding: 9px 12px;
+    box-shadow: none;
+    background: rgba(0, 0, 0, 0.2) !important; }
 
 .sh-flex-center-items {
   display: -webkit-flex;
@@ -22363,6 +22369,17 @@ input[type=radio] + label {
       -webkit-align-items: center;
       -ms-align-items: center;
       align-items: center; }
+      #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item:first-child {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1 1 auto;
+        -moz-box-flex: 1;
+        -moz-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        min-width: 0;
+        padding-right: 10px; }
+      #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item.sh-header-buttons-tools {
+        white-space: nowrap; }
       #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city {
         display: inline-block;
         width: 100%;
@@ -22380,24 +22397,11 @@ input[type=radio] + label {
           -ms-align-items: center;
           align-items: center; }
         #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value {
-          max-width: 290px;
           position: relative;
           display: block;
           overflow: hidden;
           white-space: nowrap;
-          text-overflow: ellipsis;
-          width: auto; }
-          #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value:after {
-            content: "";
-            width: 60px;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 230px;
-            background: -moz-linear-gradient(left, rgba(106, 170, 245, 0) 0%, #4a90e2 100%);
-            background: -webkit-linear-gradient(left, rgba(106, 170, 245, 0) 0%, #4a90e2 100%);
-            background: linear-gradient(to right, rgba(106, 170, 245, 0) 0%, #4a90e2 100%);
-            pointer-events: none; }
+          text-overflow: ellipsis; }
       #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item i {
         font-size: 13px; }
   #header .sh-header-topline-main,
@@ -22532,7 +22536,7 @@ input[type=radio] + label {
     /* BLURRED BG */ }
   #header .map-frame {
     position: relative;
-    top: 55px;
+    top: 30px;
     left: 20px;
     padding: 0;
     -webkit-border-radius: 2px;
@@ -23532,15 +23536,12 @@ input[type=radio] + label {
       #header .sh-logo-header img {
         height: 30px;
         width: 30px; }
-    #header #topNav .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value {
-      max-width: 400px; }
-      #header #topNav .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value:after {
-        left: 340px; }
     #header #topNav .sh-header-topline-main .sh-btn-mobile-menu {
       position: relative;
       margin: 0;
       right: 0px;
       top: 2px;
+      border: none;
       box-shadow: none; }
     #header #topNav .sh-header-topline-main .nav-main-collapse {
       position: absolute;
@@ -23696,10 +23697,6 @@ input[type=radio] + label {
       text-align: center; }
     #sh-set-shiners .sh-set-shiners-wrapper div + div {
       padding-top: 20px; }
-  #header #topNav .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value {
-    max-width: 170px; }
-    #header #topNav .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value:after {
-      left: 110px; }
   #header .map-frame {
     top: 60px;
     left: 0;
@@ -23779,10 +23776,6 @@ input[type=radio] + label {
     padding: 0 0 8px 0; } }
 
 @media screen and (max-width: 480px) {
-  #header #topNav .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value {
-    max-width: 50px; }
-    #header #topNav .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value:after {
-      left: -10px; }
   body.page--index #header #topNav .sh-header-navbar-wrapper .sh-header-navbar-items {
     min-height: 52px;
     padding: 0; }

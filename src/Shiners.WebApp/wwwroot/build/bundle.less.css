@@ -2830,5 +2830,20 @@ body.page--massMedia .sh-mass-media .sh-article-block .sh-article-wrapper:last-c
     width: 1170px;
   }
 }
+/* ==================
+	MIXINS LESS
+===================== */
+/* ==================
+	CONSTANTS LESS
+===================== */
+/* ==================
+	BLOG HOME
+===================== */
+body.page--blogHome .sh-blog-home {
+  padding: 45px 0;
+}
+body.page--blogHome .sh-blog-home .sh-blog-home-wrapper {
+  padding: 16px;
+}
 
 /*# sourceMappingURL=bundle.less.css.map*/
