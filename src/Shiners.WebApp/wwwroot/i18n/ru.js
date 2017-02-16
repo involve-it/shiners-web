@@ -13,6 +13,7 @@ var json = {
     exit: 'Выйти',
     complain: 'Пожаловаться',
     NO_NAME: 'Имя не указано',
+    WAS_ONLINE: 'Заходил:',
     DIRECT_PROFILE_LINK: 'Прямая ссылка на профиль',
     CREATE_SHINER: 'Создать светлячок',
     map: 'Карта',

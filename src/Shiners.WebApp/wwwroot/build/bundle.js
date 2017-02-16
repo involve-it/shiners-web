@@ -15971,7 +15971,7 @@
 	
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
-	__webpack_require__(/*! ../css/shiners-override.css */ 181);
+	__webpack_require__(/*! ../css/shiners-override.css */ 186);
 	
 	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
@@ -21692,6 +21692,7 @@
 	    mainMenuBlog: 'Blog',
 	    exit: 'Exit',
 	    complain: 'To complain',
+	    WAS_ONLINE: 'Was online:',
 	    NO_NAME: 'Name is not entered',
 	    map: 'Map',
 	    DIRECT_PROFILE_LINK: 'direct profile link',
@@ -21754,6 +21755,7 @@
 	    exit: 'Выйти',
 	    complain: 'Пожаловаться',
 	    NO_NAME: 'Имя не указано',
+	    WAS_ONLINE: 'Заходил:',
 	    DIRECT_PROFILE_LINK: 'Прямая ссылка на профиль',
 	    CREATE_SHINER: 'Создать светлячок',
 	    map: 'Карта',
@@ -30832,6 +30834,7 @@
 	        'legal/confidential': 'legalConfidential', // same as Privacy Policy
 	        'legal/user-agreement': 'legalUserAgreement', // Terms of Use?
 	        'legal/post-publishing-rules': 'legalPostPublishingRules',
+	
 	        //blog:
 	        'blog': 'blogHome',
 	        'blog/post/:id': 'blogPostId'
@@ -30933,51 +30936,51 @@
 	
 	var _DetailsView4 = _interopRequireDefault(_DetailsView3);
 	
-	var _MessagesToUserView = __webpack_require__(/*! ./chats/native/MessagesToUserView.js */ 143);
+	var _MessagesToUserView = __webpack_require__(/*! ./chats/native/MessagesToUserView.js */ 148);
 	
 	var _MessagesToUserView2 = _interopRequireDefault(_MessagesToUserView);
 	
-	var _LoginView = __webpack_require__(/*! ./account/LoginView.js */ 152);
+	var _LoginView = __webpack_require__(/*! ./account/LoginView.js */ 157);
 	
 	var _LoginView2 = _interopRequireDefault(_LoginView);
 	
-	var _RegisterUserView = __webpack_require__(/*! ./account/RegisterUserView */ 156);
+	var _RegisterUserView = __webpack_require__(/*! ./account/RegisterUserView */ 161);
 	
 	var _RegisterUserView2 = _interopRequireDefault(_RegisterUserView);
 	
-	var _AboutView = __webpack_require__(/*! ./about/AboutView.js */ 159);
+	var _AboutView = __webpack_require__(/*! ./about/AboutView.js */ 164);
 	
 	var _AboutView2 = _interopRequireDefault(_AboutView);
 	
-	var _MassMediaView = __webpack_require__(/*! ./massMedia/MassMediaView.js */ 162);
+	var _MassMediaView = __webpack_require__(/*! ./massMedia/MassMediaView.js */ 167);
 	
 	var _MassMediaView2 = _interopRequireDefault(_MassMediaView);
 	
-	var _HowItWorksView = __webpack_require__(/*! ./howItWorks/HowItWorksView.js */ 165);
+	var _HowItWorksView = __webpack_require__(/*! ./howItWorks/HowItWorksView.js */ 170);
 	
 	var _HowItWorksView2 = _interopRequireDefault(_HowItWorksView);
 	
-	var _FogotPasswordView = __webpack_require__(/*! ./account/FogotPasswordView.js */ 167);
+	var _FogotPasswordView = __webpack_require__(/*! ./account/FogotPasswordView.js */ 172);
 	
 	var _FogotPasswordView2 = _interopRequireDefault(_FogotPasswordView);
 	
-	var _legalUserAgreementView = __webpack_require__(/*! ./legal/legalUserAgreementView */ 169);
+	var _legalUserAgreementView = __webpack_require__(/*! ./legal/legalUserAgreementView */ 174);
 	
 	var _legalUserAgreementView2 = _interopRequireDefault(_legalUserAgreementView);
 	
-	var _legalConfidentialView = __webpack_require__(/*! ./legal/legalConfidentialView */ 171);
+	var _legalConfidentialView = __webpack_require__(/*! ./legal/legalConfidentialView */ 176);
 	
 	var _legalConfidentialView2 = _interopRequireDefault(_legalConfidentialView);
 	
-	var _legalPostPublishingView = __webpack_require__(/*! ./legal/legalPostPublishingView */ 173);
+	var _legalPostPublishingView = __webpack_require__(/*! ./legal/legalPostPublishingView */ 178);
 	
 	var _legalPostPublishingView2 = _interopRequireDefault(_legalPostPublishingView);
 	
-	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 175);
+	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 180);
 	
 	var _blogHomeView2 = _interopRequireDefault(_blogHomeView);
 	
-	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 178);
+	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 183);
 	
 	var _blogPostIdView2 = _interopRequireDefault(_blogPostIdView);
 	
@@ -31073,7 +31076,15 @@
 	            _app2.default.router.navigate('', { trigger: true });
 	        }
 	    },
-	    myProfile: function myProfile() {},
+	    myProfile: function myProfile() {
+	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
+	
+	        var userModel = new _User2.default({ _id: _app2.default.user.get('_id') });
+	        // window.currentUser = userModel;
+	        userModel.fetch().done(function () {
+	            return _app2.default.layout.showChildView('content', new _DetailsView4.default({ model: userModel }));
+	        });
+	    },
 	
 	
 	    //myMessagesPage() {
@@ -31100,6 +31111,7 @@
 	    legalPostPublishingRules: function legalPostPublishingRules() {
 	        _app2.default.layout.showChildView('content', new _legalPostPublishingView2.default());
 	    },
+	
 	
 	    // BLOG:
 	    blogHome: function blogHome() {
@@ -31143,7 +31155,9 @@
 	            app.layout.showChildView('content', new BlogHomeView({collection: c}));
 	        });*/
 	    },
-	    blogPostId: function blogPostId() {
+	    blogPostId: function blogPostId(id) {
+	        console.log('ID: ', id); //debug
+	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
 	        _app2.default.layout.showChildView('content', new _blogPostIdView2.default());
 	    }
 	});
@@ -36502,7 +36516,7 @@
   \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -36516,9 +36530,21 @@
 	
 	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
 	
+	var _SendMessageView = __webpack_require__(/*! ./SendMessageView.js */ 143);
+	
+	var _SendMessageView2 = _interopRequireDefault(_SendMessageView);
+	
+	var _ProfileEditView = __webpack_require__(/*! ./ProfileEditView.js */ 146);
+	
+	var _ProfileEditView2 = _interopRequireDefault(_ProfileEditView);
+	
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _ModalContainerView = __webpack_require__(/*! ../../sharedViews/ModalContainerView.js */ 118);
+	
+	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
 	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
@@ -36528,21 +36554,82 @@
 	
 	var View = _backbone2.default.View.extend({
 	    template: _DetailsViewHbs2.default,
-	    tagName: 'section',
+	    tagName: 'div',
 	    className: 'sh-user-profile',
+	    c_user: null,
+	    r_user: null,
 	
-	    initialize: function initialize() {},
+	    events: {
+	        'click #logout': 'logout',
+	        'click #profile-send': 'profileSend',
+	        'click #profile-edit': 'profileEdit',
+	        'click #checkPosts': 'checkPosts',
+	        'click #profile-link': 'directProfileLink'
+	    },
+	
+	    regions: {
+	        'modal': '#modalContainer'
+	    },
+	
+	    initialize: function initialize() {
+	        this.r_user = this.model.toJSON();
+	        this.c_user = _app2.default.user.toJSON();
+	
+	        this.sendMessageModel = new Backbone.Model({
+	            name: this.r_user.username,
+	            user_id: this.c_user._id,
+	            remoteUser_id: this.r_user._id,
+	            chatId: this.model.id
+	        });
+	    },
 	    onBeforeRender: function onBeforeRender() {
 	        this.templateContext = {
 	            user: _app2.default.user.toJSON()
 	        };
 	    },
 	    onRender: function onRender() {
-	        window.user = this.templateContext; //debug
+	        window.userLogin = this.model.toJSON(); //debug
+	        window.userCurrent = this.templateContext.user; //debug
+	    },
+	    logout: function logout() {
+	        _app2.default.logout();
+	    },
+	    profileSend: function profileSend(e) {
+	        //Необходима проверка -> залогинен или нет, иначе отправлять на регистрацию
+	        this.showChildView('modal', new _ModalContainerView2.default({ view: new _SendMessageView2.default({ model: this.sendMessageModel }), title: 'Сообщение для пользователя' }));
+	    },
+	    profileEdit: function profileEdit(e) {
+	        this.showChildView('modal', new _ModalContainerView2.default({ view: new _ProfileEditView2.default({ model: new Backbone.Model(this.c_user) }), title: 'Настройки профиля' }));
+	    },
+	    checkPosts: function checkPosts(e) {
+	        var checkbox = $(e.target),
+	            toggle;
+	
+	        toggle = checkbox.prop('checked');
+	        // -> method to update profile field
+	    },
+	    directProfileLink: function directProfileLink(e) {
+	        var t = e.target.closest('#profile-link'),
+	            c = t.dataset.copytarget,
+	            inp = c ? document.querySelector(c) : null;
+	
+	        if (inp && inp.select) {
+	            inp.select();
+	
+	            try {
+	                document.execCommand('copy');
+	                setTimeout(function () {
+	                    inp.blur();
+	                }, 250);
+	            } catch (err) {
+	                console.warn('please press Ctrl/Cmd+C to copy');
+	            }
+	        }
 	    }
 	});
 	
 	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
 /* 142 */
@@ -36554,43 +36641,67 @@
 	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='';
-	var firstName = (_.find(obj.profileDetails,{key:'firstName'})||{}).value;
 	__p+='\n';
-	var lastName = (_.findWhere(obj.profileDetails,{key:'lastName'})||{}).value; 
+	var isCurrentUser = (_id === user._id)
+	__p+='\r\n';
+	var someUser; if(_id === user._id){someUser = user}else{someUser = obj} 
+	__p+='\n\n';
+	var firstName = (_.find(someUser.profileDetails,{key:'firstName'})||{}).value;
 	__p+='\n';
-	var city = (_.find(obj.profileDetails,{key:'city'})||{}).value;
+	var lastName = (_.findWhere(someUser.profileDetails,{key:'lastName'})||{}).value; 
 	__p+='\n';
-	var phone = (_.findWhere(obj.profileDetails,{key:'phone'})||{}).value; 
+	var city = (_.find(someUser.profileDetails,{key:'city'})||{}).value;
 	__p+='\n';
-	var skype = (_.find(obj.profileDetails,{key:'skype'})||{}).value;
+	var phone = (_.findWhere(someUser.profileDetails,{key:'phone'})||{}).value; 
 	__p+='\n';
-	var vk = (_.findWhere(obj.profileDetails,{key:'vk'})||{}).value; 
+	var skype = (_.find(someUser.profileDetails,{key:'skype'})||{}).value;
 	__p+='\n';
-	var twitter = (_.find(obj.profileDetails,{key:'twitter'})||{}).value;
+	var vk = (_.findWhere(someUser.profileDetails,{key:'vk'})||{}).value; 
 	__p+='\n';
-	var facebook = (_.findWhere(obj.profileDetails,{key:'facebook'})||{}).value; 
-	__p+='\n<div class="container">\n    <div class="sh-user-profile-wrapper">\n        <div class="sh-side-left">\n            <div class="sh-page-block sh-user-box">\n                <div class="sh-user-avatar">\n                    <div class="sh-user-avatar-wrap">\n                        <a class="sh-user-profile-photo-link" href="#">\n                            <img src="'+
-	((__t=(profile.image && profile.image.data?profile.image.data:'/images/noimage.jpg'))==null?'':__t)+
-	'" alt="#">\n                        </a>\n                        <div class="sh-avatar-user-status">\n                            <div class="sh-avatar-user-status-wrapper sh-offline"></div>\n                        </div>\n                    </div>\n                </div>\n                <div class="sh-profile-action">\n                    <a href="#" class="ui sh-button sh-profile-send"> '+
+	var twitter = (_.find(someUser.profileDetails,{key:'twitter'})||{}).value;
+	__p+='\n';
+	var facebook = (_.findWhere(someUser.profileDetails,{key:'facebook'})||{}).value; 
+	__p+='\n\n<div id="modalContainer"></div>\n\n<div class="container">\n    <div class="sh-user-profile-wrapper">\n        <div class="sh-side-left">\n            <div class="sh-page-block sh-user-box">\n                <div class="sh-user-avatar">\n                    <div class="sh-user-avatar-wrap">\n                        <a class="sh-user-profile-photo-link" href="#">\n                            <img src="'+
+	((__t=(profile.image && profile.image.data?profile.image.data:'/images/no_image.jpg'))==null?'':__t)+
+	'" alt="#">\n                        </a>\n                        <div class="sh-avatar-user-status">\n                            <div class="sh-avatar-user-status-wrapper '+
+	((__t=(someUser.online ? 'sh-online' : 'sh-offline' ))==null?'':__t)+
+	'"></div>\n                        </div>\n                    </div>\n                </div>\n                <div class="sh-profile-action">\n                    ';
+	if( isCurrentUser ) { 
+	__p+='\n                    <a id="profile-send" class="ui sh-button sh-profile-send"> '+
 	((__t=(i18n('addMessage')))==null?'':__t)+
-	'</a>\n                    <!--<a href="#" class="ui sh-button sh-profile-edit">Редактировать</a>-->\n                </div>\n            </div>\n            <div class="sh-page-block">\n                <ul class="sh-user-action">\n                    <li><a href="#">'+
+	'</a>\n                    ';
+	 } else { 
+	__p+='\n                    <a id="profile-edit" class="ui sh-button sh-profile-edit">Редактировать</a>\n                    ';
+	 } 
+	__p+='\n                </div>\n            </div>\n            <div class="sh-page-block">\n                <ul class="sh-user-action">\n                    <li><a href="#">'+
 	((__t=(i18n('complain')))==null?'':__t)+
-	'</a></li>\n                    <li class="sh-user-action-exit"><a href="#">'+
+	'</a></li>\n                    ';
+	if(isCurrentUser) { 
+	__p+='\n                    <li class="sh-user-action-exit"><a id="logout">'+
 	((__t=(i18n('exit')))==null?'':__t)+
-	'</a></li>\n                </ul>\n            </div>\n        </div>\n        <div class="sh-side-right">\n            <div class="sh-page-block sh-user-info">\n                <div class="sh-user-info-top">\n                    <small class="sh-user-was">Был '+
+	'</a></li>\n                    ';
+	 } 
+	__p+='\n                </ul>\n            </div>\n        </div>\n        <div class="sh-side-right">\n            <div class="sh-page-block sh-user-info">\n                <div class="sh-user-info-top">\n                    <small class="sh-user-was">'+
+	((__t=(i18n('WAS_ONLINE')))==null?'':__t)+
+	' '+
 	((__t=(moment(status.lastlogin.date).calendar()))==null?'':__t)+
 	'</small>\n                    <h2 class="sh-user-name">'+
 	((__t=( firstName))==null?'':__t)+
 	' '+
 	((__t=(lastName))==null?'':__t)+
 	' '+
-	((__t=((!firstName && !lastName)?i18n('NO_NAME'):''))==null?'':__t)+
+	((__t=((!firstName && !lastName) ? someUser.username : i18n('NO_NAME')))==null?'':__t)+
 	'</h2>\n                </div>\n                <div class="sh-user-profile-info">\n                    <div class="sh-user-profile-info-wrapper">\n                        <!--Direct link to my profile-->\n                        <div class="sh-user-profile-info-row sh-col">\n                            <div class="sh-info-title">'+
 	((__t=(i18n('DIRECT_PROFILE_LINK')))==null?'':__t)+
-	'</div>\n                            <div class="sh-info-text">\n                                <div class="sh-direct-link-block">\n                                    <div class="sh-direct-link-wrapper">\n                                        <div class="sh-icon-direct-link"><i class="fa fa-link" aria-hidden="true"></i></div>\n                                        https://wwww.shiners.ru/user/'+
+	'</div>\n                            <div class="sh-info-text">\n                                <div class="sh-direct-link-block">\n                                    <div class="sh-direct-link-wrapper">\n                                        <div class="sh-icon-direct-link">\n                                            <i class="fa fa-link" aria-hidden="true"></i>\n                                        </div>\n                                        <input type="text" readonly id="directProfileLink" value="https://wwww.shiners.ru/user/'+
 	((__t=(_id))==null?'':__t)+
-	'\n                                    </div>\n                                    <div class="sh-direct-link-btn-copy"><a href="#" title="Копировать" class="ui sh-button"><i class="fa fa-clipboard" aria-hidden="true"></i></a></div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--The publication available to all users-->\n                        <div class="sh-user-profile-info-row sh-col">\n                            <div class="sh-info-title">Настройка для постов</div>\n                            <div class="sh-info-text">\n                                <div class="sh-direct-link-block">\n                                    <div class="sh-direct-link-wrapper">\n                                        <label class="sh-checkbox">\n                                            <input type="checkbox" value="1">\n                                            <label>Сделать мои публикации доступными для всех пользователей</label>\n                                        </label>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Public info-->\n                        <div class="sh-user-profile-info-row sh-profile-info-header">\n                            <div class="sh-profile-info-header-within">\n                                <span>Публичная информация</span>\n                            </div>\n                        </div>\n\n                        <!--City-->\n                        <div class="sh-user-profile-info-row">\n                            <div class="sh-info-title">Город</div>\n                            <div class="sh-info-text">'+
+	'" />\n                                    </div>\n                                    <div class="sh-direct-link-btn-copy"><a id="profile-link" data-copytarget="#directProfileLink" title="Копировать" class="ui sh-button"><i class="fa fa-clipboard" aria-hidden="true"></i></a></div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--The publication available to all users-->\n                        ';
+	if(isCurrentUser) { 
+	__p+='\n                        <div class="sh-user-profile-info-row sh-col">\n                            <div class="sh-info-title">Настройка для постов</div>\n                            <div class="sh-info-text">\n                                <div class="sh-direct-link-block">\n                                    <div class="sh-direct-link-wrapper">\n                                        <label class="sh-checkbox">\n                                            <input id="checkPosts" type="checkbox" '+
+	((__t=(isCurrentUser && someUser.profile.checkOwnPosts ? 'checked' : ''))==null?'':__t)+
+	' value="1">\n                                            <label>Сделать мои публикации доступными для всех пользователей</label>\n                                        </label>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        ';
+	 } 
+	__p+='\n                        <!--Public info-->\n                        <div class="sh-user-profile-info-row sh-profile-info-header">\n                            <div class="sh-profile-info-header-within">\n                                <span>Публичная информация</span>\n                            </div>\n                        </div>\n\n                        <!--City-->\n                        <div class="sh-user-profile-info-row">\n                            <div class="sh-info-title">Город</div>\n                            <div class="sh-info-text">'+
 	((__t=(city||'не указано/скрыто'))==null?'':__t)+
 	'</div>\n                        </div>\n                        <!--Social links-->\n                        <div class="sh-user-profile-info-row">\n                            <div class="sh-info-title">Логин Skype</div>\n                            <div class="sh-info-text">'+
 	((__t=(skype||'не указано/скрыто'))==null?'':__t)+
@@ -36607,6 +36718,196 @@
 
 /***/ },
 /* 143 */
+/*!*************************************************!*\
+  !*** ./wwwroot/homeApp/user/SendMessageView.js ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _SendMessageViewHbs = __webpack_require__(/*! ./SendMessageView.hbs.html */ 144);
+	
+	var _SendMessageViewHbs2 = _interopRequireDefault(_SendMessageViewHbs);
+	
+	var _AsteroidModel = __webpack_require__(/*! ../../data/AsteroidModel.js */ 79);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	__webpack_require__(/*! ./SendMessageView.less */ 145);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	    template: _SendMessageViewHbs2.default,
+	
+	    events: {
+	        'submit form': 'sendMessage'
+	    },
+	
+	    sendMessage: function sendMessage(e) {
+	        e.preventDefault();
+	        var self = this;
+	        var $textEl = this.$('#message-to-user'),
+	            value = ($textEl.val() || "").trim();
+	
+	        if (!_.isEmpty(value)) {
+	            var model = new _AsteroidModel2.default({
+	                text: value,
+	                timestamp: new Date(),
+	                userId: this.model.get('user_id'),
+	                toUserId: this.model.get('remoteUser_id'),
+	                chatId: this.model.get('chatId')
+	            }, { asteroid: _app2.default.asteroid });
+	
+	            // model.save('addMessage',{destinationUserId:this.model.get('remoteUser')._id,message:value,type:'text',associatedPostId:this.model.get('postId')});
+	            //$textEl.val('');
+	            //$textEl.focus();
+	
+	            console.log('Model ', model.toJSON());
+	
+	            self.remove();
+	            self.trigger('destroy');
+	        }
+	    }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 144 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/user/SendMessageView.hbs.html ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div id="messageToUser" class="sh-message-to-user">\r\n  \r\n    <form id="sendMessageForm" action="/" method="post">\r\n        <div class="row">\r\n            <div class="col-12">\r\n                <div class="panel-body sh-panel-body">\r\n                    <textarea required class="sh-message-to-user" id="message-to-user" name="sendToUser[message]" placeholder="Начните сообщение..."></textarea>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class="row">\r\n            <div class="sh-send-message-actions">\r\n                <div class="sh-send-message-actions-wrapper">\r\n                    <div class="col-4">\r\n                        <div class="sh-msg-info-title">Сообщение для:</div>\r\n                        <div class="sh-msg-user-name">'+
+	((__t=(name))==null?'':__t)+
+	'</div>\r\n                    </div>\r\n                    <div class="col-7">\r\n                        <button type="submit" class="ui sh-button standard action big"><i class="fa fa-check"></i> <span>Отправить сообщение</span></button>\r\n                    </div>\r\n                </div>\r\n            </div>            \r\n        </div>\r\n        <input type="hidden" name="message-save" value="1">\r\n    </form>\r\n\r\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 145 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/user/SendMessageView.less ***!
+  \***************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 146 */
+/*!*************************************************!*\
+  !*** ./wwwroot/homeApp/user/ProfileEditView.js ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ProfileEditViewHbs = __webpack_require__(/*! ./ProfileEditView.hbs.html */ 147);
+	
+	var _ProfileEditViewHbs2 = _interopRequireDefault(_ProfileEditViewHbs);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	    template: _ProfileEditViewHbs2.default,
+	
+	    events: {
+	        'click .sh-privacy-dropdown': 'privacyDropdown',
+	        'click #sh-profile-edit-action-save': 'profileEditSave'
+	    },
+	
+	    initialize: function initialize() {
+	        console.log('Model profile', this.model.toJSON());
+	    },
+	    privacyDropdown: function privacyDropdown(e) {
+	        e.preventDefault();
+	        console.log('click privacyDropdown');
+	    },
+	    profileEditSave: function profileEditSave(e) {
+	        e.preventDefault();
+	        console.log('click profileEditSave');
+	    }
+	});
+
+/***/ },
+/* 147 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/user/ProfileEditView.hbs.html ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n';
+	var firstName = (_.find(obj.profileDetails, {key:'firstName'}) || {}).value;
+	__p+='\r\n';
+	var lastName = (_.findWhere(obj.profileDetails, {key:'lastName'}) || {}).value;
+	__p+='\r\n';
+	var city = (_.find(obj.profileDetails, {key:'city'}) || {}).value;
+	__p+='\r\n';
+	var phone = (_.findWhere(obj.profileDetails, {key:'phone'}) || {}).value; 
+	__p+='\r\n';
+	var skype = (_.find(obj.profileDetails, {key:'skype'}) || {}).value;
+	__p+='\r\n';
+	var vk = (_.findWhere(obj.profileDetails, {key:'vk'}) || {}).value; 
+	__p+='\r\n';
+	var twitter = (_.find(obj.profileDetails, {key:'twitter'}) || {}).value;
+	__p+='\r\n';
+	var facebook = (_.findWhere(obj.profileDetails, {key:'facebook'}) || {}).value; 
+	__p+='\r\n\r\n<div id="profileEdit" class="sh-profile-edit">    \r\n    <div class="sh-profile-edit-wrapper">\r\n        \r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Имя:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( firstName))==null?'':__t)+
+	'" placeholder="Не указано" id="sh-profile-first-name" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Фамилия:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( lastName))==null?'':__t)+
+	'" placeholder="Не указано" id="sh-profile-last-name" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        \r\n        <div class="sh-profile-edit-row sh-profile-info-header">\r\n            <div class="sh-profile-info-header-within">\r\n                <span>Контакты</span>\r\n            </div>\r\n        </div>\r\n\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Город:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( city))==null?'':__t)+
+	'" id="sh-profile-city" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Телефон:</div>\r\n            <div class="sh-profile-edit-labeled sh-inner-icon">\r\n                <input type="text" value="'+
+	((__t=( phone))==null?'':__t)+
+	'" id="sh-profile-phone" class="sh-profile-input" autocomplete="off">\r\n                <div class="sh-profile-edit-privacy-control sh-profile-locked">                    \r\n                    <button type="button" class="sh-privacy-dropdown dropdown-toggle" data-toggle="dropdown"><i class="fa fa-unlock-alt" aria-hidden="true"></i></button>\r\n                    <ul class="dropdown-menu" role="menu">\r\n                        <li><a data-target="opened"><i class="fa fa-edit"></i> Публично</a></li>\r\n                        <li><a data-target="locked"><i class="fa fa-question-circle"></i> Скрыто</a></li>                            \r\n                    </ul>                    \r\n                </div>\r\n            </div>            \r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Логин Skype:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( skype))==null?'':__t)+
+	'" placeholder="Не указано" id="sh-profile-skype" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Вконтакте:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( vk))==null?'':__t)+
+	'" placeholder="Ссылка на профиль" id="sh-profile-vk" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Facebook:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( facebook))==null?'':__t)+
+	'" placeholder="Ссылка на профиль" id="sh-profile-facebook" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n\r\n        <hr>\r\n\r\n        <div class="sh-profile-edit-action sh-text-center">\r\n            <a id="sh-profile-edit-action-save" class="ui sh-button standard action big"><i class="fa fa-check"></i> <span>Сохранить</span></a>\r\n        </div>\r\n\r\n    </div>\r\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 148 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.js ***!
   \************************************************************/
@@ -36622,11 +36923,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MessagesToUserViewHbs = __webpack_require__(/*! ./MessagesToUserView.hbs.html */ 144);
+	var _MessagesToUserViewHbs = __webpack_require__(/*! ./MessagesToUserView.hbs.html */ 149);
 	
 	var _MessagesToUserViewHbs2 = _interopRequireDefault(_MessagesToUserViewHbs);
 	
-	var _MessagesListView = __webpack_require__(/*! ./MessagesListView.js */ 145);
+	var _MessagesListView = __webpack_require__(/*! ./MessagesListView.js */ 150);
 	
 	var _MessagesListView2 = _interopRequireDefault(_MessagesListView);
 	
@@ -36634,7 +36935,7 @@
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	__webpack_require__(/*! ./messagesToUserView.less */ 151);
+	__webpack_require__(/*! ./messagesToUserView.less */ 156);
 	
 	var _app = __webpack_require__(/*! ../../app.js */ 15);
 	
@@ -36700,6 +37001,7 @@
 	                chatId: this.model.id
 	            }, { asteroid: _app2.default.asteroid });
 	            //this.collection.add(model);
+	
 	            model.save('addMessage', { destinationUserId: this.model.get('remoteUser')._id, message: value, type: 'text', associatedPostId: this.model.get('postId') });
 	            $textEl.val('');
 	            $textEl.focus();
@@ -36757,7 +37059,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3), __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 144 */
+/* 149 */
 /*!******************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.hbs.html ***!
   \******************************************************************/
@@ -36783,7 +37085,7 @@
 
 
 /***/ },
-/* 145 */
+/* 150 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesListView.js ***!
   \**********************************************************/
@@ -36799,11 +37101,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _messagesItemView = __webpack_require__(/*! ./messagesItemView.js */ 146);
+	var _messagesItemView = __webpack_require__(/*! ./messagesItemView.js */ 151);
 	
 	var _messagesItemView2 = _interopRequireDefault(_messagesItemView);
 	
-	var _NoMessagesView = __webpack_require__(/*! ./NoMessagesView.js */ 149);
+	var _NoMessagesView = __webpack_require__(/*! ./NoMessagesView.js */ 154);
 	
 	var _NoMessagesView2 = _interopRequireDefault(_NoMessagesView);
 	
@@ -36836,7 +37138,7 @@
 	exports.default = View;
 
 /***/ },
-/* 146 */
+/* 151 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messagesItemView.js ***!
   \**********************************************************/
@@ -36852,11 +37154,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 147);
+	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 152);
 	
 	var _MessagesItemViewHbs2 = _interopRequireDefault(_MessagesItemViewHbs);
 	
-	__webpack_require__(/*! ./messageItemView.less */ 148);
+	__webpack_require__(/*! ./messageItemView.less */ 153);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36910,7 +37212,7 @@
 	exports.default = View;
 
 /***/ },
-/* 147 */
+/* 152 */
 /*!****************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesItemView.hbs.html ***!
   \****************************************************************/
@@ -36969,7 +37271,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 148 */
+/* 153 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messageItemView.less ***!
   \***********************************************************/
@@ -36978,7 +37280,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 149 */
+/* 154 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/NoMessagesView.js ***!
   \********************************************************/
@@ -36994,7 +37296,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 150);
+	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 155);
 	
 	var _NoMessagesViewHbs2 = _interopRequireDefault(_NoMessagesViewHbs);
 	
@@ -37008,7 +37310,7 @@
 	exports.default = View;
 
 /***/ },
-/* 150 */
+/* 155 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/NoMessagesView.hbs.html ***!
   \**************************************************************/
@@ -37024,7 +37326,7 @@
 
 
 /***/ },
-/* 151 */
+/* 156 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messagesToUserView.less ***!
   \**************************************************************/
@@ -37033,7 +37335,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 152 */
+/* 157 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/account/LoginView.js ***!
   \**********************************************/
@@ -37049,17 +37351,17 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _LoginViewHbs = __webpack_require__(/*! ./LoginView.hbs.html */ 153);
+	var _LoginViewHbs = __webpack_require__(/*! ./LoginView.hbs.html */ 158);
 	
 	var _LoginViewHbs2 = _interopRequireDefault(_LoginViewHbs);
 	
-	__webpack_require__(/*! ./loginView.less */ 154);
+	__webpack_require__(/*! ./loginView.less */ 159);
 	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _LoginModel = __webpack_require__(/*! ../../data/viewModels/LoginModel */ 155);
+	var _LoginModel = __webpack_require__(/*! ../../data/viewModels/LoginModel */ 160);
 	
 	var _LoginModel2 = _interopRequireDefault(_LoginModel);
 	
@@ -37125,7 +37427,7 @@
 	exports.default = View;
 
 /***/ },
-/* 153 */
+/* 158 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/account/LoginView.hbs.html ***!
   \****************************************************/
@@ -37143,7 +37445,7 @@
 
 
 /***/ },
-/* 154 */
+/* 159 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/account/loginView.less ***!
   \************************************************/
@@ -37152,7 +37454,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 155 */
+/* 160 */
 /*!***********************************************!*\
   !*** ./wwwroot/data/viewModels/LoginModel.js ***!
   \***********************************************/
@@ -37185,7 +37487,7 @@
 	});
 
 /***/ },
-/* 156 */
+/* 161 */
 /*!*****************************************************!*\
   !*** ./wwwroot/homeApp/account/RegisterUserView.js ***!
   \*****************************************************/
@@ -37201,7 +37503,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _RegisterUserViewHbs = __webpack_require__(/*! ./RegisterUserView.hbs.html */ 157);
+	var _RegisterUserViewHbs = __webpack_require__(/*! ./RegisterUserView.hbs.html */ 162);
 	
 	var _RegisterUserViewHbs2 = _interopRequireDefault(_RegisterUserViewHbs);
 	
@@ -37209,7 +37511,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _RegisterModel = __webpack_require__(/*! ../../data/viewModels/RegisterModel */ 158);
+	var _RegisterModel = __webpack_require__(/*! ../../data/viewModels/RegisterModel */ 163);
 	
 	var _RegisterModel2 = _interopRequireDefault(_RegisterModel);
 	
@@ -37267,7 +37569,7 @@
 	exports.default = View;
 
 /***/ },
-/* 157 */
+/* 162 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/account/RegisterUserView.hbs.html ***!
   \***********************************************************/
@@ -37283,7 +37585,7 @@
 
 
 /***/ },
-/* 158 */
+/* 163 */
 /*!**************************************************!*\
   !*** ./wwwroot/data/viewModels/RegisterModel.js ***!
   \**************************************************/
@@ -37326,7 +37628,7 @@
 	});
 
 /***/ },
-/* 159 */
+/* 164 */
 /*!********************************************!*\
   !*** ./wwwroot/homeApp/about/AboutView.js ***!
   \********************************************/
@@ -37342,7 +37644,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 160);
+	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 165);
 	
 	var _AboutViewHbs2 = _interopRequireDefault(_AboutViewHbs);
 	
@@ -37350,7 +37652,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./about.less */ 161);
+	__webpack_require__(/*! ./about.less */ 166);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37448,7 +37750,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 160 */
+/* 165 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/about/AboutView.hbs.html ***!
   \**************************************************/
@@ -37464,7 +37766,7 @@
 
 
 /***/ },
-/* 161 */
+/* 166 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/about/about.less ***!
   \******************************************/
@@ -37473,7 +37775,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 162 */
+/* 167 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.js ***!
   \****************************************************/
@@ -37489,7 +37791,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MassMediaViewHbs = __webpack_require__(/*! ./MassMediaView.hbs.html */ 163);
+	var _MassMediaViewHbs = __webpack_require__(/*! ./MassMediaView.hbs.html */ 168);
 	
 	var _MassMediaViewHbs2 = _interopRequireDefault(_MassMediaViewHbs);
 	
@@ -37497,7 +37799,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./MassMediaView.less */ 164);
+	__webpack_require__(/*! ./MassMediaView.less */ 169);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37566,7 +37868,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 163 */
+/* 168 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.hbs.html ***!
   \**********************************************************/
@@ -37622,7 +37924,7 @@
 
 
 /***/ },
-/* 164 */
+/* 169 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.less ***!
   \******************************************************/
@@ -37631,7 +37933,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 165 */
+/* 170 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.js ***!
   \******************************************************/
@@ -37647,7 +37949,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 166);
+	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 171);
 	
 	var _HowItWorksViewHbs2 = _interopRequireDefault(_HowItWorksViewHbs);
 	
@@ -37659,7 +37961,7 @@
 	exports.default = View;
 
 /***/ },
-/* 166 */
+/* 171 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.hbs.html ***!
   \************************************************************/
@@ -37675,7 +37977,7 @@
 
 
 /***/ },
-/* 167 */
+/* 172 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/account/FogotPasswordView.js ***!
   \******************************************************/
@@ -37691,7 +37993,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 168);
+	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 173);
 	
 	var _FogotPasswordViewHbs2 = _interopRequireDefault(_FogotPasswordViewHbs);
 	
@@ -37703,7 +38005,7 @@
 	exports.default = View;
 
 /***/ },
-/* 168 */
+/* 173 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/account/FogotPasswordView.hbs.html ***!
   \************************************************************/
@@ -37719,7 +38021,7 @@
 
 
 /***/ },
-/* 169 */
+/* 174 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.js ***!
   \*********************************************************/
@@ -37735,7 +38037,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 170);
+	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 175);
 	
 	var _legalUserAgreementViewHbs2 = _interopRequireDefault(_legalUserAgreementViewHbs);
 	
@@ -37750,7 +38052,7 @@
 	exports.default = View;
 
 /***/ },
-/* 170 */
+/* 175 */
 /*!***************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.hbs.html ***!
   \***************************************************************/
@@ -37766,7 +38068,7 @@
 
 
 /***/ },
-/* 171 */
+/* 176 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalConfidentialView.js ***!
   \********************************************************/
@@ -37782,7 +38084,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalConfidentialViewHbs = __webpack_require__(/*! ./legalConfidentialView.hbs.html */ 172);
+	var _legalConfidentialViewHbs = __webpack_require__(/*! ./legalConfidentialView.hbs.html */ 177);
 	
 	var _legalConfidentialViewHbs2 = _interopRequireDefault(_legalConfidentialViewHbs);
 	
@@ -37800,7 +38102,7 @@
 	exports.default = View;
 
 /***/ },
-/* 172 */
+/* 177 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalConfidentialView.hbs.html ***!
   \**************************************************************/
@@ -37816,7 +38118,7 @@
 
 
 /***/ },
-/* 173 */
+/* 178 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.js ***!
   \**********************************************************/
@@ -37832,7 +38134,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 174);
+	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 179);
 	
 	var _legalPostPublishingViewHbs2 = _interopRequireDefault(_legalPostPublishingViewHbs);
 	
@@ -37847,7 +38149,7 @@
 	exports.default = View;
 
 /***/ },
-/* 174 */
+/* 179 */
 /*!****************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.hbs.html ***!
   \****************************************************************/
@@ -37863,7 +38165,7 @@
 
 
 /***/ },
-/* 175 */
+/* 180 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.js ***!
   \**********************************************/
@@ -37879,7 +38181,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 176);
+	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 181);
 	
 	var _blogHomeViewHbs2 = _interopRequireDefault(_blogHomeViewHbs);
 	
@@ -37893,7 +38195,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./blogHomeView.less */ 177);
+	__webpack_require__(/*! ./blogHomeView.less */ 182);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38009,7 +38311,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 176 */
+/* 181 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.hbs.html ***!
   \****************************************************/
@@ -38025,7 +38327,7 @@
 
 
 /***/ },
-/* 177 */
+/* 182 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.less ***!
   \************************************************/
@@ -38034,7 +38336,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 178 */
+/* 183 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.js ***!
   \************************************************/
@@ -38050,11 +38352,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 179);
+	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 184);
 	
 	var _blogPostIdViewHbs2 = _interopRequireDefault(_blogPostIdViewHbs);
 	
-	__webpack_require__(/*! ./blogPostIdView.less */ 180);
+	__webpack_require__(/*! ./blogPostIdView.less */ 185);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38069,7 +38371,7 @@
 	exports.default = View;
 
 /***/ },
-/* 179 */
+/* 184 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.hbs.html ***!
   \******************************************************/
@@ -38085,7 +38387,7 @@
 
 
 /***/ },
-/* 180 */
+/* 185 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.less ***!
   \**************************************************/
@@ -38094,7 +38396,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 181 */
+/* 186 */
 /*!******************************************!*\
   !*** ./wwwroot/css/shiners-override.css ***!
   \******************************************/
@@ -38103,7 +38405,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 182);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 187);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 40)(content, {});
@@ -38123,7 +38425,7 @@
 	}
 
 /***/ },
-/* 182 */
+/* 187 */
 /*!*********************************************************!*\
   !*** ./~/css-loader!./wwwroot/css/shiners-override.css ***!
   \*********************************************************/

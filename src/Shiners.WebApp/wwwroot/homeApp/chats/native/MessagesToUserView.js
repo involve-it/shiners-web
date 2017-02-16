@@ -15,8 +15,7 @@ var View = Marionette.View.extend({
     },
 
     onRender() {
-        this.showChildView('messages',new MessagesView({collection:this.collection,model:this.model,childViewOptions:{ chat:this.model}}));
-        
+        this.showChildView('messages',new MessagesView({collection:this.collection, model:this.model, childViewOptions:{ chat:this.model}}));
     },
 
     events:{
@@ -64,6 +63,7 @@ var View = Marionette.View.extend({
                 chatId: this.model.id
             },{asteroid:app.asteroid});
             //this.collection.add(model);
+
             model.save('addMessage',{destinationUserId:this.model.get('remoteUser')._id,message:value,type:'text',associatedPostId:this.model.get('postId')});
             $textEl.val('');
             $textEl.focus();

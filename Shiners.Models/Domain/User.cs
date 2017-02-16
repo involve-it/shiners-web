@@ -173,6 +173,11 @@ namespace Shiners.Models.Domain
         public string Language { get; set; }
         [BsonElement("image")]
         public UserImage Image { get; set; }
+        [BsonElement("isAdmin")]
+        public Boolean IsAdmin { get; set; }
+        [BsonElement("checkOwnPosts")]
+        public Boolean CheckOwnPosts { get; set; }
+        
 
     }
 

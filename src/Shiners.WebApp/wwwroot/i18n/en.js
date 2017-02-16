@@ -14,6 +14,7 @@ var json = {
     mainMenuBlog: 'Blog',
     exit: 'Exit',
     complain: 'To complain',
+    WAS_ONLINE: 'Was online:',
     NO_NAME: 'Name is not entered',
     map:'Map',
     DIRECT_PROFILE_LINK: 'direct profile link',

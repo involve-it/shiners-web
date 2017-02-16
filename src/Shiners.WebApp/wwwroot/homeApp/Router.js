@@ -35,6 +35,7 @@ export default Marionette.AppRouter.extend({
         'legal/confidential': 'legalConfidential', // same as Privacy Policy
         'legal/user-agreement': 'legalUserAgreement', // Terms of Use?
         'legal/post-publishing-rules': 'legalPostPublishingRules',
+        
         //blog:
         'blog': 'blogHome',
         'blog/post/:id': 'blogPostId',

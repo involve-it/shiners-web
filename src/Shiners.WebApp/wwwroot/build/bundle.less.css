@@ -1289,6 +1289,139 @@ body.page--chatsMy .sh-content .sh-page-chats .sh-chat-item-container:focus {
 /* ==================
 	CONSTANTS LESS
 ===================== */
+body.page--userDetails .modal-dialog {
+  max-width: 700px;
+}
+body.page--userDetails .modal-dialog .modal-content {
+  border: none;
+}
+body.page--userDetails .modal-dialog .modal-content .modal-body {
+  background: #fdfdfd;
+}
+.sh-message-to-user #sendMessageForm {
+  margin: 0;
+}
+.sh-message-to-user #sendMessageForm .sh-panel-body {
+  margin: 6px 16px 16px;
+  border: 1px solid #e6e6e6;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.sh-message-to-user #sendMessageForm .sh-message-to-user {
+  border: 0;
+  padding: 0;
+  resize: none;
+  width: 100%;
+}
+.sh-message-to-user #sendMessageForm .sh-send-message-actions {
+  padding: 0 16px;
+}
+.sh-message-to-user #sendMessageForm .sh-send-message-actions .sh-send-message-actions-wrapper {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
+.sh-message-to-user #sendMessageForm .sh-send-message-actions .sh-send-message-actions-wrapper .sh-msg-info-title {
+  font-size: 16px;
+}
+.sh-message-to-user #sendMessageForm .sh-send-message-actions .sh-send-message-actions-wrapper .sh-msg-user-name {
+  font-weight: 700;
+  font-size: 18px;
+  color: #3a4751;
+  text-transform: capitalize;
+}
+.sh-profile-edit .sh-profile-edit-wrapper .sh-profile-edit-row {
+  margin-bottom: 16px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+.sh-profile-edit .sh-profile-edit-wrapper .sh-profile-edit-row .sh-profile-edit-label {
+  -webkit-flex-basis: 170px;
+  -ms-flex-basis: 170px;
+  flex-basis: 170px;
+  color: #8f8e94;
+  width: 170px;
+  text-align: right;
+  padding-right: 12px;
+}
+.sh-profile-edit .sh-profile-edit-wrapper .sh-profile-edit-row .sh-profile-edit-labeled {
+  -webkit-flex-grow: 1;
+  -ms-flex-grow: 1;
+  flex-grow: 1;
+  color: #3a4751;
+  width: 300px;
+}
+.sh-profile-edit .sh-profile-edit-wrapper .sh-profile-edit-row .sh-profile-edit-labeled.sh-inner-icon {
+  position: relative;
+}
+.sh-profile-edit .sh-profile-edit-wrapper .sh-profile-edit-row .sh-profile-edit-labeled.sh-inner-icon .sh-profile-input {
+  padding-right: 50px;
+}
+.sh-profile-edit .sh-profile-edit-wrapper .sh-profile-edit-row .sh-profile-edit-labeled.sh-inner-icon .sh-profile-edit-privacy-control {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.sh-profile-edit .sh-profile-edit-wrapper .sh-profile-edit-row .sh-profile-edit-labeled.sh-inner-icon .sh-profile-edit-privacy-control .sh-privacy-dropdown {
+  padding: 3px 8px;
+  margin: 5px 5px 0 0;
+  font-size: 13px;
+  color: #4a90e2;
+  background-color: transparent;
+}
+.sh-profile-edit .sh-profile-edit-wrapper .sh-profile-edit-row .sh-profile-edit-labeled.sh-inner-icon .sh-profile-edit-privacy-control .sh-privacy-dropdown ul li .active {
+  background: rgba(0, 0, 0, 0.05);
+}
+.sh-profile-edit .sh-profile-edit-wrapper .sh-profile-edit-row:last-child {
+  margin-bottom: 0;
+}
+.sh-profile-edit .sh-profile-edit-wrapper .sh-profile-edit-row.sh-profile-info-header {
+  border-top: 1px solid #e6e6e6;
+  margin-top: 26px;
+}
+.sh-profile-edit .sh-profile-edit-wrapper .sh-profile-edit-row.sh-profile-info-header .sh-profile-info-header-within {
+  border-bottom: none;
+  position: relative;
+  margin: -13px auto 4px;
+}
+.sh-profile-edit .sh-profile-edit-wrapper .sh-profile-edit-row.sh-profile-info-header .sh-profile-info-header-within span {
+  color: #3a4751;
+  font-weight: 500;
+  padding-bottom: 4px;
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: #fdfdfd;
+}
+.sh-profile-edit .sh-profile-edit-wrapper .sh-profile-edit-row .sh-profile-input {
+  background: transparent;
+  width: 100%;
+  border: 1px solid #e6e6e6;
+  padding: 4px 8px;
+  margin: 0;
+  height: 34px;
+}
+/* ==================
+	MIXINS LESS
+===================== */
+/* ==================
+	CONSTANTS LESS
+===================== */
 /* ==================
 	MESSAGE CONTAINER
 ===================== */

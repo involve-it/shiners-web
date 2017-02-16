@@ -1,11 +1,18 @@
-﻿{{var firstName = (_.find(obj.profileDetails,{key:'firstName'})||{}).value;}}
-{{var lastName = (_.findWhere(obj.profileDetails,{key:'lastName'})||{}).value; }}
-{{var city = (_.find(obj.profileDetails,{key:'city'})||{}).value;}}
-{{var phone = (_.findWhere(obj.profileDetails,{key:'phone'})||{}).value; }}
-{{var skype = (_.find(obj.profileDetails,{key:'skype'})||{}).value;}}
-{{var vk = (_.findWhere(obj.profileDetails,{key:'vk'})||{}).value; }}
-{{var twitter = (_.find(obj.profileDetails,{key:'twitter'})||{}).value;}}
-{{var facebook = (_.findWhere(obj.profileDetails,{key:'facebook'})||{}).value; }}
+﻿
+{{var isCurrentUser = (_id === user._id)}}
+{{var someUser; if(_id === user._id){someUser = user}else{someUser = obj} }}
+
+{{var firstName = (_.find(someUser.profileDetails,{key:'firstName'})||{}).value;}}
+{{var lastName = (_.findWhere(someUser.profileDetails,{key:'lastName'})||{}).value; }}
+{{var city = (_.find(someUser.profileDetails,{key:'city'})||{}).value;}}
+{{var phone = (_.findWhere(someUser.profileDetails,{key:'phone'})||{}).value; }}
+{{var skype = (_.find(someUser.profileDetails,{key:'skype'})||{}).value;}}
+{{var vk = (_.findWhere(someUser.profileDetails,{key:'vk'})||{}).value; }}
+{{var twitter = (_.find(someUser.profileDetails,{key:'twitter'})||{}).value;}}
+{{var facebook = (_.findWhere(someUser.profileDetails,{key:'facebook'})||{}).value; }}
+
+<div id="modalContainer"></div>
+
 <div class="container">
     <div class="sh-user-profile-wrapper">
         <div class="sh-side-left">
@@ -13,30 +20,35 @@
                 <div class="sh-user-avatar">
                     <div class="sh-user-avatar-wrap">
                         <a class="sh-user-profile-photo-link" href="#">
-                            <img src="{{=profile.image && profile.image.data?profile.image.data:'/images/noimage.jpg'}}" alt="#">
+                            <img src="{{=profile.image && profile.image.data?profile.image.data:'/images/no_image.jpg'}}" alt="#">
                         </a>
                         <div class="sh-avatar-user-status">
-                            <div class="sh-avatar-user-status-wrapper sh-offline"></div>
+                            <div class="sh-avatar-user-status-wrapper {{=someUser.online ? 'sh-online' : 'sh-offline' }}"></div>
                         </div>
                     </div>
                 </div>
                 <div class="sh-profile-action">
-                    <a href="#" class="ui sh-button sh-profile-send"> {{=i18n('addMessage')}}</a>
-                    <!--<a href="#" class="ui sh-button sh-profile-edit">Редактировать</a>-->
+                    {{if(!isCurrentUser) { }}
+                    <a id="profile-send" class="ui sh-button sh-profile-send"> {{=i18n('addMessage')}}</a>
+                    {{ } else { }}
+                    <a id="profile-edit" class="ui sh-button sh-profile-edit">Редактировать</a>
+                    {{ } }}
                 </div>
             </div>
             <div class="sh-page-block">
                 <ul class="sh-user-action">
                     <li><a href="#">{{=i18n('complain')}}</a></li>
-                    <li class="sh-user-action-exit"><a href="#">{{=i18n('exit')}}</a></li>
+                    {{if(isCurrentUser) { }}
+                    <li class="sh-user-action-exit"><a id="logout">{{=i18n('exit')}}</a></li>
+                    {{ } }}
                 </ul>
             </div>
         </div>
         <div class="sh-side-right">
             <div class="sh-page-block sh-user-info">
                 <div class="sh-user-info-top">
-                    <small class="sh-user-was">Был {{=moment(status.lastlogin.date).calendar()}}</small>
-                    <h2 class="sh-user-name">{{= firstName}} {{=lastName}} {{=(!firstName && !lastName)?i18n('NO_NAME'):''}}</h2>
+                    <small class="sh-user-was">{{=i18n('WAS_ONLINE')}} {{=moment(status.lastlogin.date).calendar()}}</small>
+                    <h2 class="sh-user-name">{{= firstName}} {{=lastName}} {{=(!firstName && !lastName) ? someUser.username : i18n('NO_NAME')}}</h2>
                 </div>
                 <div class="sh-user-profile-info">
                     <div class="sh-user-profile-info-wrapper">
@@ -46,27 +58,31 @@
                             <div class="sh-info-text">
                                 <div class="sh-direct-link-block">
                                     <div class="sh-direct-link-wrapper">
-                                        <div class="sh-icon-direct-link"><i class="fa fa-link" aria-hidden="true"></i></div>
-                                        https://wwww.shiners.ru/user/{{=_id}}
+                                        <div class="sh-icon-direct-link">
+                                            <i class="fa fa-link" aria-hidden="true"></i>
+                                        </div>
+                                        <input type="text" readonly id="directProfileLink" value="https://wwww.shiners.ru/user/{{=_id}}" />
                                     </div>
-                                    <div class="sh-direct-link-btn-copy"><a href="#" title="Копировать" class="ui sh-button"><i class="fa fa-clipboard" aria-hidden="true"></i></a></div>
+                                    <div class="sh-direct-link-btn-copy"><a id="profile-link" data-copytarget="#directProfileLink" title="Копировать" class="ui sh-button"><i class="fa fa-clipboard" aria-hidden="true"></i></a></div>
                                 </div>
                             </div>
                         </div>
                         <!--The publication available to all users-->
+                        {{if(isCurrentUser) { }}
                         <div class="sh-user-profile-info-row sh-col">
                             <div class="sh-info-title">Настройка для постов</div>
                             <div class="sh-info-text">
                                 <div class="sh-direct-link-block">
                                     <div class="sh-direct-link-wrapper">
                                         <label class="sh-checkbox">
-                                            <input type="checkbox" value="1">
+                                            <input id="checkPosts" type="checkbox" {{=isCurrentUser && someUser.profile.checkOwnPosts ? 'checked' : ''}} value="1">
                                             <label>Сделать мои публикации доступными для всех пользователей</label>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {{ } }}
                         <!--Public info-->
                         <div class="sh-user-profile-info-row sh-profile-info-header">
                             <div class="sh-profile-info-header-within">

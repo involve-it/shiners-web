@@ -139,7 +139,11 @@ export default Marionette.Object.extend({
     },
 
     myProfile(){
-
+        app.layout.showChildView('content', new PreloaderView());
+         
+        var userModel = new UserModel({_id: app.user.get('_id')});
+       // window.currentUser = userModel;
+        userModel.fetch().done(() => app.layout.showChildView('content', new UserDetailsView({model: userModel})));
     },
 
     //myMessagesPage() {
@@ -163,6 +167,7 @@ export default Marionette.Object.extend({
     legalPostPublishingRules() {
         app.layout.showChildView('content', new LegalPostPublishingView());
     },
+
     // BLOG:
     blogHome() {
         /*debugger;
@@ -207,7 +212,10 @@ export default Marionette.Object.extend({
             app.layout.showChildView('content', new BlogHomeView({collection: c}));
         });*/
     },
-    blogPostId() {
+
+    blogPostId(id) {
+        console.log('ID: ', id); //debug
+        app.layout.showChildView('content', new PreloaderView());
         app.layout.showChildView('content', new BlogPostIdView());
     }
 });

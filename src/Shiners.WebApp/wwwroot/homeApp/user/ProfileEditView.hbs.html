@@ -1,0 +1,66 @@
+﻿
+{{var firstName = (_.find(obj.profileDetails, {key:'firstName'}) || {}).value;}}
+{{var lastName = (_.findWhere(obj.profileDetails, {key:'lastName'}) || {}).value;}}
+{{var city = (_.find(obj.profileDetails, {key:'city'}) || {}).value;}}
+{{var phone = (_.findWhere(obj.profileDetails, {key:'phone'}) || {}).value; }}
+{{var skype = (_.find(obj.profileDetails, {key:'skype'}) || {}).value;}}
+{{var vk = (_.findWhere(obj.profileDetails, {key:'vk'}) || {}).value; }}
+{{var twitter = (_.find(obj.profileDetails, {key:'twitter'}) || {}).value;}}
+{{var facebook = (_.findWhere(obj.profileDetails, {key:'facebook'}) || {}).value; }}
+
+<div id="profileEdit" class="sh-profile-edit">    
+    <div class="sh-profile-edit-wrapper">
+        <div id="sh-profile-edit-result" class="sh-profile-edit-result"></div>
+        <div class="sh-profile-edit-row">
+            <div class="sh-profile-edit-label">Имя:</div>
+            <div class="sh-profile-edit-labeled"><input type="text" value="{{= firstName}}" placeholder="Не указано" id="sh-profile-first-name" class="sh-profile-input" autocomplete="off"></div>
+        </div>
+        <div class="sh-profile-edit-row">
+            <div class="sh-profile-edit-label">Фамилия:</div>
+            <div class="sh-profile-edit-labeled"><input type="text" value="{{= lastName}}" placeholder="Не указано" id="sh-profile-last-name" class="sh-profile-input" autocomplete="off"></div>
+        </div>
+        
+        <div class="sh-profile-edit-row sh-profile-info-header">
+            <div class="sh-profile-info-header-within">
+                <span>Контакты</span>
+            </div>
+        </div>
+
+        <div class="sh-profile-edit-row">
+            <div class="sh-profile-edit-label">Город:</div>
+            <div class="sh-profile-edit-labeled"><input type="text" value="{{= city}}" id="sh-profile-city" class="sh-profile-input" autocomplete="off"></div>
+        </div>
+        <div class="sh-profile-edit-row">
+            <div class="sh-profile-edit-label">Телефон:</div>
+            <div class="sh-profile-edit-labeled sh-inner-icon">
+                <input type="text" value="{{= phone}}" id="sh-profile-phone" class="sh-profile-input" autocomplete="off">
+                <div class="sh-profile-edit-privacy-control sh-profile-locked">                    
+                    <button type="button" class="sh-privacy-dropdown dropdown-toggle" data-toggle="dropdown"><i class="fa fa-unlock-alt" aria-hidden="true"></i></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a data-target="opened"><i class="fa fa-edit"></i> Публично</a></li>
+                        <li><a data-target="locked"><i class="fa fa-question-circle"></i> Скрыто</a></li>                            
+                    </ul>                    
+                </div>
+            </div>            
+        </div>
+        <div class="sh-profile-edit-row">
+            <div class="sh-profile-edit-label">Логин Skype:</div>
+            <div class="sh-profile-edit-labeled"><input type="text" value="{{= skype}}" placeholder="Не указано" id="sh-profile-skype" class="sh-profile-input" autocomplete="off"></div>
+        </div>
+        <div class="sh-profile-edit-row">
+            <div class="sh-profile-edit-label">Вконтакте:</div>
+            <div class="sh-profile-edit-labeled"><input type="text" value="{{= vk}}" placeholder="Ссылка на профиль" id="sh-profile-vk" class="sh-profile-input" autocomplete="off"></div>
+        </div>
+        <div class="sh-profile-edit-row">
+            <div class="sh-profile-edit-label">Facebook:</div>
+            <div class="sh-profile-edit-labeled"><input type="text" value="{{= facebook}}" placeholder="Ссылка на профиль" id="sh-profile-facebook" class="sh-profile-input" autocomplete="off"></div>
+        </div>
+
+        <hr>
+
+        <div class="sh-profile-edit-action sh-text-center">
+            <a id="sh-profile-edit-action-save" class="ui sh-button standard action big"><i class="fa fa-check"></i> <span>Сохранить</span></a>
+        </div>
+
+    </div>
+</div>

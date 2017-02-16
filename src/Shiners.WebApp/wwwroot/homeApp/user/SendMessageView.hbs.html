@@ -1,0 +1,27 @@
+﻿<div id="messageToUser" class="sh-message-to-user">
+  
+    <form id="sendMessageForm" action="/" method="post">
+        <div class="row">
+            <div class="col-12">
+                <div class="panel-body sh-panel-body">
+                    <textarea required class="sh-message-to-user" id="message-to-user" name="sendToUser[message]" placeholder="Начните сообщение..."></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="sh-send-message-actions">
+                <div class="sh-send-message-actions-wrapper">
+                    <div class="col-4">
+                        <div class="sh-msg-info-title">Сообщение для:</div>
+                        <div class="sh-msg-user-name">{{=name}}</div>
+                    </div>
+                    <div class="col-7">
+                        <button type="submit" class="ui sh-button standard action big"><i class="fa fa-check"></i> <span>Отправить сообщение</span></button>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <input type="hidden" name="message-save" value="1">
+    </form>
+
+</div>

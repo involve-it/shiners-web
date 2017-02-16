@@ -207,6 +207,10 @@ body {
             }
          }
     }
+
+    .modal-backdrop {
+        background: rgba(0,0,0, 1);
+    }
 }
 
 a, .link {
@@ -2252,7 +2256,7 @@ input[type=radio] + label {
 
 .sh-user-profile {
 	padding: 45px 0;
-    background: $sh-main-content-bg;
+    //background: $sh-main-content-bg;
 
     @media screen and (max-width: 768px) {
         padding: 15px 0;
@@ -2420,6 +2424,7 @@ input[type=radio] + label {
 							@include sh-display-flex();
                             padding: 4px 0;
                             overflow: hidden;
+                            width: 100%;
 							
 							.sh-icon-direct-link {
 								padding-right: 10px;
@@ -2445,6 +2450,13 @@ input[type=radio] + label {
                                     margin-bottom: 0;
                                 }
 							}
+
+                            #directProfileLink {
+                                border: none;
+                                background: transparent;
+                                height: auto;
+                                width: 100%;
+                            }
 						}
 						
 						.sh-direct-link-btn-copy {
@@ -2457,6 +2469,10 @@ input[type=radio] + label {
 								color: $sh-main-black-color;
 								background-color: $sh-white-color;
 								box-shadow: 0 1px 2px rgba(0,0,0, .1);
+
+                                &:hover {
+                                    opacity: .85;
+                                }
 							}
 						}
 					}

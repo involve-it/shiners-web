@@ -1,0 +1,149 @@
+﻿
+@import (less) url("../../css/sh-mixins.less");
+@import (less) url("../../css/sh-constants.less");
+
+body {
+    &.page--userDetails {
+        .modal-dialog {
+            max-width: 700px;
+
+            .modal-content {
+                border: none;
+
+                .modal-header {}
+                .modal-body {
+                    background: rgba(253,253,253, 1);
+                }
+            }
+        }
+    }
+}
+
+.sh-message-to-user {
+    
+    #sendMessageForm {
+        margin: 0;
+
+        .sh-panel-body {
+            margin: 6px 16px 16px;
+            border: 1px solid @sh-main-border-color;
+            .border-radius();
+        }
+
+        .sh-message-to-user {
+            border: 0;
+            padding: 0;
+            resize: none;
+            width: 100%;
+        }
+
+        .sh-send-message-actions {
+            padding: 0 16px;
+
+            .sh-send-message-actions-wrapper {
+                .sh-flex-display();
+                .sh-align-items(center);
+                .sh-justify-content(space-between);
+
+                .sh-msg-info-title {
+                    font-size: 16px;
+                }
+
+                .sh-msg-user-name {
+                    font-weight: 700;
+                    font-size: 18px;
+                    color: @sh-main-gray-color;
+                    text-transform:capitalize;
+                }
+            }
+        }
+    }
+}
+
+.sh-profile-edit {
+    .sh-profile-edit-wrapper {
+
+        .sh-profile-edit-row {
+            margin-bottom: 16px;
+            .sh-flex-display();
+            .sh-align-items(center);
+
+            .sh-profile-edit-label {
+                .sh-flex-basis(170px);
+				color: @sh-main-lightgray-color;
+                width: 170px;
+                text-align:right;
+                padding-right: 12px;
+            }
+
+            .sh-profile-edit-labeled {                
+                .sh-flex-grow(1);
+				color: @sh-main-gray-color;
+                width: 300px;
+
+                &.sh-inner-icon {
+                    position: relative;
+
+                    .sh-profile-input {
+                        padding-right: 50px;
+                    }                    
+
+                    .sh-profile-edit-privacy-control {
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+
+                        .sh-privacy-dropdown {
+                            padding: 3px 8px;
+                            margin: 5px 5px 0 0;
+                            font-size: 13px;
+                            color: @sh-main-blue-background;
+                            background-color: transparent;
+
+                            ul {
+                                li {
+                                    .active {
+                                        background: rgba(0,0,0,.05);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &:last-child {
+				margin-bottom: 0;
+			}
+
+            &.sh-profile-info-header {
+                border-top: 1px solid @sh-main-border-color;
+				margin-top: 26px;
+						
+				.sh-profile-info-header-within {
+					border-bottom: none;
+					position: relative;
+					margin: -13px auto 4px;
+							
+					span {
+                        color: @sh-main-gray-color;
+                        font-weight: 500;
+						padding-bottom: 4px;
+						padding-right: 10px;
+                        padding-left: 10px;
+						background-color: rgba(253,253,253, 1);
+					}
+				}
+            }
+
+            .sh-profile-input {
+                background: transparent;
+                width: 100%;
+                border: 1px solid @sh-main-border-color;
+                padding: 4px 8px;
+                margin: 0;
+                height: 34px;
+            }
+        }
+    }    
+}
