@@ -1,6 +1,6 @@
 ﻿
-{{var isCurrentUser = (_id === user._id)}}
-{{var someUser; if(_id === user._id){someUser = user}else{someUser = obj} }}
+{{var isCurrentUser = (_id === user._id); }}
+{{var someUser = obj; }}
 
 {{var firstName = (_.find(someUser.profileDetails,{key:'firstName'})||{}).value;}}
 {{var lastName = (_.findWhere(someUser.profileDetails,{key:'lastName'})||{}).value; }}

@@ -6,6 +6,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Shiners.Models.Domain
 {
     //таблица пользователей проекта
+    [BsonIgnoreExtraElements]
     public class User : MeteorModel
     {
         //Id - поле _id в таблице users(ключевое поле)
@@ -50,9 +51,10 @@ namespace Shiners.Models.Domain
 
         [BsonElement("enableNearbyNotifications")]
         public bool EnableNearbyNotifications { get; set; }
+        
         [BsonElement("lastNearbyNotification")]
         
-        public BsonTimestamp LastNearbyNotification { get; set; }
+        public double LastNearbyNotification { get; set; }
 
         [BsonElement("notifiedPostIds")]
         public IList<string> NotifiedPostIds { get; set; }
@@ -176,9 +178,7 @@ namespace Shiners.Models.Domain
         [BsonElement("isAdmin")]
         public Boolean IsAdmin { get; set; }
         [BsonElement("checkOwnPosts")]
-        public Boolean CheckOwnPosts { get; set; }
-        
-
+        public bool CheckOwnPosts { get; set; }
     }
 
     public class UserImage
