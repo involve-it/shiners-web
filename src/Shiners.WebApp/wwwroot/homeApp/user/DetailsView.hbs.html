@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="sh-profile-action">
-                    {{if(!isCurrentUser) { }}
+                    {{if(isCurrentUser) { }}
                     <a id="profile-send" class="ui sh-button sh-profile-send"> {{=i18n('addMessage')}}</a>
                     {{ } else { }}
                     <a id="profile-edit" class="ui sh-button sh-profile-edit">Редактировать</a>

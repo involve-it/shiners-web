@@ -36666,7 +36666,7 @@
 	'" alt="#">\n                        </a>\n                        <div class="sh-avatar-user-status">\n                            <div class="sh-avatar-user-status-wrapper '+
 	((__t=(someUser.online ? 'sh-online' : 'sh-offline' ))==null?'':__t)+
 	'"></div>\n                        </div>\n                    </div>\n                </div>\n                <div class="sh-profile-action">\n                    ';
-	if( isCurrentUser ) { 
+	if(isCurrentUser) { 
 	__p+='\n                    <a id="profile-send" class="ui sh-button sh-profile-send"> '+
 	((__t=(i18n('addMessage')))==null?'':__t)+
 	'</a>\n                    ';
@@ -36794,7 +36794,7 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div id="messageToUser" class="sh-message-to-user">\r\n  \r\n    <form id="sendMessageForm" action="/" method="post">\r\n        <div class="row">\r\n            <div class="col-12">\r\n                <div class="panel-body sh-panel-body">\r\n                    <textarea required class="sh-message-to-user" id="message-to-user" name="sendToUser[message]" placeholder="Начните сообщение..."></textarea>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class="row">\r\n            <div class="sh-send-message-actions">\r\n                <div class="sh-send-message-actions-wrapper">\r\n                    <div class="col-4">\r\n                        <div class="sh-msg-info-title">Сообщение для:</div>\r\n                        <div class="sh-msg-user-name">'+
+	__p+='<div id="messageToUser" class="sh-message-to-user">\r\n  \r\n    <form id="sendMessageForm" action="/" method="post">\r\n        <div class="row">\r\n            <div class="col-12">\r\n                <div class="panel-body sh-panel-body">\r\n                    <textarea required rows="4" class="sh-message-to-user" id="message-to-user" name="sendToUser[message]" placeholder="Начните сообщение..."></textarea>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class="row">\r\n            <div class="sh-send-message-actions">\r\n                <div class="sh-send-message-actions-wrapper">\r\n                    <div class="col-4">\r\n                        <div class="sh-msg-info-title">Сообщение для:</div>\r\n                        <div class="sh-msg-user-name">'+
 	((__t=(name))==null?'':__t)+
 	'</div>\r\n                    </div>\r\n                    <div class="col-7">\r\n                        <button type="submit" class="ui sh-button standard action big"><i class="fa fa-check"></i> <span>Отправить сообщение</span></button>\r\n                    </div>\r\n                </div>\r\n            </div>            \r\n        </div>\r\n        <input type="hidden" name="message-save" value="1">\r\n    </form>\r\n\r\n</div>';
 	}
@@ -36818,7 +36818,7 @@
   \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -36841,23 +36841,50 @@
 	exports.default = _backbone2.default.View.extend({
 	    template: _ProfileEditViewHbs2.default,
 	
+	    regions: {},
+	
 	    events: {
-	        'click .sh-privacy-dropdown': 'privacyDropdown',
+	        'click .sh-privacy-dropdown': 'privacyPrivacy',
+	        'click #sh-policy-1': 'openedPrivacy',
+	        'click #sh-policy-0': 'lockedPrivacy',
 	        'click #sh-profile-edit-action-save': 'profileEditSave'
+	    },
+	
+	    modelEvents: {
+	        'save': 'showSuccess'
 	    },
 	
 	    initialize: function initialize() {
 	        console.log('Model profile', this.model.toJSON());
 	    },
+	    openedPrivacy: function openedPrivacy(e) {
+	        var target = $(e.target);
+	        if (target && target.data('target') === 'opened') {
+	            var el = target.closest('.sh-profile-edit-privacy-control');
+	            //el.removeClass('sh-profile-locked');
+	            //el.addClass('sh-profile-opened');
+	            var icon = el.find('.sh-privacy-dropdown').children();
+	            if (icon.hasClass('fa-unlock-alt')) {
+	                icon.removeClass('fa-unlock-alt');
+	                icon.addClass('fa-lock');
+	            }
+	        }
+	        console.log('opened policy', target.data('target'));
+	    },
+	    lockedPrivacy: function lockedPrivacy(e) {},
 	    privacyDropdown: function privacyDropdown(e) {
 	        e.preventDefault();
-	        console.log('click privacyDropdown');
+	        var target = e.target.closest('.sh-profile-edit-privacy-control');
+	
+	        console.log('click privacyDropdown', target);
 	    },
 	    profileEditSave: function profileEditSave(e) {
 	        e.preventDefault();
 	        console.log('click profileEditSave');
-	    }
+	    },
+	    showSuccess: function showSuccess() {}
 	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
 /* 147 */
@@ -36885,7 +36912,7 @@
 	var twitter = (_.find(obj.profileDetails, {key:'twitter'}) || {}).value;
 	__p+='\r\n';
 	var facebook = (_.findWhere(obj.profileDetails, {key:'facebook'}) || {}).value; 
-	__p+='\r\n\r\n<div id="profileEdit" class="sh-profile-edit">    \r\n    <div class="sh-profile-edit-wrapper">\r\n        \r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Имя:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	__p+='\r\n\r\n<div id="profileEdit" class="sh-profile-edit">    \r\n    <div class="sh-profile-edit-wrapper">\r\n        <div id="sh-profile-edit-result" class="sh-profile-edit-result"></div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Имя:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
 	((__t=( firstName))==null?'':__t)+
 	'" placeholder="Не указано" id="sh-profile-first-name" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Фамилия:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
 	((__t=( lastName))==null?'':__t)+
@@ -36893,7 +36920,7 @@
 	((__t=( city))==null?'':__t)+
 	'" id="sh-profile-city" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Телефон:</div>\r\n            <div class="sh-profile-edit-labeled sh-inner-icon">\r\n                <input type="text" value="'+
 	((__t=( phone))==null?'':__t)+
-	'" id="sh-profile-phone" class="sh-profile-input" autocomplete="off">\r\n                <div class="sh-profile-edit-privacy-control sh-profile-locked">                    \r\n                    <button type="button" class="sh-privacy-dropdown dropdown-toggle" data-toggle="dropdown"><i class="fa fa-unlock-alt" aria-hidden="true"></i></button>\r\n                    <ul class="dropdown-menu" role="menu">\r\n                        <li><a data-target="opened"><i class="fa fa-edit"></i> Публично</a></li>\r\n                        <li><a data-target="locked"><i class="fa fa-question-circle"></i> Скрыто</a></li>                            \r\n                    </ul>                    \r\n                </div>\r\n            </div>            \r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Логин Skype:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	'" id="sh-profile-phone" class="sh-profile-input" autocomplete="off">\r\n                <div class="sh-profile-edit-privacy-control sh-profile-locked">                    \r\n                    <button type="button" class="sh-privacy-dropdown dropdown-toggle" data-toggle="dropdown"><i class="fa fa-unlock-alt" aria-hidden="true"></i></button>\r\n                    <ul class="dropdown-menu" role="menu">\r\n                        <li><a id="sh-policy-1" data-target="opened"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Всем пользователям</a></li>\r\n                        <li><a id="sh-policy-0" data-target="locked"><i class="fa fa-lock" aria-hidden="true"></i> Скрыто для всех</a></li>                            \r\n                    </ul>                    \r\n                </div>\r\n            </div>            \r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Логин Skype:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
 	((__t=( skype))==null?'':__t)+
 	'" placeholder="Не указано" id="sh-profile-skype" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Вконтакте:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
 	((__t=( vk))==null?'':__t)+
