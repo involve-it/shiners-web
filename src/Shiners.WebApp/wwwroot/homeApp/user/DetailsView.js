@@ -1,4 +1,5 @@
 ﻿import Marionette from 'backbone.marionette';
+import AsteroidModel from '../../data/AsteroidModel.js';
 import template from './DetailsView.hbs.html';
 import SendMessageView from './SendMessageView.js';
 import ProfileEditView from './ProfileEditView.js';
@@ -29,12 +30,16 @@ var View = Marionette.View.extend({
         this.r_user = this.model.toJSON();
         this.c_user = app.user.toJSON();
 
-        this.sendMessageModel = new Backbone.Model({
+        this.sendMessageModel = new AsteroidModel({
             name: this.r_user.username,
             user_id: this.c_user._id,
-            remoteUser_id: this.r_user._id,
-            chatId: this.model.id
-        });
+            remoteUser_id: this.r_user._id
+        }, {asteroid: app.asteroid});
+
+        this.profileEditModel = new AsteroidModel(
+            this.c_user, {asteroid: app.asteroid});
+
+        this.listenTo(this.model, 'change', this.onRender);
     },
 
     onBeforeRender() {
@@ -44,8 +49,7 @@ var View = Marionette.View.extend({
     },
 
     onRender() {
-        window.userLogin = this.model.toJSON();           //debug
-        window.userCurrent = this.templateContext.user;   //debug
+        console.log('Профиль отреднерился');
     },
 
     logout() {
@@ -54,11 +58,11 @@ var View = Marionette.View.extend({
 
     profileSend(e) {
         //Необходима проверка -> залогинен или нет, иначе отправлять на регистрацию
-        this.showChildView('modal', new ModalView({view:new SendMessageView({model:this.sendMessageModel}), title:'Сообщение для пользователя'}));
+        this.showChildView('modal', new ModalView({view:new SendMessageView({model: this.sendMessageModel}), title:'Сообщение для пользователя'}));
     },
 
     profileEdit(e) {
-        this.showChildView('modal', new ModalView({view:new ProfileEditView({model:new Backbone.Model(this.c_user)}), title:'Настройки профиля'}));
+        this.showChildView('modal', new ModalView({view:new ProfileEditView({model: this.profileEditModel}), title:'Настройки профиля'}));
     },
 
     checkPosts(e) {

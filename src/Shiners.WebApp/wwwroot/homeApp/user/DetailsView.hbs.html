@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="sh-profile-action">
-                    {{if(isCurrentUser) { }}
+                    {{if(!isCurrentUser) { }}
                     <a id="profile-send" class="ui sh-button sh-profile-send"> {{=i18n('addMessage')}}</a>
                     {{ } else { }}
                     <a id="profile-edit" class="ui sh-button sh-profile-edit">Редактировать</a>
@@ -48,7 +48,7 @@
             <div class="sh-page-block sh-user-info">
                 <div class="sh-user-info-top">
                     <small class="sh-user-was">{{=i18n('WAS_ONLINE')}} {{=moment(status.lastlogin.date).calendar()}}</small>
-                    <h2 class="sh-user-name">{{= firstName}} {{=lastName}} {{=(!firstName && !lastName) ? someUser.username : i18n('NO_NAME')}}</h2>
+                    <h2 class="sh-user-name">{{= firstName}} {{=lastName}} {{=(!firstName && !lastName) ? someUser.username : ''}}</h2>
                 </div>
                 <div class="sh-user-profile-info">
                     <div class="sh-user-profile-info-wrapper">

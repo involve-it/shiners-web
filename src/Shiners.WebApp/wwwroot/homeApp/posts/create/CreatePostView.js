@@ -43,8 +43,7 @@ var View = Marionette.View.extend({
         'error:save':'showError'
     },
 
-    initialize() {
-        window.createPostModel = this.model; // debug
+    initialize() {        
         this.images = new Backbone.Collection();
         this.selectedLocation = new Backbone.Model({
             coords:app.user.get('position')

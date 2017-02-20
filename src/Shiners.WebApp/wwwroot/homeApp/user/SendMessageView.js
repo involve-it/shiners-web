@@ -16,26 +16,41 @@ export default Marionette.View.extend({
         e.preventDefault();
         var self = this;
         var $textEl = this.$('#message-to-user'),
-            value = ($textEl.val() || "").trim();
+            value = ($textEl.val() || "").trim(),
+            remoteUserId = this.model.get('remoteUser_id');
 
-        if (!_.isEmpty(value)) {
-            var model = new Model({
-                text: value,
-                timestamp: new Date(),
-                userId: this.model.get('user_id'),
-                toUserId: this.model.get('remoteUser_id'),
-                chatId: this.model.get('chatId')
-            }, {asteroid:app.asteroid});
-            
-           // model.save('addMessage',{destinationUserId:this.model.get('remoteUser')._id,message:value,type:'text',associatedPostId:this.model.get('postId')});
-           //$textEl.val('');
-           //$textEl.focus();
+        if (!_.isEmpty(value)) {                        
+            if (app.asteroid.loggedIn) {
+                //var remoteUser = new Model({_id: remoteUserId}, {asteroid: app.asteroid});
+                app.asteroid.call('bz.chats.createChatIfFirstMessage', app.user.id, remoteUserId).result.then((chatId) => {
+                    
+                    var model = new Model({
+                        text: value,
+                        timestamp: new Date(),
+                        userId: this.model.get('user_id'),
+                        toUserId: remoteUserId,
+                        chatId: chatId
+                    }, {asteroid:app.asteroid});
 
-            console.log('Model ', model.toJSON())
-            
-            self.remove();
-            self.trigger('destroy');
-        }
-       
+                    model.save('addMessage', {
+                        destinationUserId: remoteUserId,
+                        message: value,
+                        type: 'text'
+                    });
+
+                    $textEl.val('');
+                    $textEl.focus();
+
+                    self.remove();
+                    self.trigger('destroy');
+
+                    setTimeout(function() {
+                        app.router.navigate(`/chats/${ chatId }?remoteUserId=${ remoteUserId }`, { trigger: true, replace: true });
+                    }, 1000);
+                });
+            } else {
+                app.router.navigate('', {trigger: true});
+            }
+        }       
     }
 });

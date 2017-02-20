@@ -16,7 +16,7 @@
     <div class="sh-message-content">
         <div class="sh-message-content-wrapper">
             <div class="sh-message-content-info">
-                <div class="sh-message-content-username"><a href="/profile/{{=userId}}">{{= userId==user._id?user.username:remoteUser.username}}</a></div>
+                <div class="sh-message-content-username"><a href="/user/{{=userId}}">{{= userId==user._id?user.username:remoteUser.username}}</a></div>
                 <span class="sh-message-content-dot"> · </span>
                 <span class="sh-message-content-tools">{{=moment(timestamp).calendar()}}</span>
             </div>

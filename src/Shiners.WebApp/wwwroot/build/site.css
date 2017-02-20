@@ -23419,7 +23419,7 @@ input[type=radio] + label {
     .sh-user-profile .sh-user-action .sh-user-action-exit a {
       color: #fb3d38; }
   .sh-user-profile .sh-user-info .sh-user-info-top {
-    padding: 0 0 16px;
+    padding: 0 0 4px;
     border-bottom: 1px solid #e6e6e6; }
     .sh-user-profile .sh-user-info .sh-user-info-top .sh-user-was {
       font-size: 12px;

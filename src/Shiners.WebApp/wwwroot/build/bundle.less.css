@@ -1289,13 +1289,16 @@ body.page--chatsMy .sh-content .sh-page-chats .sh-chat-item-container:focus {
 /* ==================
 	CONSTANTS LESS
 ===================== */
-body.page--userDetails .modal-dialog {
+body.page--userDetails .modal-dialog,
+body.page--myProfile .modal-dialog {
   max-width: 700px;
 }
-body.page--userDetails .modal-dialog .modal-content {
-  border: none;
+body.page--userDetails .modal-dialog .modal-content,
+body.page--myProfile .modal-dialog .modal-content {
+  border-top-color: #4a90e2;
 }
-body.page--userDetails .modal-dialog .modal-content .modal-body {
+body.page--userDetails .modal-dialog .modal-content .modal-body,
+body.page--myProfile .modal-dialog .modal-content .modal-body {
   background: #fdfdfd;
 }
 .sh-message-to-user #sendMessageForm {
@@ -1381,7 +1384,7 @@ body.page--userDetails .modal-dialog .modal-content .modal-body {
 .sh-profile-edit .sh-profile-edit-wrapper .sh-profile-edit-row .sh-profile-edit-labeled.sh-inner-icon .sh-profile-edit-privacy-control .sh-privacy-dropdown {
   padding: 3px 8px;
   margin: 5px 5px 0 0;
-  font-size: 13px;
+  font-size: 14px;
   color: #4a90e2;
   background-color: transparent;
 }
@@ -2978,3 +2981,5 @@ body.page--blogHome .sh-blog-home {
 body.page--blogHome .sh-blog-home .sh-blog-home-wrapper {
   padding: 16px;
 }
+
+/*# sourceMappingURL=bundle.less.css.map*/

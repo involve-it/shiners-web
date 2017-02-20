@@ -3,6 +3,7 @@
 {{var lastName = (_.findWhere(obj.profileDetails, {key:'lastName'}) || {}).value;}}
 {{var city = (_.find(obj.profileDetails, {key:'city'}) || {}).value;}}
 {{var phone = (_.findWhere(obj.profileDetails, {key:'phone'}) || {}).value; }}
+{{var policyPhone = (_.find(obj.profileDetails, {key:'phone'}) || {}).policy; }}
 {{var skype = (_.find(obj.profileDetails, {key:'skype'}) || {}).value;}}
 {{var vk = (_.findWhere(obj.profileDetails, {key:'vk'}) || {}).value; }}
 {{var twitter = (_.find(obj.profileDetails, {key:'twitter'}) || {}).value;}}
@@ -28,14 +29,14 @@
 
         <div class="sh-profile-edit-row">
             <div class="sh-profile-edit-label">Город:</div>
-            <div class="sh-profile-edit-labeled"><input type="text" value="{{= city}}" id="sh-profile-city" class="sh-profile-input" autocomplete="off"></div>
+            <div class="sh-profile-edit-labeled"><input type="text" value="{{= city}}" placeholder="Не указано" id="sh-profile-city" class="sh-profile-input" autocomplete="off"></div>
         </div>
         <div class="sh-profile-edit-row">
             <div class="sh-profile-edit-label">Телефон:</div>
             <div class="sh-profile-edit-labeled sh-inner-icon">
-                <input type="text" value="{{= phone}}" id="sh-profile-phone" class="sh-profile-input" autocomplete="off">
+                <input type="text" value="{{= phone}}" placeholder="Не указано" id="sh-profile-phone" class="sh-profile-input" autocomplete="off">
                 <div class="sh-profile-edit-privacy-control sh-profile-locked">                    
-                    <button type="button" class="sh-privacy-dropdown dropdown-toggle" data-toggle="dropdown"><i class="fa fa-unlock-alt" aria-hidden="true"></i></button>
+                    <button type="button" class="sh-privacy-dropdown dropdown-toggle" data-toggle="dropdown"><i class="fa {{= (policyPhone === '1') ? 'fa-unlock-alt' : 'fa-lock'}}" aria-hidden="true"></i></button>
                     <ul class="dropdown-menu" role="menu">
                         <li><a id="sh-policy-1" data-target="opened">Всем пользователям</a></li>
                         <li><a id="sh-policy-0" data-target="locked">Скрыто для всех</a></li>                            

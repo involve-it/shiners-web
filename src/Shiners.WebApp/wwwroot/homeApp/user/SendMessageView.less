@@ -3,12 +3,14 @@
 @import (less) url("../../css/sh-constants.less");
 
 body {
-    &.page--userDetails {
+    &.page--userDetails,
+    &.page--myProfile {
         .modal-dialog {
             max-width: 700px;
 
             .modal-content {
-                border: none;
+                //border: none;
+                border-top-color: @sh-main-blue-background;
 
                 .modal-header {}
                 .modal-body {
@@ -96,7 +98,7 @@ body {
                         .sh-privacy-dropdown {
                             padding: 3px 8px;
                             margin: 5px 5px 0 0;
-                            font-size: 13px;
+                            font-size: 14px;
                             color: @sh-main-blue-background;
                             background-color: transparent;
 

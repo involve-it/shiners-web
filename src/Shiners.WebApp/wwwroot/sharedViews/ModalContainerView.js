@@ -13,7 +13,7 @@ export default Marionette.View.extend({
     },
 
     events: {
-        'hidden.bs.modal': 'remove',
+        'hidden.bs.modal': 'hide',
         'shown.bs.modal':'onShow'
     },
 
@@ -28,7 +28,7 @@ export default Marionette.View.extend({
 
     hide() {
         this.$el.modal('hide');
-    },
+    },    
 
     onShow() {
         this.showChildView('childView',this.containerView);
