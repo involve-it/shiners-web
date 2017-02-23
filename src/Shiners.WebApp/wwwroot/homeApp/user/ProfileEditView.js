@@ -23,8 +23,8 @@ export default Marionette.View.extend({
 
     initialize() {
         this.items = this.model.get('profileDetails') || {};
-    },   
-
+    },    
+    
     onAttach() {
         Backbone.Validation.bind(this);
     },
@@ -109,7 +109,14 @@ export default Marionette.View.extend({
     },
 
     profileEditSave(e) {
-        this.model.save('editUser', {profileDetails: this.items});
+        this.model.save('editUser', {profileDetails: this.items}/*, {
+            success: function() {
+                console.log('Model saved')
+            },
+
+            error: function() {
+                console.log('ERROR Model saved')}
+        }*/);
     },
 
     showSuccess() {

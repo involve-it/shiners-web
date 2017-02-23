@@ -36580,13 +36580,17 @@
 	
 	        this.sendMessageModel = new _AsteroidModel2.default({
 	            name: this.r_user.username,
-	            user_id: this.c_user._id,
+	            user_id: _app2.default.user.get('_id'),
 	            remoteUser_id: this.r_user._id
 	        }, { asteroid: _app2.default.asteroid });
 	
 	        this.profileEditModel = new _AsteroidModel2.default(this.c_user, { asteroid: _app2.default.asteroid });
 	
-	        this.listenTo(this.model, 'change', this.onRender);
+	        this.listenTo(this.profileEditModel, 'save', this.renderr);
+	    },
+	    renderr: function renderr() {
+	        console.log('Профиль rrrrrr');
+	        ///this.render();
 	    },
 	    onBeforeRender: function onBeforeRender() {
 	        this.templateContext = {
@@ -36594,6 +36598,7 @@
 	        };
 	    },
 	    onRender: function onRender() {
+	
 	        console.log('Профиль отреднерился');
 	    },
 	    logout: function logout() {
@@ -36963,7 +36968,13 @@
 	        this.model.set('profileDetails', this.items);
 	    },
 	    profileEditSave: function profileEditSave(e) {
-	        this.model.save('editUser', { profileDetails: this.items });
+	        this.model.save('editUser', { profileDetails: this.items } /*, {
+	                                                                   success: function() {
+	                                                                   console.log('Model saved')
+	                                                                   },
+	                                                                   error: function() {
+	                                                                   console.log('ERROR Model saved')}
+	                                                                   }*/);
 	    },
 	    showSuccess: function showSuccess() {
 	        //-> Нужно сделать рендер для detailsView

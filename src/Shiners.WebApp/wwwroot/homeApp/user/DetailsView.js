@@ -32,14 +32,19 @@ var View = Marionette.View.extend({
 
         this.sendMessageModel = new AsteroidModel({
             name: this.r_user.username,
-            user_id: this.c_user._id,
+            user_id: app.user.get('_id'),
             remoteUser_id: this.r_user._id
         }, {asteroid: app.asteroid});
 
         this.profileEditModel = new AsteroidModel(
             this.c_user, {asteroid: app.asteroid});
 
-        this.listenTo(this.model, 'change', this.onRender);
+        this.listenTo(this.profileEditModel, 'save', this.renderr);
+    },
+
+    renderr() {
+        console.log('Профиль rrrrrr');
+        ///this.render();
     },
 
     onBeforeRender() {
@@ -49,6 +54,7 @@ var View = Marionette.View.extend({
     },
 
     onRender() {
+        
         console.log('Профиль отреднерился');
     },
 
