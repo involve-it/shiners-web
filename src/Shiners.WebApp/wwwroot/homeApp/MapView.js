@@ -152,10 +152,9 @@ var View = Marionette.View.extend({
             //this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
             this.map.addListener('bounds_changed',_.bind(this.findLocationName,this));
             if (app.isMobile) {
-                this.mobile_CreateInfoButton();
+                //this.mobile_CreateInfoButton();
                 this.mobile_mapResize();
                 this.mobile_listenToResize();
-
                 $('body').addClass('isMobile');
             } else {
                 $('body').removeClass('isMobile');

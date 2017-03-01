@@ -1,6 +1,7 @@
 ﻿import Marionette from 'backbone.marionette';
 import template from './PostTypeItemView.html';
 import app from '../app'
+
 var View = Marionette.View.extend({
     tagName:'span',
     template:template,

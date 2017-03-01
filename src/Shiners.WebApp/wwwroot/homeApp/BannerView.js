@@ -4,7 +4,8 @@ import template from './BannerView.hbs.html';
 import selectionTemplate from './selectLocation/BannerViewLocationSelect.hbs.html';
 import '../lib/jquery.countTo.js';
 import app from './app.js';
-import SuggestionsView from './selectLocation/SuggestionListView.js'
+import SuggestionsView from './selectLocation/SuggestionListView.js';
+
 import './BannerView.less';
 
 var View = Marionette.View.extend({
@@ -13,6 +14,7 @@ var View = Marionette.View.extend({
     template: template,
     searchTimeOut: null,
     osmCollection:null,
+
     modelEvents: {
         'change:address': 'render'
     },
@@ -43,6 +45,17 @@ var View = Marionette.View.extend({
         this.render();
         this.showChildView('suggestions',new SuggestionsView({collection:this.osmCollection,model:this.model }));
         this.template = template;
+    },
+
+    showSuggestionsModalView() {
+        
+        var options = {
+            model: this.model,
+            collection: this.osmCollection,
+            title: 'Выберите местоположение'
+        }
+        
+        app.showModalApp(options);
     },
 
     onLocationsSearch (e) {

@@ -1,0 +1,62 @@
+﻿
+<!-- POST ITEM -->
+{{ if (_.size(obj.images) > 1) { }}
+ <!-- OWL SLIDER -->
+<div id="sh-blog-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options='{"items": 1, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}'>
+    {{_.each(obj.images, function(image){ }}
+    <div>
+        <img class="img-responsive" src="{{= image.src}}" alt="{{= image.alt}}">
+    </div> 
+    {{});}}   
+</div>
+<!-- /OWL SLIDER -->
+{{ } else { }}
+    <!-- IMAGE -->
+    {{ if(images && images[0].src) { }}
+    <figure class="margin-bottom-20">
+        <img class="img-responsive" src="{{=obj.images[0].src}}" alt="{{=obj.images[0].alt}}">
+    </figure>
+    {{ } }}
+{{ } }}
+
+<h2><a href="blog/post/{{=id}}">{{= obj.title}}</a></h2>
+
+<ul class="blog-post-info list-inline">
+    <li>
+        <a href="#">
+            <i class="fa fa-clock-o"></i>
+            <span class="font-lato">{{= moment(obj.timestamp).calendar()}}</span>
+        </a>
+    </li>
+
+    <li>
+        <a href="#">
+            <i class="fa fa-comment-o"></i>
+            <span class="font-lato">Комментариев: {{= (_.size(obj.comments) > 0) ? obj.comments.length : '0' }}</span>
+        </a>
+    </li>
+
+    {{ if(_.size(obj.categories) > 0){ }}
+    <li>
+        <i class="fa fa-folder-open-o"></i>
+        {{_.each(obj.categories, function(category){ }}
+        <a class="category" href="#">
+            <span class="font-lato">{{= category}}</span>
+        </a>
+        {{});}}                
+    </li>
+    {{ } }}
+
+    <li>
+        <a href="#">
+            <i class="fa fa-user"></i>
+            <span class="font-lato">{{= obj.author}}</span>
+        </a>
+    </li>
+</ul>
+
+<p class="sh-post-description">{{- obj.description}}</p>
+
+<a href="/blog/post/{{=id}}" class="btn btn-reveal btn-default">
+    <i class="fa fa-plus"></i> <span>Read More</span>
+</a>

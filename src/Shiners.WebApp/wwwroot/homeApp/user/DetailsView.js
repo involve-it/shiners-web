@@ -54,7 +54,7 @@ var View = Marionette.View.extend({
     },
 
     onRender() {
-        
+        //this.showChildView('content', new UserDetailsView({model: this.profileEditModel}))
         console.log('Профиль отреднерился');
     },
 

@@ -37,11 +37,15 @@ import app from './app.js';
 export default Marionette.Object.extend({
 
     index() {
+
+        app.layout.showChildView('content', new IndexView());
+
+        /*
         if (!app.isMobile)
             app.layout.showChildView('content', new IndexView());
         else {
             app.layout.getRegion('content').empty();
-        }
+        }*/
     },
 
     mobileIndex() {
@@ -214,7 +218,12 @@ export default Marionette.Object.extend({
     },
 
     blogPostId(id) {
-        console.log('ID: ', id); //debug
+        console.log('POST ID: ', id);
+
+        // Загружаем пост из базы по его ID....
+        // 1. находим поста по id
+        // 2. вызываем метод loadByMethod для загрузки и передаем во BlogPostIdView 
+
         app.layout.showChildView('content', new PreloaderView());
         app.layout.showChildView('content', new BlogPostIdView());
     }

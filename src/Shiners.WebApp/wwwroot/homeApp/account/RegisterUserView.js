@@ -6,7 +6,7 @@ import RegisterModel from '../../data/viewModels/RegisterModel'
 var View = Marionette.View.extend({
 
     template:template,
-
+    className: 'sh-auth-page',
     model:new RegisterModel,
 
     initialize() {

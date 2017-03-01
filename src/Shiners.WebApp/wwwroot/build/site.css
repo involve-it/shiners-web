@@ -21672,6 +21672,7 @@ body {
     flex-direction: column;
     min-height: 100vh; }
     body #wrapper #appContent {
+      position: relative;
       -webkit-box-flex: 1;
       -webkit-flex: 1 0 auto;
       -moz-box-flex: 1;
@@ -22428,6 +22429,7 @@ input[type=radio] + label {
           -ms-align-items: center;
           align-items: center; }
         #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item .sh-show-modal-city .sh-nav-location-value {
+          font-weight: 100;
           position: relative;
           display: block;
           overflow: hidden;
@@ -23686,7 +23688,8 @@ input[type=radio] + label {
   #sh-works .sh-progress-steps.process-steps li h5 {
     font-size: 14px; }
   #sh-works .tab-content {
-    padding: 20px; }
+    padding: 16px;
+    margin: 16px; }
     #sh-works .tab-content .tab-pane h4 {
       font-size: 20px; }
     #sh-works .tab-content .tab-pane h4 + .text-content {

@@ -37,7 +37,7 @@
             </div>
             <div class="sh-page-block">
                 <ul class="sh-user-action">
-                    <li><a href="#">{{=i18n('complain')}}</a></li>
+                    <!--<li><a href="#">{{=i18n('complain')}}</a></li>-->
                     {{if(isCurrentUser) { }}
                     <li class="sh-user-action-exit"><a id="logout">{{=i18n('exit')}}</a></li>
                     {{ } }}
@@ -61,7 +61,7 @@
                                         <div class="sh-icon-direct-link">
                                             <i class="fa fa-link" aria-hidden="true"></i>
                                         </div>
-                                        <input type="text" readonly id="directProfileLink" value="https://wwww.shiners.ru/user/{{=_id}}" />
+                                        <a href="https://shiners.ru/user/{{=_id}}" style="width:100%"><input type="text" readonly id="directProfileLink" value="https://www.shiners.ru/user/{{=_id}}" /></a>
                                     </div>
                                     <div class="sh-direct-link-btn-copy"><a id="profile-link" data-copytarget="#directProfileLink" title="Копировать" class="ui sh-button"><i class="fa fa-clipboard" aria-hidden="true"></i></a></div>
                                 </div>
@@ -83,31 +83,47 @@
                             </div>
                         </div>
                         {{ } }}
-                        <!--Public info-->
-                        <div class="sh-user-profile-info-row sh-profile-info-header">
-                            <div class="sh-profile-info-header-within">
-                                <span>Публичная информация</span>
-                            </div>
-                        </div>
 
-                        <!--City-->
-                        <div class="sh-user-profile-info-row">
-                            <div class="sh-info-title">Город</div>
-                            <div class="sh-info-text">{{=city||'не указано/скрыто'}}</div>
-                        </div>
-                        <!--Social links-->
-                        <div class="sh-user-profile-info-row">
-                            <div class="sh-info-title">Логин Skype</div>
-                            <div class="sh-info-text">{{=skype||'не указано/скрыто'}}</div>
-                        </div>
-                        <div class="sh-user-profile-info-row sh-social-links sh-vk">
-                            <div class="sh-info-title">Вконтакте</div>
-                            <div class="sh-info-text">{{=vk||'не указано/скрыто'}}</div>
-                        </div>
-                        <div class="sh-user-profile-info-row sh-social-links sh-facebook">
-                            <div class="sh-info-title">Facebook</div>
-                            <div class="sh-info-text">{{=facebook||'не указано/скрыто'}}</div>
-                        </div>
+                        <!--Public info-->
+                        {{ if (city || skype || vk || facebook) { }}
+
+                            <div class="sh-user-profile-info-row sh-profile-info-header">
+                                <div class="sh-profile-info-header-within">
+                                    <span>Публичная информация</span>
+                                </div>
+                            </div>
+
+                            <!--City-->
+                            {{ if (city) { }}
+                            <div class="sh-user-profile-info-row">
+                                <div class="sh-info-title">Город</div>
+                                <div class="sh-info-text">{{=city}}</div>
+                            </div>
+                            {{ } }}
+
+                            <!--Social links-->
+                            {{ if (skype) { }}
+                            <div class="sh-user-profile-info-row">
+                                <div class="sh-info-title">Логин Skype</div>
+                                <div class="sh-info-text">{{=skype}}</div>
+                            </div>
+                            {{ } }}
+
+                            {{ if (vk) { }}
+                            <div class="sh-user-profile-info-row sh-social-links sh-vk">
+                                <div class="sh-info-title">Вконтакте</div>
+                                <div class="sh-info-text">{{=vk}}</div>
+                            </div>
+                            {{ } }}
+
+                            {{ if (facebook) { }}
+                            <div class="sh-user-profile-info-row sh-social-links sh-facebook">
+                                <div class="sh-info-title">Facebook</div>
+                                <div class="sh-info-text">{{=facebook}}</div>
+                            </div>
+                            {{ } }}
+
+                        {{ } }}
 
                         <!--<div class="sh-user-profile-info-row">-->
                         <!--<div class="sh-info-title"></div>-->

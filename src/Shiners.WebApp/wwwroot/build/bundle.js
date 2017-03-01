@@ -15963,6 +15963,14 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
+	var _ModalContainerView = __webpack_require__(/*! ../sharedViews/ModalContainerView.js */ 118);
+	
+	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
+	
+	var _SuggestionsModalView = __webpack_require__(/*! ./selectLocation/suggestionsModal/SuggestionsModalView.js */ 190);
+	
+	var _SuggestionsModalView2 = _interopRequireDefault(_SuggestionsModalView);
+	
 	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 79);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
@@ -15971,7 +15979,7 @@
 	
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
-	__webpack_require__(/*! ../css/shiners-override.css */ 186);
+	__webpack_require__(/*! ../css/shiners-override.css */ 192);
 	
 	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
@@ -16001,7 +16009,7 @@
 	    },
 	    initialize: function initialize() {
 	        this.asteroid = new _asteroidBrowser2.default("www.shiners.mobi", true);
-	        window.asteroid = this.asteroid; // debug        
+	        //window.asteroid = this.asteroid; // debug        
 	        this.user = new _AsteroidModel2.default(null, { asteroid: this.asteroid });
 	        this.postAdTypes = new _AsteroidCollection2.default(null, { asteroid: this.asteroid });
 	        this.myPosts = new _AsteroidCollection2.default(null, { asteroid: this.asteroid });
@@ -16030,6 +16038,7 @@
 	            _this.postAdTypes.loadByMethod('getPostAdTypes');
 	            _this.showView(_this.layout);
 	            _this.initVkApi();
+	            _this.initFbApi();
 	            _this.getPosition();
 	            _this.asteroid.on('login', _underscore2.default.bind(_this.initUser, _this));
 	            _this.asteroid.on('loginError', _underscore2.default.bind(function () {
@@ -16044,19 +16053,38 @@
 	            }
 	        }, this));
 	    },
-	    FbButton: function FbButton(container) {
-	        if (!this.FbInitialized) {
+	
+	    /*
+	    FbButton(container) {
+	        if(!this.FbInitialized){
 	            FB.init({
-	                appId: '510068285855489',
-	                version: 'v2.8',
-	                status: true
+	                appId:'1024999790877408',
+	                version    : 'v2.8',
+	                status:true
 	            });
-	            this.FbInitialized = true;
+	            this.FbInitialized=true;
 	        }
-	        if (container) FB.XFBML.parse(container);
+	        if(container)
+	            FB.XFBML.parse(container); 
 	    },
+	    */
 	    initVkApi: function initVkApi() {
-	        VK.init({ apiId: 5709603, onlyWidgets: true });
+	        VK.init({
+	            //-> localhost:63957 
+	            apiId: 5413205,
+	            onlyWidgets: true
+	        }, function (err) {
+	            console.log(err);
+	        });
+	    },
+	    initFbApi: function initFbApi() {
+	        FB.init({
+	            appId: '1024999790877408',
+	            version: 'v2.8',
+	            cookie: true,
+	            xfbml: true,
+	            status: true
+	        });
 	    },
 	    supportsHistoryApi: function supportsHistoryApi() {
 	        return !!(window.history && history.pushState);
@@ -16122,6 +16150,9 @@
 	
 	            app.trigger("remove:message", fields);
 	        });
+	    },
+	    showModalApp: function showModalApp(options) {
+	        app.layout.showChildView('modal', new _ModalContainerView2.default({ view: new _SuggestionsModalView2.default({ collection: options.collection, model: options.model }), title: options.title }));
 	    }
 	});
 	//import "ddp.js";
@@ -25898,8 +25929,11 @@
 	        'banner': '#appBanner',
 	        'userBar': '#userBar',
 	        'navLocation': '#navLocation',
-	        'mainMenu': '#bzMainMenu'
+	        'mainMenu': '#bzMainMenu',
+	        'modal': '#modalContainer'
 	    },
+	
+	    initialize: function initialize() {},
 	    onClickLink: function onClickLink() {
 	        _backbone2.default.$(document).on('click', 'a:not([data-direct-link])a:not([href^=http])', function (e) {
 	            //not data-direct-link class AND not having http in beginning of href
@@ -25933,7 +25967,9 @@
 	        this.showChildView('mainMenu', new _mainMenuView2.default());
 	    },
 	    showChangeLocation: function showChangeLocation() {
-	        this.getChildView('banner').renderLocationsSelection();
+	        //Показать модальное окно.
+	        this.getChildView('banner').showSuggestionsModalView();
+	        //this.getChildView('banner').renderLocationsSelection();
 	    },
 	    toggleBannerView: function toggleBannerView() {
 	        if (this.getRegion('banner').$el.is(':hidden')) {
@@ -25945,7 +25981,14 @@
 	    toggleMapAndBanner: function toggleMapAndBanner(routeName) {
 	        if (routeName === "index") {
 	            this.getRegion('map').$el.show();
-	            if (!_app2.default.isMobile) this.getRegion('banner').$el.show();else this.hideFooter();
+	
+	            this.getRegion('banner').$el.show();
+	            /*if (!app.isMobile)
+	                this.getRegion('banner').$el.show();
+	            else
+	                this.hideFooter();
+	            */
+	
 	            if (window.google) window.google.maps.event.trigger(_app2.default.map, 'resize');
 	        } else {
 	            this.showFooter();
@@ -26013,7 +26056,7 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='\n<div id="header" class="sticky clearfix header-md">\n	<header id="topNav">\n		\n		<div class="sh-header-topline">\n			<div class="container">\n				<div class="sh-header-topline-main">\n					<div class="sh-header-topline-item">\n                        <div class="sh-header-navbar-logo">\r\n                            <a class="sh-logo-header" href="/">\r\n                                <img src="/images/sh-logo.png" alt="logotype Shiners" height="35" width="35" /> <span>'+
+	__p+='<div id="header" class="sticky clearfix header-md">\n	<header id="topNav">\n		\n		<div class="sh-header-topline">\n			<div class="container">\n				<div class="sh-header-topline-main">\n					<div class="sh-header-topline-item">\n                        <div class="sh-header-navbar-logo">\r\n                            <a class="sh-logo-header" href="/">\r\n                                <img src="/images/sh-logo.png" alt="logotype Shiners" height="35" width="35" /> <span>'+
 	((__t=(i18n('SITE_NAME')))==null?'':__t)+
 	'</span>\r\n                            </a>\r\n                        </div>\n						<div class="sh-show-modal-city"> \n							<span class="text-weight bold">\n								<span id="navLocation"></span>\n							</span>\n						</div>\n					</div>\n\n					<div class="sh-header-topline-item sh-header-buttons-tools sh-flex-center-items">\n\n						<div id="bzMainMenu"></div>\n\n						<div class="sh-header-dropdown-user">                        \n							<div id="userBar"></div>\n						</div>\n\n						<button class="sh-btn-mobile-menu btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">\n							<i class="fa fa-bars"></i>\n						</button>\n\n					</div>\n				</div>\n			</div>\n		</div>\n		\n		<div class="sh-header-navbar-wrapper sh-blurred-bg hidden-xs">\n			<div class="container">\n\n				<div class="sh-header-navbar-items">\n					<!--<div class="sh-header-navbar-logo">\n						<a class="sh-logo-header" href="/">\n							<img src="/images/sh-logo.png" alt="logotype Shiners" height="50" width="50" />\n							'+
 	((__t=(i18n('SITE_NAME')))==null?'':__t)+
@@ -26254,10 +26297,9 @@
 	            //this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
 	            _this3.map.addListener('bounds_changed', _underscore2.default.bind(_this3.findLocationName, _this3));
 	            if (_app2.default.isMobile) {
-	                _this3.mobile_CreateInfoButton();
+	                //this.mobile_CreateInfoButton();
 	                _this3.mobile_mapResize();
 	                _this3.mobile_listenToResize();
-	
 	                $('body').addClass('isMobile');
 	            } else {
 	                $('body').removeClass('isMobile');
@@ -28405,6 +28447,7 @@
 	    template: _BannerViewHbs2.default,
 	    searchTimeOut: null,
 	    osmCollection: null,
+	
 	    modelEvents: {
 	        'change:address': 'render'
 	    },
@@ -28434,6 +28477,16 @@
 	        this.render();
 	        this.showChildView('suggestions', new _SuggestionListView2.default({ collection: this.osmCollection, model: this.model }));
 	        this.template = _BannerViewHbs2.default;
+	    },
+	    showSuggestionsModalView: function showSuggestionsModalView() {
+	
+	        var options = {
+	            model: this.model,
+	            collection: this.osmCollection,
+	            title: 'Выберите местоположение'
+	        };
+	
+	        _app2.default.showModalApp(options);
 	    },
 	    onLocationsSearch: function onLocationsSearch(e) {
 	        if (e && (e.keyCode > 31 || e.keyCode === 13 || e.keyCode === 8)) {
@@ -28542,7 +28595,7 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<h1 class="sh-text-rotate hidden-xs hidden-sm sh-view--banner">\n    <span class="sh-red-bg">'+
+	__p+='\n<h1 class="sh-text-rotate hidden-xs hidden-sm sh-view--banner">\n    <span class="sh-red-bg">'+
 	((__t=(i18n('shiners_are')))==null?'':__t)+
 	'</span>\n    <span class="word-rotator" data-delay="4000">\n        <span class="items">\n            <span>'+
 	((__t=(i18n('live_meetings')))==null?'':__t)+
@@ -28945,9 +28998,11 @@
 	    template: _NavLocationViewHbs2.default,
 	    tagName: 'a',
 	    className: 'sh-nav-h white-link',
+	
 	    modelEvents: {
 	        'change:address': 'render'
 	    },
+	
 	    events: {
 	        'click': 'showChangeLocation'
 	    },
@@ -30980,7 +31035,7 @@
 	
 	var _blogHomeView2 = _interopRequireDefault(_blogHomeView);
 	
-	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 183);
+	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 186);
 	
 	var _blogPostIdView2 = _interopRequireDefault(_blogPostIdView);
 	
@@ -30992,9 +31047,15 @@
 	
 	exports.default = _backbone2.default.Object.extend({
 	    index: function index() {
-	        if (!_app2.default.isMobile) _app2.default.layout.showChildView('content', new _indexView2.default());else {
-	            _app2.default.layout.getRegion('content').empty();
-	        }
+	
+	        _app2.default.layout.showChildView('content', new _indexView2.default());
+	
+	        /*
+	        if (!app.isMobile)
+	            app.layout.showChildView('content', new IndexView());
+	        else {
+	            app.layout.getRegion('content').empty();
+	        }*/
 	    },
 	    mobileIndex: function mobileIndex() {
 	        _app2.default.layout.showChildView('content', new _MobileIndexView2.default({ IndexView: _indexView2.default }));
@@ -31156,7 +31217,12 @@
 	        });*/
 	    },
 	    blogPostId: function blogPostId(id) {
-	        console.log('ID: ', id); //debug
+	        console.log('POST ID: ', id);
+	
+	        // Загружаем пост из базы по его ID....
+	        // 1. находим поста по id
+	        // 2. вызываем метод loadByMethod для загрузки и передаем во BlogPostIdView 
+	
 	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
 	        _app2.default.layout.showChildView('content', new _blogPostIdView2.default());
 	    }
@@ -31714,7 +31780,7 @@
 	    onRender: function onRender() {
 	        var center = _app2.default.map.getCenter();
 	        this.collection.loadByMethod('getPopularPosts', [center.lat(), center.lng(), 200, 0, 10]);
-	        this.initVkSocialButton();
+	        //this.initVkSocialButton(); 
 	        this.initCarousel();
 	
 	        this.comments.loadByMethod('getComments', { postId: this.model.get('_id'), take: 100, skip: 0 });
@@ -36598,7 +36664,7 @@
 	        };
 	    },
 	    onRender: function onRender() {
-	
+	        //this.showChildView('content', new UserDetailsView({model: this.profileEditModel}))
 	        console.log('Профиль отреднерился');
 	    },
 	    logout: function logout() {
@@ -36683,9 +36749,9 @@
 	 } else { 
 	__p+='\n                    <a id="profile-edit" class="ui sh-button sh-profile-edit">Редактировать</a>\n                    ';
 	 } 
-	__p+='\n                </div>\n            </div>\n            <div class="sh-page-block">\n                <ul class="sh-user-action">\n                    <li><a href="#">'+
+	__p+='\n                </div>\n            </div>\n            <div class="sh-page-block">\n                <ul class="sh-user-action">\n                    <!--<li><a href="#">'+
 	((__t=(i18n('complain')))==null?'':__t)+
-	'</a></li>\n                    ';
+	'</a></li>-->\n                    ';
 	if(isCurrentUser) { 
 	__p+='\n                    <li class="sh-user-action-exit"><a id="logout">'+
 	((__t=(i18n('exit')))==null?'':__t)+
@@ -36703,23 +36769,45 @@
 	((__t=((!firstName && !lastName) ? someUser.username : ''))==null?'':__t)+
 	'</h2>\n                </div>\n                <div class="sh-user-profile-info">\n                    <div class="sh-user-profile-info-wrapper">\n                        <!--Direct link to my profile-->\n                        <div class="sh-user-profile-info-row sh-col">\n                            <div class="sh-info-title">'+
 	((__t=(i18n('DIRECT_PROFILE_LINK')))==null?'':__t)+
-	'</div>\n                            <div class="sh-info-text">\n                                <div class="sh-direct-link-block">\n                                    <div class="sh-direct-link-wrapper">\n                                        <div class="sh-icon-direct-link">\n                                            <i class="fa fa-link" aria-hidden="true"></i>\n                                        </div>\n                                        <input type="text" readonly id="directProfileLink" value="https://wwww.shiners.ru/user/'+
+	'</div>\n                            <div class="sh-info-text">\n                                <div class="sh-direct-link-block">\n                                    <div class="sh-direct-link-wrapper">\n                                        <div class="sh-icon-direct-link">\n                                            <i class="fa fa-link" aria-hidden="true"></i>\n                                        </div>\n                                        <a href="https://shiners.ru/user/'+
 	((__t=(_id))==null?'':__t)+
-	'" />\n                                    </div>\n                                    <div class="sh-direct-link-btn-copy"><a id="profile-link" data-copytarget="#directProfileLink" title="Копировать" class="ui sh-button"><i class="fa fa-clipboard" aria-hidden="true"></i></a></div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--The publication available to all users-->\n                        ';
+	'" style="width:100%"><input type="text" readonly id="directProfileLink" value="https://www.shiners.ru/user/'+
+	((__t=(_id))==null?'':__t)+
+	'" /></a>\n                                    </div>\n                                    <div class="sh-direct-link-btn-copy"><a id="profile-link" data-copytarget="#directProfileLink" title="Копировать" class="ui sh-button"><i class="fa fa-clipboard" aria-hidden="true"></i></a></div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--The publication available to all users-->\n                        ';
 	if(isCurrentUser) { 
 	__p+='\n                        <div class="sh-user-profile-info-row sh-col">\n                            <div class="sh-info-title">Настройка для постов</div>\n                            <div class="sh-info-text">\n                                <div class="sh-direct-link-block">\n                                    <div class="sh-direct-link-wrapper">\n                                        <label class="sh-checkbox">\n                                            <input id="checkPosts" type="checkbox" '+
 	((__t=(isCurrentUser && someUser.profile.checkOwnPosts ? 'checked' : ''))==null?'':__t)+
 	' value="1">\n                                            <label>Сделать мои публикации доступными для всех пользователей</label>\n                                        </label>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        ';
 	 } 
-	__p+='\n                        <!--Public info-->\n                        <div class="sh-user-profile-info-row sh-profile-info-header">\n                            <div class="sh-profile-info-header-within">\n                                <span>Публичная информация</span>\n                            </div>\n                        </div>\n\n                        <!--City-->\n                        <div class="sh-user-profile-info-row">\n                            <div class="sh-info-title">Город</div>\n                            <div class="sh-info-text">'+
-	((__t=(city||'не указано/скрыто'))==null?'':__t)+
-	'</div>\n                        </div>\n                        <!--Social links-->\n                        <div class="sh-user-profile-info-row">\n                            <div class="sh-info-title">Логин Skype</div>\n                            <div class="sh-info-text">'+
-	((__t=(skype||'не указано/скрыто'))==null?'':__t)+
-	'</div>\n                        </div>\n                        <div class="sh-user-profile-info-row sh-social-links sh-vk">\n                            <div class="sh-info-title">Вконтакте</div>\n                            <div class="sh-info-text">'+
-	((__t=(vk||'не указано/скрыто'))==null?'':__t)+
-	'</div>\n                        </div>\n                        <div class="sh-user-profile-info-row sh-social-links sh-facebook">\n                            <div class="sh-info-title">Facebook</div>\n                            <div class="sh-info-text">'+
-	((__t=(facebook||'не указано/скрыто'))==null?'':__t)+
-	'</div>\n                        </div>\n\n                        <!--<div class="sh-user-profile-info-row">-->\n                        <!--<div class="sh-info-title"></div>-->\n                        <!--<div class="sh-info-text"></div>-->\n                        <!--</div>-->\n                    </div>\n                </div>\n                <div class="sh-user-profile-links">\n                    <div class="sh-user-profile-links-wrapper">\n                        <div class="sh-user-profile-links-item">Постов <span>0</span></div>\n                        <div class="sh-user-profile-links-item">Комментариев <span>0</span></div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>';
+	__p+='\n\n                        <!--Public info-->\n                        ';
+	 if (city || skype || vk || facebook) { 
+	__p+='\n\n                            <div class="sh-user-profile-info-row sh-profile-info-header">\n                                <div class="sh-profile-info-header-within">\n                                    <span>Публичная информация</span>\n                                </div>\n                            </div>\n\n                            <!--City-->\n                            ';
+	 if (city) { 
+	__p+='\n                            <div class="sh-user-profile-info-row">\n                                <div class="sh-info-title">Город</div>\n                                <div class="sh-info-text">'+
+	((__t=(city))==null?'':__t)+
+	'</div>\n                            </div>\n                            ';
+	 } 
+	__p+='\n\n                            <!--Social links-->\n                            ';
+	 if (skype) { 
+	__p+='\n                            <div class="sh-user-profile-info-row">\n                                <div class="sh-info-title">Логин Skype</div>\n                                <div class="sh-info-text">'+
+	((__t=(skype))==null?'':__t)+
+	'</div>\n                            </div>\n                            ';
+	 } 
+	__p+='\n\n                            ';
+	 if (vk) { 
+	__p+='\n                            <div class="sh-user-profile-info-row sh-social-links sh-vk">\n                                <div class="sh-info-title">Вконтакте</div>\n                                <div class="sh-info-text">'+
+	((__t=(vk))==null?'':__t)+
+	'</div>\n                            </div>\n                            ';
+	 } 
+	__p+='\n\n                            ';
+	 if (facebook) { 
+	__p+='\n                            <div class="sh-user-profile-info-row sh-social-links sh-facebook">\n                                <div class="sh-info-title">Facebook</div>\n                                <div class="sh-info-text">'+
+	((__t=(facebook))==null?'':__t)+
+	'</div>\n                            </div>\n                            ';
+	 } 
+	__p+='\n\n                        ';
+	 } 
+	__p+='\n\n                        <!--<div class="sh-user-profile-info-row">-->\n                        <!--<div class="sh-info-title"></div>-->\n                        <!--<div class="sh-info-text"></div>-->\n                        <!--</div>-->\n                    </div>\n                </div>\n                <div class="sh-user-profile-links">\n                    <div class="sh-user-profile-links-wrapper">\n                        <div class="sh-user-profile-links-item">Постов <span>0</span></div>\n                        <div class="sh-user-profile-links-item">Комментариев <span>0</span></div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>';
 	}
 	return __p;
 	};
@@ -37471,7 +37559,7 @@
   \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -37500,7 +37588,7 @@
 	var View = _backbone2.default.View.extend({
 	
 	    template: _LoginViewHbs2.default,
-	
+	    className: 'sh-auth-page',
 	    model: new _LoginModel2.default(),
 	
 	    initialize: function initialize() {
@@ -37518,9 +37606,100 @@
 	
 	    events: {
 	        'submit form': 'onSubmit',
-	        'change input': 'onChange'
+	        'change input': 'onChange',
+	        'click #sh-auth-vk': 'authVk',
+	        'click #sh-auth-facebook': 'authFacebook',
+	        'click #sh-auth-google-plus': 'authGooglePlus'
 	    },
 	
+	    authVk: function authVk(e) {
+	        e.preventDefault();
+	
+	        //Вызов окна авторизации пользователя
+	        VK.Auth.login(function (response) {
+	            if (response.session && response.status == 'connected') {
+	                /* Пользователь успешно авторизовался */
+	
+	                var data = {};
+	                data = response.session;
+	
+	                var user = {};
+	                user = response.session.user;
+	
+	                VK.Api.call('users.get', { fields: 'sex,photo_50' }, function (res) {
+	                    if (res.response) {
+	                        user.photo = res.response[0].photo_50;
+	                        user.gender = res.response[0].sex;
+	
+	                        data.user = user;
+	
+	                        $.ajax({
+	                            url: '/auth/vk',
+	                            method: 'POST',
+	                            data: data,
+	                            dataType: 'JSON',
+	                            success: function success(res) {
+	                                console.log(res);
+	                            }
+	                        });
+	                    }
+	                });
+	
+	                console.log('Пользователь успешно авторизовался ', response);
+	                window.vkUser = response; //debug
+	
+	                if (response.settings) {
+	
+	                    /* Выбранные настройки доступа пользователя, если они были запрошены */
+	
+	                }
+	            } else {
+	
+	                /* Пользователь нажал кнопку Отмена в окне авторизации */
+	                console.log('Пользователь нажал кнопку Отмена в окне авторизации ', response);
+	            }
+	        }, 4194304);
+	
+	        //VK.Auth.login(function(res) {}, 4194304);
+	        console.log('CLICK VK', e.currentTarget);
+	    },
+	    authFacebook: function authFacebook(e) {
+	        e.preventDefault();
+	        //-> //developers.facebook.com/docs/javascript/reference/v2.8
+	
+	        FB.login(function (response) {
+	
+	            console.log(response);
+	
+	            if (response.status === 'connected') {
+	                // Logged into your app and Facebook.
+	                var uid = response.authResponse.userID,
+	                    accessToken = response.authResponse.accessToken,
+	                    fields = ['id', 'first_name', 'last_name', 'link', 'gender', 'picture', 'email'];
+	
+	                // Получили token и можно сделать запрос на сервер
+	                // Формируем url запроса -> url: 'https://graph.facebook.com/me?access_token=' + accessToken + '&fields=' + profileFields.join(',')
+	
+	                FB.api('/me?fields=' + fields.join(','), function (response) {
+	                    console.log(response);
+	                });
+	            } else if (response.status === 'not_authorized') {
+	                // The person is logged into Facebook, but not your app.
+	                console.log('Please log ' + 'into this app.');
+	            } else {
+	                // The person is not logged into Facebook, so we're not sure if
+	                // they are logged into this app or not.
+	                console.log('Please log ' + 'into Facebook.');
+	            }
+	        }, { scope: 'public_profile,email' });
+	
+	        /*        
+	        FB.getLoginStatus(function(response) {
+	            console.log(response);
+	        }, true);        
+	        */
+	    },
+	    authGooglePlus: function authGooglePlus(e) {},
 	    onSubmit: function onSubmit(e) {
 	        e.preventDefault();
 	        if (!this.model.validate()) {
@@ -37555,6 +37734,7 @@
 	    }
 	});
 	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
 /* 158 */
@@ -37566,9 +37746,9 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<section style="background:url(\'/images/backgrounds/wall2.jpg\')">\n    <div class="display-table">\n        <div class="display-table-cell vertical-align-middle">\n            <div class="container">\n                <div class="row">\n                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4 col-md-push-7 col-lg-push-8 col-sm-push-7">\n                        <!-- ALERT -->\n                        <!--\n                        <div class="alert alert-mini alert-danger margin-bottom-30">\n                            <strong>Oh snap!</strong> Login Incorrect!\n                        </div>\n                        -->\n                        <!-- /ALERT -->\n                        <!-- login form -->\n                        <form method="post" class="sky-form boxed">\n                            <header><i class="fa fa-users"></i> Вход на сайт</header>\n                            <fieldset class="nomargin">\n                                <label class="label margin-top-20">E-mail /  Имя пользователя</label>\n                                <label class="input">\n                                    <i class="ico-append fa fa-envelope"></i>\n                                    <input type="text" name="email" id="userLogin">\n                                    <span class="tooltip tooltip-top-right">Email адрес / Имя пользователя</span>\n                                </label>\n                                <label class="label margin-top-20">Пароль</label>\n                                <label class="input">\n                                    <i class="ico-append fa fa-lock"></i>\n                                    <input type="password" id="userPassword" name="password">\n                                    <b class="tooltip tooltip-top-right">Укажите Ваш пароль</b>\n                                </label>\n                                <label class="checkbox margin-top-20">\n                                    <input type="checkbox" name="checkbox-inline" id="rememberMe">\n                                    <i></i> Запомнить меня\n                                </label>\n                            </fieldset>\n\n                            <footer class="celarfix">\n                                <button type="submit" class="btn btn-primary noradius pull-right">\n                                    <i class="fa fa-check"></i>\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\n                                    ВОЙТИ\n                                </button>\n                                <div class="login-forgot-password pull-left">\n                                    <a href="/Account/FogotPassword">Забыли пароль?</a>\n                                </div>\n                            </footer>\n                            <div class="celarfix">\n                                <a type="submit" class="js-login-register-link btn btn-secondary btn-secondary-danger pull-right" href="/account/register?returnUrl=/">\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\n                                    Регистрация\n                                </a>\n                                <div class="login-forgot-password pull-left">\n                                    <span style="color: #d9534f">Впервые на сайте?</span>\n                                </div>\n                            </div>\n                        </form>\n                    </div>\n                    <div class="col-xs-12 col-md-7 col-sm-7 col-lg-8 col-lg-pull-4 col-md-pull-5 col-sm-pull-5">\n                        <h2 class="size-20 text-center-xs">Преимущества авторизованных пользователей</h2>\n                        <ul class="list-unstyled login-features">\n                            <li>\n                                <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-user"></i> Ещё не регистрировались? <a href="/account/register?returnUrl=somedata'+
+	__p+='\n<div class="sh-login-page">\n    <div class="container">\n        <div class="sh-login-page-wrapper">\n            <div class="sh-wrap2">                \n                <div class="sh-side-right">\n                    <!-- ALERT -->\n                    <!--\n                    <div class="alert alert-mini alert-danger margin-bottom-30">\n                        <strong>Oh snap!</strong> Login Incorrect!\n                    </div>\n                    -->\n                    <!-- /ALERT -->\n                    <!-- login form -->\n                    <form method="post" class="sky-form sh-auth-form">\n                        <div class="sh-page-block padding-20">\r\n                            <fieldset class="nomargin">\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-envelope"></i>\r\n                                    <input type="text" name="email" id="userLogin" placeholder="E-mail /  Имя пользователя">\r\n                                    <span class="tooltip tooltip-top-right">Email адрес / Имя пользователя</span>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-lock"></i>\r\n                                    <input type="password" id="userPassword" name="password" placeholder="Пароль">\r\n                                    <b class="tooltip tooltip-top-right">Укажите Ваш пароль</b>\r\n                                </label>\r\n                                <label class="checkbox">\r\n                                    <input type="checkbox" name="checkbox-inline" id="rememberMe">\r\n                                    <i></i> Запомнить меня\r\n                                </label>\r\n                            </fieldset>\r\n                            <footer class="celarfix">\r\n                                <button type="submit" class="ui sh-button standard action pull-right">\r\n                                    <i class="fa fa-check"></i>\r\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                    ВОЙТИ\r\n                                </button>\r\n                                <div class="login-forgot-password pull-left">\r\n                                    <a href="/Account/FogotPassword">Забыли пароль?</a>\r\n                                </div>\r\n                            </footer>\r\n                        </div>\n\n                        <div class="sh-page-block padding-20 celarfix"> \r\n                            <header>Впервые на сайте?<small>Регистрация быстро и бесплатно</small></header>                               \r\n                            <a type="submit" class="js-login-register-link sh-login-register ui sh-button standard create " href="/account/register?returnUrl=/">\r\n                                <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                Регистрация\r\n                            </a>\r\n                            <div class="sh-login-additional">\r\n                                <span>или</span>\r\n                                <div class="sh-login-social">\r\n                                    <ul>\r\n                                        <li><a class="sh-facebook" id="sh-auth-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>\r\n                                        <li><a class="sh-vk" id="sh-auth-vk"><i class="fa fa-vk" aria-hidden="true"></i></a></li>\r\n                                        <li><a class="sh-google-plus" id="sh-auth-google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>                               \r\n                        </div>\n                    </form>\n                </div>\n                <div class="sh-side-left">\n                    <h2 class="text-center-xs">Преимущества авторизованных пользователей</h2>\n                    <ul class="list-unstyled sh-login-features">\n                        <li>\n                            <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-user"></i> Ещё не регистрировались? <a href="/account/register?returnUrl=somedata'+
 	((__t=( returnUrl ? '?returnUrl='+returnUrl:''))==null?'':__t)+
-	'">Регистрация</a>\n                            </li>\n                        </ul>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>';
+	'">Регистрация</a>\n                        </li>\n                    </ul>\n                </div>    \n            </div>\n        </div>\n    </div>\n</div>';
 	}
 	return __p;
 	};
@@ -37650,7 +37830,7 @@
 	var View = _backbone2.default.View.extend({
 	
 	    template: _RegisterUserViewHbs2.default,
-	
+	    className: 'sh-auth-page',
 	    model: new _RegisterModel2.default(),
 	
 	    initialize: function initialize() {
@@ -37708,7 +37888,7 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<section style="background:url(\'/images/backgrounds/wall2.jpg\')">\n    <div class="display-table">\n        <div class="display-table-cell vertical-align-middle">\n            <div class="container">\n                <div class="row">\n                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4 col-md-push-7 col-lg-push-8 col-sm-push-7">\n\n                        <!-- ALERT -->\n                        <!--\n                        <div class="alert alert-mini alert-danger margin-bottom-30">\n                            <strong>Oh snap!</strong> Login Incorrect!\n                        </div>\n                        -->\n                        <!-- /ALERT -->\n                        <!-- register form -->\n                        <form class="nomargin sky-form boxed">\n                            <header>\n                                <i class="fa fa-users"></i> Регистрация\n                            </header>\n\n                            <fieldset class="nomargin">\n                                <label class="input">\n                                    <i class="ico-append fa fa-envelope"></i>\n                                    <input type="text" placeholder="Имя пользователя" id="userLogin" name="username">\n                                    <b class="tooltip tooltip-bottom-right">Уникальное имя пользователя</b>\n                                </label>\n                                <label class="input">\n                                    <i class="ico-append fa fa-envelope"></i>\n                                    <input type="text" placeholder="Email адрес" id="userEmail" name="email">\n                                    <b class="tooltip tooltip-bottom-right">email адрес</b>\n                                </label>\n                                <label class="input">\n                                    <i class="ico-append fa fa-lock"></i>\n                                    <input type="password" placeholder="Пароль" id="userPassword" name="password">\n                                    <b class="tooltip tooltip-bottom-right">Пароль</b>\n                                </label>\n\n                                <label class="input">\n                                    <i class="ico-append fa fa-lock"></i>\n                                    <input type="password" placeholder="Подтвердите пароль" id="confirmPassword" name="confirmPassword">\n                                    <b class="tooltip tooltip-bottom-right">Подтверждение пароля</b>\n                                </label>\n                            </fieldset>\n\n                            <div class="row margin-bottom-20">\n                                <div class="col-md-12 pull-right">\n                                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Регистрироваться</button>\n                                </div>\n                            </div>\n                            <div class="celarfix" style="color: #d9534f">\n                                <a type="submit" class="btn btn-secondary btn-secondary-danger pull-right" href="/Account/Login?returnUrl=/">\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\n                                    Вход\n                                </a>\n                                <div class="login-forgot-password pull-left">\n                                    <span style="color: #d9534f">Уже есть аккаунт?</span>\n                                </div>\n                            </div>\n                        </form>\n                    </div>\n\n                    <div class="col-xs-12 col-md-7 col-sm-7 col-lg-8 col-lg-pull-4 col-md-pull-5 col-sm-pull-5">\n                        <h2 class="size-20 text-center-xs">Преимущества авторизованных пользователей</h2>\n                        <ul class="list-unstyled login-features">\n                            <li>\n                                <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий\n                            </li>\n                        </ul>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>';
+	__p+='\n<div class="sh-login-page display-table">\n    <div class="display-table-cell vertical-align-middle">\n        <div class="sh-login-page-wrapper">\n            <div class="container">\n                <div class="row">\n                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4 col-md-push-7 col-lg-push-8 col-sm-push-7">\n\n                        <!-- ALERT -->\n                        <!--\n                        <div class="alert alert-mini alert-danger margin-bottom-30">\n                            <strong>Oh snap!</strong> Login Incorrect!\n                        </div>\n                        -->\n                        <!-- /ALERT -->\n                        <!-- register form -->\n                        <form class="nomargin sky-form boxed">\n                            <header>\n                                <i class="fa fa-users"></i> Регистрация\n                            </header>\n\n                            <fieldset class="nomargin">\n                                <label class="input">\n                                    <i class="ico-append fa fa-envelope"></i>\n                                    <input type="text" placeholder="Имя пользователя" id="userLogin" name="username">\n                                    <b class="tooltip tooltip-bottom-right">Уникальное имя пользователя</b>\n                                </label>\n                                <label class="input">\n                                    <i class="ico-append fa fa-envelope"></i>\n                                    <input type="text" placeholder="Email адрес" id="userEmail" name="email">\n                                    <b class="tooltip tooltip-bottom-right">email адрес</b>\n                                </label>\n                                <label class="input">\n                                    <i class="ico-append fa fa-lock"></i>\n                                    <input type="password" placeholder="Пароль" id="userPassword" name="password">\n                                    <b class="tooltip tooltip-bottom-right">Пароль</b>\n                                </label>\n\n                                <label class="input">\n                                    <i class="ico-append fa fa-lock"></i>\n                                    <input type="password" placeholder="Подтвердите пароль" id="confirmPassword" name="confirmPassword">\n                                    <b class="tooltip tooltip-bottom-right">Подтверждение пароля</b>\n                                </label>\n                            </fieldset>\n\n                            <div class="row margin-bottom-20">\n                                <div class="col-md-12 pull-right">\n                                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Регистрироваться</button>\n                                </div>\n                            </div>\n                            <div class="celarfix" style="color: #d9534f">\n                                <a type="submit" class="btn btn-secondary btn-secondary-danger pull-right" href="/Account/Login?returnUrl=/">\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\n                                    Вход\n                                </a>\n                                <div class="login-forgot-password pull-left">\n                                    <span style="color: #d9534f">Уже есть аккаунт?</span>\n                                </div>\n                            </div>\n                        </form>\n                    </div>\n\n                    <div class="col-xs-12 col-md-7 col-sm-7 col-lg-8 col-lg-pull-4 col-md-pull-5 col-sm-pull-5">\n                        <h2 class="size-20 text-center-xs">Преимущества авторизованных пользователей</h2>\n                        <ul class="list-unstyled login-features">\n                            <li>\n                                <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным\n                            </li>\n                            <li>\n                                <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий\n                            </li>\n                        </ul>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>';
 	}
 	return __p;
 	};
@@ -38321,51 +38501,104 @@
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
+	var _BlogItemsView = __webpack_require__(/*! ./BlogItemsView.js */ 182);
+	
+	var _BlogItemsView2 = _interopRequireDefault(_BlogItemsView);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./blogHomeView.less */ 182);
+	__webpack_require__(/*! ./blogHomeView.less */ 185);
+	
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone4 = _interopRequireDefault(_backbone3);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	/**
-	 * Created by arutu_000 on 1/15/2017.
-	 */
 	var View = _backbone2.default.View.extend({
 	
 	    template: _blogHomeViewHbs2.default,
-	    collection: null,
+	    blogItems: null,
 	    className: 'sh-content',
+	    fakeCollection: null,
 	
 	    initialize: function initialize() {
 	
-	        //debugger;
+	        //Fake instance
+	        this.fakeCollection = new _backbone4.default.Collection();
 	
-	        //this.collection = new Collection(null,{asteroid:this.model.asteroid});
-	        this.listenTo(this.collection, 'after:load', this.showBlogList);
-	        this.listenTo(_app2.default.user, 'login', this.render);
-	        this.listenTo(_app2.default.user, 'logout', this.render);
+	        this.blogItems = new _AsteroidCollection2.default(null, { asteroid: this.asteroid });
+	        //this.listenTo(app.user,'login',this.render);
+	        //this.listenTo(app.user, 'logout', this.render);
 	    },
-	    onAttach: function onAttach() {},
-	    showBlogList: function (_showBlogList) {
-	        function showBlogList() {
-	            return _showBlogList.apply(this, arguments);
+	    onBeforeRender: function onBeforeRender() {
+	
+	        /* DELETE AFTER FETCH REAL DATA */
+	        this.fakeCollection.add([{
+	            id: '1',
+	            timestamp: new Date(),
+	            title: "Flying Dutchman",
+	            description: "1 There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
+	            images: [{
+	                src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
+	                alt: '�����-�� �����'
+	            }, {
+	                src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
+	                alt: '�����-�� �����'
+	            }],
+	            comments: [],
+	            author: 'Shiners',
+	            categories: ['shiners', 'news', 'tutorials'],
+	            tags: ['tag 1', 'tag 2', 'tag 3', 'tag 4']
+	        }, {
+	            id: '2',
+	            timestamp: new Date(),
+	            title: "Black Pearl",
+	            description: "2 There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
+	            images: [{
+	                src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
+	                alt: '�����-�� �����'
+	            }],
+	            comments: [],
+	            author: 'Shiners2',
+	            categories: ['finance', 'news', 'tutorials'],
+	            tags: ['tag 5', 'tag 2', 'tag� 3', 'tag 4']
+	        }]);
+	        /* DELETE AFTER FETCH REAL DATA */
+	
+	        this.templateContext = {
+	            blogDetails: this.getBlogDetails()
+	        };
+	    },
+	    getBlogDetails: function getBlogDetails() {
+	        var details = {},
+	            blogData = this.fakeCollection.toJSON();
+	
+	        if (blogData) {
+	            details.tags = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6'];
 	        }
 	
-	        showBlogList.toString = function () {
-	            return _showBlogList.toString();
-	        };
+	        return details;
+	    },
 	
-	        return showBlogList;
-	    }(function () {
-	        //debugger;
-	        console.log('SHOW BLOG LIST', showBlogList);
-	    }),
-	    onRender: function onRender() {
-	        //debugger;
-	        console.log('ON RENDER');
+	
+	    regions: {
+	        'blogItems': '#blog-items'
+	    },
+	
+	    onAttach: function onAttach() {
 	        this.initCarousel();
+	    },
+	    onRender: function onRender() {
+	        //���� �� �������� ����� ������������ ateroid collection, �� ��� ��� �������� � �� ���� �������� �������� ������,
+	        //��������� ������� ��������� Backbone
+	        this.showChildView('blogItems', new _BlogItemsView2.default({ collection: this.fakeCollection }));
 	    },
 	    initCarousel: function initCarousel() {
 	        var slider = this.$('#sh-blog-carousel');
@@ -38437,6 +38670,11 @@
 	        });
 	    }
 	});
+	
+	//Fake instance
+	/**
+	 * Created by arutu_000 on 1/15/2017.
+	 */
 	exports.default = View;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
@@ -38445,31 +38683,33 @@
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.hbs.html ***!
   \****************************************************/
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = function(obj){
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='\n<div class="sh-blog-home">\n    <div class="container">\n        <div class="page--blog-home">\n            <div class="sh-page-block sh-blog-home-wrapper row">\n                <!--LEFT-->\n                <div class="col-md-9 col-sm-9">\n\n                    <!-- POST ITEM -->\r\n                    <div class="blog-post-item">\r\n\r\n                        <!-- OWL SLIDER -->\r\n                        <div id="sh-blog-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"items": 1, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}\'>\r\n                            <div>\r\n                                <img class="img-responsive" src="http://theme.stepofweb.com/Smarty/v1.1.4/HTML/assets/images/demo/content_slider/23-min.jpg" alt="">\r\n                            </div>\r\n                            <div>\r\n                                <img class="img-responsive" src="http://theme.stepofweb.com/Smarty/v1.1.4/HTML/assets/images/demo/content_slider/21-min.jpg" alt="">\r\n                            </div>\r\n                            <div>\r\n                                <img class="img-responsive" src="http://theme.stepofweb.com/Smarty/v1.1.4/HTML/assets/images/demo/content_slider/3-min.jpg" alt="">\r\n                            </div>\r\n                        </div>\r\n                        <!-- /OWL SLIDER -->\r\n\r\n                        <h2><a href="blog-single-default.html">BLOG CAROUSEL POST</a></h2>\r\n                        <ul class="blog-post-info list-inline">\r\n                            <li>\r\n                                <a href="#">\r\n                                    <i class="fa fa-clock-o"></i>\r\n                                    <span class="font-lato">June 29, 2015</span>\r\n                                </a>\r\n                            </li>\r\n                            <li>\r\n                                <a href="#">\r\n                                    <i class="fa fa-comment-o"></i>\r\n                                    <span class="font-lato">28 Comments</span>\r\n                                </a>\r\n                            </li>\r\n                            <li>\r\n                                <i class="fa fa-folder-open-o"></i>\r\n\r\n                                <a class="category" href="#">\r\n                                    <span class="font-lato">Design</span>\r\n                                </a>\r\n                                <a class="category" href="#">\r\n                                    <span class="font-lato">Photography</span>\r\n                                </a>\r\n                            </li>\r\n                            <li>\r\n                                <a href="#">\r\n                                    <i class="fa fa-user"></i>\r\n                                    <span class="font-lato">John Doe</span>\r\n                                </a>\r\n                            </li>\r\n                        </ul>\r\n\r\n                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>\r\n\r\n                        <a href="blog-single-default.html" class="btn btn-reveal btn-default">\r\n                            <i class="fa fa-plus"></i>\r\n                            <span>Read More</span>\r\n                        </a>\r\n                    </div>\r\n\r\n                    <!-- POST ITEM -->\r\n                    <div class="blog-post-item">\r\n\r\n                        <!-- IMAGE -->\r\n                        <figure class="margin-bottom-20">\r\n                            <img class="img-responsive" src="http://theme.stepofweb.com/Smarty/v1.1.4/HTML/assets/images/demo/content_slider/10-min.jpg" alt="">\r\n                        </figure>\r\n\r\n                        <h2><a href="blog-single-default.html">BLOG IMAGE POST</a></h2>\r\n\r\n                        <ul class="blog-post-info list-inline">\r\n                            <li>\r\n                                <a href="#">\r\n                                    <i class="fa fa-clock-o"></i>\r\n                                    <span class="font-lato">June 29, 2015</span>\r\n                                </a>\r\n                            </li>\r\n                            <li>\r\n                                <a href="#">\r\n                                    <i class="fa fa-comment-o"></i>\r\n                                    <span class="font-lato">28 Comments</span>\r\n                                </a>\r\n                            </li>\r\n                            <li>\r\n                                <i class="fa fa-folder-open-o"></i>\r\n\r\n                                <a class="category" href="#">\r\n                                    <span class="font-lato">Design</span>\r\n                                </a>\r\n                                <a class="category" href="#">\r\n                                    <span class="font-lato">Photography</span>\r\n                                </a>\r\n                            </li>\r\n                            <li>\r\n                                <a href="#">\r\n                                    <i class="fa fa-user"></i>\r\n                                    <span class="font-lato">John Doe</span>\r\n                                </a>\r\n                            </li>\r\n                        </ul>\r\n\r\n                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>\r\n\r\n                        <a href="blog-single-default.html" class="btn btn-reveal btn-default">\r\n                            <i class="fa fa-plus"></i>\r\n                            <span>Read More</span>\r\n                        </a>\r\n\r\n                    </div>\r\n                    <!-- /POST ITEM -->\r\n\r\n                    <!-- POST ITEM -->\r\n                    <div class="blog-post-item">\r\n\r\n                        <h2><a href="blog-single-default.html">BLOG SIMPLE POST</a></h2>\r\n\r\n                        <ul class="blog-post-info list-inline">\r\n                            <li>\r\n                                <a href="#">\r\n                                    <i class="fa fa-clock-o"></i>\r\n                                    <span class="font-lato">June 29, 2015</span>\r\n                                </a>\r\n                            </li>\r\n                            <li>\r\n                                <a href="#">\r\n                                    <i class="fa fa-comment-o"></i>\r\n                                    <span class="font-lato">28 Comments</span>\r\n                                </a>\r\n                            </li>\r\n                            <li>\r\n                                <i class="fa fa-folder-open-o"></i>\r\n\r\n                                <a class="category" href="#">\r\n                                    <span class="font-lato">Design</span>\r\n                                </a>\r\n                                <a class="category" href="#">\r\n                                    <span class="font-lato">Photography</span>\r\n                                </a>\r\n                            </li>\r\n                            <li>\r\n                                <a href="#">\r\n                                    <i class="fa fa-user"></i>\r\n                                    <span class="font-lato">John Doe</span>\r\n                                </a>\r\n                            </li>\r\n                        </ul>\r\n\r\n                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>\r\n\r\n                        <a href="blog-single-default.html" class="btn btn-reveal btn-default">\r\n                            <i class="fa fa-plus"></i>\r\n                            <span>Read More</span>\r\n                        </a>\r\n\r\n                    </div>\r\n                    <!-- /POST ITEM -->\r\n\r\n                </div>\n\n                <!--RIGHT-->\n                <div class="col-md-3 col-sm-3">\n\n                    <!-- INLINE SEARCH -->\r\n                    <div class="inline-search clearfix margin-bottom-30">\r\n                        <form action="" method="get" class="widget_search">\r\n                            <input type="search" placeholder="Start Searching..." id="s" name="s" class="serch-input">\r\n                            <button type="submit">\r\n                                <i class="fa fa-search"></i>\r\n                            </button>\r\n                        </form>\r\n                    </div>\r\n                    <!-- /INLINE SEARCH -->\n\n                    <hr />\r\n\r\n                    <!-- side navigation -->\r\n                    <div class="side-nav margin-bottom-60 margin-top-30">\r\n\r\n                        <div class="side-nav-head">\r\n                            <button class="fa fa-bars"></button>\r\n                            <h4>CATEGORIES</h4>\r\n                        </div>\r\n                        <ul class="list-group list-group-bordered list-group-noicon uppercase">\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(12)</span> MEDIA</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(8)</span> MOVIES</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(32)</span> NEW</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(16)</span> TUTORIALS</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(2)</span> DEVELOPMENT</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(1)</span> UNCATEGORIZED</a></li>\r\n\r\n                        </ul>\r\n                        <!-- /side navigation -->\r\n\r\n\r\n                    </div>\n\n                    <!-- TAGS -->\r\n                    <h3 class="hidden-xs size-16 margin-bottom-20">TAGS</h3>\r\n                    <div class="hidden-xs margin-bottom-60">\r\n\r\n                        <a class="tag" href="#">\r\n                            <span class="txt">RESPONSIVE</span>\r\n                            <span class="num">12</span>\r\n                        </a>\r\n                        <a class="tag" href="#">\r\n                            <span class="txt">CSS</span>\r\n                            <span class="num">3</span>\r\n                        </a>\r\n                        <a class="tag" href="#">\r\n                            <span class="txt">HTML</span>\r\n                            <span class="num">1</span>\r\n                        </a>\r\n                        <a class="tag" href="#">\r\n                            <span class="txt">JAVASCRIPT</span>\r\n                            <span class="num">28</span>\r\n                        </a>\r\n                        <a class="tag" href="#">\r\n                            <span class="txt">DESIGN</span>\r\n                            <span class="num">6</span>\r\n                        </a>\r\n                        <a class="tag" href="#">\r\n                            <span class="txt">DEVELOPMENT</span>\r\n                            <span class="num">3</span>\r\n                        </a>\r\n                    </div>\n\n                    <hr />\r\n\r\n\r\n                    <!-- SOCIAL ICONS -->\r\n                    <div class="hidden-xs margin-top-30 margin-bottom-60">\r\n                        <a href="#" class="social-icon social-icon-border social-facebook pull-left" data-toggle="tooltip" data-placement="top" title="Facebook">\r\n                            <i class="icon-facebook"></i>\r\n                            <i class="icon-facebook"></i>\r\n                        </a>\r\n\r\n                        <a href="#" class="social-icon social-icon-border social-twitter pull-left" data-toggle="tooltip" data-placement="top" title="Twitter">\r\n                            <i class="icon-twitter"></i>\r\n                            <i class="icon-twitter"></i>\r\n                        </a>\r\n\r\n                        <a href="#" class="social-icon social-icon-border social-gplus pull-left" data-toggle="tooltip" data-placement="top" title="Google plus">\r\n                            <i class="icon-gplus"></i>\r\n                            <i class="icon-gplus"></i>\r\n                        </a>                        \r\n                    </div>\n\n                </div>               \n            </div>\n        </div>\n    </div>\n</div>\n';
+	__p+='\n<div class="sh-blog-home">\n    <div class="container">\n        <div class="page--blog-home">\n            <div class="sh-page-block sh-blog-home-wrapper row">\n                <!--LEFT-->\n                <div class="col-md-9 col-sm-9">\n                    <div id="blog-items"></div>\r\n                </div>\n\n                <!--RIGHT-->\n                <div class="col-md-3 col-sm-3">\n\n                    <!-- INLINE SEARCH -->\r\n                    <div class="inline-search clearfix margin-bottom-30">\r\n                        <form action="" method="get" class="widget_search">\r\n                            <input type="search" placeholder="Start Searching..." id="s" name="s" class="serch-input">\r\n                            <button type="submit">\r\n                                <i class="fa fa-search"></i>\r\n                            </button>\r\n                        </form>\r\n                    </div>\r\n                    <!-- /INLINE SEARCH -->\n\n                    <hr />\r\n\r\n                    <!-- side navigation -->\r\n                    <div class="side-nav margin-bottom-60 margin-top-30">\r\n\r\n                        <div class="side-nav-head">\r\n                            <button class="fa fa-bars"></button>\r\n                            <h4>CATEGORIES</h4>\r\n                        </div>\r\n                        <ul class="list-group list-group-bordered list-group-noicon uppercase">\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(12)</span> MEDIA</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(8)</span> MOVIES</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(32)</span> NEW</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(16)</span> TUTORIALS</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(2)</span> DEVELOPMENT</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(1)</span> UNCATEGORIZED</a></li>\r\n\r\n                        </ul>\r\n                        <!-- /side navigation -->\r\n\r\n\r\n                    </div>\n\n                    <!-- TAGS -->\r\n                    ';
+	 if(blogDetails) { 
+	__p+='\r\n                    <h3 class="hidden-xs size-16 margin-bottom-20">SEARCH FOR TAGS</h3>\r\n                    <div class="hidden-xs margin-bottom-60">\r\n                        ';
+	_.each(blogDetails.tags, function(tag){ 
+	__p+='                            \r\n                            <a class="tag" href="#">\r\n                                <span class="txt">'+
+	((__t=( tag))==null?'':__t)+
+	'</span>\r\n                            </a>                           \r\n                        ';
+	});
+	__p+='                        \r\n                    </div>\n                    ';
+	 } 
+	__p+='\n                    <hr />\r\n\r\n\r\n                    <!-- SOCIAL ICONS -->\r\n                    <div class="hidden-xs margin-top-30 margin-bottom-60">\r\n                        <a href="#" class="social-icon social-icon-border social-facebook pull-left" data-toggle="tooltip" data-placement="top" title="Facebook">\r\n                            <i class="icon-facebook"></i>\r\n                            <i class="icon-facebook"></i>\r\n                        </a>\r\n\r\n                        <a href="#" class="social-icon social-icon-border social-twitter pull-left" data-toggle="tooltip" data-placement="top" title="Twitter">\r\n                            <i class="icon-twitter"></i>\r\n                            <i class="icon-twitter"></i>\r\n                        </a>\r\n\r\n                        <a href="#" class="social-icon social-icon-border social-gplus pull-left" data-toggle="tooltip" data-placement="top" title="Google plus">\r\n                            <i class="icon-gplus"></i>\r\n                            <i class="icon-gplus"></i>\r\n                        </a>                        \r\n                    </div>\n\n                </div>               \n            </div>\n        </div>\n    </div>\n</div>\n';
 	}
 	return __p;
 	};
-
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
 /* 182 */
-/*!************************************************!*\
-  !*** ./wwwroot/homeApp/blog/blogHomeView.less ***!
-  \************************************************/
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 183 */
-/*!************************************************!*\
-  !*** ./wwwroot/homeApp/blog/blogPostIdView.js ***!
-  \************************************************/
+/*!***********************************************!*\
+  !*** ./wwwroot/homeApp/blog/BlogItemsView.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38482,26 +38722,246 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 184);
+	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.js */ 183);
 	
-	var _blogPostIdViewHbs2 = _interopRequireDefault(_blogPostIdViewHbs);
+	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
 	
-	__webpack_require__(/*! ./blogPostIdView.less */ 185);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	    childView: _BlogItemView2.default,
+	    className: 'blog-post-item-wrapper',
+	    tagName: 'div'
+	});
+	exports.default = View;
+
+/***/ },
+/* 183 */
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/blog/BlogItemView.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.html */ 184);
+	
+	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
+	
+	var _app = __webpack_require__(/*! ../app */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.View.extend({
-	    template: _blogPostIdViewHbs2.default,
-	    onRender: function onRender() {
-	        debugger;
-	    }
-	}); /**
-	     * Created by arutu_000 on 1/15/2017.
-	     */
+	    tagName: 'div',
+	    className: 'blog-post-item',
+	    template: _BlogItemView2.default,
+	
+	    initialize: function initialize() {}
+	});
+	
 	exports.default = View;
 
 /***/ },
 /* 184 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/blog/BlogItemView.html ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n<!-- POST ITEM -->\r\n';
+	 if (_.size(obj.images) > 1) { 
+	__p+='\r\n <!-- OWL SLIDER -->\r\n<div id="sh-blog-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"items": 1, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}\'>\r\n    ';
+	_.each(obj.images, function(image){ 
+	__p+='\r\n    <div>\r\n        <img class="img-responsive" src="'+
+	((__t=( image.src))==null?'':__t)+
+	'" alt="'+
+	((__t=( image.alt))==null?'':__t)+
+	'">\r\n    </div> \r\n    ';
+	});
+	__p+='   \r\n</div>\r\n<!-- /OWL SLIDER -->\r\n';
+	 } else { 
+	__p+='\r\n    <!-- IMAGE -->\r\n    ';
+	 if(images && images[0].src) { 
+	__p+='\r\n    <figure class="margin-bottom-20">\r\n        <img class="img-responsive" src="'+
+	((__t=(obj.images[0].src))==null?'':__t)+
+	'" alt="'+
+	((__t=(obj.images[0].alt))==null?'':__t)+
+	'">\r\n    </figure>\r\n    ';
+	 } 
+	__p+='\r\n';
+	 } 
+	__p+='\r\n\r\n<h2><a href="blog/post/'+
+	((__t=(id))==null?'':__t)+
+	'">'+
+	((__t=( obj.title))==null?'':__t)+
+	'</a></h2>\r\n\r\n<ul class="blog-post-info list-inline">\r\n    <li>\r\n        <a href="#">\r\n            <i class="fa fa-clock-o"></i>\r\n            <span class="font-lato">'+
+	((__t=( moment(obj.timestamp).calendar()))==null?'':__t)+
+	'</span>\r\n        </a>\r\n    </li>\r\n\r\n    <li>\r\n        <a href="#">\r\n            <i class="fa fa-comment-o"></i>\r\n            <span class="font-lato">Комментариев: '+
+	((__t=( (_.size(obj.comments) > 0) ? obj.comments.length : '0' ))==null?'':__t)+
+	'</span>\r\n        </a>\r\n    </li>\r\n\r\n    ';
+	 if(_.size(obj.categories) > 0){ 
+	__p+='\r\n    <li>\r\n        <i class="fa fa-folder-open-o"></i>\r\n        ';
+	_.each(obj.categories, function(category){ 
+	__p+='\r\n        <a class="category" href="#">\r\n            <span class="font-lato">'+
+	((__t=( category))==null?'':__t)+
+	'</span>\r\n        </a>\r\n        ';
+	});
+	__p+='                \r\n    </li>\r\n    ';
+	 } 
+	__p+='\r\n\r\n    <li>\r\n        <a href="#">\r\n            <i class="fa fa-user"></i>\r\n            <span class="font-lato">'+
+	((__t=( obj.author))==null?'':__t)+
+	'</span>\r\n        </a>\r\n    </li>\r\n</ul>\r\n\r\n<p class="sh-post-description">'+
+	((__t=( obj.description))==null?'':_.escape(__t))+
+	'</p>\r\n\r\n<a href="/blog/post/'+
+	((__t=(id))==null?'':__t)+
+	'" class="btn btn-reveal btn-default">\r\n    <i class="fa fa-plus"></i> <span>Read More</span>\r\n</a>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 185 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/blog/blogHomeView.less ***!
+  \************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 186 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/blog/blogPostIdView.js ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 187);
+	
+	var _blogPostIdViewHbs2 = _interopRequireDefault(_blogPostIdViewHbs);
+	
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 99);
+	
+	__webpack_require__(/*! ../../lib/magnific-popup/dist/jquery.magnific-popup.min.js */ 188);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./blogPostIdView.less */ 189);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _blogPostIdViewHbs2.default,
+	
+	    initialize: function initialize() {
+	        console.log('POST ID -> MODEL: ', this.model);
+	    },
+	    onAttach: function onAttach() {
+	        this.initLightBox();
+	        this.initCarousel();
+	    },
+	    onRender: function onRender() {},
+	    initCarousel: function initCarousel() {
+	        var slider = this.$('#sh-blog-carousel');
+	        var options = slider.attr('data-plugin-options');
+	        var defaults = {
+	            //items: 5,
+	            itemsCustom: false,
+	            singleItem: true,
+	            itemsScaleUp: false,
+	
+	            slideSpeed: 200,
+	            paginationSpeed: 800,
+	            rewindSpeed: 1000,
+	
+	            autoPlay: false,
+	            stopOnHover: false,
+	
+	            navigation: false,
+	            navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+	            rewindNav: true,
+	            scrollPerPage: false,
+	
+	            pagination: true,
+	            paginationNumbers: false,
+	
+	            responsive: true,
+	            responsiveRefreshRate: 200,
+	            responsiveBaseWidth: window,
+	
+	            baseClass: "owl-carousel",
+	            theme: "owl-theme",
+	
+	            lazyLoad: false,
+	            lazyFollow: true,
+	            lazyEffect: "fade",
+	
+	            autoHeight: false,
+	
+	            jsonPath: false,
+	            jsonSuccess: false,
+	
+	            dragBeforeAnimFinish: true,
+	            mouseDrag: true,
+	            touchDrag: true,
+	
+	            transitionStyle: false,
+	
+	            addClassActive: false,
+	
+	            beforeUpdate: false,
+	            afterUpdate: false,
+	            beforeInit: false,
+	            afterInit: false,
+	            beforeMove: false,
+	            afterMove: false,
+	            afterAction: false,
+	            startDragging: false,
+	            afterLazyLoad: false
+	        };
+	        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+	        slider.owlCarousel(config).addClass("owl-carousel-init");
+	    },
+	    initLightBox: function initLightBox() {}
+	});
+	
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 187 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.hbs.html ***!
   \******************************************************/
@@ -38510,14 +38970,399 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="page--blog-post-id">\n    blog post id\n    <!--<iframe src="https://drive.google.com/file/d/0B55GYt-og1BUVzRZNWFlVVE0U21SYnExYlhYMzNKV2ZIUnRN/preview" width="100%" height="500"></iframe>-->\n</div>';
+	__p+='<div class="sh-blog-post-id">\n    <!-- -->\r\n    <div class="container">\r\n        <div class="sh-page-block sh-blog-post-id-wrapper">\r\n\r\n            <h1 class="blog-post-title">BLOG POST TITLE HERE</h1>\r\n            <ul class="blog-post-info list-inline">\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-clock-o"></i>\r\n                        <span class="font-lato">June 29, 2015</span>\r\n                    </a>\r\n                </li>\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-comment-o"></i>\r\n                        <span class="font-lato">28 Comments</span>\r\n                    </a>\r\n                </li>\r\n                <li>\r\n                    <i class="fa fa-folder-open-o"></i>\r\n\r\n                    <a class="category" href="#">\r\n                        <span class="font-lato">Design</span>\r\n                    </a>\r\n                    <a class="category" href="#">\r\n                        <span class="font-lato">Photography</span>\r\n                    </a>\r\n                </li>\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-user"></i>\r\n                        <span class="font-lato">John Doe</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n\r\n            <!-- OWL SLIDER -->\r\n            <div id="sh-blog-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"items": 1, "autoPlay": 4500, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}\'>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n            </div>\r\n            <!-- /OWL SLIDER -->\r\n            <!-- IMAGE -->\r\n            <!--\r\n            <figure class="margin-bottom-20">\r\n                <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="img" />\r\n            </figure>\r\n            -->\r\n            <!-- /IMAGE -->\r\n            <!-- VIDEO -->\r\n            <!--\r\n            <div class="margin-bottom-20 embed-responsive embed-responsive-16by9">\r\n                <iframe class="embed-responsive-item" src="http://player.vimeo.com/video/8408210" width="800" height="450"></iframe>\r\n            </div>\r\n            -->\r\n            <!-- /VIDEO -->\r\n\r\n            <!-- article content -->\r\n            <p class="dropcap">Aliquam fringilla, sapien eget scelerisque placerat, lorem libero cursus lorem, sed sodales lorem libero eu sapien. Nunc mattis feugiat justo vel faucibus. Nulla consequat feugiat malesuada. Ut justo nulla, <strong>facilisis vel molestie id</strong>, dictum ut arcu. Nunc ipsum nulla, eleifend non blandit quis, luctus quis orci. Cras blandit turpis mattis nulla ultrices interdum. Mauris pretium pretium dictum. Nunc commodo, felis sed dictum bibendum, risus justo iaculis dui, nec euismod orci sem eget neque. Donec in metus metus, vitae eleifend lorem. Ut vestibulum gravida venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque suscipit tincidunt magna non mollis. Fusce tempus tincidunt nisi, in luctus elit pellentesque quis. Sed velit mi, ullamcorper ut tempor ut, mattis eu lacus. Morbi rhoncus aliquet tellus, id accumsan enim sollicitudin vitae.</p>\r\n            <p>Vivamus <a href="#">magna justo</a>, lacinia eget consectetur sed, convallis at tellus. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Sed porttitor lectus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla porttitor accumsan tincidunt.</p>\r\n\r\n            <!-- BLOCKQUOTE -->\r\n            <blockquote>\r\n                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>\r\n                <cite>Source Title</cite>\r\n            </blockquote>\r\n\r\n            <p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.Quisque velit nisi, pretium ut lacinia in, elementum id enim. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Pellentesque in ipsum id orci porta dapibus. Nulla quis lorem ut libero malesuada feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>\r\n            <p>Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor accumsan tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>\r\n            <!-- /article content -->\r\n\r\n\r\n            <div class="divider divider-dotted"><!-- divider --></div>\r\n\r\n\r\n            <!-- TAGS -->\r\n            <a class="tag" href="#">\r\n                <span class="txt">RESPONSIVE</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">CSS</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">HTML</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">JAVASCRIPT</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">DESIGN</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">DEVELOPMENT</span>\r\n            </a>\r\n            <!-- /TAGS -->\r\n            <!-- SHARE POST -->\r\n            <div class="clearfix margin-top-30">\r\n\r\n                <span class="pull-left margin-top-6 bold hidden-xs">\r\n                    Share Post:\r\n                </span>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-facebook pull-right" data-toggle="tooltip" data-placement="top" title="Facebook">\r\n                    <i class="icon-facebook"></i>\r\n                    <i class="icon-facebook"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-twitter pull-right" data-toggle="tooltip" data-placement="top" title="Twitter">\r\n                    <i class="icon-twitter"></i>\r\n                    <i class="icon-twitter"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-gplus pull-right" data-toggle="tooltip" data-placement="top" title="Google plus">\r\n                    <i class="icon-gplus"></i>\r\n                    <i class="icon-gplus"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-linkedin pull-right" data-toggle="tooltip" data-placement="top" title="Linkedin">\r\n                    <i class="icon-linkedin"></i>\r\n                    <i class="icon-linkedin"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-pinterest pull-right" data-toggle="tooltip" data-placement="top" title="Pinterest">\r\n                    <i class="icon-pinterest"></i>\r\n                    <i class="icon-pinterest"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-call pull-right" data-toggle="tooltip" data-placement="top" title="Email">\r\n                    <i class="icon-email3"></i>\r\n                    <i class="icon-email3"></i>\r\n                </a>\r\n\r\n            </div>\r\n            <!-- /SHARE POST -->\r\n\r\n\r\n            <div class="divider"><!-- divider --></div>\r\n\r\n\r\n            <ul class="pager">\r\n                <li class="previous"><a class="noborder" href="#">&larr; Previous Post</a></li>\r\n                <li class="next"><a class="noborder" href="#">Next Post &rarr;</a></li>\r\n            </ul>\r\n\r\n\r\n        </div>\r\n   </div>\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 185 */
+/* 188 */
+/*!**********************************************************************!*\
+  !*** ./wwwroot/lib/magnific-popup/dist/jquery.magnific-popup.min.js ***!
+  \**********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	/*! Magnific Popup - v1.1.0 - 2016-02-20
+	* http://dimsemenov.com/plugins/magnific-popup/
+	* Copyright (c) 2016 Dmitry Semenov; */
+	!function (a) {
+	   true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ 3)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : a("object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) ? require("jquery") : window.jQuery || window.Zepto);
+	}(function (a) {
+	  var b,
+	      c,
+	      d,
+	      e,
+	      f,
+	      g,
+	      h = "Close",
+	      i = "BeforeClose",
+	      j = "AfterClose",
+	      k = "BeforeAppend",
+	      l = "MarkupParse",
+	      m = "Open",
+	      n = "Change",
+	      o = "mfp",
+	      p = "." + o,
+	      q = "mfp-ready",
+	      r = "mfp-removing",
+	      s = "mfp-prevent-close",
+	      t = function t() {},
+	      u = !!window.jQuery,
+	      v = a(window),
+	      w = function w(a, c) {
+	    b.ev.on(o + a + p, c);
+	  },
+	      x = function x(b, c, d, e) {
+	    var f = document.createElement("div");return f.className = "mfp-" + b, d && (f.innerHTML = d), e ? c && c.appendChild(f) : (f = a(f), c && f.appendTo(c)), f;
+	  },
+	      y = function y(c, d) {
+	    b.ev.triggerHandler(o + c, d), b.st.callbacks && (c = c.charAt(0).toLowerCase() + c.slice(1), b.st.callbacks[c] && b.st.callbacks[c].apply(b, a.isArray(d) ? d : [d]));
+	  },
+	      z = function z(c) {
+	    return c === g && b.currTemplate.closeBtn || (b.currTemplate.closeBtn = a(b.st.closeMarkup.replace("%title%", b.st.tClose)), g = c), b.currTemplate.closeBtn;
+	  },
+	      A = function A() {
+	    a.magnificPopup.instance || (b = new t(), b.init(), a.magnificPopup.instance = b);
+	  },
+	      B = function B() {
+	    var a = document.createElement("p").style,
+	        b = ["ms", "O", "Moz", "Webkit"];if (void 0 !== a.transition) return !0;for (; b.length;) {
+	      if (b.pop() + "Transition" in a) return !0;
+	    }return !1;
+	  };t.prototype = { constructor: t, init: function init() {
+	      var c = navigator.appVersion;b.isLowIE = b.isIE8 = document.all && !document.addEventListener, b.isAndroid = /android/gi.test(c), b.isIOS = /iphone|ipad|ipod/gi.test(c), b.supportsTransition = B(), b.probablyMobile = b.isAndroid || b.isIOS || /(Opera Mini)|Kindle|webOS|BlackBerry|(Opera Mobi)|(Windows Phone)|IEMobile/i.test(navigator.userAgent), d = a(document), b.popupsCache = {};
+	    }, open: function open(c) {
+	      var e;if (c.isObj === !1) {
+	        b.items = c.items.toArray(), b.index = 0;var g,
+	            h = c.items;for (e = 0; e < h.length; e++) {
+	          if (g = h[e], g.parsed && (g = g.el[0]), g === c.el[0]) {
+	            b.index = e;break;
+	          }
+	        }
+	      } else b.items = a.isArray(c.items) ? c.items : [c.items], b.index = c.index || 0;if (b.isOpen) return void b.updateItemHTML();b.types = [], f = "", c.mainEl && c.mainEl.length ? b.ev = c.mainEl.eq(0) : b.ev = d, c.key ? (b.popupsCache[c.key] || (b.popupsCache[c.key] = {}), b.currTemplate = b.popupsCache[c.key]) : b.currTemplate = {}, b.st = a.extend(!0, {}, a.magnificPopup.defaults, c), b.fixedContentPos = "auto" === b.st.fixedContentPos ? !b.probablyMobile : b.st.fixedContentPos, b.st.modal && (b.st.closeOnContentClick = !1, b.st.closeOnBgClick = !1, b.st.showCloseBtn = !1, b.st.enableEscapeKey = !1), b.bgOverlay || (b.bgOverlay = x("bg").on("click" + p, function () {
+	        b.close();
+	      }), b.wrap = x("wrap").attr("tabindex", -1).on("click" + p, function (a) {
+	        b._checkIfClose(a.target) && b.close();
+	      }), b.container = x("container", b.wrap)), b.contentContainer = x("content"), b.st.preloader && (b.preloader = x("preloader", b.container, b.st.tLoading));var i = a.magnificPopup.modules;for (e = 0; e < i.length; e++) {
+	        var j = i[e];j = j.charAt(0).toUpperCase() + j.slice(1), b["init" + j].call(b);
+	      }y("BeforeOpen"), b.st.showCloseBtn && (b.st.closeBtnInside ? (w(l, function (a, b, c, d) {
+	        c.close_replaceWith = z(d.type);
+	      }), f += " mfp-close-btn-in") : b.wrap.append(z())), b.st.alignTop && (f += " mfp-align-top"), b.fixedContentPos ? b.wrap.css({ overflow: b.st.overflowY, overflowX: "hidden", overflowY: b.st.overflowY }) : b.wrap.css({ top: v.scrollTop(), position: "absolute" }), (b.st.fixedBgPos === !1 || "auto" === b.st.fixedBgPos && !b.fixedContentPos) && b.bgOverlay.css({ height: d.height(), position: "absolute" }), b.st.enableEscapeKey && d.on("keyup" + p, function (a) {
+	        27 === a.keyCode && b.close();
+	      }), v.on("resize" + p, function () {
+	        b.updateSize();
+	      }), b.st.closeOnContentClick || (f += " mfp-auto-cursor"), f && b.wrap.addClass(f);var k = b.wH = v.height(),
+	          n = {};if (b.fixedContentPos && b._hasScrollBar(k)) {
+	        var o = b._getScrollbarSize();o && (n.marginRight = o);
+	      }b.fixedContentPos && (b.isIE7 ? a("body, html").css("overflow", "hidden") : n.overflow = "hidden");var r = b.st.mainClass;return b.isIE7 && (r += " mfp-ie7"), r && b._addClassToMFP(r), b.updateItemHTML(), y("BuildControls"), a("html").css(n), b.bgOverlay.add(b.wrap).prependTo(b.st.prependTo || a(document.body)), b._lastFocusedEl = document.activeElement, setTimeout(function () {
+	        b.content ? (b._addClassToMFP(q), b._setFocus()) : b.bgOverlay.addClass(q), d.on("focusin" + p, b._onFocusIn);
+	      }, 16), b.isOpen = !0, b.updateSize(k), y(m), c;
+	    }, close: function close() {
+	      b.isOpen && (y(i), b.isOpen = !1, b.st.removalDelay && !b.isLowIE && b.supportsTransition ? (b._addClassToMFP(r), setTimeout(function () {
+	        b._close();
+	      }, b.st.removalDelay)) : b._close());
+	    }, _close: function _close() {
+	      y(h);var c = r + " " + q + " ";if (b.bgOverlay.detach(), b.wrap.detach(), b.container.empty(), b.st.mainClass && (c += b.st.mainClass + " "), b._removeClassFromMFP(c), b.fixedContentPos) {
+	        var e = { marginRight: "" };b.isIE7 ? a("body, html").css("overflow", "") : e.overflow = "", a("html").css(e);
+	      }d.off("keyup" + p + " focusin" + p), b.ev.off(p), b.wrap.attr("class", "mfp-wrap").removeAttr("style"), b.bgOverlay.attr("class", "mfp-bg"), b.container.attr("class", "mfp-container"), !b.st.showCloseBtn || b.st.closeBtnInside && b.currTemplate[b.currItem.type] !== !0 || b.currTemplate.closeBtn && b.currTemplate.closeBtn.detach(), b.st.autoFocusLast && b._lastFocusedEl && a(b._lastFocusedEl).focus(), b.currItem = null, b.content = null, b.currTemplate = null, b.prevHeight = 0, y(j);
+	    }, updateSize: function updateSize(a) {
+	      if (b.isIOS) {
+	        var c = document.documentElement.clientWidth / window.innerWidth,
+	            d = window.innerHeight * c;b.wrap.css("height", d), b.wH = d;
+	      } else b.wH = a || v.height();b.fixedContentPos || b.wrap.css("height", b.wH), y("Resize");
+	    }, updateItemHTML: function updateItemHTML() {
+	      var c = b.items[b.index];b.contentContainer.detach(), b.content && b.content.detach(), c.parsed || (c = b.parseEl(b.index));var d = c.type;if (y("BeforeChange", [b.currItem ? b.currItem.type : "", d]), b.currItem = c, !b.currTemplate[d]) {
+	        var f = b.st[d] ? b.st[d].markup : !1;y("FirstMarkupParse", f), f ? b.currTemplate[d] = a(f) : b.currTemplate[d] = !0;
+	      }e && e !== c.type && b.container.removeClass("mfp-" + e + "-holder");var g = b["get" + d.charAt(0).toUpperCase() + d.slice(1)](c, b.currTemplate[d]);b.appendContent(g, d), c.preloaded = !0, y(n, c), e = c.type, b.container.prepend(b.contentContainer), y("AfterChange");
+	    }, appendContent: function appendContent(a, c) {
+	      b.content = a, a ? b.st.showCloseBtn && b.st.closeBtnInside && b.currTemplate[c] === !0 ? b.content.find(".mfp-close").length || b.content.append(z()) : b.content = a : b.content = "", y(k), b.container.addClass("mfp-" + c + "-holder"), b.contentContainer.append(b.content);
+	    }, parseEl: function parseEl(c) {
+	      var d,
+	          e = b.items[c];if (e.tagName ? e = { el: a(e) } : (d = e.type, e = { data: e, src: e.src }), e.el) {
+	        for (var f = b.types, g = 0; g < f.length; g++) {
+	          if (e.el.hasClass("mfp-" + f[g])) {
+	            d = f[g];break;
+	          }
+	        }e.src = e.el.attr("data-mfp-src"), e.src || (e.src = e.el.attr("href"));
+	      }return e.type = d || b.st.type || "inline", e.index = c, e.parsed = !0, b.items[c] = e, y("ElementParse", e), b.items[c];
+	    }, addGroup: function addGroup(a, c) {
+	      var d = function d(_d) {
+	        _d.mfpEl = this, b._openClick(_d, a, c);
+	      };c || (c = {});var e = "click.magnificPopup";c.mainEl = a, c.items ? (c.isObj = !0, a.off(e).on(e, d)) : (c.isObj = !1, c.delegate ? a.off(e).on(e, c.delegate, d) : (c.items = a, a.off(e).on(e, d)));
+	    }, _openClick: function _openClick(c, d, e) {
+	      var f = void 0 !== e.midClick ? e.midClick : a.magnificPopup.defaults.midClick;if (f || !(2 === c.which || c.ctrlKey || c.metaKey || c.altKey || c.shiftKey)) {
+	        var g = void 0 !== e.disableOn ? e.disableOn : a.magnificPopup.defaults.disableOn;if (g) if (a.isFunction(g)) {
+	          if (!g.call(b)) return !0;
+	        } else if (v.width() < g) return !0;c.type && (c.preventDefault(), b.isOpen && c.stopPropagation()), e.el = a(c.mfpEl), e.delegate && (e.items = d.find(e.delegate)), b.open(e);
+	      }
+	    }, updateStatus: function updateStatus(a, d) {
+	      if (b.preloader) {
+	        c !== a && b.container.removeClass("mfp-s-" + c), d || "loading" !== a || (d = b.st.tLoading);var e = { status: a, text: d };y("UpdateStatus", e), a = e.status, d = e.text, b.preloader.html(d), b.preloader.find("a").on("click", function (a) {
+	          a.stopImmediatePropagation();
+	        }), b.container.addClass("mfp-s-" + a), c = a;
+	      }
+	    }, _checkIfClose: function _checkIfClose(c) {
+	      if (!a(c).hasClass(s)) {
+	        var d = b.st.closeOnContentClick,
+	            e = b.st.closeOnBgClick;if (d && e) return !0;if (!b.content || a(c).hasClass("mfp-close") || b.preloader && c === b.preloader[0]) return !0;if (c === b.content[0] || a.contains(b.content[0], c)) {
+	          if (d) return !0;
+	        } else if (e && a.contains(document, c)) return !0;return !1;
+	      }
+	    }, _addClassToMFP: function _addClassToMFP(a) {
+	      b.bgOverlay.addClass(a), b.wrap.addClass(a);
+	    }, _removeClassFromMFP: function _removeClassFromMFP(a) {
+	      this.bgOverlay.removeClass(a), b.wrap.removeClass(a);
+	    }, _hasScrollBar: function _hasScrollBar(a) {
+	      return (b.isIE7 ? d.height() : document.body.scrollHeight) > (a || v.height());
+	    }, _setFocus: function _setFocus() {
+	      (b.st.focus ? b.content.find(b.st.focus).eq(0) : b.wrap).focus();
+	    }, _onFocusIn: function _onFocusIn(c) {
+	      return c.target === b.wrap[0] || a.contains(b.wrap[0], c.target) ? void 0 : (b._setFocus(), !1);
+	    }, _parseMarkup: function _parseMarkup(b, c, d) {
+	      var e;d.data && (c = a.extend(d.data, c)), y(l, [b, c, d]), a.each(c, function (c, d) {
+	        if (void 0 === d || d === !1) return !0;if (e = c.split("_"), e.length > 1) {
+	          var f = b.find(p + "-" + e[0]);if (f.length > 0) {
+	            var g = e[1];"replaceWith" === g ? f[0] !== d[0] && f.replaceWith(d) : "img" === g ? f.is("img") ? f.attr("src", d) : f.replaceWith(a("<img>").attr("src", d).attr("class", f.attr("class"))) : f.attr(e[1], d);
+	          }
+	        } else b.find(p + "-" + c).html(d);
+	      });
+	    }, _getScrollbarSize: function _getScrollbarSize() {
+	      if (void 0 === b.scrollbarSize) {
+	        var a = document.createElement("div");a.style.cssText = "width: 99px; height: 99px; overflow: scroll; position: absolute; top: -9999px;", document.body.appendChild(a), b.scrollbarSize = a.offsetWidth - a.clientWidth, document.body.removeChild(a);
+	      }return b.scrollbarSize;
+	    } }, a.magnificPopup = { instance: null, proto: t.prototype, modules: [], open: function open(b, c) {
+	      return A(), b = b ? a.extend(!0, {}, b) : {}, b.isObj = !0, b.index = c || 0, this.instance.open(b);
+	    }, close: function close() {
+	      return a.magnificPopup.instance && a.magnificPopup.instance.close();
+	    }, registerModule: function registerModule(b, c) {
+	      c.options && (a.magnificPopup.defaults[b] = c.options), a.extend(this.proto, c.proto), this.modules.push(b);
+	    }, defaults: { disableOn: 0, key: null, midClick: !1, mainClass: "", preloader: !0, focus: "", closeOnContentClick: !1, closeOnBgClick: !0, closeBtnInside: !0, showCloseBtn: !0, enableEscapeKey: !0, modal: !1, alignTop: !1, removalDelay: 0, prependTo: null, fixedContentPos: "auto", fixedBgPos: "auto", overflowY: "auto", closeMarkup: '<button title="%title%" type="button" class="mfp-close">&#215;</button>', tClose: "Close (Esc)", tLoading: "Loading...", autoFocusLast: !0 } }, a.fn.magnificPopup = function (c) {
+	    A();var d = a(this);if ("string" == typeof c) {
+	      if ("open" === c) {
+	        var e,
+	            f = u ? d.data("magnificPopup") : d[0].magnificPopup,
+	            g = parseInt(arguments[1], 10) || 0;f.items ? e = f.items[g] : (e = d, f.delegate && (e = e.find(f.delegate)), e = e.eq(g)), b._openClick({ mfpEl: e }, d, f);
+	      } else b.isOpen && b[c].apply(b, Array.prototype.slice.call(arguments, 1));
+	    } else c = a.extend(!0, {}, c), u ? d.data("magnificPopup", c) : d[0].magnificPopup = c, b.addGroup(d, c);return d;
+	  };var C,
+	      D,
+	      E,
+	      F = "inline",
+	      G = function G() {
+	    E && (D.after(E.addClass(C)).detach(), E = null);
+	  };a.magnificPopup.registerModule(F, { options: { hiddenClass: "hide", markup: "", tNotFound: "Content not found" }, proto: { initInline: function initInline() {
+	        b.types.push(F), w(h + "." + F, function () {
+	          G();
+	        });
+	      }, getInline: function getInline(c, d) {
+	        if (G(), c.src) {
+	          var e = b.st.inline,
+	              f = a(c.src);if (f.length) {
+	            var g = f[0].parentNode;g && g.tagName && (D || (C = e.hiddenClass, D = x(C), C = "mfp-" + C), E = f.after(D).detach().removeClass(C)), b.updateStatus("ready");
+	          } else b.updateStatus("error", e.tNotFound), f = a("<div>");return c.inlineElement = f, f;
+	        }return b.updateStatus("ready"), b._parseMarkup(d, {}, c), d;
+	      } } });var H,
+	      I = "ajax",
+	      J = function J() {
+	    H && a(document.body).removeClass(H);
+	  },
+	      K = function K() {
+	    J(), b.req && b.req.abort();
+	  };a.magnificPopup.registerModule(I, { options: { settings: null, cursor: "mfp-ajax-cur", tError: '<a href="%url%">The content</a> could not be loaded.' }, proto: { initAjax: function initAjax() {
+	        b.types.push(I), H = b.st.ajax.cursor, w(h + "." + I, K), w("BeforeChange." + I, K);
+	      }, getAjax: function getAjax(c) {
+	        H && a(document.body).addClass(H), b.updateStatus("loading");var d = a.extend({ url: c.src, success: function success(d, e, f) {
+	            var g = { data: d, xhr: f };y("ParseAjax", g), b.appendContent(a(g.data), I), c.finished = !0, J(), b._setFocus(), setTimeout(function () {
+	              b.wrap.addClass(q);
+	            }, 16), b.updateStatus("ready"), y("AjaxContentAdded");
+	          }, error: function error() {
+	            J(), c.finished = c.loadError = !0, b.updateStatus("error", b.st.ajax.tError.replace("%url%", c.src));
+	          } }, b.st.ajax.settings);return b.req = a.ajax(d), "";
+	      } } });var L,
+	      M = function M(c) {
+	    if (c.data && void 0 !== c.data.title) return c.data.title;var d = b.st.image.titleSrc;if (d) {
+	      if (a.isFunction(d)) return d.call(b, c);if (c.el) return c.el.attr(d) || "";
+	    }return "";
+	  };a.magnificPopup.registerModule("image", { options: { markup: '<div class="mfp-figure"><div class="mfp-close"></div><figure><div class="mfp-img"></div><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter"></div></div></figcaption></figure></div>', cursor: "mfp-zoom-out-cur", titleSrc: "title", verticalFit: !0, tError: '<a href="%url%">The image</a> could not be loaded.' }, proto: { initImage: function initImage() {
+	        var c = b.st.image,
+	            d = ".image";b.types.push("image"), w(m + d, function () {
+	          "image" === b.currItem.type && c.cursor && a(document.body).addClass(c.cursor);
+	        }), w(h + d, function () {
+	          c.cursor && a(document.body).removeClass(c.cursor), v.off("resize" + p);
+	        }), w("Resize" + d, b.resizeImage), b.isLowIE && w("AfterChange", b.resizeImage);
+	      }, resizeImage: function resizeImage() {
+	        var a = b.currItem;if (a && a.img && b.st.image.verticalFit) {
+	          var c = 0;b.isLowIE && (c = parseInt(a.img.css("padding-top"), 10) + parseInt(a.img.css("padding-bottom"), 10)), a.img.css("max-height", b.wH - c);
+	        }
+	      }, _onImageHasSize: function _onImageHasSize(a) {
+	        a.img && (a.hasSize = !0, L && clearInterval(L), a.isCheckingImgSize = !1, y("ImageHasSize", a), a.imgHidden && (b.content && b.content.removeClass("mfp-loading"), a.imgHidden = !1));
+	      }, findImageSize: function findImageSize(a) {
+	        var c = 0,
+	            d = a.img[0],
+	            e = function e(f) {
+	          L && clearInterval(L), L = setInterval(function () {
+	            return d.naturalWidth > 0 ? void b._onImageHasSize(a) : (c > 200 && clearInterval(L), c++, void (3 === c ? e(10) : 40 === c ? e(50) : 100 === c && e(500)));
+	          }, f);
+	        };e(1);
+	      }, getImage: function getImage(c, d) {
+	        var e = 0,
+	            f = function f() {
+	          c && (c.img[0].complete ? (c.img.off(".mfploader"), c === b.currItem && (b._onImageHasSize(c), b.updateStatus("ready")), c.hasSize = !0, c.loaded = !0, y("ImageLoadComplete")) : (e++, 200 > e ? setTimeout(f, 100) : g()));
+	        },
+	            g = function g() {
+	          c && (c.img.off(".mfploader"), c === b.currItem && (b._onImageHasSize(c), b.updateStatus("error", h.tError.replace("%url%", c.src))), c.hasSize = !0, c.loaded = !0, c.loadError = !0);
+	        },
+	            h = b.st.image,
+	            i = d.find(".mfp-img");if (i.length) {
+	          var j = document.createElement("img");j.className = "mfp-img", c.el && c.el.find("img").length && (j.alt = c.el.find("img").attr("alt")), c.img = a(j).on("load.mfploader", f).on("error.mfploader", g), j.src = c.src, i.is("img") && (c.img = c.img.clone()), j = c.img[0], j.naturalWidth > 0 ? c.hasSize = !0 : j.width || (c.hasSize = !1);
+	        }return b._parseMarkup(d, { title: M(c), img_replaceWith: c.img }, c), b.resizeImage(), c.hasSize ? (L && clearInterval(L), c.loadError ? (d.addClass("mfp-loading"), b.updateStatus("error", h.tError.replace("%url%", c.src))) : (d.removeClass("mfp-loading"), b.updateStatus("ready")), d) : (b.updateStatus("loading"), c.loading = !0, c.hasSize || (c.imgHidden = !0, d.addClass("mfp-loading"), b.findImageSize(c)), d);
+	      } } });var N,
+	      O = function O() {
+	    return void 0 === N && (N = void 0 !== document.createElement("p").style.MozTransform), N;
+	  };a.magnificPopup.registerModule("zoom", { options: { enabled: !1, easing: "ease-in-out", duration: 300, opener: function opener(a) {
+	        return a.is("img") ? a : a.find("img");
+	      } }, proto: { initZoom: function initZoom() {
+	        var a,
+	            c = b.st.zoom,
+	            d = ".zoom";if (c.enabled && b.supportsTransition) {
+	          var e,
+	              f,
+	              g = c.duration,
+	              j = function j(a) {
+	            var b = a.clone().removeAttr("style").removeAttr("class").addClass("mfp-animated-image"),
+	                d = "all " + c.duration / 1e3 + "s " + c.easing,
+	                e = { position: "fixed", zIndex: 9999, left: 0, top: 0, "-webkit-backface-visibility": "hidden" },
+	                f = "transition";return e["-webkit-" + f] = e["-moz-" + f] = e["-o-" + f] = e[f] = d, b.css(e), b;
+	          },
+	              k = function k() {
+	            b.content.css("visibility", "visible");
+	          };w("BuildControls" + d, function () {
+	            if (b._allowZoom()) {
+	              if (clearTimeout(e), b.content.css("visibility", "hidden"), a = b._getItemToZoom(), !a) return void k();f = j(a), f.css(b._getOffset()), b.wrap.append(f), e = setTimeout(function () {
+	                f.css(b._getOffset(!0)), e = setTimeout(function () {
+	                  k(), setTimeout(function () {
+	                    f.remove(), a = f = null, y("ZoomAnimationEnded");
+	                  }, 16);
+	                }, g);
+	              }, 16);
+	            }
+	          }), w(i + d, function () {
+	            if (b._allowZoom()) {
+	              if (clearTimeout(e), b.st.removalDelay = g, !a) {
+	                if (a = b._getItemToZoom(), !a) return;f = j(a);
+	              }f.css(b._getOffset(!0)), b.wrap.append(f), b.content.css("visibility", "hidden"), setTimeout(function () {
+	                f.css(b._getOffset());
+	              }, 16);
+	            }
+	          }), w(h + d, function () {
+	            b._allowZoom() && (k(), f && f.remove(), a = null);
+	          });
+	        }
+	      }, _allowZoom: function _allowZoom() {
+	        return "image" === b.currItem.type;
+	      }, _getItemToZoom: function _getItemToZoom() {
+	        return b.currItem.hasSize ? b.currItem.img : !1;
+	      }, _getOffset: function _getOffset(c) {
+	        var d;d = c ? b.currItem.img : b.st.zoom.opener(b.currItem.el || b.currItem);var e = d.offset(),
+	            f = parseInt(d.css("padding-top"), 10),
+	            g = parseInt(d.css("padding-bottom"), 10);e.top -= a(window).scrollTop() - f;var h = { width: d.width(), height: (u ? d.innerHeight() : d[0].offsetHeight) - g - f };return O() ? h["-moz-transform"] = h.transform = "translate(" + e.left + "px," + e.top + "px)" : (h.left = e.left, h.top = e.top), h;
+	      } } });var P = "iframe",
+	      Q = "//about:blank",
+	      R = function R(a) {
+	    if (b.currTemplate[P]) {
+	      var c = b.currTemplate[P].find("iframe");c.length && (a || (c[0].src = Q), b.isIE8 && c.css("display", a ? "block" : "none"));
+	    }
+	  };a.magnificPopup.registerModule(P, { options: { markup: '<div class="mfp-iframe-scaler"><div class="mfp-close"></div><iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen></iframe></div>', srcAction: "iframe_src", patterns: { youtube: { index: "youtube.com", id: "v=", src: "//www.youtube.com/embed/%id%?autoplay=1" }, vimeo: { index: "vimeo.com/", id: "/", src: "//player.vimeo.com/video/%id%?autoplay=1" }, gmaps: { index: "//maps.google.", src: "%id%&output=embed" } } }, proto: { initIframe: function initIframe() {
+	        b.types.push(P), w("BeforeChange", function (a, b, c) {
+	          b !== c && (b === P ? R() : c === P && R(!0));
+	        }), w(h + "." + P, function () {
+	          R();
+	        });
+	      }, getIframe: function getIframe(c, d) {
+	        var e = c.src,
+	            f = b.st.iframe;a.each(f.patterns, function () {
+	          return e.indexOf(this.index) > -1 ? (this.id && (e = "string" == typeof this.id ? e.substr(e.lastIndexOf(this.id) + this.id.length, e.length) : this.id.call(this, e)), e = this.src.replace("%id%", e), !1) : void 0;
+	        });var g = {};return f.srcAction && (g[f.srcAction] = e), b._parseMarkup(d, g, c), b.updateStatus("ready"), d;
+	      } } });var S = function S(a) {
+	    var c = b.items.length;return a > c - 1 ? a - c : 0 > a ? c + a : a;
+	  },
+	      T = function T(a, b, c) {
+	    return a.replace(/%curr%/gi, b + 1).replace(/%total%/gi, c);
+	  };a.magnificPopup.registerModule("gallery", { options: { enabled: !1, arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>', preload: [0, 2], navigateByImgClick: !0, arrows: !0, tPrev: "Previous (Left arrow key)", tNext: "Next (Right arrow key)", tCounter: "%curr% of %total%" }, proto: { initGallery: function initGallery() {
+	        var c = b.st.gallery,
+	            e = ".mfp-gallery";return b.direction = !0, c && c.enabled ? (f += " mfp-gallery", w(m + e, function () {
+	          c.navigateByImgClick && b.wrap.on("click" + e, ".mfp-img", function () {
+	            return b.items.length > 1 ? (b.next(), !1) : void 0;
+	          }), d.on("keydown" + e, function (a) {
+	            37 === a.keyCode ? b.prev() : 39 === a.keyCode && b.next();
+	          });
+	        }), w("UpdateStatus" + e, function (a, c) {
+	          c.text && (c.text = T(c.text, b.currItem.index, b.items.length));
+	        }), w(l + e, function (a, d, e, f) {
+	          var g = b.items.length;e.counter = g > 1 ? T(c.tCounter, f.index, g) : "";
+	        }), w("BuildControls" + e, function () {
+	          if (b.items.length > 1 && c.arrows && !b.arrowLeft) {
+	            var d = c.arrowMarkup,
+	                e = b.arrowLeft = a(d.replace(/%title%/gi, c.tPrev).replace(/%dir%/gi, "left")).addClass(s),
+	                f = b.arrowRight = a(d.replace(/%title%/gi, c.tNext).replace(/%dir%/gi, "right")).addClass(s);e.click(function () {
+	              b.prev();
+	            }), f.click(function () {
+	              b.next();
+	            }), b.container.append(e.add(f));
+	          }
+	        }), w(n + e, function () {
+	          b._preloadTimeout && clearTimeout(b._preloadTimeout), b._preloadTimeout = setTimeout(function () {
+	            b.preloadNearbyImages(), b._preloadTimeout = null;
+	          }, 16);
+	        }), void w(h + e, function () {
+	          d.off(e), b.wrap.off("click" + e), b.arrowRight = b.arrowLeft = null;
+	        })) : !1;
+	      }, next: function next() {
+	        b.direction = !0, b.index = S(b.index + 1), b.updateItemHTML();
+	      }, prev: function prev() {
+	        b.direction = !1, b.index = S(b.index - 1), b.updateItemHTML();
+	      }, goTo: function goTo(a) {
+	        b.direction = a >= b.index, b.index = a, b.updateItemHTML();
+	      }, preloadNearbyImages: function preloadNearbyImages() {
+	        var a,
+	            c = b.st.gallery.preload,
+	            d = Math.min(c[0], b.items.length),
+	            e = Math.min(c[1], b.items.length);for (a = 1; a <= (b.direction ? e : d); a++) {
+	          b._preloadItem(b.index + a);
+	        }for (a = 1; a <= (b.direction ? d : e); a++) {
+	          b._preloadItem(b.index - a);
+	        }
+	      }, _preloadItem: function _preloadItem(c) {
+	        if (c = S(c), !b.items[c].preloaded) {
+	          var d = b.items[c];d.parsed || (d = b.parseEl(c)), y("LazyLoad", d), "image" === d.type && (d.img = a('<img class="mfp-img" />').on("load.mfploader", function () {
+	            d.hasSize = !0;
+	          }).on("error.mfploader", function () {
+	            d.hasSize = !0, d.loadError = !0, y("LazyLoadError", d);
+	          }).attr("src", d.src)), d.preloaded = !0;
+	        }
+	      } } });var U = "retina";a.magnificPopup.registerModule(U, { options: { replaceSrc: function replaceSrc(a) {
+	        return a.src.replace(/\.\w+$/, function (a) {
+	          return "@2x" + a;
+	        });
+	      }, ratio: 1 }, proto: { initRetina: function initRetina() {
+	        if (window.devicePixelRatio > 1) {
+	          var a = b.st.retina,
+	              c = a.ratio;c = isNaN(c) ? c() : c, c > 1 && (w("ImageHasSize." + U, function (a, b) {
+	            b.img.css({ "max-width": b.img[0].naturalWidth / c, width: "100%" });
+	          }), w("ElementParse." + U, function (b, d) {
+	            d.src = a.replaceSrc(d, c);
+	          }));
+	        }
+	      } } }), A();
+	});
+
+/***/ },
+/* 189 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.less ***!
   \**************************************************/
@@ -38526,7 +39371,66 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 186 */
+/* 190 */
+/*!*********************************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.js ***!
+  \*********************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _SuggestionsModalViewHbs = __webpack_require__(/*! ./SuggestionsModalView.hbs.html */ 191);
+	
+	var _SuggestionsModalViewHbs2 = _interopRequireDefault(_SuggestionsModalViewHbs);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	
+	    template: _SuggestionsModalViewHbs2.default,
+	
+	    initialize: function initialize() {
+	        console.log("showSMV", this.model);
+	    }
+	});
+
+/***/ },
+/* 191 */
+/*!***************************************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.hbs.html ***!
+  \***************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n<div class="container text-center">\r\n    <div class="input-group">\r\n        <input placeholder="'+
+	((__t=(obj.address||'Поиск по городам и регионам'))==null?'':_.escape(__t))+
+	'" class="form-control" id="locationQuery" type="text">\r\n        <span class="input-group-btn">\r\n            <button title="Отмена" id="cancelSelection" class="btn btn-default" type="button"><i class="fa fa-remove"></i></button>\r\n        </span>\r\n        <div class="suggestion-box" id="suggestionsBox">\r\n            <h5>Поиск городов, регионов</h5>\r\n            <div id="suggestionsListBox"></div>\r\n        </div>\r\n    </div>\r\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 192 */
 /*!******************************************!*\
   !*** ./wwwroot/css/shiners-override.css ***!
   \******************************************/
@@ -38535,7 +39439,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 187);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 193);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 40)(content, {});
@@ -38555,7 +39459,7 @@
 	}
 
 /***/ },
-/* 187 */
+/* 193 */
 /*!*********************************************************!*\
   !*** ./~/css-loader!./wwwroot/css/shiners-override.css ***!
   \*********************************************************/

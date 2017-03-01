@@ -1,5 +1,205 @@
 ﻿// todo: move this to separate spinned button css (http://jsfiddle.net/AndrewDryga/zcX4h/1/) , same on register button
 
+@import (less) url("../../css/sh-mixins.less");
+@import (less) url("../../css/sh-constants.less");
+
+body {
+    
+    .sh-auth-page {
+        .sh-flex-display();
+        width: 100%;
+
+        .sh-login-page {
+             .sh-flex-display();
+             width: 100%;
+
+            .sh-login-page-wrapper {
+                .sh-flex-display();
+                height: 100%;
+                padding: 30px 0 60px;                
+
+                .sh-wrap2 {
+                    .sh-flex-display();
+                    .sh-align-items(center);  
+                    .sh-justify-content(space-around);                  
+                    .sh-flex-shrink(0);
+                    .sh-flex-direction(row-reverse);
+                    width: 100%;
+                }
+
+                .sh-side-left {
+                    .sh-flex(0 0 auto);
+                    padding-right: 25px;
+
+                    h2 {
+                        font-size: 22px;
+                        color: @sh-main-gray-color;
+                        margin-bottom: 20px;
+                        font-weight: 400;
+                    }
+
+                    .sh-login-features {
+
+                        li {
+                            font-size: 18px;
+                            line-height: 30px;
+                            padding: 8px 0;
+                            font-weight: normal;
+                            color: @sh-main-lightgray-color;
+                            text-align: left;
+
+                            i {
+                                font-size: 30px;
+                                float: left;
+                                padding-right: 10px;
+                            }
+                        }                        
+                    }
+                }
+
+                .sh-side-right {
+                    .sh-flex-basis(320px);
+                }
+            }
+        }
+
+        .sh-auth-form {
+            .sh-page-block {
+                .border-radius();
+            }
+
+            .input {
+                input {
+                    .border-radius();
+                    border: 1px solid @sh-main-border-color;
+                }
+            }
+
+            header {
+                padding: 0 0 10px 0;
+                font-size: 18px;
+                text-align: center;
+                color: @sh-main-gray-color;
+
+                small {
+                    display:block;
+                    text-align:center;
+                    font-size: 14px;
+                    color: @sh-main-lightgray-color;
+                }
+            }
+
+            footer {
+                padding: 10px  0 0 0;
+                margin: 0;
+            }
+
+            .sh-login-register {
+                display: block;
+                text-align: center;
+                width: 100%;
+                max-width: 280px;
+                margin: 20px auto 10px auto;
+                text-transform: uppercase;
+            }
+
+            .sh-login-additional {
+                text-align: center;                
+
+                .sh-login-social {
+                    margin: 10px 0 0 0;
+
+                    ul {
+                        margin: 0;
+                        padding: 0;
+                        text-align: center;
+                        list-style: none;
+
+                        li {
+                            display: inline-block;
+                            margin-right: 15px;
+
+                            a {
+                                .border-radius();
+                                color: @sh-main-white-color;
+                                font-size: 16px;
+                                height: 42px;
+                                width: 42px;
+                                line-height: 42px;
+                                display: block;                                
+
+                                i {}
+
+                                &:hover {
+                                    opacity: .85;
+                                }                                
+                            }
+
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                            
+                            .sh-facebook {
+                                background: rgba(59,89,153 ,1);
+                            }
+                            
+                            .sh-vk {
+                                background: rgba(76,117,163, 1);
+                            }
+                            
+                            .sh-google-plus {
+                                background: rgba(221,75,57 ,1)
+                            }                            
+                        }
+                    }
+                }
+            }
+
+            fieldset  {
+                padding: 0 0 10px 0;
+            }
+        }
+
+        .padding-20 {
+             padding: 20px;
+        }
+    }
+
+    &.page--login,
+    &.page--registerUser,
+    &.page--fogotPassword {
+        .sh-header-navbar-wrapper {
+            display: none;
+        }
+
+        #appContent {
+            .sh-flex-display();            
+        }
+    }    
+
+    &.page--login {
+        .sh-login-page {
+            .sh-login-page-wrapper {}
+        }
+    }
+
+    &.page--registerUser {
+        .sh-login-page {
+            .sh-login-page-wrapper {}
+        }
+    }
+
+    &.page--fogotPassword {
+        .sh-login-page {
+            .sh-login-page-wrapper {}
+        }
+    }
+}
+
+
+
+
+
 .spinner {
   display: inline-block;
   opacity: 0;

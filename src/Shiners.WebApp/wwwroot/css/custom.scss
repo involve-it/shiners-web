@@ -195,6 +195,7 @@ body {
         min-height: 100vh;
 
         #appContent {
+            position: relative;
             @include flex(1 0 auto);
             background: #f2f5f7;
         }
@@ -1143,7 +1144,8 @@ input[type=radio] + label {
                         @include sh-align-items(center);
                     }
 
-                    .sh-nav-location-value {                       
+                    .sh-nav-location-value {
+                        font-weight: 100;                       
                         position: relative;
                         display: block;
                         overflow: hidden;
@@ -2797,7 +2799,9 @@ input[type=radio] + label {
         }
 
         .tab-content {
-            padding: 20px;
+            padding: 16px;
+            margin: 16px;
+
             .tab-pane {
                 h4 {
                     font-size: 20px;

@@ -5,9 +5,11 @@ var View = Marionette.View.extend({
     template:template,
     tagName:'a',
     className: 'sh-nav-h white-link',
+
     modelEvents: {
         'change:address':'render'
     },
+
     events: {
         'click':'showChangeLocation'
     },

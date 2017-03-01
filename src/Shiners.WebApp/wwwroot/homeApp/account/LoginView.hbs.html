@@ -1,40 +1,37 @@
-﻿<section style="background:url('/images/backgrounds/wall2.jpg')">
-    <div class="display-table">
-        <div class="display-table-cell vertical-align-middle">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4 col-md-push-7 col-lg-push-8 col-sm-push-7">
-                        <!-- ALERT -->
-                        <!--
-                        <div class="alert alert-mini alert-danger margin-bottom-30">
-                            <strong>Oh snap!</strong> Login Incorrect!
-                        </div>
-                        -->
-                        <!-- /ALERT -->
-                        <!-- login form -->
-                        <form method="post" class="sky-form boxed">
-                            <header><i class="fa fa-users"></i> Вход на сайт</header>
+﻿
+<div class="sh-login-page">
+    <div class="container">
+        <div class="sh-login-page-wrapper">
+            <div class="sh-wrap2">                
+                <div class="sh-side-right">
+                    <!-- ALERT -->
+                    <!--
+                    <div class="alert alert-mini alert-danger margin-bottom-30">
+                        <strong>Oh snap!</strong> Login Incorrect!
+                    </div>
+                    -->
+                    <!-- /ALERT -->
+                    <!-- login form -->
+                    <form method="post" class="sky-form sh-auth-form">
+                        <div class="sh-page-block padding-20">
                             <fieldset class="nomargin">
-                                <label class="label margin-top-20">E-mail /  Имя пользователя</label>
                                 <label class="input">
                                     <i class="ico-append fa fa-envelope"></i>
-                                    <input type="text" name="email" id="userLogin">
+                                    <input type="text" name="email" id="userLogin" placeholder="E-mail /  Имя пользователя">
                                     <span class="tooltip tooltip-top-right">Email адрес / Имя пользователя</span>
                                 </label>
-                                <label class="label margin-top-20">Пароль</label>
                                 <label class="input">
                                     <i class="ico-append fa fa-lock"></i>
-                                    <input type="password" id="userPassword" name="password">
+                                    <input type="password" id="userPassword" name="password" placeholder="Пароль">
                                     <b class="tooltip tooltip-top-right">Укажите Ваш пароль</b>
                                 </label>
-                                <label class="checkbox margin-top-20">
+                                <label class="checkbox">
                                     <input type="checkbox" name="checkbox-inline" id="rememberMe">
                                     <i></i> Запомнить меня
                                 </label>
                             </fieldset>
-
                             <footer class="celarfix">
-                                <button type="submit" class="btn btn-primary noradius pull-right">
+                                <button type="submit" class="ui sh-button standard action pull-right">
                                     <i class="fa fa-check"></i>
                                     <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
                                     ВОЙТИ
@@ -43,42 +40,51 @@
                                     <a href="/Account/FogotPassword">Забыли пароль?</a>
                                 </div>
                             </footer>
-                            <div class="celarfix">
-                                <a type="submit" class="js-login-register-link btn btn-secondary btn-secondary-danger pull-right" href="/account/register?returnUrl=/">
-                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
-                                    Регистрация
-                                </a>
-                                <div class="login-forgot-password pull-left">
-                                    <span style="color: #d9534f">Впервые на сайте?</span>
+                        </div>
+
+                        <div class="sh-page-block padding-20 celarfix"> 
+                            <header>Впервые на сайте?<small>Регистрация быстро и бесплатно</small></header>                               
+                            <a type="submit" class="js-login-register-link sh-login-register ui sh-button standard create " href="/account/register?returnUrl=/">
+                                <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
+                                Регистрация
+                            </a>
+                            <div class="sh-login-additional">
+                                <span>или</span>
+                                <div class="sh-login-social">
+                                    <ul>
+                                        <li><a class="sh-facebook" id="sh-auth-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                        <li><a class="sh-vk" id="sh-auth-vk"><i class="fa fa-vk" aria-hidden="true"></i></a></li>
+                                        <li><a class="sh-google-plus" id="sh-auth-google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                    </ul>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-xs-12 col-md-7 col-sm-7 col-lg-8 col-lg-pull-4 col-md-pull-5 col-sm-pull-5">
-                        <h2 class="size-20 text-center-xs">Преимущества авторизованных пользователей</h2>
-                        <ul class="list-unstyled login-features">
-                            <li>
-                                <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-user"></i> Ещё не регистрировались? <a href="/account/register?returnUrl=somedata{{= returnUrl ? '?returnUrl='+returnUrl:''}}">Регистрация</a>
-                            </li>
-                        </ul>
-                    </div>
+                            </div>                               
+                        </div>
+                    </form>
                 </div>
+                <div class="sh-side-left">
+                    <h2 class="text-center-xs">Преимущества авторизованных пользователей</h2>
+                    <ul class="list-unstyled sh-login-features">
+                        <li>
+                            <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-user"></i> Ещё не регистрировались? <a href="/account/register?returnUrl=somedata{{= returnUrl ? '?returnUrl='+returnUrl:''}}">Регистрация</a>
+                        </li>
+                    </ul>
+                </div>    
             </div>
         </div>
     </div>
-</section>
+</div>

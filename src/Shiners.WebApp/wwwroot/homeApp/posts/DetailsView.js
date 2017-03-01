@@ -45,7 +45,7 @@ var View = Marionette.View.extend({
     onRender() {
         var center = app.map.getCenter();
         this.collection.loadByMethod('getPopularPosts',[center.lat(),center.lng(),200,0,10]);
-        this.initVkSocialButton(); 
+        //this.initVkSocialButton(); 
         this.initCarousel();
 
         this.comments.loadByMethod('getComments', { postId: this.model.get('_id'), take: 100, skip: 0 });

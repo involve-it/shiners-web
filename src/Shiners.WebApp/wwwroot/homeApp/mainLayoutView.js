@@ -11,6 +11,7 @@ import IframeView from './shared/iframeView.js';
 import UserMenuView from './layout/userMenuView';
 import MainMenuView from './mainMenuView';
 
+
 var View = Marionette.View.extend({
 
     template:template,
@@ -27,8 +28,12 @@ var View = Marionette.View.extend({
         'banner':'#appBanner',
         'userBar':'#userBar',
         'navLocation':'#navLocation',
-        'mainMenu':'#bzMainMenu'
+        'mainMenu':'#bzMainMenu',
+        'modal':'#modalContainer'
     },
+
+    initialize() {},
+
     onClickLink() {
         Backbone.$(document).on('click', 'a:not([data-direct-link])a:not([href^=http])', function (e) {//not data-direct-link class AND not having http in beginning of href
             var href = Backbone.$(this).attr('href');
@@ -65,7 +70,9 @@ var View = Marionette.View.extend({
     },
 
     showChangeLocation() {
-        this.getChildView('banner').renderLocationsSelection();
+        //Показать модальное окно.
+        this.getChildView('banner').showSuggestionsModalView();
+        //this.getChildView('banner').renderLocationsSelection();
     },
 
     toggleBannerView() {
@@ -79,10 +86,14 @@ var View = Marionette.View.extend({
     toggleMapAndBanner(routeName) {
         if (routeName === "index") {
             this.getRegion('map').$el.show();
-            if (!app.isMobile)
+
+            this.getRegion('banner').$el.show();
+            /*if (!app.isMobile)
                 this.getRegion('banner').$el.show();
             else
                 this.hideFooter();
+            */                      
+
             if(window.google)
                 window.google.maps.event.trigger(app.map, 'resize');
         } else {

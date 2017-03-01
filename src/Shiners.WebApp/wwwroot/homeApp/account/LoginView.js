@@ -6,7 +6,7 @@ import LoginModel from '../../data/viewModels/LoginModel'
 var View = Marionette.View.extend({
 
     template:template,
-
+    className: 'sh-auth-page',
     model:new LoginModel,
 
     initialize() {
@@ -24,8 +24,104 @@ var View = Marionette.View.extend({
 
     events:{
         'submit form':'onSubmit',
-        'change input':'onChange'
+        'change input':'onChange',
+        'click #sh-auth-vk': 'authVk',
+        'click #sh-auth-facebook': 'authFacebook',
+        'click #sh-auth-google-plus': 'authGooglePlus'
     },
+
+    authVk(e) {
+        e.preventDefault();
+
+        //Вызов окна авторизации пользователя
+        VK.Auth.login(function(response) {
+            if (response.session && response.status == 'connected') {
+                /* Пользователь успешно авторизовался */
+
+                var data = {};
+                data = response.session;
+
+                var user = {};
+                user = response.session.user;
+
+                VK.Api.call('users.get', { fields: 'sex,photo_50' }, function(res) {
+                    if(res.response){
+                        user.photo = res.response[0].photo_50;
+                        user.gender = res.response[0].sex;
+
+                        data.user = user;
+
+                        $.ajax({
+                            url: '/auth/vk',
+                            method: 'POST',
+                            data: data,
+                            dataType: 'JSON',
+                            success: function(res){
+                                console.log(res);
+                            }
+                        });
+                    }
+                });
+
+                console.log('Пользователь успешно авторизовался ', response);
+                window.vkUser = response; //debug
+
+                if (response.settings) {
+
+                    /* Выбранные настройки доступа пользователя, если они были запрошены */
+
+                }
+            } else {
+
+                /* Пользователь нажал кнопку Отмена в окне авторизации */
+                console.log('Пользователь нажал кнопку Отмена в окне авторизации ', response);
+
+            }
+        }, 4194304);        
+
+        //VK.Auth.login(function(res) {}, 4194304);
+        console.log('CLICK VK', e.currentTarget);
+    },
+
+    authFacebook(e) {
+        e.preventDefault();
+        //-> //developers.facebook.com/docs/javascript/reference/v2.8
+
+        FB.login(function(response) {
+            
+            console.log(response);
+
+            if (response.status === 'connected') {
+                // Logged into your app and Facebook.
+                var uid = response.authResponse.userID, 
+                    accessToken = response.authResponse.accessToken, 
+                    fields = ['id', 'first_name', 'last_name', 'link', 'gender', 'picture', 'email'];
+
+                // Получили token и можно сделать запрос на сервер
+                // Формируем url запроса -> url: 'https://graph.facebook.com/me?access_token=' + accessToken + '&fields=' + profileFields.join(',')
+
+                FB.api('/me?fields=' + fields.join(','), function(response) {
+                    console.log(response);
+                });
+
+            } else if (response.status === 'not_authorized') {
+                // The person is logged into Facebook, but not your app.
+                console.log('Please log ' + 'into this app.');
+            } else {
+                // The person is not logged into Facebook, so we're not sure if
+                // they are logged into this app or not.
+                console.log('Please log ' + 'into Facebook.');
+            }
+        }, { scope: 'public_profile,email'});
+
+        /*        
+        FB.getLoginStatus(function(response) {
+            console.log(response);
+        }, true);        
+        */
+    },
+    
+    authGooglePlus(e) {},
 
     onSubmit(e) {
         e.preventDefault();

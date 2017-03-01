@@ -10,6 +10,10 @@ import RootView from './mainLayoutView.js';
 import Collection from '../data/AsteroidCollection.js';
 import Router from './router.js';
 import _ from 'underscore';
+
+import ModalView from '../sharedViews/ModalContainerView.js';
+import SuggestionsModalView from './selectLocation/suggestionsModal/SuggestionsModalView.js';
+
 import AsteroidModel from '../data/AsteroidModel.js';
 import PreloaderView from '../sharedViews/PreloaderView.js';
 import '../css/shiners-override.css';
@@ -38,7 +42,7 @@ let App = Marionette.Application.extend({
     },
     initialize() {
         this.asteroid = new Asteroid("www.shiners.mobi",true);
-        window.asteroid = this.asteroid; // debug        
+        //window.asteroid = this.asteroid; // debug        
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
         this.postAdTypes = new Collection(null, { asteroid: this.asteroid });
         this.myPosts=new Collection(null, { asteroid: this.asteroid });  
@@ -59,6 +63,7 @@ let App = Marionette.Application.extend({
         }
         this.listenMessages();
     },
+        
 
     _startApp() {
         this.asteroid.off('connected');
@@ -67,6 +72,7 @@ let App = Marionette.Application.extend({
             this.postAdTypes.loadByMethod('getPostAdTypes');
             this.showView(this.layout);        
             this.initVkApi();
+            this.initFbApi();
             this.getPosition();  
             this.asteroid.on('login', _.bind(this.initUser,this));
             this.asteroid.on('loginError', _.bind(()=>this.user.trigger('error:login'),this));
@@ -77,11 +83,11 @@ let App = Marionette.Application.extend({
             }
         },this)));        
     },
-
+    /*
     FbButton(container) {
         if(!this.FbInitialized){
             FB.init({
-                appId:'510068285855489',
+                appId:'1024999790877408',
                 version    : 'v2.8',
                 status:true
             });
@@ -90,9 +96,25 @@ let App = Marionette.Application.extend({
         if(container)
             FB.XFBML.parse(container); 
     },
-
+    */
     initVkApi(){
-        VK.init({ apiId: 5709603, onlyWidgets: true });
+        VK.init({
+            //-> localhost:63957 
+            apiId: 5413205,
+            onlyWidgets: true
+        }, function(err){
+            console.log(err);
+        });
+    },
+
+    initFbApi() {
+        FB.init({
+            appId:'1024999790877408',
+            version: 'v2.8',
+            cookie: true,
+            xfbml: true,
+            status: true
+        });
     },
 
     supportsHistoryApi () {
@@ -152,6 +174,10 @@ let App = Marionette.Application.extend({
         this.asteroid.ddp.on("removed", ({collection, id, fields}) => {
             app.trigger("remove:message", fields);
         });
+    },
+
+    showModalApp(options) {
+        app.layout.showChildView('modal', new ModalView( {view: new SuggestionsModalView({collection: options.collection, model: options.model }), title:options.title} ));
     }
 });
 
