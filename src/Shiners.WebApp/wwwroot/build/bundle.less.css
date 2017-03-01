@@ -3169,5 +3169,48 @@ body.page--blogPostId .sh-blog-post-id {
 body.page--blogPostId .sh-blog-post-id .sh-blog-post-id-wrapper {
   padding: 16px;
 }
+/* ==================
+	MIXINS LESS
+===================== */
+/* ==================
+	CONSTANTS LESS
+===================== */
+.suggestions-modal-view {
+  position: relative;
+}
+.suggestions-modal-view .sh-input-suggestions {
+  width: 100%;
+}
+.suggestions-modal-view .suggestion-box {
+  top: 42px;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  display: none;
+  left: auto;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  z-index: 22;
+  border: 2px solid #dddddd;
+}
+.suggestions-modal-view .suggestion-box h5 {
+  font-size: 16px;
+  padding: 8px 12px;
+  color: #8f8e94;
+}
+.suggestions-modal-view .suggestion-box .suggestion-box-wrapper .suggestion-item {
+  display: block;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: #3a4751;
+  border-bottom: 1px solid #e6e6e6;
+}
+.suggestions-modal-view .suggestion-box .suggestion-box-wrapper .suggestion-item small {
+  font-size: 11px;
+}
+.suggestions-modal-view .suggestion-box .suggestion-box-wrapper .suggestion-item:hover {
+  background: #fafcfe;
+}
 
 /*# sourceMappingURL=bundle.less.css.map*/

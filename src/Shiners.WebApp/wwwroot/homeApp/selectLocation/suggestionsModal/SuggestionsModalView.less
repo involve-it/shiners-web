@@ -1,0 +1,54 @@
+﻿
+@import (less) url("../../../css/sh-mixins.less");
+@import (less) url("../../../css/sh-constants.less");
+
+.suggestions-modal-view {
+    position: relative;
+
+    .suggestions-modal-view-wrapper {}
+
+    .sh-input-suggestions {
+        width: 100%;
+    }
+
+    .suggestion-box {
+        top: 42px;        
+        background-color: #fff;
+        box-shadow: 0px 1px 3px 0px rgba(0,0,0,.12);
+        display: none;
+        left: auto;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        width: 100%;
+        z-index: 22;
+        border: 2px solid #dddddd;
+
+        h5 {
+            font-size: 16px;
+            padding: 8px 12px;
+            color: @sh-main-lightgray-color;
+        }
+
+        .suggestion-box-wrapper {
+
+            .suggestion-item {
+                display: block;
+                padding: 4px 12px;
+                font-size: 12px;
+                color: @sh-main-gray-color;
+                border-bottom: 1px solid @sh-main-border-color;
+
+                small {
+                    font-size: 11px;
+                }
+
+                &:hover {
+                    background: lighten(@sh-main-blue-background, 40%);
+                }
+
+                &:nth-child(2n) {}
+            }
+        }
+    }
+}

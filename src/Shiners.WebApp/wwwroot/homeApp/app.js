@@ -177,7 +177,7 @@ let App = Marionette.Application.extend({
     },
 
     showModalApp(options) {
-        app.layout.showChildView('modal', new ModalView( {view: new SuggestionsModalView({collection: options.collection, model: options.model }), title:options.title} ));
+        app.layout.showChildView('modal', new ModalView( {view: new SuggestionsModalView({model: options.model }), title:options.title} ));
     }
 });
 

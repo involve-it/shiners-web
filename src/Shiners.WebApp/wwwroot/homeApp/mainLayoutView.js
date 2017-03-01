@@ -29,7 +29,7 @@ var View = Marionette.View.extend({
         'userBar':'#userBar',
         'navLocation':'#navLocation',
         'mainMenu':'#bzMainMenu',
-        'modal':'#modalContainer'
+        'modal':'#showModalContainer'
     },
 
     initialize() {},
@@ -70,7 +70,6 @@ var View = Marionette.View.extend({
     },
 
     showChangeLocation() {
-        //Показать модальное окно.
         this.getChildView('banner').showSuggestionsModalView();
         //this.getChildView('banner').renderLocationsSelection();
     },

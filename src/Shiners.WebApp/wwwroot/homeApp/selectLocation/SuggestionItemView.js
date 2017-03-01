@@ -3,6 +3,7 @@ import template from './SuggestionItemView.hbs.html';
 var View = Marionette.View.extend({
     template:template,
     tagName:'a',
+    className: 'suggestion-item',
     initialize() {
         var nameParts = this.model.get('display_name').split(', ');
         this.model.set('name', nameParts[0] + ', ' + nameParts[1]);
@@ -14,6 +15,7 @@ var View = Marionette.View.extend({
     },
     onClick() {
         this.trigger('location:selected',this.model);
+        $('.modal-header').find('.close').trigger('click');
     }
 });
 export default View;

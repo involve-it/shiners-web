@@ -15979,7 +15979,7 @@
 	
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
-	__webpack_require__(/*! ../css/shiners-override.css */ 192);
+	__webpack_require__(/*! ../css/shiners-override.css */ 193);
 	
 	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
@@ -16152,7 +16152,7 @@
 	        });
 	    },
 	    showModalApp: function showModalApp(options) {
-	        app.layout.showChildView('modal', new _ModalContainerView2.default({ view: new _SuggestionsModalView2.default({ collection: options.collection, model: options.model }), title: options.title }));
+	        app.layout.showChildView('modal', new _ModalContainerView2.default({ view: new _SuggestionsModalView2.default({ model: options.model }), title: options.title }));
 	    }
 	});
 	//import "ddp.js";
@@ -25930,7 +25930,7 @@
 	        'userBar': '#userBar',
 	        'navLocation': '#navLocation',
 	        'mainMenu': '#bzMainMenu',
-	        'modal': '#modalContainer'
+	        'modal': '#showModalContainer'
 	    },
 	
 	    initialize: function initialize() {},
@@ -25967,7 +25967,6 @@
 	        this.showChildView('mainMenu', new _mainMenuView2.default());
 	    },
 	    showChangeLocation: function showChangeLocation() {
-	        //Показать модальное окно.
 	        this.getChildView('banner').showSuggestionsModalView();
 	        //this.getChildView('banner').renderLocationsSelection();
 	    },
@@ -26056,7 +26055,7 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div id="header" class="sticky clearfix header-md">\n	<header id="topNav">\n		\n		<div class="sh-header-topline">\n			<div class="container">\n				<div class="sh-header-topline-main">\n					<div class="sh-header-topline-item">\n                        <div class="sh-header-navbar-logo">\r\n                            <a class="sh-logo-header" href="/">\r\n                                <img src="/images/sh-logo.png" alt="logotype Shiners" height="35" width="35" /> <span>'+
+	__p+='\n<div id="showModalContainer"></div>\n\n<div id="header" class="sticky clearfix header-md">\n	<header id="topNav">\n		\n		<div class="sh-header-topline">\n			<div class="container">\n				<div class="sh-header-topline-main">\n					<div class="sh-header-topline-item">\n                        <div class="sh-header-navbar-logo">\r\n                            <a class="sh-logo-header" href="/">\r\n                                <img src="/images/sh-logo.png" alt="logotype Shiners" height="35" width="35" /> <span>'+
 	((__t=(i18n('SITE_NAME')))==null?'':__t)+
 	'</span>\r\n                            </a>\r\n                        </div>\n						<div class="sh-show-modal-city"> \n							<span class="text-weight bold">\n								<span id="navLocation"></span>\n							</span>\n						</div>\n					</div>\n\n					<div class="sh-header-topline-item sh-header-buttons-tools sh-flex-center-items">\n\n						<div id="bzMainMenu"></div>\n\n						<div class="sh-header-dropdown-user">                        \n							<div id="userBar"></div>\n						</div>\n\n						<button class="sh-btn-mobile-menu btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">\n							<i class="fa fa-bars"></i>\n						</button>\n\n					</div>\n				</div>\n			</div>\n		</div>\n		\n		<div class="sh-header-navbar-wrapper sh-blurred-bg hidden-xs">\n			<div class="container">\n\n				<div class="sh-header-navbar-items">\n					<!--<div class="sh-header-navbar-logo">\n						<a class="sh-logo-header" href="/">\n							<img src="/images/sh-logo.png" alt="logotype Shiners" height="50" width="50" />\n							'+
 	((__t=(i18n('SITE_NAME')))==null?'':__t)+
@@ -28462,7 +28461,7 @@
 	    },
 	
 	    events: {
-	        'click #selectLocation': 'renderLocationsSelection',
+	        //'click #selectLocation': 'renderLocationsSelection',
 	        'click #cancelSelection': 'render',
 	        'keyup #locationQuery': 'onLocationsSearch',
 	        'click #locationQuery': 'showSuggestions',
@@ -28479,10 +28478,8 @@
 	        this.template = _BannerViewHbs2.default;
 	    },
 	    showSuggestionsModalView: function showSuggestionsModalView() {
-	
 	        var options = {
 	            model: this.model,
-	            collection: this.osmCollection,
 	            title: 'Выберите местоположение'
 	        };
 	
@@ -28824,7 +28821,7 @@
   \**************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -28843,6 +28840,7 @@
 	var View = _backbone2.default.View.extend({
 	    template: _SuggestionItemViewHbs2.default,
 	    tagName: 'a',
+	    className: 'suggestion-item',
 	    initialize: function initialize() {
 	        var nameParts = this.model.get('display_name').split(', ');
 	        this.model.set('name', nameParts[0] + ', ' + nameParts[1]);
@@ -28855,9 +28853,11 @@
 	    },
 	    onClick: function onClick() {
 	        this.trigger('location:selected', this.model);
+	        $('.modal-header').find('.close').trigger('click');
 	    }
 	});
 	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
 /* 63 */
@@ -39391,9 +39391,19 @@
 	
 	var _SuggestionsModalViewHbs2 = _interopRequireDefault(_SuggestionsModalViewHbs);
 	
+	var _OsmSearchCollection = __webpack_require__(/*! ../../../data/OsmSearchCollection.js */ 57);
+	
+	var _OsmSearchCollection2 = _interopRequireDefault(_OsmSearchCollection);
+	
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	__webpack_require__(/*! ./SuggestionsModalView.less */ 192);
+	
+	var _SuggestionListView = __webpack_require__(/*! ../SuggestionListView.js */ 61);
+	
+	var _SuggestionListView2 = _interopRequireDefault(_SuggestionListView);
 	
 	var _app = __webpack_require__(/*! ../../app.js */ 15);
 	
@@ -39404,9 +39414,48 @@
 	exports.default = _backbone2.default.View.extend({
 	
 	    template: _SuggestionsModalViewHbs2.default,
+	    osmCollection: null,
+	
+	    regions: {
+	        'suggestions': '#suggestionsListBox'
+	    },
+	
+	    events: {
+	        'click #locationQuery': 'showSuggestions',
+	        'keyup #locationQuery': 'onLocationsSearch'
+	    },
 	
 	    initialize: function initialize() {
-	        console.log("showSMV", this.model);
+	        this.osmCollection = new _OsmSearchCollection2.default();
+	    },
+	    onRender: function onRender() {
+	        this.showChildView('suggestions', new _SuggestionListView2.default({ collection: this.osmCollection, model: this.model }));
+	    },
+	    onLocationsSearch: function onLocationsSearch(e) {
+	        if (e && (e.keyCode > 31 || e.keyCode === 13 || e.keyCode === 8)) {
+	            if (this.searchTimeOut) clearTimeout(this.searchTimeOut);
+	            this.searchTimeOut = setTimeout(_underscore2.default.bind(function () {
+	                this.osmCollection.fetch({
+	                    data: {
+	                        q: e.target.value,
+	                        format: 'json',
+	                        'accept-language': 'ru',
+	                        limit: 20,
+	                        polygon_geojson: 0
+	                        //city:e.target.value,
+	                        //county:e.target.value,
+	                        //state:e.target.value,
+	                        //country:e.target.value
+	                    }
+	                });
+	            }, this), 400);
+	        }
+	    },
+	    showSuggestions: function showSuggestions(e) {
+	        var quickCartBox = this.$('#suggestionsBox');
+	        if (!quickCartBox.is(":visible")) {
+	            quickCartBox.fadeIn(300);
+	        }
 	    }
 	});
 
@@ -39420,9 +39469,9 @@
 	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='\r\n<div class="container text-center">\r\n    <div class="input-group">\r\n        <input placeholder="'+
+	__p+='<div class="suggestions-modal-view">\r\n    <div class="suggestions-modal-view-wrapper">\r\n        <div class="sh-input-group">\r\n            <input placeholder="'+
 	((__t=(obj.address||'Поиск по городам и регионам'))==null?'':_.escape(__t))+
-	'" class="form-control" id="locationQuery" type="text">\r\n        <span class="input-group-btn">\r\n            <button title="Отмена" id="cancelSelection" class="btn btn-default" type="button"><i class="fa fa-remove"></i></button>\r\n        </span>\r\n        <div class="suggestion-box" id="suggestionsBox">\r\n            <h5>Поиск городов, регионов</h5>\r\n            <div id="suggestionsListBox"></div>\r\n        </div>\r\n    </div>\r\n</div>';
+	'" class="sh-input-suggestions form-control" id="locationQuery" type="text">            \r\n            <div class="suggestion-box" id="suggestionsBox">\r\n                <h5>Поиск городов, регионов</h5>\r\n                <div id="suggestionsListBox"></div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>';
 	}
 	return __p;
 	};
@@ -39431,6 +39480,15 @@
 
 /***/ },
 /* 192 */
+/*!***********************************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.less ***!
+  \***********************************************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 193 */
 /*!******************************************!*\
   !*** ./wwwroot/css/shiners-override.css ***!
   \******************************************/
@@ -39439,7 +39497,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 193);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 194);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 40)(content, {});
@@ -39459,7 +39517,7 @@
 	}
 
 /***/ },
-/* 193 */
+/* 194 */
 /*!*********************************************************!*\
   !*** ./~/css-loader!./wwwroot/css/shiners-override.css ***!
   \*********************************************************/

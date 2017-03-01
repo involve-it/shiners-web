@@ -28,7 +28,7 @@ var View = Marionette.View.extend({
     },
 
     events: {
-        'click #selectLocation': 'renderLocationsSelection',
+        //'click #selectLocation': 'renderLocationsSelection',
         'click #cancelSelection': 'render',
         'keyup #locationQuery': 'onLocationsSearch',
         'click #locationQuery':'showSuggestions',
@@ -47,11 +47,9 @@ var View = Marionette.View.extend({
         this.template = template;
     },
 
-    showSuggestionsModalView() {
-        
+    showSuggestionsModalView() {        
         var options = {
             model: this.model,
-            collection: this.osmCollection,
             title: 'Выберите местоположение'
         }
         
@@ -80,7 +78,7 @@ var View = Marionette.View.extend({
         }
     },
 
-    showSuggestions(e) {
+    showSuggestions(e) { 
         var quickCartBox = this.$('#suggestionsBox');
         if(!quickCartBox.is(":visible")) {
             quickCartBox.fadeIn(300);
