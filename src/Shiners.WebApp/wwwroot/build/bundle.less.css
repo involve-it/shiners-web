@@ -1844,11 +1844,12 @@ body .sh-auth-page .sh-auth-form .sh-login-register {
   text-align: center;
   width: 100%;
   max-width: 280px;
-  margin: 20px auto 10px auto;
+  margin: 20px auto 0 auto;
   text-transform: uppercase;
 }
 body .sh-auth-page .sh-auth-form .sh-login-additional {
   text-align: center;
+  margin-top: 10px;
 }
 body .sh-auth-page .sh-auth-form .sh-login-additional .sh-login-social {
   margin: 10px 0 0 0;
@@ -1967,8 +1968,7 @@ body.page--about .sh-content.has-top-margin {
   margin-top: 70px;
 }
 body.page--about #sh-intro {
-  height: 400px;
-  background: url(/images/about-us/sh-intro-bg.jpg) no-repeat center center;
+  height: 520px;
   background-size: cover;
   z-index: 2;
 }
@@ -1979,12 +1979,84 @@ body.page--about #sh-intro .sh-intro-wrapper {
   display: flex;
   position: relative;
   height: 100%;
-  max-width: 95%;
+  max-width: 100%;
   overflow: hidden;
 }
-body.page--about #sh-intro .sh-intro-tagline {
+body.page--about #sh-intro .sh-intro-wrapper .sh-full-video {
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
-  max-width: 400px;
+  height: 100%;
+  opacity: 0;
+}
+body.page--about #sh-intro .sh-intro-wrapper .sh-full-video.playing {
+  z-index: 9;
+  opacity: 1;
+}
+body.page--about #sh-intro .sh-intro-wrapper .sh-full-video .sh-video-wrapper {
+  position: relative;
+  z-index: 8;
+  width: 100%;
+  height: 100%;
+}
+body.page--about #sh-intro .sh-intro-wrapper .sh-full-video .sh-video-wrapper iframe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+body.page--about #sh-intro .sh-intro-wrapper .sh-full-video .sh-close-video {
+  cursor: pointer;
+  position: absolute;
+  z-index: 9;
+  right: 30px;
+  top: 30px;
+  opacity: .3;
+  -webkit-transition: opacity 0.25s;
+  -moz-transition: opacity 0.25s;
+  -o-transition: opacity 0.25s;
+  transition: opacity 0.25s;
+}
+body.page--about #sh-intro .sh-intro-wrapper .sh-full-video .sh-close-video i {
+  color: #ffffff;
+  font-size: 50px;
+}
+body.page--about #sh-intro .sh-intro-wrapper .sh-full-video .sh-close-video:hover {
+  opacity: 1;
+}
+body.page--about #sh-intro .sh-intro-wrapper .sh-gradient {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .8;
+}
+body.page--about #sh-intro .sh-intro-wrapper .sh-gradient.sh-gradient-blue {
+  background-color: rgba(0, 29, 68, 0.95);
+  background: -webkit-linear-gradient(121deg, rgba(0, 29, 68, 0.95) 0%, rgba(0, 29, 68, 0.95) 70%, #001d44 100%);
+  background: -moz-linear-gradient(121deg, rgba(0, 29, 68, 0.95) 0%, rgba(0, 29, 68, 0.95) 70%, #001d44 100%);
+  background: linear-gradient(-31deg, rgba(0, 29, 68, 0.95) 0%, rgba(0, 29, 68, 0.95) 70%, #001d44 100%);
+}
+body.page--about #sh-intro .sh-intro-wrapper .sh-background-about-image {
+  position: absolute;
+  background-image: url("/images//about-us/background-about-image.jpg");
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+body.page--about #sh-intro .sh-intro-tagline {
+  position: relative;
+  width: 90%;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: -ms-flex;
@@ -1995,21 +2067,30 @@ body.page--about #sh-intro .sh-intro-tagline {
   -webkit-justify-content: center;
   -ms-justify-content: center;
   justify-content: center;
-  padding: 40px 0 0 0;
+  padding: 90px 80px 90px 70px;
+  z-index: 3;
 }
 body.page--about #sh-intro .sh-intro-tagline .sh-logo-about-us.is-hidden {
   display: block;
   opacity: 0;
   position: fixed;
   left: -20%;
-  top: 17px;
+  top: 11px;
   line-height: 1;
   margin: 0;
   z-index: 6;
   transition: left .15s, opacity .15s;
 }
 body.page--about #sh-intro .sh-intro-tagline .sh-logo-about-us.is-hidden a {
+  display: block;
   font-size: 34px;
+  padding: 6px 12px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
 }
 body.page--about #sh-intro .sh-intro-tagline .sh-logo-about-us.slide-in {
   left: 3%;
@@ -2034,6 +2115,14 @@ body.page--about #sh-intro .sh-intro-tagline h1 {
   margin-bottom: 16px;
 }
 body.page--about #sh-intro .sh-intro-tagline h1 a {
+  display: inline-block;
+  padding: 6px 12px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
   font-size: 54px;
   line-height: 1;
   text-transform: uppercase;
@@ -2044,7 +2133,50 @@ body.page--about #sh-intro .sh-intro-tagline h1 a {
 body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text {
   color: #ffffff;
   margin-bottom: 25px;
-  font-size: 20px;
+  font-size: 26px;
+  font-weight: 100;
+  padding: 0;
+}
+body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text-info {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+}
+body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text-info .sh-btn-video-watch {
+  cursor: pointer;
+  padding-right: 30px;
+  opacity: .85;
+  -webkit-transition: opacity 0.25s;
+  -moz-transition: opacity 0.25s;
+  -o-transition: opacity 0.25s;
+  transition: opacity 0.25s;
+}
+body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text-info .sh-btn-video-watch:hover {
+  opacity: 1;
+}
+body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text-info .sh-btn-video-watch i {
+  font-size: 60px;
+  color: white;
+}
+body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text-info .sh-sub-intro-vw-info {
+  color: white;
+  opacity: .7;
+  border-left: 2px solid rgba(255, 255, 255, 0.5);
+  line-height: 40px;
+  padding-left: 30px;
+}
+body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text-info .sh-sub-intro-vw-info span {
+  font-weight: 700;
+}
+body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text-info .sh-create-about-us {
+  margin-left: auto;
 }
 body.page--about #sh-intro .sh-intro-mockup {
   position: absolute;
@@ -2068,10 +2200,14 @@ body.page--about .sh-page-block:last-child {
   margin: 0;
 }
 body.page--about #wrapper #header {
-  position: absolute;
+  position: relative;
+  border-bottom: none;
   top: 0;
   width: 100%;
-  z-index: 3;
+  z-index: 10;
+}
+body.page--about #wrapper #header .sh-header-topline {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 body.page--about #wrapper #header .sh-header-topline .sh-header-topline-main .sh-header-topline-item:first-child .sh-show-modal-city {
   display: none;
@@ -2127,7 +2263,7 @@ body.page--about .sh-secondary-nav ul li a {
   padding: 0 16px;
   font-size: 14px;
   font-weight: 500;
-  color: rgba(240, 238, 225, 0.3);
+  color: rgba(240, 238, 225, 0.8);
   text-decoration: none;
 }
 body.page--about .sh-secondary-nav ul li a:hover,
@@ -2184,8 +2320,9 @@ body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-int
   color: #3a4751;
 }
 body.page--about .sh-about-us .sh-about-us-wrapper .sh-intro-description .sh-intro-description-wrapper p {
-  padding-bottom: 16px;
-  font-size: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
   font-weight: 400;
   color: #3a4751;
 }
@@ -2364,7 +2501,7 @@ body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-wh
   text-transform: uppercase;
 }
 body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-block p {
-  font-size: 14px;
+  font-size: 16px;
   color: #8f8e94;
 }
 body.page--about .sh-about-us .sh-about-us-wrapper .sh-what-we-are-useful .sh-what-we-are-useful-wrapper .sh-what-we-are-useful-features .sh-features-block:last-child {
@@ -2392,7 +2529,7 @@ body.page--about .sh-about-us .sh-about-us-wrapper .sh-who-we-are .sh-who-we-are
   text-transform: uppercase;
 }
 body.page--about .sh-about-us .sh-about-us-wrapper .sh-who-we-are .sh-who-we-are-wrapper > div p {
-  font-size: 14px;
+  font-size: 16px;
   color: #8f8e94;
 }
 body.page--about .sh-about-us .sh-about-us-wrapper .sh-who-we-are .sh-who-we-are-wrapper .sh-red {
@@ -2428,6 +2565,9 @@ body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us
 body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-wrapper form {
   width: 90%;
   margin: 60px auto 0 auto;
+}
+body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-wrapper form fieldset {
+  margin-bottom: 0;
 }
 body.page--about .sh-about-us .sh-about-us-wrapper .sh-contact-us .sh-contact-us-wrapper .form-group {
   display: -webkit-flex;
@@ -2489,7 +2629,7 @@ body.page--about .sh-woman-shiners {
     width: 350px;
   }
   body.page--about #sh-intro .sh-intro-tagline {
-    max-width: 350px;
+    padding: 40px 25px;
   }
   body.page--about #sh-intro .sh-intro-tagline .sh-logo-about-us.is-hidden {
     display: none;
@@ -2521,11 +2661,31 @@ body.page--about .sh-woman-shiners {
 }
 @media screen and (max-width: 767px) {
   body.page--about #sh-intro {
-    height: 350px;
+    height: 550px;
   }
   body.page--about #sh-intro .sh-intro-tagline {
     max-width: 100%;
-    padding: 20px 0 0 0;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text {
+    font-size: 22px;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text-info {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text-info .sh-btn-video-watch {
+    padding: 0;
+    margin-top: 0px;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text-info .sh-sub-intro-vw-info {
+    border: none;
+    padding: 0;
+    margin-bottom: 30px;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text-info .sh-create-about-us {
+    margin-left: inherit;
   }
   body.page--about #sh-intro .sh-intro-tagline .sh-intro-tagline-wrapper {
     display: -webkit-flex;
@@ -2598,7 +2758,25 @@ body.page--about .sh-woman-shiners {
 }
 @media screen and (max-width: 480px) {
   body.page--about #sh-intro {
-    height: 350px;
+    height: 600px;
+  }
+  body.page--about #sh-intro .sh-intro-tagline {
+    padding: 20px 15px;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text {
+    font-size: 20px;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text-info .sh-btn-video-watch {
+    padding: 0;
+    margin-top: 0px;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text-info .sh-sub-intro-vw-info {
+    border: none;
+    padding: 0;
+    margin-bottom: 15px;
+  }
+  body.page--about #sh-intro .sh-intro-tagline .sh-sub-intro-text-info .sh-create-about-us {
+    margin-left: inherit;
   }
   body.page--about .container {
     padding: 0;
@@ -2636,6 +2814,16 @@ body.page--about .sh-woman-shiners {
   }
   body.page--about .sh-section-intro {
     font-size: 20px;
+  }
+  body.page--about.isMobile #sh-intro .sh-intro-wrapper .sh-full-video.playing {
+    height: 400px;
+  }
+  body.page--about.isMobile #sh-intro .sh-intro-wrapper .sh-full-video.playing:after {
+    content: '';
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    height: 100%;
+    width: 100%;
   }
 }
 @media (min-width: 992px) and (max-width: 1200px) {

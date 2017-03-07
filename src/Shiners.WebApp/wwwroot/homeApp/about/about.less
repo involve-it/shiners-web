@@ -23,8 +23,8 @@ body.page--about {
 }
 
     #sh-intro {
-        height: 400px;
-	    background: url(/images/about-us/sh-intro-bg.jpg) no-repeat center center;
+        height: 520px;
+	    //background: url(/images/about-us/sh-intro-bg.jpg) no-repeat center center;
 	    background-size: cover;
 	    z-index: 2;
 
@@ -32,17 +32,94 @@ body.page--about {
 		    .sh-flex-display();
 		    position: relative;
 		    height: 100%;
-            max-width: 95%;
+            max-width:100%;
 		    overflow: hidden;
+
+            .sh-full-video{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+
+                &.playing {
+                    z-index: 9;
+                    opacity: 1;
+                }
+
+                .sh-video-wrapper {
+                    position: relative;
+                    z-index: 8;
+                    width: 100%;
+                    height: 100%;
+
+                    iframe {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+
+                .sh-close-video {
+                    cursor: pointer;
+                    position: absolute;
+                    z-index: 9;
+                    right: 30px;
+                    top: 30px;
+                    opacity: .3;
+                    .transition(opacity .25s);
+
+                    i {
+                        color: @sh-main-white-color;
+                        font-size: 50px;
+                    }
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .sh-gradient {
+                content: '';
+                position: absolute;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                opacity: .8;
+
+                &.sh-gradient-blue {
+                    .sh-gradient-diagonally(rgba(0,29,68, .95), rgba(0,29,68, 1));
+                }
+            }
+
+            .sh-background-about-image {
+                position: absolute;
+                background-image: url("/images//about-us/background-about-image.jpg");
+                background-position: center top;
+                background-size: cover;
+                background-repeat: no-repeat;
+                z-index: 0;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+            }
 	    }
 
         .sh-intro-tagline {
-            width: 100%;
-		    max-width: 400px;
+            position: relative;
+            width: 90%;
 		    .sh-flex-display();
             .sh-flex-direction(column);
 		    .sh-justify-content(center);
-		    padding: 40px 0 0 0;
+		    padding: 90px 80px 90px 70px;
+            z-index: 3;
 
             .sh-intro-tagline-wrapper {}
 
@@ -54,15 +131,18 @@ body.page--about {
 				    opacity: 0;
 				    position: fixed;
 				    left: -20%;
-				    top: 17px;
+				    top: 11px;
                     line-height: 1;
 				    margin: 0;
                     z-index: 6;
                     transition: left .15s, opacity .15s;
 				
 				
-				    a {
+				    a { 
+                        display: block;                       
 					    font-size: 34px;
+                        padding: 6px 12px;
+                        .border-radius(2px);
 				    }
 			    }
 			
@@ -96,6 +176,10 @@ body.page--about {
 			    margin-bottom: 16px;
 			
 			    a {
+                    display: inline-block;
+                    padding: 6px 12px;
+                    //background: @sh-main-red;
+                    .border-radius(0px);
 				    font-size: 54px;
 				    line-height: 1;
 				    text-transform: uppercase;
@@ -108,8 +192,48 @@ body.page--about {
 		    .sh-sub-intro-text {
 			    color: @sh-main-white-color;
 			    margin-bottom: 25px;
-                font-size: 20px;
+                font-size: 26px;
+                font-weight: 100;
+                padding: 0;
 		    }
+
+            .sh-sub-intro-text-info {
+                .sh-flex-display();
+                .sh-align-items(center);
+                .sh-justify-content(flex-start);
+
+                .sh-btn-video-watch {
+                    cursor: pointer;
+                    padding-right: 30px;
+                    opacity: .85;
+                    .transition(opacity .25s);
+
+                    &:hover {
+                        opacity: 1;
+                    }
+
+                    i {
+                        font-size: 60px;
+                        color: white;                        
+                    }
+                }
+
+                .sh-sub-intro-vw-info {
+                    color: white;
+                    opacity: .7;
+                    border-left: 2px solid rgba(255,255,255, .5);
+                    line-height: 40px;
+                    padding-left: 30px;
+
+                    span {
+                        font-weight: 700;
+                    }
+                }
+
+                .sh-create-about-us {
+                    margin-left: auto;
+                }
+            }
         }
 
         .sh-intro-mockup {
@@ -146,13 +270,15 @@ body.page--about {
         //min-height: 100vh;
 	
 	    #header {
-		    position: absolute;
+		    position: relative;
+            border-bottom: none;
 		    top: 0;
 		    width: 100%;
-		    z-index: 3;
+		    z-index: 10;
 		
 		    .sh-header-topline {
 			    //background: transparent;
+                box-shadow: 0 5px 10px rgba(0,0,0, .1);
 
                 .sh-header-topline-main {
                     .sh-header-topline-item {
@@ -214,7 +340,7 @@ body.page--about {
 				    padding: 0 16px;
 				    font-size: 14px;
 				    font-weight: 500;
-				    color: rgba(240, 238, 225, .3);
+				    color: rgba(240, 238, 225, .8);
 				    text-decoration: none;
 				
 				    &:hover, &:focus {
@@ -272,8 +398,9 @@ body.page--about {
 				    }
 
                     p {
-					    padding-bottom: 16px;
-					    font-size: 20px;
+					    padding-bottom: 10px;
+                        margin-bottom: 20px;
+					    font-size: 16px;
 					    font-weight: 400;
 					    color: @sh-main-gray-color;
 					
@@ -430,7 +557,7 @@ body.page--about {
 						    }
 						
 						    p {
-							    font-size: 14px;
+							    font-size: 16px;
 							    color: @sh-main-lightgray-color;
 						    }
 						
@@ -470,7 +597,7 @@ body.page--about {
 					    }
 
 					    p {
-						    font-size: 14px;
+						    font-size: 16px;
 						    color: @sh-main-lightgray-color;
 					    }
 				    }
@@ -507,6 +634,10 @@ body.page--about {
 				    form {
 					    width: 90%;
 					    margin: 60px auto 0 auto;
+
+                        fieldset {
+                            margin-bottom: 0;
+                        }
 				    }
 
 				    .form-group {
@@ -578,7 +709,7 @@ body.page--about {
 		    }
 		
 		    .sh-intro-tagline {
-			    max-width: 350px;
+			   padding: 40px 25px;
 
 			    .sh-logo-about-us {
 				    &.is-hidden {
@@ -646,11 +777,34 @@ body.page--about {
     body.page--about {
 
 	    #sh-intro {
-		    height: 350px;
+		    height: 550px;
 		
 		    .sh-intro-tagline {
 			    max-width: 100%;
-			    padding: 20px 0 0 0;
+
+                .sh-sub-intro-text {
+                    font-size: 22px;
+                }
+
+                .sh-sub-intro-text-info {
+                    .sh-flex-direction(column);
+                    width: 100%;
+
+                    .sh-btn-video-watch {
+                        padding: 0;
+                        margin-top: 0px;
+                    }
+
+                    .sh-sub-intro-vw-info {
+                        border: none;
+                        padding:0;
+                        margin-bottom:30px;
+                    }
+
+                    .sh-create-about-us {
+                        margin-left: inherit;
+                    }
+                }
 			
 			    .sh-intro-tagline-wrapper {
                     .sh-flex-display();
@@ -757,7 +911,34 @@ body.page--about {
      body.page--about {
 
 	    #sh-intro {
-		    height: 350px;
+		    height: 600px;
+
+            .sh-intro-tagline {
+                padding: 20px 15px;
+
+                .sh-sub-intro-text {
+                    font-size: 20px;
+                }
+
+                .sh-sub-intro-text-info {
+                    .sh-btn-video-watch {
+                        padding: 0;
+                        margin-top: 0px;
+                    }
+
+                    .sh-sub-intro-vw-info {
+                        border: none;
+                        padding:0;
+                        margin-bottom:15px;
+                    }
+
+                    .sh-create-about-us {
+                        margin-left: inherit;
+                    }
+                }
+			
+			    .sh-intro-tagline-wrapper {}
+		    }
 	    }
 	
 	    .container {
@@ -830,6 +1011,25 @@ body.page--about {
 	    .sh-section-intro {
 		    font-size: 20px;
 	    }
+
+        &.isMobile {
+            #sh-intro {
+                .sh-intro-wrapper {
+                    .sh-full-video {
+                        &.playing {
+                            height: 400px;
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                background: rgba(0,0,0, .8);
+                                height: 100%;
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 	
 	}
 }

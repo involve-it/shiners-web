@@ -339,10 +339,10 @@ var View = Marionette.View.extend({
             args,
             radius = this.model.get('radius');
             //radius = this.model.get('radius') * 0.6215;
-        if ((query && !_.isEmpty(query.trim()))||(activeCats&&!_.isEmpty(activeCats))) {
+        if ( (query && !_.isEmpty(query.trim()) ) || ( activeCats && !_.isEmpty(activeCats)) ) {
             method = 'searchPosts';
             args = {
-                query:query||"",
+                query: query || "",
                 lat:this.model.get('position').lat,
                 lng:this.model.get('position').lng,
                 radius:radius,
@@ -357,7 +357,7 @@ var View = Marionette.View.extend({
                 //limit: 200
             };
         }        
-        this.collection.loadByMethod(method,args);
+        this.collection.loadByMethod(method, args);
     }
 });
 export default View;

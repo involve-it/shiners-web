@@ -15,7 +15,7 @@ var View = Marionette.View.extend({
     },
     onClick() {
         this.trigger('location:selected',this.model);
-        $('.modal-header').find('.close').trigger('click');
+        this.$el.closest('.modal-content').find('.modal-header .close').trigger('click');
     }
 });
 export default View;
