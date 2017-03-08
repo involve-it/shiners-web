@@ -35,7 +35,7 @@
 
             // update the status on visible, null
             var object = {'status': {visible: null}, timePause: 0};            
-            model.loadByMethod('timePostUpdate', modelJSON._id, object);
+            model.loadByMethod('timePostUpdate', [modelJSON._id, object]);
         }
 
         language = app.i18n.getLanguage();

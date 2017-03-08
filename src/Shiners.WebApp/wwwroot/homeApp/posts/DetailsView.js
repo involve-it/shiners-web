@@ -73,7 +73,6 @@ var View = Marionette.View.extend({
 
     getPostDuration() {       
         var obj = postDuration.getPostDuration(this.model);
-
         this.model.set('duration', obj);
     },
 

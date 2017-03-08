@@ -6,7 +6,7 @@ import postDuration from '../../../helpers/postDuration.js';
 
 var View = Marionette.View.extend({
     template:template,
-    className: 'sh-my-posts-item',
+    className: 'sh-my-posts-item sh-page-block',
     onBeforeRender() {
         this.getDistance();
     },

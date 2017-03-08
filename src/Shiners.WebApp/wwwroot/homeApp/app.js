@@ -40,8 +40,13 @@ let App = Marionette.Application.extend({
     views: {
         iframeView: null
     },
-    initialize() {
-        this.asteroid = new Asteroid("www.shiners.mobi",true);
+    initialize() { 
+        /* web server */ 
+        //this.asteroid = new Asteroid("www.shiners.mobi", true);
+
+        /* local server */
+        this.asteroid = new Asteroid("192.168.1.38:3000", false);
+
         //window.asteroid = this.asteroid; // debug        
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
         this.postAdTypes = new Collection(null, { asteroid: this.asteroid });

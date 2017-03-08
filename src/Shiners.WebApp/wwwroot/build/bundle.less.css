@@ -962,7 +962,7 @@ body.page--postsMy .sh-my-posts {
 }
 body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item {
   position: relative;
-  margin: 0;
+  margin-bottom: 10px;
   border-bottom: 1px solid #e6e6e6;
 }
 body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper {

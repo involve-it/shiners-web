@@ -16008,7 +16008,12 @@
 	        iframeView: null
 	    },
 	    initialize: function initialize() {
-	        this.asteroid = new _asteroidBrowser2.default("www.shiners.mobi", true);
+	        /* web server */
+	        //this.asteroid = new Asteroid("www.shiners.mobi", true);
+	
+	        /* local server */
+	        this.asteroid = new _asteroidBrowser2.default("192.168.1.38:3000", false);
+	
 	        //window.asteroid = this.asteroid; // debug        
 	        this.user = new _AsteroidModel2.default(null, { asteroid: this.asteroid });
 	        this.postAdTypes = new _AsteroidCollection2.default(null, { asteroid: this.asteroid });
@@ -28382,7 +28387,8 @@
 	        hours = Math.floor((ms - days * 86400000) / 3600000);
 	        min = Math.floor((ms - days * 86400000 - hours * 3600000) / 60000);
 	
-	        percent = ms / duration * 100;
+	        //percent = ms / duration * 100;
+	        percent = 0;
 	
 	        /* get barClass */
 	        if (percent < 20) {
@@ -28400,7 +28406,7 @@
 	
 	            // update the status on visible, null
 	            var object = { 'status': { visible: null }, timePause: 0 };
-	            model.loadByMethod('timePostUpdate', modelJSON._id, object);
+	            model.loadByMethod('timePostUpdate', [modelJSON._id, object]);
 	        }
 	
 	        language = app.i18n.getLanguage();
@@ -31921,7 +31927,6 @@
 	    },
 	    getPostDuration: function getPostDuration() {
 	        var obj = _postDuration2.default.getPostDuration(this.model);
-	
 	        this.model.set('duration', obj);
 	    },
 	    initMapPost: function initMapPost() {
@@ -36310,7 +36315,7 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="sh-content">\n    <div class="sh-my-posts">\n        <div class="container">\n            <div id="myPostsContaner" class="sh-page-block sh-my-posts-wrapper"></div>\n        </div>\n    </div>\n</div>';
+	__p+='<div class="sh-content">\n    <div class="sh-my-posts">\n        <div class="container">\n            <div id="myPostsContaner" class="sh-my-posts-wrapper"></div>\n        </div>\n    </div>\n</div>';
 	}
 	return __p;
 	};
@@ -36353,7 +36358,7 @@
 	
 	var View = _backbone2.default.View.extend({
 	    template: _PostItemViewHbs2.default,
-	    className: 'sh-my-posts-item',
+	    className: 'sh-my-posts-item sh-page-block',
 	    onBeforeRender: function onBeforeRender() {
 	        this.getDistance();
 	    },
