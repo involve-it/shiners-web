@@ -44,7 +44,7 @@ body.page--about {
                 opacity: 0;
 
                 &.playing {
-                    z-index: 9;
+                    z-index: 11;
                     opacity: 1;
                 }
 
@@ -119,7 +119,7 @@ body.page--about {
             .sh-flex-direction(column);
 		    .sh-justify-content(center);
 		    padding: 90px 80px 90px 70px;
-            z-index: 3;
+            z-index: 6;
 
             .sh-intro-tagline-wrapper {}
 
@@ -127,7 +127,7 @@ body.page--about {
 		    .sh-logo-about-us {
 			
 			    &.is-hidden {
-				    display: block;
+				    display: block !important;
 				    opacity: 0;
 				    position: fixed;
 				    left: -20%;
@@ -178,7 +178,7 @@ body.page--about {
 			    a {
                     display: inline-block;
                     padding: 6px 12px;
-                    //background: @sh-main-red;
+                    background: @sh-main-red;
                     .border-radius(0px);
 				    font-size: 54px;
 				    line-height: 1;

@@ -12,12 +12,14 @@
                                 <span><i class="fa fa-clock-o"></i> Опубликовано, {{=moment(obj.timestamp.$date).fromNow()}}, - до {{=moment(obj.endDatePost.$date).format("ll")}}</span>
                             </div>
                             <!-- sh-color-red, sh-color-yellow, sh-color-green -->
-                            <div class="sh-post-item-left sh-color-yellow">
-                                <span class="sh-item-left-text">Осталось 28 дней</span>
+                            {{if(obj.duration) { }}
+                            <div class="sh-post-item-left sh-color-{{= obj.duration.barClass}}">
+                                <span class="sh-item-left-text">{{ if(obj.duration.status) { }}  {{=i18n('POST_LEFT')}} {{= obj.duration.unit}} {{ } else { }} {{=i18n('POST_STATUS')}} {{ } }}</span>
                                 <span class="sh-item-left-track">
-                                    <span class="sh-item-left-fill" style="width: 42%"></span>
+                                    <span class="sh-item-left-fill" style="width: {{= obj.duration.percent}}%"></span>
                                 </span>
                             </div>
+                            {{ } }}
                         </div>
 
                         <div class="sh-photos">

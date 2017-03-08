@@ -11,7 +11,7 @@ var json = {
     home_free: 'бесплатно',
     home_in_project: ' в проекте!',
     home_contact_with_people: 'Контактируй с людьми, предложи свои услуги на сайте',
-    home_set_your_shiner: 'Установи свой Светячок',
+    home_set_your_shiner: 'Создай свой пост',
     search_free_search: 'Свободный поиск по словам',
     search_choose_radius: 'Радиус поиска (км):',
     search_parameters: 'Параметры поиска',

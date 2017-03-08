@@ -32,9 +32,9 @@
         {{=loc.name}}
         {{ } }}
     </p>
-
+    
     <div class="sh-progress-bar progress">
-        <div class="progress-bar {{=progress>=70?'progress-bar-success':(progress>=25&&progress<70?'progress-bar-warning':'progress-bar-danger')}}" role="progressbar" style="width: {{=progress}}%; min-width: 1em; ">
+        <div class="progress-bar {{= progress >= 50 ? 'progress-bar-success' : (progress >=20 && progress < 50 ? 'progress-bar-warning' : 'progress-bar-danger')}}" role="progressbar" style="width: {{= progress}}%; min-width: 1em; ">
             <span class="sr-only"></span>
         </div>
     </div>

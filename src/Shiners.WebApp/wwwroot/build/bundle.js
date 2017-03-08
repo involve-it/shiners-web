@@ -15951,11 +15951,11 @@
 	
 	var _mainLayoutView2 = _interopRequireDefault(_mainLayoutView);
 	
-	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 78);
+	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 79);
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
-	var _router = __webpack_require__(/*! ./router.js */ 85);
+	var _router = __webpack_require__(/*! ./router.js */ 86);
 	
 	var _router2 = _interopRequireDefault(_router);
 	
@@ -15963,23 +15963,23 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _ModalContainerView = __webpack_require__(/*! ../sharedViews/ModalContainerView.js */ 118);
+	var _ModalContainerView = __webpack_require__(/*! ../sharedViews/ModalContainerView.js */ 119);
 	
 	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
 	
-	var _SuggestionsModalView = __webpack_require__(/*! ./selectLocation/suggestionsModal/SuggestionsModalView.js */ 190);
+	var _SuggestionsModalView = __webpack_require__(/*! ./selectLocation/suggestionsModal/SuggestionsModalView.js */ 191);
 	
 	var _SuggestionsModalView2 = _interopRequireDefault(_SuggestionsModalView);
 	
-	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 79);
+	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 80);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 108);
+	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 109);
 	
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
-	__webpack_require__(/*! ../css/shiners-override.css */ 193);
+	__webpack_require__(/*! ../css/shiners-override.css */ 194);
 	
 	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
@@ -21716,7 +21716,7 @@
 	    addMessage: 'Send message',
 	    mainPage: 'Main',
 	    create: 'Create',
-	    aboutSite: 'About',
+	    aboutSite: 'About us',
 	    massMedia: 'Press about us',
 	    messages: 'Messages',
 	    myPosts: 'My posts',
@@ -21726,6 +21726,8 @@
 	    WAS_ONLINE: 'Was online:',
 	    NO_NAME: 'Name is not entered',
 	    map: 'Map',
+	    POST_STATUS: 'Post close',
+	    POST_LEFT: 'Left',
 	    DIRECT_PROFILE_LINK: 'direct profile link',
 	    CREATE_SHINER: 'Create a shiner',
 	    // banner
@@ -21779,7 +21781,7 @@
 	    addMessage: 'Написать сообщение',
 	    mainPage: 'Главная',
 	    create: 'Создать',
-	    aboutSite: 'О сайте',
+	    aboutSite: 'О нас',
 	    messages: 'Сообщения',
 	    myPosts: 'Мои Посты',
 	    mainMenuBlog: 'Блог',
@@ -21788,8 +21790,10 @@
 	    NO_NAME: 'Имя не указано',
 	    WAS_ONLINE: 'Заходил:',
 	    DIRECT_PROFILE_LINK: 'Прямая ссылка на профиль',
-	    CREATE_SHINER: 'Создать светлячок',
+	    CREATE_SHINER: 'Создать пост',
 	    map: 'Карта',
+	    POST_STATUS: 'Объявление закрыто',
+	    POST_LEFT: 'Осталось',
 	    // banner
 	    shiners_are: 'СВЕТЛЯЧКИ - ЭТО',
 	    live_meetings: 'ВСТРЕЧИ В РЕАЛЬНОМ ВРЕМЕНИ',
@@ -21804,7 +21808,7 @@
 	    create_your_post: 'Создай свой пост',
 	    create_your_post_descr: 'Размести объявление о том, что тебя сейчас интересует или размести ссылку на свой пост с другого сайта — так ты получаешь готовый Светлячок.',
 	    you_found: 'Ты находишь / Тебя находят',
-	    you_found_descr: 'Используй светлячки для поиска живых объявлений от людей, которые находятся непосредственно рядом с тобой (на той же улице, в том же районе) Если еще нет поста по твоему запросу, установи свой Светлячок, чтобы о нем узнали другие пользователи.Твой Светлячок будет перемещаться вместе с тобой как виртуальная визитка, которую смогут видеть люди вокруг.',
+	    you_found_descr: 'Используй светлячки для поиска живых объявлений от людей, которые находятся непосредственно рядом с тобой (на той же улице, в том же районе) Если еще нет поста по твоему запросу, создай свой пост, чтобы о нем узнали другие пользователи.Твой Светлячок будет перемещаться вместе с тобой как виртуальная визитка, которую смогут видеть люди вокруг.',
 	    connect_and_meet: 'Договаривайся / встречайся',
 	    connect_and_meet_descr: 'Твои будущие клиенты, единомышленники, партнеры рядом с тобой! Напиши им и договорись о встрече прямо здесь и прямо сейчас.',
 	    one_service_for_all: 'Один сервис для всех ресурсов',
@@ -25883,15 +25887,15 @@
 	
 	var _MapView2 = _interopRequireDefault(_MapView);
 	
-	var _BannerView = __webpack_require__(/*! ./BannerView.js */ 56);
+	var _BannerView = __webpack_require__(/*! ./BannerView.js */ 57);
 	
 	var _BannerView2 = _interopRequireDefault(_BannerView);
 	
-	var _UserBarView = __webpack_require__(/*! ./UserBarView.js */ 65);
+	var _UserBarView = __webpack_require__(/*! ./UserBarView.js */ 66);
 	
 	var _UserBarView2 = _interopRequireDefault(_UserBarView);
 	
-	var _NavLocationView = __webpack_require__(/*! ./NavLocationView.js */ 67);
+	var _NavLocationView = __webpack_require__(/*! ./NavLocationView.js */ 68);
 	
 	var _NavLocationView2 = _interopRequireDefault(_NavLocationView);
 	
@@ -25899,15 +25903,15 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _iframeView = __webpack_require__(/*! ./shared/iframeView.js */ 69);
+	var _iframeView = __webpack_require__(/*! ./shared/iframeView.js */ 70);
 	
 	var _iframeView2 = _interopRequireDefault(_iframeView);
 	
-	var _userMenuView = __webpack_require__(/*! ./layout/userMenuView */ 73);
+	var _userMenuView = __webpack_require__(/*! ./layout/userMenuView */ 74);
 	
 	var _userMenuView2 = _interopRequireDefault(_userMenuView);
 	
-	var _mainMenuView = __webpack_require__(/*! ./mainMenuView */ 75);
+	var _mainMenuView = __webpack_require__(/*! ./mainMenuView */ 76);
 	
 	var _mainMenuView2 = _interopRequireDefault(_mainMenuView);
 	
@@ -26140,7 +26144,7 @@
 	
 	var _ShinerInfoView2 = _interopRequireDefault(_ShinerInfoView);
 	
-	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 55);
+	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 56);
 	
 	var _loadGoogleMapsApi2 = _interopRequireDefault(_loadGoogleMapsApi);
 	
@@ -26511,7 +26515,7 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div id="googleMapContainer">\r\n    <div id="map2" class="contact-over-map"></div>    \r\n</div>\n\n\n<div class="container-fluid">\n    <div class="row">\n        <div id="searchView" class="col-sm-4 col-md-3 map-frame"></div>\n        <div id="info-container" class="col-md-offset-6 col-sm-offset-4 col-md-3 col-sm-4 map-frame-right" style="display: none">\n            <a class="sh-map-item-button-close" id="closeInfo"><i class="fa fa-close"></i></a>\n            <div id="shinerInfoView" class="sh-map-item-view"></div>\n        </div>\n    </div>\n</div>\n';
+	__p+='<div id="googleMapContainer">\r\n    <div id="map2" class="contact-over-map"></div>    \r\n</div>\n\n\n<div class="container-fluid">\n    <div class="row">\n        <div id="searchView" class="col-sm-4 col-md-4 map-frame"></div>\n        <div id="info-container" class="col-md-offset-5 col-sm-offset-4 col-md-3 col-sm-4 map-frame-right" style="display: none">\n            <a class="sh-map-item-button-close" id="closeInfo"><i class="fa fa-close"></i></a>\n            <div id="shinerInfoView" class="sh-map-item-view"></div>\n        </div>\n    </div>\n</div>\n';
 	}
 	return __p;
 	};
@@ -26527,7 +26531,9 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<button class="ui sh-button standard create margin-bottom-20">Установить Светлячок</button>';
+	__p+='<button class="ui sh-button standard create margin-bottom-20">'+
+	((__t=(i18n('CREATE_SHINER')))==null?'':__t)+
+	'</button>';
 	}
 	return __p;
 	};
@@ -28193,7 +28199,7 @@
 	    home_free: 'бесплатно',
 	    home_in_project: ' в проекте!',
 	    home_contact_with_people: 'Контактируй с людьми, предложи свои услуги на сайте',
-	    home_set_your_shiner: 'Установи свой Светячок',
+	    home_set_your_shiner: 'Создай свой пост',
 	    search_free_search: 'Свободный поиск по словам',
 	    search_choose_radius: 'Радиус поиска (км):',
 	    search_parameters: 'Параметры поиска',
@@ -28231,6 +28237,10 @@
 	
 	var _locationHelper2 = _interopRequireDefault(_locationHelper);
 	
+	var _postDuration = __webpack_require__(/*! ../helpers/postDuration.js */ 55);
+	
+	var _postDuration2 = _interopRequireDefault(_postDuration);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.View.extend({
@@ -28259,11 +28269,8 @@
 	            var dist = _locationHelper2.default.getDistance(location.coords.lat, location.coords.lng, _app2.default.user.get('position').lat, _app2.default.user.get('position').lng);
 	            this.model.set('distance', dist);
 	            this.model.set('distanceType', 'km');
-	            var currentDate = new Date().valueOf(),
-	                endDate = this.model.get('endDatePost'),
-	                createDate = this.model.get('timestamp');
-	            var progress = endDate ? (currentDate - createDate) / (endDate - createDate) * 100 : 100;
-	            this.model.set('progress', progress);
+	            var obj = _postDuration2.default.getPostDuration(this.model);
+	            this.model.set('progress', obj.percent);
 	        } else {
 	            this.model.set('distance', -1);
 	            this.model.set('progress', 0);
@@ -28314,11 +28321,11 @@
 	((__t=(loc.name))==null?'':__t)+
 	'\n        ';
 	 } 
-	__p+='\n    </p>\n\n    <div class="sh-progress-bar progress">\n        <div class="progress-bar '+
-	((__t=(progress>=70?'progress-bar-success':(progress>=25&&progress<70?'progress-bar-warning':'progress-bar-danger')))==null?'':__t)+
+	__p+='\n    </p>\n    \n    <div class="sh-progress-bar progress">\r\n        <div class="progress-bar '+
+	((__t=( progress >= 50 ? 'progress-bar-success' : (progress >=20 && progress < 50 ? 'progress-bar-warning' : 'progress-bar-danger')))==null?'':__t)+
 	'" role="progressbar" style="width: '+
-	((__t=(progress))==null?'':__t)+
-	'%; min-width: 1em; ">\n            <span class="sr-only"></span>\n        </div>\n    </div>\n\n    <div class="sh-map-item-view-info-panel-bottom">\n        <div class="sh-map-item-view-info-panel-bottom-wrapper">\n            <div>\n                <span class="label bg-type-category-'+
+	((__t=( progress))==null?'':__t)+
+	'%; min-width: 1em; ">\r\n            <span class="sr-only"></span>\r\n        </div>\r\n    </div>\n\n    <div class="sh-map-item-view-info-panel-bottom">\n        <div class="sh-map-item-view-info-panel-bottom-wrapper">\n            <div>\n                <span class="label bg-type-category-'+
 	((__t=(type))==null?'':__t)+
 	' pull-left">'+
 	((__t=(type))==null?'':__t)+
@@ -28331,6 +28338,113 @@
 
 /***/ },
 /* 55 */
+/*!*****************************************!*\
+  !*** ./wwwroot/helpers/postDuration.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, global) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var helper = {
+	    getPostDuration: function getPostDuration(model) {
+	
+	        var modelJSON = model.toJSON(),
+	            status = true,
+	            now = new Date(),
+	            start,
+	            finish,
+	            duration,
+	            days,
+	            hours,
+	            min,
+	            percent,
+	            barClass,
+	            language,
+	            titleDays,
+	            titleHours,
+	            titleMinutes,
+	            unit;
+	
+	        if (!modelJSON.timestamp.$date && !modelJSON.endDatePost.$date) return;
+	        start = modelJSON.timestamp.$date;
+	        finish = modelJSON.endDatePost.$date;
+	
+	        /* ALL ms or 100% */
+	        duration = finish - start;
+	
+	        /* left time */
+	        var ms = modelJSON.status.visible ? finish - now : ms = modelJSON.timePause.$date;
+	
+	        days = Math.floor(ms / 86400000);
+	        hours = Math.floor((ms - days * 86400000) / 3600000);
+	        min = Math.floor((ms - days * 86400000 - hours * 3600000) / 60000);
+	
+	        percent = ms / duration * 100;
+	
+	        /* get barClass */
+	        if (percent < 20) {
+	            barClass = 'red';
+	        } else if (percent < 50) {
+	            barClass = 'yellow';
+	        } else if (percent >= 50) {
+	            barClass = 'green';
+	        }
+	
+	        /* will close the post */
+	        if (percent <= 0) {
+	            percent = 0;
+	            status = false;
+	
+	            // update the status on visible, null
+	            var object = { 'status': { visible: null }, timePause: 0 };
+	            model.loadByMethod('timePostUpdate', modelJSON._id, object);
+	        }
+	
+	        language = app.i18n.getLanguage();
+	
+	        function endingOfTheWord(lang, number, title, titleEng) {
+	            if (lang === 'en') {
+	                var eng = [0, 1];
+	                return titleEng[number > 1 ? 1 : 0];
+	            } else if (lang === 'ru') {
+	                var rus = [2, 0, 1, 1, 1, 2];
+	                return title[number % 100 > 4 && number % 100 < 20 ? 2 : rus[number % 10 < 5 ? number % 10 : 5]];
+	            }
+	        }
+	
+	        if (days > 1) {
+	            titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
+	            unit = days + ' ' + titleDays;
+	        } else if (days == 1) {
+	            titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
+	            titleHours = endingOfTheWord(language, hours, ['час', 'часа', 'часов'], ['hour', 'hours']);
+	            titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
+	            unit = hours == 0 ? days + ' ' + titleDays + '   ' + min + ' ' + titleMinutes : days + ' ' + titleDays + '   ' + hours + ' ' + titleHours;
+	        } else if (days == 0) {
+	            titleHours = endingOfTheWord(language, hours, ['час', 'часа', 'часов'], ['hour', 'hours']);
+	            titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
+	            unit = days == 0 && hours == 0 ? min + ' ' + titleMinutes : hours + ' ' + titleHours + '   ' + min + ' ' + titleMinutes;
+	        }
+	
+	        return {
+	            'percent': percent,
+	            'leftDays': days,
+	            'unit': unit,
+	            'barClass': barClass,
+	            'status': status
+	        };
+	    }
+	};
+	
+	_.extend(global.$h.help, helper);
+	exports.default = helper;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), (function() { return this; }())))
+
+/***/ },
+/* 56 */
 /*!*********************************************!*\
   !*** ./~/load-google-maps-api/lib/index.js ***!
   \*********************************************/
@@ -28398,7 +28512,7 @@
 	};
 
 /***/ },
-/* 56 */
+/* 57 */
 /*!***************************************!*\
   !*** ./wwwroot/homeApp/BannerView.js ***!
   \***************************************/
@@ -28414,29 +28528,29 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _OsmSearchCollection = __webpack_require__(/*! ../data/OsmSearchCollection.js */ 57);
+	var _OsmSearchCollection = __webpack_require__(/*! ../data/OsmSearchCollection.js */ 58);
 	
 	var _OsmSearchCollection2 = _interopRequireDefault(_OsmSearchCollection);
 	
-	var _BannerViewHbs = __webpack_require__(/*! ./BannerView.hbs.html */ 58);
+	var _BannerViewHbs = __webpack_require__(/*! ./BannerView.hbs.html */ 59);
 	
 	var _BannerViewHbs2 = _interopRequireDefault(_BannerViewHbs);
 	
-	var _BannerViewLocationSelectHbs = __webpack_require__(/*! ./selectLocation/BannerViewLocationSelect.hbs.html */ 59);
+	var _BannerViewLocationSelectHbs = __webpack_require__(/*! ./selectLocation/BannerViewLocationSelect.hbs.html */ 60);
 	
 	var _BannerViewLocationSelectHbs2 = _interopRequireDefault(_BannerViewLocationSelectHbs);
 	
-	__webpack_require__(/*! ../lib/jquery.countTo.js */ 60);
+	__webpack_require__(/*! ../lib/jquery.countTo.js */ 61);
 	
 	var _app = __webpack_require__(/*! ./app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _SuggestionListView = __webpack_require__(/*! ./selectLocation/SuggestionListView.js */ 61);
+	var _SuggestionListView = __webpack_require__(/*! ./selectLocation/SuggestionListView.js */ 62);
 	
 	var _SuggestionListView2 = _interopRequireDefault(_SuggestionListView);
 	
-	__webpack_require__(/*! ./BannerView.less */ 64);
+	__webpack_require__(/*! ./BannerView.less */ 65);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -28553,7 +28667,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 57 */
+/* 58 */
 /*!*********************************************!*\
   !*** ./wwwroot/data/OsmSearchCollection.js ***!
   \*********************************************/
@@ -28583,7 +28697,7 @@
 	});
 
 /***/ },
-/* 58 */
+/* 59 */
 /*!*********************************************!*\
   !*** ./wwwroot/homeApp/BannerView.hbs.html ***!
   \*********************************************/
@@ -28609,7 +28723,7 @@
 
 
 /***/ },
-/* 59 */
+/* 60 */
 /*!**************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/BannerViewLocationSelect.hbs.html ***!
   \**************************************************************************/
@@ -28628,7 +28742,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 60 */
+/* 61 */
 /*!***************************************!*\
   !*** ./wwwroot/lib/jquery.countTo.js ***!
   \***************************************/
@@ -28770,7 +28884,7 @@
 	});
 
 /***/ },
-/* 61 */
+/* 62 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/SuggestionListView.js ***!
   \**************************************************************/
@@ -28786,7 +28900,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SuggestionItemView = __webpack_require__(/*! ./SuggestionItemView.js */ 62);
+	var _SuggestionItemView = __webpack_require__(/*! ./SuggestionItemView.js */ 63);
 	
 	var _SuggestionItemView2 = _interopRequireDefault(_SuggestionItemView);
 	
@@ -28815,7 +28929,7 @@
 	exports.default = View;
 
 /***/ },
-/* 62 */
+/* 63 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/SuggestionItemView.js ***!
   \**************************************************************/
@@ -28831,7 +28945,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SuggestionItemViewHbs = __webpack_require__(/*! ./SuggestionItemView.hbs.html */ 63);
+	var _SuggestionItemViewHbs = __webpack_require__(/*! ./SuggestionItemView.hbs.html */ 64);
 	
 	var _SuggestionItemViewHbs2 = _interopRequireDefault(_SuggestionItemViewHbs);
 	
@@ -28859,7 +28973,7 @@
 	exports.default = View;
 
 /***/ },
-/* 63 */
+/* 64 */
 /*!********************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/SuggestionItemView.hbs.html ***!
   \********************************************************************/
@@ -28880,7 +28994,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 64 */
+/* 65 */
 /*!*****************************************!*\
   !*** ./wwwroot/homeApp/BannerView.less ***!
   \*****************************************/
@@ -28889,7 +29003,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 65 */
+/* 66 */
 /*!****************************************!*\
   !*** ./wwwroot/homeApp/UserBarView.js ***!
   \****************************************/
@@ -28905,7 +29019,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _UserBarViewHbs = __webpack_require__(/*! ./UserBarView.hbs.html */ 66);
+	var _UserBarViewHbs = __webpack_require__(/*! ./UserBarView.hbs.html */ 67);
 	
 	var _UserBarViewHbs2 = _interopRequireDefault(_UserBarViewHbs);
 	
@@ -28942,7 +29056,7 @@
 	exports.default = View;
 
 /***/ },
-/* 66 */
+/* 67 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/UserBarView.hbs.html ***!
   \**********************************************/
@@ -28967,7 +29081,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 67 */
+/* 68 */
 /*!********************************************!*\
   !*** ./wwwroot/homeApp/NavLocationView.js ***!
   \********************************************/
@@ -28983,7 +29097,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _NavLocationViewHbs = __webpack_require__(/*! ./NavLocationView.hbs.html */ 68);
+	var _NavLocationViewHbs = __webpack_require__(/*! ./NavLocationView.hbs.html */ 69);
 	
 	var _NavLocationViewHbs2 = _interopRequireDefault(_NavLocationViewHbs);
 	
@@ -29013,7 +29127,7 @@
 	exports.default = View;
 
 /***/ },
-/* 68 */
+/* 69 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/NavLocationView.hbs.html ***!
   \**************************************************/
@@ -29039,7 +29153,7 @@
 
 
 /***/ },
-/* 69 */
+/* 70 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/shared/iframeView.js ***!
   \**********************************************/
@@ -29061,11 +29175,11 @@
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
 	
-	var _iframeViewHbs = __webpack_require__(/*! ./iframeView.hbs.html */ 70);
+	var _iframeViewHbs = __webpack_require__(/*! ./iframeView.hbs.html */ 71);
 	
 	var _iframeViewHbs2 = _interopRequireDefault(_iframeViewHbs);
 	
-	__webpack_require__(/*! ./iframeView.css */ 71);
+	__webpack_require__(/*! ./iframeView.css */ 72);
 	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
@@ -29211,7 +29325,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 70 */
+/* 71 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/shared/iframeView.hbs.html ***!
   \****************************************************/
@@ -29233,7 +29347,7 @@
 
 
 /***/ },
-/* 71 */
+/* 72 */
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/shared/iframeView.css ***!
   \***********************************************/
@@ -29242,7 +29356,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../~/css-loader!./iframeView.css */ 72);
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./iframeView.css */ 73);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 40)(content, {});
@@ -29262,7 +29376,7 @@
 	}
 
 /***/ },
-/* 72 */
+/* 73 */
 /*!**************************************************************!*\
   !*** ./~/css-loader!./wwwroot/homeApp/shared/iframeView.css ***!
   \**************************************************************/
@@ -29272,7 +29386,7 @@
 	exports.push([module.id, ".sh-iframe-view {\n    padding: 0 !important;\n}\n\n.sh-iframe-view .container {\n    width: auto !important;\n}\n\nbody.sh-hidden-overflow {\n    overflow: hidden !important;\n}\nbody.sh-hidden-overflow #wrapper {\n    background-color: #eaeaea;\n}\nbody.sh-hidden-overflow #iframeHolder section {\n    padding: 0 !important;\n    margin: 0 !important;\n}\nbody.sh-hidden-overflow #iframeHolder .container {\n    padding: 0 !important;\n    margin: 0 !important;\n}", ""]);
 
 /***/ },
-/* 73 */
+/* 74 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/layout/userMenuView.js ***!
   \************************************************/
@@ -29288,7 +29402,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _userMenuViewHbs = __webpack_require__(/*! ./userMenuView.hbs.html */ 74);
+	var _userMenuViewHbs = __webpack_require__(/*! ./userMenuView.hbs.html */ 75);
 	
 	var _userMenuViewHbs2 = _interopRequireDefault(_userMenuViewHbs);
 	
@@ -29307,7 +29421,7 @@
 	exports.default = View;
 
 /***/ },
-/* 74 */
+/* 75 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/layout/userMenuView.hbs.html ***!
   \******************************************************/
@@ -29325,7 +29439,7 @@
 
 
 /***/ },
-/* 75 */
+/* 76 */
 /*!*****************************************!*\
   !*** ./wwwroot/homeApp/mainMenuView.js ***!
   \*****************************************/
@@ -29341,11 +29455,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _mainMenuViewHbs = __webpack_require__(/*! ./mainMenuView.hbs.html */ 76);
+	var _mainMenuViewHbs = __webpack_require__(/*! ./mainMenuView.hbs.html */ 77);
 	
 	var _mainMenuViewHbs2 = _interopRequireDefault(_mainMenuViewHbs);
 	
-	__webpack_require__(/*! ./mainMenuView.less */ 77);
+	__webpack_require__(/*! ./mainMenuView.less */ 78);
 	
 	var _app = __webpack_require__(/*! ./app.js */ 15);
 	
@@ -29411,7 +29525,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 76 */
+/* 77 */
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/mainMenuView.hbs.html ***!
   \***********************************************/
@@ -29439,7 +29553,7 @@
 
 
 /***/ },
-/* 77 */
+/* 78 */
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/mainMenuView.less ***!
   \*******************************************/
@@ -29448,7 +29562,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 78 */
+/* 79 */
 /*!********************************************!*\
   !*** ./wwwroot/data/AsteroidCollection.js ***!
   \********************************************/
@@ -29468,7 +29582,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _AsteroidModel = __webpack_require__(/*! ./AsteroidModel.js */ 79);
+	var _AsteroidModel = __webpack_require__(/*! ./AsteroidModel.js */ 80);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
@@ -29539,7 +29653,7 @@
 	});
 
 /***/ },
-/* 79 */
+/* 80 */
 /*!***************************************!*\
   !*** ./wwwroot/data/AsteroidModel.js ***!
   \***************************************/
@@ -29555,7 +29669,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _MongoModel = __webpack_require__(/*! ./MongoModel.js */ 80);
+	var _MongoModel = __webpack_require__(/*! ./MongoModel.js */ 81);
 	
 	var _MongoModel2 = _interopRequireDefault(_MongoModel);
 	
@@ -29637,7 +29751,7 @@
 	});
 
 /***/ },
-/* 80 */
+/* 81 */
 /*!************************************!*\
   !*** ./wwwroot/data/MongoModel.js ***!
   \************************************/
@@ -29649,7 +29763,7 @@
 	    value: true
 	});
 	
-	var _BaseModel = __webpack_require__(/*! ./BaseModel.js */ 81);
+	var _BaseModel = __webpack_require__(/*! ./BaseModel.js */ 82);
 	
 	var _BaseModel2 = _interopRequireDefault(_BaseModel);
 	
@@ -29667,7 +29781,7 @@
 	});
 
 /***/ },
-/* 81 */
+/* 82 */
 /*!***********************************!*\
   !*** ./wwwroot/data/BaseModel.js ***!
   \***********************************/
@@ -29683,7 +29797,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _backboneValidation = __webpack_require__(/*! backbone-validation */ 82);
+	var _backboneValidation = __webpack_require__(/*! backbone-validation */ 83);
 	
 	var _backboneValidation2 = _interopRequireDefault(_backboneValidation);
 	
@@ -29691,16 +29805,16 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	__webpack_require__(/*! ./backbone-deffered.js */ 83);
+	__webpack_require__(/*! ./backbone-deffered.js */ 84);
 	
-	__webpack_require__(/*! ../helpers/ConfigureBackboneValidation.js */ 84);
+	__webpack_require__(/*! ../helpers/ConfigureBackboneValidation.js */ 85);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _backbone2.default.Model.extend(_backboneValidation2.default.mixin);
 
 /***/ },
-/* 82 */
+/* 83 */
 /*!***************************************************************!*\
   !*** ./~/backbone-validation/dist/backbone-validation-amd.js ***!
   \***************************************************************/
@@ -30413,7 +30527,7 @@
 	});
 
 /***/ },
-/* 83 */
+/* 84 */
 /*!*******************************************!*\
   !*** ./wwwroot/data/backbone-deffered.js ***!
   \*******************************************/
@@ -30751,7 +30865,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 84 */
+/* 85 */
 /*!********************************************************!*\
   !*** ./wwwroot/helpers/ConfigureBackboneValidation.js ***!
   \********************************************************/
@@ -30763,7 +30877,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	__webpack_require__(/*! backbone-validation */ 82);
+	__webpack_require__(/*! backbone-validation */ 83);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -30828,7 +30942,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 85 */
+/* 86 */
 /*!***********************************!*\
   !*** ./wwwroot/homeApp/router.js ***!
   \***********************************/
@@ -30844,7 +30958,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _controller = __webpack_require__(/*! ./controller */ 86);
+	var _controller = __webpack_require__(/*! ./controller */ 87);
 	
 	var _controller2 = _interopRequireDefault(_controller);
 	
@@ -30922,7 +31036,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 86 */
+/* 87 */
 /*!***************************************!*\
   !*** ./wwwroot/homeApp/controller.js ***!
   \***************************************/
@@ -30938,103 +31052,103 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _indexView = __webpack_require__(/*! ./index/indexView.js */ 87);
+	var _indexView = __webpack_require__(/*! ./index/indexView.js */ 88);
 	
 	var _indexView2 = _interopRequireDefault(_indexView);
 	
-	var _MobileIndexView = __webpack_require__(/*! ./index/MobileIndexView.js */ 95);
+	var _MobileIndexView = __webpack_require__(/*! ./index/MobileIndexView.js */ 96);
 	
 	var _MobileIndexView2 = _interopRequireDefault(_MobileIndexView);
 	
-	var _DetailsView = __webpack_require__(/*! ./posts/DetailsView.js */ 97);
+	var _DetailsView = __webpack_require__(/*! ./posts/DetailsView.js */ 98);
 	
 	var _DetailsView2 = _interopRequireDefault(_DetailsView);
 	
-	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 79);
+	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 80);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 78);
+	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 79);
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
-	var _User = __webpack_require__(/*! ../data/Domain/User.js */ 106);
+	var _User = __webpack_require__(/*! ../data/Domain/User.js */ 107);
 	
 	var _User2 = _interopRequireDefault(_User);
 	
-	var _PostModel = __webpack_require__(/*! ../data/Post/PostModel.js */ 107);
+	var _PostModel = __webpack_require__(/*! ../data/Post/PostModel.js */ 108);
 	
 	var _PostModel2 = _interopRequireDefault(_PostModel);
 	
-	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 108);
+	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 109);
 	
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
-	var _CreatePostView = __webpack_require__(/*! ./posts/create/CreatePostView.js */ 110);
+	var _CreatePostView = __webpack_require__(/*! ./posts/create/CreatePostView.js */ 111);
 	
 	var _CreatePostView2 = _interopRequireDefault(_CreatePostView);
 	
-	var _PostsMyView = __webpack_require__(/*! ./posts/postsMy/PostsMyView.js */ 127);
+	var _PostsMyView = __webpack_require__(/*! ./posts/postsMy/PostsMyView.js */ 128);
 	
 	var _PostsMyView2 = _interopRequireDefault(_PostsMyView);
 	
-	var _chatsMyView = __webpack_require__(/*! ./chats/chatsMy/chatsMyView.js */ 132);
+	var _chatsMyView = __webpack_require__(/*! ./chats/chatsMy/chatsMyView.js */ 133);
 	
 	var _chatsMyView2 = _interopRequireDefault(_chatsMyView);
 	
-	var _ChatIdView = __webpack_require__(/*! ./chats/ChatIdView.js */ 139);
+	var _ChatIdView = __webpack_require__(/*! ./chats/ChatIdView.js */ 140);
 	
 	var _ChatIdView2 = _interopRequireDefault(_ChatIdView);
 	
-	var _DetailsView3 = __webpack_require__(/*! ./user/DetailsView.js */ 141);
+	var _DetailsView3 = __webpack_require__(/*! ./user/DetailsView.js */ 142);
 	
 	var _DetailsView4 = _interopRequireDefault(_DetailsView3);
 	
-	var _MessagesToUserView = __webpack_require__(/*! ./chats/native/MessagesToUserView.js */ 148);
+	var _MessagesToUserView = __webpack_require__(/*! ./chats/native/MessagesToUserView.js */ 149);
 	
 	var _MessagesToUserView2 = _interopRequireDefault(_MessagesToUserView);
 	
-	var _LoginView = __webpack_require__(/*! ./account/LoginView.js */ 157);
+	var _LoginView = __webpack_require__(/*! ./account/LoginView.js */ 158);
 	
 	var _LoginView2 = _interopRequireDefault(_LoginView);
 	
-	var _RegisterUserView = __webpack_require__(/*! ./account/RegisterUserView */ 161);
+	var _RegisterUserView = __webpack_require__(/*! ./account/RegisterUserView */ 162);
 	
 	var _RegisterUserView2 = _interopRequireDefault(_RegisterUserView);
 	
-	var _AboutView = __webpack_require__(/*! ./about/AboutView.js */ 164);
+	var _AboutView = __webpack_require__(/*! ./about/AboutView.js */ 165);
 	
 	var _AboutView2 = _interopRequireDefault(_AboutView);
 	
-	var _MassMediaView = __webpack_require__(/*! ./massMedia/MassMediaView.js */ 167);
+	var _MassMediaView = __webpack_require__(/*! ./massMedia/MassMediaView.js */ 168);
 	
 	var _MassMediaView2 = _interopRequireDefault(_MassMediaView);
 	
-	var _HowItWorksView = __webpack_require__(/*! ./howItWorks/HowItWorksView.js */ 170);
+	var _HowItWorksView = __webpack_require__(/*! ./howItWorks/HowItWorksView.js */ 171);
 	
 	var _HowItWorksView2 = _interopRequireDefault(_HowItWorksView);
 	
-	var _FogotPasswordView = __webpack_require__(/*! ./account/FogotPasswordView.js */ 172);
+	var _FogotPasswordView = __webpack_require__(/*! ./account/FogotPasswordView.js */ 173);
 	
 	var _FogotPasswordView2 = _interopRequireDefault(_FogotPasswordView);
 	
-	var _legalUserAgreementView = __webpack_require__(/*! ./legal/legalUserAgreementView */ 174);
+	var _legalUserAgreementView = __webpack_require__(/*! ./legal/legalUserAgreementView */ 175);
 	
 	var _legalUserAgreementView2 = _interopRequireDefault(_legalUserAgreementView);
 	
-	var _legalConfidentialView = __webpack_require__(/*! ./legal/legalConfidentialView */ 176);
+	var _legalConfidentialView = __webpack_require__(/*! ./legal/legalConfidentialView */ 177);
 	
 	var _legalConfidentialView2 = _interopRequireDefault(_legalConfidentialView);
 	
-	var _legalPostPublishingView = __webpack_require__(/*! ./legal/legalPostPublishingView */ 178);
+	var _legalPostPublishingView = __webpack_require__(/*! ./legal/legalPostPublishingView */ 179);
 	
 	var _legalPostPublishingView2 = _interopRequireDefault(_legalPostPublishingView);
 	
-	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 180);
+	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 181);
 	
 	var _blogHomeView2 = _interopRequireDefault(_blogHomeView);
 	
-	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 186);
+	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 187);
 	
 	var _blogPostIdView2 = _interopRequireDefault(_blogPostIdView);
 	
@@ -31233,7 +31347,7 @@
 	//import Collection from '../data/AsteroidCollection.js';
 
 /***/ },
-/* 87 */
+/* 88 */
 /*!********************************************!*\
   !*** ./wwwroot/homeApp/index/indexView.js ***!
   \********************************************/
@@ -31249,13 +31363,13 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _IndexViewHbs = __webpack_require__(/*! ./IndexView.hbs.html */ 88);
+	var _IndexViewHbs = __webpack_require__(/*! ./IndexView.hbs.html */ 89);
 	
 	var _IndexViewHbs2 = _interopRequireDefault(_IndexViewHbs);
 	
-	__webpack_require__(/*! ../../lib/jquery-parallax/scripts/jquery.parallax-1.1.3.js */ 89);
+	__webpack_require__(/*! ../../lib/jquery-parallax/scripts/jquery.parallax-1.1.3.js */ 90);
 	
-	var _PostTypesView = __webpack_require__(/*! ./PostTypesView.js */ 90);
+	var _PostTypesView = __webpack_require__(/*! ./PostTypesView.js */ 91);
 	
 	var _PostTypesView2 = _interopRequireDefault(_PostTypesView);
 	
@@ -31263,9 +31377,9 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./i18n/ru */ 93);
+	__webpack_require__(/*! ./i18n/ru */ 94);
 	
-	__webpack_require__(/*! ./i18n/en */ 94);
+	__webpack_require__(/*! ./i18n/en */ 95);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -31342,7 +31456,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 88 */
+/* 89 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/index/IndexView.hbs.html ***!
   \**************************************************/
@@ -31408,7 +31522,7 @@
 
 
 /***/ },
-/* 89 */
+/* 90 */
 /*!**********************************************************************!*\
   !*** ./wwwroot/lib/jquery-parallax/scripts/jquery.parallax-1.1.3.js ***!
   \**********************************************************************/
@@ -31488,7 +31602,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 90 */
+/* 91 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/index/PostTypesView.js ***!
   \************************************************/
@@ -31504,7 +31618,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.js */ 91);
+	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.js */ 92);
 	
 	var _PostTypeItemView2 = _interopRequireDefault(_PostTypeItemView);
 	
@@ -31518,7 +31632,7 @@
 	exports.default = View;
 
 /***/ },
-/* 91 */
+/* 92 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/index/PostTypeItemView.js ***!
   \***************************************************/
@@ -31534,7 +31648,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.html */ 92);
+	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.html */ 93);
 	
 	var _PostTypeItemView2 = _interopRequireDefault(_PostTypeItemView);
 	
@@ -31559,7 +31673,7 @@
 	exports.default = View;
 
 /***/ },
-/* 92 */
+/* 93 */
 /*!*****************************************************!*\
   !*** ./wwwroot/homeApp/index/PostTypeItemView.html ***!
   \*****************************************************/
@@ -31579,7 +31693,7 @@
 
 
 /***/ },
-/* 93 */
+/* 94 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/index/i18n/ru.js ***!
   \******************************************/
@@ -31600,12 +31714,12 @@
 	    home_free: 'бесплатно',
 	    home_in_project: ' в проекте!',
 	    home_contact_with_people: 'Контактируй с людьми, предложи свои услуги на сайте',
-	    home_set_your_shiner: 'Установи свой Светячок'
+	    home_set_your_shiner: 'Создай свой пост'
 	};
 	i18n.add('ru', json);
 
 /***/ },
-/* 94 */
+/* 95 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/index/i18n/en.js ***!
   \******************************************/
@@ -31632,7 +31746,7 @@
 	i18n.add('en', json);
 
 /***/ },
-/* 95 */
+/* 96 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/index/MobileIndexView.js ***!
   \**************************************************/
@@ -31648,7 +31762,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MobileIndexViewHbs = __webpack_require__(/*! ./MobileIndexView.hbs.html */ 96);
+	var _MobileIndexViewHbs = __webpack_require__(/*! ./MobileIndexView.hbs.html */ 97);
 	
 	var _MobileIndexViewHbs2 = _interopRequireDefault(_MobileIndexViewHbs);
 	
@@ -31673,7 +31787,7 @@
 	exports.default = View;
 
 /***/ },
-/* 96 */
+/* 97 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/index/MobileIndexView.hbs.html ***!
   \********************************************************/
@@ -31691,7 +31805,7 @@
 
 
 /***/ },
-/* 97 */
+/* 98 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/posts/DetailsView.js ***!
   \**********************************************/
@@ -31707,25 +31821,25 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 98);
+	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 99);
 	
 	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
 	
-	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 99);
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 100);
 	
-	var _AsteroidCollection = __webpack_require__(/*! ../../data/AsteroidCollection.js */ 78);
+	var _AsteroidCollection = __webpack_require__(/*! ../../data/AsteroidCollection.js */ 79);
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
-	var _RelatedPostsView = __webpack_require__(/*! ./RelatedPostsView.js */ 100);
+	var _RelatedPostsView = __webpack_require__(/*! ./RelatedPostsView.js */ 101);
 	
 	var _RelatedPostsView2 = _interopRequireDefault(_RelatedPostsView);
 	
-	var _CommentsListView = __webpack_require__(/*! ./CommentsListView.js */ 102);
+	var _CommentsListView = __webpack_require__(/*! ./CommentsListView.js */ 103);
 	
 	var _CommentsListView2 = _interopRequireDefault(_CommentsListView);
 	
-	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 55);
+	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 56);
 	
 	var _loadGoogleMapsApi2 = _interopRequireDefault(_loadGoogleMapsApi);
 	
@@ -31737,11 +31851,15 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./DetailsView.less */ 105);
+	__webpack_require__(/*! ./DetailsView.less */ 106);
 	
 	var _locationHelper = __webpack_require__(/*! ../../helpers/locationHelper.js */ 9);
 	
 	var _locationHelper2 = _interopRequireDefault(_locationHelper);
+	
+	var _postDuration = __webpack_require__(/*! ../../helpers/postDuration.js */ 55);
+	
+	var _postDuration2 = _interopRequireDefault(_postDuration);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -31769,6 +31887,7 @@
 	    },
 	    onBeforeRender: function onBeforeRender() {
 	        this.setModelDistance();
+	        this.getPostDuration();
 	
 	        if (_app2.default.asteroid.loggedIn) {
 	            this.templateContext = {
@@ -31799,6 +31918,11 @@
 	        };
 	        VK.Widgets.Like("vk_like", options, this.model.id);
 	        _app2.default.FbButton(this.$('#fb_like').get(0));
+	    },
+	    getPostDuration: function getPostDuration() {
+	        var obj = _postDuration2.default.getPostDuration(this.model);
+	
+	        this.model.set('duration', obj);
 	    },
 	    initMapPost: function initMapPost() {
 	        var defaultCoords = { lat: 55.75396, lng: 37.620393 };
@@ -31853,7 +31977,7 @@
 	            title: 'Ваш пост тут'
 	        });
 	
-	        window.pinn = this.pinn; // debug
+	        //window.pinn = this.pinn; // debug
 	    },
 	    setModelDistance: function setModelDistance() {
 	        var locations = this.model.get('details').locations;
@@ -32003,7 +32127,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 98 */
+/* 99 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/posts/DetailsView.hbs.html ***!
   \****************************************************/
@@ -32018,7 +32142,27 @@
 	((__t=(moment(obj.timestamp.$date).fromNow()))==null?'':__t)+
 	', - до '+
 	((__t=(moment(obj.endDatePost.$date).format("ll")))==null?'':__t)+
-	'</span>\r\n                            </div>\r\n                            <!-- sh-color-red, sh-color-yellow, sh-color-green -->\r\n                            <div class="sh-post-item-left sh-color-yellow">\r\n                                <span class="sh-item-left-text">Осталось 28 дней</span>\r\n                                <span class="sh-item-left-track">\r\n                                    <span class="sh-item-left-fill" style="width: 42%"></span>\r\n                                </span>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class="sh-photos">\r\n                            <div class="single-photo">\r\n                                <div id="sh-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"singleItem": true, "autoPlay": false, "navigation": true, "pagination": true, "transitionStyle":"fade"}\'>\r\n                                    ';
+	'</span>\r\n                            </div>\r\n                            <!-- sh-color-red, sh-color-yellow, sh-color-green -->\r\n                            ';
+	if(obj.duration) { 
+	__p+='\r\n                            <div class="sh-post-item-left sh-color-'+
+	((__t=( obj.duration.barClass))==null?'':__t)+
+	'">\r\n                                <span class="sh-item-left-text">';
+	 if(obj.duration.status) { 
+	__p+='  '+
+	((__t=(i18n('POST_LEFT')))==null?'':__t)+
+	' '+
+	((__t=( obj.duration.unit))==null?'':__t)+
+	' ';
+	 } else { 
+	__p+=' '+
+	((__t=(i18n('POST_STATUS')))==null?'':__t)+
+	' ';
+	 } 
+	__p+='</span>\r\n                                <span class="sh-item-left-track">\r\n                                    <span class="sh-item-left-fill" style="width: '+
+	((__t=( obj.duration.percent))==null?'':__t)+
+	'%"></span>\r\n                                </span>\r\n                            </div>\r\n                            ';
+	 } 
+	__p+='\r\n                        </div>\r\n\r\n                        <div class="sh-photos">\r\n                            <div class="single-photo">\r\n                                <div id="sh-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"singleItem": true, "autoPlay": false, "navigation": true, "pagination": true, "transitionStyle":"fade"}\'>\r\n                                    ';
 	 if (_.size(details.photos)>0){ 
 	__p+='\r\n                                    ';
 	_.each(details.photos,function(photo){ 
@@ -32146,7 +32290,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12), __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 99 */
+/* 100 */
 /*!******************************************************!*\
   !*** ./wwwroot/lib/owl-carousel/owl.carousel.min.js ***!
   \******************************************************/
@@ -32833,7 +32977,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 100 */
+/* 101 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/posts/RelatedPostsView.js ***!
   \***************************************************/
@@ -32849,11 +32993,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _RelatedPostsViewHbs = __webpack_require__(/*! ./RelatedPostsView.hbs.html */ 101);
+	var _RelatedPostsViewHbs = __webpack_require__(/*! ./RelatedPostsView.hbs.html */ 102);
 	
 	var _RelatedPostsViewHbs2 = _interopRequireDefault(_RelatedPostsViewHbs);
 	
-	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 99);
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 100);
 	
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
@@ -32940,7 +33084,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 101 */
+/* 102 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/RelatedPostsView.hbs.html ***!
   \*********************************************************/
@@ -32973,7 +33117,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 102 */
+/* 103 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/posts/CommentsListView.js ***!
   \***************************************************/
@@ -32989,7 +33133,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _CommentsItemView = __webpack_require__(/*! ./CommentsItemView.js */ 103);
+	var _CommentsItemView = __webpack_require__(/*! ./CommentsItemView.js */ 104);
 	
 	var _CommentsItemView2 = _interopRequireDefault(_CommentsItemView);
 	
@@ -33006,7 +33150,7 @@
 	exports.default = View;
 
 /***/ },
-/* 103 */
+/* 104 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/posts/CommentsItemView.js ***!
   \***************************************************/
@@ -33022,7 +33166,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _CommentsItemViewHbs = __webpack_require__(/*! ./CommentsItemView.hbs.html */ 104);
+	var _CommentsItemViewHbs = __webpack_require__(/*! ./CommentsItemView.hbs.html */ 105);
 	
 	var _CommentsItemViewHbs2 = _interopRequireDefault(_CommentsItemViewHbs);
 	
@@ -33038,7 +33182,7 @@
 	exports.default = View;
 
 /***/ },
-/* 104 */
+/* 105 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/CommentsItemView.hbs.html ***!
   \*********************************************************/
@@ -33073,7 +33217,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 105 */
+/* 106 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/posts/DetailsView.less ***!
   \************************************************/
@@ -33082,7 +33226,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 106 */
+/* 107 */
 /*!*************************************!*\
   !*** ./wwwroot/data/Domain/User.js ***!
   \*************************************/
@@ -33094,7 +33238,7 @@
 	    value: true
 	});
 	
-	var _MongoModel = __webpack_require__(/*! ../MongoModel.js */ 80);
+	var _MongoModel = __webpack_require__(/*! ../MongoModel.js */ 81);
 	
 	var _MongoModel2 = _interopRequireDefault(_MongoModel);
 	
@@ -33109,7 +33253,7 @@
 	});
 
 /***/ },
-/* 107 */
+/* 108 */
 /*!****************************************!*\
   !*** ./wwwroot/data/Post/PostModel.js ***!
   \****************************************/
@@ -33121,7 +33265,7 @@
 	    value: true
 	});
 	
-	var _AsteroidModel = __webpack_require__(/*! ../AsteroidModel.js */ 79);
+	var _AsteroidModel = __webpack_require__(/*! ../AsteroidModel.js */ 80);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
@@ -33245,7 +33389,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 108 */
+/* 109 */
 /*!**********************************************!*\
   !*** ./wwwroot/sharedViews/PreloaderView.js ***!
   \**********************************************/
@@ -33261,7 +33405,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PreloaderViewHbs = __webpack_require__(/*! ./PreloaderView.hbs.html */ 109);
+	var _PreloaderViewHbs = __webpack_require__(/*! ./PreloaderView.hbs.html */ 110);
 	
 	var _PreloaderViewHbs2 = _interopRequireDefault(_PreloaderViewHbs);
 	
@@ -33275,7 +33419,7 @@
 	exports.default = View;
 
 /***/ },
-/* 109 */
+/* 110 */
 /*!****************************************************!*\
   !*** ./wwwroot/sharedViews/PreloaderView.hbs.html ***!
   \****************************************************/
@@ -33291,7 +33435,7 @@
 
 
 /***/ },
-/* 110 */
+/* 111 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/CreatePostView.js ***!
   \********************************************************/
@@ -33307,7 +33451,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _CreatePostViewHbs = __webpack_require__(/*! ./CreatePostView.hbs.html */ 111);
+	var _CreatePostViewHbs = __webpack_require__(/*! ./CreatePostView.hbs.html */ 112);
 	
 	var _CreatePostViewHbs2 = _interopRequireDefault(_CreatePostViewHbs);
 	
@@ -33315,31 +33459,31 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _scriptjs = __webpack_require__(/*! scriptjs */ 112);
+	var _scriptjs = __webpack_require__(/*! scriptjs */ 113);
 	
 	var _scriptjs2 = _interopRequireDefault(_scriptjs);
 	
-	var _UploadedImagesView = __webpack_require__(/*! ./UploadedImagesView.js */ 113);
+	var _UploadedImagesView = __webpack_require__(/*! ./UploadedImagesView.js */ 114);
 	
 	var _UploadedImagesView2 = _interopRequireDefault(_UploadedImagesView);
 	
-	var _SelectedLocationView = __webpack_require__(/*! ./SelectedLocationView.js */ 116);
+	var _SelectedLocationView = __webpack_require__(/*! ./SelectedLocationView.js */ 117);
 	
 	var _SelectedLocationView2 = _interopRequireDefault(_SelectedLocationView);
 	
-	var _ModalContainerView = __webpack_require__(/*! ../../../sharedViews/ModalContainerView.js */ 118);
+	var _ModalContainerView = __webpack_require__(/*! ../../../sharedViews/ModalContainerView.js */ 119);
 	
 	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
 	
-	var _SuccessView = __webpack_require__(/*! ../../../sharedViews/SuccessView.js */ 120);
+	var _SuccessView = __webpack_require__(/*! ../../../sharedViews/SuccessView.js */ 121);
 	
 	var _SuccessView2 = _interopRequireDefault(_SuccessView);
 	
-	var _LocationMapView = __webpack_require__(/*! ./LocationMapView.js */ 122);
+	var _LocationMapView = __webpack_require__(/*! ./LocationMapView.js */ 123);
 	
 	var _LocationMapView2 = _interopRequireDefault(_LocationMapView);
 	
-	__webpack_require__(/*! bootstrap-datepicker */ 126);
+	__webpack_require__(/*! bootstrap-datepicker */ 127);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33595,7 +33739,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 111 */
+/* 112 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/CreatePostView.hbs.html ***!
   \**************************************************************/
@@ -33620,7 +33764,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 112 */
+/* 113 */
 /*!***********************************!*\
   !*** ./~/scriptjs/dist/script.js ***!
   \***********************************/
@@ -33756,7 +33900,7 @@
 	});
 
 /***/ },
-/* 113 */
+/* 114 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/UploadedImagesView.js ***!
   \************************************************************/
@@ -33772,7 +33916,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ImageView = __webpack_require__(/*! ./ImageView.js */ 114);
+	var _ImageView = __webpack_require__(/*! ./ImageView.js */ 115);
 	
 	var _ImageView2 = _interopRequireDefault(_ImageView);
 	
@@ -33785,7 +33929,7 @@
 	});
 
 /***/ },
-/* 114 */
+/* 115 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/ImageView.js ***!
   \***************************************************/
@@ -33801,7 +33945,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ImageViewHbs = __webpack_require__(/*! ./ImageView.hbs.html */ 115);
+	var _ImageViewHbs = __webpack_require__(/*! ./ImageView.hbs.html */ 116);
 	
 	var _ImageViewHbs2 = _interopRequireDefault(_ImageViewHbs);
 	
@@ -33822,7 +33966,7 @@
 	});
 
 /***/ },
-/* 115 */
+/* 116 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/ImageView.hbs.html ***!
   \*********************************************************/
@@ -33848,7 +33992,7 @@
 
 
 /***/ },
-/* 116 */
+/* 117 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.js ***!
   \**************************************************************/
@@ -33864,7 +34008,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SelectedLocationViewHbs = __webpack_require__(/*! ./SelectedLocationView.hbs.html */ 117);
+	var _SelectedLocationViewHbs = __webpack_require__(/*! ./SelectedLocationView.hbs.html */ 118);
 	
 	var _SelectedLocationViewHbs2 = _interopRequireDefault(_SelectedLocationViewHbs);
 	
@@ -33887,7 +34031,7 @@
 	//              obscuredCoords
 
 /***/ },
-/* 117 */
+/* 118 */
 /*!********************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.hbs.html ***!
   \********************************************************************/
@@ -33913,7 +34057,7 @@
 
 
 /***/ },
-/* 118 */
+/* 119 */
 /*!***************************************************!*\
   !*** ./wwwroot/sharedViews/ModalContainerView.js ***!
   \***************************************************/
@@ -33929,7 +34073,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ModalContainerViewHbs = __webpack_require__(/*! ./ModalContainerView.hbs.html */ 119);
+	var _ModalContainerViewHbs = __webpack_require__(/*! ./ModalContainerView.hbs.html */ 120);
 	
 	var _ModalContainerViewHbs2 = _interopRequireDefault(_ModalContainerViewHbs);
 	
@@ -33974,7 +34118,7 @@
 	});
 
 /***/ },
-/* 119 */
+/* 120 */
 /*!*********************************************************!*\
   !*** ./wwwroot/sharedViews/ModalContainerView.hbs.html ***!
   \*********************************************************/
@@ -33992,7 +34136,7 @@
 
 
 /***/ },
-/* 120 */
+/* 121 */
 /*!********************************************!*\
   !*** ./wwwroot/sharedViews/SuccessView.js ***!
   \********************************************/
@@ -34008,7 +34152,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SuccessView = __webpack_require__(/*! ./SuccessView.html */ 121);
+	var _SuccessView = __webpack_require__(/*! ./SuccessView.html */ 122);
 	
 	var _SuccessView2 = _interopRequireDefault(_SuccessView);
 	
@@ -34032,7 +34176,7 @@
 	exports.default = View;
 
 /***/ },
-/* 121 */
+/* 122 */
 /*!**********************************************!*\
   !*** ./wwwroot/sharedViews/SuccessView.html ***!
   \**********************************************/
@@ -34058,7 +34202,7 @@
 
 
 /***/ },
-/* 122 */
+/* 123 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationMapView.js ***!
   \*********************************************************/
@@ -34074,7 +34218,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _LocationMapViewHbs = __webpack_require__(/*! ./LocationMapView.hbs.html */ 123);
+	var _LocationMapViewHbs = __webpack_require__(/*! ./LocationMapView.hbs.html */ 124);
 	
 	var _LocationMapViewHbs2 = _interopRequireDefault(_LocationMapViewHbs);
 	
@@ -34082,11 +34226,11 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _LocationBindToUserPositionHbs = __webpack_require__(/*! ./LocationBindToUserPosition.hbs.html */ 124);
+	var _LocationBindToUserPositionHbs = __webpack_require__(/*! ./LocationBindToUserPosition.hbs.html */ 125);
 	
 	var _LocationBindToUserPositionHbs2 = _interopRequireDefault(_LocationBindToUserPositionHbs);
 	
-	var _LocationSetButtonHbs = __webpack_require__(/*! ./LocationSetButton.hbs.html */ 125);
+	var _LocationSetButtonHbs = __webpack_require__(/*! ./LocationSetButton.hbs.html */ 126);
 	
 	var _LocationSetButtonHbs2 = _interopRequireDefault(_LocationSetButtonHbs);
 	
@@ -34223,7 +34367,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 123 */
+/* 124 */
 /*!***************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationMapView.hbs.html ***!
   \***************************************************************/
@@ -34239,7 +34383,7 @@
 
 
 /***/ },
-/* 124 */
+/* 125 */
 /*!**************************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationBindToUserPosition.hbs.html ***!
   \**************************************************************************/
@@ -34255,7 +34399,7 @@
 
 
 /***/ },
-/* 125 */
+/* 126 */
 /*!*****************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationSetButton.hbs.html ***!
   \*****************************************************************/
@@ -34271,7 +34415,7 @@
 
 
 /***/ },
-/* 126 */
+/* 127 */
 /*!****************************************************************!*\
   !*** ./~/bootstrap-datepicker/dist/js/bootstrap-datepicker.js ***!
   \****************************************************************/
@@ -36116,7 +36260,7 @@
 	});
 
 /***/ },
-/* 127 */
+/* 128 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostsMyView.js ***!
   \******************************************************/
@@ -36132,11 +36276,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PostsMyViewHbs = __webpack_require__(/*! ./PostsMyView.hbs.html */ 128);
+	var _PostsMyViewHbs = __webpack_require__(/*! ./PostsMyView.hbs.html */ 129);
 	
 	var _PostsMyViewHbs2 = _interopRequireDefault(_PostsMyViewHbs);
 	
-	var _PostItemView = __webpack_require__(/*! ./PostItemView */ 129);
+	var _PostItemView = __webpack_require__(/*! ./PostItemView */ 130);
 	
 	var _PostItemView2 = _interopRequireDefault(_PostItemView);
 	
@@ -36144,7 +36288,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./PostMyView.less */ 131);
+	__webpack_require__(/*! ./PostMyView.less */ 132);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36157,7 +36301,7 @@
 	exports.default = View;
 
 /***/ },
-/* 128 */
+/* 129 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostsMyView.hbs.html ***!
   \************************************************************/
@@ -36173,7 +36317,7 @@
 
 
 /***/ },
-/* 129 */
+/* 130 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostItemView.js ***!
   \*******************************************************/
@@ -36189,7 +36333,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PostItemViewHbs = __webpack_require__(/*! ./PostItemView.hbs.html */ 130);
+	var _PostItemViewHbs = __webpack_require__(/*! ./PostItemView.hbs.html */ 131);
 	
 	var _PostItemViewHbs2 = _interopRequireDefault(_PostItemViewHbs);
 	
@@ -36201,6 +36345,10 @@
 	
 	var _locationHelper2 = _interopRequireDefault(_locationHelper);
 	
+	var _postDuration = __webpack_require__(/*! ../../../helpers/postDuration.js */ 55);
+	
+	var _postDuration2 = _interopRequireDefault(_postDuration);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.View.extend({
@@ -36210,8 +36358,7 @@
 	        this.getDistance();
 	    },
 	    getDistance: function getDistance() {
-	
-	        window.mypost = this.model.toJSON(); //debug
+	        //window.mypost = this.model.toJSON(); //debug
 	
 	        var locations = this.model.get('details').locations;
 	        if (locations && _.size(locations) > 0 && _app2.default.user.has('position')) {
@@ -36222,11 +36369,8 @@
 	            var dist = _locationHelper2.default.getDistance(location.coords.lat, location.coords.lng, _app2.default.user.get('position').lat, _app2.default.user.get('position').lng);
 	            this.model.set('distance', dist);
 	            this.model.set('distanceType', 'km');
-	            var currentDate = new Date().valueOf(),
-	                endDate = this.model.get('endDatePost'),
-	                createDate = this.model.get('timestamp');
-	            var progress = endDate ? (currentDate - createDate) / (endDate - createDate) * 100 : 100;
-	            this.model.set('progress', progress);
+	            var obj = _postDuration2.default.getPostDuration(this.model);
+	            this.model.set('progress', obj.percent);
 	        } else {
 	            this.model.set('distance', -1);
 	            this.model.set('progress', 0);
@@ -36246,7 +36390,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 130 */
+/* 131 */
 /*!*************************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostItemView.hbs.html ***!
   \*************************************************************/
@@ -36298,9 +36442,9 @@
 	'</span>\r\n                        ';
 	 } 
 	__p+='\r\n                    </div>\r\n                </div>\r\n                <div class="sh-my-posts-item-content-footer-progress">\r\n                    <div class="sh-progress-bar progress">\r\n                        <div class="progress-bar '+
-	((__t=(progress>=70?'progress-bar-success':(progress>=25&&progress<70?'progress-bar-warning':'progress-bar-danger')))==null?'':__t)+
+	((__t=( progress >= 50 ? 'progress-bar-success' : (progress >=20 && progress < 50 ? 'progress-bar-warning' : 'progress-bar-danger')))==null?'':__t)+
 	'" role="progressbar" style="width: '+
-	((__t=(progress))==null?'':__t)+
+	((__t=( progress))==null?'':__t)+
 	'%; min-width: 1em; ">\r\n                            <span class="sr-only"></span>\r\n                        </div>\r\n                    </div>\r\n                </div>\n            </div>            \n        </div>\n        \n        <!--\n\n        <p>'+
 	((__t=(details.description))==null?'':__t)+
 	'</p>\n\n        -->\n\n\n        <!--<a href="#" class="btn btn-reveal btn-default js-edit-my-chat">\n            <i class="fa fa-edit"></i>\n            <span>Редактировать</span>\n        </a>\n        <a href="#" class="btn btn-reveal btn-danger js-remove-my-post">\n            <i class="fa fa-remove"></i>\n            <span>Удалить</span>\n        </a>-->\n    </div>\n\n</div>';
@@ -36311,7 +36455,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 131 */
+/* 132 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostMyView.less ***!
   \*******************************************************/
@@ -36320,7 +36464,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 132 */
+/* 133 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.js ***!
   \******************************************************/
@@ -36336,11 +36480,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _chatsMyViewHbs = __webpack_require__(/*! ./chatsMyView.hbs.html */ 133);
+	var _chatsMyViewHbs = __webpack_require__(/*! ./chatsMyView.hbs.html */ 134);
 	
 	var _chatsMyViewHbs2 = _interopRequireDefault(_chatsMyViewHbs);
 	
-	var _chatItemView = __webpack_require__(/*! ./chatItemView */ 134);
+	var _chatItemView = __webpack_require__(/*! ./chatItemView */ 135);
 	
 	var _chatItemView2 = _interopRequireDefault(_chatItemView);
 	
@@ -36355,7 +36499,7 @@
 	exports.default = View;
 
 /***/ },
-/* 133 */
+/* 134 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.hbs.html ***!
   \************************************************************/
@@ -36373,7 +36517,7 @@
 
 
 /***/ },
-/* 134 */
+/* 135 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.js ***!
   \*******************************************************/
@@ -36389,7 +36533,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _chatItemViewHbs = __webpack_require__(/*! ./chatItemView.hbs.html */ 135);
+	var _chatItemViewHbs = __webpack_require__(/*! ./chatItemView.hbs.html */ 136);
 	
 	var _chatItemViewHbs2 = _interopRequireDefault(_chatItemViewHbs);
 	
@@ -36397,9 +36541,9 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./chatItemView.css */ 136);
+	__webpack_require__(/*! ./chatItemView.css */ 137);
 	
-	__webpack_require__(/*! ./myChatItemView.less */ 138);
+	__webpack_require__(/*! ./myChatItemView.less */ 139);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36424,7 +36568,7 @@
 	exports.default = View;
 
 /***/ },
-/* 135 */
+/* 136 */
 /*!*************************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.hbs.html ***!
   \*************************************************************/
@@ -36461,7 +36605,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 136 */
+/* 137 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.css ***!
   \********************************************************/
@@ -36470,7 +36614,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./chatItemView.css */ 137);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./chatItemView.css */ 138);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 40)(content, {});
@@ -36490,7 +36634,7 @@
 	}
 
 /***/ },
-/* 137 */
+/* 138 */
 /*!***********************************************************************!*\
   !*** ./~/css-loader!./wwwroot/homeApp/chats/chatsMy/chatItemView.css ***!
   \***********************************************************************/
@@ -36500,7 +36644,7 @@
 	exports.push([module.id, ".bz-chat-item .bz-user-avatar {\n  float: left;\n  top: 0;\n  left: 0;\n  padding-right: 10px;\n}\n\n.bz-chat-item .bz-avatar {\n\n  background-size: cover;\n  background-position: center;\n  -webkit-border-radius: 2px;\n  -moz-border-radius: 2px;\n  border-radius: 2px;\n}\n.bz-chat-item .bz-avatar img {\n  width: 50px;\n  height: 50px;\n}\n.bz-chat-item .bz-last-timestamp {\n  font-style: italic;\n  font-size: 12px;\n  padding-top: 12px;\n}\n.bz-chat-item .bz-last-message {\n  font-weight: bold;\n}\n/* temp, not good solution: */\ndiv.blog-post-item {\n  margin-bottom: 10px;\n  padding-bottom: 30px;\n}", ""]);
 
 /***/ },
-/* 138 */
+/* 139 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/myChatItemView.less ***!
   \***********************************************************/
@@ -36509,7 +36653,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 139 */
+/* 140 */
 /*!*********************************************!*\
   !*** ./wwwroot/homeApp/chats/ChatIdView.js ***!
   \*********************************************/
@@ -36525,7 +36669,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ChatIdViewHbs = __webpack_require__(/*! ./ChatIdView.hbs.html */ 140);
+	var _ChatIdViewHbs = __webpack_require__(/*! ./ChatIdView.hbs.html */ 141);
 	
 	var _ChatIdViewHbs2 = _interopRequireDefault(_ChatIdViewHbs);
 	
@@ -36558,7 +36702,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 140 */
+/* 141 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/chats/ChatIdView.hbs.html ***!
   \***************************************************/
@@ -36574,7 +36718,7 @@
 
 
 /***/ },
-/* 141 */
+/* 142 */
 /*!*********************************************!*\
   !*** ./wwwroot/homeApp/user/DetailsView.js ***!
   \*********************************************/
@@ -36590,19 +36734,19 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _AsteroidModel = __webpack_require__(/*! ../../data/AsteroidModel.js */ 79);
+	var _AsteroidModel = __webpack_require__(/*! ../../data/AsteroidModel.js */ 80);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 142);
+	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 143);
 	
 	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
 	
-	var _SendMessageView = __webpack_require__(/*! ./SendMessageView.js */ 143);
+	var _SendMessageView = __webpack_require__(/*! ./SendMessageView.js */ 144);
 	
 	var _SendMessageView2 = _interopRequireDefault(_SendMessageView);
 	
-	var _ProfileEditView = __webpack_require__(/*! ./ProfileEditView.js */ 146);
+	var _ProfileEditView = __webpack_require__(/*! ./ProfileEditView.js */ 147);
 	
 	var _ProfileEditView2 = _interopRequireDefault(_ProfileEditView);
 	
@@ -36610,7 +36754,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _ModalContainerView = __webpack_require__(/*! ../../sharedViews/ModalContainerView.js */ 118);
+	var _ModalContainerView = __webpack_require__(/*! ../../sharedViews/ModalContainerView.js */ 119);
 	
 	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
 	
@@ -36707,7 +36851,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 142 */
+/* 143 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/user/DetailsView.hbs.html ***!
   \***************************************************/
@@ -36814,7 +36958,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 143 */
+/* 144 */
 /*!*************************************************!*\
   !*** ./wwwroot/homeApp/user/SendMessageView.js ***!
   \*************************************************/
@@ -36830,15 +36974,15 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SendMessageViewHbs = __webpack_require__(/*! ./SendMessageView.hbs.html */ 144);
+	var _SendMessageViewHbs = __webpack_require__(/*! ./SendMessageView.hbs.html */ 145);
 	
 	var _SendMessageViewHbs2 = _interopRequireDefault(_SendMessageViewHbs);
 	
-	var _AsteroidModel = __webpack_require__(/*! ../../data/AsteroidModel.js */ 79);
+	var _AsteroidModel = __webpack_require__(/*! ../../data/AsteroidModel.js */ 80);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	__webpack_require__(/*! ./SendMessageView.less */ 145);
+	__webpack_require__(/*! ./SendMessageView.less */ 146);
 	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
@@ -36900,7 +37044,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 144 */
+/* 145 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/user/SendMessageView.hbs.html ***!
   \*******************************************************/
@@ -36918,7 +37062,7 @@
 
 
 /***/ },
-/* 145 */
+/* 146 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/user/SendMessageView.less ***!
   \***************************************************/
@@ -36927,7 +37071,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 146 */
+/* 147 */
 /*!*************************************************!*\
   !*** ./wwwroot/homeApp/user/ProfileEditView.js ***!
   \*************************************************/
@@ -36943,7 +37087,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ProfileEditViewHbs = __webpack_require__(/*! ./ProfileEditView.hbs.html */ 147);
+	var _ProfileEditViewHbs = __webpack_require__(/*! ./ProfileEditView.hbs.html */ 148);
 	
 	var _ProfileEditViewHbs2 = _interopRequireDefault(_ProfileEditViewHbs);
 	
@@ -37073,7 +37217,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 147 */
+/* 148 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/user/ProfileEditView.hbs.html ***!
   \*******************************************************/
@@ -37124,7 +37268,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 148 */
+/* 149 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.js ***!
   \************************************************************/
@@ -37140,19 +37284,19 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MessagesToUserViewHbs = __webpack_require__(/*! ./MessagesToUserView.hbs.html */ 149);
+	var _MessagesToUserViewHbs = __webpack_require__(/*! ./MessagesToUserView.hbs.html */ 150);
 	
 	var _MessagesToUserViewHbs2 = _interopRequireDefault(_MessagesToUserViewHbs);
 	
-	var _MessagesListView = __webpack_require__(/*! ./MessagesListView.js */ 150);
+	var _MessagesListView = __webpack_require__(/*! ./MessagesListView.js */ 151);
 	
 	var _MessagesListView2 = _interopRequireDefault(_MessagesListView);
 	
-	var _AsteroidModel = __webpack_require__(/*! ../../../data/AsteroidModel.js */ 79);
+	var _AsteroidModel = __webpack_require__(/*! ../../../data/AsteroidModel.js */ 80);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	__webpack_require__(/*! ./messagesToUserView.less */ 156);
+	__webpack_require__(/*! ./messagesToUserView.less */ 157);
 	
 	var _app = __webpack_require__(/*! ../../app.js */ 15);
 	
@@ -37276,7 +37420,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3), __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 149 */
+/* 150 */
 /*!******************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.hbs.html ***!
   \******************************************************************/
@@ -37302,7 +37446,7 @@
 
 
 /***/ },
-/* 150 */
+/* 151 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesListView.js ***!
   \**********************************************************/
@@ -37318,11 +37462,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _messagesItemView = __webpack_require__(/*! ./messagesItemView.js */ 151);
+	var _messagesItemView = __webpack_require__(/*! ./messagesItemView.js */ 152);
 	
 	var _messagesItemView2 = _interopRequireDefault(_messagesItemView);
 	
-	var _NoMessagesView = __webpack_require__(/*! ./NoMessagesView.js */ 154);
+	var _NoMessagesView = __webpack_require__(/*! ./NoMessagesView.js */ 155);
 	
 	var _NoMessagesView2 = _interopRequireDefault(_NoMessagesView);
 	
@@ -37355,7 +37499,7 @@
 	exports.default = View;
 
 /***/ },
-/* 151 */
+/* 152 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messagesItemView.js ***!
   \**********************************************************/
@@ -37371,11 +37515,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 152);
+	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 153);
 	
 	var _MessagesItemViewHbs2 = _interopRequireDefault(_MessagesItemViewHbs);
 	
-	__webpack_require__(/*! ./messageItemView.less */ 153);
+	__webpack_require__(/*! ./messageItemView.less */ 154);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37429,7 +37573,7 @@
 	exports.default = View;
 
 /***/ },
-/* 152 */
+/* 153 */
 /*!****************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesItemView.hbs.html ***!
   \****************************************************************/
@@ -37488,7 +37632,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 153 */
+/* 154 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messageItemView.less ***!
   \***********************************************************/
@@ -37497,7 +37641,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 154 */
+/* 155 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/NoMessagesView.js ***!
   \********************************************************/
@@ -37513,7 +37657,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 155);
+	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 156);
 	
 	var _NoMessagesViewHbs2 = _interopRequireDefault(_NoMessagesViewHbs);
 	
@@ -37527,7 +37671,7 @@
 	exports.default = View;
 
 /***/ },
-/* 155 */
+/* 156 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/NoMessagesView.hbs.html ***!
   \**************************************************************/
@@ -37543,7 +37687,7 @@
 
 
 /***/ },
-/* 156 */
+/* 157 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messagesToUserView.less ***!
   \**************************************************************/
@@ -37552,7 +37696,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 157 */
+/* 158 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/account/LoginView.js ***!
   \**********************************************/
@@ -37568,17 +37712,17 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _LoginViewHbs = __webpack_require__(/*! ./LoginView.hbs.html */ 158);
+	var _LoginViewHbs = __webpack_require__(/*! ./LoginView.hbs.html */ 159);
 	
 	var _LoginViewHbs2 = _interopRequireDefault(_LoginViewHbs);
 	
-	__webpack_require__(/*! ./loginView.less */ 159);
+	__webpack_require__(/*! ./loginView.less */ 160);
 	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _LoginModel = __webpack_require__(/*! ../../data/viewModels/LoginModel */ 160);
+	var _LoginModel = __webpack_require__(/*! ../../data/viewModels/LoginModel */ 161);
 	
 	var _LoginModel2 = _interopRequireDefault(_LoginModel);
 	
@@ -37736,7 +37880,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 158 */
+/* 159 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/account/LoginView.hbs.html ***!
   \****************************************************/
@@ -37754,7 +37898,7 @@
 
 
 /***/ },
-/* 159 */
+/* 160 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/account/loginView.less ***!
   \************************************************/
@@ -37763,7 +37907,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 160 */
+/* 161 */
 /*!***********************************************!*\
   !*** ./wwwroot/data/viewModels/LoginModel.js ***!
   \***********************************************/
@@ -37796,7 +37940,7 @@
 	});
 
 /***/ },
-/* 161 */
+/* 162 */
 /*!*****************************************************!*\
   !*** ./wwwroot/homeApp/account/RegisterUserView.js ***!
   \*****************************************************/
@@ -37812,7 +37956,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _RegisterUserViewHbs = __webpack_require__(/*! ./RegisterUserView.hbs.html */ 162);
+	var _RegisterUserViewHbs = __webpack_require__(/*! ./RegisterUserView.hbs.html */ 163);
 	
 	var _RegisterUserViewHbs2 = _interopRequireDefault(_RegisterUserViewHbs);
 	
@@ -37820,7 +37964,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _RegisterModel = __webpack_require__(/*! ../../data/viewModels/RegisterModel */ 163);
+	var _RegisterModel = __webpack_require__(/*! ../../data/viewModels/RegisterModel */ 164);
 	
 	var _RegisterModel2 = _interopRequireDefault(_RegisterModel);
 	
@@ -37878,7 +38022,7 @@
 	exports.default = View;
 
 /***/ },
-/* 162 */
+/* 163 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/account/RegisterUserView.hbs.html ***!
   \***********************************************************/
@@ -37894,7 +38038,7 @@
 
 
 /***/ },
-/* 163 */
+/* 164 */
 /*!**************************************************!*\
   !*** ./wwwroot/data/viewModels/RegisterModel.js ***!
   \**************************************************/
@@ -37937,7 +38081,7 @@
 	});
 
 /***/ },
-/* 164 */
+/* 165 */
 /*!********************************************!*\
   !*** ./wwwroot/homeApp/about/AboutView.js ***!
   \********************************************/
@@ -37953,7 +38097,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 165);
+	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 166);
 	
 	var _AboutViewHbs2 = _interopRequireDefault(_AboutViewHbs);
 	
@@ -37961,7 +38105,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./about.less */ 166);
+	__webpack_require__(/*! ./about.less */ 167);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38094,7 +38238,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 165 */
+/* 166 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/about/AboutView.hbs.html ***!
   \**************************************************/
@@ -38103,14 +38247,16 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<!-- <div id="sh-intro" style="background: url(/images/banner-med.jpg) no-repeat 0% 30px; background-size: auto 100%; background-position-x: right; background-color: #f0f0f0;"> -->\r\n<div id="sh-intro">\r\n    <div class="sh-intro-wrapper">\r\n\r\n        <div class="sh-full-video">\r\n            <div class="sh-video-wrapper">\r\n                <!--iFrame YT -->                \r\n            </div>\r\n            <div class="sh-close-video"><i class="fa fa-times-circle" aria-hidden="true"></i></div>\r\n        </div>\r\n\r\n        <div class="sh-intro-tagline container">\r\n            <div class="sh-intro-tagline-wrapper">\r\n                <!--<h1 class="sh-logo-about-us"><a href="/">Shiners</a></h1>-->\r\n                <p class="sh-sub-intro-text">Мы считаем, это замечательно - иметь инструмент, который помогает людям вокруг сотрудничать друг с другом, находить людей и занятия прямо здесь, и прямо сейчас. <strong>SHINERS</strong> показывает людям объявления вокруг с привязкой к человеку и его локации.</p>\r\n                <div class="sh-sub-intro-text-info">\r\n                    <div class="sh-btn-video-watch"><i class="fa fa-play-circle" aria-hidden="true"></i></div>\r\n                    <div class="sh-sub-intro-vw-info">Продолжительность: <span>1:12 мин.</span></div>\r\n                    <a href="/posts/new" class="ui sh-button standard create big sh-create-about-us">Создать Светлячок</a>\r\n                </div>                \r\n            </div>\r\n        </div>\r\n\r\n        <div class="sh-gradient sh-gradient-blue"></div>\r\n\r\n        <div class="sh-background-about-image"></div>\r\n\r\n        <!--<div class="sh-intro-mockup"></div>-->\r\n    </div>\r\n</div>\r\n\r\n<div class="sh-secondary-nav">\r\n    <nav>\r\n        <ul>\r\n            <li><a href="#sh-section-1">Как это работает?</a></li>\r\n            <li><a href="#sh-section-2">Чем мы полезны?</a></li>\r\n            <li><a href="#sh-section-3">Наша команда</a></li>\r\n            <li><a href="#sh-section-4">Связаться с нами</a></li>\r\n        </ul>\r\n    </nav>\r\n</div>\r\n\r\n<main class="sh-content">\r\n    <div class="sh-about-us">\r\n        <div class="container">\r\n            <div class="sh-about-us-wrapper sh-page-block">\r\n\r\n                <!-- INTRO -->\r\n                <div class="sh-intro-description">\r\n                    <div class="sh-intro-description-wrapper">\r\n                        <h1>Единственный сервис, предлагающий живое присутствие!</h1>\r\n                        <p>Светлячки позволяют привязать объявление или любой адрес в интернете к текущему местоположению пользователя, и, как результат, осуществлять мгновенный поиск информации среди людей вокруг. Это позволяет искать информацию здесь и сейчас с целью мгновенной встречи с ее владельцем. Ненужное промежуточное звено (поиск по интернету, договор о встрече, дорогу к месту) можно исключить, если потенциально интересующий нас человек находится поблизости.</p>\r\n                        <p>Мы расширяем возможности Веба, посредством привязки информации к реальным людям и координатам, что дает веб-ресурсам новое,- пространство-временное, качество, то есть путь напрямик к цели! Нас также видно в Google и соцсетях, и поэтому твое объявление превращается в собственную интернет-страницу, которую при желании увидит весь интернет.</p>\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- HOW IT WORK -->\r\n                <div id="sh-section-1" class="sh-intro-how-it-work sh-section">\r\n                    <div class="sh-intro-how-it-work-wrapper">\r\n                        <h1 class="sh-section-hero-headline sh-text-center">Как это работает?</h1>\r\n                        <p class="sh-section-intro sh-text-center">Представь себе виртуальную визитку, только носишь ты ее не в кошельке, а в мобильном телефоне, и видят ее не избранные, а все, кто рядом!</p>\r\n                        <div class="sh-intro-how-it-work-ul">\r\n                            <ul class="sh-intro-how-it-work-list">\r\n                                <li>\r\n                                    <a data-toggle="tab" href="#step1" data-direct-link=""><i class="icon-plus"></i></a>\r\n                                    <h5><tran data-key="create_your_post">Создай свой пост</tran></h5>\r\n                                </li>\r\n                                <li>\r\n                                    <a data-toggle="tab" href="#step2" data-direct-link=""><i class="icon-map-marker"></i></a>\r\n                                    <h5><tran data-key="you_found">Ты находишь / Тебя находят</tran></h5>\r\n                                </li>\r\n                                <li>\r\n                                    <a data-toggle="tab" href="#step3" data-direct-link=""><i class="icon-ok"></i></a>\r\n                                    <h5><tran data-key="connect_and_meet">Договаривайся / встречайся</tran></h5>\r\n                                </li>\r\n                            </ul>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- WHAT WE ARE USEFUL -->\r\n                <div id="sh-section-2" class="sh-what-we-are-useful sh-section">\r\n                    <div class="sh-what-we-are-useful-wrapper">\r\n                        <h1 class="sh-section-hero-headline sh-text-center">Чем мы полезны?</h1>\r\n                        <p class="sh-section-intro sh-text-center">Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.</p>\r\n\r\n                        <div class="sh-what-we-are-useful-bg"></div>\r\n\r\n                        <hr>\r\n\r\n                        <div class="sh-what-we-are-useful-features">\r\n                            <div class="sh-features-left">\r\n                                <div class="sh-features-block">\r\n                                    <h5>ОБЪЯВЛЕНИЕ</h5>\r\n                                    <p>Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".</p>\r\n                                </div>\r\n\r\n                                <div class="sh-features-block">\r\n                                    <h5>ССЫЛКА</h5>\r\n                                    <p>Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!</p>\r\n                                </div>\r\n                            </div>\r\n                            <div class="sh-features-center">\r\n                                <div class="sh-is-sh"><span></span></div>\r\n                            </div>\r\n                            <div class="sh-features-right">\r\n                                <div class="sh-features-block">\r\n                                    <h5>ДИНАМИЧЕСКИЙ ПОСТ</h5>\r\n                                    <p>\r\n                                        Движется вместе с тобой.\r\n                                        Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!\r\n                                    </p>\r\n                                </div>\r\n\r\n                                <div class="sh-features-block">\r\n                                    <h5>СТАТИЧЕСКИЙ ПОСТ</h5>\r\n                                    <p>\r\n                                        Привязан к заданной тобой местности.\r\n                                        Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!\r\n                                    </p>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class="sh-set-sh sh-text-center">\r\n                            \r\n                            <a href="/posts/new" class="sh-woman-shiners"></a>\r\n\r\n                            <!--<a href="/posts/new" class="ui sh-button standard create big">Установи свой Светлячок</a>-->\r\n                        </div>\r\n\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- WHO WE ARE -->\r\n                <div id="sh-section-3" class="sh-who-we-are sh-section">\r\n                    <div class="sh-who-we-are-wrapper">\r\n                        <div class="sh-red col-md-4 col-lg-4">\r\n                            <h5>Кто мы</h5>\r\n                            <p>Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости</p>\r\n                        </div>\r\n                        <div class="sh-blue col-md-4 col-lg-4">\r\n                            <h5>Безопасность</h5>\r\n                            <p>Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!</p>\r\n                        </div>\r\n                        <div class="sh-orange col-md-4 col-lg-4">\r\n                            <h5>Правила</h5>\r\n                            <p>При регистрации на «Cветлячках» Пользователь соглашается с <a href="/legal/user-agreement">настоящими правилами</a></p>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- CONTACT US -->\r\n                <div id="sh-section-4" class="sh-contact-us sh-section">\r\n                    <div class="sh-contact-us-bg"></div>\r\n                    <div class="sh-contact-us-wrapper">\r\n                        <h1 class="sh-section-hero-headline sh-text-center">Связаться с нами</h1>\r\n                        <p class="sh-section-intro sh-text-center">Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!</p>\r\n                        <form action="/" method="post">\r\n                            <fieldset>\r\n                                <input type="hidden" name="action" value="contact_send">\r\n                                <div class="row">\r\n                                    <div class="form-group">\r\n                                        <div class="col-xs-12 col-md-6">\r\n                                            <input required="" type="text" value="" placeholder="Ваше имя" class="form-control" name="contact[name][required]" id="contact:name">\r\n                                        </div>\r\n                                        <div class="col-xs-12 col-md-6">\r\n                                            <input required="" type="email" value="" placeholder="Ваш email" class="form-control" name="contact[email][required]" id="contact:email">\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                                <div class="row">\r\n                                    <div class="form-group">\r\n                                        <div class="col-xs-12 col-md-12">\r\n                                            <textarea required="" placeholder="Ваше сообщение" maxlength="10000" rows="8" class="form-control" name="contact[message]" id="contact:message"></textarea>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </fieldset>\r\n                            <div class="row">\r\n                                <div class="col-md-12">\r\n                                    <button type="submit" class="ui sh-button standard action big pull-right"><i class="fa fa-check"></i> Отправить</button>\r\n                                </div>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</main>';
+	__p+='<!-- <div id="sh-intro" style="background: url(/images/banner-med.jpg) no-repeat 0% 30px; background-size: auto 100%; background-position-x: right; background-color: #f0f0f0;"> -->\r\n<div id="sh-intro">\r\n    <div class="sh-intro-wrapper">\r\n\r\n        <div class="sh-full-video">\r\n            <div class="sh-video-wrapper">\r\n                <!--iFrame YT -->                \r\n            </div>\r\n            <div class="sh-close-video"><i class="fa fa-times-circle" aria-hidden="true"></i></div>\r\n        </div>\r\n\r\n        <div class="sh-intro-tagline container">\r\n            <div class="sh-intro-tagline-wrapper">\r\n                <h1 class="sh-logo-about-us" style="display: none;"><a href="/">Shiners</a></h1>\r\n                <p class="sh-sub-intro-text">Мы считаем, это замечательно - иметь инструмент, который помогает людям вокруг сотрудничать друг с другом, находить людей и занятия прямо здесь, и прямо сейчас. <strong>SHINERS</strong> показывает людям объявления вокруг с привязкой к человеку и его локации.</p>\r\n                <div class="sh-sub-intro-text-info">\r\n                    <div class="sh-btn-video-watch"><i class="fa fa-play-circle" aria-hidden="true"></i></div>\r\n                    <div class="sh-sub-intro-vw-info">Продолжительность: <span>1:12 мин.</span></div>\r\n                    <a href="/posts/new" class="ui sh-button standard create big sh-create-about-us">'+
+	((__t=(i18n('CREATE_SHINER')))==null?'':__t)+
+	'</a>\r\n                </div>                \r\n            </div>\r\n        </div>\r\n\r\n        <div class="sh-gradient sh-gradient-blue"></div>\r\n\r\n        <div class="sh-background-about-image"></div>\r\n\r\n        <!--<div class="sh-intro-mockup"></div>-->\r\n    </div>\r\n</div>\r\n\r\n<div class="sh-secondary-nav">\r\n    <nav>\r\n        <ul>\r\n            <li><a href="#sh-section-1">Как это работает?</a></li>\r\n            <li><a href="#sh-section-2">Чем мы полезны?</a></li>\r\n            <li><a href="#sh-section-3">Наша команда</a></li>\r\n            <li><a href="#sh-section-4">Связаться с нами</a></li>\r\n        </ul>\r\n    </nav>\r\n</div>\r\n\r\n<main class="sh-content">\r\n    <div class="sh-about-us">\r\n        <div class="container">\r\n            <div class="sh-about-us-wrapper sh-page-block">\r\n\r\n                <!-- INTRO -->\r\n                <div class="sh-intro-description">\r\n                    <div class="sh-intro-description-wrapper">\r\n                        <h1>Единственный сервис, предлагающий живое присутствие!</h1>\r\n                        <p>Светлячки позволяют привязать объявление или любой адрес в интернете к текущему местоположению пользователя, и, как результат, осуществлять мгновенный поиск информации среди людей вокруг. Это позволяет искать информацию здесь и сейчас с целью мгновенной встречи с ее владельцем. Ненужное промежуточное звено (поиск по интернету, договор о встрече, дорогу к месту) можно исключить, если потенциально интересующий нас человек находится поблизости.</p>\r\n                        <p>Мы расширяем возможности Веба, посредством привязки информации к реальным людям и координатам, что дает веб-ресурсам новое,- пространство-временное, качество, то есть путь напрямик к цели! Нас также видно в Google и соцсетях, и поэтому твое объявление превращается в собственную интернет-страницу, которую при желании увидит весь интернет.</p>\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- HOW IT WORK -->\r\n                <div id="sh-section-1" class="sh-intro-how-it-work sh-section">\r\n                    <div class="sh-intro-how-it-work-wrapper">\r\n                        <h1 class="sh-section-hero-headline sh-text-center">Как это работает?</h1>\r\n                        <p class="sh-section-intro sh-text-center">Представь себе виртуальную визитку, только носишь ты ее не в кошельке, а в мобильном телефоне, и видят ее не избранные, а все, кто рядом!</p>\r\n                        <div class="sh-intro-how-it-work-ul">\r\n                            <ul class="sh-intro-how-it-work-list">\r\n                                <li>\r\n                                    <a data-toggle="tab" href="#step1" data-direct-link=""><i class="icon-plus"></i></a>\r\n                                    <h5><tran data-key="create_your_post">Создай свой пост</tran></h5>\r\n                                </li>\r\n                                <li>\r\n                                    <a data-toggle="tab" href="#step2" data-direct-link=""><i class="icon-map-marker"></i></a>\r\n                                    <h5><tran data-key="you_found">Ты находишь / Тебя находят</tran></h5>\r\n                                </li>\r\n                                <li>\r\n                                    <a data-toggle="tab" href="#step3" data-direct-link=""><i class="icon-ok"></i></a>\r\n                                    <h5><tran data-key="connect_and_meet">Договаривайся / встречайся</tran></h5>\r\n                                </li>\r\n                            </ul>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- WHAT WE ARE USEFUL -->\r\n                <div id="sh-section-2" class="sh-what-we-are-useful sh-section">\r\n                    <div class="sh-what-we-are-useful-wrapper">\r\n                        <h1 class="sh-section-hero-headline sh-text-center">Чем мы полезны?</h1>\r\n                        <p class="sh-section-intro sh-text-center">Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.</p>\r\n\r\n                        <div class="sh-what-we-are-useful-bg"></div>\r\n\r\n                        <hr>\r\n\r\n                        <div class="sh-what-we-are-useful-features">\r\n                            <div class="sh-features-left">\r\n                                <div class="sh-features-block">\r\n                                    <h5>ОБЪЯВЛЕНИЕ</h5>\r\n                                    <p>Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".</p>\r\n                                </div>\r\n\r\n                                <div class="sh-features-block">\r\n                                    <h5>ССЫЛКА</h5>\r\n                                    <p>Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!</p>\r\n                                </div>\r\n                            </div>\r\n                            <div class="sh-features-center">\r\n                                <div class="sh-is-sh"><span></span></div>\r\n                            </div>\r\n                            <div class="sh-features-right">\r\n                                <div class="sh-features-block">\r\n                                    <h5>ДИНАМИЧЕСКИЙ ПОСТ</h5>\r\n                                    <p>\r\n                                        Движется вместе с тобой.\r\n                                        Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!\r\n                                    </p>\r\n                                </div>\r\n\r\n                                <div class="sh-features-block">\r\n                                    <h5>СТАТИЧЕСКИЙ ПОСТ</h5>\r\n                                    <p>\r\n                                        Привязан к заданной тобой местности.\r\n                                        Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!\r\n                                    </p>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class="sh-set-sh sh-text-center">\r\n                            \r\n                            <a href="/posts/new" class="sh-woman-shiners"></a>\r\n\r\n                            <!--<a href="/posts/new" class="ui sh-button standard create big">Установи свой Светлячок</a>-->\r\n                        </div>\r\n\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- WHO WE ARE -->\r\n                <div id="sh-section-3" class="sh-who-we-are sh-section">\r\n                    <div class="sh-who-we-are-wrapper">\r\n                        <div class="sh-red col-md-4 col-lg-4">\r\n                            <h5>Кто мы</h5>\r\n                            <p>Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости</p>\r\n                        </div>\r\n                        <div class="sh-blue col-md-4 col-lg-4">\r\n                            <h5>Безопасность</h5>\r\n                            <p>Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!</p>\r\n                        </div>\r\n                        <div class="sh-orange col-md-4 col-lg-4">\r\n                            <h5>Правила</h5>\r\n                            <p>При регистрации на «Cветлячках» Пользователь соглашается с <a href="/legal/user-agreement">настоящими правилами</a></p>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- CONTACT US -->\r\n                <div id="sh-section-4" class="sh-contact-us sh-section">\r\n                    <div class="sh-contact-us-bg"></div>\r\n                    <div class="sh-contact-us-wrapper">\r\n                        <h1 class="sh-section-hero-headline sh-text-center">Связаться с нами</h1>\r\n                        <p class="sh-section-intro sh-text-center">Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!</p>\r\n                        <form action="/" method="post">\r\n                            <fieldset>\r\n                                <input type="hidden" name="action" value="contact_send">\r\n                                <div class="row">\r\n                                    <div class="form-group">\r\n                                        <div class="col-xs-12 col-md-6">\r\n                                            <input required="" type="text" value="" placeholder="Ваше имя" class="form-control" name="contact[name][required]" id="contact:name">\r\n                                        </div>\r\n                                        <div class="col-xs-12 col-md-6">\r\n                                            <input required="" type="email" value="" placeholder="Ваш email" class="form-control" name="contact[email][required]" id="contact:email">\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                                <div class="row">\r\n                                    <div class="form-group">\r\n                                        <div class="col-xs-12 col-md-12">\r\n                                            <textarea required="" placeholder="Ваше сообщение" maxlength="10000" rows="8" class="form-control" name="contact[message]" id="contact:message"></textarea>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </fieldset>\r\n                            <div class="row">\r\n                                <div class="col-md-12">\r\n                                    <button type="submit" class="ui sh-button standard action big pull-right"><i class="fa fa-check"></i> Отправить</button>\r\n                                </div>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</main>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 166 */
+/* 167 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/about/about.less ***!
   \******************************************/
@@ -38119,7 +38265,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 167 */
+/* 168 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.js ***!
   \****************************************************/
@@ -38135,7 +38281,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MassMediaViewHbs = __webpack_require__(/*! ./MassMediaView.hbs.html */ 168);
+	var _MassMediaViewHbs = __webpack_require__(/*! ./MassMediaView.hbs.html */ 169);
 	
 	var _MassMediaViewHbs2 = _interopRequireDefault(_MassMediaViewHbs);
 	
@@ -38143,7 +38289,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./MassMediaView.less */ 169);
+	__webpack_require__(/*! ./MassMediaView.less */ 170);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38212,7 +38358,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 168 */
+/* 169 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.hbs.html ***!
   \**********************************************************/
@@ -38268,7 +38414,7 @@
 
 
 /***/ },
-/* 169 */
+/* 170 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.less ***!
   \******************************************************/
@@ -38277,7 +38423,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 170 */
+/* 171 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.js ***!
   \******************************************************/
@@ -38293,7 +38439,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 171);
+	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 172);
 	
 	var _HowItWorksViewHbs2 = _interopRequireDefault(_HowItWorksViewHbs);
 	
@@ -38305,7 +38451,7 @@
 	exports.default = View;
 
 /***/ },
-/* 171 */
+/* 172 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.hbs.html ***!
   \************************************************************/
@@ -38321,7 +38467,7 @@
 
 
 /***/ },
-/* 172 */
+/* 173 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/account/FogotPasswordView.js ***!
   \******************************************************/
@@ -38337,7 +38483,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 173);
+	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 174);
 	
 	var _FogotPasswordViewHbs2 = _interopRequireDefault(_FogotPasswordViewHbs);
 	
@@ -38349,7 +38495,7 @@
 	exports.default = View;
 
 /***/ },
-/* 173 */
+/* 174 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/account/FogotPasswordView.hbs.html ***!
   \************************************************************/
@@ -38365,7 +38511,7 @@
 
 
 /***/ },
-/* 174 */
+/* 175 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.js ***!
   \*********************************************************/
@@ -38381,7 +38527,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 175);
+	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 176);
 	
 	var _legalUserAgreementViewHbs2 = _interopRequireDefault(_legalUserAgreementViewHbs);
 	
@@ -38396,7 +38542,7 @@
 	exports.default = View;
 
 /***/ },
-/* 175 */
+/* 176 */
 /*!***************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.hbs.html ***!
   \***************************************************************/
@@ -38412,7 +38558,7 @@
 
 
 /***/ },
-/* 176 */
+/* 177 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalConfidentialView.js ***!
   \********************************************************/
@@ -38428,7 +38574,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalConfidentialViewHbs = __webpack_require__(/*! ./legalConfidentialView.hbs.html */ 177);
+	var _legalConfidentialViewHbs = __webpack_require__(/*! ./legalConfidentialView.hbs.html */ 178);
 	
 	var _legalConfidentialViewHbs2 = _interopRequireDefault(_legalConfidentialViewHbs);
 	
@@ -38446,7 +38592,7 @@
 	exports.default = View;
 
 /***/ },
-/* 177 */
+/* 178 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalConfidentialView.hbs.html ***!
   \**************************************************************/
@@ -38462,7 +38608,7 @@
 
 
 /***/ },
-/* 178 */
+/* 179 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.js ***!
   \**********************************************************/
@@ -38478,7 +38624,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 179);
+	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 180);
 	
 	var _legalPostPublishingViewHbs2 = _interopRequireDefault(_legalPostPublishingViewHbs);
 	
@@ -38493,7 +38639,7 @@
 	exports.default = View;
 
 /***/ },
-/* 179 */
+/* 180 */
 /*!****************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.hbs.html ***!
   \****************************************************************/
@@ -38509,7 +38655,7 @@
 
 
 /***/ },
-/* 180 */
+/* 181 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.js ***!
   \**********************************************/
@@ -38525,17 +38671,17 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 181);
+	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 182);
 	
 	var _blogHomeViewHbs2 = _interopRequireDefault(_blogHomeViewHbs);
 	
-	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 99);
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 100);
 	
-	var _AsteroidCollection = __webpack_require__(/*! ../../data/AsteroidCollection.js */ 78);
+	var _AsteroidCollection = __webpack_require__(/*! ../../data/AsteroidCollection.js */ 79);
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
-	var _BlogItemsView = __webpack_require__(/*! ./BlogItemsView.js */ 182);
+	var _BlogItemsView = __webpack_require__(/*! ./BlogItemsView.js */ 183);
 	
 	var _BlogItemsView2 = _interopRequireDefault(_BlogItemsView);
 	
@@ -38547,7 +38693,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./blogHomeView.less */ 185);
+	__webpack_require__(/*! ./blogHomeView.less */ 186);
 	
 	var _backbone3 = __webpack_require__(/*! backbone */ 17);
 	
@@ -38713,7 +38859,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 181 */
+/* 182 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.hbs.html ***!
   \****************************************************/
@@ -38740,7 +38886,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 182 */
+/* 183 */
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemsView.js ***!
   \***********************************************/
@@ -38756,7 +38902,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.js */ 183);
+	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.js */ 184);
 	
 	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
 	
@@ -38770,7 +38916,7 @@
 	exports.default = View;
 
 /***/ },
-/* 183 */
+/* 184 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemView.js ***!
   \**********************************************/
@@ -38786,7 +38932,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.html */ 184);
+	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.html */ 185);
 	
 	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
 	
@@ -38807,7 +38953,7 @@
 	exports.default = View;
 
 /***/ },
-/* 184 */
+/* 185 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemView.html ***!
   \************************************************/
@@ -38870,7 +39016,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 185 */
+/* 186 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.less ***!
   \************************************************/
@@ -38879,7 +39025,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 186 */
+/* 187 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.js ***!
   \************************************************/
@@ -38895,13 +39041,13 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 187);
+	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 188);
 	
 	var _blogPostIdViewHbs2 = _interopRequireDefault(_blogPostIdViewHbs);
 	
-	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 99);
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 100);
 	
-	__webpack_require__(/*! ../../lib/magnific-popup/dist/jquery.magnific-popup.min.js */ 188);
+	__webpack_require__(/*! ../../lib/magnific-popup/dist/jquery.magnific-popup.min.js */ 189);
 	
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
@@ -38911,7 +39057,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./blogPostIdView.less */ 189);
+	__webpack_require__(/*! ./blogPostIdView.less */ 190);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38995,7 +39141,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 187 */
+/* 188 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.hbs.html ***!
   \******************************************************/
@@ -39011,7 +39157,7 @@
 
 
 /***/ },
-/* 188 */
+/* 189 */
 /*!**********************************************************************!*\
   !*** ./wwwroot/lib/magnific-popup/dist/jquery.magnific-popup.min.js ***!
   \**********************************************************************/
@@ -39396,7 +39542,7 @@
 	});
 
 /***/ },
-/* 189 */
+/* 190 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.less ***!
   \**************************************************/
@@ -39405,7 +39551,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 190 */
+/* 191 */
 /*!*********************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.js ***!
   \*********************************************************************************/
@@ -39421,11 +39567,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SuggestionsModalViewHbs = __webpack_require__(/*! ./SuggestionsModalView.hbs.html */ 191);
+	var _SuggestionsModalViewHbs = __webpack_require__(/*! ./SuggestionsModalView.hbs.html */ 192);
 	
 	var _SuggestionsModalViewHbs2 = _interopRequireDefault(_SuggestionsModalViewHbs);
 	
-	var _OsmSearchCollection = __webpack_require__(/*! ../../../data/OsmSearchCollection.js */ 57);
+	var _OsmSearchCollection = __webpack_require__(/*! ../../../data/OsmSearchCollection.js */ 58);
 	
 	var _OsmSearchCollection2 = _interopRequireDefault(_OsmSearchCollection);
 	
@@ -39433,9 +39579,9 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	__webpack_require__(/*! ./SuggestionsModalView.less */ 192);
+	__webpack_require__(/*! ./SuggestionsModalView.less */ 193);
 	
-	var _SuggestionListView = __webpack_require__(/*! ../SuggestionListView.js */ 61);
+	var _SuggestionListView = __webpack_require__(/*! ../SuggestionListView.js */ 62);
 	
 	var _SuggestionListView2 = _interopRequireDefault(_SuggestionListView);
 	
@@ -39494,7 +39640,7 @@
 	});
 
 /***/ },
-/* 191 */
+/* 192 */
 /*!***************************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.hbs.html ***!
   \***************************************************************************************/
@@ -39513,7 +39659,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 192 */
+/* 193 */
 /*!***********************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.less ***!
   \***********************************************************************************/
@@ -39522,7 +39668,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 193 */
+/* 194 */
 /*!******************************************!*\
   !*** ./wwwroot/css/shiners-override.css ***!
   \******************************************/
@@ -39531,7 +39677,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 194);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 195);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 40)(content, {});
@@ -39551,7 +39697,7 @@
 	}
 
 /***/ },
-/* 194 */
+/* 195 */
 /*!*********************************************************!*\
   !*** ./~/css-loader!./wwwroot/css/shiners-override.css ***!
   \*********************************************************/

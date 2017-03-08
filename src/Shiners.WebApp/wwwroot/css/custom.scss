@@ -1454,8 +1454,21 @@ input[type=radio] + label {
                     background: $sh-main-header-light-bg;
                     padding: 0 16px;
 
-                    .sh-map-item-view-info-panel-first {}
-                    .sh-map-item-view-info-panel-second {}
+                    .sh-map-item-view-info-panel-first {
+                        @include sh-display-flex();
+
+                        .sh-label-box {
+                            padding-left:0;
+                        }
+                    }
+
+                    .sh-map-item-view-info-panel-second {
+                        @include sh-display-flex();
+
+                        .sh-label-box {
+                            padding-right:0;
+                        }
+                    }
                 }
 
                 .sh-map-item-view-info-panel-bottom {
@@ -2040,6 +2053,7 @@ input[type=radio] + label {
                     -webkit-flex-basis: auto;
 	                -ms-flex-basis: auto;
 	                flex-basis: auto;
+                    width: 100%;
 					padding: 0 16px 16px;						
 				}
 					

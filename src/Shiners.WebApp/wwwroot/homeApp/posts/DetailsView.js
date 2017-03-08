@@ -9,6 +9,7 @@ import _ from 'underscore';
 import app from '../app.js';
 import  './DetailsView.less';
 import locationHelper from '../../helpers/locationHelper.js';
+import postDuration from '../../helpers/postDuration.js';
 
 var View = Marionette.View.extend({
     
@@ -33,7 +34,8 @@ var View = Marionette.View.extend({
         this.listenTo(app.user, 'logout', this.render);
     },
     onBeforeRender() {
-        this.setModelDistance();        
+        this.setModelDistance();
+        this.getPostDuration();
 
         if (app.asteroid.loggedIn) {
             this.templateContext = {
@@ -67,6 +69,12 @@ var View = Marionette.View.extend({
         };      
         VK.Widgets.Like("vk_like",options,this.model.id);
         app.FbButton(this.$('#fb_like').get(0));
+    },
+
+    getPostDuration() {       
+        var obj = postDuration.getPostDuration(this.model);
+
+        this.model.set('duration', obj);
     },
 
     initMapPost() {
@@ -122,7 +130,7 @@ var View = Marionette.View.extend({
             title: 'Ваш пост тут'
         });
 
-        window.pinn = this.pinn; // debug
+        //window.pinn = this.pinn; // debug
     },
 
     setModelDistance() {
