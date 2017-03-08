@@ -28387,8 +28387,7 @@
 	        hours = Math.floor((ms - days * 86400000) / 3600000);
 	        min = Math.floor((ms - days * 86400000 - hours * 3600000) / 60000);
 	
-	        //percent = ms / duration * 100;
-	        percent = 0;
+	        percent = ms / duration * 100;
 	
 	        /* get barClass */
 	        if (percent < 20) {
@@ -36361,9 +36360,10 @@
 	    className: 'sh-my-posts-item sh-page-block',
 	    onBeforeRender: function onBeforeRender() {
 	        this.getDistance();
+	        this.getPostState();
 	    },
 	    getDistance: function getDistance() {
-	        //window.mypost = this.model.toJSON(); //debug
+	        window.mypost = this.model.toJSON(); //debug
 	
 	        var locations = this.model.get('details').locations;
 	        if (locations && _.size(locations) > 0 && _app2.default.user.has('position')) {
@@ -36381,6 +36381,11 @@
 	            this.model.set('progress', 0);
 	        }
 	    },
+	    getPostState: function getPostState() {
+	        var state = this.model.get('status').visible;
+	        this.model.set('postState', state === 'visible' ? 'on' : 'off');
+	    },
+	
 	
 	    events: {
 	        '.js-remove-my-post click': function jsRemoveMyPostClick() {
@@ -36404,7 +36409,9 @@
 	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<!-- class .sh-my-posts-item-wrapper include .sh-post-live or .sh-post-away -->\n<div class="sh-my-posts-item-wrapper sh-type-category-'+
+	__p+='<!-- class .sh-my-posts-item-wrapper include .sh-post-live or .sh-post-away -->\n<div class="sh-my-posts-item-wrapper sh-post-'+
+	((__t=( postState))==null?'':__t)+
+	' sh-type-category-'+
 	((__t=(type))==null?'':__t)+
 	'">\n    ';
 	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );

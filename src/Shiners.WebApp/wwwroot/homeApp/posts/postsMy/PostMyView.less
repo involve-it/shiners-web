@@ -172,6 +172,30 @@ body {
                         &.sh-post-away {}
 
                         &.sh-type-category- {}
+
+                        &.sh-post-off {
+                            position: relative;
+                            -webkit-filter: grayscale(100%);
+                            filter: grayscale(100%);
+                            -webkit-transition: all .15s;
+                            transition: all .15s;
+
+                            &:after {
+                                position: absolute;
+                                left: 0;
+                                right: 0;
+                                top: 0;
+                                bottom: 0;
+                                content: '';
+                                background-image: -webkit-linear-gradient(-45deg,rgba(255,255,255,.4) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.4) 75%,transparent 75%,transparent);
+                                background-image: linear-gradient(-45deg,rgba(255,255,255,.4) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.4) 75%,transparent 75%,transparent);
+                                background-size: 170px 170px;
+                                background-color: rgba(200, 200, 200, 0.15);
+                                z-index: 2;
+                            }
+                        }
+
+                        &.sh-post-on {}
                     }
 
                     &:last-child {

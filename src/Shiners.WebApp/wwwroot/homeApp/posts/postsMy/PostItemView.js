@@ -9,9 +9,11 @@ var View = Marionette.View.extend({
     className: 'sh-my-posts-item sh-page-block',
     onBeforeRender() {
         this.getDistance();
+        this.getPostState();
     },
+
     getDistance() {
-        //window.mypost = this.model.toJSON(); //debug
+        window.mypost = this.model.toJSON(); //debug
 
         var locations = this.model.get('details').locations;
         if (locations && _.size(locations) > 0 && app.user.has('position')) {
@@ -28,6 +30,12 @@ var View = Marionette.View.extend({
             this.model.set('progress',0);
         }
     },
+
+    getPostState() {
+        var state = this.model.get('status').visible;       
+        this.model.set('postState', (state === 'visible') ? 'on' : 'off');
+    },
+
     events: {
         '.js-remove-my-post click': ()=>{
             debugger;

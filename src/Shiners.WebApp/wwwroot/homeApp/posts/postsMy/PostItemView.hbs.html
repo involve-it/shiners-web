@@ -1,5 +1,5 @@
 ﻿<!-- class .sh-my-posts-item-wrapper include .sh-post-live or .sh-post-away -->
-<div class="sh-my-posts-item-wrapper sh-type-category-{{=type}}">
+<div class="sh-my-posts-item-wrapper sh-post-{{= postState}} sh-type-category-{{=type}}">
     {{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}
     <div class="sh-my-posts-item-photo">        
         <div class="sh-my-posts-item-photo-wrapper">
