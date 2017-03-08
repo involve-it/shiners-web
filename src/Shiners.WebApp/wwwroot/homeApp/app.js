@@ -42,10 +42,10 @@ let App = Marionette.Application.extend({
     },
     initialize() { 
         /* web server */ 
-        //this.asteroid = new Asteroid("www.shiners.mobi", true);
+        this.asteroid = new Asteroid("www.shiners.mobi", true);
 
         /* local server */
-        this.asteroid = new Asteroid("192.168.1.38:3000", false);
+        //this.asteroid = new Asteroid("192.168.1.38:3000", false);
 
         //window.asteroid = this.asteroid; // debug        
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
