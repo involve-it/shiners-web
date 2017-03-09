@@ -16009,10 +16009,10 @@
 	    },
 	    initialize: function initialize() {
 	        /* web server */
-	        //this.asteroid = new Asteroid("www.shiners.mobi", true);
+	        this.asteroid = new _asteroidBrowser2.default("www.shiners.mobi", true);
 	
 	        /* local server */
-	        this.asteroid = new _asteroidBrowser2.default("192.168.1.38:3000", false);
+	        //this.asteroid = new Asteroid("192.168.1.38:3000", false);
 	
 	        //window.asteroid = this.asteroid; // debug        
 	        this.user = new _AsteroidModel2.default(null, { asteroid: this.asteroid });
