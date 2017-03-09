@@ -356,7 +356,11 @@ var View = Marionette.View.extend({
                 take: 200
                 //limit: 200
             };
-        }        
+        }
+        
+        console.log('Arguments:', args);
+        console.log('Method of search:', method);
+
         this.collection.loadByMethod(method, args);
     }
 });

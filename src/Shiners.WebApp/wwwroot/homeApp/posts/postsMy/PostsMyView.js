@@ -8,7 +8,8 @@ var View = Marionette.CompositeView.extend({
     template:template,
     childView:ItemView,
     childViewContainer:'#myPostsContaner',
-    onRender() {
-    }
+
+    onRender() {}
+
 });
 export default View;

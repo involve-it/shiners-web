@@ -19,7 +19,6 @@ import PreloaderView from '../sharedViews/PreloaderView.js';
 import '../css/shiners-override.css';
 import $ from 'jquery';
 
-
 let App = Marionette.Application.extend({
     region:'body',
     layout:null,
@@ -42,15 +41,15 @@ let App = Marionette.Application.extend({
     },
     initialize() { 
         /* web server */ 
-        //this.asteroid = new Asteroid("www.shiners.mobi", true);
+        this.asteroid = new Asteroid("www.shiners.mobi", true);
 
         /* local server */
-        this.asteroid = new Asteroid("192.168.1.38:3000", false);
+        //this.asteroid = new Asteroid("192.168.1.38:3000", false);
 
         //window.asteroid = this.asteroid; // debug        
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
         this.postAdTypes = new Collection(null, { asteroid: this.asteroid });
-        this.myPosts=new Collection(null, { asteroid: this.asteroid });  
+        this.myPosts = new Collection(null, { asteroid: this.asteroid });  
         this.myChats=new Collection(null, { asteroid: this.asteroid });
         this.nearbyPosts = new Collection(null,{asteroid:this.asteroid});
         this.myMessages = new Collection(null,{asteroid:this.asteroid});

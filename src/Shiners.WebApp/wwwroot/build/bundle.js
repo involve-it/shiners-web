@@ -26504,6 +26504,10 @@
 	                //limit: 200
 	            };
 	        }
+	
+	        console.log('Arguments:', args);
+	        console.log('Method of search:', method);
+	
 	        this.collection.loadByMethod(method, args);
 	    }
 	});
@@ -36300,6 +36304,7 @@
 	    template: _PostsMyViewHbs2.default,
 	    childView: _PostItemView2.default,
 	    childViewContainer: '#myPostsContaner',
+	
 	    onRender: function onRender() {}
 	});
 	exports.default = View;
