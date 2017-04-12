@@ -123,7 +123,8 @@ export default Marionette.View.extend({
         //-> Нужно сделать рендер для detailsView
 
         this.remove();
-        this.trigger('destroy');
+        this.trigger('destroy');        
+        //this.$el.closest('.modal-content').find('.modal-header .close').trigger('click');
     }
 
 

@@ -25,9 +25,9 @@ var View = Marionette.View.extend({
     events:{
         'submit form':'onSubmit',
         'change input':'onChange',
-        'click #sh-auth-vk': 'authVk',
-        'click #sh-auth-facebook': 'authFacebook',
-        'click #sh-auth-google-plus': 'authGooglePlus'
+        //'click #sh-auth-vk': 'authVk',
+        //'click #sh-auth-facebook': 'authFacebook',
+        //'click #sh-auth-google-plus': 'authGooglePlus'
     },
 
     authVk(e) {

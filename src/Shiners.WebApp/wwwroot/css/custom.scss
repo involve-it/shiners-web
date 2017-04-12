@@ -633,21 +633,29 @@ input[type=radio] + label {
         }
 
         .sh-shiners-list-item {
-            position: relative;
-            padding: 10px;
+            position: relative;            
+
+            a {
+                display: block;
+                overflow: hidden;
+                padding: 10px;                
+                color: $sh-main-lightgray-color;
+            }
 
             .thumbnail {
                 padding: 0;
-                margin: 0 16px 0 0;
+                margin: 0 10px 0 0;
                 border: none;
                 @include border-radius(2px);
             }
 
             h4 {
-                font-size: 14px;
+                font-size: 15px;
+                line-height: 18px;
                 font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
                 font-weight: 400;
-                margin-bottom: 28px;
+                letter-spacing: 0.2px;
+                margin-bottom: 20px;
 
                 a {
                     color: $sh-main-black-color;
@@ -655,20 +663,24 @@ input[type=radio] + label {
             }
 
             .sh-shiners-list-footer {
-               position: absolute;
-               height: 22px;
-               line-height: 20px;
-               bottom: 8px;
-               left: 16px;
-               right:16px; 
+               position: relative;
+               
+               span {
+                   font-size: 12px;
+                   margin-right: 6px;
 
-               span[class*="bg-type-category-"] {
-                   font-size: 11px;
-               }
+                   &:last-child {
+                       margin-right: 0;
+                   }
 
-               .sh-shiners-list-time {
-                   font-size: 11px;
-               }
+                   &.label {
+                       padding: 3px 6px;
+                   }
+               }               
+
+               span[class*="bg-type-category-"] {}
+
+               .sh-shiners-list-time {}
 
                .sh-shiners-list-time + span[class*="bg-type-category-"] {
                    margin-right: 6px;

@@ -51,8 +51,8 @@
                                     {{if(obj.stats) { }}
                                     <li><div><span class="sh-item">Просмотров</span><span class="sh-item-right">{{=stats.seenTotal}}</span></div></li>
                                     {{ } }}
-                                    {{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}
-                                    <li><div><span class="sh-item">Статус</span><span class="sh-item-right">{{=isDynamic?'Динамический':'Статический'}}</span></div></li>
+                                    <!--{{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}-->
+                                    <li><div><span class="sh-item">Статус</span><span class="sh-item-right">{{=user.online ? 'online' : 'offline'}}</span></div></li>
                                     {{if (obj.type) { }}
                                     <li><div><span class="sh-item">Тип</span><span class="sh-item-right"><span class="label bg-type-category-{{=obj.type}}">{{=obj.type}}</span></span></div></li>
                                     {{ } }}
@@ -177,8 +177,8 @@
                                 {{if(obj.stats) { }}
                                 <li><div><span class="sh-item">Просмотров</span><span class="sh-item-right">{{=stats.seenTotal}}</span></div></li>
                                 {{ } }}
-                                {{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}
-                                <li><div><span class="sh-item">Статус</span><span class="sh-item-right">{{=isDynamic?'Динамический':'Статический'}}</span></div></li>
+                                <!--{{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}-->
+                                <li><div><span class="sh-item">Статус</span><span class="sh-item-right">{{=user.online ? 'online' : 'offline'}}</span></div></li>
                                 {{if (obj.type) { }}
                                 <li><div><span class="sh-item">Тип</span><span class="sh-item-right"><span class="label bg-type-category-{{=obj.type}}">{{=obj.type}}</span></span></div></li>
                                 {{ } }}

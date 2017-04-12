@@ -21735,6 +21735,8 @@
 	    POST_LEFT: 'Left',
 	    DIRECT_PROFILE_LINK: 'direct profile link',
 	    CREATE_SHINER: 'Create a shiner',
+	    SEARCH_PLACEHOLDER: 'Search',
+	
 	    // banner
 	    shiners_are: 'SHINERS - ARE',
 	    live_meetings: 'MEETING IN REAL-TIME',
@@ -21742,6 +21744,7 @@
 	    LIVE_ADS: 'LIVE ADS AROUND',
 	    NEARBY_SERVICES: 'NEARBY SERVICES',
 	    undefined_place: 'The location is not defined',
+	
 	    //home view
 	    how_it_works: 'How it works',
 	    post_types: 'Types of ads and posts',
@@ -21764,9 +21767,10 @@
 	    footer_disclaimer_text2: ' Terms of Use',
 	    footer_all_rights_reserved: 'Shiners 2017, all rights reserved',
 	    footer_menu_post_publishing_rules: 'Post publishing rules',
+	
 	    //MASS MEDIA
-	    h_information_for_smi: '���������� ��� ���'
-	}, _defineProperty(_json, 'massMedia', '������ � ���'), _defineProperty(_json, 'press_release', '�����-������'), _defineProperty(_json, 'press_contacts', '�������� ��� ������'), _defineProperty(_json, 'h_meet_us', '���������� � ����'), _defineProperty(_json, 'h_mass_media', '������ � ���'), _defineProperty(_json, 'm_about_us', '� ���'), _defineProperty(_json, 'm_help', '������'), _defineProperty(_json, 'm_confidentiality', '������������������'), _defineProperty(_json, 'm_terms_of_use', '������� �����������'), _defineProperty(_json, 'site_published', '���� ����������'), _defineProperty(_json, 'download_press_release', '������� �����-�����'), _defineProperty(_json, 'ashot_a', '���� ��������'), _defineProperty(_json, 'tatyana_u', '������� �������'), _json);
+	    h_information_for_smi: 'Информация для СМИ'
+	}, _defineProperty(_json, 'massMedia', 'Пресса о нас'), _defineProperty(_json, 'press_release', 'Пресс-релизы'), _defineProperty(_json, 'press_contacts', 'Контакты для прессы'), _defineProperty(_json, 'h_meet_us', 'Знакомство с нами'), _defineProperty(_json, 'h_mass_media', 'Пресса о нас'), _defineProperty(_json, 'm_about_us', 'О нас'), _defineProperty(_json, 'm_help', 'Помощь'), _defineProperty(_json, 'm_confidentiality', 'Конфиденциальность'), _defineProperty(_json, 'm_terms_of_use', 'Правила пользования'), _defineProperty(_json, 'site_published', 'Сайт публикации'), _defineProperty(_json, 'download_press_release', 'Скачать пресс-релиз'), _defineProperty(_json, 'ashot_a', 'Ашот Арутюнян'), _defineProperty(_json, 'tatyana_u', 'Татьяна Урусова'), _defineProperty(_json, 'home_accordion_section1', 'If you already have an advertisement on another website, just use that Url to create a Shiner!'), _defineProperty(_json, 'home_accordion_section2', 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone'), _defineProperty(_json, 'home_accordion_section3', 'Use Shiners for finding new live connections everywhere'), _defineProperty(_json, 'home_shiners_are_around', 'Shiners are everywhere'), _defineProperty(_json, 'home_lot_of_opportunities', 'A lot of opportunities for business around'), _defineProperty(_json, 'home_participate', 'Participate '), _defineProperty(_json, 'home_free', 'for free'), _defineProperty(_json, 'home_in_project', ' in the project!'), _defineProperty(_json, 'home_contact_with_people', 'Let others know about your ad instantly'), _defineProperty(_json, 'home_set_your_shiner', 'Create your Shiner'), _defineProperty(_json, 'search_free_search', 'Free search by words'), _defineProperty(_json, 'search_choose_radius', 'Search Radius (km):'), _defineProperty(_json, 'search_parameters', 'Search Parameters'), _defineProperty(_json, 'search_found', 'Found Shiners'), _defineProperty(_json, 'search_not_found', 'No posts found around'), _defineProperty(_json, 'about_intro_text', 'Мы считаем, это замечательно - иметь инструмент, который помогает людям вокруг сотрудничать друг с другом, находить людей и занятия прямо здесь, и прямо сейчас. SHINERS показывает людям объявления вокруг с привязкой к человеку и его локации.'), _defineProperty(_json, 'about_intro_duration', 'Продолжительность'), _defineProperty(_json, 'about_intro_duration_minute', 'мин.'), _defineProperty(_json, 'about_menu_how_it_works', 'КАК ЭТО РАБОТАЕТ?'), _defineProperty(_json, 'about_menu_what_are_we_useful', 'ЧЕМ МЫ ПОЛЕЗНЫ?'), _defineProperty(_json, 'about_menu_our_team', 'НАША КОМАНДА'), _defineProperty(_json, 'about_menu_connect_with_us', 'СВЯЗАТЬСЯ С НАМИ'), _defineProperty(_json, 'about_title_section_1', 'Единственный сервис, предлагающий живое присутствие!'), _defineProperty(_json, 'about_title_section_1_p1', 'Светлячки позволяют привязать объявление или любой адрес в интернете к текущему местоположению пользователя, и, как результат, осуществлять мгновенный поиск информации среди людей вокруг. Это позволяет искать информацию здесь и сейчас с целью мгновенной встречи с ее владельцем. Ненужное промежуточное звено (поиск по интернету, договор о встрече, дорогу к месту) можно исключить, если потенциально интересующий нас человек находится поблизости.'), _defineProperty(_json, 'about_title_section_1_p2', 'Мы расширяем возможности Веба, посредством привязки информации к реальным людям и координатам, что дает веб-ресурсам новое,- пространство-временное, качество, то есть путь напрямик к цели! Нас также видно в Google и соцсетях, и поэтому твое объявление превращается в собственную интернет-страницу, которую при желании увидит весь интернет.'), _defineProperty(_json, 'about_title_section_2', 'Как это работает?'), _defineProperty(_json, 'about_title_section_2_intro', 'Представь себе виртуальную визитку, только носишь ты ее не в кошельке, а в мобильном телефоне, и видят ее не избранные, а все, кто рядом!'), _defineProperty(_json, 'about_title_create_post', 'Создай свой пост'), _defineProperty(_json, 'about_title_you_are_find', 'Ты находишь / Тебя находят'), _defineProperty(_json, 'about_title_contract_meeting', 'Договаривайся / Встречайся'), _defineProperty(_json, 'about_title_section_3', 'Чем мы полезны?'), _defineProperty(_json, 'about_title_section_3_intro', 'Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.'), _defineProperty(_json, 'about_block_ads', 'ОБЪЯВЛЕНИЕ'), _defineProperty(_json, 'about_block_ads_text', 'Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".'), _defineProperty(_json, 'about_block_link', 'ССЫЛКА'), _defineProperty(_json, 'about_block_link_text', 'Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!'), _defineProperty(_json, 'about_block_dynamic', 'ДИНАМИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_dynamic_text', 'Движется вместе с тобой. Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!'), _defineProperty(_json, 'about_block_static', 'СТАТИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_static_text', 'Привязан к заданной тобой местности. Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!'), _defineProperty(_json, 'about_btn_set_your_shiners', 'Станови свой Светлячок'), _defineProperty(_json, 'about_who_we_are_title', 'КТО МЫ'), _defineProperty(_json, 'about_who_we_are_text', 'Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости.'), _defineProperty(_json, 'about_security_title', 'БЕЗОПАСНОСТЬ'), _defineProperty(_json, 'about_security_text', 'Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!'), _defineProperty(_json, 'about_rules_title', 'ПРАВИЛА'), _defineProperty(_json, 'about_rules_text', 'При регистрации на «Cветлячках» Пользователь соглашается с'), _defineProperty(_json, 'about_rules_text_link1', 'настоящими правилами'), _defineProperty(_json, 'about_title_section_4', 'Связаться с нами'), _defineProperty(_json, 'about_title_section_4_intro', 'Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!'), _defineProperty(_json, 'about_your_name', 'Ваше имя'), _defineProperty(_json, 'about_your_email', 'Ваш email'), _defineProperty(_json, 'about_your_message', 'Ваше сообщение'), _defineProperty(_json, 'about_btn_send_msg', 'Отправить'), _defineProperty(_json, 'post_d_summary_information', ''), _defineProperty(_json, 'post_d_views', 'Просмотров'), _defineProperty(_json, 'post_d_status', 'Статус'), _defineProperty(_json, 'post_d_type', 'Тип'), _defineProperty(_json, 'post_d_distance', 'Дистанция'), _defineProperty(_json, 'post_d_report_this_post', 'Сообщите об этом объявлении'), _defineProperty(_json, 'post_description_t', 'Описание'), _defineProperty(_json, 'post_location_place_t', 'Местоположение'), _defineProperty(_json, 'post_comments_t', 'Комментарии'), _defineProperty(_json, 'post_connect_to_user', 'Связаться с пользователем'), _defineProperty(_json, 'post_about_post', 'Об этом посте'), _defineProperty(_json, 'post_comment', 'Комментарий'), _defineProperty(_json, 'post_comments', 'Комментарии'), _defineProperty(_json, 'messages_send', 'Отправить'), _defineProperty(_json, 'messages_for_user', 'Сообщение для'), _json);
 	i18n.add('en', json);
 
 /***/ },
@@ -21799,14 +21803,17 @@
 	    map: 'Карта',
 	    POST_STATUS: 'Объявление закрыто',
 	    POST_LEFT: 'Осталось',
-	    // banner
+	    SEARCH_PLACEHOLDER: 'Поиск',
+	
+	    // BANNER
 	    shiners_are: 'СВЕТЛЯЧКИ - ЭТО',
 	    live_meetings: 'ВСТРЕЧИ В РЕАЛЬНОМ ВРЕМЕНИ',
 	    nearby_business: 'БИЗНЕСЫ В ДВУХ ШАГАХ',
 	    LIVE_ADS: 'ЖИВЫЕ ОБЪЯВЛЕНИЯ ВОКРУГ',
 	    NEARBY_SERVICES: 'УСЛУГИ ПОБЛИЗОСТИ',
 	    undefined_place: 'Местоположение не определено',
-	    // home view
+	
+	    // HOME VIEW
 	    how_it_works: 'Как это работает',
 	    post_types: 'Виды объявлений и постов',
 	    SITE_SUBTITLE: 'Сайт для поиска услуг, мероприятий и других объявлений от людей вокруг Вас',
@@ -21828,6 +21835,7 @@
 	    footer_disclaimer_text2: 'пользовательским соглашением',
 	    footer_all_rights_reserved: 'Светлячки 2017, Все права защищены',
 	    footer_menu_post_publishing_rules: 'Правила размещения рекламных объявлений',
+	
 	    //MASS MEDIA
 	    h_information_for_smi: 'Информация для СМИ',
 	    massMedia: 'Пресса о нас',
@@ -21842,8 +21850,83 @@
 	    site_published: 'Сайт публикации',
 	    download_press_release: 'Скачать пресс-релиз',
 	    ashot_a: 'Ашот Арутюнян',
-	    tatyana_u: 'Татьяна Урусова'
+	    tatyana_u: 'Татьяна Урусова',
 	
+	    home_accordion_section1: 'Если у тебя уже есть пост на другом ресурсе–просто размести ссылку на него-и получи готовый Светлячок!',
+	    home_accordion_section2: 'Светлячки — это живые объявления от людей поблизости. Представь себе виртуальную визитку, только носят её не в кошельке, а в мобильном телефоне, и видят её не избранные, а все те, кто рядом',
+	    home_accordion_section3: 'Используй Светлячки для установки быстрых живых контактов- встреч, в нужное время, в нужном месте.',
+	    home_shiners_are_around: 'Светлячки повсюду',
+	    home_lot_of_opportunities: 'Множество возможностей для бизнеса вместе с Shiners',
+	    home_participate: 'Участвуй ',
+	    home_free: 'бесплатно',
+	    home_in_project: ' в проекте!',
+	    home_contact_with_people: 'Контактируй с людьми, предложи свои услуги на сайте',
+	    home_set_your_shiner: 'Создай свой пост',
+	    search_free_search: 'Свободный поиск по словам',
+	    search_choose_radius: 'Радиус поиска (км):',
+	    search_parameters: 'Параметры поиска',
+	    search_found: 'Найденные светлячки',
+	    search_not_found: 'Поблизости не найдено светлячков',
+	
+	    // ABOUT US
+	    about_intro_text: 'Мы считаем, это замечательно - иметь инструмент, который помогает людям вокруг сотрудничать друг с другом, находить людей и занятия прямо здесь, и прямо сейчас. SHINERS показывает людям объявления вокруг с привязкой к человеку и его локации.',
+	    about_intro_duration: 'Продолжительность',
+	    about_intro_duration_minute: 'мин.',
+	    about_menu_how_it_works: 'КАК ЭТО РАБОТАЕТ?',
+	    about_menu_what_are_we_useful: 'ЧЕМ МЫ ПОЛЕЗНЫ?',
+	    about_menu_our_team: 'НАША КОМАНДА',
+	    about_menu_connect_with_us: 'СВЯЗАТЬСЯ С НАМИ',
+	    about_title_section_1: 'Единственный сервис, предлагающий живое присутствие!',
+	    about_title_section_1_p1: 'Светлячки позволяют привязать объявление или любой адрес в интернете к текущему местоположению пользователя, и, как результат, осуществлять мгновенный поиск информации среди людей вокруг. Это позволяет искать информацию здесь и сейчас с целью мгновенной встречи с ее владельцем. Ненужное промежуточное звено (поиск по интернету, договор о встрече, дорогу к месту) можно исключить, если потенциально интересующий нас человек находится поблизости.',
+	    about_title_section_1_p2: 'Мы расширяем возможности Веба, посредством привязки информации к реальным людям и координатам, что дает веб-ресурсам новое,- пространство-временное, качество, то есть путь напрямик к цели! Нас также видно в Google и соцсетях, и поэтому твое объявление превращается в собственную интернет-страницу, которую при желании увидит весь интернет.',
+	    about_title_section_2: 'Как это работает?',
+	    about_title_section_2_intro: 'Представь себе виртуальную визитку, только носишь ты ее не в кошельке, а в мобильном телефоне, и видят ее не избранные, а все, кто рядом!',
+	    about_title_create_post: 'Создай свой пост',
+	    about_title_you_are_find: 'Ты находишь / Тебя находят',
+	    about_title_contract_meeting: 'Договаривайся / Встречайся',
+	    about_title_section_3: 'Чем мы полезны?',
+	    about_title_section_3_intro: 'Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.',
+	    about_block_ads: 'ОБЪЯВЛЕНИЕ',
+	    about_block_ads_text: 'Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".',
+	    about_block_link: 'ССЫЛКА',
+	    about_block_link_text: 'Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!',
+	    about_block_dynamic: 'ДИНАМИЧЕСКИЙ ПОСТ',
+	    about_block_dynamic_text: 'Движется вместе с тобой. Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!',
+	    about_block_static: 'СТАТИЧЕСКИЙ ПОСТ',
+	    about_block_static_text: 'Привязан к заданной тобой местности. Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!',
+	    about_btn_set_your_shiners: 'Станови свой Светлячок',
+	    about_who_we_are_title: 'КТО МЫ',
+	    about_who_we_are_text: 'Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости.',
+	    about_security_title: 'БЕЗОПАСНОСТЬ',
+	    about_security_text: 'Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!',
+	    about_rules_title: 'ПРАВИЛА',
+	    about_rules_text: 'При регистрации на «Cветлячках» Пользователь соглашается с',
+	    about_rules_text_link1: 'настоящими правилами',
+	    about_title_section_4: 'Связаться с нами',
+	    about_title_section_4_intro: 'Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!',
+	    about_your_name: 'Ваше имя',
+	    about_your_email: 'Ваш email',
+	    about_your_message: 'Ваше сообщение',
+	    about_btn_send_msg: 'Отправить',
+	
+	    // POST DETAILS
+	    post_d_summary_information: '',
+	    post_d_views: 'Просмотров',
+	    post_d_status: 'Статус',
+	    post_d_type: 'Тип',
+	    post_d_distance: 'Дистанция',
+	    post_d_report_this_post: 'Сообщите об этом объявлении',
+	    post_description_t: 'Описание',
+	    post_location_place_t: 'Местоположение',
+	    post_comments_t: 'Комментарии',
+	    post_connect_to_user: 'Связаться с пользователем',
+	    post_about_post: 'Об этом посте',
+	    post_comment: 'Комментарий',
+	    post_comments: 'Комментарии',
+	
+	    // MESSAGES
+	    messages_send: 'Отправить',
+	    messages_for_user: 'Сообщение для'
 	};
 	i18n.add('ru', json);
 
@@ -26505,8 +26588,8 @@
 	            };
 	        }
 	
-	        console.log('Arguments:', args);
-	        console.log('Method of search:', method);
+	        //console.log('Arguments:', args);
+	        //console.log('Method of search:', method);
 	
 	        this.collection.loadByMethod(method, args);
 	    }
@@ -26764,7 +26847,7 @@
 	((__t=(i18n('search_free_search')))==null?'':__t)+
 	'</em>\n        </span>\n    </div>\n</div>\n<div class="sh-map-distance">\n    <div class="margin-bottom-10">\n        <label for="radius">'+
 	((__t=(i18n('search_choose_radius')))==null?'':__t)+
-	'</label>\n        <input type="hidden" name="radius" id="radius" class="form-control">\n    </div>\n    <div class="slider-wrapper info-slider">\n        <div id="slider3"></div>\n    </div>\n</div>\n<div id="searchParameters" style="display: none">\n    <div class="ui sh-accordion toggle toggle-accordion">\n        <div class="toggle">\n            <label>'+
+	'</label>\n        <input type="hidden" name="radius" id="radius" class="form-control">\n    </div>\n    <div class="slider-wrapper info-slider">\n        <div id="slider3"></div>\n    </div>\n</div>\n<div id="searchParameters" style="display: none">\n    <div class="ui sh-accordion toggle">\n        <div class="toggle">\n            <label>'+
 	((__t=(i18n('search_parameters')))==null?'':__t)+
 	'</label>\n            <div class="toggle-content">                \n                <div id="selectCategories"></div>\n            </div>\n        </div>\n        <div class="toggle '+
 	((__t=(isMobile?'':'active'))==null?'':__t)+
@@ -27964,31 +28047,31 @@
 	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<img class="thumbnail pull-left" src="'+
-	((__t=(details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/no_image.png'))==null?'':__t)+
-	'" width="60" height="60" alt="" />\n<h4 class="noborder nopadding"><a href="/posts/'+
+	__p+='<a href="/posts/'+
 	((__t=(_id))==null?'':_.escape(__t))+
-	'">'+
+	'">\r\n    <img class="thumbnail pull-left" src="'+
+	((__t=(details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/no_image.png'))==null?'':__t)+
+	'" width="60" height="60" alt="" />\r\n    <h4 class="noborder nopadding">'+
 	((__t=(details.title))==null?'':__t)+
-	'</a></h4>\n<div class="sh-shiners-list-footer">\n    <span class="sh-shiners-list-time pull-right">\n        '+
+	'</h4>\r\n    <div class="sh-shiners-list-footer pull-right">\r\n        ';
+	if(obj.type) { 
+	__p+='\r\n            <span class="label bg-type-category-'+
+	((__t=(type))==null?'':__t)+
+	'">'+
+	((__t=(type))==null?'':__t)+
+	'</span>\r\n        ';
+	 } 
+	__p+=' \r\n        <span class="sh-shiners-list-time">\r\n            '+
 	((__t=(moment(timestamp).fromNow()))==null?'':__t)+
-	' &nbsp;\n        ';
+	'          \r\n        </span>\r\n        <span>\r\n            ';
 	if(obj.distance && obj.distanceType){ 
-	__p+='\n            <i class="fa fa-location-arrow"></i> '+
+	__p+='\r\n                <i class="fa fa-location-arrow"></i> '+
 	((__t=(distance>=0?distance.toFixed(1):'Не определена'))==null?'':__t)+
 	' '+
 	((__t=(distanceType==='km'?'км':'miles'))==null?'':__t)+
-	'\n        ';
+	'\r\n            ';
 	 } 
-	__p+='\n    </span>\n    ';
-	if(obj.type) { 
-	__p+='\n    <span class="pull-right label bg-type-category-'+
-	((__t=(type))==null?'':__t)+
-	'">'+
-	((__t=(type))==null?'':__t)+
-	'</span>\n    ';
-	 } 
-	__p+='\n    \n</div>';
+	__p+='\r\n        </span>\r\n    </div>\r\n</a>';
 	}
 	return __p;
 	};
@@ -28161,12 +28244,11 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	'use strict';
-	
 	/**
 	 * Created by arutu_000 on 12/9/2016.
 	 */
 	
+	/*
 	var json = {
 	    home_accordion_section1: 'If you already have an advertisement on another website, just use that Url to create a Shiner!',
 	    home_accordion_section2: 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone',
@@ -28184,7 +28266,10 @@
 	    search_found: 'Found Shiners',
 	    search_not_found: 'No posts found around'
 	};
+
 	i18n.add('en', json);
+	*/
+	"use strict";
 
 /***/ },
 /* 52 */
@@ -28193,11 +28278,11 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	'use strict';
-	
 	/**
 	 * Created by arutu_000 on 12/9/2016.
 	 */
+	
+	/*
 	var json = {
 	    home_accordion_section1: 'Если у тебя уже есть пост на другом ресурсе–просто размести ссылку на него-и получи готовый Светлячок!',
 	    home_accordion_section2: 'Светлячки — это живые объявления от людей поблизости. Представь себе виртуальную визитку, только носят её не в кошельке, а в мобильном телефоне, и видят её не избранные, а все те, кто рядом',
@@ -28209,13 +28294,17 @@
 	    home_in_project: ' в проекте!',
 	    home_contact_with_people: 'Контактируй с людьми, предложи свои услуги на сайте',
 	    home_set_your_shiner: 'Создай свой пост',
+
 	    search_free_search: 'Свободный поиск по словам',
 	    search_choose_radius: 'Радиус поиска (км):',
 	    search_parameters: 'Параметры поиска',
 	    search_found: 'Найденные светлячки',
 	    search_not_found: 'Поблизости не найдено светлячков'
 	};
+
 	i18n.add('ru', json);
+	*/
+	"use strict";
 
 /***/ },
 /* 53 */
@@ -31407,9 +31496,7 @@
 	    onRender: function onRender() {
 	        this.showChildView('postTypes', new _PostTypesView2.default({ collection: _app2.default.postAdTypes }));
 	    },
-	    onAttach: function onAttach() {
-	        this.initParallax();
-	    },
+	    onAttach: function onAttach() {},
 	    toggleSlide: function toggleSlide(e) {
 	        var previewParClosedHeight = 25;
 	
@@ -31446,20 +31533,6 @@
 	            });
 	            toggleContent.slideUp(350);
 	        }
-	    },
-	    initParallax: function initParallax() {
-	
-	        // jQuery(".parallax-1").css("background-attachment", "fixed");
-	        this.$(".parallax-1").parallax("50%", "0.1");
-	
-	        // jQuery(".parallax-2").css("background-attachment", "fixed");
-	        this.$(".parallax-2").parallax("50%", "0.2");
-	
-	        // jQuery(".parallax-3").css("background-attachment", "fixed");
-	        this.$(".parallax-3").parallax("50%", "0.3");
-	
-	        // jQuery(".parallax-4").css("background-attachment", "fixed");
-	        this.$(".parallax-4").parallax("50%", "0.4");
 	    }
 	});
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
@@ -31708,11 +31781,10 @@
   \******************************************/
 /***/ function(module, exports) {
 
-	'use strict';
-	
 	/**
 	 * Created by arutu_000 on 12/9/2016.
 	 */
+	/*
 	var json = {
 	    home_accordion_section1: 'Если у тебя уже есть пост на другом ресурсе–просто размести ссылку на него-и получи готовый Светлячок!',
 	    home_accordion_section2: 'Светлячки — это живые объявления от людей поблизости. Представь себе виртуальную визитку, только носят её не в кошельке, а в мобильном телефоне, и видят её не избранные, а все те, кто рядом',
@@ -31725,7 +31797,10 @@
 	    home_contact_with_people: 'Контактируй с людьми, предложи свои услуги на сайте',
 	    home_set_your_shiner: 'Создай свой пост'
 	};
+
 	i18n.add('ru', json);
+	*/
+	"use strict";
 
 /***/ },
 /* 95 */
@@ -31734,12 +31809,11 @@
   \******************************************/
 /***/ function(module, exports) {
 
-	'use strict';
-	
 	/**
 	 * Created by arutu_000 on 12/9/2016.
 	 */
 	
+	/*
 	var json = {
 	    home_accordion_section1: 'If you already have an advertisement on another website, just use that Url to create a Shiner!',
 	    home_accordion_section2: 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone',
@@ -31751,8 +31825,12 @@
 	    home_in_project: ' in the project!',
 	    home_contact_with_people: 'Let others know about your ad instantly',
 	    home_set_your_shiner: 'Create your Shiner'
+	    
 	};
+
 	i18n.add('en', json);
+	*/
+	"use strict";
 
 /***/ },
 /* 96 */
@@ -32188,10 +32266,10 @@
 	((__t=(stats.seenTotal))==null?'':__t)+
 	'</span></div></li>\r\n                                    ';
 	 } 
-	__p+='\r\n                                    ';
+	__p+='\r\n                                    <!--';
 	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
-	__p+='\r\n                                    <li><div><span class="sh-item">Статус</span><span class="sh-item-right">'+
-	((__t=(isDynamic?'Динамический':'Статический'))==null?'':__t)+
+	__p+='-->\r\n                                    <li><div><span class="sh-item">Статус</span><span class="sh-item-right">'+
+	((__t=(user.online ? 'online' : 'offline'))==null?'':__t)+
 	'</span></div></li>\r\n                                    ';
 	if (obj.type) { 
 	__p+='\r\n                                    <li><div><span class="sh-item">Тип</span><span class="sh-item-right"><span class="label bg-type-category-'+
@@ -32270,10 +32348,10 @@
 	((__t=(stats.seenTotal))==null?'':__t)+
 	'</span></div></li>\r\n                                ';
 	 } 
-	__p+='\r\n                                ';
+	__p+='\r\n                                <!--';
 	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
-	__p+='\r\n                                <li><div><span class="sh-item">Статус</span><span class="sh-item-right">'+
-	((__t=(isDynamic?'Динамический':'Статический'))==null?'':__t)+
+	__p+='-->\r\n                                <li><div><span class="sh-item">Статус</span><span class="sh-item-right">'+
+	((__t=(user.online ? 'online' : 'offline'))==null?'':__t)+
 	'</span></div></li>\r\n                                ';
 	if (obj.type) { 
 	__p+='\r\n                                <li><div><span class="sh-item">Тип</span><span class="sh-item-right"><span class="label bg-type-category-'+
@@ -36800,6 +36878,10 @@
 	        'modal': '#modalContainer'
 	    },
 	
+	    modelEvents: {
+	        "sync": "render"
+	    },
+	
 	    initialize: function initialize() {
 	        this.r_user = this.model.toJSON();
 	        this.c_user = _app2.default.user.toJSON();
@@ -36812,7 +36894,7 @@
 	
 	        this.profileEditModel = new _AsteroidModel2.default(this.c_user, { asteroid: _app2.default.asteroid });
 	
-	        this.listenTo(this.profileEditModel, 'save', this.renderr);
+	        this.listenTo(this.profileEditModel, 'save', this.render);
 	    },
 	    renderr: function renderr() {
 	        console.log('Профиль rrrrrr');
@@ -37229,6 +37311,7 @@
 	
 	        this.remove();
 	        this.trigger('destroy');
+	        //this.$el.closest('.modal-content').find('.modal-header .close').trigger('click');
 	    }
 	});
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
@@ -37766,10 +37849,7 @@
 	
 	    events: {
 	        'submit form': 'onSubmit',
-	        'change input': 'onChange',
-	        'click #sh-auth-vk': 'authVk',
-	        'click #sh-auth-facebook': 'authFacebook',
-	        'click #sh-auth-google-plus': 'authGooglePlus'
+	        'change input': 'onChange'
 	    },
 	
 	    authVk: function authVk(e) {
@@ -37906,7 +37986,7 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='\n<div class="sh-login-page">\n    <div class="container">\n        <div class="sh-login-page-wrapper">\n            <div class="sh-wrap2">                \n                <div class="sh-side-right">\n                    <!-- ALERT -->\n                    <!--\n                    <div class="alert alert-mini alert-danger margin-bottom-30">\n                        <strong>Oh snap!</strong> Login Incorrect!\n                    </div>\n                    -->\n                    <!-- /ALERT -->\n                    <!-- login form -->\n                    <form method="post" class="sky-form sh-auth-form">\n                        <div class="sh-page-block padding-20">\r\n                            <fieldset class="nomargin">\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-envelope"></i>\r\n                                    <input type="text" name="email" id="userLogin" placeholder="E-mail /  Имя пользователя">\r\n                                    <span class="tooltip tooltip-top-right">Email адрес / Имя пользователя</span>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-lock"></i>\r\n                                    <input type="password" id="userPassword" name="password" placeholder="Пароль">\r\n                                    <b class="tooltip tooltip-top-right">Укажите Ваш пароль</b>\r\n                                </label>\r\n                                <label class="checkbox">\r\n                                    <input type="checkbox" name="checkbox-inline" id="rememberMe">\r\n                                    <i></i> Запомнить меня\r\n                                </label>\r\n                            </fieldset>\r\n                            <footer class="celarfix">\r\n                                <button type="submit" class="ui sh-button standard action pull-right">\r\n                                    <i class="fa fa-check"></i>\r\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                    ВОЙТИ\r\n                                </button>\r\n                                <div class="login-forgot-password pull-left">\r\n                                    <a href="/Account/FogotPassword">Забыли пароль?</a>\r\n                                </div>\r\n                            </footer>\r\n                        </div>\n\n                        <div class="sh-page-block padding-20 celarfix"> \r\n                            <header>Впервые на сайте?<small>Регистрация быстро и бесплатно</small></header>                               \r\n                            <a type="submit" class="js-login-register-link sh-login-register ui sh-button standard create " href="/account/register?returnUrl=/">\r\n                                <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                Регистрация\r\n                            </a>\r\n                            <div class="sh-login-additional">\r\n                                <span>или</span>\r\n                                <div class="sh-login-social">\r\n                                    <ul>\r\n                                        <li><a class="sh-facebook" id="sh-auth-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>\r\n                                        <li><a class="sh-vk" id="sh-auth-vk"><i class="fa fa-vk" aria-hidden="true"></i></a></li>\r\n                                        <li><a class="sh-google-plus" id="sh-auth-google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>                               \r\n                        </div>\n                    </form>\n                </div>\n                <div class="sh-side-left">\n                    <h2 class="text-center-xs">Преимущества авторизованных пользователей</h2>\n                    <ul class="list-unstyled sh-login-features">\n                        <li>\n                            <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-user"></i> Ещё не регистрировались? <a href="/account/register?returnUrl=somedata'+
+	__p+='\n<div class="sh-login-page">\n    <div class="container">\n        <div class="sh-login-page-wrapper">\n            <div class="sh-wrap2">                \n                <div class="sh-side-right">\n                    <!-- ALERT -->\n                    <!--\n                    <div class="alert alert-mini alert-danger margin-bottom-30">\n                        <strong>Oh snap!</strong> Login Incorrect!\n                    </div>\n                    -->\n                    <!-- /ALERT -->\n                    <!-- login form -->\n                    <form method="post" class="sky-form sh-auth-form">\n                        <div class="sh-page-block padding-20">\r\n                            <fieldset class="nomargin">\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-envelope"></i>\r\n                                    <input type="text" name="email" id="userLogin" placeholder="E-mail /  Имя пользователя">\r\n                                    <span class="tooltip tooltip-top-right">Email адрес / Имя пользователя</span>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-lock"></i>\r\n                                    <input type="password" id="userPassword" name="password" placeholder="Пароль">\r\n                                    <b class="tooltip tooltip-top-right">Укажите Ваш пароль</b>\r\n                                </label>\r\n                                <label class="checkbox">\r\n                                    <input type="checkbox" name="checkbox-inline" id="rememberMe">\r\n                                    <i></i> Запомнить меня\r\n                                </label>\r\n                            </fieldset>\r\n                            <footer class="celarfix">\r\n                                <button type="submit" class="ui sh-button standard action pull-right">\r\n                                    <i class="fa fa-check"></i>\r\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                    ВОЙТИ\r\n                                </button>\r\n                                <div class="login-forgot-password pull-left">\r\n                                    <a href="/Account/FogotPassword">Забыли пароль?</a>\r\n                                </div>\r\n                            </footer>\r\n                        </div>\n\n                        <div class="sh-page-block padding-20 celarfix"> \r\n                            <header>Впервые на сайте?<small>Регистрация быстро и бесплатно</small></header>                               \r\n                            <a type="submit" class="js-login-register-link sh-login-register ui sh-button standard create " href="/account/register?returnUrl=/">\r\n                                <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                Регистрация\r\n                            </a>\r\n                            <!--<div class="sh-login-additional">\r\n                                <span>или</span>\r\n                                <div class="sh-login-social">\r\n                                    <ul>\r\n                                        <li><a class="sh-facebook" id="sh-auth-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>\r\n                                        <li><a class="sh-vk" id="sh-auth-vk"><i class="fa fa-vk" aria-hidden="true"></i></a></li>\r\n                                        <li><a class="sh-google-plus" id="sh-auth-google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>-->                              \r\n                        </div>\n                    </form>\n                </div>\n                <div class="sh-side-left">\n                    <h2 class="text-center-xs">Преимущества авторизованных пользователей</h2>\n                    <ul class="list-unstyled sh-login-features">\n                        <li>\n                            <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-user"></i> Ещё не регистрировались? <a href="/account/register?returnUrl=somedata'+
 	((__t=( returnUrl ? '?returnUrl='+returnUrl:''))==null?'':__t)+
 	'">Регистрация</a>\n                        </li>\n                    </ul>\n                </div>    \n            </div>\n        </div>\n    </div>\n</div>';
 	}
