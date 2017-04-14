@@ -22030,34 +22030,38 @@ input[type=radio] + label {
       color: #8f8e94; }
 
 #shinersList.sh-shiners-list-items .sh-shiners-list-item {
-  position: relative;
-  padding: 10px; }
+  position: relative; }
+  #shinersList.sh-shiners-list-items .sh-shiners-list-item a {
+    display: block;
+    overflow: hidden;
+    padding: 10px;
+    color: #8f8e94; }
   #shinersList.sh-shiners-list-items .sh-shiners-list-item .thumbnail {
     padding: 0;
-    margin: 0 16px 0 0;
+    margin: 0 10px 0 0;
     border: none;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;
     border-radius: 2px; }
   #shinersList.sh-shiners-list-items .sh-shiners-list-item h4 {
-    font-size: 14px;
+    font-size: 15px;
+    line-height: 18px;
     font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-weight: 400;
-    margin-bottom: 28px; }
+    letter-spacing: 0.2px;
+    margin-bottom: 20px; }
     #shinersList.sh-shiners-list-items .sh-shiners-list-item h4 a {
       color: #363636; }
   #shinersList.sh-shiners-list-items .sh-shiners-list-item .sh-shiners-list-footer {
-    position: absolute;
-    height: 22px;
-    line-height: 20px;
-    bottom: 8px;
-    left: 16px;
-    right: 16px; }
-    #shinersList.sh-shiners-list-items .sh-shiners-list-item .sh-shiners-list-footer span[class*="bg-type-category-"] {
-      font-size: 11px; }
-    #shinersList.sh-shiners-list-items .sh-shiners-list-item .sh-shiners-list-footer .sh-shiners-list-time {
-      font-size: 11px; }
+    position: relative; }
+    #shinersList.sh-shiners-list-items .sh-shiners-list-item .sh-shiners-list-footer span {
+      font-size: 12px;
+      margin-right: 6px; }
+      #shinersList.sh-shiners-list-items .sh-shiners-list-item .sh-shiners-list-footer span:last-child {
+        margin-right: 0; }
+      #shinersList.sh-shiners-list-items .sh-shiners-list-item .sh-shiners-list-footer span.label {
+        padding: 3px 6px; }
     #shinersList.sh-shiners-list-items .sh-shiners-list-item .sh-shiners-list-footer .sh-shiners-list-time + span[class*="bg-type-category-"] {
       margin-right: 6px; }
   #shinersList.sh-shiners-list-items .sh-shiners-list-item:nth-child(2n+1) {

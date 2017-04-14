@@ -2,6 +2,7 @@
  * Created by arutu_000 on 12/9/2016.
  */
 
+/*
 var json = {
     home_accordion_section1: 'If you already have an advertisement on another website, just use that Url to create a Shiner!',
     home_accordion_section2: 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone',
@@ -19,4 +20,6 @@ var json = {
     search_found: 'Found Shiners',
     search_not_found: 'No posts found around'
 };
+
 i18n.add('en', json);
+*/

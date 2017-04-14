@@ -21,9 +21,7 @@ export default Marionette.View.extend({
         this.showChildView('postTypes', new PostTypesView({ collection: app.postAdTypes }));
     },
 
-    onAttach() {
-        this.initParallax();
-    },
+    onAttach() {},
 
     toggleSlide(e){
         var previewParClosedHeight = 25;
@@ -58,20 +56,5 @@ export default Marionette.View.extend({
             $(previewPar).animate({height: previewParClosedHeight}, 350, function() {$(e.target).removeClass("preview-active");});
             toggleContent.slideUp(350);
         }
-    },
-
-    initParallax() {
-
-            // jQuery(".parallax-1").css("background-attachment", "fixed");
-            this.$(".parallax-1").parallax("50%", "0.1");
-
-            // jQuery(".parallax-2").css("background-attachment", "fixed");
-            this.$(".parallax-2").parallax("50%", "0.2");
-
-            // jQuery(".parallax-3").css("background-attachment", "fixed");
-            this.$(".parallax-3").parallax("50%", "0.3");
-
-            // jQuery(".parallax-4").css("background-attachment", "fixed");
-            this.$(".parallax-4").parallax("50%", "0.4");
     }
 });

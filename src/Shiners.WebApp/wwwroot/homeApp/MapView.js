@@ -358,8 +358,8 @@ var View = Marionette.View.extend({
             };
         }
         
-        console.log('Arguments:', args);
-        console.log('Method of search:', method);
+        //console.log('Arguments:', args);
+        //console.log('Method of search:', method);
 
         this.collection.loadByMethod(method, args);
     }

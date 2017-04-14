@@ -1,14 +1,17 @@
-﻿<img class="thumbnail pull-left" src="{{=details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/no_image.png'}}" width="60" height="60" alt="" />
-<h4 class="noborder nopadding"><a href="/posts/{{-_id}}">{{=details.title}}</a></h4>
-<div class="sh-shiners-list-footer">
-    <span class="sh-shiners-list-time pull-right">
-        {{=moment(timestamp).fromNow()}} &nbsp;
-        {{if(obj.distance && obj.distanceType){ }}
-            <i class="fa fa-location-arrow"></i> {{=distance>=0?distance.toFixed(1):'Не определена'}} {{=distanceType==='km'?'км':'miles'}}
-        {{ } }}
-    </span>
-    {{if(obj.type) { }}
-    <span class="pull-right label bg-type-category-{{=type}}">{{=type}}</span>
-    {{ } }}
-    
-</div>
+﻿<a href="/posts/{{-_id}}">
+    <img class="thumbnail pull-left" src="{{=details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/no_image.png'}}" width="60" height="60" alt="" />
+    <h4 class="noborder nopadding">{{=details.title}}</h4>
+    <div class="sh-shiners-list-footer pull-right">
+        {{if(obj.type) { }}
+            <span class="label bg-type-category-{{=type}}">{{=type}}</span>
+        {{ } }} 
+        <span class="sh-shiners-list-time">
+            {{=moment(timestamp).fromNow()}}          
+        </span>
+        <span>
+            {{if(obj.distance && obj.distanceType){ }}
+                <i class="fa fa-location-arrow"></i> {{=distance>=0?distance.toFixed(1):'Не определена'}} {{=distanceType==='km'?'км':'miles'}}
+            {{ } }}
+        </span>
+    </div>
+</a>

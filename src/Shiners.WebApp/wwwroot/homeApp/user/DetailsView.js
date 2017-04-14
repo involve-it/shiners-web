@@ -26,6 +26,10 @@ var View = Marionette.View.extend({
         'modal':'#modalContainer'
     },
 
+    modelEvents: {
+        "sync": "render"
+    },
+
     initialize() {
         this.r_user = this.model.toJSON();
         this.c_user = app.user.toJSON();
@@ -39,13 +43,13 @@ var View = Marionette.View.extend({
         this.profileEditModel = new AsteroidModel(
             this.c_user, {asteroid: app.asteroid});
 
-        this.listenTo(this.profileEditModel, 'save', this.renderr);
+        this.listenTo(this.profileEditModel, 'save', this.render);
     },
 
     renderr() {
         console.log('Профиль rrrrrr');
         ///this.render();
-    },
+    },   
 
     onBeforeRender() {
         this.templateContext = {
