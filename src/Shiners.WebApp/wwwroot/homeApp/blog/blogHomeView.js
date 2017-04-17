@@ -23,57 +23,41 @@ var View = Marionette.View.extend({
     initialize() {
 
         //Fake instance
-        this.fakeCollection = new Backbone.Collection;       
+        this.fakeCollection = this._adaptCollection();
 
         this.blogItems = new Collection(null, {asteroid: this.asteroid});        
         //this.listenTo(app.user,'login',this.render);
         //this.listenTo(app.user, 'logout', this.render);
     },    
-
-    onBeforeRender() {
-        
-        /* DELETE AFTER FETCH REAL DATA */       
-        this.fakeCollection.add([
-            {
-                id: '1',
-                timestamp: new Date(),
-                title: "Flying Dutchman",
-                description: "1 There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
+    _adaptCollection() {
+        var ret, p;
+        ret = this.options.collection.map((post)=> {
+            p = post.toJSON();
+            return _.extend({}, p, {
+                id: p.id,
+                timestamp: new Date(p.createdAt.$date),
+                title: p.title,
+                description: p.body,
                 images: [
                     {
                         src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
-                        alt: 'Какая-то фотка'
+                        alt: 'пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ'
                     },
                     {
                         src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
-                        alt: 'Какая-то фотка'
+                        alt: 'пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ'
                     }
                 ],
                 comments: [],
                 author: 'Shiners',
-                categories: ['shiners','news', 'tutorials'],
-                tags: ['tag 1', 'tag 2', 'tag 3', 'tag 4']
-            },
+                //categories: ['shiners','news', 'tutorials'],
+                tags: p.tags[0].split(' ')
+            });
+        });
 
-            {
-                id: '2',
-                timestamp: new Date(),
-                title: "Black Pearl",
-                description: "2 There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
-                images: [
-                    {
-                        src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
-                        alt: 'Какая-то фотка'
-                    }
-                ],
-                comments: [],
-                author: 'Shiners2',
-                categories: ['finance','news', 'tutorials'],
-                tags: ['tag 5', 'tag 2', 'tagг 3', 'tag 4']
-            }
-        ]);
-        /* DELETE AFTER FETCH REAL DATA */
-       
+        return new Backbone.Collection(ret);
+    },
+    onBeforeRender() {
         this.templateContext = {
             blogDetails: this.getBlogDetails()
         };
@@ -99,9 +83,7 @@ var View = Marionette.View.extend({
     },     
 
     onRender() {
-        //Если не ошибаюсь нужно использовать ateroid collection, но так как напрямую я не могу добавить фейковые модели,
-        //использую обычныю коллекцию Backbone
-        this.showChildView('blogItems', new BlogItemsView({ collection: this.fakeCollection }));       
+        this.showChildView('blogItems', new BlogItemsView({ collection: this.fakeCollection }));
     },
     
     initCarousel() {

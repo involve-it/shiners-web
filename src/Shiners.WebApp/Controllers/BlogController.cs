@@ -17,8 +17,8 @@ namespace Shiners.WebApp.Controllers
             return View("../Blog/Home", model);
         }
 
-        [Route("[controller]/post")]
-        public IActionResult BlogPost(string id)
+        [Route("[controller]/post/{postId}")]
+        public IActionResult BlogPost(string postId)
         {
             return View("../Blog/Post");
         }
