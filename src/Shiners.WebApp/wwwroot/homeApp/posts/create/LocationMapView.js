@@ -10,6 +10,7 @@ export default Marionette.View.extend({
     userMarker:null,
     infoWindow:null,
     geocodeTimeout:null,
+    searchInput:null,
 
     modelEvents: {
         'change:name':'renderName',
@@ -22,10 +23,11 @@ export default Marionette.View.extend({
         this.showUser();
         this.showDoneButton();
         this.showDynamicOrStaticSelection();
+        this.showSearchBox();
     },
 
     renderName() {
-        this.$('#locationMap_locationName').text(this.model.get('accurateAddress'));
+        this.$('#locationMap_locationName').val(this.model.get('accurateAddress'));
     },
 
     initMap() {
@@ -107,12 +109,16 @@ export default Marionette.View.extend({
 
     bindOrUnbindToUser() {
         if (this.model.get('placeType')==='dynamic') {
-            this.infoWindow.close();
+            //this.infoWindow.close();
+            this.infoWindow.open(this.map,this.shiner);
             this.shiner.setPosition(app.user.get('position'));
-            this.shiner.setDraggable(false);            
+            this.shiner.setDraggable(false);   
+            this.$(this.searchInput).prop('readonly', true);
         } else {
             this.shiner.setDraggable(true);
-            this.infoWindow.open(this.map,this.shiner);
+            //this.infoWindow.open(this.map,this.shiner);
+            this.infoWindow.close();
+            this.$(this.searchInput).prop('readonly', false);
         }
             
     },
@@ -143,5 +149,31 @@ export default Marionette.View.extend({
     onBeforeRemove() {
         this.map.unbindAll();
         delete this.map;
+    },
+
+    showSearchBox() {
+        this.searchInput = document.getElementById('locationMap_locationName'); 
+        var searchBox = new google.maps.places.SearchBox(this.searchInput);
+        //this.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(input);
+        var model = this.model,
+              self=this;
+        searchBox.addListener('places_changed', function() {
+            var places = searchBox.getPlaces();
+            if (places.length == 0) {
+                return;
+            }
+            var place = places[0];
+            self.shiner.setPosition(place.geometry.location);
+            self.setLocation();
+            
+            var bounds = new google.maps.LatLngBounds();
+            if (place.geometry.viewport) {
+                bounds.union(place.geometry.viewport);
+            } else {
+                bounds.extend(place.geometry.location);
+            }
+
+            self.map.fitBounds(bounds);
+        });
     }
 });
