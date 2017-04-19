@@ -37,15 +37,7 @@ import app from './app.js';
 export default Marionette.Object.extend({
 
     index() {
-
         app.layout.showChildView('content', new IndexView());
-
-        /*
-        if (!app.isMobile)
-            app.layout.showChildView('content', new IndexView());
-        else {
-            app.layout.getRegion('content').empty();
-        }*/
     },
 
     mobileIndex() {
@@ -149,11 +141,6 @@ export default Marionette.Object.extend({
        // window.currentUser = userModel;
         userModel.fetch().done(() => app.layout.showChildView('content', new UserDetailsView({model: userModel})));
     },
-
-    //myMessagesPage() {
-    //    app.layout.showChildView('content',new MyMessagesPageView());
-    //},
-
     userDetails(id) {
         app.layout.showChildView('content', new PreloaderView());
         var userModel = new UserModel({_id: id});
@@ -174,57 +161,22 @@ export default Marionette.Object.extend({
 
     // BLOG:
     blogHome() {
-        /*debugger;
-        var ceres = app.asteroid;
-        ceres.subscribe("blog.posts");
-        var blogPosts = ceres.getCollection("blog_posts");
-        window.bp = blogPosts;
-        //tasks.insert({
-        //    description: "Do the laundry"
-        //});
-// Get the task
-        var laundryTaskRQ = blogPosts.reactiveQuery({ mode: 'public' });
-// Log the array of results
-        console.log(laundryTaskRQ.result);
-// Listen for changes
-        laundryTaskRQ.on("change", function () {
-            debugger;
-            console.log(laundryTaskRQ.result);
-        });*/
-        //debugger;
-        var subscription = app.asteroid.subscribe('blog.posts');
-        subscription.ready.done(function(a, b, c) {
-            console.log('ready - posts')
+        var posts = new AsteroidCollection(null, {asteroid: app.asteroid, comparator: 'createdAt'});
+        posts.loadByMethod('bz.blog.getPosts', {}, () => {
+            app.layout.showChildView('content', new BlogHomeView({ collection: posts }));
         });
-        var a = new AsteroidCollection(null, { asteroid: app.asteroid });
-        //debugger;
-        /*a.sub('blog.authors');
-        var s = a.subscriptions[0];
-        s.ready.done(function() {
-            console.log('ready - authors')
-        });*/
-        
-        
-       // var c = app.asteroid.getCollection('blog_posts').find().fetch();
-        //console.log(c)
-        app.layout.showChildView('content', new BlogHomeView());
-        
-        
-        /*var c = new AsteroidCollection(null, { asteroid: app.asteroid });
-        c.loadByMethod('getBlogPosts', () => {
-            debugger;
-            app.layout.showChildView('content', new BlogHomeView({collection: c}));
-        });*/
     },
 
     blogPostId(id) {
         console.log('POST ID: ', id);
-
         // Загружаем пост из базы по его ID....
         // 1. находим поста по id
         // 2. вызываем метод loadByMethod для загрузки и передаем во BlogPostIdView 
-
         app.layout.showChildView('content', new PreloaderView());
-        app.layout.showChildView('content', new BlogPostIdView());
+        if (id) {
+            app.asteroid.call('bz.blog.getPostById', id).result.then((post) => {
+                app.layout.showChildView('content', new BlogPostIdView({ model: post }));
+            });
+        }
     }
 });
