@@ -224,5 +224,7 @@ namespace Shiners.Models.Domain
     {
         [BsonElement("apn")]
         public string Apn { get; set; }
+        [BsonElement("gcm")]
+        public string Gcm { get; set; }
     }
 }
