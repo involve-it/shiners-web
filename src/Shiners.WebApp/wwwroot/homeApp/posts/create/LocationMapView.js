@@ -109,15 +109,17 @@ export default Marionette.View.extend({
 
     bindOrUnbindToUser() {
         if (this.model.get('placeType')==='dynamic') {
-            //this.infoWindow.close();
-            this.infoWindow.open(this.map,this.shiner);
+            this.infoWindow.close();
             this.shiner.setPosition(app.user.get('position'));
             this.shiner.setDraggable(false);   
             this.$(this.searchInput).prop('readonly', true);
+            
+            var bounds = new google.maps.LatLngBounds();
+            this.map.setCenter(this.shiner.getPosition());
+
         } else {
             this.shiner.setDraggable(true);
-            //this.infoWindow.open(this.map,this.shiner);
-            this.infoWindow.close();
+            this.infoWindow.open(this.map,this.shiner);
             this.$(this.searchInput).prop('readonly', false);
         }
             
@@ -164,16 +166,7 @@ export default Marionette.View.extend({
             }
             var place = places[0];
             self.shiner.setPosition(place.geometry.location);
-            self.setLocation();
-            
-            var bounds = new google.maps.LatLngBounds();
-            if (place.geometry.viewport) {
-                bounds.union(place.geometry.viewport);
-            } else {
-                bounds.extend(place.geometry.location);
-            }
-
-            self.map.fitBounds(bounds);
+            self.map.setCenter(self.shiner.getPosition());
         });
     }
 });
