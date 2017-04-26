@@ -48,8 +48,9 @@ var View = Marionette.View.extend({
     },
 
     showError(error) {
+        debugger;
         $h.ui.spinnerHideOn$element(this.$('button i.fa'));
-        $h.ui.alert("Ошибка! Имя пользователя уже существует");
+        $h.ui.alert(error && error.message || 'Error!');
     },
 
     onBeforeRemove() {

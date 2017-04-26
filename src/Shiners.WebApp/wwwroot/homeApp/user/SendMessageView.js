@@ -22,7 +22,7 @@ export default Marionette.View.extend({
         if (!_.isEmpty(value)) {                        
             if (app.asteroid.loggedIn) {
                 //var remoteUser = new Model({_id: remoteUserId}, {asteroid: app.asteroid});
-                app.asteroid.call('bz.chats.createChatIfFirstMessage', app.user.id, remoteUserId).result.then((chatId) => {
+                app.asteroid.call('bz.chats.createChatIfFirstMessage', app.user.id, remoteUserId).then((chatId) => {
                     
                     var model = new Model({
                         text: value,

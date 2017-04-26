@@ -60,7 +60,7 @@ var View = Marionette.View.extend({
 
         var msg = "user: " + name + "\n" + "email: " + email + "\n" + text;
         var self = this;
-        app.asteroid.call('sendMessageContactUs', msg).result.then(() => {
+        app.asteroid.call('sendMessageContactUs', msg).then(() => {
             alert('Сообщение отправлено');
             self.render();
         }) ;

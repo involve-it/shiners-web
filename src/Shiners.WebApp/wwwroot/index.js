@@ -1,5 +1,6 @@
 ﻿import 'jquery';
 import 'jquery.cookie';
+import './helpers/extends';
 import './helpers/helpers';
 import './helpers/ui';
 import './helpers/locationHelper';

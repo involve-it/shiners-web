@@ -36,7 +36,7 @@ export default Model.extend({
 
     _create(options) {
         var self = this;
-        return this.asteroid.call('addPost',this.attributes).result.then((resp) => {
+        return this.asteroid.call('addPost',this.attributes).then((resp) => {
             if (resp.success) {
                 self.set('_id',resp.result,options);
                 if(!options || !options.silent)

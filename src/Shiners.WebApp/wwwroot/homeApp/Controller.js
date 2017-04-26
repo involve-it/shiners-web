@@ -33,10 +33,11 @@ import BlogPostIdView from './blog/blogPostIdView';
 //import MyMessagesPageView from './user/MyMessagesPageView';
 //import UserDetailsPageView from './user/UserDetailsPageView';
 import app from './app.js';
-
 export default Marionette.Object.extend({
 
     index() {
+        debugger;
+
         app.layout.showChildView('content', new IndexView());
     },
 
@@ -126,7 +127,7 @@ export default Marionette.Object.extend({
         app.layout.showChildView('content', new PreloaderView());
         if (app.asteroid.loggedIn) {
             var remoteUser = new AsteroidModel({_id: remoteUserId}, {asteroid: app.asteroid});
-            app.asteroid.call('bz.chats.createChatIfFirstMessage', app.user.id, remoteUserId).result.then((chatId) => {
+            app.asteroid.call('bz.chats.createChatIfFirstMessage', app.user.id, remoteUserId).then((chatId) => {
                 app.router.navigate(`/chats/${ chatId }?remoteUserId=${ remoteUserId }`, { trigger: true, replace: true });
             });
         } else {
@@ -174,7 +175,7 @@ export default Marionette.Object.extend({
         // 2. вызываем метод loadByMethod для загрузки и передаем во BlogPostIdView 
         app.layout.showChildView('content', new PreloaderView());
         if (id) {
-            app.asteroid.call('bz.blog.getPostById', id).result.then((post) => {
+            app.asteroid.call('bz.blog.getPostById', id).then((post) => {
                 app.layout.showChildView('content', new BlogPostIdView({ model: post }));
             });
         }
