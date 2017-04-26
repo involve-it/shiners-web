@@ -22054,7 +22054,8 @@ input[type=radio] + label {
     #shinersList.sh-shiners-list-items .sh-shiners-list-item h4 a {
       color: #363636; }
   #shinersList.sh-shiners-list-items .sh-shiners-list-item .sh-shiners-list-footer {
-    position: relative; }
+    position: relative;
+    padding-left: 70px; }
     #shinersList.sh-shiners-list-items .sh-shiners-list-item .sh-shiners-list-footer span {
       font-size: 12px;
       margin-right: 6px; }
@@ -23892,3 +23893,5 @@ input[type=radio] + label {
 
 .pac-container {
   z-index: 1070; }
+
+/*# sourceMappingURL=site.css.map*/

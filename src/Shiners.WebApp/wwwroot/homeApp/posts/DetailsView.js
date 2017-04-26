@@ -25,6 +25,7 @@ var View = Marionette.View.extend({
         'comments': '#sh-comments'
     },
 
+
     initialize() {
         window.postDetails = this.model.toJSON();
         this.collection = new Collection(null,{asteroid:this.model.asteroid});
@@ -32,11 +33,20 @@ var View = Marionette.View.extend({
         this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
         this.listenTo(app.user,'login',this.render);
         this.listenTo(app.user, 'logout', this.render);
+        this.listenTo( this.comments, 'after:load', this.initCommentsCount);
     },
+
+    initCommentsCount() {
+        if(this.comments.size() > 0) {            
+            this.showChildView('comments', new CommentsListView({collection: this.comments}));
+        } else {
+            $('#sh-review').remove();
+        }        
+    },
+
     onBeforeRender() {
         this.setModelDistance();
         this.getPostDuration();
-
         if (app.asteroid.loggedIn) {
             this.templateContext = {
                 currentUser:app.user.toJSON()
@@ -49,9 +59,10 @@ var View = Marionette.View.extend({
         this.collection.loadByMethod('getPopularPosts',[center.lat(),center.lng(),200,0,10]);
         //this.initVkSocialButton(); 
         this.initCarousel();
-
         this.comments.loadByMethod('getComments', { postId: this.model.get('_id'), take: 100, skip: 0 });
-        this.showChildView('comments', new CommentsListView({collection: this.comments}));        
+
+        
+        //this.showChildView('comments', new CommentsListView({collection: this.comments}));        
     },
 
     onAttach() {

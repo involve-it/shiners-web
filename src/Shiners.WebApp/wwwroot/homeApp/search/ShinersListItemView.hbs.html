@@ -1,7 +1,7 @@
 ﻿<a href="/posts/{{-_id}}">
     <img class="thumbnail pull-left" src="{{=details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/no_image.png'}}" width="60" height="60" alt="" />
     <h4 class="noborder nopadding">{{=details.title}}</h4>
-    <div class="sh-shiners-list-footer pull-right">
+    <div class="sh-shiners-list-footer">
         {{if(obj.type) { }}
             <span class="label bg-type-category-{{=type}}">{{=type}}</span>
         {{ } }} 
