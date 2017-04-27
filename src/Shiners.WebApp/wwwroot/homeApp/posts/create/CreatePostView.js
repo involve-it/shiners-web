@@ -252,12 +252,13 @@ var View = Marionette.View.extend({
 
     save() {
         if (!this.model.validate()) {
-
+            this.$('#saveShiner').addClass('disabled');
             this.model.create();
         }
     },
 
     showSuccess() {
+        this.$('#saveShiner').removeClass('disabled');
         this.showChildView('modal',new ModalView({
             view:new SuccessView({
                 resultUrl:'/posts/'+this.model.id,
@@ -269,6 +270,7 @@ var View = Marionette.View.extend({
     },
 
     showError(er) {
+        this.$('#saveShiner').removeClass('disabled');
         alert("Ошибка создания поста. "+er);
     },
 

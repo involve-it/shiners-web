@@ -28,6 +28,8 @@ export default Marionette.View.extend({
 
     hide() {
         this.$el.modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
     },    
 
     onShow() {
