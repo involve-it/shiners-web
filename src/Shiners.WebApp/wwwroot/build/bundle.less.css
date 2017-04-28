@@ -1115,11 +1115,49 @@ body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-po
   -webkit-flex: 1 1 0;
   -ms-flex: 1 1 0;
   flex: 1 1 0;
-  padding-right: 16px;
   width: 100%;
 }
 body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper .sh-my-posts-item-content-footer-progress .progress {
   margin-bottom: 0;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper .sh-my-posts-item-content-footer-actions {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  padding-right: 16px;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper .sh-my-posts-item-content-footer-actions .sh-my-posts-item-content-footer-actions-wrapper .sh-post-action-link {
+  display: inline-block;
+  border: 1px solid #e6e6e6;
+  padding: 6px;
+  color: #e6e6e6;
+  background-color: transparent;
+  white-space: nowrap;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  line-height: 21px;
+  opacity: .75;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper .sh-my-posts-item-content-footer-actions .sh-my-posts-item-content-footer-actions-wrapper .sh-post-action-link span {
+  display: block;
+  text-align: center;
+  height: 18px;
+  width: 18px;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper .sh-my-posts-item-content-footer-actions .sh-my-posts-item-content-footer-actions-wrapper .sh-post-action-link span i {
+  font-size: 16px;
+}
+body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper .sh-my-posts-item-content-footer-actions .sh-my-posts-item-content-footer-actions-wrapper .sh-post-action-link:hover {
+  opacity: 1;
 }
 body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper > div {
   margin-right: 16px;

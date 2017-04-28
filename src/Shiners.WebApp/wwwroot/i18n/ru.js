@@ -143,5 +143,10 @@ var json = {
     // MESSAGES
     messages_send: 'Отправить',
     messages_for_user: 'Сообщение для',
+
+    //MY POSTS
+    RELOAD_POST_TIME: 'Перезапустить',
+    EDIT_POST: 'Редактировать',
+    TRASH_POST: 'Удалить',
 };
 i18n.add('ru', json);

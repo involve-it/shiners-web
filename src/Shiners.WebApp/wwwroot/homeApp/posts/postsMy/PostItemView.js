@@ -4,17 +4,19 @@ import app from '../../app.js';
 import locationHelper from '../../../helpers/locationHelper.js';
 import postDuration from '../../../helpers/postDuration.js';
 
+
 var View = Marionette.View.extend({
     template:template,
     className: 'sh-my-posts-item sh-page-block',
+
     onBeforeRender() {
         this.getDistance();
         this.getPostState();
-    },
+    },    
+
+    onRender() {},  
 
     getDistance() {
-        window.mypost = this.model.toJSON(); //debug
-
         var locations = this.model.get('details').locations;
         if (locations && _.size(locations) > 0 && app.user.has('position')) {
             var location = _.find(locations, function(l) { return l.placeType === 'dynamic'; });
@@ -37,12 +39,25 @@ var View = Marionette.View.extend({
     },
 
     events: {
-        '.js-remove-my-post click': ()=>{
-            debugger;
-        },
+        'click .js-delete-post': 'deletePost',
+
         '.js-edit-my-post click': ()=>{
             debugger;
         }
+    },
+
+    deletePost(e) {
+        e.stopPropagation();
+        e.preventDefault();
+
+        var that = this,
+            model =  this.model.toJSON(),
+            postId = model._id;
+
+        // load by menthod removePost        
+        this.model.loadByMethod('deletePost', postId, function(){
+            that.model.collection.remove(that.model);
+        });        
     }
 });
 export default View;

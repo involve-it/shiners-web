@@ -22333,7 +22333,7 @@
 	
 	    //MASS MEDIA
 	    h_information_for_smi: 'Информация для СМИ'
-	}, _defineProperty(_json, 'massMedia', 'Пресса о нас'), _defineProperty(_json, 'press_release', 'Пресс-релизы'), _defineProperty(_json, 'press_contacts', 'Контакты для прессы'), _defineProperty(_json, 'h_meet_us', 'Знакомство с нами'), _defineProperty(_json, 'h_mass_media', 'Пресса о нас'), _defineProperty(_json, 'm_about_us', 'О нас'), _defineProperty(_json, 'm_help', 'Помощь'), _defineProperty(_json, 'm_confidentiality', 'Конфиденциальность'), _defineProperty(_json, 'm_terms_of_use', 'Правила пользования'), _defineProperty(_json, 'site_published', 'Сайт публикации'), _defineProperty(_json, 'download_press_release', 'Скачать пресс-релиз'), _defineProperty(_json, 'ashot_a', 'Ашот Арутюнян'), _defineProperty(_json, 'tatyana_u', 'Татьяна Урусова'), _defineProperty(_json, 'home_accordion_section1', 'If you already have an advertisement on another website, just use that Url to create a Shiner!'), _defineProperty(_json, 'home_accordion_section2', 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone'), _defineProperty(_json, 'home_accordion_section3', 'Use Shiners for finding new live connections everywhere'), _defineProperty(_json, 'home_shiners_are_around', 'Shiners are everywhere'), _defineProperty(_json, 'home_lot_of_opportunities', 'A lot of opportunities for business around'), _defineProperty(_json, 'home_participate', 'Participate '), _defineProperty(_json, 'home_free', 'for free'), _defineProperty(_json, 'home_in_project', ' in the project!'), _defineProperty(_json, 'home_contact_with_people', 'Let others know about your ad instantly'), _defineProperty(_json, 'home_set_your_shiner', 'Create your Shiner'), _defineProperty(_json, 'search_free_search', 'Free search by words'), _defineProperty(_json, 'search_choose_radius', 'Search Radius (km):'), _defineProperty(_json, 'search_parameters', 'Search Parameters'), _defineProperty(_json, 'search_found', 'Found Shiners'), _defineProperty(_json, 'search_not_found', 'No posts found around'), _defineProperty(_json, 'about_intro_text', 'Мы считаем, это замечательно - иметь инструмент, который помогает людям вокруг сотрудничать друг с другом, находить людей и занятия прямо здесь, и прямо сейчас. SHINERS показывает людям объявления вокруг с привязкой к человеку и его локации.'), _defineProperty(_json, 'about_intro_duration', 'Продолжительность'), _defineProperty(_json, 'about_intro_duration_minute', 'мин.'), _defineProperty(_json, 'about_menu_how_it_works', 'КАК ЭТО РАБОТАЕТ?'), _defineProperty(_json, 'about_menu_what_are_we_useful', 'ЧЕМ МЫ ПОЛЕЗНЫ?'), _defineProperty(_json, 'about_menu_our_team', 'НАША КОМАНДА'), _defineProperty(_json, 'about_menu_connect_with_us', 'СВЯЗАТЬСЯ С НАМИ'), _defineProperty(_json, 'about_title_section_1', 'Единственный сервис, предлагающий живое присутствие!'), _defineProperty(_json, 'about_title_section_1_p1', 'Светлячки позволяют привязать объявление или любой адрес в интернете к текущему местоположению пользователя, и, как результат, осуществлять мгновенный поиск информации среди людей вокруг. Это позволяет искать информацию здесь и сейчас с целью мгновенной встречи с ее владельцем. Ненужное промежуточное звено (поиск по интернету, договор о встрече, дорогу к месту) можно исключить, если потенциально интересующий нас человек находится поблизости.'), _defineProperty(_json, 'about_title_section_1_p2', 'Мы расширяем возможности Веба, посредством привязки информации к реальным людям и координатам, что дает веб-ресурсам новое,- пространство-временное, качество, то есть путь напрямик к цели! Нас также видно в Google и соцсетях, и поэтому твое объявление превращается в собственную интернет-страницу, которую при желании увидит весь интернет.'), _defineProperty(_json, 'about_title_section_2', 'Как это работает?'), _defineProperty(_json, 'about_title_section_2_intro', 'Представь себе виртуальную визитку, только носишь ты ее не в кошельке, а в мобильном телефоне, и видят ее не избранные, а все, кто рядом!'), _defineProperty(_json, 'about_title_create_post', 'Создай свой пост'), _defineProperty(_json, 'about_title_you_are_find', 'Ты находишь / Тебя находят'), _defineProperty(_json, 'about_title_contract_meeting', 'Договаривайся / Встречайся'), _defineProperty(_json, 'about_title_section_3', 'Чем мы полезны?'), _defineProperty(_json, 'about_title_section_3_intro', 'Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.'), _defineProperty(_json, 'about_block_ads', 'ОБЪЯВЛЕНИЕ'), _defineProperty(_json, 'about_block_ads_text', 'Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".'), _defineProperty(_json, 'about_block_link', 'ССЫЛКА'), _defineProperty(_json, 'about_block_link_text', 'Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!'), _defineProperty(_json, 'about_block_dynamic', 'ДИНАМИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_dynamic_text', 'Движется вместе с тобой. Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!'), _defineProperty(_json, 'about_block_static', 'СТАТИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_static_text', 'Привязан к заданной тобой местности. Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!'), _defineProperty(_json, 'about_btn_set_your_shiners', 'Станови свой Светлячок'), _defineProperty(_json, 'about_who_we_are_title', 'КТО МЫ'), _defineProperty(_json, 'about_who_we_are_text', 'Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости.'), _defineProperty(_json, 'about_security_title', 'БЕЗОПАСНОСТЬ'), _defineProperty(_json, 'about_security_text', 'Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!'), _defineProperty(_json, 'about_rules_title', 'ПРАВИЛА'), _defineProperty(_json, 'about_rules_text', 'При регистрации на «Cветлячках» Пользователь соглашается с'), _defineProperty(_json, 'about_rules_text_link1', 'настоящими правилами'), _defineProperty(_json, 'about_title_section_4', 'Связаться с нами'), _defineProperty(_json, 'about_title_section_4_intro', 'Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!'), _defineProperty(_json, 'about_your_name', 'Ваше имя'), _defineProperty(_json, 'about_your_email', 'Ваш email'), _defineProperty(_json, 'about_your_message', 'Ваше сообщение'), _defineProperty(_json, 'about_btn_send_msg', 'Отправить'), _defineProperty(_json, 'post_d_summary_information', ''), _defineProperty(_json, 'post_d_views', 'Просмотров'), _defineProperty(_json, 'post_d_status', 'Статус'), _defineProperty(_json, 'post_d_type', 'Тип'), _defineProperty(_json, 'post_d_distance', 'Дистанция'), _defineProperty(_json, 'post_d_report_this_post', 'Сообщите об этом объявлении'), _defineProperty(_json, 'post_description_t', 'Описание'), _defineProperty(_json, 'post_location_place_t', 'Местоположение'), _defineProperty(_json, 'post_comments_t', 'Комментарии'), _defineProperty(_json, 'post_connect_to_user', 'Связаться с пользователем'), _defineProperty(_json, 'post_about_post', 'Об этом посте'), _defineProperty(_json, 'post_comment', 'Комментарий'), _defineProperty(_json, 'post_comments', 'Комментарии'), _defineProperty(_json, 'messages_send', 'Отправить'), _defineProperty(_json, 'messages_for_user', 'Сообщение для'), _json);
+	}, _defineProperty(_json, 'massMedia', 'Пресса о нас'), _defineProperty(_json, 'press_release', 'Пресс-релизы'), _defineProperty(_json, 'press_contacts', 'Контакты для прессы'), _defineProperty(_json, 'h_meet_us', 'Знакомство с нами'), _defineProperty(_json, 'h_mass_media', 'Пресса о нас'), _defineProperty(_json, 'm_about_us', 'О нас'), _defineProperty(_json, 'm_help', 'Помощь'), _defineProperty(_json, 'm_confidentiality', 'Конфиденциальность'), _defineProperty(_json, 'm_terms_of_use', 'Правила пользования'), _defineProperty(_json, 'site_published', 'Сайт публикации'), _defineProperty(_json, 'download_press_release', 'Скачать пресс-релиз'), _defineProperty(_json, 'ashot_a', 'Ашот Арутюнян'), _defineProperty(_json, 'tatyana_u', 'Татьяна Урусова'), _defineProperty(_json, 'home_accordion_section1', 'If you already have an advertisement on another website, just use that Url to create a Shiner!'), _defineProperty(_json, 'home_accordion_section2', 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone'), _defineProperty(_json, 'home_accordion_section3', 'Use Shiners for finding new live connections everywhere'), _defineProperty(_json, 'home_shiners_are_around', 'Shiners are everywhere'), _defineProperty(_json, 'home_lot_of_opportunities', 'A lot of opportunities for business around'), _defineProperty(_json, 'home_participate', 'Participate '), _defineProperty(_json, 'home_free', 'for free'), _defineProperty(_json, 'home_in_project', ' in the project!'), _defineProperty(_json, 'home_contact_with_people', 'Let others know about your ad instantly'), _defineProperty(_json, 'home_set_your_shiner', 'Create your Shiner'), _defineProperty(_json, 'search_free_search', 'Free search by words'), _defineProperty(_json, 'search_choose_radius', 'Search Radius (km):'), _defineProperty(_json, 'search_parameters', 'Search Parameters'), _defineProperty(_json, 'search_found', 'Found Shiners'), _defineProperty(_json, 'search_not_found', 'No posts found around'), _defineProperty(_json, 'about_intro_text', 'Мы считаем, это замечательно - иметь инструмент, который помогает людям вокруг сотрудничать друг с другом, находить людей и занятия прямо здесь, и прямо сейчас. SHINERS показывает людям объявления вокруг с привязкой к человеку и его локации.'), _defineProperty(_json, 'about_intro_duration', 'Продолжительность'), _defineProperty(_json, 'about_intro_duration_minute', 'мин.'), _defineProperty(_json, 'about_menu_how_it_works', 'КАК ЭТО РАБОТАЕТ?'), _defineProperty(_json, 'about_menu_what_are_we_useful', 'ЧЕМ МЫ ПОЛЕЗНЫ?'), _defineProperty(_json, 'about_menu_our_team', 'НАША КОМАНДА'), _defineProperty(_json, 'about_menu_connect_with_us', 'СВЯЗАТЬСЯ С НАМИ'), _defineProperty(_json, 'about_title_section_1', 'Единственный сервис, предлагающий живое присутствие!'), _defineProperty(_json, 'about_title_section_1_p1', 'Светлячки позволяют привязать объявление или любой адрес в интернете к текущему местоположению пользователя, и, как результат, осуществлять мгновенный поиск информации среди людей вокруг. Это позволяет искать информацию здесь и сейчас с целью мгновенной встречи с ее владельцем. Ненужное промежуточное звено (поиск по интернету, договор о встрече, дорогу к месту) можно исключить, если потенциально интересующий нас человек находится поблизости.'), _defineProperty(_json, 'about_title_section_1_p2', 'Мы расширяем возможности Веба, посредством привязки информации к реальным людям и координатам, что дает веб-ресурсам новое,- пространство-временное, качество, то есть путь напрямик к цели! Нас также видно в Google и соцсетях, и поэтому твое объявление превращается в собственную интернет-страницу, которую при желании увидит весь интернет.'), _defineProperty(_json, 'about_title_section_2', 'Как это работает?'), _defineProperty(_json, 'about_title_section_2_intro', 'Представь себе виртуальную визитку, только носишь ты ее не в кошельке, а в мобильном телефоне, и видят ее не избранные, а все, кто рядом!'), _defineProperty(_json, 'about_title_create_post', 'Создай свой пост'), _defineProperty(_json, 'about_title_you_are_find', 'Ты находишь / Тебя находят'), _defineProperty(_json, 'about_title_contract_meeting', 'Договаривайся / Встречайся'), _defineProperty(_json, 'about_title_section_3', 'Чем мы полезны?'), _defineProperty(_json, 'about_title_section_3_intro', 'Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.'), _defineProperty(_json, 'about_block_ads', 'ОБЪЯВЛЕНИЕ'), _defineProperty(_json, 'about_block_ads_text', 'Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".'), _defineProperty(_json, 'about_block_link', 'ССЫЛКА'), _defineProperty(_json, 'about_block_link_text', 'Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!'), _defineProperty(_json, 'about_block_dynamic', 'ДИНАМИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_dynamic_text', 'Движется вместе с тобой. Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!'), _defineProperty(_json, 'about_block_static', 'СТАТИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_static_text', 'Привязан к заданной тобой местности. Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!'), _defineProperty(_json, 'about_btn_set_your_shiners', 'Станови свой Светлячок'), _defineProperty(_json, 'about_who_we_are_title', 'КТО МЫ'), _defineProperty(_json, 'about_who_we_are_text', 'Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости.'), _defineProperty(_json, 'about_security_title', 'БЕЗОПАСНОСТЬ'), _defineProperty(_json, 'about_security_text', 'Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!'), _defineProperty(_json, 'about_rules_title', 'ПРАВИЛА'), _defineProperty(_json, 'about_rules_text', 'При регистрации на «Cветлячках» Пользователь соглашается с'), _defineProperty(_json, 'about_rules_text_link1', 'настоящими правилами'), _defineProperty(_json, 'about_title_section_4', 'Связаться с нами'), _defineProperty(_json, 'about_title_section_4_intro', 'Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!'), _defineProperty(_json, 'about_your_name', 'Ваше имя'), _defineProperty(_json, 'about_your_email', 'Ваш email'), _defineProperty(_json, 'about_your_message', 'Ваше сообщение'), _defineProperty(_json, 'about_btn_send_msg', 'Отправить'), _defineProperty(_json, 'post_d_summary_information', ''), _defineProperty(_json, 'post_d_views', 'Просмотров'), _defineProperty(_json, 'post_d_status', 'Статус'), _defineProperty(_json, 'post_d_type', 'Тип'), _defineProperty(_json, 'post_d_distance', 'Дистанция'), _defineProperty(_json, 'post_d_report_this_post', 'Сообщите об этом объявлении'), _defineProperty(_json, 'post_description_t', 'Описание'), _defineProperty(_json, 'post_location_place_t', 'Местоположение'), _defineProperty(_json, 'post_comments_t', 'Комментарии'), _defineProperty(_json, 'post_connect_to_user', 'Связаться с пользователем'), _defineProperty(_json, 'post_about_post', 'Об этом посте'), _defineProperty(_json, 'post_comment', 'Комментарий'), _defineProperty(_json, 'post_comments', 'Комментарии'), _defineProperty(_json, 'messages_send', 'Отправить'), _defineProperty(_json, 'messages_for_user', 'Сообщение для'), _defineProperty(_json, 'RELOAD_POST_TIME', 'Reload'), _defineProperty(_json, 'EDIT_POST', 'Edit'), _defineProperty(_json, 'TRASH_POST', 'Delete'), _json);
 	i18n.add('en', json);
 
 /***/ },
@@ -22489,7 +22489,12 @@
 	
 	    // MESSAGES
 	    messages_send: 'Отправить',
-	    messages_for_user: 'Сообщение для'
+	    messages_for_user: 'Сообщение для',
+	
+	    //MY POSTS
+	    RELOAD_POST_TIME: 'Перезапустить',
+	    EDIT_POST: 'Редактировать',
+	    TRASH_POST: 'Удалить'
 	};
 	i18n.add('ru', json);
 
@@ -29044,6 +29049,8 @@
 	        min = Math.floor((ms - days * 86400000 - hours * 3600000) / 60000);
 	
 	        percent = ms / duration * 100;
+	
+	        if (percent > 100) percent = 100;
 	
 	        /* get barClass */
 	        if (percent < 20) {
@@ -36927,9 +36934,8 @@
 	var View = _backbone2.default.CompositeView.extend({
 	    template: _PostsMyViewHbs2.default,
 	    childView: _PostItemView2.default,
-	    childViewContainer: '#myPostsContaner',
+	    childViewContainer: '#myPostsContaner'
 	
-	    onRender: function onRender() {}
 	});
 	exports.default = View;
 
@@ -36987,13 +36993,17 @@
 	var View = _backbone2.default.View.extend({
 	    template: _PostItemViewHbs2.default,
 	    className: 'sh-my-posts-item sh-page-block',
+	
+	    //initialize() {
+	    //    this.listenTo(this, 'item:delete', this.cccc);
+	    //},
+	
 	    onBeforeRender: function onBeforeRender() {
 	        this.getDistance();
 	        this.getPostState();
 	    },
+	    onRender: function onRender() {},
 	    getDistance: function getDistance() {
-	        window.mypost = this.model.toJSON(); //debug
-	
 	        var locations = this.model.get('details').locations;
 	        if (locations && _.size(locations) > 0 && _app2.default.user.has('position')) {
 	            var location = _.find(locations, function (l) {
@@ -37017,12 +37027,25 @@
 	
 	
 	    events: {
-	        '.js-remove-my-post click': function jsRemoveMyPostClick() {
-	            debugger;
-	        },
+	        'click .js-delete-post': 'deletePost',
+	
 	        '.js-edit-my-post click': function jsEditMyPostClick() {
 	            debugger;
 	        }
+	    },
+	
+	    deletePost: function deletePost(e) {
+	        e.stopPropagation();
+	        e.preventDefault();
+	
+	        var that = this,
+	            model = this.model.toJSON();
+	        var postId = model._id;
+	
+	        // load by menthod removePost
+	        this.model.loadByMethod('deletePost', postId, function () {
+	            that.model.collection.remove(that.model);
+	        });
 	    }
 	});
 	exports.default = View;
@@ -37082,11 +37105,13 @@
 	((__t=(loc.name))==null?'':__t)+
 	'</span>\r\n                        ';
 	 } 
-	__p+='\r\n                    </div>\r\n                </div>\r\n                <div class="sh-my-posts-item-content-footer-progress">\r\n                    <div class="sh-progress-bar progress">\r\n                        <div class="progress-bar '+
+	__p+='\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="sh-my-posts-item-content-footer-progress">\r\n                    <div class="sh-progress-bar progress">\r\n                        <div class="progress-bar '+
 	((__t=( progress >= 50 ? 'progress-bar-success' : (progress >=20 && progress < 50 ? 'progress-bar-warning' : 'progress-bar-danger')))==null?'':__t)+
 	'" role="progressbar" style="width: '+
 	((__t=( progress))==null?'':__t)+
-	'%; min-width: 1em; ">\r\n                            <span class="sr-only"></span>\r\n                        </div>\r\n                    </div>\r\n                </div>\n            </div>            \n        </div>\n        \n        <!--\n\n        <p>'+
+	'%; min-width: 1em; ">\r\n                            <span class="sr-only"></span>\r\n                        </div>\r\n                    </div>\r\n                </div>\n\n                <div class="sh-my-posts-item-content-footer-actions">\r\n                    <div class="sh-my-posts-item-content-footer-actions-wrapper">\r\n                        <a style="display:none" class="sh-post-action-link js-reset-post" href="#" title="Reload"><span><i class="fa fa-refresh"></i></span></a>\r\n                        <a style="display:none" class="sh-post-action-link" href="/posts/';
+	 _id 
+	__p+='/edit" title="Edit"><span><i class="fa fa-pencil-square-o"></i></span></a>\r\n                        <a class="sh-post-action-link js-delete-post" href="#" title="Delete"><span><i class="fa fa-trash-o"></i></span></a>\r\n                    </div>\r\n                </div>\n            </div>            \n        </div>\n        \n        <!--\n\n        <p>'+
 	((__t=(details.description))==null?'':__t)+
 	'</p>\n\n        -->\n\n\n        <!--<a href="#" class="btn btn-reveal btn-default js-edit-my-chat">\n            <i class="fa fa-edit"></i>\n            <span>Редактировать</span>\n        </a>\n        <a href="#" class="btn btn-reveal btn-danger js-remove-my-post">\n            <i class="fa fa-remove"></i>\n            <span>Удалить</span>\n        </a>-->\n    </div>\n\n</div>';
 	}
