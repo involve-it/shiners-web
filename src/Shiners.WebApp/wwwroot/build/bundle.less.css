@@ -1126,6 +1126,7 @@ body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-po
   display: -ms-flex;
   display: flex;
   padding-right: 16px;
+  z-index: 3;
 }
 body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item .sh-my-posts-item-wrapper .sh-my-posts-item-content .sh-my-posts-item-content-footer .sh-my-posts-item-content-footer-wrapper .sh-my-posts-item-content-footer-actions .sh-my-posts-item-content-footer-actions-wrapper .sh-post-action-link {
   display: inline-block;

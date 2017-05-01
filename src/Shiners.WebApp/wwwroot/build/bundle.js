@@ -34330,11 +34330,12 @@
 	    },
 	    save: function save() {
 	        if (!this.model.validate()) {
-	
+	            this.$('#saveShiner').addClass('disabled');
 	            this.model.create();
 	        }
 	    },
 	    showSuccess: function showSuccess() {
+	        this.$('#saveShiner').removeClass('disabled');
 	        this.showChildView('modal', new _ModalContainerView2.default({
 	            view: new _SuccessView2.default({
 	                resultUrl: '/posts/' + this.model.id,
@@ -34345,6 +34346,7 @@
 	        }));
 	    },
 	    showError: function showError(er) {
+	        this.$('#saveShiner').removeClass('disabled');
 	        alert("Ошибка создания поста. " + er);
 	    },
 	    back: function back() {
@@ -34679,7 +34681,7 @@
   \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -34722,6 +34724,8 @@
 	    },
 	    hide: function hide() {
 	        this.$el.modal('hide');
+	        $('body').removeClass('modal-open');
+	        $('.modal-backdrop').remove();
 	    },
 	    onShow: function onShow() {
 	        this.showChildView('childView', this.containerView);
@@ -34732,6 +34736,7 @@
 	        this.$el.modal();
 	    }
 	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
 /* 131 */
@@ -34809,7 +34814,7 @@
 	if(obj.resultUrl) { 
 	__p+='\n        <a href="'+
 	((__t=(resultUrl))==null?'':__t)+
-	'" class="btn btn-info btn-sm margin-top-10">Перейти</a>\n    ';
+	'" onclick="window.scrollTo(0, 0);" class="btn btn-info btn-sm margin-top-10">Перейти</a>\n    ';
 	 } 
 	__p+='\n\n</div>';
 	}
@@ -36994,10 +36999,6 @@
 	    template: _PostItemViewHbs2.default,
 	    className: 'sh-my-posts-item sh-page-block',
 	
-	    //initialize() {
-	    //    this.listenTo(this, 'item:delete', this.cccc);
-	    //},
-	
 	    onBeforeRender: function onBeforeRender() {
 	        this.getDistance();
 	        this.getPostState();
@@ -37039,10 +37040,10 @@
 	        e.preventDefault();
 	
 	        var that = this,
-	            model = this.model.toJSON();
-	        var postId = model._id;
+	            model = this.model.toJSON(),
+	            postId = model._id;
 	
-	        // load by menthod removePost
+	        // load by menthod removePost        
 	        this.model.loadByMethod('deletePost', postId, function () {
 	            that.model.collection.remove(that.model);
 	        });
@@ -37434,7 +37435,6 @@
 	    template: _DetailsViewHbs2.default,
 	    tagName: 'div',
 	    className: 'sh-user-profile',
-	    c_user: null,
 	    r_user: null,
 	
 	    events: {
@@ -37455,7 +37455,6 @@
 	
 	    initialize: function initialize() {
 	        this.r_user = this.model.toJSON();
-	        this.c_user = _app2.default.user.toJSON();
 	
 	        this.sendMessageModel = new _AsteroidModel2.default({
 	            name: this.r_user.username,
@@ -37463,23 +37462,15 @@
 	            remoteUser_id: this.r_user._id
 	        }, { asteroid: _app2.default.asteroid });
 	
-	        this.profileEditModel = new _AsteroidModel2.default(this.c_user, { asteroid: _app2.default.asteroid });
-	
+	        this.profileEditModel = new _AsteroidModel2.default(this.model.toJSON(), { asteroid: _app2.default.asteroid });
 	        this.listenTo(this.profileEditModel, 'save', this.render);
-	    },
-	    renderr: function renderr() {
-	        console.log('Профиль rrrrrr');
-	        ///this.render();
 	    },
 	    onBeforeRender: function onBeforeRender() {
 	        this.templateContext = {
 	            user: _app2.default.user.toJSON()
 	        };
 	    },
-	    onRender: function onRender() {
-	        //this.showChildView('content', new UserDetailsView({model: this.profileEditModel}))
-	        console.log('Профиль отреднерился');
-	    },
+	    onRender: function onRender() {},
 	    logout: function logout() {
 	        _app2.default.logout();
 	    },
