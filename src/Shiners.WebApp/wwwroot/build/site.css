@@ -21696,6 +21696,13 @@ a:hover {
 a:active, a:focus {
   color: #4A90E2; }
 
+.has-error input, .has-error select {
+  border-color: #fb3d38 !important; }
+
+small.error {
+  color: #fb3d38;
+  padding-top: 4px; }
+
 .sh-text-center {
   text-align: center; }
 

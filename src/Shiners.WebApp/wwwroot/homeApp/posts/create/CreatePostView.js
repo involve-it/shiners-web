@@ -51,7 +51,7 @@ var View = Marionette.View.extend({
         this.listenTo(this.selectedLocation,'change', this.showLocation);
         this.listenTo(this.selectedLocation,'change', this.setLocation);
         this.listenTo(this.images,'change',this.setImages);
-        window.uploadedImages = this.images; // debug
+        //window.uploadedImages = this.images; // debug
     },
 
     setAnonimous(e) {
@@ -65,7 +65,8 @@ var View = Marionette.View.extend({
             location["userId"] = app.user.id;
             location["public"] = false;
             details.locations = [location];
-            this.model.set('details',details,{validate:true});
+            this.model.set('details', details, {validate:true});
+            this.model.trigger('change');
         }       
     },
 
@@ -88,7 +89,7 @@ var View = Marionette.View.extend({
         } else {
             delete details.title;
         }
-        this.model.set('details',details,{validate:true});
+        this.model.set('details', details, {validate:true});
     },
 
     setUrl(e) {
@@ -185,7 +186,7 @@ var View = Marionette.View.extend({
     setDate(e) {
         if (e.target.value && !_.isEmpty(e.target.value)) {
             var val = moment(e.target.value,"DD/MM/YYYY");
-            this.model.set('endDatePost', val.valueOf());
+            this.model.set('endDatePost', val.valueOf(), {validate:true});
         }      
     },
 

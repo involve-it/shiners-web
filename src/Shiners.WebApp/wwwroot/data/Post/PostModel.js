@@ -72,7 +72,7 @@ export default Model.extend({
 
         'details.locations'(value, attr, computedState) {
             if (!value || _.isEmpty(value))
-                return "укажите местоположение";
+                return "Укажите местоположение";
         }
     }
 });
