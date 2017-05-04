@@ -61,6 +61,9 @@ var View = Marionette.View.extend({
     setLocation() {
         var details = this.model.get('details');
         var location = this.selectedLocation.toJSON()||{};
+
+        
+
         if (location["name"]) {
             location["userId"] = app.user.id;
             location["public"] = false;

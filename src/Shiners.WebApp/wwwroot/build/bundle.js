@@ -16009,10 +16009,10 @@
 	    },
 	    initialize: function initialize() {
 	        /* web server */
-	        //this.asteroid = new Asteroid("www.shiners.mobi", true);
+	        this.asteroid = new _asteroidBrowser2.default("www.shiners.mobi", true);
 	
 	        /* local server */
-	        this.asteroid = new _asteroidBrowser2.default("192.168.1.34:3000", false);
+	        //this.asteroid = new Asteroid("192.168.1.34:3000", false);
 	
 	        //window.asteroid = this.asteroid; // debug        
 	        this.user = new _AsteroidModel2.default(null, { asteroid: this.asteroid });
@@ -33920,7 +33920,28 @@
 	    },
 	    _create: function _create(options) {
 	        var self = this;
-	        return this.asteroid.call('addPost', this.attributes).result.then(function (resp) {
+	
+	        var postPosition = {};
+	        var navigatorPosition = app.user.get('position'),
+	            postCurrentPosition = this.get('details').locations;
+	
+	        if (postCurrentPosition) {
+	            postCurrentPosition.map(function (location) {
+	                if (location.placeType === 'dynamic') {
+	                    postPosition = {
+	                        lat: location.coords.lat(),
+	                        lng: location.coords.lng()
+	                    };
+	                } else {
+	                    postPosition = {
+	                        lat: navigatorPosition.lat,
+	                        lng: navigatorPosition.lng
+	                    };
+	                }
+	            });
+	        }
+	
+	        return this.asteroid.call('addPost', this.attributes, postPosition).result.then(function (resp) {
 	            if (resp.success) {
 	                self.set('_id', resp.result, options);
 	                if (!options || !options.silent) self.trigger('save', resp);
@@ -34154,6 +34175,7 @@
 	    setLocation: function setLocation() {
 	        var details = this.model.get('details');
 	        var location = this.selectedLocation.toJSON() || {};
+	
 	        if (location["name"]) {
 	            location["userId"] = _app2.default.user.id;
 	            location["public"] = false;
