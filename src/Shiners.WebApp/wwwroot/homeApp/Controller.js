@@ -141,6 +141,7 @@ export default Marionette.Object.extend({
        // window.currentUser = userModel;
         userModel.fetch().done(() => app.layout.showChildView('content', new UserDetailsView({model: userModel})));
     },
+
     userDetails(id) {
         app.layout.showChildView('content', new PreloaderView());
         var userModel = new UserModel({_id: id});
@@ -161,9 +162,10 @@ export default Marionette.Object.extend({
 
     // BLOG:
     blogHome() {
-        var posts = new AsteroidCollection(null, {asteroid: app.asteroid, comparator: 'createdAt'});
-        posts.loadByMethod('bz.blog.getPosts', {}, () => {
-            app.layout.showChildView('content', new BlogHomeView({ collection: posts }));
+        var posts = new AsteroidCollection(null, {asteroid: app.asteroid, comparator: 'createdAt'});   
+        //app.layout.showChildView('content', new BlogHomeView({ collection: [] }));
+        posts.loadByMethod('bz.blog.getPosts', {}, () => {            
+           app.layout.showChildView('content', new BlogHomeView({ collection: posts }));
         });
     },
 

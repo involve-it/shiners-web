@@ -123,6 +123,7 @@ $sh-main-content-bg: rgba(245, 245, 245, 1);
 $sh-footer-text-color: rgba(244,244,244, 1);
 $sh-white-color: rgba(255,255,255, 1);
 $sh-main-gray-color: rgba(74,74,74, 1);
+$sh-main-red-color: rgba(251,61,56, 1);
 $sh-main-black-color: rgba(54,54,54, 1);
 $sh-main-lightgray-color: rgba(143,142,148, 1);
 $sh-main-super-light-color: rgba(244,244,244, 1);
@@ -226,6 +227,19 @@ a:hover {
 
 a:active, a:focus {
   color: $a-color-link-active;
+}
+
+.has-error {
+    input, select {
+        border-color: $sh-main-red-color !important;
+    }
+}
+
+small {
+    &.error {
+        color: $sh-main-red-color;
+        padding-top: 4px;
+    }
 }
 
 .sh-text-center {
@@ -664,6 +678,7 @@ input[type=radio] + label {
 
             .sh-shiners-list-footer {
                position: relative;
+               padding-left: 70px;
                
                span {
                    font-size: 12px;
@@ -3160,4 +3175,8 @@ input[type=radio] + label {
             }
         }
     }
+}
+
+.pac-container {
+    z-index:1070;
 }

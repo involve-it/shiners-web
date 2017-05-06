@@ -131,7 +131,7 @@ var View = Marionette.View.extend({
 
     initMap() {
         var defaultCoords = { lat: 55.75396, lng: 37.620393 };
-        MapLoader({key:'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY'}).then( _.bind((maps) => {
+        MapLoader({key:'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY', libraries: ['places']}).then( _.bind((maps) => {
             var center = app.user.get('position') || defaultCoords;
 
             this.map = new maps.Map(document.getElementById('map2'), {

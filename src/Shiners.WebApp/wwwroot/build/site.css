@@ -21696,6 +21696,13 @@ a:hover {
 a:active, a:focus {
   color: #4A90E2; }
 
+.has-error input, .has-error select {
+  border-color: #fb3d38 !important; }
+
+small.error {
+  color: #fb3d38;
+  padding-top: 4px; }
+
 .sh-text-center {
   text-align: center; }
 
@@ -22054,7 +22061,8 @@ input[type=radio] + label {
     #shinersList.sh-shiners-list-items .sh-shiners-list-item h4 a {
       color: #363636; }
   #shinersList.sh-shiners-list-items .sh-shiners-list-item .sh-shiners-list-footer {
-    position: relative; }
+    position: relative;
+    padding-left: 70px; }
     #shinersList.sh-shiners-list-items .sh-shiners-list-item .sh-shiners-list-footer span {
       font-size: 12px;
       margin-right: 6px; }
@@ -23889,5 +23897,8 @@ input[type=radio] + label {
         padding-bottom: 0; }
   #sh-anywhere .sh-anywhere-bg .sh-anywhere-bg-shs {
     display: none; } }
+
+.pac-container {
+  z-index: 1070; }
 
 /*# sourceMappingURL=site.css.map*/

@@ -47,11 +47,20 @@
                         {{ } }}
                     </div>
                 </div>
+
                 <div class="sh-my-posts-item-content-footer-progress">
                     <div class="sh-progress-bar progress">
                         <div class="progress-bar {{= progress >= 50 ? 'progress-bar-success' : (progress >=20 && progress < 50 ? 'progress-bar-warning' : 'progress-bar-danger')}}" role="progressbar" style="width: {{= progress}}%; min-width: 1em; ">
                             <span class="sr-only"></span>
                         </div>
+                    </div>
+                </div>
+
+                <div class="sh-my-posts-item-content-footer-actions">
+                    <div class="sh-my-posts-item-content-footer-actions-wrapper">
+                        <a style="display:none" class="sh-post-action-link js-reset-post" href="#" title="Reload"><span><i class="fa fa-refresh"></i></span></a>
+                        <a style="display:none" class="sh-post-action-link" href="/posts/{{ _id }}/edit" title="Edit"><span><i class="fa fa-pencil-square-o"></i></span></a>
+                        <a class="sh-post-action-link js-delete-post" href="#" title="Delete"><span><i class="fa fa-trash-o"></i></span></a>
                     </div>
                 </div>
             </div>            

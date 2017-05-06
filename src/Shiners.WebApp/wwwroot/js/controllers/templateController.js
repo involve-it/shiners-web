@@ -1,6 +1,7 @@
 /**
  * Created by arutu_000 on 12/9/2016.
  */
+Object.assign = Object.assign || require('object.assign');
 const DEFAULT_LANGUAGE = 'ru';
 var dataGlobal = {},
     currentLanguage = DEFAULT_LANGUAGE;

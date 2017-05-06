@@ -11,7 +11,6 @@ var View = Marionette.View.extend({
     template:template,
     tagName:'div',
     className:'sh-user-profile',
-    c_user: null,
     r_user: null,
 
     events: {
@@ -32,24 +31,16 @@ var View = Marionette.View.extend({
 
     initialize() {
         this.r_user = this.model.toJSON();
-        this.c_user = app.user.toJSON();
 
         this.sendMessageModel = new AsteroidModel({
             name: this.r_user.username,
             user_id: app.user.get('_id'),
             remoteUser_id: this.r_user._id
         }, {asteroid: app.asteroid});
-
-        this.profileEditModel = new AsteroidModel(
-            this.c_user, {asteroid: app.asteroid});
-
+       
+        this.profileEditModel = new AsteroidModel(this.model.toJSON(), {asteroid: app.asteroid});
         this.listenTo(this.profileEditModel, 'save', this.render);
-    },
-
-    renderr() {
-        console.log('Профиль rrrrrr');
-        ///this.render();
-    },   
+    },  
 
     onBeforeRender() {
         this.templateContext = {
@@ -57,10 +48,7 @@ var View = Marionette.View.extend({
         }
     },
 
-    onRender() {
-        //this.showChildView('content', new UserDetailsView({model: this.profileEditModel}))
-        console.log('Профиль отреднерился');
-    },
+    onRender() {},
 
     logout() {
         app.logout();

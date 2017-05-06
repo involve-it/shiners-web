@@ -36,7 +36,28 @@ export default Model.extend({
 
     _create(options) {
         var self = this;
-        return this.asteroid.call('addPost',this.attributes).result.then((resp) => {
+        
+        var postPosition = {};
+        var navigatorPosition = app.user.get('position'),
+            postCurrentPosition = this.get('details').locations;
+
+        if(postCurrentPosition) {
+            postCurrentPosition.map((location) => {
+                if(location.placeType === 'dynamic') {
+                    postPosition = {
+                        lat: location.coords.lat(),
+                        lng: location.coords.lng()
+                    }
+                } else {
+                    postPosition = {
+                        lat: navigatorPosition.lat,
+                        lng: navigatorPosition.lng
+                    };
+                }
+            });
+        }
+
+        return this.asteroid.call('addPost', this.attributes, postPosition).result.then((resp) => {
             if (resp.success) {
                 self.set('_id',resp.result,options);
                 if(!options || !options.silent)
@@ -72,7 +93,7 @@ export default Model.extend({
 
         'details.locations'(value, attr, computedState) {
             if (!value || _.isEmpty(value))
-                return "укажите местоположение";
+                return "Укажите местоположение";
         }
     }
 });

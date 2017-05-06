@@ -7,9 +7,7 @@ import  './PostMyView.less';
 var View = Marionette.CompositeView.extend({
     template:template,
     childView:ItemView,
-    childViewContainer:'#myPostsContaner',
-
-    onRender() {}
+    childViewContainer:'#myPostsContaner' 
 
 });
 export default View;

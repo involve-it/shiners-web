@@ -31,7 +31,9 @@ var View = Marionette.View.extend({
     },    
     _adaptCollection() {
         var ret, p;
+        debugger;
         ret = this.options.collection.map((post)=> {
+            
             p = post.toJSON();
             return _.extend({}, p, {
                 id: p.id,

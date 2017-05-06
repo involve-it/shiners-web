@@ -15937,25 +15937,25 @@
 	
 	var _templateController2 = _interopRequireDefault(_templateController);
 	
-	__webpack_require__(/*! ../i18n/en.js */ 20);
+	__webpack_require__(/*! ../i18n/en.js */ 31);
 	
-	__webpack_require__(/*! ../i18n/ru.js */ 21);
+	__webpack_require__(/*! ../i18n/ru.js */ 32);
 	
-	__webpack_require__(/*! ../lib/detectmobile.js */ 22);
+	__webpack_require__(/*! ../lib/detectmobile.js */ 33);
 	
-	var _asteroidBrowser = __webpack_require__(/*! ../lib/asteroid.browser.js */ 23);
+	var _asteroidBrowser = __webpack_require__(/*! ../lib/asteroid.browser.js */ 34);
 	
 	var _asteroidBrowser2 = _interopRequireDefault(_asteroidBrowser);
 	
-	var _mainLayoutView = __webpack_require__(/*! ./mainLayoutView.js */ 29);
+	var _mainLayoutView = __webpack_require__(/*! ./mainLayoutView.js */ 40);
 	
 	var _mainLayoutView2 = _interopRequireDefault(_mainLayoutView);
 	
-	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 79);
+	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 90);
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
-	var _router = __webpack_require__(/*! ./router.js */ 86);
+	var _router = __webpack_require__(/*! ./router.js */ 97);
 	
 	var _router2 = _interopRequireDefault(_router);
 	
@@ -15963,23 +15963,23 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _ModalContainerView = __webpack_require__(/*! ../sharedViews/ModalContainerView.js */ 119);
+	var _ModalContainerView = __webpack_require__(/*! ../sharedViews/ModalContainerView.js */ 130);
 	
 	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
 	
-	var _SuggestionsModalView = __webpack_require__(/*! ./selectLocation/suggestionsModal/SuggestionsModalView.js */ 191);
+	var _SuggestionsModalView = __webpack_require__(/*! ./selectLocation/suggestionsModal/SuggestionsModalView.js */ 202);
 	
 	var _SuggestionsModalView2 = _interopRequireDefault(_SuggestionsModalView);
 	
-	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 80);
+	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 91);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 109);
+	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 120);
 	
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
-	__webpack_require__(/*! ../css/shiners-override.css */ 194);
+	__webpack_require__(/*! ../css/shiners-override.css */ 205);
 	
 	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
@@ -16012,7 +16012,7 @@
 	        this.asteroid = new _asteroidBrowser2.default("www.shiners.mobi", true);
 	
 	        /* local server */
-	        //this.asteroid = new Asteroid("192.168.1.38:3000", false);
+	        //this.asteroid = new Asteroid("192.168.1.34:3000", false);
 	
 	        //window.asteroid = this.asteroid; // debug        
 	        this.user = new _AsteroidModel2.default(null, { asteroid: this.asteroid });
@@ -21634,6 +21634,7 @@
 	/**
 	 * Created by arutu_000 on 12/9/2016.
 	 */
+	Object.assign = Object.assign || __webpack_require__(/*! object.assign */ 20);
 	var DEFAULT_LANGUAGE = 'ru';
 	var dataGlobal = {},
 	    currentLanguage = DEFAULT_LANGUAGE;
@@ -21701,6 +21702,568 @@
 
 /***/ },
 /* 20 */
+/*!**********************************!*\
+  !*** ./~/object.assign/index.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var defineProperties = __webpack_require__(/*! define-properties */ 21);
+	
+	var implementation = __webpack_require__(/*! ./implementation */ 25);
+	var getPolyfill = __webpack_require__(/*! ./polyfill */ 29);
+	var shim = __webpack_require__(/*! ./shim */ 30);
+	
+	var polyfill = getPolyfill();
+	
+	defineProperties(polyfill, {
+		implementation: implementation,
+		getPolyfill: getPolyfill,
+		shim: shim
+	});
+	
+	module.exports = polyfill;
+
+/***/ },
+/* 21 */
+/*!**************************************!*\
+  !*** ./~/define-properties/index.js ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	var keys = __webpack_require__(/*! object-keys */ 22);
+	var foreach = __webpack_require__(/*! foreach */ 24);
+	var hasSymbols = typeof Symbol === 'function' && _typeof(Symbol()) === 'symbol';
+	
+	var toStr = Object.prototype.toString;
+	
+	var isFunction = function isFunction(fn) {
+		return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
+	};
+	
+	var arePropertyDescriptorsSupported = function arePropertyDescriptorsSupported() {
+		var obj = {};
+		try {
+			Object.defineProperty(obj, 'x', { enumerable: false, value: obj });
+			/* eslint-disable no-unused-vars, no-restricted-syntax */
+			for (var _ in obj) {
+				return false;
+			}
+			/* eslint-enable no-unused-vars, no-restricted-syntax */
+			return obj.x === obj;
+		} catch (e) {
+			/* this is IE 8. */
+			return false;
+		}
+	};
+	var supportsDescriptors = Object.defineProperty && arePropertyDescriptorsSupported();
+	
+	var defineProperty = function defineProperty(object, name, value, predicate) {
+		if (name in object && (!isFunction(predicate) || !predicate())) {
+			return;
+		}
+		if (supportsDescriptors) {
+			Object.defineProperty(object, name, {
+				configurable: true,
+				enumerable: false,
+				value: value,
+				writable: true
+			});
+		} else {
+			object[name] = value;
+		}
+	};
+	
+	var defineProperties = function defineProperties(object, map) {
+		var predicates = arguments.length > 2 ? arguments[2] : {};
+		var props = keys(map);
+		if (hasSymbols) {
+			props = props.concat(Object.getOwnPropertySymbols(map));
+		}
+		foreach(props, function (name) {
+			defineProperty(object, name, map[name], predicates[name]);
+		});
+	};
+	
+	defineProperties.supportsDescriptors = !!supportsDescriptors;
+	
+	module.exports = defineProperties;
+
+/***/ },
+/* 22 */
+/*!********************************!*\
+  !*** ./~/object-keys/index.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	// modified from https://github.com/es-shims/es5-shim
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	var has = Object.prototype.hasOwnProperty;
+	var toStr = Object.prototype.toString;
+	var slice = Array.prototype.slice;
+	var isArgs = __webpack_require__(/*! ./isArguments */ 23);
+	var isEnumerable = Object.prototype.propertyIsEnumerable;
+	var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
+	var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
+	var dontEnums = ['toString', 'toLocaleString', 'valueOf', 'hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable', 'constructor'];
+	var equalsConstructorPrototype = function equalsConstructorPrototype(o) {
+		var ctor = o.constructor;
+		return ctor && ctor.prototype === o;
+	};
+	var excludedKeys = {
+		$console: true,
+		$external: true,
+		$frame: true,
+		$frameElement: true,
+		$frames: true,
+		$innerHeight: true,
+		$innerWidth: true,
+		$outerHeight: true,
+		$outerWidth: true,
+		$pageXOffset: true,
+		$pageYOffset: true,
+		$parent: true,
+		$scrollLeft: true,
+		$scrollTop: true,
+		$scrollX: true,
+		$scrollY: true,
+		$self: true,
+		$webkitIndexedDB: true,
+		$webkitStorageInfo: true,
+		$window: true
+	};
+	var hasAutomationEqualityBug = function () {
+		/* global window */
+		if (typeof window === 'undefined') {
+			return false;
+		}
+		for (var k in window) {
+			try {
+				if (!excludedKeys['$' + k] && has.call(window, k) && window[k] !== null && _typeof(window[k]) === 'object') {
+					try {
+						equalsConstructorPrototype(window[k]);
+					} catch (e) {
+						return true;
+					}
+				}
+			} catch (e) {
+				return true;
+			}
+		}
+		return false;
+	}();
+	var equalsConstructorPrototypeIfNotBuggy = function equalsConstructorPrototypeIfNotBuggy(o) {
+		/* global window */
+		if (typeof window === 'undefined' || !hasAutomationEqualityBug) {
+			return equalsConstructorPrototype(o);
+		}
+		try {
+			return equalsConstructorPrototype(o);
+		} catch (e) {
+			return false;
+		}
+	};
+	
+	var keysShim = function keys(object) {
+		var isObject = object !== null && (typeof object === 'undefined' ? 'undefined' : _typeof(object)) === 'object';
+		var isFunction = toStr.call(object) === '[object Function]';
+		var isArguments = isArgs(object);
+		var isString = isObject && toStr.call(object) === '[object String]';
+		var theKeys = [];
+	
+		if (!isObject && !isFunction && !isArguments) {
+			throw new TypeError('Object.keys called on a non-object');
+		}
+	
+		var skipProto = hasProtoEnumBug && isFunction;
+		if (isString && object.length > 0 && !has.call(object, 0)) {
+			for (var i = 0; i < object.length; ++i) {
+				theKeys.push(String(i));
+			}
+		}
+	
+		if (isArguments && object.length > 0) {
+			for (var j = 0; j < object.length; ++j) {
+				theKeys.push(String(j));
+			}
+		} else {
+			for (var name in object) {
+				if (!(skipProto && name === 'prototype') && has.call(object, name)) {
+					theKeys.push(String(name));
+				}
+			}
+		}
+	
+		if (hasDontEnumBug) {
+			var skipConstructor = equalsConstructorPrototypeIfNotBuggy(object);
+	
+			for (var k = 0; k < dontEnums.length; ++k) {
+				if (!(skipConstructor && dontEnums[k] === 'constructor') && has.call(object, dontEnums[k])) {
+					theKeys.push(dontEnums[k]);
+				}
+			}
+		}
+		return theKeys;
+	};
+	
+	keysShim.shim = function shimObjectKeys() {
+		if (Object.keys) {
+			var keysWorksWithArguments = function () {
+				// Safari 5.0 bug
+				return (Object.keys(arguments) || '').length === 2;
+			}(1, 2);
+			if (!keysWorksWithArguments) {
+				var originalKeys = Object.keys;
+				Object.keys = function keys(object) {
+					if (isArgs(object)) {
+						return originalKeys(slice.call(object));
+					} else {
+						return originalKeys(object);
+					}
+				};
+			}
+		} else {
+			Object.keys = keysShim;
+		}
+		return Object.keys || keysShim;
+	};
+	
+	module.exports = keysShim;
+
+/***/ },
+/* 23 */
+/*!**************************************!*\
+  !*** ./~/object-keys/isArguments.js ***!
+  \**************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	var toStr = Object.prototype.toString;
+	
+	module.exports = function isArguments(value) {
+		var str = toStr.call(value);
+		var isArgs = str === '[object Arguments]';
+		if (!isArgs) {
+			isArgs = str !== '[object Array]' && value !== null && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && typeof value.length === 'number' && value.length >= 0 && toStr.call(value.callee) === '[object Function]';
+		}
+		return isArgs;
+	};
+
+/***/ },
+/* 24 */
+/*!****************************!*\
+  !*** ./~/foreach/index.js ***!
+  \****************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var hasOwn = Object.prototype.hasOwnProperty;
+	var toString = Object.prototype.toString;
+	
+	module.exports = function forEach(obj, fn, ctx) {
+	    if (toString.call(fn) !== '[object Function]') {
+	        throw new TypeError('iterator must be a function');
+	    }
+	    var l = obj.length;
+	    if (l === +l) {
+	        for (var i = 0; i < l; i++) {
+	            fn.call(ctx, obj[i], i, obj);
+	        }
+	    } else {
+	        for (var k in obj) {
+	            if (hasOwn.call(obj, k)) {
+	                fn.call(ctx, obj[k], k, obj);
+	            }
+	        }
+	    }
+	};
+
+/***/ },
+/* 25 */
+/*!*******************************************!*\
+  !*** ./~/object.assign/implementation.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	// modified from https://github.com/es-shims/es6-shim
+	
+	var keys = __webpack_require__(/*! object-keys */ 22);
+	var bind = __webpack_require__(/*! function-bind */ 26);
+	var canBeObject = function canBeObject(obj) {
+		return typeof obj !== 'undefined' && obj !== null;
+	};
+	var hasSymbols = __webpack_require__(/*! ./hasSymbols */ 28)();
+	var toObject = Object;
+	var push = bind.call(Function.call, Array.prototype.push);
+	var propIsEnumerable = bind.call(Function.call, Object.prototype.propertyIsEnumerable);
+	var originalGetSymbols = hasSymbols ? Object.getOwnPropertySymbols : null;
+	
+	module.exports = function assign(target, source1) {
+		if (!canBeObject(target)) {
+			throw new TypeError('target must be an object');
+		}
+		var objTarget = toObject(target);
+		var s, source, i, props, syms, value, key;
+		for (s = 1; s < arguments.length; ++s) {
+			source = toObject(arguments[s]);
+			props = keys(source);
+			var getSymbols = hasSymbols && (Object.getOwnPropertySymbols || originalGetSymbols);
+			if (getSymbols) {
+				syms = getSymbols(source);
+				for (i = 0; i < syms.length; ++i) {
+					key = syms[i];
+					if (propIsEnumerable(source, key)) {
+						push(props, key);
+					}
+				}
+			}
+			for (i = 0; i < props.length; ++i) {
+				key = props[i];
+				value = source[key];
+				if (propIsEnumerable(source, key)) {
+					objTarget[key] = value;
+				}
+			}
+		}
+		return objTarget;
+	};
+
+/***/ },
+/* 26 */
+/*!**********************************!*\
+  !*** ./~/function-bind/index.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var implementation = __webpack_require__(/*! ./implementation */ 27);
+	
+	module.exports = Function.prototype.bind || implementation;
+
+/***/ },
+/* 27 */
+/*!*******************************************!*\
+  !*** ./~/function-bind/implementation.js ***!
+  \*******************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
+	var slice = Array.prototype.slice;
+	var toStr = Object.prototype.toString;
+	var funcType = '[object Function]';
+	
+	module.exports = function bind(that) {
+	    var target = this;
+	    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+	        throw new TypeError(ERROR_MESSAGE + target);
+	    }
+	    var args = slice.call(arguments, 1);
+	
+	    var bound;
+	    var binder = function binder() {
+	        if (this instanceof bound) {
+	            var result = target.apply(this, args.concat(slice.call(arguments)));
+	            if (Object(result) === result) {
+	                return result;
+	            }
+	            return this;
+	        } else {
+	            return target.apply(that, args.concat(slice.call(arguments)));
+	        }
+	    };
+	
+	    var boundLength = Math.max(0, target.length - args.length);
+	    var boundArgs = [];
+	    for (var i = 0; i < boundLength; i++) {
+	        boundArgs.push('$' + i);
+	    }
+	
+	    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+	
+	    if (target.prototype) {
+	        var Empty = function Empty() {};
+	        Empty.prototype = target.prototype;
+	        bound.prototype = new Empty();
+	        Empty.prototype = null;
+	    }
+	
+	    return bound;
+	};
+
+/***/ },
+/* 28 */
+/*!***************************************!*\
+  !*** ./~/object.assign/hasSymbols.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	var keys = __webpack_require__(/*! object-keys */ 22);
+	
+	module.exports = function hasSymbols() {
+		if (typeof Symbol !== 'function' || typeof Object.getOwnPropertySymbols !== 'function') {
+			return false;
+		}
+		if (_typeof(Symbol.iterator) === 'symbol') {
+			return true;
+		}
+	
+		var obj = {};
+		var sym = Symbol('test');
+		var symObj = Object(sym);
+		if (typeof sym === 'string') {
+			return false;
+		}
+	
+		if (Object.prototype.toString.call(sym) !== '[object Symbol]') {
+			return false;
+		}
+		if (Object.prototype.toString.call(symObj) !== '[object Symbol]') {
+			return false;
+		}
+	
+		// temp disabled per https://github.com/ljharb/object.assign/issues/17
+		// if (sym instanceof Symbol) { return false; }
+		// temp disabled per https://github.com/WebReflection/get-own-property-symbols/issues/4
+		// if (!(symObj instanceof Symbol)) { return false; }
+	
+		var symVal = 42;
+		obj[sym] = symVal;
+		for (sym in obj) {
+			return false;
+		}
+		if (keys(obj).length !== 0) {
+			return false;
+		}
+		if (typeof Object.keys === 'function' && Object.keys(obj).length !== 0) {
+			return false;
+		}
+	
+		if (typeof Object.getOwnPropertyNames === 'function' && Object.getOwnPropertyNames(obj).length !== 0) {
+			return false;
+		}
+	
+		var syms = Object.getOwnPropertySymbols(obj);
+		if (syms.length !== 1 || syms[0] !== sym) {
+			return false;
+		}
+	
+		if (!Object.prototype.propertyIsEnumerable.call(obj, sym)) {
+			return false;
+		}
+	
+		if (typeof Object.getOwnPropertyDescriptor === 'function') {
+			var descriptor = Object.getOwnPropertyDescriptor(obj, sym);
+			if (descriptor.value !== symVal || descriptor.enumerable !== true) {
+				return false;
+			}
+		}
+	
+		return true;
+	};
+
+/***/ },
+/* 29 */
+/*!*************************************!*\
+  !*** ./~/object.assign/polyfill.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var implementation = __webpack_require__(/*! ./implementation */ 25);
+	
+	var lacksProperEnumerationOrder = function lacksProperEnumerationOrder() {
+		if (!Object.assign) {
+			return false;
+		}
+		// v8, specifically in node 4.x, has a bug with incorrect property enumeration order
+		// note: this does not detect the bug unless there's 20 characters
+		var str = 'abcdefghijklmnopqrst';
+		var letters = str.split('');
+		var map = {};
+		for (var i = 0; i < letters.length; ++i) {
+			map[letters[i]] = letters[i];
+		}
+		var obj = Object.assign({}, map);
+		var actual = '';
+		for (var k in obj) {
+			actual += k;
+		}
+		return str !== actual;
+	};
+	
+	var assignHasPendingExceptions = function assignHasPendingExceptions() {
+		if (!Object.assign || !Object.preventExtensions) {
+			return false;
+		}
+		// Firefox 37 still has "pending exception" logic in its Object.assign implementation,
+		// which is 72% slower than our shim, and Firefox 40's native implementation.
+		var thrower = Object.preventExtensions({ 1: 2 });
+		try {
+			Object.assign(thrower, 'xy');
+		} catch (e) {
+			return thrower[1] === 'y';
+		}
+		return false;
+	};
+	
+	module.exports = function getPolyfill() {
+		if (!Object.assign) {
+			return implementation;
+		}
+		if (lacksProperEnumerationOrder()) {
+			return implementation;
+		}
+		if (assignHasPendingExceptions()) {
+			return implementation;
+		}
+		return Object.assign;
+	};
+
+/***/ },
+/* 30 */
+/*!*********************************!*\
+  !*** ./~/object.assign/shim.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var define = __webpack_require__(/*! define-properties */ 21);
+	var getPolyfill = __webpack_require__(/*! ./polyfill */ 29);
+	
+	module.exports = function shimAssign() {
+		var polyfill = getPolyfill();
+		define(Object, { assign: polyfill }, { assign: function assign() {
+				return Object.assign !== polyfill;
+			} });
+		return polyfill;
+	};
+
+/***/ },
+/* 31 */
 /*!****************************!*\
   !*** ./wwwroot/i18n/en.js ***!
   \****************************/
@@ -21770,11 +22333,11 @@
 	
 	    //MASS MEDIA
 	    h_information_for_smi: 'Информация для СМИ'
-	}, _defineProperty(_json, 'massMedia', 'Пресса о нас'), _defineProperty(_json, 'press_release', 'Пресс-релизы'), _defineProperty(_json, 'press_contacts', 'Контакты для прессы'), _defineProperty(_json, 'h_meet_us', 'Знакомство с нами'), _defineProperty(_json, 'h_mass_media', 'Пресса о нас'), _defineProperty(_json, 'm_about_us', 'О нас'), _defineProperty(_json, 'm_help', 'Помощь'), _defineProperty(_json, 'm_confidentiality', 'Конфиденциальность'), _defineProperty(_json, 'm_terms_of_use', 'Правила пользования'), _defineProperty(_json, 'site_published', 'Сайт публикации'), _defineProperty(_json, 'download_press_release', 'Скачать пресс-релиз'), _defineProperty(_json, 'ashot_a', 'Ашот Арутюнян'), _defineProperty(_json, 'tatyana_u', 'Татьяна Урусова'), _defineProperty(_json, 'home_accordion_section1', 'If you already have an advertisement on another website, just use that Url to create a Shiner!'), _defineProperty(_json, 'home_accordion_section2', 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone'), _defineProperty(_json, 'home_accordion_section3', 'Use Shiners for finding new live connections everywhere'), _defineProperty(_json, 'home_shiners_are_around', 'Shiners are everywhere'), _defineProperty(_json, 'home_lot_of_opportunities', 'A lot of opportunities for business around'), _defineProperty(_json, 'home_participate', 'Participate '), _defineProperty(_json, 'home_free', 'for free'), _defineProperty(_json, 'home_in_project', ' in the project!'), _defineProperty(_json, 'home_contact_with_people', 'Let others know about your ad instantly'), _defineProperty(_json, 'home_set_your_shiner', 'Create your Shiner'), _defineProperty(_json, 'search_free_search', 'Free search by words'), _defineProperty(_json, 'search_choose_radius', 'Search Radius (km):'), _defineProperty(_json, 'search_parameters', 'Search Parameters'), _defineProperty(_json, 'search_found', 'Found Shiners'), _defineProperty(_json, 'search_not_found', 'No posts found around'), _defineProperty(_json, 'about_intro_text', 'Мы считаем, это замечательно - иметь инструмент, который помогает людям вокруг сотрудничать друг с другом, находить людей и занятия прямо здесь, и прямо сейчас. SHINERS показывает людям объявления вокруг с привязкой к человеку и его локации.'), _defineProperty(_json, 'about_intro_duration', 'Продолжительность'), _defineProperty(_json, 'about_intro_duration_minute', 'мин.'), _defineProperty(_json, 'about_menu_how_it_works', 'КАК ЭТО РАБОТАЕТ?'), _defineProperty(_json, 'about_menu_what_are_we_useful', 'ЧЕМ МЫ ПОЛЕЗНЫ?'), _defineProperty(_json, 'about_menu_our_team', 'НАША КОМАНДА'), _defineProperty(_json, 'about_menu_connect_with_us', 'СВЯЗАТЬСЯ С НАМИ'), _defineProperty(_json, 'about_title_section_1', 'Единственный сервис, предлагающий живое присутствие!'), _defineProperty(_json, 'about_title_section_1_p1', 'Светлячки позволяют привязать объявление или любой адрес в интернете к текущему местоположению пользователя, и, как результат, осуществлять мгновенный поиск информации среди людей вокруг. Это позволяет искать информацию здесь и сейчас с целью мгновенной встречи с ее владельцем. Ненужное промежуточное звено (поиск по интернету, договор о встрече, дорогу к месту) можно исключить, если потенциально интересующий нас человек находится поблизости.'), _defineProperty(_json, 'about_title_section_1_p2', 'Мы расширяем возможности Веба, посредством привязки информации к реальным людям и координатам, что дает веб-ресурсам новое,- пространство-временное, качество, то есть путь напрямик к цели! Нас также видно в Google и соцсетях, и поэтому твое объявление превращается в собственную интернет-страницу, которую при желании увидит весь интернет.'), _defineProperty(_json, 'about_title_section_2', 'Как это работает?'), _defineProperty(_json, 'about_title_section_2_intro', 'Представь себе виртуальную визитку, только носишь ты ее не в кошельке, а в мобильном телефоне, и видят ее не избранные, а все, кто рядом!'), _defineProperty(_json, 'about_title_create_post', 'Создай свой пост'), _defineProperty(_json, 'about_title_you_are_find', 'Ты находишь / Тебя находят'), _defineProperty(_json, 'about_title_contract_meeting', 'Договаривайся / Встречайся'), _defineProperty(_json, 'about_title_section_3', 'Чем мы полезны?'), _defineProperty(_json, 'about_title_section_3_intro', 'Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.'), _defineProperty(_json, 'about_block_ads', 'ОБЪЯВЛЕНИЕ'), _defineProperty(_json, 'about_block_ads_text', 'Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".'), _defineProperty(_json, 'about_block_link', 'ССЫЛКА'), _defineProperty(_json, 'about_block_link_text', 'Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!'), _defineProperty(_json, 'about_block_dynamic', 'ДИНАМИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_dynamic_text', 'Движется вместе с тобой. Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!'), _defineProperty(_json, 'about_block_static', 'СТАТИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_static_text', 'Привязан к заданной тобой местности. Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!'), _defineProperty(_json, 'about_btn_set_your_shiners', 'Станови свой Светлячок'), _defineProperty(_json, 'about_who_we_are_title', 'КТО МЫ'), _defineProperty(_json, 'about_who_we_are_text', 'Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости.'), _defineProperty(_json, 'about_security_title', 'БЕЗОПАСНОСТЬ'), _defineProperty(_json, 'about_security_text', 'Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!'), _defineProperty(_json, 'about_rules_title', 'ПРАВИЛА'), _defineProperty(_json, 'about_rules_text', 'При регистрации на «Cветлячках» Пользователь соглашается с'), _defineProperty(_json, 'about_rules_text_link1', 'настоящими правилами'), _defineProperty(_json, 'about_title_section_4', 'Связаться с нами'), _defineProperty(_json, 'about_title_section_4_intro', 'Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!'), _defineProperty(_json, 'about_your_name', 'Ваше имя'), _defineProperty(_json, 'about_your_email', 'Ваш email'), _defineProperty(_json, 'about_your_message', 'Ваше сообщение'), _defineProperty(_json, 'about_btn_send_msg', 'Отправить'), _defineProperty(_json, 'post_d_summary_information', ''), _defineProperty(_json, 'post_d_views', 'Просмотров'), _defineProperty(_json, 'post_d_status', 'Статус'), _defineProperty(_json, 'post_d_type', 'Тип'), _defineProperty(_json, 'post_d_distance', 'Дистанция'), _defineProperty(_json, 'post_d_report_this_post', 'Сообщите об этом объявлении'), _defineProperty(_json, 'post_description_t', 'Описание'), _defineProperty(_json, 'post_location_place_t', 'Местоположение'), _defineProperty(_json, 'post_comments_t', 'Комментарии'), _defineProperty(_json, 'post_connect_to_user', 'Связаться с пользователем'), _defineProperty(_json, 'post_about_post', 'Об этом посте'), _defineProperty(_json, 'post_comment', 'Комментарий'), _defineProperty(_json, 'post_comments', 'Комментарии'), _defineProperty(_json, 'messages_send', 'Отправить'), _defineProperty(_json, 'messages_for_user', 'Сообщение для'), _json);
+	}, _defineProperty(_json, 'massMedia', 'Пресса о нас'), _defineProperty(_json, 'press_release', 'Пресс-релизы'), _defineProperty(_json, 'press_contacts', 'Контакты для прессы'), _defineProperty(_json, 'h_meet_us', 'Знакомство с нами'), _defineProperty(_json, 'h_mass_media', 'Пресса о нас'), _defineProperty(_json, 'm_about_us', 'О нас'), _defineProperty(_json, 'm_help', 'Помощь'), _defineProperty(_json, 'm_confidentiality', 'Конфиденциальность'), _defineProperty(_json, 'm_terms_of_use', 'Правила пользования'), _defineProperty(_json, 'site_published', 'Сайт публикации'), _defineProperty(_json, 'download_press_release', 'Скачать пресс-релиз'), _defineProperty(_json, 'ashot_a', 'Ашот Арутюнян'), _defineProperty(_json, 'tatyana_u', 'Татьяна Урусова'), _defineProperty(_json, 'home_accordion_section1', 'If you already have an advertisement on another website, just use that Url to create a Shiner!'), _defineProperty(_json, 'home_accordion_section2', 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone'), _defineProperty(_json, 'home_accordion_section3', 'Use Shiners for finding new live connections everywhere'), _defineProperty(_json, 'home_shiners_are_around', 'Shiners are everywhere'), _defineProperty(_json, 'home_lot_of_opportunities', 'A lot of opportunities for business around'), _defineProperty(_json, 'home_participate', 'Participate '), _defineProperty(_json, 'home_free', 'for free'), _defineProperty(_json, 'home_in_project', ' in the project!'), _defineProperty(_json, 'home_contact_with_people', 'Let others know about your ad instantly'), _defineProperty(_json, 'home_set_your_shiner', 'Create your Shiner'), _defineProperty(_json, 'search_free_search', 'Free search by words'), _defineProperty(_json, 'search_choose_radius', 'Search Radius (km):'), _defineProperty(_json, 'search_parameters', 'Search Parameters'), _defineProperty(_json, 'search_found', 'Found Shiners'), _defineProperty(_json, 'search_not_found', 'No posts found around'), _defineProperty(_json, 'about_intro_text', 'Мы считаем, это замечательно - иметь инструмент, который помогает людям вокруг сотрудничать друг с другом, находить людей и занятия прямо здесь, и прямо сейчас. SHINERS показывает людям объявления вокруг с привязкой к человеку и его локации.'), _defineProperty(_json, 'about_intro_duration', 'Продолжительность'), _defineProperty(_json, 'about_intro_duration_minute', 'мин.'), _defineProperty(_json, 'about_menu_how_it_works', 'КАК ЭТО РАБОТАЕТ?'), _defineProperty(_json, 'about_menu_what_are_we_useful', 'ЧЕМ МЫ ПОЛЕЗНЫ?'), _defineProperty(_json, 'about_menu_our_team', 'НАША КОМАНДА'), _defineProperty(_json, 'about_menu_connect_with_us', 'СВЯЗАТЬСЯ С НАМИ'), _defineProperty(_json, 'about_title_section_1', 'Единственный сервис, предлагающий живое присутствие!'), _defineProperty(_json, 'about_title_section_1_p1', 'Светлячки позволяют привязать объявление или любой адрес в интернете к текущему местоположению пользователя, и, как результат, осуществлять мгновенный поиск информации среди людей вокруг. Это позволяет искать информацию здесь и сейчас с целью мгновенной встречи с ее владельцем. Ненужное промежуточное звено (поиск по интернету, договор о встрече, дорогу к месту) можно исключить, если потенциально интересующий нас человек находится поблизости.'), _defineProperty(_json, 'about_title_section_1_p2', 'Мы расширяем возможности Веба, посредством привязки информации к реальным людям и координатам, что дает веб-ресурсам новое,- пространство-временное, качество, то есть путь напрямик к цели! Нас также видно в Google и соцсетях, и поэтому твое объявление превращается в собственную интернет-страницу, которую при желании увидит весь интернет.'), _defineProperty(_json, 'about_title_section_2', 'Как это работает?'), _defineProperty(_json, 'about_title_section_2_intro', 'Представь себе виртуальную визитку, только носишь ты ее не в кошельке, а в мобильном телефоне, и видят ее не избранные, а все, кто рядом!'), _defineProperty(_json, 'about_title_create_post', 'Создай свой пост'), _defineProperty(_json, 'about_title_you_are_find', 'Ты находишь / Тебя находят'), _defineProperty(_json, 'about_title_contract_meeting', 'Договаривайся / Встречайся'), _defineProperty(_json, 'about_title_section_3', 'Чем мы полезны?'), _defineProperty(_json, 'about_title_section_3_intro', 'Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.'), _defineProperty(_json, 'about_block_ads', 'ОБЪЯВЛЕНИЕ'), _defineProperty(_json, 'about_block_ads_text', 'Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".'), _defineProperty(_json, 'about_block_link', 'ССЫЛКА'), _defineProperty(_json, 'about_block_link_text', 'Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!'), _defineProperty(_json, 'about_block_dynamic', 'ДИНАМИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_dynamic_text', 'Движется вместе с тобой. Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!'), _defineProperty(_json, 'about_block_static', 'СТАТИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_static_text', 'Привязан к заданной тобой местности. Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!'), _defineProperty(_json, 'about_btn_set_your_shiners', 'Станови свой Светлячок'), _defineProperty(_json, 'about_who_we_are_title', 'КТО МЫ'), _defineProperty(_json, 'about_who_we_are_text', 'Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости.'), _defineProperty(_json, 'about_security_title', 'БЕЗОПАСНОСТЬ'), _defineProperty(_json, 'about_security_text', 'Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!'), _defineProperty(_json, 'about_rules_title', 'ПРАВИЛА'), _defineProperty(_json, 'about_rules_text', 'При регистрации на «Cветлячках» Пользователь соглашается с'), _defineProperty(_json, 'about_rules_text_link1', 'настоящими правилами'), _defineProperty(_json, 'about_title_section_4', 'Связаться с нами'), _defineProperty(_json, 'about_title_section_4_intro', 'Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!'), _defineProperty(_json, 'about_your_name', 'Ваше имя'), _defineProperty(_json, 'about_your_email', 'Ваш email'), _defineProperty(_json, 'about_your_message', 'Ваше сообщение'), _defineProperty(_json, 'about_btn_send_msg', 'Отправить'), _defineProperty(_json, 'post_d_summary_information', ''), _defineProperty(_json, 'post_d_views', 'Просмотров'), _defineProperty(_json, 'post_d_status', 'Статус'), _defineProperty(_json, 'post_d_type', 'Тип'), _defineProperty(_json, 'post_d_distance', 'Дистанция'), _defineProperty(_json, 'post_d_report_this_post', 'Сообщите об этом объявлении'), _defineProperty(_json, 'post_description_t', 'Описание'), _defineProperty(_json, 'post_location_place_t', 'Местоположение'), _defineProperty(_json, 'post_comments_t', 'Комментарии'), _defineProperty(_json, 'post_connect_to_user', 'Связаться с пользователем'), _defineProperty(_json, 'post_about_post', 'Об этом посте'), _defineProperty(_json, 'post_comment', 'Комментарий'), _defineProperty(_json, 'post_comments', 'Комментарии'), _defineProperty(_json, 'messages_send', 'Отправить'), _defineProperty(_json, 'messages_for_user', 'Сообщение для'), _defineProperty(_json, 'RELOAD_POST_TIME', 'Reload'), _defineProperty(_json, 'EDIT_POST', 'Edit'), _defineProperty(_json, 'TRASH_POST', 'Delete'), _json);
 	i18n.add('en', json);
 
 /***/ },
-/* 21 */
+/* 32 */
 /*!****************************!*\
   !*** ./wwwroot/i18n/ru.js ***!
   \****************************/
@@ -21926,12 +22489,17 @@
 	
 	    // MESSAGES
 	    messages_send: 'Отправить',
-	    messages_for_user: 'Сообщение для'
+	    messages_for_user: 'Сообщение для',
+	
+	    //MY POSTS
+	    RELOAD_POST_TIME: 'Перезапустить',
+	    EDIT_POST: 'Редактировать',
+	    TRASH_POST: 'Удалить'
 	};
 	i18n.add('ru', json);
 
 /***/ },
-/* 22 */
+/* 33 */
 /*!*************************************!*\
   !*** ./wwwroot/lib/detectmobile.js ***!
   \*************************************/
@@ -21951,7 +22519,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 23 */
+/* 34 */
 /*!*****************************************!*\
   !*** ./wwwroot/lib/asteroid.browser.js ***!
   \*****************************************/
@@ -21963,7 +22531,7 @@
 	
 	(function (root, factory) {
 		if (true) {
-			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! ddp.js */ 24), __webpack_require__(/*! q */ 25)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! ddp.js */ 35), __webpack_require__(/*! q */ 36)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 		} else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === "object") {
 			var DDP = require('ddp.js');
 			var Q = require('q');
@@ -23148,7 +23716,7 @@
 	});
 
 /***/ },
-/* 24 */
+/* 35 */
 /*!*****************************!*\
   !*** ./~/ddp.js/src/ddp.js ***!
   \*****************************/
@@ -23486,7 +24054,7 @@
 	});
 
 /***/ },
-/* 25 */
+/* 36 */
 /*!******************!*\
   !*** ./~/q/q.js ***!
   \******************/
@@ -25497,10 +26065,10 @@
 	
 	    return Q;
 	});
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 26), __webpack_require__(/*! ./../timers-browserify/main.js */ 27).setImmediate, __webpack_require__(/*! ./../webpack/buildin/module.js */ 4)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 37), __webpack_require__(/*! ./../timers-browserify/main.js */ 38).setImmediate, __webpack_require__(/*! ./../webpack/buildin/module.js */ 4)(module)))
 
 /***/ },
-/* 26 */
+/* 37 */
 /*!******************************!*\
   !*** ./~/process/browser.js ***!
   \******************************/
@@ -25689,7 +26257,7 @@
 	};
 
 /***/ },
-/* 27 */
+/* 38 */
 /*!*************************************!*\
   !*** ./~/timers-browserify/main.js ***!
   \*************************************/
@@ -25745,12 +26313,12 @@
 	};
 	
 	// setimmediate attaches itself to the global object
-	__webpack_require__(/*! setimmediate */ 28);
+	__webpack_require__(/*! setimmediate */ 39);
 	exports.setImmediate = setImmediate;
 	exports.clearImmediate = clearImmediate;
 
 /***/ },
-/* 28 */
+/* 39 */
 /*!****************************************!*\
   !*** ./~/setimmediate/setImmediate.js ***!
   \****************************************/
@@ -25940,10 +26508,10 @@
 	    attachTo.setImmediate = setImmediate;
 	    attachTo.clearImmediate = clearImmediate;
 	})(typeof self === "undefined" ? typeof global === "undefined" ? undefined : global : self);
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(/*! ./../process/browser.js */ 26)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(/*! ./../process/browser.js */ 37)))
 
 /***/ },
-/* 29 */
+/* 40 */
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/mainLayoutView.js ***!
   \*******************************************/
@@ -25963,7 +26531,7 @@
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
 	
-	var _mainLayoutViewHbs = __webpack_require__(/*! ./mainLayoutView.hbs.html */ 30);
+	var _mainLayoutViewHbs = __webpack_require__(/*! ./mainLayoutView.hbs.html */ 41);
 	
 	var _mainLayoutViewHbs2 = _interopRequireDefault(_mainLayoutViewHbs);
 	
@@ -25971,19 +26539,19 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _MapView = __webpack_require__(/*! ./MapView.js */ 31);
+	var _MapView = __webpack_require__(/*! ./MapView.js */ 42);
 	
 	var _MapView2 = _interopRequireDefault(_MapView);
 	
-	var _BannerView = __webpack_require__(/*! ./BannerView.js */ 57);
+	var _BannerView = __webpack_require__(/*! ./BannerView.js */ 68);
 	
 	var _BannerView2 = _interopRequireDefault(_BannerView);
 	
-	var _UserBarView = __webpack_require__(/*! ./UserBarView.js */ 66);
+	var _UserBarView = __webpack_require__(/*! ./UserBarView.js */ 77);
 	
 	var _UserBarView2 = _interopRequireDefault(_UserBarView);
 	
-	var _NavLocationView = __webpack_require__(/*! ./NavLocationView.js */ 68);
+	var _NavLocationView = __webpack_require__(/*! ./NavLocationView.js */ 79);
 	
 	var _NavLocationView2 = _interopRequireDefault(_NavLocationView);
 	
@@ -25991,15 +26559,15 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _iframeView = __webpack_require__(/*! ./shared/iframeView.js */ 70);
+	var _iframeView = __webpack_require__(/*! ./shared/iframeView.js */ 81);
 	
 	var _iframeView2 = _interopRequireDefault(_iframeView);
 	
-	var _userMenuView = __webpack_require__(/*! ./layout/userMenuView */ 74);
+	var _userMenuView = __webpack_require__(/*! ./layout/userMenuView */ 85);
 	
 	var _userMenuView2 = _interopRequireDefault(_userMenuView);
 	
-	var _mainMenuView = __webpack_require__(/*! ./mainMenuView */ 76);
+	var _mainMenuView = __webpack_require__(/*! ./mainMenuView */ 87);
 	
 	var _mainMenuView2 = _interopRequireDefault(_mainMenuView);
 	
@@ -26138,7 +26706,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 30 */
+/* 41 */
 /*!*************************************************!*\
   !*** ./wwwroot/homeApp/mainLayoutView.hbs.html ***!
   \*************************************************/
@@ -26188,7 +26756,7 @@
 
 
 /***/ },
-/* 31 */
+/* 42 */
 /*!************************************!*\
   !*** ./wwwroot/homeApp/MapView.js ***!
   \************************************/
@@ -26208,31 +26776,31 @@
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
 	
-	var _MapViewHbs = __webpack_require__(/*! ./MapView.hbs.html */ 32);
+	var _MapViewHbs = __webpack_require__(/*! ./MapView.hbs.html */ 43);
 	
 	var _MapViewHbs2 = _interopRequireDefault(_MapViewHbs);
 	
-	var _CreateButtonHbs = __webpack_require__(/*! ./CreateButton.hbs.html */ 33);
+	var _CreateButtonHbs = __webpack_require__(/*! ./CreateButton.hbs.html */ 44);
 	
 	var _CreateButtonHbs2 = _interopRequireDefault(_CreateButtonHbs);
 	
-	var _SetPositionMapButtonHbs = __webpack_require__(/*! ./SetPositionMapButton.hbs.html */ 34);
+	var _SetPositionMapButtonHbs = __webpack_require__(/*! ./SetPositionMapButton.hbs.html */ 45);
 	
 	var _SetPositionMapButtonHbs2 = _interopRequireDefault(_SetPositionMapButtonHbs);
 	
-	var _MobileShowInfoButtonHbs = __webpack_require__(/*! ./MobileShowInfoButton.hbs.html */ 35);
+	var _MobileShowInfoButtonHbs = __webpack_require__(/*! ./MobileShowInfoButton.hbs.html */ 46);
 	
 	var _MobileShowInfoButtonHbs2 = _interopRequireDefault(_MobileShowInfoButtonHbs);
 	
-	var _SearchView = __webpack_require__(/*! ./search/SearchView.js */ 36);
+	var _SearchView = __webpack_require__(/*! ./search/SearchView.js */ 47);
 	
 	var _SearchView2 = _interopRequireDefault(_SearchView);
 	
-	var _ShinerInfoView = __webpack_require__(/*! ./ShinerInfoView.js */ 53);
+	var _ShinerInfoView = __webpack_require__(/*! ./ShinerInfoView.js */ 64);
 	
 	var _ShinerInfoView2 = _interopRequireDefault(_ShinerInfoView);
 	
-	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 56);
+	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 67);
 	
 	var _loadGoogleMapsApi2 = _interopRequireDefault(_loadGoogleMapsApi);
 	
@@ -26371,7 +26939,7 @@
 	        var _this3 = this;
 	
 	        var defaultCoords = { lat: 55.75396, lng: 37.620393 };
-	        (0, _loadGoogleMapsApi2.default)({ key: 'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY' }).then(_underscore2.default.bind(function (maps) {
+	        (0, _loadGoogleMapsApi2.default)({ key: 'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY', libraries: ['places'] }).then(_underscore2.default.bind(function (maps) {
 	            var center = _app2.default.user.get('position') || defaultCoords;
 	
 	            _this3.map = new maps.Map(document.getElementById('map2'), {
@@ -26598,7 +27166,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 32 */
+/* 43 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/MapView.hbs.html ***!
   \******************************************/
@@ -26614,7 +27182,7 @@
 
 
 /***/ },
-/* 33 */
+/* 44 */
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/CreateButton.hbs.html ***!
   \***********************************************/
@@ -26632,7 +27200,7 @@
 
 
 /***/ },
-/* 34 */
+/* 45 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/SetPositionMapButton.hbs.html ***!
   \*******************************************************/
@@ -26648,7 +27216,7 @@
 
 
 /***/ },
-/* 35 */
+/* 46 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/MobileShowInfoButton.hbs.html ***!
   \*******************************************************/
@@ -26664,7 +27232,7 @@
 
 
 /***/ },
-/* 36 */
+/* 47 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/search/SearchView.js ***!
   \**********************************************/
@@ -26676,7 +27244,7 @@
 	    value: true
 	});
 	
-	var _SearchViewHbs = __webpack_require__(/*! ./SearchView.hbs.html */ 37);
+	var _SearchViewHbs = __webpack_require__(/*! ./SearchView.hbs.html */ 48);
 	
 	var _SearchViewHbs2 = _interopRequireDefault(_SearchViewHbs);
 	
@@ -26684,17 +27252,17 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css */ 38);
+	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css */ 49);
 	
-	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js */ 41);
+	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js */ 52);
 	
-	__webpack_require__(/*! ../../lib/jquery-slimscroll/jquery.slimscroll.min.js */ 42);
+	__webpack_require__(/*! ../../lib/jquery-slimscroll/jquery.slimscroll.min.js */ 53);
 	
-	var _ShinersListView = __webpack_require__(/*! ./ShinersListView.js */ 43);
+	var _ShinersListView = __webpack_require__(/*! ./ShinersListView.js */ 54);
 	
 	var _ShinersListView2 = _interopRequireDefault(_ShinersListView);
 	
-	var _CategoriesListView = __webpack_require__(/*! ./CategoriesListView.js */ 48);
+	var _CategoriesListView = __webpack_require__(/*! ./CategoriesListView.js */ 59);
 	
 	var _CategoriesListView2 = _interopRequireDefault(_CategoriesListView);
 	
@@ -26702,9 +27270,9 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./i18n/en */ 51);
+	__webpack_require__(/*! ./i18n/en */ 62);
 	
-	__webpack_require__(/*! ./i18n/ru */ 52);
+	__webpack_require__(/*! ./i18n/ru */ 63);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -26834,7 +27402,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 37 */
+/* 48 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/search/SearchView.hbs.html ***!
   \****************************************************/
@@ -26862,7 +27430,7 @@
 
 
 /***/ },
-/* 38 */
+/* 49 */
 /*!******************************************************************************!*\
   !*** ./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css ***!
   \******************************************************************************/
@@ -26871,10 +27439,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./jquery-ui-slider-pips.min.css */ 39);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./jquery-ui-slider-pips.min.css */ 50);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 40)(content, {});
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 51)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -26891,7 +27459,7 @@
 	}
 
 /***/ },
-/* 39 */
+/* 50 */
 /*!*********************************************************************************************!*\
   !*** ./~/css-loader!./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css ***!
   \*********************************************************************************************/
@@ -26901,7 +27469,7 @@
 	exports.push([module.id, "/*! jQuery-ui-Slider-Pips - v1.11.4 - 2016-09-04\n* Copyright (c) 2016 Simon Goellner <simey.me@gmail.com>; Licensed MIT */\n\n.ui-slider-horizontal.ui-slider-pips{margin-bottom:1.4em}.ui-slider-pips .ui-slider-label,.ui-slider-pips .ui-slider-pip-hide{display:none}.ui-slider-pips .ui-slider-pip-label .ui-slider-label{display:block}.ui-slider-pips .ui-slider-pip{width:2em;height:1em;line-height:1em;position:absolute;font-size:0.8em;color:#999;overflow:visible;text-align:center;top:20px;left:20px;margin-left:-1em;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.ui-state-disabled.ui-slider-pips .ui-slider-pip{cursor:default}.ui-slider-pips .ui-slider-line{background:#999;width:1px;height:3px;position:absolute;left:50%}.ui-slider-pips .ui-slider-label{position:absolute;top:5px;left:50%;margin-left:-1em;width:2em}.ui-slider-pips:not(.ui-slider-disabled) .ui-slider-pip:hover .ui-slider-label{color:black;font-weight:bold}.ui-slider-vertical.ui-slider-pips{margin-bottom:1em;margin-right:2em}.ui-slider-vertical.ui-slider-pips .ui-slider-pip{text-align:left;top:auto;left:20px;margin-left:0;margin-bottom:-0.5em}.ui-slider-vertical.ui-slider-pips .ui-slider-line{width:3px;height:1px;position:absolute;top:50%;left:0}.ui-slider-vertical.ui-slider-pips .ui-slider-label{top:50%;left:0.5em;margin-left:0;margin-top:-0.5em;width:2em}.ui-slider-float .ui-slider-handle:focus,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip-label .ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label{outline:none}.ui-slider-float .ui-slider-tip,.ui-slider-float .ui-slider-tip-label{position:absolute;visibility:hidden;top:-40px;display:block;width:34px;margin-left:-18px;left:50%;height:20px;line-height:20px;background:white;border-radius:3px;border:1px solid #888;text-align:center;font-size:12px;opacity:0;color:#333;-webkit-transition-property:opacity, top, visibility;transition-property:opacity, top, visibility;-webkit-transition-timing-function:ease-in;transition-timing-function:ease-in;-webkit-transition-duration:200ms, 200ms, 0ms;transition-duration:200ms, 200ms, 0ms;-webkit-transition-delay:0ms, 0ms, 200ms;transition-delay:0ms, 0ms, 200ms}.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{opacity:1;top:-30px;visibility:visible;-webkit-transition-timing-function:ease-out;transition-timing-function:ease-out;-webkit-transition-delay:200ms, 200ms, 0ms;transition-delay:200ms, 200ms, 0ms}.ui-slider-float .ui-slider-pip .ui-slider-tip-label{top:42px}.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:32px;font-weight:normal}.ui-slider-float .ui-slider-tip:after,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#fff;position:absolute;bottom:-10px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-tip:before,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#888;position:absolute;bottom:-11px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-bottom-color:#fff;top:-10px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-bottom-color:#888;top:-11px}.ui-slider-vertical.ui-slider-float .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-tip-label{top:50%;margin-top:-11px;width:34px;margin-left:0px;left:-60px;color:#333;-webkit-transition-duration:200ms, 200ms, 0;transition-duration:200ms, 200ms, 0;-webkit-transition-property:opacity, left, visibility;transition-property:opacity, left, visibility;-webkit-transition-delay:0, 0, 200ms;transition-delay:0, 0, 200ms}.ui-slider-vertical.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:50%;margin-top:-11px;left:-50px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label{left:47px}.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{left:37px}.ui-slider-vertical.ui-slider-float .ui-slider-tip:after,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-left-color:#fff;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-10px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-tip:before,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-left-color:#888;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-11px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-right-color:#fff;right:auto;left:-10px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-right-color:#888;right:auto;left:-11px}.ui-slider-pips [class*=ui-slider-pip-initial]{font-weight:bold;color:#14CA82}.ui-slider-pips .ui-slider-pip-initial-2{color:#1897C9}.ui-slider-pips [class*=ui-slider-pip-selected]{font-weight:bold;color:#FF7A00}.ui-slider-pips .ui-slider-pip-inrange{color:black}.ui-slider-pips .ui-slider-pip-selected-2{color:#E70081}.ui-slider-pips [class*=ui-slider-pip-selected] .ui-slider-line,.ui-slider-pips .ui-slider-pip-inrange .ui-slider-line{background:black}\n", ""]);
 
 /***/ },
-/* 40 */
+/* 51 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -27156,7 +27724,7 @@
 
 
 /***/ },
-/* 41 */
+/* 52 */
 /*!*************************************************************************!*\
   !*** ./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js ***!
   \*************************************************************************/
@@ -27817,7 +28385,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 42 */
+/* 53 */
 /*!****************************************************************!*\
   !*** ./wwwroot/lib/jquery-slimscroll/jquery.slimscroll.min.js ***!
   \****************************************************************/
@@ -27908,7 +28476,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 43 */
+/* 54 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersListView.js ***!
   \***************************************************/
@@ -27924,11 +28492,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ShinersListItemView = __webpack_require__(/*! ./ShinersListItemView.js */ 44);
+	var _ShinersListItemView = __webpack_require__(/*! ./ShinersListItemView.js */ 55);
 	
 	var _ShinersListItemView2 = _interopRequireDefault(_ShinersListItemView);
 	
-	var _ShinersEmptyView = __webpack_require__(/*! ./ShinersEmptyView.js */ 46);
+	var _ShinersEmptyView = __webpack_require__(/*! ./ShinersEmptyView.js */ 57);
 	
 	var _ShinersEmptyView2 = _interopRequireDefault(_ShinersEmptyView);
 	
@@ -27980,7 +28548,7 @@
 	exports.default = View;
 
 /***/ },
-/* 44 */
+/* 55 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersListItemView.js ***!
   \*******************************************************/
@@ -27996,7 +28564,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ShinersListItemViewHbs = __webpack_require__(/*! ./ShinersListItemView.hbs.html */ 45);
+	var _ShinersListItemViewHbs = __webpack_require__(/*! ./ShinersListItemView.hbs.html */ 56);
 	
 	var _ShinersListItemViewHbs2 = _interopRequireDefault(_ShinersListItemViewHbs);
 	
@@ -28038,7 +28606,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 45 */
+/* 56 */
 /*!*************************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersListItemView.hbs.html ***!
   \*************************************************************/
@@ -28053,7 +28621,7 @@
 	((__t=(details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/no_image.png'))==null?'':__t)+
 	'" width="60" height="60" alt="" />\r\n    <h4 class="noborder nopadding">'+
 	((__t=(details.title))==null?'':__t)+
-	'</h4>\r\n    <div class="sh-shiners-list-footer pull-right">\r\n        ';
+	'</h4>\r\n    <div class="sh-shiners-list-footer">\r\n        ';
 	if(obj.type) { 
 	__p+='\r\n            <span class="label bg-type-category-'+
 	((__t=(type))==null?'':__t)+
@@ -28079,7 +28647,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 46 */
+/* 57 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersEmptyView.js ***!
   \****************************************************/
@@ -28095,7 +28663,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ShinersEmptyViewHbs = __webpack_require__(/*! ./ShinersEmptyView.hbs.html */ 47);
+	var _ShinersEmptyViewHbs = __webpack_require__(/*! ./ShinersEmptyView.hbs.html */ 58);
 	
 	var _ShinersEmptyViewHbs2 = _interopRequireDefault(_ShinersEmptyViewHbs);
 	
@@ -28109,7 +28677,7 @@
 	exports.default = View;
 
 /***/ },
-/* 47 */
+/* 58 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersEmptyView.hbs.html ***!
   \**********************************************************/
@@ -28127,7 +28695,7 @@
 
 
 /***/ },
-/* 48 */
+/* 59 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/search/CategoriesListView.js ***!
   \******************************************************/
@@ -28143,7 +28711,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _CategoriesItemView = __webpack_require__(/*! ./CategoriesItemView.js */ 49);
+	var _CategoriesItemView = __webpack_require__(/*! ./CategoriesItemView.js */ 60);
 	
 	var _CategoriesItemView2 = _interopRequireDefault(_CategoriesItemView);
 	
@@ -28172,7 +28740,7 @@
 	exports.default = View;
 
 /***/ },
-/* 49 */
+/* 60 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/search/CategoriesItemView.js ***!
   \******************************************************/
@@ -28188,7 +28756,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _CategoriesItemViewHbs = __webpack_require__(/*! ./CategoriesItemView.hbs.html */ 50);
+	var _CategoriesItemViewHbs = __webpack_require__(/*! ./CategoriesItemView.hbs.html */ 61);
 	
 	var _CategoriesItemViewHbs2 = _interopRequireDefault(_CategoriesItemViewHbs);
 	
@@ -28217,7 +28785,7 @@
 	exports.default = View;
 
 /***/ },
-/* 50 */
+/* 61 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/search/CategoriesItemView.hbs.html ***!
   \************************************************************/
@@ -28238,7 +28806,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 51 */
+/* 62 */
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/search/i18n/en.js ***!
   \*******************************************/
@@ -28272,7 +28840,7 @@
 	"use strict";
 
 /***/ },
-/* 52 */
+/* 63 */
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/search/i18n/ru.js ***!
   \*******************************************/
@@ -28307,7 +28875,7 @@
 	"use strict";
 
 /***/ },
-/* 53 */
+/* 64 */
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/ShinerInfoView.js ***!
   \*******************************************/
@@ -28323,7 +28891,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ShinerInfoViewHbs = __webpack_require__(/*! ./ShinerInfoView.hbs.html */ 54);
+	var _ShinerInfoViewHbs = __webpack_require__(/*! ./ShinerInfoView.hbs.html */ 65);
 	
 	var _ShinerInfoViewHbs2 = _interopRequireDefault(_ShinerInfoViewHbs);
 	
@@ -28335,7 +28903,7 @@
 	
 	var _locationHelper2 = _interopRequireDefault(_locationHelper);
 	
-	var _postDuration = __webpack_require__(/*! ../helpers/postDuration.js */ 55);
+	var _postDuration = __webpack_require__(/*! ../helpers/postDuration.js */ 66);
 	
 	var _postDuration2 = _interopRequireDefault(_postDuration);
 	
@@ -28382,7 +28950,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 54 */
+/* 65 */
 /*!*************************************************!*\
   !*** ./wwwroot/homeApp/ShinerInfoView.hbs.html ***!
   \*************************************************/
@@ -28435,7 +29003,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 55 */
+/* 66 */
 /*!*****************************************!*\
   !*** ./wwwroot/helpers/postDuration.js ***!
   \*****************************************/
@@ -28481,6 +29049,8 @@
 	        min = Math.floor((ms - days * 86400000 - hours * 3600000) / 60000);
 	
 	        percent = ms / duration * 100;
+	
+	        if (percent > 100) percent = 100;
 	
 	        /* get barClass */
 	        if (percent < 20) {
@@ -28542,7 +29112,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), (function() { return this; }())))
 
 /***/ },
-/* 56 */
+/* 67 */
 /*!*********************************************!*\
   !*** ./~/load-google-maps-api/lib/index.js ***!
   \*********************************************/
@@ -28610,7 +29180,7 @@
 	};
 
 /***/ },
-/* 57 */
+/* 68 */
 /*!***************************************!*\
   !*** ./wwwroot/homeApp/BannerView.js ***!
   \***************************************/
@@ -28626,29 +29196,29 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _OsmSearchCollection = __webpack_require__(/*! ../data/OsmSearchCollection.js */ 58);
+	var _OsmSearchCollection = __webpack_require__(/*! ../data/OsmSearchCollection.js */ 69);
 	
 	var _OsmSearchCollection2 = _interopRequireDefault(_OsmSearchCollection);
 	
-	var _BannerViewHbs = __webpack_require__(/*! ./BannerView.hbs.html */ 59);
+	var _BannerViewHbs = __webpack_require__(/*! ./BannerView.hbs.html */ 70);
 	
 	var _BannerViewHbs2 = _interopRequireDefault(_BannerViewHbs);
 	
-	var _BannerViewLocationSelectHbs = __webpack_require__(/*! ./selectLocation/BannerViewLocationSelect.hbs.html */ 60);
+	var _BannerViewLocationSelectHbs = __webpack_require__(/*! ./selectLocation/BannerViewLocationSelect.hbs.html */ 71);
 	
 	var _BannerViewLocationSelectHbs2 = _interopRequireDefault(_BannerViewLocationSelectHbs);
 	
-	__webpack_require__(/*! ../lib/jquery.countTo.js */ 61);
+	__webpack_require__(/*! ../lib/jquery.countTo.js */ 72);
 	
 	var _app = __webpack_require__(/*! ./app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _SuggestionListView = __webpack_require__(/*! ./selectLocation/SuggestionListView.js */ 62);
+	var _SuggestionListView = __webpack_require__(/*! ./selectLocation/SuggestionListView.js */ 73);
 	
 	var _SuggestionListView2 = _interopRequireDefault(_SuggestionListView);
 	
-	__webpack_require__(/*! ./BannerView.less */ 65);
+	__webpack_require__(/*! ./BannerView.less */ 76);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -28765,7 +29335,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 58 */
+/* 69 */
 /*!*********************************************!*\
   !*** ./wwwroot/data/OsmSearchCollection.js ***!
   \*********************************************/
@@ -28795,7 +29365,7 @@
 	});
 
 /***/ },
-/* 59 */
+/* 70 */
 /*!*********************************************!*\
   !*** ./wwwroot/homeApp/BannerView.hbs.html ***!
   \*********************************************/
@@ -28821,7 +29391,7 @@
 
 
 /***/ },
-/* 60 */
+/* 71 */
 /*!**************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/BannerViewLocationSelect.hbs.html ***!
   \**************************************************************************/
@@ -28840,7 +29410,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 61 */
+/* 72 */
 /*!***************************************!*\
   !*** ./wwwroot/lib/jquery.countTo.js ***!
   \***************************************/
@@ -28982,7 +29552,7 @@
 	});
 
 /***/ },
-/* 62 */
+/* 73 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/SuggestionListView.js ***!
   \**************************************************************/
@@ -28998,7 +29568,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SuggestionItemView = __webpack_require__(/*! ./SuggestionItemView.js */ 63);
+	var _SuggestionItemView = __webpack_require__(/*! ./SuggestionItemView.js */ 74);
 	
 	var _SuggestionItemView2 = _interopRequireDefault(_SuggestionItemView);
 	
@@ -29027,7 +29597,7 @@
 	exports.default = View;
 
 /***/ },
-/* 63 */
+/* 74 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/SuggestionItemView.js ***!
   \**************************************************************/
@@ -29043,7 +29613,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SuggestionItemViewHbs = __webpack_require__(/*! ./SuggestionItemView.hbs.html */ 64);
+	var _SuggestionItemViewHbs = __webpack_require__(/*! ./SuggestionItemView.hbs.html */ 75);
 	
 	var _SuggestionItemViewHbs2 = _interopRequireDefault(_SuggestionItemViewHbs);
 	
@@ -29071,7 +29641,7 @@
 	exports.default = View;
 
 /***/ },
-/* 64 */
+/* 75 */
 /*!********************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/SuggestionItemView.hbs.html ***!
   \********************************************************************/
@@ -29092,7 +29662,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 65 */
+/* 76 */
 /*!*****************************************!*\
   !*** ./wwwroot/homeApp/BannerView.less ***!
   \*****************************************/
@@ -29101,7 +29671,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 66 */
+/* 77 */
 /*!****************************************!*\
   !*** ./wwwroot/homeApp/UserBarView.js ***!
   \****************************************/
@@ -29117,7 +29687,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _UserBarViewHbs = __webpack_require__(/*! ./UserBarView.hbs.html */ 67);
+	var _UserBarViewHbs = __webpack_require__(/*! ./UserBarView.hbs.html */ 78);
 	
 	var _UserBarViewHbs2 = _interopRequireDefault(_UserBarViewHbs);
 	
@@ -29154,7 +29724,7 @@
 	exports.default = View;
 
 /***/ },
-/* 67 */
+/* 78 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/UserBarView.hbs.html ***!
   \**********************************************/
@@ -29179,7 +29749,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 68 */
+/* 79 */
 /*!********************************************!*\
   !*** ./wwwroot/homeApp/NavLocationView.js ***!
   \********************************************/
@@ -29195,7 +29765,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _NavLocationViewHbs = __webpack_require__(/*! ./NavLocationView.hbs.html */ 69);
+	var _NavLocationViewHbs = __webpack_require__(/*! ./NavLocationView.hbs.html */ 80);
 	
 	var _NavLocationViewHbs2 = _interopRequireDefault(_NavLocationViewHbs);
 	
@@ -29225,7 +29795,7 @@
 	exports.default = View;
 
 /***/ },
-/* 69 */
+/* 80 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/NavLocationView.hbs.html ***!
   \**************************************************/
@@ -29251,7 +29821,7 @@
 
 
 /***/ },
-/* 70 */
+/* 81 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/shared/iframeView.js ***!
   \**********************************************/
@@ -29273,11 +29843,11 @@
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
 	
-	var _iframeViewHbs = __webpack_require__(/*! ./iframeView.hbs.html */ 71);
+	var _iframeViewHbs = __webpack_require__(/*! ./iframeView.hbs.html */ 82);
 	
 	var _iframeViewHbs2 = _interopRequireDefault(_iframeViewHbs);
 	
-	__webpack_require__(/*! ./iframeView.css */ 72);
+	__webpack_require__(/*! ./iframeView.css */ 83);
 	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
@@ -29423,7 +29993,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 71 */
+/* 82 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/shared/iframeView.hbs.html ***!
   \****************************************************/
@@ -29445,7 +30015,7 @@
 
 
 /***/ },
-/* 72 */
+/* 83 */
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/shared/iframeView.css ***!
   \***********************************************/
@@ -29454,10 +30024,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../~/css-loader!./iframeView.css */ 73);
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./iframeView.css */ 84);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 40)(content, {});
+	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 51)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -29474,7 +30044,7 @@
 	}
 
 /***/ },
-/* 73 */
+/* 84 */
 /*!**************************************************************!*\
   !*** ./~/css-loader!./wwwroot/homeApp/shared/iframeView.css ***!
   \**************************************************************/
@@ -29484,7 +30054,7 @@
 	exports.push([module.id, ".sh-iframe-view {\n    padding: 0 !important;\n}\n\n.sh-iframe-view .container {\n    width: auto !important;\n}\n\nbody.sh-hidden-overflow {\n    overflow: hidden !important;\n}\nbody.sh-hidden-overflow #wrapper {\n    background-color: #eaeaea;\n}\nbody.sh-hidden-overflow #iframeHolder section {\n    padding: 0 !important;\n    margin: 0 !important;\n}\nbody.sh-hidden-overflow #iframeHolder .container {\n    padding: 0 !important;\n    margin: 0 !important;\n}", ""]);
 
 /***/ },
-/* 74 */
+/* 85 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/layout/userMenuView.js ***!
   \************************************************/
@@ -29500,7 +30070,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _userMenuViewHbs = __webpack_require__(/*! ./userMenuView.hbs.html */ 75);
+	var _userMenuViewHbs = __webpack_require__(/*! ./userMenuView.hbs.html */ 86);
 	
 	var _userMenuViewHbs2 = _interopRequireDefault(_userMenuViewHbs);
 	
@@ -29519,7 +30089,7 @@
 	exports.default = View;
 
 /***/ },
-/* 75 */
+/* 86 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/layout/userMenuView.hbs.html ***!
   \******************************************************/
@@ -29537,7 +30107,7 @@
 
 
 /***/ },
-/* 76 */
+/* 87 */
 /*!*****************************************!*\
   !*** ./wwwroot/homeApp/mainMenuView.js ***!
   \*****************************************/
@@ -29553,11 +30123,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _mainMenuViewHbs = __webpack_require__(/*! ./mainMenuView.hbs.html */ 77);
+	var _mainMenuViewHbs = __webpack_require__(/*! ./mainMenuView.hbs.html */ 88);
 	
 	var _mainMenuViewHbs2 = _interopRequireDefault(_mainMenuViewHbs);
 	
-	__webpack_require__(/*! ./mainMenuView.less */ 78);
+	__webpack_require__(/*! ./mainMenuView.less */ 89);
 	
 	var _app = __webpack_require__(/*! ./app.js */ 15);
 	
@@ -29623,7 +30193,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 77 */
+/* 88 */
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/mainMenuView.hbs.html ***!
   \***********************************************/
@@ -29651,7 +30221,7 @@
 
 
 /***/ },
-/* 78 */
+/* 89 */
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/mainMenuView.less ***!
   \*******************************************/
@@ -29660,7 +30230,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 79 */
+/* 90 */
 /*!********************************************!*\
   !*** ./wwwroot/data/AsteroidCollection.js ***!
   \********************************************/
@@ -29680,7 +30250,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _AsteroidModel = __webpack_require__(/*! ./AsteroidModel.js */ 80);
+	var _AsteroidModel = __webpack_require__(/*! ./AsteroidModel.js */ 91);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
@@ -29751,7 +30321,7 @@
 	});
 
 /***/ },
-/* 80 */
+/* 91 */
 /*!***************************************!*\
   !*** ./wwwroot/data/AsteroidModel.js ***!
   \***************************************/
@@ -29767,7 +30337,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _MongoModel = __webpack_require__(/*! ./MongoModel.js */ 81);
+	var _MongoModel = __webpack_require__(/*! ./MongoModel.js */ 92);
 	
 	var _MongoModel2 = _interopRequireDefault(_MongoModel);
 	
@@ -29849,7 +30419,7 @@
 	});
 
 /***/ },
-/* 81 */
+/* 92 */
 /*!************************************!*\
   !*** ./wwwroot/data/MongoModel.js ***!
   \************************************/
@@ -29861,7 +30431,7 @@
 	    value: true
 	});
 	
-	var _BaseModel = __webpack_require__(/*! ./BaseModel.js */ 82);
+	var _BaseModel = __webpack_require__(/*! ./BaseModel.js */ 93);
 	
 	var _BaseModel2 = _interopRequireDefault(_BaseModel);
 	
@@ -29879,7 +30449,7 @@
 	});
 
 /***/ },
-/* 82 */
+/* 93 */
 /*!***********************************!*\
   !*** ./wwwroot/data/BaseModel.js ***!
   \***********************************/
@@ -29895,7 +30465,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _backboneValidation = __webpack_require__(/*! backbone-validation */ 83);
+	var _backboneValidation = __webpack_require__(/*! backbone-validation */ 94);
 	
 	var _backboneValidation2 = _interopRequireDefault(_backboneValidation);
 	
@@ -29903,16 +30473,16 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	__webpack_require__(/*! ./backbone-deffered.js */ 84);
+	__webpack_require__(/*! ./backbone-deffered.js */ 95);
 	
-	__webpack_require__(/*! ../helpers/ConfigureBackboneValidation.js */ 85);
+	__webpack_require__(/*! ../helpers/ConfigureBackboneValidation.js */ 96);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _backbone2.default.Model.extend(_backboneValidation2.default.mixin);
 
 /***/ },
-/* 83 */
+/* 94 */
 /*!***************************************************************!*\
   !*** ./~/backbone-validation/dist/backbone-validation-amd.js ***!
   \***************************************************************/
@@ -30625,7 +31195,7 @@
 	});
 
 /***/ },
-/* 84 */
+/* 95 */
 /*!*******************************************!*\
   !*** ./wwwroot/data/backbone-deffered.js ***!
   \*******************************************/
@@ -30963,7 +31533,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 85 */
+/* 96 */
 /*!********************************************************!*\
   !*** ./wwwroot/helpers/ConfigureBackboneValidation.js ***!
   \********************************************************/
@@ -30975,7 +31545,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	__webpack_require__(/*! backbone-validation */ 83);
+	__webpack_require__(/*! backbone-validation */ 94);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -31040,7 +31610,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 86 */
+/* 97 */
 /*!***********************************!*\
   !*** ./wwwroot/homeApp/router.js ***!
   \***********************************/
@@ -31056,7 +31626,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _controller = __webpack_require__(/*! ./controller */ 87);
+	var _controller = __webpack_require__(/*! ./controller */ 98);
 	
 	var _controller2 = _interopRequireDefault(_controller);
 	
@@ -31134,7 +31704,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 87 */
+/* 98 */
 /*!***************************************!*\
   !*** ./wwwroot/homeApp/controller.js ***!
   \***************************************/
@@ -31150,103 +31720,103 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _indexView = __webpack_require__(/*! ./index/indexView.js */ 88);
+	var _indexView = __webpack_require__(/*! ./index/indexView.js */ 99);
 	
 	var _indexView2 = _interopRequireDefault(_indexView);
 	
-	var _MobileIndexView = __webpack_require__(/*! ./index/MobileIndexView.js */ 96);
+	var _MobileIndexView = __webpack_require__(/*! ./index/MobileIndexView.js */ 107);
 	
 	var _MobileIndexView2 = _interopRequireDefault(_MobileIndexView);
 	
-	var _DetailsView = __webpack_require__(/*! ./posts/DetailsView.js */ 98);
+	var _DetailsView = __webpack_require__(/*! ./posts/DetailsView.js */ 109);
 	
 	var _DetailsView2 = _interopRequireDefault(_DetailsView);
 	
-	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 80);
+	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 91);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 79);
+	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 90);
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
-	var _User = __webpack_require__(/*! ../data/Domain/User.js */ 107);
+	var _User = __webpack_require__(/*! ../data/Domain/User.js */ 118);
 	
 	var _User2 = _interopRequireDefault(_User);
 	
-	var _PostModel = __webpack_require__(/*! ../data/Post/PostModel.js */ 108);
+	var _PostModel = __webpack_require__(/*! ../data/Post/PostModel.js */ 119);
 	
 	var _PostModel2 = _interopRequireDefault(_PostModel);
 	
-	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 109);
+	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 120);
 	
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
-	var _CreatePostView = __webpack_require__(/*! ./posts/create/CreatePostView.js */ 111);
+	var _CreatePostView = __webpack_require__(/*! ./posts/create/CreatePostView.js */ 122);
 	
 	var _CreatePostView2 = _interopRequireDefault(_CreatePostView);
 	
-	var _PostsMyView = __webpack_require__(/*! ./posts/postsMy/PostsMyView.js */ 128);
+	var _PostsMyView = __webpack_require__(/*! ./posts/postsMy/PostsMyView.js */ 139);
 	
 	var _PostsMyView2 = _interopRequireDefault(_PostsMyView);
 	
-	var _chatsMyView = __webpack_require__(/*! ./chats/chatsMy/chatsMyView.js */ 133);
+	var _chatsMyView = __webpack_require__(/*! ./chats/chatsMy/chatsMyView.js */ 144);
 	
 	var _chatsMyView2 = _interopRequireDefault(_chatsMyView);
 	
-	var _ChatIdView = __webpack_require__(/*! ./chats/ChatIdView.js */ 140);
+	var _ChatIdView = __webpack_require__(/*! ./chats/ChatIdView.js */ 151);
 	
 	var _ChatIdView2 = _interopRequireDefault(_ChatIdView);
 	
-	var _DetailsView3 = __webpack_require__(/*! ./user/DetailsView.js */ 142);
+	var _DetailsView3 = __webpack_require__(/*! ./user/DetailsView.js */ 153);
 	
 	var _DetailsView4 = _interopRequireDefault(_DetailsView3);
 	
-	var _MessagesToUserView = __webpack_require__(/*! ./chats/native/MessagesToUserView.js */ 149);
+	var _MessagesToUserView = __webpack_require__(/*! ./chats/native/MessagesToUserView.js */ 160);
 	
 	var _MessagesToUserView2 = _interopRequireDefault(_MessagesToUserView);
 	
-	var _LoginView = __webpack_require__(/*! ./account/LoginView.js */ 158);
+	var _LoginView = __webpack_require__(/*! ./account/LoginView.js */ 169);
 	
 	var _LoginView2 = _interopRequireDefault(_LoginView);
 	
-	var _RegisterUserView = __webpack_require__(/*! ./account/RegisterUserView */ 162);
+	var _RegisterUserView = __webpack_require__(/*! ./account/RegisterUserView */ 173);
 	
 	var _RegisterUserView2 = _interopRequireDefault(_RegisterUserView);
 	
-	var _AboutView = __webpack_require__(/*! ./about/AboutView.js */ 165);
+	var _AboutView = __webpack_require__(/*! ./about/AboutView.js */ 176);
 	
 	var _AboutView2 = _interopRequireDefault(_AboutView);
 	
-	var _MassMediaView = __webpack_require__(/*! ./massMedia/MassMediaView.js */ 168);
+	var _MassMediaView = __webpack_require__(/*! ./massMedia/MassMediaView.js */ 179);
 	
 	var _MassMediaView2 = _interopRequireDefault(_MassMediaView);
 	
-	var _HowItWorksView = __webpack_require__(/*! ./howItWorks/HowItWorksView.js */ 171);
+	var _HowItWorksView = __webpack_require__(/*! ./howItWorks/HowItWorksView.js */ 182);
 	
 	var _HowItWorksView2 = _interopRequireDefault(_HowItWorksView);
 	
-	var _FogotPasswordView = __webpack_require__(/*! ./account/FogotPasswordView.js */ 173);
+	var _FogotPasswordView = __webpack_require__(/*! ./account/FogotPasswordView.js */ 184);
 	
 	var _FogotPasswordView2 = _interopRequireDefault(_FogotPasswordView);
 	
-	var _legalUserAgreementView = __webpack_require__(/*! ./legal/legalUserAgreementView */ 175);
+	var _legalUserAgreementView = __webpack_require__(/*! ./legal/legalUserAgreementView */ 186);
 	
 	var _legalUserAgreementView2 = _interopRequireDefault(_legalUserAgreementView);
 	
-	var _legalConfidentialView = __webpack_require__(/*! ./legal/legalConfidentialView */ 177);
+	var _legalConfidentialView = __webpack_require__(/*! ./legal/legalConfidentialView */ 188);
 	
 	var _legalConfidentialView2 = _interopRequireDefault(_legalConfidentialView);
 	
-	var _legalPostPublishingView = __webpack_require__(/*! ./legal/legalPostPublishingView */ 179);
+	var _legalPostPublishingView = __webpack_require__(/*! ./legal/legalPostPublishingView */ 190);
 	
 	var _legalPostPublishingView2 = _interopRequireDefault(_legalPostPublishingView);
 	
-	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 181);
+	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 192);
 	
 	var _blogHomeView2 = _interopRequireDefault(_blogHomeView);
 	
-	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 187);
+	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 198);
 	
 	var _blogPostIdView2 = _interopRequireDefault(_blogPostIdView);
 	
@@ -31258,15 +31828,7 @@
 	
 	exports.default = _backbone2.default.Object.extend({
 	    index: function index() {
-	
 	        _app2.default.layout.showChildView('content', new _indexView2.default());
-	
-	        /*
-	        if (!app.isMobile)
-	            app.layout.showChildView('content', new IndexView());
-	        else {
-	            app.layout.getRegion('content').empty();
-	        }*/
 	    },
 	    mobileIndex: function mobileIndex() {
 	        _app2.default.layout.showChildView('content', new _MobileIndexView2.default({ IndexView: _indexView2.default }));
@@ -31357,12 +31919,6 @@
 	            return _app2.default.layout.showChildView('content', new _DetailsView4.default({ model: userModel }));
 	        });
 	    },
-	
-	
-	    //myMessagesPage() {
-	    //    app.layout.showChildView('content',new MyMessagesPageView());
-	    //},
-	
 	    userDetails: function userDetails(id) {
 	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
 	        var userModel = new _User2.default({ _id: id });
@@ -31387,55 +31943,23 @@
 	
 	    // BLOG:
 	    blogHome: function blogHome() {
-	        /*debugger;
-	        var ceres = app.asteroid;
-	        ceres.subscribe("blog.posts");
-	        var blogPosts = ceres.getCollection("blog_posts");
-	        window.bp = blogPosts;
-	        //tasks.insert({
-	        //    description: "Do the laundry"
-	        //});
-	        // Get the task
-	        var laundryTaskRQ = blogPosts.reactiveQuery({ mode: 'public' });
-	        // Log the array of results
-	        console.log(laundryTaskRQ.result);
-	        // Listen for changes
-	        laundryTaskRQ.on("change", function () {
-	            debugger;
-	            console.log(laundryTaskRQ.result);
-	        });*/
-	        //debugger;
-	        var subscription = _app2.default.asteroid.subscribe('blog.posts');
-	        subscription.ready.done(function (a, b, c) {
-	            console.log('ready - posts');
+	        var posts = new _AsteroidCollection2.default(null, { asteroid: _app2.default.asteroid, comparator: 'createdAt' });
+	        //app.layout.showChildView('content', new BlogHomeView({ collection: [] }));
+	        posts.loadByMethod('bz.blog.getPosts', {}, function () {
+	            _app2.default.layout.showChildView('content', new _blogHomeView2.default({ collection: posts }));
 	        });
-	        var a = new _AsteroidCollection2.default(null, { asteroid: _app2.default.asteroid });
-	        //debugger;
-	        /*a.sub('blog.authors');
-	        var s = a.subscriptions[0];
-	        s.ready.done(function() {
-	            console.log('ready - authors')
-	        });*/
-	
-	        // var c = app.asteroid.getCollection('blog_posts').find().fetch();
-	        //console.log(c)
-	        _app2.default.layout.showChildView('content', new _blogHomeView2.default());
-	
-	        /*var c = new AsteroidCollection(null, { asteroid: app.asteroid });
-	        c.loadByMethod('getBlogPosts', () => {
-	            debugger;
-	            app.layout.showChildView('content', new BlogHomeView({collection: c}));
-	        });*/
 	    },
 	    blogPostId: function blogPostId(id) {
 	        console.log('POST ID: ', id);
-	
 	        // Загружаем пост из базы по его ID....
 	        // 1. находим поста по id
 	        // 2. вызываем метод loadByMethod для загрузки и передаем во BlogPostIdView 
-	
 	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
-	        _app2.default.layout.showChildView('content', new _blogPostIdView2.default());
+	        if (id) {
+	            _app2.default.asteroid.call('bz.blog.getPostById', id).result.then(function (post) {
+	                _app2.default.layout.showChildView('content', new _blogPostIdView2.default({ model: post }));
+	            });
+	        }
 	    }
 	});
 	//import ProfilePageView from './user/ProfilePageView';
@@ -31445,7 +31969,7 @@
 	//import Collection from '../data/AsteroidCollection.js';
 
 /***/ },
-/* 88 */
+/* 99 */
 /*!********************************************!*\
   !*** ./wwwroot/homeApp/index/indexView.js ***!
   \********************************************/
@@ -31461,13 +31985,13 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _IndexViewHbs = __webpack_require__(/*! ./IndexView.hbs.html */ 89);
+	var _IndexViewHbs = __webpack_require__(/*! ./IndexView.hbs.html */ 100);
 	
 	var _IndexViewHbs2 = _interopRequireDefault(_IndexViewHbs);
 	
-	__webpack_require__(/*! ../../lib/jquery-parallax/scripts/jquery.parallax-1.1.3.js */ 90);
+	__webpack_require__(/*! ../../lib/jquery-parallax/scripts/jquery.parallax-1.1.3.js */ 101);
 	
-	var _PostTypesView = __webpack_require__(/*! ./PostTypesView.js */ 91);
+	var _PostTypesView = __webpack_require__(/*! ./PostTypesView.js */ 102);
 	
 	var _PostTypesView2 = _interopRequireDefault(_PostTypesView);
 	
@@ -31475,9 +31999,9 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./i18n/ru */ 94);
+	__webpack_require__(/*! ./i18n/ru */ 105);
 	
-	__webpack_require__(/*! ./i18n/en */ 95);
+	__webpack_require__(/*! ./i18n/en */ 106);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -31538,7 +32062,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 89 */
+/* 100 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/index/IndexView.hbs.html ***!
   \**************************************************/
@@ -31604,7 +32128,7 @@
 
 
 /***/ },
-/* 90 */
+/* 101 */
 /*!**********************************************************************!*\
   !*** ./wwwroot/lib/jquery-parallax/scripts/jquery.parallax-1.1.3.js ***!
   \**********************************************************************/
@@ -31684,7 +32208,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 91 */
+/* 102 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/index/PostTypesView.js ***!
   \************************************************/
@@ -31700,7 +32224,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.js */ 92);
+	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.js */ 103);
 	
 	var _PostTypeItemView2 = _interopRequireDefault(_PostTypeItemView);
 	
@@ -31714,7 +32238,7 @@
 	exports.default = View;
 
 /***/ },
-/* 92 */
+/* 103 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/index/PostTypeItemView.js ***!
   \***************************************************/
@@ -31730,7 +32254,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.html */ 93);
+	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.html */ 104);
 	
 	var _PostTypeItemView2 = _interopRequireDefault(_PostTypeItemView);
 	
@@ -31755,7 +32279,7 @@
 	exports.default = View;
 
 /***/ },
-/* 93 */
+/* 104 */
 /*!*****************************************************!*\
   !*** ./wwwroot/homeApp/index/PostTypeItemView.html ***!
   \*****************************************************/
@@ -31775,7 +32299,7 @@
 
 
 /***/ },
-/* 94 */
+/* 105 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/index/i18n/ru.js ***!
   \******************************************/
@@ -31803,7 +32327,7 @@
 	"use strict";
 
 /***/ },
-/* 95 */
+/* 106 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/index/i18n/en.js ***!
   \******************************************/
@@ -31833,7 +32357,7 @@
 	"use strict";
 
 /***/ },
-/* 96 */
+/* 107 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/index/MobileIndexView.js ***!
   \**************************************************/
@@ -31849,7 +32373,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MobileIndexViewHbs = __webpack_require__(/*! ./MobileIndexView.hbs.html */ 97);
+	var _MobileIndexViewHbs = __webpack_require__(/*! ./MobileIndexView.hbs.html */ 108);
 	
 	var _MobileIndexViewHbs2 = _interopRequireDefault(_MobileIndexViewHbs);
 	
@@ -31874,7 +32398,7 @@
 	exports.default = View;
 
 /***/ },
-/* 97 */
+/* 108 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/index/MobileIndexView.hbs.html ***!
   \********************************************************/
@@ -31892,7 +32416,7 @@
 
 
 /***/ },
-/* 98 */
+/* 109 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/posts/DetailsView.js ***!
   \**********************************************/
@@ -31908,25 +32432,25 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 99);
+	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 110);
 	
 	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
 	
-	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 100);
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 111);
 	
-	var _AsteroidCollection = __webpack_require__(/*! ../../data/AsteroidCollection.js */ 79);
+	var _AsteroidCollection = __webpack_require__(/*! ../../data/AsteroidCollection.js */ 90);
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
-	var _RelatedPostsView = __webpack_require__(/*! ./RelatedPostsView.js */ 101);
+	var _RelatedPostsView = __webpack_require__(/*! ./RelatedPostsView.js */ 112);
 	
 	var _RelatedPostsView2 = _interopRequireDefault(_RelatedPostsView);
 	
-	var _CommentsListView = __webpack_require__(/*! ./CommentsListView.js */ 103);
+	var _CommentsListView = __webpack_require__(/*! ./CommentsListView.js */ 114);
 	
 	var _CommentsListView2 = _interopRequireDefault(_CommentsListView);
 	
-	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 56);
+	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 67);
 	
 	var _loadGoogleMapsApi2 = _interopRequireDefault(_loadGoogleMapsApi);
 	
@@ -31938,13 +32462,13 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./DetailsView.less */ 106);
+	__webpack_require__(/*! ./DetailsView.less */ 117);
 	
 	var _locationHelper = __webpack_require__(/*! ../../helpers/locationHelper.js */ 9);
 	
 	var _locationHelper2 = _interopRequireDefault(_locationHelper);
 	
-	var _postDuration = __webpack_require__(/*! ../../helpers/postDuration.js */ 55);
+	var _postDuration = __webpack_require__(/*! ../../helpers/postDuration.js */ 66);
 	
 	var _postDuration2 = _interopRequireDefault(_postDuration);
 	
@@ -31971,11 +32495,18 @@
 	        this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
 	        this.listenTo(_app2.default.user, 'login', this.render);
 	        this.listenTo(_app2.default.user, 'logout', this.render);
+	        this.listenTo(this.comments, 'after:load', this.initCommentsCount);
+	    },
+	    initCommentsCount: function initCommentsCount() {
+	        if (this.comments.size() > 0) {
+	            this.showChildView('comments', new _CommentsListView2.default({ collection: this.comments }));
+	        } else {
+	            $('#sh-review').remove();
+	        }
 	    },
 	    onBeforeRender: function onBeforeRender() {
 	        this.setModelDistance();
 	        this.getPostDuration();
-	
 	        if (_app2.default.asteroid.loggedIn) {
 	            this.templateContext = {
 	                currentUser: _app2.default.user.toJSON()
@@ -31987,9 +32518,9 @@
 	        this.collection.loadByMethod('getPopularPosts', [center.lat(), center.lng(), 200, 0, 10]);
 	        //this.initVkSocialButton(); 
 	        this.initCarousel();
-	
 	        this.comments.loadByMethod('getComments', { postId: this.model.get('_id'), take: 100, skip: 0 });
-	        this.showChildView('comments', new _CommentsListView2.default({ collection: this.comments }));
+	
+	        //this.showChildView('comments', new CommentsListView({collection: this.comments}));        
 	    },
 	    onAttach: function onAttach() {
 	        this.initStickMenu();
@@ -32213,7 +32744,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 99 */
+/* 110 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/posts/DetailsView.hbs.html ***!
   \****************************************************/
@@ -32336,7 +32867,7 @@
 	 } else { 
 	__p+='\r\n                                        <span>Местоположение не определено</span>\r\n                                        ';
 	 } 
-	__p+='\r\n                                    </div>\r\n                                </div>\r\n\r\n                                <div id="sh-map"></div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <!-- if comments > 0 -->\r\n                        <div id="sh-review" class="sh-post-review sh-section">\r\n                            <div class="sh-post-reviews-wrapper">\r\n                                <h4>Комментарии <span></span></h4>\r\n                                <div class="sh-post-form-review">\r\n                                    <div id="sh-comments" class="sh-post-reviews"></div>\r\n                                </div>\r\n                            </div>\r\n                        </div>                       \r\n\r\n                    </div>\r\n                    \r\n                    <div class="sh-side-right">\r\n                        <div class="sh-post-widget sh-visible-md-flex sh-visible-lg-flex">\r\n                            ';
+	__p+='\r\n                                    </div>\r\n                                </div>\r\n\r\n                                <div id="sh-map"></div>\r\n                            </div>\r\n                        </div>\r\n                                                                       \r\n                        <div id="sh-review" class="sh-post-review sh-section">\r\n                            <div class="sh-post-reviews-wrapper">\r\n                                <h4>Комментарии <span></span></h4>\r\n                                <div class="sh-post-form-review">\r\n                                    <div id="sh-comments" class="sh-post-reviews"></div>\r\n                                </div>\r\n                            </div>\r\n                        </div>                       \r\n\r\n                    </div>\r\n                    \r\n                    <div class="sh-side-right">\r\n                        <div class="sh-post-widget sh-visible-md-flex sh-visible-lg-flex">\r\n                            ';
 	if (details.price) { 
 	__p+='                            \r\n                            <div class="sh-post-top-price">\r\n                                <div class="sh-price-wrapper sh-rub">\r\n                                    <div class="sh-price-number">'+
 	((__t=(details.price))==null?'':__t)+
@@ -32368,7 +32899,7 @@
 	((__t=(distanceType==='km'?'км':'miles'))==null?'':__t)+
 	' ';
 	 } 
-	__p+='</span></div></li>\r\n                            </ul>\r\n                        </div>\r\n\r\n                        <div class="sh-post-wish-and-more">\r\n                            <div class="sh-post-wish hidden"></div>\r\n                            <div class="sh-post-more">\r\n                                <div class="sh-post-more-wrapper">\r\n                                    <a href="#" class="sh-share-btn sh-text-center">\r\n                                        <span>E-mail</span>\r\n                                    </a>\r\n                                    <a href="#" class="sh-share-btn sh-text-center">\r\n                                        <span>Вконтакте</span>\r\n                                    </a>\r\n                                    <span class="sh-more-btn sh-text-center">\r\n                                        ··· <span>Ещё</span>\r\n                                    </span>\r\n                                </div>\r\n\r\n                                <div class="sh-report-message">\r\n                                    <i class="fa fa-exclamation" aria-hidden="true"></i>\r\n                                    <a href="#">Сообщите об этом объявлении</a>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="sh-same-posts hidden">\r\n                    <div class="container">\r\n                        <div class="sh-same-posts-wrapper">\r\n                            <h4>Похожие посты</h4>\r\n\r\n                            <div class="sh-text-center">Скоро на всех устройствах мира</div>\r\n                            <br>\r\n\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</main>';
+	__p+='</span></div></li>\r\n                            </ul>\r\n                        </div>\r\n\r\n                        <div class="sh-post-wish-and-more" style="display: none;">\r\n                            <div class="sh-post-wish hidden"></div>\r\n                            <div class="sh-post-more">\r\n                                <div class="sh-post-more-wrapper">\r\n                                    <a href="#" class="sh-share-btn sh-text-center">\r\n                                        <span>E-mail</span>\r\n                                    </a>\r\n                                    <a href="#" class="sh-share-btn sh-text-center">\r\n                                        <span>Вконтакте</span>\r\n                                    </a>\r\n                                    <span class="sh-more-btn sh-text-center">\r\n                                        ··· <span>Ещё</span>\r\n                                    </span>\r\n                                </div>\r\n\r\n                                <div class="sh-report-message">\r\n                                    <i class="fa fa-exclamation" aria-hidden="true"></i>\r\n                                    <a href="#">Сообщите об этом объявлении</a>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="sh-same-posts hidden">\r\n                    <div class="container">\r\n                        <div class="sh-same-posts-wrapper">\r\n                            <h4>Похожие посты</h4>\r\n\r\n                            <div class="sh-text-center">Скоро на всех устройствах мира</div>\r\n                            <br>\r\n\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</main>';
 	}
 	return __p;
 	};
@@ -32376,7 +32907,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12), __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 100 */
+/* 111 */
 /*!******************************************************!*\
   !*** ./wwwroot/lib/owl-carousel/owl.carousel.min.js ***!
   \******************************************************/
@@ -33063,7 +33594,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 101 */
+/* 112 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/posts/RelatedPostsView.js ***!
   \***************************************************/
@@ -33079,11 +33610,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _RelatedPostsViewHbs = __webpack_require__(/*! ./RelatedPostsView.hbs.html */ 102);
+	var _RelatedPostsViewHbs = __webpack_require__(/*! ./RelatedPostsView.hbs.html */ 113);
 	
 	var _RelatedPostsViewHbs2 = _interopRequireDefault(_RelatedPostsViewHbs);
 	
-	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 100);
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 111);
 	
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
@@ -33170,7 +33701,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 102 */
+/* 113 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/RelatedPostsView.hbs.html ***!
   \*********************************************************/
@@ -33203,7 +33734,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 103 */
+/* 114 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/posts/CommentsListView.js ***!
   \***************************************************/
@@ -33219,7 +33750,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _CommentsItemView = __webpack_require__(/*! ./CommentsItemView.js */ 104);
+	var _CommentsItemView = __webpack_require__(/*! ./CommentsItemView.js */ 115);
 	
 	var _CommentsItemView2 = _interopRequireDefault(_CommentsItemView);
 	
@@ -33236,7 +33767,7 @@
 	exports.default = View;
 
 /***/ },
-/* 104 */
+/* 115 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/posts/CommentsItemView.js ***!
   \***************************************************/
@@ -33252,7 +33783,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _CommentsItemViewHbs = __webpack_require__(/*! ./CommentsItemView.hbs.html */ 105);
+	var _CommentsItemViewHbs = __webpack_require__(/*! ./CommentsItemView.hbs.html */ 116);
 	
 	var _CommentsItemViewHbs2 = _interopRequireDefault(_CommentsItemViewHbs);
 	
@@ -33268,7 +33799,7 @@
 	exports.default = View;
 
 /***/ },
-/* 105 */
+/* 116 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/CommentsItemView.hbs.html ***!
   \*********************************************************/
@@ -33303,7 +33834,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 106 */
+/* 117 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/posts/DetailsView.less ***!
   \************************************************/
@@ -33312,7 +33843,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 107 */
+/* 118 */
 /*!*************************************!*\
   !*** ./wwwroot/data/Domain/User.js ***!
   \*************************************/
@@ -33324,7 +33855,7 @@
 	    value: true
 	});
 	
-	var _MongoModel = __webpack_require__(/*! ../MongoModel.js */ 81);
+	var _MongoModel = __webpack_require__(/*! ../MongoModel.js */ 92);
 	
 	var _MongoModel2 = _interopRequireDefault(_MongoModel);
 	
@@ -33339,7 +33870,7 @@
 	});
 
 /***/ },
-/* 108 */
+/* 119 */
 /*!****************************************!*\
   !*** ./wwwroot/data/Post/PostModel.js ***!
   \****************************************/
@@ -33351,7 +33882,7 @@
 	    value: true
 	});
 	
-	var _AsteroidModel = __webpack_require__(/*! ../AsteroidModel.js */ 80);
+	var _AsteroidModel = __webpack_require__(/*! ../AsteroidModel.js */ 91);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
@@ -33389,7 +33920,28 @@
 	    },
 	    _create: function _create(options) {
 	        var self = this;
-	        return this.asteroid.call('addPost', this.attributes).result.then(function (resp) {
+	
+	        var postPosition = {};
+	        var navigatorPosition = app.user.get('position'),
+	            postCurrentPosition = this.get('details').locations;
+	
+	        if (postCurrentPosition) {
+	            postCurrentPosition.map(function (location) {
+	                if (location.placeType === 'dynamic') {
+	                    postPosition = {
+	                        lat: location.coords.lat(),
+	                        lng: location.coords.lng()
+	                    };
+	                } else {
+	                    postPosition = {
+	                        lat: navigatorPosition.lat,
+	                        lng: navigatorPosition.lng
+	                    };
+	                }
+	            });
+	        }
+	
+	        return this.asteroid.call('addPost', this.attributes, postPosition).result.then(function (resp) {
 	            if (resp.success) {
 	                self.set('_id', resp.result, options);
 	                if (!options || !options.silent) self.trigger('save', resp);
@@ -33422,7 +33974,7 @@
 	        },
 	
 	        'details.locations': function detailsLocations(value, attr, computedState) {
-	            if (!value || _.isEmpty(value)) return "укажите местоположение";
+	            if (!value || _.isEmpty(value)) return "Укажите местоположение";
 	        }
 	    }
 	});
@@ -33475,7 +34027,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 109 */
+/* 120 */
 /*!**********************************************!*\
   !*** ./wwwroot/sharedViews/PreloaderView.js ***!
   \**********************************************/
@@ -33491,7 +34043,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PreloaderViewHbs = __webpack_require__(/*! ./PreloaderView.hbs.html */ 110);
+	var _PreloaderViewHbs = __webpack_require__(/*! ./PreloaderView.hbs.html */ 121);
 	
 	var _PreloaderViewHbs2 = _interopRequireDefault(_PreloaderViewHbs);
 	
@@ -33505,7 +34057,7 @@
 	exports.default = View;
 
 /***/ },
-/* 110 */
+/* 121 */
 /*!****************************************************!*\
   !*** ./wwwroot/sharedViews/PreloaderView.hbs.html ***!
   \****************************************************/
@@ -33521,7 +34073,7 @@
 
 
 /***/ },
-/* 111 */
+/* 122 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/CreatePostView.js ***!
   \********************************************************/
@@ -33537,7 +34089,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _CreatePostViewHbs = __webpack_require__(/*! ./CreatePostView.hbs.html */ 112);
+	var _CreatePostViewHbs = __webpack_require__(/*! ./CreatePostView.hbs.html */ 123);
 	
 	var _CreatePostViewHbs2 = _interopRequireDefault(_CreatePostViewHbs);
 	
@@ -33545,31 +34097,31 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _scriptjs = __webpack_require__(/*! scriptjs */ 113);
+	var _scriptjs = __webpack_require__(/*! scriptjs */ 124);
 	
 	var _scriptjs2 = _interopRequireDefault(_scriptjs);
 	
-	var _UploadedImagesView = __webpack_require__(/*! ./UploadedImagesView.js */ 114);
+	var _UploadedImagesView = __webpack_require__(/*! ./UploadedImagesView.js */ 125);
 	
 	var _UploadedImagesView2 = _interopRequireDefault(_UploadedImagesView);
 	
-	var _SelectedLocationView = __webpack_require__(/*! ./SelectedLocationView.js */ 117);
+	var _SelectedLocationView = __webpack_require__(/*! ./SelectedLocationView.js */ 128);
 	
 	var _SelectedLocationView2 = _interopRequireDefault(_SelectedLocationView);
 	
-	var _ModalContainerView = __webpack_require__(/*! ../../../sharedViews/ModalContainerView.js */ 119);
+	var _ModalContainerView = __webpack_require__(/*! ../../../sharedViews/ModalContainerView.js */ 130);
 	
 	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
 	
-	var _SuccessView = __webpack_require__(/*! ../../../sharedViews/SuccessView.js */ 121);
+	var _SuccessView = __webpack_require__(/*! ../../../sharedViews/SuccessView.js */ 132);
 	
 	var _SuccessView2 = _interopRequireDefault(_SuccessView);
 	
-	var _LocationMapView = __webpack_require__(/*! ./LocationMapView.js */ 123);
+	var _LocationMapView = __webpack_require__(/*! ./LocationMapView.js */ 134);
 	
 	var _LocationMapView2 = _interopRequireDefault(_LocationMapView);
 	
-	__webpack_require__(/*! bootstrap-datepicker */ 127);
+	__webpack_require__(/*! bootstrap-datepicker */ 138);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33615,7 +34167,7 @@
 	        this.listenTo(this.selectedLocation, 'change', this.showLocation);
 	        this.listenTo(this.selectedLocation, 'change', this.setLocation);
 	        this.listenTo(this.images, 'change', this.setImages);
-	        window.uploadedImages = this.images; // debug
+	        //window.uploadedImages = this.images; // debug
 	    },
 	    setAnonimous: function setAnonimous(e) {
 	        this.model.set('anonymousPost', e.target.checked);
@@ -33623,11 +34175,13 @@
 	    setLocation: function setLocation() {
 	        var details = this.model.get('details');
 	        var location = this.selectedLocation.toJSON() || {};
+	
 	        if (location["name"]) {
 	            location["userId"] = _app2.default.user.id;
 	            location["public"] = false;
 	            details.locations = [location];
 	            this.model.set('details', details, { validate: true });
+	            this.model.trigger('change');
 	        }
 	    },
 	    setImages: function setImages() {
@@ -33735,7 +34289,7 @@
 	    setDate: function setDate(e) {
 	        if (e.target.value && !_.isEmpty(e.target.value)) {
 	            var val = moment(e.target.value, "DD/MM/YYYY");
-	            this.model.set('endDatePost', val.valueOf());
+	            this.model.set('endDatePost', val.valueOf(), { validate: true });
 	        }
 	    },
 	    onBeforeRemove: function onBeforeRemove() {
@@ -33800,11 +34354,12 @@
 	    },
 	    save: function save() {
 	        if (!this.model.validate()) {
-	
+	            this.$('#saveShiner').addClass('disabled');
 	            this.model.create();
 	        }
 	    },
 	    showSuccess: function showSuccess() {
+	        this.$('#saveShiner').removeClass('disabled');
 	        this.showChildView('modal', new _ModalContainerView2.default({
 	            view: new _SuccessView2.default({
 	                resultUrl: '/posts/' + this.model.id,
@@ -33815,6 +34370,7 @@
 	        }));
 	    },
 	    showError: function showError(er) {
+	        this.$('#saveShiner').removeClass('disabled');
 	        alert("Ошибка создания поста. " + er);
 	    },
 	    back: function back() {
@@ -33825,7 +34381,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 112 */
+/* 123 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/CreatePostView.hbs.html ***!
   \**************************************************************/
@@ -33842,7 +34398,7 @@
 	((__t=(type.i18n.ru.fullName))==null?'':__t)+
 	'</option>\r\n                                ';
 	 }); 
-	__p+='\r\n                            </select>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Фотографии\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-photos-upload">\r\n                            <div class="sh-photos-upload-wrapper">\r\n                                <div class="sh-photos-upload-image">\r\n                                    <i class="fa fa-camera"></i>\r\n                                </div>\r\n                                <div class="sh-photos-upload-description">\r\n                                    <span>Добавьте фотографии для объявления.<br />Вы всегда можете вернуться к сохраненному объявлению и добавить новые фотографии.</span>\r\n                                </div>\r\n                                <div class="sh-photos-upload-button">\r\n                                    <a class="ui sh-button" id="addImgButton"> Добавить фото</a>\r\n                                    <input id="addImgInput" type="file" style="display: none" />\r\n                                </div>\r\n                            </div>\r\n                            <div id="uploadedImages">\r\n\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n        <!--2-->\r\n        <div class="sh-form-step">\r\n            <div class="sh-form-row sh-caption">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Где\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text sh-padding-title">\r\n                        Выберите надстройку для вашего объявления. С помощью этих данных пользователи найдут объявления в подходящем для них месте.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title"></div>\r\n                </div>\r\n                \r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text text-center">\r\n                        <a id="selectLocation">Выбрать Местонахождение объявления</a>\r\n                        <div id="locationName" class="sh-location-name" name="details.locations"></div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <!--3-->\r\n        <div class="sh-form-step">\r\n            <div class="sh-form-row sh-caption">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Когда\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text sh-padding-title">\r\n                        Установите время, в течении которого ваше объявление будет активным.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Продолжительность\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-datepicker">\r\n                            <div class="sh-datepicker-wrapper">\r\n                                <div class="sh-textfield-picker action l input">\r\n                                    <input id="dateDuration" type="text" class="sh-input-control form-control sh-datepicker" placeholder="Нажмите, чтобы выбрать дату" data-format="yyyy-mm-dd" data-lang="en" data-RTL="false">\r\n                                </div>\r\n                                <div class="sh-select sh-select-duration-picker">\r\n                                    <select class="form-control select2" id="dateDurationSelect">\r\n                                        <option value="24">Один день</option>\r\n                                        <option value="48">Два дня</option>\r\n                                        <option value="168">Неделя</option>\r\n                                        <option value="336">Две недели</option>\r\n                                        <option value="720">Месяц</option>\r\n                                        <option value="8760">Год</option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class="sh-create-post-btn pull-right">\r\n            <button class="ui sh-button standard create big disabled" id="saveShiner">Установить Светлячок</button>\r\n        </div>\r\n\r\n\r\n    </div>\r\n\r\n\r\n    <!--\r\n    <div class="sh-work-wrapper">\r\n        <h1 class="sh-section-hero-headline sh-text-center">Как это работает</h1>\r\n        <p class="sh-section-intro sh-text-center">Сайт для поиска услуг, мероприятий и других объявлений от людей вокруг Вас</p>\r\n\r\n        <div class="sh-work-tabs"></div>\r\n    </div>\r\n    -->\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n';
+	__p+='\r\n                            </select>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Фотографии\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-photos-upload">\r\n                            <div class="sh-photos-upload-wrapper">\r\n                                <div class="sh-photos-upload-image">\r\n                                    <i class="fa fa-camera"></i>\r\n                                </div>\r\n                                <div class="sh-photos-upload-description">\r\n                                    <span>Добавьте фотографии для объявления.<br />Вы всегда можете вернуться к сохраненному объявлению и добавить новые фотографии.</span>\r\n                                </div>\r\n                                <div class="sh-photos-upload-button">\r\n                                    <a class="ui sh-button" id="addImgButton"> Добавить фото</a>\r\n                                    <input id="addImgInput" type="file" style="display: none" />\r\n                                </div>\r\n                            </div>\r\n                            <div id="uploadedImages">\r\n\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n        <!--2-->\r\n        <div class="sh-form-step">\r\n            <div class="sh-form-row sh-caption">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Где\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text sh-padding-title">\r\n                        Выберите надстройку для вашего объявления. С помощью этих данных пользователи найдут объявления в подходящем для них месте.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title"></div>\r\n                </div>\r\n                \r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text text-center">\r\n                        <a id="selectLocation">Выбрать Местонахождение объявления</a>\r\n                        <div id="locationName" class="sh-location-name" name="details.locations"></div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <!--3-->\r\n        <div class="sh-form-step">\r\n            <div class="sh-form-row sh-caption">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Когда\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text sh-padding-title">\r\n                        Установите время, в течении которого ваше объявление будет активным.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Продолжительность\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-datepicker" name="endDatePost">\r\n                            <div class="sh-datepicker-wrapper">\r\n                                <div class="sh-textfield-picker action l input">\r\n                                    <input id="dateDuration" type="text" class="sh-input-control form-control sh-datepicker" placeholder="Нажмите, чтобы выбрать дату" data-format="yyyy-mm-dd" data-lang="en" data-RTL="false">\r\n                                </div>\r\n                                <div class="sh-select sh-select-duration-picker">\r\n                                    <select class="form-control select2" id="dateDurationSelect">\r\n                                        <option value="24">Один день</option>\r\n                                        <option value="48">Два дня</option>\r\n                                        <option value="168">Неделя</option>\r\n                                        <option value="336">Две недели</option>\r\n                                        <option value="720">Месяц</option>\r\n                                        <option value="8760">Год</option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class="sh-create-post-btn pull-right">\r\n            <button class="ui sh-button standard create big disabled" id="saveShiner">Установить Светлячок</button>\r\n        </div>\r\n\r\n\r\n    </div>\r\n\r\n\r\n    <!--\r\n    <div class="sh-work-wrapper">\r\n        <h1 class="sh-section-hero-headline sh-text-center">Как это работает</h1>\r\n        <p class="sh-section-intro sh-text-center">Сайт для поиска услуг, мероприятий и других объявлений от людей вокруг Вас</p>\r\n\r\n        <div class="sh-work-tabs"></div>\r\n    </div>\r\n    -->\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n';
 	}
 	return __p;
 	};
@@ -33850,7 +34406,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 113 */
+/* 124 */
 /*!***********************************!*\
   !*** ./~/scriptjs/dist/script.js ***!
   \***********************************/
@@ -33986,7 +34542,7 @@
 	});
 
 /***/ },
-/* 114 */
+/* 125 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/UploadedImagesView.js ***!
   \************************************************************/
@@ -34002,7 +34558,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ImageView = __webpack_require__(/*! ./ImageView.js */ 115);
+	var _ImageView = __webpack_require__(/*! ./ImageView.js */ 126);
 	
 	var _ImageView2 = _interopRequireDefault(_ImageView);
 	
@@ -34015,7 +34571,7 @@
 	});
 
 /***/ },
-/* 115 */
+/* 126 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/ImageView.js ***!
   \***************************************************/
@@ -34031,7 +34587,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ImageViewHbs = __webpack_require__(/*! ./ImageView.hbs.html */ 116);
+	var _ImageViewHbs = __webpack_require__(/*! ./ImageView.hbs.html */ 127);
 	
 	var _ImageViewHbs2 = _interopRequireDefault(_ImageViewHbs);
 	
@@ -34052,7 +34608,7 @@
 	});
 
 /***/ },
-/* 116 */
+/* 127 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/ImageView.hbs.html ***!
   \*********************************************************/
@@ -34078,7 +34634,7 @@
 
 
 /***/ },
-/* 117 */
+/* 128 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.js ***!
   \**************************************************************/
@@ -34094,7 +34650,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SelectedLocationViewHbs = __webpack_require__(/*! ./SelectedLocationView.hbs.html */ 118);
+	var _SelectedLocationViewHbs = __webpack_require__(/*! ./SelectedLocationView.hbs.html */ 129);
 	
 	var _SelectedLocationViewHbs2 = _interopRequireDefault(_SelectedLocationViewHbs);
 	
@@ -34117,7 +34673,7 @@
 	//              obscuredCoords
 
 /***/ },
-/* 118 */
+/* 129 */
 /*!********************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.hbs.html ***!
   \********************************************************************/
@@ -34143,13 +34699,13 @@
 
 
 /***/ },
-/* 119 */
+/* 130 */
 /*!***************************************************!*\
   !*** ./wwwroot/sharedViews/ModalContainerView.js ***!
   \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -34159,7 +34715,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ModalContainerViewHbs = __webpack_require__(/*! ./ModalContainerView.hbs.html */ 120);
+	var _ModalContainerViewHbs = __webpack_require__(/*! ./ModalContainerView.hbs.html */ 131);
 	
 	var _ModalContainerViewHbs2 = _interopRequireDefault(_ModalContainerViewHbs);
 	
@@ -34192,6 +34748,8 @@
 	    },
 	    hide: function hide() {
 	        this.$el.modal('hide');
+	        $('body').removeClass('modal-open');
+	        $('.modal-backdrop').remove();
 	    },
 	    onShow: function onShow() {
 	        this.showChildView('childView', this.containerView);
@@ -34202,9 +34760,10 @@
 	        this.$el.modal();
 	    }
 	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 120 */
+/* 131 */
 /*!*********************************************************!*\
   !*** ./wwwroot/sharedViews/ModalContainerView.hbs.html ***!
   \*********************************************************/
@@ -34222,7 +34781,7 @@
 
 
 /***/ },
-/* 121 */
+/* 132 */
 /*!********************************************!*\
   !*** ./wwwroot/sharedViews/SuccessView.js ***!
   \********************************************/
@@ -34238,7 +34797,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SuccessView = __webpack_require__(/*! ./SuccessView.html */ 122);
+	var _SuccessView = __webpack_require__(/*! ./SuccessView.html */ 133);
 	
 	var _SuccessView2 = _interopRequireDefault(_SuccessView);
 	
@@ -34262,7 +34821,7 @@
 	exports.default = View;
 
 /***/ },
-/* 122 */
+/* 133 */
 /*!**********************************************!*\
   !*** ./wwwroot/sharedViews/SuccessView.html ***!
   \**********************************************/
@@ -34279,7 +34838,7 @@
 	if(obj.resultUrl) { 
 	__p+='\n        <a href="'+
 	((__t=(resultUrl))==null?'':__t)+
-	'" class="btn btn-info btn-sm margin-top-10">Перейти</a>\n    ';
+	'" onclick="window.scrollTo(0, 0);" class="btn btn-info btn-sm margin-top-10">Перейти</a>\n    ';
 	 } 
 	__p+='\n\n</div>';
 	}
@@ -34288,7 +34847,7 @@
 
 
 /***/ },
-/* 123 */
+/* 134 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationMapView.js ***!
   \*********************************************************/
@@ -34304,7 +34863,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _LocationMapViewHbs = __webpack_require__(/*! ./LocationMapView.hbs.html */ 124);
+	var _LocationMapViewHbs = __webpack_require__(/*! ./LocationMapView.hbs.html */ 135);
 	
 	var _LocationMapViewHbs2 = _interopRequireDefault(_LocationMapViewHbs);
 	
@@ -34312,11 +34871,11 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _LocationBindToUserPositionHbs = __webpack_require__(/*! ./LocationBindToUserPosition.hbs.html */ 125);
+	var _LocationBindToUserPositionHbs = __webpack_require__(/*! ./LocationBindToUserPosition.hbs.html */ 136);
 	
 	var _LocationBindToUserPositionHbs2 = _interopRequireDefault(_LocationBindToUserPositionHbs);
 	
-	var _LocationSetButtonHbs = __webpack_require__(/*! ./LocationSetButton.hbs.html */ 126);
+	var _LocationSetButtonHbs = __webpack_require__(/*! ./LocationSetButton.hbs.html */ 137);
 	
 	var _LocationSetButtonHbs2 = _interopRequireDefault(_LocationSetButtonHbs);
 	
@@ -34329,6 +34888,7 @@
 	    userMarker: null,
 	    infoWindow: null,
 	    geocodeTimeout: null,
+	    searchInput: null,
 	
 	    modelEvents: {
 	        'change:name': 'renderName',
@@ -34341,9 +34901,10 @@
 	        this.showUser();
 	        this.showDoneButton();
 	        this.showDynamicOrStaticSelection();
+	        this.showSearchBox;
 	    },
 	    renderName: function renderName() {
-	        this.$('#locationMap_locationName').text(this.model.get('accurateAddress'));
+	        this.$('#locationMap_locationName').val(this.model.get('accurateAddress'));
 	    },
 	    initMap: function initMap() {
 	        var defaultCoords = { lat: 55.75396, lng: 37.620393 };
@@ -34397,6 +34958,7 @@
 	            self.remove();
 	            self.trigger('destroy');
 	        });
+	
 	        this.map.controls[window.google.maps.ControlPosition.BOTTOM_CENTER].push(el);
 	    },
 	    showDynamicOrStaticSelection: function showDynamicOrStaticSelection() {
@@ -34420,9 +34982,14 @@
 	            this.infoWindow.close();
 	            this.shiner.setPosition(_app2.default.user.get('position'));
 	            this.shiner.setDraggable(false);
+	            this.$(this.searchInput).prop('readonly', true);
+	
+	            var bounds = new google.maps.LatLngBounds();
+	            this.map.setCenter(this.shiner.getPosition());
 	        } else {
 	            this.shiner.setDraggable(true);
 	            this.infoWindow.open(this.map, this.shiner);
+	            this.$(this.searchInput).prop('readonly', false);
 	        }
 	    },
 	    setLocation: function setLocation() {
@@ -34448,12 +35015,28 @@
 	    onBeforeRemove: function onBeforeRemove() {
 	        this.map.unbindAll();
 	        delete this.map;
+	    },
+	    showSearchBox: function showSearchBox() {
+	        this.searchInput = document.getElementById('locationMap_locationName');
+	        var searchBox = new google.maps.places.SearchBox(this.searchInput);
+	        //this.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(input);
+	        var model = this.model,
+	            self = this;
+	        searchBox.addListener('places_changed', function () {
+	            var places = searchBox.getPlaces();
+	            if (places.length == 0) {
+	                return;
+	            }
+	            var place = places[0];
+	            self.shiner.setPosition(place.geometry.location);
+	            self.map.setCenter(self.shiner.getPosition());
+	        });
 	    }
 	});
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 124 */
+/* 135 */
 /*!***************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationMapView.hbs.html ***!
   \***************************************************************/
@@ -34462,14 +35045,14 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div id="selectLocation_map" style="height: 400px">\r\n   \r\n</div>\r\n<div>\r\n    <div class="alert alert-mini alert-primary margin-top-10">\r\n        <i class="fa fa-map-marker"></i> <span id="locationMap_locationName"></span>\r\n    </div>\r\n</div>';
+	__p+='<div id="selectLocation_map" style="height: 400px">\r\n   \r\n</div>\r\n<div>\r\n      <div class="input-group">\r\n            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>\r\n            <input id="locationMap_locationName" type="text" class="form-control"aria-describedby="sizing-addon1">\r\n      </div>\r\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 125 */
+/* 136 */
 /*!**************************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationBindToUserPosition.hbs.html ***!
   \**************************************************************************/
@@ -34485,7 +35068,7 @@
 
 
 /***/ },
-/* 126 */
+/* 137 */
 /*!*****************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationSetButton.hbs.html ***!
   \*****************************************************************/
@@ -34501,7 +35084,7 @@
 
 
 /***/ },
-/* 127 */
+/* 138 */
 /*!****************************************************************!*\
   !*** ./~/bootstrap-datepicker/dist/js/bootstrap-datepicker.js ***!
   \****************************************************************/
@@ -36346,7 +36929,7 @@
 	});
 
 /***/ },
-/* 128 */
+/* 139 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostsMyView.js ***!
   \******************************************************/
@@ -36362,11 +36945,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PostsMyViewHbs = __webpack_require__(/*! ./PostsMyView.hbs.html */ 129);
+	var _PostsMyViewHbs = __webpack_require__(/*! ./PostsMyView.hbs.html */ 140);
 	
 	var _PostsMyViewHbs2 = _interopRequireDefault(_PostsMyViewHbs);
 	
-	var _PostItemView = __webpack_require__(/*! ./PostItemView */ 130);
+	var _PostItemView = __webpack_require__(/*! ./PostItemView */ 141);
 	
 	var _PostItemView2 = _interopRequireDefault(_PostItemView);
 	
@@ -36374,21 +36957,20 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./PostMyView.less */ 132);
+	__webpack_require__(/*! ./PostMyView.less */ 143);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.CompositeView.extend({
 	    template: _PostsMyViewHbs2.default,
 	    childView: _PostItemView2.default,
-	    childViewContainer: '#myPostsContaner',
+	    childViewContainer: '#myPostsContaner'
 	
-	    onRender: function onRender() {}
 	});
 	exports.default = View;
 
 /***/ },
-/* 129 */
+/* 140 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostsMyView.hbs.html ***!
   \************************************************************/
@@ -36404,7 +36986,7 @@
 
 
 /***/ },
-/* 130 */
+/* 141 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostItemView.js ***!
   \*******************************************************/
@@ -36420,7 +37002,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PostItemViewHbs = __webpack_require__(/*! ./PostItemView.hbs.html */ 131);
+	var _PostItemViewHbs = __webpack_require__(/*! ./PostItemView.hbs.html */ 142);
 	
 	var _PostItemViewHbs2 = _interopRequireDefault(_PostItemViewHbs);
 	
@@ -36432,7 +37014,7 @@
 	
 	var _locationHelper2 = _interopRequireDefault(_locationHelper);
 	
-	var _postDuration = __webpack_require__(/*! ../../../helpers/postDuration.js */ 55);
+	var _postDuration = __webpack_require__(/*! ../../../helpers/postDuration.js */ 66);
 	
 	var _postDuration2 = _interopRequireDefault(_postDuration);
 	
@@ -36441,13 +37023,13 @@
 	var View = _backbone2.default.View.extend({
 	    template: _PostItemViewHbs2.default,
 	    className: 'sh-my-posts-item sh-page-block',
+	
 	    onBeforeRender: function onBeforeRender() {
 	        this.getDistance();
 	        this.getPostState();
 	    },
+	    onRender: function onRender() {},
 	    getDistance: function getDistance() {
-	        window.mypost = this.model.toJSON(); //debug
-	
 	        var locations = this.model.get('details').locations;
 	        if (locations && _.size(locations) > 0 && _app2.default.user.has('position')) {
 	            var location = _.find(locations, function (l) {
@@ -36471,19 +37053,32 @@
 	
 	
 	    events: {
-	        '.js-remove-my-post click': function jsRemoveMyPostClick() {
-	            debugger;
-	        },
+	        'click .js-delete-post': 'deletePost',
+	
 	        '.js-edit-my-post click': function jsEditMyPostClick() {
 	            debugger;
 	        }
+	    },
+	
+	    deletePost: function deletePost(e) {
+	        e.stopPropagation();
+	        e.preventDefault();
+	
+	        var that = this,
+	            model = this.model.toJSON(),
+	            postId = model._id;
+	
+	        // load by menthod removePost        
+	        this.model.loadByMethod('deletePost', postId, function () {
+	            that.model.collection.remove(that.model);
+	        });
 	    }
 	});
 	exports.default = View;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 131 */
+/* 142 */
 /*!*************************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostItemView.hbs.html ***!
   \*************************************************************/
@@ -36536,11 +37131,13 @@
 	((__t=(loc.name))==null?'':__t)+
 	'</span>\r\n                        ';
 	 } 
-	__p+='\r\n                    </div>\r\n                </div>\r\n                <div class="sh-my-posts-item-content-footer-progress">\r\n                    <div class="sh-progress-bar progress">\r\n                        <div class="progress-bar '+
+	__p+='\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="sh-my-posts-item-content-footer-progress">\r\n                    <div class="sh-progress-bar progress">\r\n                        <div class="progress-bar '+
 	((__t=( progress >= 50 ? 'progress-bar-success' : (progress >=20 && progress < 50 ? 'progress-bar-warning' : 'progress-bar-danger')))==null?'':__t)+
 	'" role="progressbar" style="width: '+
 	((__t=( progress))==null?'':__t)+
-	'%; min-width: 1em; ">\r\n                            <span class="sr-only"></span>\r\n                        </div>\r\n                    </div>\r\n                </div>\n            </div>            \n        </div>\n        \n        <!--\n\n        <p>'+
+	'%; min-width: 1em; ">\r\n                            <span class="sr-only"></span>\r\n                        </div>\r\n                    </div>\r\n                </div>\n\n                <div class="sh-my-posts-item-content-footer-actions">\r\n                    <div class="sh-my-posts-item-content-footer-actions-wrapper">\r\n                        <a style="display:none" class="sh-post-action-link js-reset-post" href="#" title="Reload"><span><i class="fa fa-refresh"></i></span></a>\r\n                        <a style="display:none" class="sh-post-action-link" href="/posts/';
+	 _id 
+	__p+='/edit" title="Edit"><span><i class="fa fa-pencil-square-o"></i></span></a>\r\n                        <a class="sh-post-action-link js-delete-post" href="#" title="Delete"><span><i class="fa fa-trash-o"></i></span></a>\r\n                    </div>\r\n                </div>\n            </div>            \n        </div>\n        \n        <!--\n\n        <p>'+
 	((__t=(details.description))==null?'':__t)+
 	'</p>\n\n        -->\n\n\n        <!--<a href="#" class="btn btn-reveal btn-default js-edit-my-chat">\n            <i class="fa fa-edit"></i>\n            <span>Редактировать</span>\n        </a>\n        <a href="#" class="btn btn-reveal btn-danger js-remove-my-post">\n            <i class="fa fa-remove"></i>\n            <span>Удалить</span>\n        </a>-->\n    </div>\n\n</div>';
 	}
@@ -36550,7 +37147,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 132 */
+/* 143 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostMyView.less ***!
   \*******************************************************/
@@ -36559,7 +37156,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 133 */
+/* 144 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.js ***!
   \******************************************************/
@@ -36575,11 +37172,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _chatsMyViewHbs = __webpack_require__(/*! ./chatsMyView.hbs.html */ 134);
+	var _chatsMyViewHbs = __webpack_require__(/*! ./chatsMyView.hbs.html */ 145);
 	
 	var _chatsMyViewHbs2 = _interopRequireDefault(_chatsMyViewHbs);
 	
-	var _chatItemView = __webpack_require__(/*! ./chatItemView */ 135);
+	var _chatItemView = __webpack_require__(/*! ./chatItemView */ 146);
 	
 	var _chatItemView2 = _interopRequireDefault(_chatItemView);
 	
@@ -36594,7 +37191,7 @@
 	exports.default = View;
 
 /***/ },
-/* 134 */
+/* 145 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.hbs.html ***!
   \************************************************************/
@@ -36612,7 +37209,7 @@
 
 
 /***/ },
-/* 135 */
+/* 146 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.js ***!
   \*******************************************************/
@@ -36628,7 +37225,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _chatItemViewHbs = __webpack_require__(/*! ./chatItemView.hbs.html */ 136);
+	var _chatItemViewHbs = __webpack_require__(/*! ./chatItemView.hbs.html */ 147);
 	
 	var _chatItemViewHbs2 = _interopRequireDefault(_chatItemViewHbs);
 	
@@ -36636,9 +37233,9 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./chatItemView.css */ 137);
+	__webpack_require__(/*! ./chatItemView.css */ 148);
 	
-	__webpack_require__(/*! ./myChatItemView.less */ 139);
+	__webpack_require__(/*! ./myChatItemView.less */ 150);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36663,7 +37260,7 @@
 	exports.default = View;
 
 /***/ },
-/* 136 */
+/* 147 */
 /*!*************************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.hbs.html ***!
   \*************************************************************/
@@ -36700,7 +37297,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 137 */
+/* 148 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.css ***!
   \********************************************************/
@@ -36709,10 +37306,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./chatItemView.css */ 138);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./chatItemView.css */ 149);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 40)(content, {});
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 51)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -36729,7 +37326,7 @@
 	}
 
 /***/ },
-/* 138 */
+/* 149 */
 /*!***********************************************************************!*\
   !*** ./~/css-loader!./wwwroot/homeApp/chats/chatsMy/chatItemView.css ***!
   \***********************************************************************/
@@ -36739,7 +37336,7 @@
 	exports.push([module.id, ".bz-chat-item .bz-user-avatar {\n  float: left;\n  top: 0;\n  left: 0;\n  padding-right: 10px;\n}\n\n.bz-chat-item .bz-avatar {\n\n  background-size: cover;\n  background-position: center;\n  -webkit-border-radius: 2px;\n  -moz-border-radius: 2px;\n  border-radius: 2px;\n}\n.bz-chat-item .bz-avatar img {\n  width: 50px;\n  height: 50px;\n}\n.bz-chat-item .bz-last-timestamp {\n  font-style: italic;\n  font-size: 12px;\n  padding-top: 12px;\n}\n.bz-chat-item .bz-last-message {\n  font-weight: bold;\n}\n/* temp, not good solution: */\ndiv.blog-post-item {\n  margin-bottom: 10px;\n  padding-bottom: 30px;\n}", ""]);
 
 /***/ },
-/* 139 */
+/* 150 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/myChatItemView.less ***!
   \***********************************************************/
@@ -36748,7 +37345,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 140 */
+/* 151 */
 /*!*********************************************!*\
   !*** ./wwwroot/homeApp/chats/ChatIdView.js ***!
   \*********************************************/
@@ -36764,7 +37361,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ChatIdViewHbs = __webpack_require__(/*! ./ChatIdView.hbs.html */ 141);
+	var _ChatIdViewHbs = __webpack_require__(/*! ./ChatIdView.hbs.html */ 152);
 	
 	var _ChatIdViewHbs2 = _interopRequireDefault(_ChatIdViewHbs);
 	
@@ -36797,7 +37394,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 141 */
+/* 152 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/chats/ChatIdView.hbs.html ***!
   \***************************************************/
@@ -36813,7 +37410,7 @@
 
 
 /***/ },
-/* 142 */
+/* 153 */
 /*!*********************************************!*\
   !*** ./wwwroot/homeApp/user/DetailsView.js ***!
   \*********************************************/
@@ -36829,19 +37426,19 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _AsteroidModel = __webpack_require__(/*! ../../data/AsteroidModel.js */ 80);
+	var _AsteroidModel = __webpack_require__(/*! ../../data/AsteroidModel.js */ 91);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 143);
+	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 154);
 	
 	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
 	
-	var _SendMessageView = __webpack_require__(/*! ./SendMessageView.js */ 144);
+	var _SendMessageView = __webpack_require__(/*! ./SendMessageView.js */ 155);
 	
 	var _SendMessageView2 = _interopRequireDefault(_SendMessageView);
 	
-	var _ProfileEditView = __webpack_require__(/*! ./ProfileEditView.js */ 147);
+	var _ProfileEditView = __webpack_require__(/*! ./ProfileEditView.js */ 158);
 	
 	var _ProfileEditView2 = _interopRequireDefault(_ProfileEditView);
 	
@@ -36849,7 +37446,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _ModalContainerView = __webpack_require__(/*! ../../sharedViews/ModalContainerView.js */ 119);
+	var _ModalContainerView = __webpack_require__(/*! ../../sharedViews/ModalContainerView.js */ 130);
 	
 	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
 	
@@ -36863,7 +37460,6 @@
 	    template: _DetailsViewHbs2.default,
 	    tagName: 'div',
 	    className: 'sh-user-profile',
-	    c_user: null,
 	    r_user: null,
 	
 	    events: {
@@ -36884,7 +37480,6 @@
 	
 	    initialize: function initialize() {
 	        this.r_user = this.model.toJSON();
-	        this.c_user = _app2.default.user.toJSON();
 	
 	        this.sendMessageModel = new _AsteroidModel2.default({
 	            name: this.r_user.username,
@@ -36892,23 +37487,15 @@
 	            remoteUser_id: this.r_user._id
 	        }, { asteroid: _app2.default.asteroid });
 	
-	        this.profileEditModel = new _AsteroidModel2.default(this.c_user, { asteroid: _app2.default.asteroid });
-	
+	        this.profileEditModel = new _AsteroidModel2.default(this.model.toJSON(), { asteroid: _app2.default.asteroid });
 	        this.listenTo(this.profileEditModel, 'save', this.render);
-	    },
-	    renderr: function renderr() {
-	        console.log('Профиль rrrrrr');
-	        ///this.render();
 	    },
 	    onBeforeRender: function onBeforeRender() {
 	        this.templateContext = {
 	            user: _app2.default.user.toJSON()
 	        };
 	    },
-	    onRender: function onRender() {
-	        //this.showChildView('content', new UserDetailsView({model: this.profileEditModel}))
-	        console.log('Профиль отреднерился');
-	    },
+	    onRender: function onRender() {},
 	    logout: function logout() {
 	        _app2.default.logout();
 	    },
@@ -36950,7 +37537,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 143 */
+/* 154 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/user/DetailsView.hbs.html ***!
   \***************************************************/
@@ -37057,7 +37644,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 144 */
+/* 155 */
 /*!*************************************************!*\
   !*** ./wwwroot/homeApp/user/SendMessageView.js ***!
   \*************************************************/
@@ -37073,15 +37660,15 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SendMessageViewHbs = __webpack_require__(/*! ./SendMessageView.hbs.html */ 145);
+	var _SendMessageViewHbs = __webpack_require__(/*! ./SendMessageView.hbs.html */ 156);
 	
 	var _SendMessageViewHbs2 = _interopRequireDefault(_SendMessageViewHbs);
 	
-	var _AsteroidModel = __webpack_require__(/*! ../../data/AsteroidModel.js */ 80);
+	var _AsteroidModel = __webpack_require__(/*! ../../data/AsteroidModel.js */ 91);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	__webpack_require__(/*! ./SendMessageView.less */ 146);
+	__webpack_require__(/*! ./SendMessageView.less */ 157);
 	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
@@ -37143,7 +37730,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 145 */
+/* 156 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/user/SendMessageView.hbs.html ***!
   \*******************************************************/
@@ -37161,7 +37748,7 @@
 
 
 /***/ },
-/* 146 */
+/* 157 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/user/SendMessageView.less ***!
   \***************************************************/
@@ -37170,7 +37757,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 147 */
+/* 158 */
 /*!*************************************************!*\
   !*** ./wwwroot/homeApp/user/ProfileEditView.js ***!
   \*************************************************/
@@ -37186,7 +37773,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ProfileEditViewHbs = __webpack_require__(/*! ./ProfileEditView.hbs.html */ 148);
+	var _ProfileEditViewHbs = __webpack_require__(/*! ./ProfileEditView.hbs.html */ 159);
 	
 	var _ProfileEditViewHbs2 = _interopRequireDefault(_ProfileEditViewHbs);
 	
@@ -37317,7 +37904,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 148 */
+/* 159 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/user/ProfileEditView.hbs.html ***!
   \*******************************************************/
@@ -37368,7 +37955,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 149 */
+/* 160 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.js ***!
   \************************************************************/
@@ -37384,19 +37971,19 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MessagesToUserViewHbs = __webpack_require__(/*! ./MessagesToUserView.hbs.html */ 150);
+	var _MessagesToUserViewHbs = __webpack_require__(/*! ./MessagesToUserView.hbs.html */ 161);
 	
 	var _MessagesToUserViewHbs2 = _interopRequireDefault(_MessagesToUserViewHbs);
 	
-	var _MessagesListView = __webpack_require__(/*! ./MessagesListView.js */ 151);
+	var _MessagesListView = __webpack_require__(/*! ./MessagesListView.js */ 162);
 	
 	var _MessagesListView2 = _interopRequireDefault(_MessagesListView);
 	
-	var _AsteroidModel = __webpack_require__(/*! ../../../data/AsteroidModel.js */ 80);
+	var _AsteroidModel = __webpack_require__(/*! ../../../data/AsteroidModel.js */ 91);
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	__webpack_require__(/*! ./messagesToUserView.less */ 157);
+	__webpack_require__(/*! ./messagesToUserView.less */ 168);
 	
 	var _app = __webpack_require__(/*! ../../app.js */ 15);
 	
@@ -37520,7 +38107,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3), __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 150 */
+/* 161 */
 /*!******************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.hbs.html ***!
   \******************************************************************/
@@ -37546,7 +38133,7 @@
 
 
 /***/ },
-/* 151 */
+/* 162 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesListView.js ***!
   \**********************************************************/
@@ -37562,11 +38149,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _messagesItemView = __webpack_require__(/*! ./messagesItemView.js */ 152);
+	var _messagesItemView = __webpack_require__(/*! ./messagesItemView.js */ 163);
 	
 	var _messagesItemView2 = _interopRequireDefault(_messagesItemView);
 	
-	var _NoMessagesView = __webpack_require__(/*! ./NoMessagesView.js */ 155);
+	var _NoMessagesView = __webpack_require__(/*! ./NoMessagesView.js */ 166);
 	
 	var _NoMessagesView2 = _interopRequireDefault(_NoMessagesView);
 	
@@ -37599,7 +38186,7 @@
 	exports.default = View;
 
 /***/ },
-/* 152 */
+/* 163 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messagesItemView.js ***!
   \**********************************************************/
@@ -37615,11 +38202,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 153);
+	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 164);
 	
 	var _MessagesItemViewHbs2 = _interopRequireDefault(_MessagesItemViewHbs);
 	
-	__webpack_require__(/*! ./messageItemView.less */ 154);
+	__webpack_require__(/*! ./messageItemView.less */ 165);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37673,7 +38260,7 @@
 	exports.default = View;
 
 /***/ },
-/* 153 */
+/* 164 */
 /*!****************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesItemView.hbs.html ***!
   \****************************************************************/
@@ -37732,7 +38319,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 154 */
+/* 165 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messageItemView.less ***!
   \***********************************************************/
@@ -37741,7 +38328,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 155 */
+/* 166 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/NoMessagesView.js ***!
   \********************************************************/
@@ -37757,7 +38344,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 156);
+	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 167);
 	
 	var _NoMessagesViewHbs2 = _interopRequireDefault(_NoMessagesViewHbs);
 	
@@ -37771,7 +38358,7 @@
 	exports.default = View;
 
 /***/ },
-/* 156 */
+/* 167 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/NoMessagesView.hbs.html ***!
   \**************************************************************/
@@ -37787,7 +38374,7 @@
 
 
 /***/ },
-/* 157 */
+/* 168 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messagesToUserView.less ***!
   \**************************************************************/
@@ -37796,7 +38383,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 158 */
+/* 169 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/account/LoginView.js ***!
   \**********************************************/
@@ -37812,17 +38399,17 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _LoginViewHbs = __webpack_require__(/*! ./LoginView.hbs.html */ 159);
+	var _LoginViewHbs = __webpack_require__(/*! ./LoginView.hbs.html */ 170);
 	
 	var _LoginViewHbs2 = _interopRequireDefault(_LoginViewHbs);
 	
-	__webpack_require__(/*! ./loginView.less */ 160);
+	__webpack_require__(/*! ./loginView.less */ 171);
 	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _LoginModel = __webpack_require__(/*! ../../data/viewModels/LoginModel */ 161);
+	var _LoginModel = __webpack_require__(/*! ../../data/viewModels/LoginModel */ 172);
 	
 	var _LoginModel2 = _interopRequireDefault(_LoginModel);
 	
@@ -37977,7 +38564,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 159 */
+/* 170 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/account/LoginView.hbs.html ***!
   \****************************************************/
@@ -37986,7 +38573,7 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='\n<div class="sh-login-page">\n    <div class="container">\n        <div class="sh-login-page-wrapper">\n            <div class="sh-wrap2">                \n                <div class="sh-side-right">\n                    <!-- ALERT -->\n                    <!--\n                    <div class="alert alert-mini alert-danger margin-bottom-30">\n                        <strong>Oh snap!</strong> Login Incorrect!\n                    </div>\n                    -->\n                    <!-- /ALERT -->\n                    <!-- login form -->\n                    <form method="post" class="sky-form sh-auth-form">\n                        <div class="sh-page-block padding-20">\r\n                            <fieldset class="nomargin">\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-envelope"></i>\r\n                                    <input type="text" name="email" id="userLogin" placeholder="E-mail /  Имя пользователя">\r\n                                    <span class="tooltip tooltip-top-right">Email адрес / Имя пользователя</span>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-lock"></i>\r\n                                    <input type="password" id="userPassword" name="password" placeholder="Пароль">\r\n                                    <b class="tooltip tooltip-top-right">Укажите Ваш пароль</b>\r\n                                </label>\r\n                                <label class="checkbox">\r\n                                    <input type="checkbox" name="checkbox-inline" id="rememberMe">\r\n                                    <i></i> Запомнить меня\r\n                                </label>\r\n                            </fieldset>\r\n                            <footer class="celarfix">\r\n                                <button type="submit" class="ui sh-button standard action pull-right">\r\n                                    <i class="fa fa-check"></i>\r\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                    ВОЙТИ\r\n                                </button>\r\n                                <div class="login-forgot-password pull-left">\r\n                                    <a href="/Account/FogotPassword">Забыли пароль?</a>\r\n                                </div>\r\n                            </footer>\r\n                        </div>\n\n                        <div class="sh-page-block padding-20 celarfix"> \r\n                            <header>Впервые на сайте?<small>Регистрация быстро и бесплатно</small></header>                               \r\n                            <a type="submit" class="js-login-register-link sh-login-register ui sh-button standard create " href="/account/register?returnUrl=/">\r\n                                <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                Регистрация\r\n                            </a>\r\n                            <!--<div class="sh-login-additional">\r\n                                <span>или</span>\r\n                                <div class="sh-login-social">\r\n                                    <ul>\r\n                                        <li><a class="sh-facebook" id="sh-auth-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>\r\n                                        <li><a class="sh-vk" id="sh-auth-vk"><i class="fa fa-vk" aria-hidden="true"></i></a></li>\r\n                                        <li><a class="sh-google-plus" id="sh-auth-google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>-->                              \r\n                        </div>\n                    </form>\n                </div>\n                <div class="sh-side-left">\n                    <h2 class="text-center-xs">Преимущества авторизованных пользователей</h2>\n                    <ul class="list-unstyled sh-login-features">\n                        <li>\n                            <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-user"></i> Ещё не регистрировались? <a href="/account/register?returnUrl=somedata'+
+	__p+='\n<div class="sh-login-page">\n    <div class="container">\n        <div class="sh-login-page-wrapper">\n            <div class="sh-wrap2">                \n                <div class="sh-side-right">\n                    <!-- ALERT -->\n                    <!--\n                    <div class="alert alert-mini alert-danger margin-bottom-30">\n                        <strong>Oh snap!</strong> Login Incorrect!\n                    </div>\n                    -->\n                    <!-- /ALERT -->\n                    <!-- login form -->\n                    <form method="post" class="sky-form sh-auth-form">\n                        <div class="sh-page-block padding-20">\r\n                            <fieldset class="nomargin">\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-envelope"></i>\r\n                                    <input type="text" name="email" id="userLogin" placeholder="E-mail /  Имя пользователя">\r\n                                    <span class="tooltip tooltip-top-right">Email адрес / Имя пользователя</span>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-lock"></i>\r\n                                    <input type="password" id="userPassword" name="password" placeholder="Пароль">\r\n                                    <b class="tooltip tooltip-top-right">Укажите Ваш пароль</b>\r\n                                </label>\r\n                                <label class="checkbox">\r\n                                    <input type="checkbox" name="checkbox-inline" id="rememberMe">\r\n                                    <i></i> Запомнить меня\r\n                                </label>\r\n                            </fieldset>\r\n                            <footer class="celarfix">\r\n                                <button type="submit" class="ui sh-button standard action pull-right">\r\n                                    <i class="fa fa-check"></i>\r\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                    ВОЙТИ\r\n                                </button>\r\n                                <div class="login-forgot-password pull-left" style="display:none">\r\n                                    <a href="/Account/FogotPassword">Забыли пароль?</a>\r\n                                </div>\r\n                            </footer>\r\n                        </div>\n\n                        <div class="sh-page-block padding-20 celarfix"> \r\n                            <header>Впервые на сайте?<small>Регистрация быстро и бесплатно</small></header>                               \r\n                            <a type="submit" class="js-login-register-link sh-login-register ui sh-button standard create " href="/account/register?returnUrl=/">\r\n                                <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                Регистрация\r\n                            </a>\r\n                            <!--<div class="sh-login-additional">\r\n                                <span>или</span>\r\n                                <div class="sh-login-social">\r\n                                    <ul>\r\n                                        <li><a class="sh-facebook" id="sh-auth-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>\r\n                                        <li><a class="sh-vk" id="sh-auth-vk"><i class="fa fa-vk" aria-hidden="true"></i></a></li>\r\n                                        <li><a class="sh-google-plus" id="sh-auth-google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>-->                              \r\n                        </div>\n                    </form>\n                </div>\n                <div class="sh-side-left">\n                    <h2 class="text-center-xs">Преимущества авторизованных пользователей</h2>\n                    <ul class="list-unstyled sh-login-features">\n                        <li>\n                            <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-user"></i> Ещё не регистрировались? <a href="/account/register?returnUrl=somedata'+
 	((__t=( returnUrl ? '?returnUrl='+returnUrl:''))==null?'':__t)+
 	'">Регистрация</a>\n                        </li>\n                    </ul>\n                </div>    \n            </div>\n        </div>\n    </div>\n</div>';
 	}
@@ -37995,7 +38582,7 @@
 
 
 /***/ },
-/* 160 */
+/* 171 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/account/loginView.less ***!
   \************************************************/
@@ -38004,7 +38591,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 161 */
+/* 172 */
 /*!***********************************************!*\
   !*** ./wwwroot/data/viewModels/LoginModel.js ***!
   \***********************************************/
@@ -38037,7 +38624,7 @@
 	});
 
 /***/ },
-/* 162 */
+/* 173 */
 /*!*****************************************************!*\
   !*** ./wwwroot/homeApp/account/RegisterUserView.js ***!
   \*****************************************************/
@@ -38053,7 +38640,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _RegisterUserViewHbs = __webpack_require__(/*! ./RegisterUserView.hbs.html */ 163);
+	var _RegisterUserViewHbs = __webpack_require__(/*! ./RegisterUserView.hbs.html */ 174);
 	
 	var _RegisterUserViewHbs2 = _interopRequireDefault(_RegisterUserViewHbs);
 	
@@ -38061,7 +38648,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _RegisterModel = __webpack_require__(/*! ../../data/viewModels/RegisterModel */ 164);
+	var _RegisterModel = __webpack_require__(/*! ../../data/viewModels/RegisterModel */ 175);
 	
 	var _RegisterModel2 = _interopRequireDefault(_RegisterModel);
 	
@@ -38119,7 +38706,7 @@
 	exports.default = View;
 
 /***/ },
-/* 163 */
+/* 174 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/account/RegisterUserView.hbs.html ***!
   \***********************************************************/
@@ -38135,7 +38722,7 @@
 
 
 /***/ },
-/* 164 */
+/* 175 */
 /*!**************************************************!*\
   !*** ./wwwroot/data/viewModels/RegisterModel.js ***!
   \**************************************************/
@@ -38178,7 +38765,7 @@
 	});
 
 /***/ },
-/* 165 */
+/* 176 */
 /*!********************************************!*\
   !*** ./wwwroot/homeApp/about/AboutView.js ***!
   \********************************************/
@@ -38194,7 +38781,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 166);
+	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 177);
 	
 	var _AboutViewHbs2 = _interopRequireDefault(_AboutViewHbs);
 	
@@ -38202,7 +38789,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./about.less */ 167);
+	__webpack_require__(/*! ./about.less */ 178);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38335,7 +38922,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 166 */
+/* 177 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/about/AboutView.hbs.html ***!
   \**************************************************/
@@ -38353,7 +38940,7 @@
 
 
 /***/ },
-/* 167 */
+/* 178 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/about/about.less ***!
   \******************************************/
@@ -38362,7 +38949,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 168 */
+/* 179 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.js ***!
   \****************************************************/
@@ -38378,7 +38965,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MassMediaViewHbs = __webpack_require__(/*! ./MassMediaView.hbs.html */ 169);
+	var _MassMediaViewHbs = __webpack_require__(/*! ./MassMediaView.hbs.html */ 180);
 	
 	var _MassMediaViewHbs2 = _interopRequireDefault(_MassMediaViewHbs);
 	
@@ -38386,7 +38973,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./MassMediaView.less */ 170);
+	__webpack_require__(/*! ./MassMediaView.less */ 181);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38455,7 +39042,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 169 */
+/* 180 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.hbs.html ***!
   \**********************************************************/
@@ -38511,7 +39098,7 @@
 
 
 /***/ },
-/* 170 */
+/* 181 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.less ***!
   \******************************************************/
@@ -38520,7 +39107,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 171 */
+/* 182 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.js ***!
   \******************************************************/
@@ -38536,7 +39123,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 172);
+	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 183);
 	
 	var _HowItWorksViewHbs2 = _interopRequireDefault(_HowItWorksViewHbs);
 	
@@ -38548,7 +39135,7 @@
 	exports.default = View;
 
 /***/ },
-/* 172 */
+/* 183 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.hbs.html ***!
   \************************************************************/
@@ -38564,7 +39151,7 @@
 
 
 /***/ },
-/* 173 */
+/* 184 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/account/FogotPasswordView.js ***!
   \******************************************************/
@@ -38580,7 +39167,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 174);
+	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 185);
 	
 	var _FogotPasswordViewHbs2 = _interopRequireDefault(_FogotPasswordViewHbs);
 	
@@ -38592,7 +39179,7 @@
 	exports.default = View;
 
 /***/ },
-/* 174 */
+/* 185 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/account/FogotPasswordView.hbs.html ***!
   \************************************************************/
@@ -38608,7 +39195,7 @@
 
 
 /***/ },
-/* 175 */
+/* 186 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.js ***!
   \*********************************************************/
@@ -38624,7 +39211,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 176);
+	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 187);
 	
 	var _legalUserAgreementViewHbs2 = _interopRequireDefault(_legalUserAgreementViewHbs);
 	
@@ -38639,7 +39226,7 @@
 	exports.default = View;
 
 /***/ },
-/* 176 */
+/* 187 */
 /*!***************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.hbs.html ***!
   \***************************************************************/
@@ -38655,7 +39242,7 @@
 
 
 /***/ },
-/* 177 */
+/* 188 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalConfidentialView.js ***!
   \********************************************************/
@@ -38671,7 +39258,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalConfidentialViewHbs = __webpack_require__(/*! ./legalConfidentialView.hbs.html */ 178);
+	var _legalConfidentialViewHbs = __webpack_require__(/*! ./legalConfidentialView.hbs.html */ 189);
 	
 	var _legalConfidentialViewHbs2 = _interopRequireDefault(_legalConfidentialViewHbs);
 	
@@ -38689,7 +39276,7 @@
 	exports.default = View;
 
 /***/ },
-/* 178 */
+/* 189 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalConfidentialView.hbs.html ***!
   \**************************************************************/
@@ -38705,7 +39292,7 @@
 
 
 /***/ },
-/* 179 */
+/* 190 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.js ***!
   \**********************************************************/
@@ -38721,7 +39308,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 180);
+	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 191);
 	
 	var _legalPostPublishingViewHbs2 = _interopRequireDefault(_legalPostPublishingViewHbs);
 	
@@ -38736,7 +39323,7 @@
 	exports.default = View;
 
 /***/ },
-/* 180 */
+/* 191 */
 /*!****************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.hbs.html ***!
   \****************************************************************/
@@ -38752,7 +39339,7 @@
 
 
 /***/ },
-/* 181 */
+/* 192 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.js ***!
   \**********************************************/
@@ -38768,17 +39355,17 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 182);
+	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 193);
 	
 	var _blogHomeViewHbs2 = _interopRequireDefault(_blogHomeViewHbs);
 	
-	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 100);
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 111);
 	
-	var _AsteroidCollection = __webpack_require__(/*! ../../data/AsteroidCollection.js */ 79);
+	var _AsteroidCollection = __webpack_require__(/*! ../../data/AsteroidCollection.js */ 90);
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
-	var _BlogItemsView = __webpack_require__(/*! ./BlogItemsView.js */ 183);
+	var _BlogItemsView = __webpack_require__(/*! ./BlogItemsView.js */ 194);
 	
 	var _BlogItemsView2 = _interopRequireDefault(_BlogItemsView);
 	
@@ -38790,7 +39377,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./blogHomeView.less */ 186);
+	__webpack_require__(/*! ./blogHomeView.less */ 197);
 	
 	var _backbone3 = __webpack_require__(/*! backbone */ 17);
 	
@@ -38808,47 +39395,40 @@
 	    initialize: function initialize() {
 	
 	        //Fake instance
-	        this.fakeCollection = new _backbone4.default.Collection();
+	        this.fakeCollection = this._adaptCollection();
 	
 	        this.blogItems = new _AsteroidCollection2.default(null, { asteroid: this.asteroid });
 	        //this.listenTo(app.user,'login',this.render);
 	        //this.listenTo(app.user, 'logout', this.render);
 	    },
+	    _adaptCollection: function _adaptCollection() {
+	        var ret, p;
+	        debugger;
+	        ret = this.options.collection.map(function (post) {
+	
+	            p = post.toJSON();
+	            return _underscore2.default.extend({}, p, {
+	                id: p.id,
+	                timestamp: new Date(p.createdAt.$date),
+	                title: p.title,
+	                description: p.body,
+	                images: [{
+	                    src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
+	                    alt: '�����-�� �����'
+	                }, {
+	                    src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
+	                    alt: '�����-�� �����'
+	                }],
+	                comments: [],
+	                author: 'Shiners',
+	                //categories: ['shiners','news', 'tutorials'],
+	                tags: p.tags[0].split(' ')
+	            });
+	        });
+	
+	        return new _backbone4.default.Collection(ret);
+	    },
 	    onBeforeRender: function onBeforeRender() {
-	
-	        /* DELETE AFTER FETCH REAL DATA */
-	        this.fakeCollection.add([{
-	            id: '1',
-	            timestamp: new Date(),
-	            title: "Flying Dutchman",
-	            description: "1 There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
-	            images: [{
-	                src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
-	                alt: '�����-�� �����'
-	            }, {
-	                src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
-	                alt: '�����-�� �����'
-	            }],
-	            comments: [],
-	            author: 'Shiners',
-	            categories: ['shiners', 'news', 'tutorials'],
-	            tags: ['tag 1', 'tag 2', 'tag 3', 'tag 4']
-	        }, {
-	            id: '2',
-	            timestamp: new Date(),
-	            title: "Black Pearl",
-	            description: "2 There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
-	            images: [{
-	                src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
-	                alt: '�����-�� �����'
-	            }],
-	            comments: [],
-	            author: 'Shiners2',
-	            categories: ['finance', 'news', 'tutorials'],
-	            tags: ['tag 5', 'tag 2', 'tag� 3', 'tag 4']
-	        }]);
-	        /* DELETE AFTER FETCH REAL DATA */
-	
 	        this.templateContext = {
 	            blogDetails: this.getBlogDetails()
 	        };
@@ -38873,8 +39453,6 @@
 	        this.initCarousel();
 	    },
 	    onRender: function onRender() {
-	        //���� �� �������� ����� ������������ ateroid collection, �� ��� ��� �������� � �� ���� �������� �������� ������,
-	        //��������� ������� ��������� Backbone
 	        this.showChildView('blogItems', new _BlogItemsView2.default({ collection: this.fakeCollection }));
 	    },
 	    initCarousel: function initCarousel() {
@@ -38956,7 +39534,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 182 */
+/* 193 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.hbs.html ***!
   \****************************************************/
@@ -38983,7 +39561,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 183 */
+/* 194 */
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemsView.js ***!
   \***********************************************/
@@ -38999,7 +39577,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.js */ 184);
+	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.js */ 195);
 	
 	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
 	
@@ -39013,7 +39591,7 @@
 	exports.default = View;
 
 /***/ },
-/* 184 */
+/* 195 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemView.js ***!
   \**********************************************/
@@ -39029,7 +39607,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.html */ 185);
+	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.html */ 196);
 	
 	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
 	
@@ -39050,7 +39628,7 @@
 	exports.default = View;
 
 /***/ },
-/* 185 */
+/* 196 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemView.html ***!
   \************************************************/
@@ -39113,7 +39691,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 186 */
+/* 197 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.less ***!
   \************************************************/
@@ -39122,7 +39700,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 187 */
+/* 198 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.js ***!
   \************************************************/
@@ -39138,13 +39716,13 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 188);
+	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 199);
 	
 	var _blogPostIdViewHbs2 = _interopRequireDefault(_blogPostIdViewHbs);
 	
-	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 100);
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 111);
 	
-	__webpack_require__(/*! ../../lib/magnific-popup/dist/jquery.magnific-popup.min.js */ 189);
+	__webpack_require__(/*! ../../lib/magnific-popup/dist/jquery.magnific-popup.min.js */ 200);
 	
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
@@ -39154,7 +39732,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./blogPostIdView.less */ 190);
+	__webpack_require__(/*! ./blogPostIdView.less */ 201);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -39238,7 +39816,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 188 */
+/* 199 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.hbs.html ***!
   \******************************************************/
@@ -39254,7 +39832,7 @@
 
 
 /***/ },
-/* 189 */
+/* 200 */
 /*!**********************************************************************!*\
   !*** ./wwwroot/lib/magnific-popup/dist/jquery.magnific-popup.min.js ***!
   \**********************************************************************/
@@ -39639,7 +40217,7 @@
 	});
 
 /***/ },
-/* 190 */
+/* 201 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.less ***!
   \**************************************************/
@@ -39648,7 +40226,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 191 */
+/* 202 */
 /*!*********************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.js ***!
   \*********************************************************************************/
@@ -39664,11 +40242,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SuggestionsModalViewHbs = __webpack_require__(/*! ./SuggestionsModalView.hbs.html */ 192);
+	var _SuggestionsModalViewHbs = __webpack_require__(/*! ./SuggestionsModalView.hbs.html */ 203);
 	
 	var _SuggestionsModalViewHbs2 = _interopRequireDefault(_SuggestionsModalViewHbs);
 	
-	var _OsmSearchCollection = __webpack_require__(/*! ../../../data/OsmSearchCollection.js */ 58);
+	var _OsmSearchCollection = __webpack_require__(/*! ../../../data/OsmSearchCollection.js */ 69);
 	
 	var _OsmSearchCollection2 = _interopRequireDefault(_OsmSearchCollection);
 	
@@ -39676,9 +40254,9 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	__webpack_require__(/*! ./SuggestionsModalView.less */ 193);
+	__webpack_require__(/*! ./SuggestionsModalView.less */ 204);
 	
-	var _SuggestionListView = __webpack_require__(/*! ../SuggestionListView.js */ 62);
+	var _SuggestionListView = __webpack_require__(/*! ../SuggestionListView.js */ 73);
 	
 	var _SuggestionListView2 = _interopRequireDefault(_SuggestionListView);
 	
@@ -39737,7 +40315,7 @@
 	});
 
 /***/ },
-/* 192 */
+/* 203 */
 /*!***************************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.hbs.html ***!
   \***************************************************************************************/
@@ -39756,7 +40334,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 193 */
+/* 204 */
 /*!***********************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.less ***!
   \***********************************************************************************/
@@ -39765,7 +40343,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 194 */
+/* 205 */
 /*!******************************************!*\
   !*** ./wwwroot/css/shiners-override.css ***!
   \******************************************/
@@ -39774,10 +40352,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 195);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 206);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 40)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 51)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -39794,7 +40372,7 @@
 	}
 
 /***/ },
-/* 195 */
+/* 206 */
 /*!*********************************************************!*\
   !*** ./~/css-loader!./wwwroot/css/shiners-override.css ***!
   \*********************************************************/

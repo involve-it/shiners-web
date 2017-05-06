@@ -32,6 +32,7 @@
     "backbone-validation": "0.11.5",
     "backbone.marionette": "3.0.0",
     "bootstrap": "3.3.7",
+    "bootstrap-datepicker": "1.6.4",
     "bootstrap-loader": "1.1.6",
     "bootstrap-sass": "3.3.7",
     "jquery": "2.2.4",
@@ -39,8 +40,9 @@
     "jquery.cookie": "1.4.1",
     "load-google-maps-api": "0.0.2",
     "moment": "2.14.1",
-    "underscore": "1.8.3",
+    "object-assign": "^4.1.1",
+    "object.assign": "^4.0.4",
     "scriptjs": "2.5.8",
-    "bootstrap-datepicker": "1.6.4"
+    "underscore": "1.8.3"
   }
 }
