@@ -22,6 +22,8 @@ var json = {
     DIRECT_PROFILE_LINK: 'direct profile link',
     CREATE_SHINER: 'Create a shiner',
     SEARCH_PLACEHOLDER: 'Search',
+    READ_MORE: 'Read more',
+    COMMENTS: 'Comment(s)',
 
     // banner
     shiners_are: 'SHINERS - ARE',

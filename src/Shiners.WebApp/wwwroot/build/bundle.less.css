@@ -1,6 +1,9 @@
 /* ==================
 	CONSTANTS LESS
 ===================== */
+.sh-padding-16 {
+  padding: 16px !important;
+}
 .sh-body .btn {
   border: 1px solid #179BD7;
 }
@@ -311,6 +314,9 @@
 /* ==================
 	CONSTANTS LESS
 ===================== */
+.sh-padding-16 {
+  padding: 16px !important;
+}
 /* ==================
 	DETAILS POST
 ===================== */
@@ -954,6 +960,9 @@ body.page--postDetails .sh-post-details .sh-same-posts .sh-same-posts-wrapper h4
 /* ==================
 	CONSTANTS LESS
 ===================== */
+.sh-padding-16 {
+  padding: 16px !important;
+}
 /* ==================
 	MY POSTS ITEM & VIEW
 ===================== */
@@ -1252,6 +1261,9 @@ body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item:last-chil
 /* ==================
 	CONSTANTS LESS
 ===================== */
+.sh-padding-16 {
+  padding: 16px !important;
+}
 /* ==================
 	MY CHAT ITEM
 ===================== */
@@ -1351,6 +1363,9 @@ body.page--chatsMy .sh-content .sh-page-chats .sh-chat-item-container:focus {
 /* ==================
 	CONSTANTS LESS
 ===================== */
+.sh-padding-16 {
+  padding: 16px !important;
+}
 body.page--userDetails .modal-dialog,
 body.page--myProfile .modal-dialog {
   max-width: 700px;
@@ -1487,6 +1502,9 @@ body.page--myProfile .modal-dialog .modal-content .modal-body {
 /* ==================
 	CONSTANTS LESS
 ===================== */
+.sh-padding-16 {
+  padding: 16px !important;
+}
 /* ==================
 	MESSAGE CONTAINER
 ===================== */
@@ -1630,6 +1648,9 @@ body.page--chatId .sh-messages-to-user .sh-messages-tools .removeMessage i:hover
 /* ==================
 	CONSTANTS LESS
 ===================== */
+.sh-padding-16 {
+  padding: 16px !important;
+}
 /* ==================
 	MESSAGES TO USER
 ===================== */
@@ -1797,6 +1818,9 @@ body.page--chatId .sh-messages-to-user .sh-messages-to-user-wrapper .sh-messages
 /* ==================
 	CONSTANTS LESS
 ===================== */
+.sh-padding-16 {
+  padding: 16px !important;
+}
 body .sh-auth-page {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2012,6 +2036,9 @@ body.page--fogotPassword #appContent {
 /* ==================
 	CONSTANTS LESS
 ===================== */
+.sh-padding-16 {
+  padding: 16px !important;
+}
 /* ==================
 	ABOUT US PAGE
 ===================== */
@@ -2934,6 +2961,9 @@ body.page--about .sh-woman-shiners {
 /* ==================
 	CONSTANTS LESS
 ===================== */
+.sh-padding-16 {
+  padding: 16px !important;
+}
 /* ==================
 	MASS MEDIA PAGE
 ===================== */
@@ -3405,6 +3435,9 @@ body.page--massMedia .sh-mass-media .sh-article-block .sh-article-wrapper:last-c
 /* ==================
 	CONSTANTS LESS
 ===================== */
+.sh-padding-16 {
+  padding: 16px !important;
+}
 /* ==================
 	BLOG HOME
 ===================== */
@@ -3412,7 +3445,18 @@ body.page--blogHome .sh-blog-home {
   padding: 45px 0;
 }
 body.page--blogHome .sh-blog-home .sh-blog-home-wrapper {
+  padding: 0;
+}
+body.page--blogHome .sh-blog-home .sh-blog-home-wrapper > div {
+  padding: 0;
+}
+body.page--blogHome .sh-blog-home .sh-blog-home-wrapper #blog-items .blog-post-item-wrapper .blog-post-item {
   padding: 16px;
+  margin-bottom: 60px;
+}
+body.page--blogHome .sh-blog-home .sh-blog-home-wrapper #blog-items .blog-post-item-wrapper .blog-post-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
 }
 body.page--blogPostId .sh-blog-post-id {
   padding: 45px 0;
@@ -3420,12 +3464,19 @@ body.page--blogPostId .sh-blog-post-id {
 body.page--blogPostId .sh-blog-post-id .sh-blog-post-id-wrapper {
   padding: 16px;
 }
+body.page--blogPostId .sh-blog-post-id .sh-blog-post-id-wrapper .blog-post-info {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+}
 /* ==================
 	MIXINS LESS
 ===================== */
 /* ==================
 	CONSTANTS LESS
 ===================== */
+.sh-padding-16 {
+  padding: 16px !important;
+}
 .suggestions-modal-view {
   position: relative;
 }

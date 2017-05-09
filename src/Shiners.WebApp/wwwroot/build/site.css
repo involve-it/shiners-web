@@ -21703,6 +21703,16 @@ small.error {
   color: #fb3d38;
   padding-top: 4px; }
 
+.btn-readmore {
+  border: none;
+  background: #4a90e2;
+  color: white;
+  opacity: 1; }
+  .btn-readmore:hover {
+    background: #4a90e2;
+    color: white;
+    opacity: .75; }
+
 .sh-text-center {
   text-align: center; }
 

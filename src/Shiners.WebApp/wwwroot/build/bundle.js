@@ -22299,6 +22299,8 @@
 	    DIRECT_PROFILE_LINK: 'direct profile link',
 	    CREATE_SHINER: 'Create a shiner',
 	    SEARCH_PLACEHOLDER: 'Search',
+	    READ_MORE: 'Read more',
+	    COMMENTS: 'Comment(s)',
 	
 	    // banner
 	    shiners_are: 'SHINERS - ARE',
@@ -22367,6 +22369,8 @@
 	    POST_STATUS: 'Объявление закрыто',
 	    POST_LEFT: 'Осталось',
 	    SEARCH_PLACEHOLDER: 'Поиск',
+	    READ_MORE: 'Читать дальше',
+	    COMMENTS: 'Комментариев',
 	
 	    // BANNER
 	    shiners_are: 'СВЕТЛЯЧКИ - ЭТО',
@@ -31950,10 +31954,6 @@
 	        });
 	    },
 	    blogPostId: function blogPostId(id) {
-	        console.log('POST ID: ', id);
-	        // Загружаем пост из базы по его ID....
-	        // 1. находим поста по id
-	        // 2. вызываем метод loadByMethod для загрузки и передаем во BlogPostIdView 
 	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
 	        if (id) {
 	            _app2.default.asteroid.call('bz.blog.getPostById', id).result.then(function (post) {
@@ -39003,7 +39003,9 @@
 	((__t=(i18n('about_title_section_4')))==null?'':__t)+
 	'</h1>\r\n                        <p class="sh-section-intro sh-text-center">'+
 	((__t=(i18n('about_title_section_4_intro')))==null?'':__t)+
-	'</p>\r\n                        <form action="/" method="post">\r\n                            <fieldset>\r\n                                <input type="hidden" name="action" value="contact_send">\r\n                                <div class="row">\r\n                                    <div class="form-group">\r\n                                        <div class="col-xs-12 col-md-6">\r\n                                            <input required="" type="text" value="" placeholder="Ваше имя" class="form-control" name="contact[name][required]" id="contact:name">\r\n                                        </div>\r\n                                        <div class="col-xs-12 col-md-6">\r\n                                            <input required="" type="email" value="" placeholder="Ваш email" class="form-control" name="contact[email][required]" id="contact:email">\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                                <div class="row">\r\n                                    <div class="form-group">\r\n                                        <div class="col-xs-12 col-md-12">\r\n                                            <textarea required="" placeholder="Ваше сообщение" maxlength="10000" rows="8" class="form-control" name="contact[message]" id="contact:message"></textarea>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </fieldset>\r\n                            <div class="row">\r\n                                <div class="col-md-12">\r\n                                    <button type="submit" class="ui sh-button standard action big pull-right"><i class="fa fa-check"></i> Отправить</button>\r\n                                </div>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</main>';
+	'</p>\r\n                        <form action="/" method="post">\r\n                            <fieldset>\r\n                                <input type="hidden" name="action" value="contact_send">\r\n                                <div class="row">\r\n                                    <div class="form-group">\r\n                                        <div class="col-xs-12 col-md-6">\r\n                                            <input required="" type="text" value="" placeholder="Ваше имя" class="form-control" name="contact[name][required]" id="contact:name">\r\n                                        </div>\r\n                                        <div class="col-xs-12 col-md-6">\r\n                                            <input required="" type="email" value="" placeholder="Ваш email" class="form-control" name="contact[email][required]" id="contact:email">\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                                <div class="row">\r\n                                    <div class="form-group">\r\n                                        <div class="col-xs-12 col-md-12">\r\n                                            <textarea required="" placeholder="Ваше сообщение" maxlength="10000" rows="8" class="form-control" name="contact[message]" id="contact:message"></textarea>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </fieldset>\r\n                            <div class="row">\r\n                                <div class="col-md-12">\r\n                                    <button type="submit" class="ui sh-button standard action big pull-right"><i class="fa fa-check"></i> '+
+	((__t=(i18n('Send')))==null?'':__t)+
+	'</button>\r\n                                </div>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</main>';
 	}
 	return __p;
 	};
@@ -39463,7 +39465,6 @@
 	    fakeCollection: null,
 	
 	    initialize: function initialize() {
-	
 	        //Fake instance
 	        this.fakeCollection = this._adaptCollection();
 	
@@ -39473,7 +39474,6 @@
 	    },
 	    _adaptCollection: function _adaptCollection() {
 	        var ret, p;
-	        debugger;
 	        ret = this.options.collection.map(function (post) {
 	
 	            p = post.toJSON();
@@ -39520,13 +39520,15 @@
 	    },
 	
 	    onAttach: function onAttach() {
-	        this.initCarousel();
+	        //this.initCarousel();
 	    },
 	    onRender: function onRender() {
 	        this.showChildView('blogItems', new _BlogItemsView2.default({ collection: this.fakeCollection }));
 	    },
 	    initCarousel: function initCarousel() {
-	        var slider = this.$('#sh-blog-carousel');
+	        var slider = this.$("#sh-blog-carousel" + this.model.get('id'));
+	        console.log(slider);
+	
 	        var options = slider.attr('data-plugin-options');
 	        var defaults = {
 	            //items: 5,
@@ -39613,7 +39615,7 @@
 	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='\n<div class="sh-blog-home">\n    <div class="container">\n        <div class="page--blog-home">\n            <div class="sh-page-block sh-blog-home-wrapper row">\n                <!--LEFT-->\n                <div class="col-md-9 col-sm-9">\n                    <div id="blog-items"></div>\r\n                </div>\n\n                <!--RIGHT-->\n                <div class="col-md-3 col-sm-3">\n\n                    <!-- INLINE SEARCH -->\r\n                    <div class="inline-search clearfix margin-bottom-30">\r\n                        <form action="" method="get" class="widget_search">\r\n                            <input type="search" placeholder="Start Searching..." id="s" name="s" class="serch-input">\r\n                            <button type="submit">\r\n                                <i class="fa fa-search"></i>\r\n                            </button>\r\n                        </form>\r\n                    </div>\r\n                    <!-- /INLINE SEARCH -->\n\n                    <hr />\r\n\r\n                    <!-- side navigation -->\r\n                    <div class="side-nav margin-bottom-60 margin-top-30">\r\n\r\n                        <div class="side-nav-head">\r\n                            <button class="fa fa-bars"></button>\r\n                            <h4>CATEGORIES</h4>\r\n                        </div>\r\n                        <ul class="list-group list-group-bordered list-group-noicon uppercase">\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(12)</span> MEDIA</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(8)</span> MOVIES</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(32)</span> NEW</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(16)</span> TUTORIALS</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(2)</span> DEVELOPMENT</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(1)</span> UNCATEGORIZED</a></li>\r\n\r\n                        </ul>\r\n                        <!-- /side navigation -->\r\n\r\n\r\n                    </div>\n\n                    <!-- TAGS -->\r\n                    ';
+	__p+='\n<div class="sh-blog-home">\n    <div class="container">\n        <div class="page--blog-home">\n            <div class="sh-page-block sh-blog-home-wrapper row">\n                <!--LEFT-->\n                <div class="col-md-12 col-sm-12">\n                    <div id="blog-items"></div>\r\n                </div>\n\n                <!--RIGHT-->\n                <div class="col-md-3 col-sm-3" style="display:none;">\n\n                    <!-- INLINE SEARCH -->\r\n                    <div class="inline-search clearfix margin-bottom-30">\r\n                        <form action="" method="get" class="widget_search">\r\n                            <input type="search" placeholder="Start Searching..." id="s" name="s" class="serch-input">\r\n                            <button type="submit">\r\n                                <i class="fa fa-search"></i>\r\n                            </button>\r\n                        </form>\r\n                    </div>\r\n                    <!-- /INLINE SEARCH -->\n\n                    <hr />\r\n\r\n                    <!-- side navigation -->\r\n                    <div class="side-nav margin-bottom-60 margin-top-30">\r\n\r\n                        <div class="side-nav-head">\r\n                            <button class="fa fa-bars"></button>\r\n                            <h4>CATEGORIES</h4>\r\n                        </div>\r\n                        <ul class="list-group list-group-bordered list-group-noicon uppercase">\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(12)</span> MEDIA</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(8)</span> MOVIES</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(32)</span> NEW</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(16)</span> TUTORIALS</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(2)</span> DEVELOPMENT</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(1)</span> UNCATEGORIZED</a></li>\r\n\r\n                        </ul>\r\n                        <!-- /side navigation -->\r\n\r\n\r\n                    </div>\n\n                    <!-- TAGS -->\r\n                    ';
 	 if(blogDetails) { 
 	__p+='\r\n                    <h3 class="hidden-xs size-16 margin-bottom-20">SEARCH FOR TAGS</h3>\r\n                    <div class="hidden-xs margin-bottom-60">\r\n                        ';
 	_.each(blogDetails.tags, function(tag){ 
@@ -39667,7 +39669,7 @@
   \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -39692,10 +39694,94 @@
 	    className: 'blog-post-item',
 	    template: _BlogItemView2.default,
 	
-	    initialize: function initialize() {}
+	    initialize: function initialize() {
+	        console.log('-> MODEL: ', this.model.toJSON());
+	    },
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            description: this.getDescription()
+	        };
+	    },
+	    onAttach: function onAttach() {
+	        this.initCarousel();
+	    },
+	    getDescription: function getDescription() {
+	        var blogItem = this.model.toJSON(),
+	            textDescription = blogItem.excerpt,
+	            limit = 400;
+	
+	        if (textDescription) {
+	            var tx = textDescription.slice(0, limit);
+	            tx += '...';
+	        }
+	
+	        return tx;
+	    },
+	    initCarousel: function initCarousel() {
+	        var slider = this.$("#sh-blog-carousel-" + this.model.get('id'));
+	        var options = slider.attr('data-plugin-options');
+	        var defaults = {
+	            //items: 5,
+	            itemsCustom: false,
+	            singleItem: true,
+	            itemsScaleUp: false,
+	
+	            slideSpeed: 200,
+	            paginationSpeed: 800,
+	            rewindSpeed: 1000,
+	
+	            autoPlay: false,
+	            stopOnHover: false,
+	
+	            navigation: false,
+	            navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+	            rewindNav: true,
+	            scrollPerPage: false,
+	
+	            pagination: true,
+	            paginationNumbers: false,
+	
+	            responsive: true,
+	            responsiveRefreshRate: 200,
+	            responsiveBaseWidth: window,
+	
+	            baseClass: "owl-carousel",
+	            theme: "owl-theme",
+	
+	            lazyLoad: false,
+	            lazyFollow: true,
+	            lazyEffect: "fade",
+	
+	            autoHeight: false,
+	
+	            jsonPath: false,
+	            jsonSuccess: false,
+	
+	            dragBeforeAnimFinish: true,
+	            mouseDrag: true,
+	            touchDrag: true,
+	
+	            transitionStyle: false,
+	
+	            addClassActive: false,
+	
+	            beforeUpdate: false,
+	            afterUpdate: false,
+	            beforeInit: false,
+	            afterInit: false,
+	            beforeMove: false,
+	            afterMove: false,
+	            afterAction: false,
+	            startDragging: false,
+	            afterLazyLoad: false
+	        };
+	        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+	        slider.owlCarousel(config).addClass("owl-carousel-init");
+	    }
 	});
 	
 	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
 /* 196 */
@@ -39709,7 +39795,9 @@
 	with(obj||{}){
 	__p+='\r\n<!-- POST ITEM -->\r\n';
 	 if (_.size(obj.images) > 1) { 
-	__p+='\r\n <!-- OWL SLIDER -->\r\n<div id="sh-blog-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"items": 1, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}\'>\r\n    ';
+	__p+='\r\n <!-- OWL SLIDER -->\r\n<div id="sh-blog-carousel-'+
+	((__t=(obj.id))==null?'':__t)+
+	'" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"items": 1, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}\'>\r\n    ';
 	_.each(obj.images, function(image){ 
 	__p+='\r\n    <div>\r\n        <img class="img-responsive" src="'+
 	((__t=( image.src))==null?'':__t)+
@@ -39729,31 +39817,33 @@
 	 } 
 	__p+='\r\n';
 	 } 
-	__p+='\r\n\r\n<h2><a href="blog/post/'+
+	__p+='\r\n\r\n<div class="">\r\n    <h2><a href="blog/post/'+
 	((__t=(id))==null?'':__t)+
 	'">'+
 	((__t=( obj.title))==null?'':__t)+
-	'</a></h2>\r\n\r\n<ul class="blog-post-info list-inline">\r\n    <li>\r\n        <a href="#">\r\n            <i class="fa fa-clock-o"></i>\r\n            <span class="font-lato">'+
+	'</a></h2>\r\n    <ul class="blog-post-info list-inline">\r\n        <li>\r\n            <a href="#">\r\n                <i class="fa fa-clock-o"></i>\r\n                <span class="font-lato">'+
 	((__t=( moment(obj.timestamp).calendar()))==null?'':__t)+
-	'</span>\r\n        </a>\r\n    </li>\r\n\r\n    <li>\r\n        <a href="#">\r\n            <i class="fa fa-comment-o"></i>\r\n            <span class="font-lato">Комментариев: '+
+	'</span>\r\n            </a>\r\n        </li>\r\n\r\n        <li>\r\n            <a href="#">\r\n                <i class="fa fa-comment-o"></i>\r\n                <span class="font-lato">Комментариев: '+
 	((__t=( (_.size(obj.comments) > 0) ? obj.comments.length : '0' ))==null?'':__t)+
-	'</span>\r\n        </a>\r\n    </li>\r\n\r\n    ';
+	'</span>\r\n            </a>\r\n        </li>\r\n\r\n        ';
 	 if(_.size(obj.categories) > 0){ 
-	__p+='\r\n    <li>\r\n        <i class="fa fa-folder-open-o"></i>\r\n        ';
+	__p+='\r\n        <li>\r\n            <i class="fa fa-folder-open-o"></i>\r\n            ';
 	_.each(obj.categories, function(category){ 
-	__p+='\r\n        <a class="category" href="#">\r\n            <span class="font-lato">'+
+	__p+='\r\n            <a class="category" href="#">\r\n                <span class="font-lato">'+
 	((__t=( category))==null?'':__t)+
-	'</span>\r\n        </a>\r\n        ';
+	'</span>\r\n            </a>\r\n            ';
 	});
-	__p+='                \r\n    </li>\r\n    ';
+	__p+='\r\n        </li>\r\n        ';
 	 } 
-	__p+='\r\n\r\n    <li>\r\n        <a href="#">\r\n            <i class="fa fa-user"></i>\r\n            <span class="font-lato">'+
+	__p+='\r\n\r\n        <li>\r\n            <a href="#">\r\n                <i class="fa fa-user"></i>\r\n                <span class="font-lato">'+
 	((__t=( obj.author))==null?'':__t)+
-	'</span>\r\n        </a>\r\n    </li>\r\n</ul>\r\n\r\n<p class="sh-post-description">'+
+	'</span>\r\n            </a>\r\n        </li>\r\n    </ul>\r\n\r\n    <p class="sh-post-description">\r\n        '+
 	((__t=( obj.description))==null?'':_.escape(__t))+
-	'</p>\r\n\r\n<a href="/blog/post/'+
+	'\r\n    </p>\r\n\r\n    <a href="/blog/post/'+
 	((__t=(id))==null?'':__t)+
-	'" class="btn btn-reveal btn-default">\r\n    <i class="fa fa-plus"></i> <span>Read More</span>\r\n</a>';
+	'" class="btn btn-default btn-readmore">\r\n        <i class="fa fa-plus"></i> <span>'+
+	((__t=(i18n('READ_MORE')))==null?'':__t)+
+	'</span>\r\n    </a>\r\n</div>\r\n\r\n\r\n';
 	}
 	return __p;
 	};
@@ -39811,13 +39901,21 @@
 	    template: _blogPostIdViewHbs2.default,
 	
 	    initialize: function initialize() {
-	        console.log('POST ID -> MODEL: ', this.model);
+	        // console.log('POST ID -> MODEL: ', this.model);
+	    },
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            item: this.getBlogDetails()
+	        };
+	    },
+	    getBlogDetails: function getBlogDetails() {
+	        var item = this.model;
+	        return item;
 	    },
 	    onAttach: function onAttach() {
 	        this.initLightBox();
 	        this.initCarousel();
 	    },
-	    onRender: function onRender() {},
 	    initCarousel: function initCarousel() {
 	        var slider = this.$('#sh-blog-carousel');
 	        var options = slider.attr('data-plugin-options');
@@ -39890,16 +39988,49 @@
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.hbs.html ***!
   \******************************************************/
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = function(obj){
+	/* WEBPACK VAR INJECTION */(function(moment, _) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="sh-blog-post-id">\n    <!-- -->\r\n    <div class="container">\r\n        <div class="sh-page-block sh-blog-post-id-wrapper">\r\n\r\n            <h1 class="blog-post-title">BLOG POST TITLE HERE</h1>\r\n            <ul class="blog-post-info list-inline">\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-clock-o"></i>\r\n                        <span class="font-lato">June 29, 2015</span>\r\n                    </a>\r\n                </li>\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-comment-o"></i>\r\n                        <span class="font-lato">28 Comments</span>\r\n                    </a>\r\n                </li>\r\n                <li>\r\n                    <i class="fa fa-folder-open-o"></i>\r\n\r\n                    <a class="category" href="#">\r\n                        <span class="font-lato">Design</span>\r\n                    </a>\r\n                    <a class="category" href="#">\r\n                        <span class="font-lato">Photography</span>\r\n                    </a>\r\n                </li>\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-user"></i>\r\n                        <span class="font-lato">John Doe</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n\r\n            <!-- OWL SLIDER -->\r\n            <div id="sh-blog-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"items": 1, "autoPlay": 4500, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}\'>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n            </div>\r\n            <!-- /OWL SLIDER -->\r\n            <!-- IMAGE -->\r\n            <!--\r\n            <figure class="margin-bottom-20">\r\n                <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="img" />\r\n            </figure>\r\n            -->\r\n            <!-- /IMAGE -->\r\n            <!-- VIDEO -->\r\n            <!--\r\n            <div class="margin-bottom-20 embed-responsive embed-responsive-16by9">\r\n                <iframe class="embed-responsive-item" src="http://player.vimeo.com/video/8408210" width="800" height="450"></iframe>\r\n            </div>\r\n            -->\r\n            <!-- /VIDEO -->\r\n\r\n            <!-- article content -->\r\n            <p class="dropcap">Aliquam fringilla, sapien eget scelerisque placerat, lorem libero cursus lorem, sed sodales lorem libero eu sapien. Nunc mattis feugiat justo vel faucibus. Nulla consequat feugiat malesuada. Ut justo nulla, <strong>facilisis vel molestie id</strong>, dictum ut arcu. Nunc ipsum nulla, eleifend non blandit quis, luctus quis orci. Cras blandit turpis mattis nulla ultrices interdum. Mauris pretium pretium dictum. Nunc commodo, felis sed dictum bibendum, risus justo iaculis dui, nec euismod orci sem eget neque. Donec in metus metus, vitae eleifend lorem. Ut vestibulum gravida venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque suscipit tincidunt magna non mollis. Fusce tempus tincidunt nisi, in luctus elit pellentesque quis. Sed velit mi, ullamcorper ut tempor ut, mattis eu lacus. Morbi rhoncus aliquet tellus, id accumsan enim sollicitudin vitae.</p>\r\n            <p>Vivamus <a href="#">magna justo</a>, lacinia eget consectetur sed, convallis at tellus. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Sed porttitor lectus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla porttitor accumsan tincidunt.</p>\r\n\r\n            <!-- BLOCKQUOTE -->\r\n            <blockquote>\r\n                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>\r\n                <cite>Source Title</cite>\r\n            </blockquote>\r\n\r\n            <p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.Quisque velit nisi, pretium ut lacinia in, elementum id enim. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Pellentesque in ipsum id orci porta dapibus. Nulla quis lorem ut libero malesuada feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>\r\n            <p>Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor accumsan tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>\r\n            <!-- /article content -->\r\n\r\n\r\n            <div class="divider divider-dotted"><!-- divider --></div>\r\n\r\n\r\n            <!-- TAGS -->\r\n            <a class="tag" href="#">\r\n                <span class="txt">RESPONSIVE</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">CSS</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">HTML</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">JAVASCRIPT</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">DESIGN</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">DEVELOPMENT</span>\r\n            </a>\r\n            <!-- /TAGS -->\r\n            <!-- SHARE POST -->\r\n            <div class="clearfix margin-top-30">\r\n\r\n                <span class="pull-left margin-top-6 bold hidden-xs">\r\n                    Share Post:\r\n                </span>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-facebook pull-right" data-toggle="tooltip" data-placement="top" title="Facebook">\r\n                    <i class="icon-facebook"></i>\r\n                    <i class="icon-facebook"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-twitter pull-right" data-toggle="tooltip" data-placement="top" title="Twitter">\r\n                    <i class="icon-twitter"></i>\r\n                    <i class="icon-twitter"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-gplus pull-right" data-toggle="tooltip" data-placement="top" title="Google plus">\r\n                    <i class="icon-gplus"></i>\r\n                    <i class="icon-gplus"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-linkedin pull-right" data-toggle="tooltip" data-placement="top" title="Linkedin">\r\n                    <i class="icon-linkedin"></i>\r\n                    <i class="icon-linkedin"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-pinterest pull-right" data-toggle="tooltip" data-placement="top" title="Pinterest">\r\n                    <i class="icon-pinterest"></i>\r\n                    <i class="icon-pinterest"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-call pull-right" data-toggle="tooltip" data-placement="top" title="Email">\r\n                    <i class="icon-email3"></i>\r\n                    <i class="icon-email3"></i>\r\n                </a>\r\n\r\n            </div>\r\n            <!-- /SHARE POST -->\r\n\r\n\r\n            <div class="divider"><!-- divider --></div>\r\n\r\n\r\n            <ul class="pager">\r\n                <li class="previous"><a class="noborder" href="#">&larr; Previous Post</a></li>\r\n                <li class="next"><a class="noborder" href="#">Next Post &rarr;</a></li>\r\n            </ul>\r\n\r\n\r\n        </div>\r\n   </div>\n</div>';
+	__p+='<div class="sh-blog-post-id">\n    <!-- -->\r\n    <div class="container">\r\n        <div class="sh-page-block sh-blog-post-id-wrapper">\r\n\r\n            <h1 class="blog-post-title">'+
+	((__t=( item.title))==null?'':__t)+
+	'</h1>\r\n            <ul class="blog-post-info list-inline">\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-clock-o"></i>\r\n                        <span class="font-lato">'+
+	((__t=( moment(item.createdAt.$date).calendar()))==null?'':__t)+
+	'</span>\r\n                    </a>\r\n                </li>\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-comment-o"></i>\r\n                        <span class="font-lato">'+
+	((__t=(i18n('COMMENTS')))==null?'':__t)+
+	': '+
+	((__t=( (_.size(item.comments) > 0) ? item.comments.length : '0' ))==null?'':__t)+
+	'</span>\r\n                    </a>\r\n                </li>\r\n                ';
+	 if(_.size(item.categories) > 0){ 
+	__p+='\r\n                <li>\r\n                    <i class="fa fa-folder-open-o"></i>\r\n                    ';
+	_.each(item.categories, function(category){ 
+	__p+='\r\n                    <a class="category" href="#">\r\n                        <span class="font-lato">'+
+	((__t=( category))==null?'':__t)+
+	'</span>\r\n                    </a>\r\n                    ';
+	});
+	__p+='\r\n                </li>\r\n                ';
+	 } 
+	__p+='\r\n                <li style="display:none;">\r\n                    <a href="#">\r\n                        <i class="fa fa-user"></i>\r\n                        <span class="font-lato">'+
+	((__t=( item.author))==null?'':__t)+
+	'</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n\r\n            <!-- OWL SLIDER -->\r\n            <div id="sh-blog-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"items": 1, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}\'>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n            </div>\r\n           \r\n            <!-- article content -->\r\n            <p class="sh-post-description">\r\n                '+
+	((__t=( item.body))==null?'':__t)+
+	'\r\n            </p>\r\n            <!-- /article content -->\r\n\r\n            <div class="divider divider-dotted"><!-- divider --></div>\r\n\r\n            <!-- TAGS -->\r\n            ';
+	 if (item.tags && (_.size(item.tags) > 0)) { 
+	__p+='\r\n                ';
+	_.each(item.tags, function(tag){ 
+	__p+='\r\n                    <div class="tag"><span class="txt">'+
+	((__t=( tag))==null?'':__t)+
+	'</span></div>\r\n                ';
+	})
+	__p+='            \r\n            ';
+	 } 
+	__p+='\r\n            <!-- /TAGS -->\r\n\r\n            <!-- SHARE POST -->\r\n            <div class="clearfix margin-top-30" style="display:none;">\r\n\r\n                <span class="pull-left margin-top-6 bold hidden-xs">\r\n                    Share Post:\r\n                </span>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-facebook pull-right" data-toggle="tooltip" data-placement="top" title="Facebook">\r\n                    <i class="icon-facebook"></i>\r\n                    <i class="icon-facebook"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-twitter pull-right" data-toggle="tooltip" data-placement="top" title="Twitter">\r\n                    <i class="icon-twitter"></i>\r\n                    <i class="icon-twitter"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-gplus pull-right" data-toggle="tooltip" data-placement="top" title="Google plus">\r\n                    <i class="icon-gplus"></i>\r\n                    <i class="icon-gplus"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-linkedin pull-right" data-toggle="tooltip" data-placement="top" title="Linkedin">\r\n                    <i class="icon-linkedin"></i>\r\n                    <i class="icon-linkedin"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-pinterest pull-right" data-toggle="tooltip" data-placement="top" title="Pinterest">\r\n                    <i class="icon-pinterest"></i>\r\n                    <i class="icon-pinterest"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-call pull-right" data-toggle="tooltip" data-placement="top" title="Email">\r\n                    <i class="icon-email3"></i>\r\n                    <i class="icon-email3"></i>\r\n                </a>\r\n\r\n            </div>\r\n            <!-- /SHARE POST -->\r\n\r\n            <div class="divider"><!-- divider --></div>\r\n\r\n            <ul class="pager">\r\n                <li class="previous"><a class="noborder" href="#">&larr; Previous Post</a></li>\r\n                <li class="next"><a class="noborder" href="#">Next Post &rarr;</a></li>\r\n            </ul>\r\n\r\n        </div>\r\n   </div>\n</div>';
 	}
 	return __p;
 	};
-
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12), __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
 /* 200 */

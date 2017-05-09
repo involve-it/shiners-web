@@ -11,15 +11,24 @@ var View = Marionette.View.extend({
     template:template,
 
     initialize() {
-        console.log('POST ID -> MODEL: ', this.model);
+       // console.log('POST ID -> MODEL: ', this.model);
+    },
+
+    onBeforeRender() {
+        this.templateContext = {
+            item: this.getBlogDetails()
+        };
+    },
+    
+    getBlogDetails() {
+        var item = this.model;
+        return item;
     },
 
     onAttach() {
         this.initLightBox();
         this.initCarousel();
-    },
-
-    onRender() {},
+    },    
 
     initCarousel() {
         var slider 		= this.$('#sh-blog-carousel');

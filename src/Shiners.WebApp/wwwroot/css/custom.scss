@@ -242,6 +242,19 @@ small {
     }
 }
 
+.btn-readmore {
+    border: none;
+    background: $sh-main-blue-background;
+    color: $sh-white-color;
+    opacity: 1;
+
+    &:hover {
+        background: $sh-main-blue-background;
+        color: $sh-white-color;
+        opacity: .75;
+    }
+}
+
 .sh-text-center {
   text-align: center;
 }

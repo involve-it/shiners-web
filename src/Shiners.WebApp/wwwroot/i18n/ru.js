@@ -20,6 +20,8 @@ var json = {
     POST_STATUS: 'Объявление закрыто',
     POST_LEFT: 'Осталось',
     SEARCH_PLACEHOLDER: 'Поиск',
+    READ_MORE: 'Читать дальше',
+    COMMENTS: 'Комментариев',
 
     // BANNER
     shiners_are: 'СВЕТЛЯЧКИ - ЭТО',
