@@ -16009,10 +16009,10 @@
 	    },
 	    initialize: function initialize() {
 	        /* web server */
-	        //this.asteroid = new Asteroid("www.shiners.mobi", true);
+	        this.asteroid = new _asteroidBrowser2.default("www.shiners.mobi", true);
 	
 	        /* local server */
-	        this.asteroid = new _asteroidBrowser2.default("192.168.1.34:3000", false);
+	        //this.asteroid = new Asteroid("192.168.1.34:3000", false);
 	
 	        //window.asteroid = this.asteroid; // debug        
 	        this.user = new _AsteroidModel2.default(null, { asteroid: this.asteroid });
@@ -22301,6 +22301,7 @@
 	    SEARCH_PLACEHOLDER: 'Search',
 	    READ_MORE: 'Read more',
 	    COMMENTS: 'Comment(s)',
+	    BTN_DONE: 'Done',
 	
 	    // banner
 	    shiners_are: 'SHINERS - ARE',
@@ -22371,6 +22372,7 @@
 	    SEARCH_PLACEHOLDER: 'Поиск',
 	    READ_MORE: 'Читать дальше',
 	    COMMENTS: 'Комментариев',
+	    BTN_DONE: 'Готово',
 	
 	    // BANNER
 	    shiners_are: 'СВЕТЛЯЧКИ - ЭТО',
@@ -34809,6 +34811,7 @@
 	
 	var View = _backbone2.default.View.extend({
 	    template: _SuccessView2.default,
+	
 	    initialize: function initialize(options) {
 	        var opts = options || {};
 	        this.model = new _backbone4.default.Model({
@@ -34830,15 +34833,15 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="alert alert-success margin-bottom-30" style="min-height: 250px">\n\n    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Закрыть</span></button>\n\n    <h4>'+
+	__p+='<div>\n    \n    <strong>'+
 	((__t=(obj.title))==null?'':__t)+
-	'</h4>\n\n    <p>\n        '+
+	'</strong>\n\n    <p>\n        '+
 	((__t=(obj.message))==null?'':__t)+
 	'\n    </p>\n\n    ';
 	if(obj.resultUrl) { 
-	__p+='\n        <a href="'+
+	__p+='\n        <hr />\n        <div class="sh-text-center">\r\n            <a href="'+
 	((__t=(resultUrl))==null?'':__t)+
-	'" onclick="window.scrollTo(0, 0);" class="btn btn-info btn-sm margin-top-10">Перейти</a>\n    ';
+	'" onclick="window.scrollTo(0, 0);" class="ui sh-button standard action big"><span>Перейти</span></a>\r\n        </div>\n    ';
 	 } 
 	__p+='\n\n</div>';
 	}
@@ -35045,7 +35048,7 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div id="selectLocation_map" style="height: 400px">\r\n   \r\n</div>\r\n<div>\r\n      <div class="input-group">\r\n            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>\r\n            <input id="locationMap_locationName" type="text" class="form-control"aria-describedby="sizing-addon1">\r\n      </div>\r\n</div>';
+	__p+='<div>\r\n    <div class="input-group margin-bottom-10">\r\n        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>\r\n        <input id="locationMap_locationName" type="text" class="form-control" aria-describedby="sizing-addon1">\r\n    </div>\r\n</div>\r\n\r\n<div id="selectLocation_map" style="height: 400px"></div>';
 	}
 	return __p;
 	};
@@ -35061,7 +35064,7 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<label style="background-color: white;" class="switch switch-primary margin-top-6" data-toggle="tooltip" data-placement="bottom" title="Объявление будет менять свое местоположение с Вами">\n    <input type="checkbox">\n    <span class="switch-label" data-on="Да" data-off="Нет"></span>\n    <span> Привязать к Вашему местоположению?</span>\n    <small class="text-muted"></small>\n</label>';
+	__p+='<label style="background-color: white;" class="switch switch-primary margin-top-10" data-toggle="tooltip" data-placement="bottom" title="Объявление будет менять свое местоположение с Вами">\n    <input type="checkbox">\n    <span class="switch-label" data-on="Да" data-off="Нет"></span>\n    <span> Привязать к Вашему местоположению?</span>\n    <small class="text-muted"></small>\n</label>';
 	}
 	return __p;
 	};
@@ -35077,7 +35080,9 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<button class="ui sh-button standard create margin-bottom-10">Готово</button>';
+	__p+='<button class="ui sh-button standard create big margin-bottom-20">'+
+	((__t=(i18n('BTN_DONE')))==null?'':__t)+
+	'</button>';
 	}
 	return __p;
 	};

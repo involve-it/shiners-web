@@ -24,6 +24,7 @@ var json = {
     SEARCH_PLACEHOLDER: 'Search',
     READ_MORE: 'Read more',
     COMMENTS: 'Comment(s)',
+    BTN_DONE: 'Done',
 
     // banner
     shiners_are: 'SHINERS - ARE',

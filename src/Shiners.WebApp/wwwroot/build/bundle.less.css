@@ -4,6 +4,15 @@
 .sh-padding-16 {
   padding: 16px !important;
 }
+.modal-dialog {
+  max-width: 700px;
+}
+.modal-dialog .modal-content {
+  border-top-color: #4a90e2;
+}
+.modal-dialog .modal-content .modal-body {
+  background: #fdfdfd;
+}
 .sh-body .btn {
   border: 1px solid #179BD7;
 }
@@ -316,6 +325,15 @@
 ===================== */
 .sh-padding-16 {
   padding: 16px !important;
+}
+.modal-dialog {
+  max-width: 700px;
+}
+.modal-dialog .modal-content {
+  border-top-color: #4a90e2;
+}
+.modal-dialog .modal-content .modal-body {
+  background: #fdfdfd;
 }
 /* ==================
 	DETAILS POST
@@ -963,6 +981,15 @@ body.page--postDetails .sh-post-details .sh-same-posts .sh-same-posts-wrapper h4
 .sh-padding-16 {
   padding: 16px !important;
 }
+.modal-dialog {
+  max-width: 700px;
+}
+.modal-dialog .modal-content {
+  border-top-color: #4a90e2;
+}
+.modal-dialog .modal-content .modal-body {
+  background: #fdfdfd;
+}
 /* ==================
 	MY POSTS ITEM & VIEW
 ===================== */
@@ -1264,6 +1291,15 @@ body.page--postsMy .sh-my-posts .sh-my-posts-wrapper .sh-my-posts-item:last-chil
 .sh-padding-16 {
   padding: 16px !important;
 }
+.modal-dialog {
+  max-width: 700px;
+}
+.modal-dialog .modal-content {
+  border-top-color: #4a90e2;
+}
+.modal-dialog .modal-content .modal-body {
+  background: #fdfdfd;
+}
 /* ==================
 	MY CHAT ITEM
 ===================== */
@@ -1366,16 +1402,13 @@ body.page--chatsMy .sh-content .sh-page-chats .sh-chat-item-container:focus {
 .sh-padding-16 {
   padding: 16px !important;
 }
-body.page--userDetails .modal-dialog,
-body.page--myProfile .modal-dialog {
+.modal-dialog {
   max-width: 700px;
 }
-body.page--userDetails .modal-dialog .modal-content,
-body.page--myProfile .modal-dialog .modal-content {
+.modal-dialog .modal-content {
   border-top-color: #4a90e2;
 }
-body.page--userDetails .modal-dialog .modal-content .modal-body,
-body.page--myProfile .modal-dialog .modal-content .modal-body {
+.modal-dialog .modal-content .modal-body {
   background: #fdfdfd;
 }
 .sh-message-to-user #sendMessageForm {
@@ -1504,6 +1537,15 @@ body.page--myProfile .modal-dialog .modal-content .modal-body {
 ===================== */
 .sh-padding-16 {
   padding: 16px !important;
+}
+.modal-dialog {
+  max-width: 700px;
+}
+.modal-dialog .modal-content {
+  border-top-color: #4a90e2;
+}
+.modal-dialog .modal-content .modal-body {
+  background: #fdfdfd;
 }
 /* ==================
 	MESSAGE CONTAINER
@@ -1650,6 +1692,15 @@ body.page--chatId .sh-messages-to-user .sh-messages-tools .removeMessage i:hover
 ===================== */
 .sh-padding-16 {
   padding: 16px !important;
+}
+.modal-dialog {
+  max-width: 700px;
+}
+.modal-dialog .modal-content {
+  border-top-color: #4a90e2;
+}
+.modal-dialog .modal-content .modal-body {
+  background: #fdfdfd;
 }
 /* ==================
 	MESSAGES TO USER
@@ -1820,6 +1871,15 @@ body.page--chatId .sh-messages-to-user .sh-messages-to-user-wrapper .sh-messages
 ===================== */
 .sh-padding-16 {
   padding: 16px !important;
+}
+.modal-dialog {
+  max-width: 700px;
+}
+.modal-dialog .modal-content {
+  border-top-color: #4a90e2;
+}
+.modal-dialog .modal-content .modal-body {
+  background: #fdfdfd;
 }
 body .sh-auth-page {
   display: -webkit-flex;
@@ -2038,6 +2098,15 @@ body.page--fogotPassword #appContent {
 ===================== */
 .sh-padding-16 {
   padding: 16px !important;
+}
+.modal-dialog {
+  max-width: 700px;
+}
+.modal-dialog .modal-content {
+  border-top-color: #4a90e2;
+}
+.modal-dialog .modal-content .modal-body {
+  background: #fdfdfd;
 }
 /* ==================
 	ABOUT US PAGE
@@ -2964,6 +3033,15 @@ body.page--about .sh-woman-shiners {
 .sh-padding-16 {
   padding: 16px !important;
 }
+.modal-dialog {
+  max-width: 700px;
+}
+.modal-dialog .modal-content {
+  border-top-color: #4a90e2;
+}
+.modal-dialog .modal-content .modal-body {
+  background: #fdfdfd;
+}
 /* ==================
 	MASS MEDIA PAGE
 ===================== */
@@ -3438,6 +3516,15 @@ body.page--massMedia .sh-mass-media .sh-article-block .sh-article-wrapper:last-c
 .sh-padding-16 {
   padding: 16px !important;
 }
+.modal-dialog {
+  max-width: 700px;
+}
+.modal-dialog .modal-content {
+  border-top-color: #4a90e2;
+}
+.modal-dialog .modal-content .modal-body {
+  background: #fdfdfd;
+}
 /* ==================
 	BLOG HOME
 ===================== */
@@ -3476,6 +3563,15 @@ body.page--blogPostId .sh-blog-post-id .sh-blog-post-id-wrapper .blog-post-info 
 ===================== */
 .sh-padding-16 {
   padding: 16px !important;
+}
+.modal-dialog {
+  max-width: 700px;
+}
+.modal-dialog .modal-content {
+  border-top-color: #4a90e2;
+}
+.modal-dialog .modal-content .modal-body {
+  background: #fdfdfd;
 }
 .suggestions-modal-view {
   position: relative;

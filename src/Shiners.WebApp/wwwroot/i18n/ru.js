@@ -22,6 +22,7 @@ var json = {
     SEARCH_PLACEHOLDER: 'Поиск',
     READ_MORE: 'Читать дальше',
     COMMENTS: 'Комментариев',
+    BTN_DONE: 'Готово',
 
     // BANNER
     shiners_are: 'СВЕТЛЯЧКИ - ЭТО',
