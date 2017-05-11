@@ -149,5 +149,33 @@ var json = {
     RELOAD_POST_TIME: 'Reload',
     EDIT_POST: 'Edit',
     TRASH_POST: 'Delete',
+
+
+    //LOGIN/REGISTER
+    EMAIL_LABEL: 'E-mail',
+    USERNAME_LABEL: 'login',
+    USERNAME_EMAIL_LABEL: 'login or E-mail',
+    PASSWORD_LABEL: 'password',
+    CONFIRM_PASSWORD_LABEL: 'confirm password',
+
+
+    //VALIDATION MESSAGES
+    validation_message_required: '{0} required',
+    validation_message_oneOfProperty: 'you must enter {0}, or {1}',
+    validation_message_acceptance: '{0} must be accepted',
+    validation_message_min: 'value of {0} must be greater or equal {1}',
+    validation_message_max: 'value of {0} must be lesser or equal {1}',
+    validation_message_range: '{0} must be between {1} and {2}',
+    validation_message_length: '{0} must be {1} characters',
+    validation_message_minLength: '{0} must be at least {1} characters',
+    validation_message_maxLength: '{0} must be at most {1} characters',
+    validation_message_rangeLength: '{0} must be between {1} and {2} characters',
+    validation_message_oneOf: '{0} must be one of: {1}',
+    validation_message_equalTo: '{0} must be the same as {1}',
+    validation_message_digits: '{0} должно состоять из цифр',
+    validation_message_number: '{0} required',
+    validation_message_email: 'Enter correct value in {0}',
+    validation_message_url: 'Field {0} must be correct url',
+    validation_message_inlinePattern: 'Enter proper value of {0}',
 };
 i18n.add('en', json);

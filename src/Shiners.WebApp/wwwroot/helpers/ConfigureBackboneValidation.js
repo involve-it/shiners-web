@@ -36,26 +36,35 @@ _.extend(Backbone.Validation.callbacks, {
             
     }
 });
-// дефолтные сообщения об ошибках
-_.extend(Backbone.Validation.messages, {
-    required: 'необходимо указать {0}',
-    oneOfProperty: 'Вы должны указать либо {0}, либо {1}',
-    acceptance: '{0} должно быть принято',
-    min: 'значение {0} должно быть больше или равно {1}',
-    max: 'значение {0} должно быть меньше или равно {1}',
-    range: '{0} must be between {1} and {2}',
-    length: '{0} must be {1} characters',
-    minLength: '{0} must be at least {1} characters',
-    maxLength: '{0} must be at most {1} characters',
-    rangeLength: '{0} must be between {1} and {2} characters',
-    oneOf: '{0} must be one of: {1}',
-    equalTo: '{0} must be the same as {1}',
-    digits: '{0} должно состоять из цифр',
-    number: 'Укажите {0} обязательно',
-    email: 'Введите корректно значение {0}',
-    url: 'поле {0} должно быть корректным url-ом',
-    inlinePattern: 'введите корректное значение {0}'
+
+function setDefaultValidationMessages() {
+    // дефолтные сообщения об ошибках
+    _.extend(Backbone.Validation.messages, {
+        required: i18n.getI18nString('validation_message_required'),
+        oneOfProperty: i18n.getI18nString('validation_message_oneOfProperty'),
+        acceptance: i18n.getI18nString('validation_message_acceptance'),
+        min: i18n.getI18nString('validation_message_min'),
+        max: i18n.getI18nString('validation_message_max'),
+        range: i18n.getI18nString('validation_message_range'),
+        length: i18n.getI18nString('validation_message_length'),
+        minLength: i18n.getI18nString('validation_message_minLength'),
+        maxLength: i18n.getI18nString('validation_message_maxLength'),
+        rangeLength: i18n.getI18nString('validation_message_rangeLength'),
+        oneOf: i18n.getI18nString('validation_message_oneOf'),
+        equalTo: i18n.getI18nString('validation_message_equalTo'),
+        digits: i18n.getI18nString('validation_message_digits'),
+        number: i18n.getI18nString('validation_message_number'),
+        email: i18n.getI18nString('validation_message_email'),
+        url: i18n.getI18nString('validation_message_url'),
+        inlinePattern: i18n.getI18nString('validation_message_inlinePattern'),
+    });
+}
+
+setDefaultValidationMessages();
+$(window).on('sh:language:changed', () => {
+    setDefaultValidationMessages();
 });
+
 
 _.extend(Backbone.Validation.patterns, {
     phone: /^(\+\d{1,3})*\s*(\(\d{3}\)\s*)*\d{3}(-{0,1}|\s{0,1})\d{2}(-{0,1}|\s{0,1})\d{2}$/
