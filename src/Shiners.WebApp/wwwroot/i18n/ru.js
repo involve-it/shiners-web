@@ -154,6 +154,34 @@ var json = {
     RELOAD_POST_TIME: 'Перезапустить',
     EDIT_POST: 'Редактировать',
     TRASH_POST: 'Удалить',
+
+    //LOGIN/REGISTER
+    EMAIL_LABEL: 'E-mail',
+    USERNAME_LABEL: 'имя пользователя',
+    USERNAME_EMAIL_LABEL: 'имя пользователя или E-mail',
+    PASSWORD_LABEL: 'пароль',
+    CONFIRM_PASSWORD_LABEL: 'пароль повторно',
+
+    //VALIDATION MESSAGES
+    validation_message_required: 'Укажите {0}',
+    validation_message_oneOfProperty: 'Вы должны указать либо {0}, либо {1}',
+    validation_message_acceptance: '{0} должно быть принято',
+    validation_message_min: 'значение {0} должно быть больше или равно {1}',
+    validation_message_max: 'значение {0} должно быть меньше или равно {1}',
+    validation_message_range: '{0} must be between {1} and {2}',
+    validation_message_length: '{0} must be {1} characters',
+    validation_message_minLength: '{0} must be at least {1} characters',
+    validation_message_maxLength: '{0} must be at most {1} characters',
+    validation_message_rangeLength: '{0} must be between {1} and {2} characters',
+    validation_message_oneOf: '{0} must be one of: {1}',
+    validation_message_equalTo: '{0} must be the same as {1}',
+    validation_message_digits: '{0} должно состоять из цифр',
+    validation_message_number: 'Укажите {0} обязательно',
+    validation_message_email: 'Введите корректно значение {0}',
+    validation_message_url: 'поле {0} должно быть корректным url-ом',
+    validation_message_inlinePattern: 'введите корректное значение {0}',
+
     PUBLISHED_BY: 'Опубликовано',
+
 };
 i18n.add('ru', json);

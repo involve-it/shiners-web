@@ -12,6 +12,11 @@ var View = Marionette.View.extend({
     initialize() {
         this.listenTo(app.user, 'login', this.redirect);
         this.listenTo(app.user, 'error:login', this.showError);
+        
+        this.model.setLabels();
+        $(window).on('sh:language:changed', () => {
+            this.model.setLabels();
+        });
     },
 
     onAttach() {
