@@ -25,6 +25,9 @@ var json = {
     READ_MORE: 'Read more',
     COMMENTS: 'Comment(s)',
     BTN_DONE: 'Done',
+    DELETE_POST: 'Delete post',
+    TITLE_YES: 'Yes',
+    TITLE_NO: 'NO',
 
     // banner
     shiners_are: 'SHINERS - ARE',
@@ -128,8 +131,9 @@ var json = {
     about_your_email: 'Your email',
     about_your_message: 'Your message',
     about_btn_send_msg: 'Send',
+
     // POST DETAILS
-    post_d_summary_information: '',
+    post_d_summary_information: 'Summary information',
     post_d_views: 'Views',
     post_d_status: 'Status',
     post_d_type: 'Type',
@@ -146,5 +150,11 @@ var json = {
     // MESSAGES
     messages_send: 'Send',
     messages_for_user: 'Messages for user',
+
+    //MY POSTS
+    RELOAD_POST_TIME: 'Reload',
+    EDIT_POST: 'Edit',
+    TRASH_POST: 'Delete',
+    PUBLISHED_BY: 'Published by',
 };
 i18n.add('en', json);

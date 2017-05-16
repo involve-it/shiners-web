@@ -23,6 +23,9 @@ var json = {
     READ_MORE: 'Читать дальше',
     COMMENTS: 'Комментариев',
     BTN_DONE: 'Готово',
+    DELETE_POST: 'Удалить пост',
+    TITLE_YES: 'Да',
+    TITLE_NO: 'Нет',
 
     // BANNER
     shiners_are: 'СВЕТЛЯЧКИ - ЭТО',
@@ -129,7 +132,7 @@ var json = {
     about_btn_send_msg: 'Отправить',
 
     // POST DETAILS
-    post_d_summary_information: '',
+    post_d_summary_information: 'Сводная информация',
     post_d_views: 'Просмотров',
     post_d_status: 'Статус',
     post_d_type: 'Тип',
@@ -151,5 +154,6 @@ var json = {
     RELOAD_POST_TIME: 'Перезапустить',
     EDIT_POST: 'Редактировать',
     TRASH_POST: 'Удалить',
+    PUBLISHED_BY: 'Опубликовано',
 };
 i18n.add('ru', json);

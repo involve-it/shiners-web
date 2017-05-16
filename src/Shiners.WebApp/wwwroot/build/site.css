@@ -22092,7 +22092,8 @@ input[type=radio] + label {
 .sh-registers-buttons {
   margin-right: 10px; }
   .sh-registers-buttons .sign-up {
-    margin-right: 6px !important; }
+    margin-right: 6px !important;
+    padding: 10px 16px !important; }
   .sh-registers-buttons #logout {
     padding: 9px 12px;
     box-shadow: none;
@@ -22133,15 +22134,15 @@ input[type=radio] + label {
     color: rgba(0, 0, 0, 0.6);
     font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
     margin: 0;
-    padding: 0.78571429em 1.5em 0.78571429em;
+    padding: 6px 10px;
     text-transform: none;
     text-shadow: none;
-    font-weight: bold;
+    font-weight: 400;
     line-height: 1em;
     font-style: normal;
     text-align: center;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 2px;
     box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -22175,7 +22176,7 @@ input[type=radio] + label {
         color: white !important; }
     .ui.sh-button.standard {
       font-size: 13px;
-      padding: 10px 16px;
+      padding: 6px 10px;
       font-weight: 400;
       background-color: #FFFFFF;
       background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#ECECEC));
@@ -22306,15 +22307,15 @@ input[type=radio] + label {
       box-shadow: none !important;
       pointer-events: none !important; }
     .ui.sh-button.mini {
-      font-size: 0.785rem; }
+      font-size: 8px; }
     .ui.sh-button.tiny {
-      font-size: 0.857rem; }
+      font-size: 10px; }
     .ui.sh-button.small {
-      font-size: 0.926rem; }
+      font-size: 12px; }
     .ui.sh-button.large {
-      font-size: 1.143rem; }
+      font-size: 16px; }
     .ui.sh-button.big {
-      font-size: 1.286rem; }
+      font-size: 18px; }
     .ui.sh-button.huge {
       font-size: 1.429rem; }
     .ui.sh-button.massive {
@@ -22323,7 +22324,7 @@ input[type=radio] + label {
       background: transparent none !important;
       color: rgba(0, 0, 0, 0.6) !important;
       font-weight: normal;
-      border-radius: 4px;
+      border-radius: 2px;
       text-transform: none;
       text-shadow: none !important;
       box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.15) inset; }

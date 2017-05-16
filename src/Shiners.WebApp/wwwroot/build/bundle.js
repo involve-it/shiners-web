@@ -15963,11 +15963,11 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _ModalContainerView = __webpack_require__(/*! ../sharedViews/ModalContainerView.js */ 130);
+	var _ModalContainerView = __webpack_require__(/*! ../sharedViews/ModalContainerView.js */ 132);
 	
 	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
 	
-	var _SuggestionsModalView = __webpack_require__(/*! ./selectLocation/suggestionsModal/SuggestionsModalView.js */ 202);
+	var _SuggestionsModalView = __webpack_require__(/*! ./selectLocation/suggestionsModal/SuggestionsModalView.js */ 204);
 	
 	var _SuggestionsModalView2 = _interopRequireDefault(_SuggestionsModalView);
 	
@@ -15975,11 +15975,11 @@
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 120);
+	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 122);
 	
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
-	__webpack_require__(/*! ../css/shiners-override.css */ 205);
+	__webpack_require__(/*! ../css/shiners-override.css */ 207);
 	
 	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
@@ -22302,6 +22302,9 @@
 	    READ_MORE: 'Read more',
 	    COMMENTS: 'Comment(s)',
 	    BTN_DONE: 'Done',
+	    DELETE_POST: 'Delete post',
+	    TITLE_YES: 'Yes',
+	    TITLE_NO: 'NO',
 	
 	    // banner
 	    shiners_are: 'SHINERS - ARE',
@@ -22336,7 +22339,7 @@
 	
 	    //MASS MEDIA
 	    h_information_for_smi: 'Information for the media'
-	}, _defineProperty(_json, 'massMedia', 'Media about us'), _defineProperty(_json, 'press_release', 'Press Releases'), _defineProperty(_json, 'press_contacts', 'Press Contacts'), _defineProperty(_json, 'h_meet_us', 'About us'), _defineProperty(_json, 'h_mass_media', 'Media about us'), _defineProperty(_json, 'm_about_us', 'About us'), _defineProperty(_json, 'm_help', 'Help'), _defineProperty(_json, 'm_confidentiality', 'Confidentiality'), _defineProperty(_json, 'm_terms_of_use', 'Terms of use'), _defineProperty(_json, 'site_published', 'Site published'), _defineProperty(_json, 'download_press_release', 'Download press release'), _defineProperty(_json, 'ashot_a', 'Ashot Arutyunyan'), _defineProperty(_json, 'tatyana_u', 'Tatyana Urusova'), _defineProperty(_json, 'home_accordion_section1', 'If you already have an advertisement on another website, just use that Url to create a Shiner!'), _defineProperty(_json, 'home_accordion_section2', 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone'), _defineProperty(_json, 'home_accordion_section3', 'Use Shiners for finding new live connections everywhere'), _defineProperty(_json, 'home_shiners_are_around', 'Shiners are everywhere'), _defineProperty(_json, 'home_lot_of_opportunities', 'A lot of opportunities for business around'), _defineProperty(_json, 'home_participate', 'Participate '), _defineProperty(_json, 'home_free', 'for free'), _defineProperty(_json, 'home_in_project', ' in the project!'), _defineProperty(_json, 'home_contact_with_people', 'Let others know about your ad instantly'), _defineProperty(_json, 'home_set_your_shiner', 'Create your Shiner'), _defineProperty(_json, 'search_free_search', 'Free search by words'), _defineProperty(_json, 'search_choose_radius', 'Search Radius (km):'), _defineProperty(_json, 'search_parameters', 'Search Parameters'), _defineProperty(_json, 'search_found', 'Found Shiners'), _defineProperty(_json, 'search_not_found', 'No posts found around'), _defineProperty(_json, 'about_intro_text', 'Shiners is a tool that helps people around to cooperate with each other. We will show you people ads around with a link to the person and his location.  Yor new friends, Clients, partners are nearby and ready to meet you'), _defineProperty(_json, 'about_intro_duration', 'Duration'), _defineProperty(_json, 'about_intro_duration_minute', 'min.'), _defineProperty(_json, 'about_menu_how_it_works', 'How does it work?'), _defineProperty(_json, 'about_menu_what_are_we_useful', 'What are we useful for?'), _defineProperty(_json, 'about_menu_our_team', 'Our Team'), _defineProperty(_json, 'about_menu_connect_with_us', 'Connect with us'), _defineProperty(_json, 'about_title_section_1', 'The only one service offering Live presence'), _defineProperty(_json, 'about_title_section_1_p1', 'Shiners allow you to connect an advertisement or any other address on the internet to the current location of a user and as a result you can implement an instant search of information among the people who surround you. It enables you to look for information here and now in order to meet its owner immediately. Unnecessary intermediate link (search on the internet, arranging of the meeting, a road to the particular place) can be excluded if a potentially interesting person is near you. '), _defineProperty(_json, 'about_title_section_1_p2', 'We are expending the abilities of web by connecting an information to real people and to the coordinates that gives web-resources something new – specious and timeless quality in other words a road directly to the aim. You can also see us in Google and social networks and that is why your advertisement will transform into your own internet-page, which can be open to the whole internet.'), _defineProperty(_json, 'about_title_section_2_intro', 'Just imagine a virtual visit-card that you can carry around with you not in the wallet but in your mobile phone and all people who surround you can see it, and not the only chosen ones!'), _defineProperty(_json, 'about_title_create_post', 'Create your post'), _defineProperty(_json, 'about_title_you_are_find', 'You find - You can be found'), _defineProperty(_json, 'about_title_contract_meeting', 'Arrange a meeting – meet people'), _defineProperty(_json, 'about_title_section_3', 'Why we so useful?'), _defineProperty(_json, 'about_title_section_3_intro', 'Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.'), _defineProperty(_json, 'about_block_ads', 'ОБЪЯВЛЕНИЕ'), _defineProperty(_json, 'about_block_ads_text', 'Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".'), _defineProperty(_json, 'about_block_link', 'LINK'), _defineProperty(_json, 'about_block_link_text', 'Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!'), _defineProperty(_json, 'about_block_dynamic', 'ДИНАМИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_dynamic_text', 'Движется вместе с тобой. Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!'), _defineProperty(_json, 'about_block_static', 'СТАТИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_static_text', 'Привязан к заданной тобой местности. Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!'), _defineProperty(_json, 'about_btn_set_your_shiners', 'Установи свой Светлячок'), _defineProperty(_json, 'about_who_we_are_title', 'Who are we?'), _defineProperty(_json, 'about_who_we_are_text', 'Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости.'), _defineProperty(_json, 'about_security_title', 'БЕЗОПАСНОСТЬ'), _defineProperty(_json, 'about_security_text', 'Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!'), _defineProperty(_json, 'about_rules_title', 'ПРАВИЛА'), _defineProperty(_json, 'about_rules_text', 'При регистрации на «Cветлячках» Пользователь соглашается с'), _defineProperty(_json, 'about_rules_text_link1', 'настоящими правилами'), _defineProperty(_json, 'about_title_section_4', 'Связаться с нами'), _defineProperty(_json, 'about_title_section_4_intro', 'Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!'), _defineProperty(_json, 'about_your_name', 'Your name'), _defineProperty(_json, 'about_your_email', 'Your email'), _defineProperty(_json, 'about_your_message', 'Your message'), _defineProperty(_json, 'about_btn_send_msg', 'Send'), _defineProperty(_json, 'post_d_summary_information', ''), _defineProperty(_json, 'post_d_views', 'Views'), _defineProperty(_json, 'post_d_status', 'Status'), _defineProperty(_json, 'post_d_type', 'Type'), _defineProperty(_json, 'post_d_distance', 'Distance'), _defineProperty(_json, 'post_d_report_this_post', 'Tell about this post'), _defineProperty(_json, 'post_description_t', 'Description'), _defineProperty(_json, 'post_location_place_t', 'Location'), _defineProperty(_json, 'post_comments_t', 'comments'), _defineProperty(_json, 'post_connect_to_user', 'Connect to user'), _defineProperty(_json, 'post_about_post', 'About this post'), _defineProperty(_json, 'post_comment', 'Comment'), _defineProperty(_json, 'post_comments', 'Comments'), _defineProperty(_json, 'messages_send', 'Send'), _defineProperty(_json, 'messages_for_user', 'Messages for user'), _json);
+	}, _defineProperty(_json, 'massMedia', 'Media about us'), _defineProperty(_json, 'press_release', 'Press Releases'), _defineProperty(_json, 'press_contacts', 'Press Contacts'), _defineProperty(_json, 'h_meet_us', 'About us'), _defineProperty(_json, 'h_mass_media', 'Media about us'), _defineProperty(_json, 'm_about_us', 'About us'), _defineProperty(_json, 'm_help', 'Help'), _defineProperty(_json, 'm_confidentiality', 'Confidentiality'), _defineProperty(_json, 'm_terms_of_use', 'Terms of use'), _defineProperty(_json, 'site_published', 'Site published'), _defineProperty(_json, 'download_press_release', 'Download press release'), _defineProperty(_json, 'ashot_a', 'Ashot Arutyunyan'), _defineProperty(_json, 'tatyana_u', 'Tatyana Urusova'), _defineProperty(_json, 'home_accordion_section1', 'If you already have an advertisement on another website, just use that Url to create a Shiner!'), _defineProperty(_json, 'home_accordion_section2', 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone'), _defineProperty(_json, 'home_accordion_section3', 'Use Shiners for finding new live connections everywhere'), _defineProperty(_json, 'home_shiners_are_around', 'Shiners are everywhere'), _defineProperty(_json, 'home_lot_of_opportunities', 'A lot of opportunities for business around'), _defineProperty(_json, 'home_participate', 'Participate '), _defineProperty(_json, 'home_free', 'for free'), _defineProperty(_json, 'home_in_project', ' in the project!'), _defineProperty(_json, 'home_contact_with_people', 'Let others know about your ad instantly'), _defineProperty(_json, 'home_set_your_shiner', 'Create your Shiner'), _defineProperty(_json, 'search_free_search', 'Free search by words'), _defineProperty(_json, 'search_choose_radius', 'Search Radius (km):'), _defineProperty(_json, 'search_parameters', 'Search Parameters'), _defineProperty(_json, 'search_found', 'Found Shiners'), _defineProperty(_json, 'search_not_found', 'No posts found around'), _defineProperty(_json, 'about_intro_text', 'Shiners is a tool that helps people around to cooperate with each other. We will show you people ads around with a link to the person and his location.  Yor new friends, Clients, partners are nearby and ready to meet you'), _defineProperty(_json, 'about_intro_duration', 'Duration'), _defineProperty(_json, 'about_intro_duration_minute', 'min.'), _defineProperty(_json, 'about_menu_how_it_works', 'How does it work?'), _defineProperty(_json, 'about_menu_what_are_we_useful', 'What are we useful for?'), _defineProperty(_json, 'about_menu_our_team', 'Our Team'), _defineProperty(_json, 'about_menu_connect_with_us', 'Connect with us'), _defineProperty(_json, 'about_title_section_1', 'The only one service offering Live presence'), _defineProperty(_json, 'about_title_section_1_p1', 'Shiners allow you to connect an advertisement or any other address on the internet to the current location of a user and as a result you can implement an instant search of information among the people who surround you. It enables you to look for information here and now in order to meet its owner immediately. Unnecessary intermediate link (search on the internet, arranging of the meeting, a road to the particular place) can be excluded if a potentially interesting person is near you. '), _defineProperty(_json, 'about_title_section_1_p2', 'We are expending the abilities of web by connecting an information to real people and to the coordinates that gives web-resources something new – specious and timeless quality in other words a road directly to the aim. You can also see us in Google and social networks and that is why your advertisement will transform into your own internet-page, which can be open to the whole internet.'), _defineProperty(_json, 'about_title_section_2_intro', 'Just imagine a virtual visit-card that you can carry around with you not in the wallet but in your mobile phone and all people who surround you can see it, and not the only chosen ones!'), _defineProperty(_json, 'about_title_create_post', 'Create your post'), _defineProperty(_json, 'about_title_you_are_find', 'You find - You can be found'), _defineProperty(_json, 'about_title_contract_meeting', 'Arrange a meeting – meet people'), _defineProperty(_json, 'about_title_section_3', 'Why we so useful?'), _defineProperty(_json, 'about_title_section_3_intro', 'Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.'), _defineProperty(_json, 'about_block_ads', 'ОБЪЯВЛЕНИЕ'), _defineProperty(_json, 'about_block_ads_text', 'Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".'), _defineProperty(_json, 'about_block_link', 'LINK'), _defineProperty(_json, 'about_block_link_text', 'Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!'), _defineProperty(_json, 'about_block_dynamic', 'ДИНАМИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_dynamic_text', 'Движется вместе с тобой. Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!'), _defineProperty(_json, 'about_block_static', 'СТАТИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_static_text', 'Привязан к заданной тобой местности. Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!'), _defineProperty(_json, 'about_btn_set_your_shiners', 'Установи свой Светлячок'), _defineProperty(_json, 'about_who_we_are_title', 'Who are we?'), _defineProperty(_json, 'about_who_we_are_text', 'Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости.'), _defineProperty(_json, 'about_security_title', 'БЕЗОПАСНОСТЬ'), _defineProperty(_json, 'about_security_text', 'Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!'), _defineProperty(_json, 'about_rules_title', 'ПРАВИЛА'), _defineProperty(_json, 'about_rules_text', 'При регистрации на «Cветлячках» Пользователь соглашается с'), _defineProperty(_json, 'about_rules_text_link1', 'настоящими правилами'), _defineProperty(_json, 'about_title_section_4', 'Связаться с нами'), _defineProperty(_json, 'about_title_section_4_intro', 'Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!'), _defineProperty(_json, 'about_your_name', 'Your name'), _defineProperty(_json, 'about_your_email', 'Your email'), _defineProperty(_json, 'about_your_message', 'Your message'), _defineProperty(_json, 'about_btn_send_msg', 'Send'), _defineProperty(_json, 'post_d_summary_information', 'Summary information'), _defineProperty(_json, 'post_d_views', 'Views'), _defineProperty(_json, 'post_d_status', 'Status'), _defineProperty(_json, 'post_d_type', 'Type'), _defineProperty(_json, 'post_d_distance', 'Distance'), _defineProperty(_json, 'post_d_report_this_post', 'Tell about this post'), _defineProperty(_json, 'post_description_t', 'Description'), _defineProperty(_json, 'post_location_place_t', 'Location'), _defineProperty(_json, 'post_comments_t', 'comments'), _defineProperty(_json, 'post_connect_to_user', 'Connect to user'), _defineProperty(_json, 'post_about_post', 'About this post'), _defineProperty(_json, 'post_comment', 'Comment'), _defineProperty(_json, 'post_comments', 'Comments'), _defineProperty(_json, 'messages_send', 'Send'), _defineProperty(_json, 'messages_for_user', 'Messages for user'), _defineProperty(_json, 'RELOAD_POST_TIME', 'Reload'), _defineProperty(_json, 'EDIT_POST', 'Edit'), _defineProperty(_json, 'TRASH_POST', 'Delete'), _defineProperty(_json, 'PUBLISHED_BY', 'Published by'), _json);
 	i18n.add('en', json);
 
 /***/ },
@@ -22373,6 +22376,9 @@
 	    READ_MORE: 'Читать дальше',
 	    COMMENTS: 'Комментариев',
 	    BTN_DONE: 'Готово',
+	    DELETE_POST: 'Удалить пост',
+	    TITLE_YES: 'Да',
+	    TITLE_NO: 'Нет',
 	
 	    // BANNER
 	    shiners_are: 'СВЕТЛЯЧКИ - ЭТО',
@@ -22479,7 +22485,7 @@
 	    about_btn_send_msg: 'Отправить',
 	
 	    // POST DETAILS
-	    post_d_summary_information: '',
+	    post_d_summary_information: 'Сводная информация',
 	    post_d_views: 'Просмотров',
 	    post_d_status: 'Статус',
 	    post_d_type: 'Тип',
@@ -22500,7 +22506,8 @@
 	    //MY POSTS
 	    RELOAD_POST_TIME: 'Перезапустить',
 	    EDIT_POST: 'Редактировать',
-	    TRASH_POST: 'Удалить'
+	    TRASH_POST: 'Удалить',
+	    PUBLISHED_BY: 'Опубликовано'
 	};
 	i18n.add('ru', json);
 
@@ -31746,83 +31753,83 @@
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
-	var _User = __webpack_require__(/*! ../data/Domain/User.js */ 118);
+	var _User = __webpack_require__(/*! ../data/Domain/User.js */ 120);
 	
 	var _User2 = _interopRequireDefault(_User);
 	
-	var _PostModel = __webpack_require__(/*! ../data/Post/PostModel.js */ 119);
+	var _PostModel = __webpack_require__(/*! ../data/Post/PostModel.js */ 121);
 	
 	var _PostModel2 = _interopRequireDefault(_PostModel);
 	
-	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 120);
+	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 122);
 	
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
-	var _CreatePostView = __webpack_require__(/*! ./posts/create/CreatePostView.js */ 122);
+	var _CreatePostView = __webpack_require__(/*! ./posts/create/CreatePostView.js */ 124);
 	
 	var _CreatePostView2 = _interopRequireDefault(_CreatePostView);
 	
-	var _PostsMyView = __webpack_require__(/*! ./posts/postsMy/PostsMyView.js */ 139);
+	var _PostsMyView = __webpack_require__(/*! ./posts/postsMy/PostsMyView.js */ 141);
 	
 	var _PostsMyView2 = _interopRequireDefault(_PostsMyView);
 	
-	var _chatsMyView = __webpack_require__(/*! ./chats/chatsMy/chatsMyView.js */ 144);
+	var _chatsMyView = __webpack_require__(/*! ./chats/chatsMy/chatsMyView.js */ 146);
 	
 	var _chatsMyView2 = _interopRequireDefault(_chatsMyView);
 	
-	var _ChatIdView = __webpack_require__(/*! ./chats/ChatIdView.js */ 151);
+	var _ChatIdView = __webpack_require__(/*! ./chats/ChatIdView.js */ 153);
 	
 	var _ChatIdView2 = _interopRequireDefault(_ChatIdView);
 	
-	var _DetailsView3 = __webpack_require__(/*! ./user/DetailsView.js */ 153);
+	var _DetailsView3 = __webpack_require__(/*! ./user/DetailsView.js */ 155);
 	
 	var _DetailsView4 = _interopRequireDefault(_DetailsView3);
 	
-	var _MessagesToUserView = __webpack_require__(/*! ./chats/native/MessagesToUserView.js */ 160);
+	var _MessagesToUserView = __webpack_require__(/*! ./chats/native/MessagesToUserView.js */ 162);
 	
 	var _MessagesToUserView2 = _interopRequireDefault(_MessagesToUserView);
 	
-	var _LoginView = __webpack_require__(/*! ./account/LoginView.js */ 169);
+	var _LoginView = __webpack_require__(/*! ./account/LoginView.js */ 171);
 	
 	var _LoginView2 = _interopRequireDefault(_LoginView);
 	
-	var _RegisterUserView = __webpack_require__(/*! ./account/RegisterUserView */ 173);
+	var _RegisterUserView = __webpack_require__(/*! ./account/RegisterUserView */ 175);
 	
 	var _RegisterUserView2 = _interopRequireDefault(_RegisterUserView);
 	
-	var _AboutView = __webpack_require__(/*! ./about/AboutView.js */ 176);
+	var _AboutView = __webpack_require__(/*! ./about/AboutView.js */ 178);
 	
 	var _AboutView2 = _interopRequireDefault(_AboutView);
 	
-	var _MassMediaView = __webpack_require__(/*! ./massMedia/MassMediaView.js */ 179);
+	var _MassMediaView = __webpack_require__(/*! ./massMedia/MassMediaView.js */ 181);
 	
 	var _MassMediaView2 = _interopRequireDefault(_MassMediaView);
 	
-	var _HowItWorksView = __webpack_require__(/*! ./howItWorks/HowItWorksView.js */ 182);
+	var _HowItWorksView = __webpack_require__(/*! ./howItWorks/HowItWorksView.js */ 184);
 	
 	var _HowItWorksView2 = _interopRequireDefault(_HowItWorksView);
 	
-	var _FogotPasswordView = __webpack_require__(/*! ./account/FogotPasswordView.js */ 184);
+	var _FogotPasswordView = __webpack_require__(/*! ./account/FogotPasswordView.js */ 186);
 	
 	var _FogotPasswordView2 = _interopRequireDefault(_FogotPasswordView);
 	
-	var _legalUserAgreementView = __webpack_require__(/*! ./legal/legalUserAgreementView */ 186);
+	var _legalUserAgreementView = __webpack_require__(/*! ./legal/legalUserAgreementView */ 188);
 	
 	var _legalUserAgreementView2 = _interopRequireDefault(_legalUserAgreementView);
 	
-	var _legalConfidentialView = __webpack_require__(/*! ./legal/legalConfidentialView */ 188);
+	var _legalConfidentialView = __webpack_require__(/*! ./legal/legalConfidentialView */ 190);
 	
 	var _legalConfidentialView2 = _interopRequireDefault(_legalConfidentialView);
 	
-	var _legalPostPublishingView = __webpack_require__(/*! ./legal/legalPostPublishingView */ 190);
+	var _legalPostPublishingView = __webpack_require__(/*! ./legal/legalPostPublishingView */ 192);
 	
 	var _legalPostPublishingView2 = _interopRequireDefault(_legalPostPublishingView);
 	
-	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 192);
+	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 194);
 	
 	var _blogHomeView2 = _interopRequireDefault(_blogHomeView);
 	
-	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 198);
+	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 200);
 	
 	var _blogPostIdView2 = _interopRequireDefault(_blogPostIdView);
 	
@@ -32452,6 +32459,10 @@
 	
 	var _CommentsListView2 = _interopRequireDefault(_CommentsListView);
 	
+	var _ConfirmView = __webpack_require__(/*! ../../sharedViews/ConfirmView.js */ 117);
+	
+	var _ConfirmView2 = _interopRequireDefault(_ConfirmView);
+	
 	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 67);
 	
 	var _loadGoogleMapsApi2 = _interopRequireDefault(_loadGoogleMapsApi);
@@ -32464,7 +32475,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./DetailsView.less */ 117);
+	__webpack_require__(/*! ./DetailsView.less */ 119);
 	
 	var _locationHelper = __webpack_require__(/*! ../../helpers/locationHelper.js */ 9);
 	
@@ -32485,19 +32496,58 @@
 	    template: _DetailsViewHbs2.default,
 	    collection: null,
 	    comments: null,
+	
+	    events: {
+	        'click .js-edit-post': 'editPost',
+	        'click .js-delete-post': 'clickDeleteBtn'
+	    },
+	
 	    regions: {
 	        'related': '#relatedPostsContainer',
 	        'comments': '#sh-comments'
 	    },
 	
 	    initialize: function initialize() {
-	        window.postDetails = this.model.toJSON();
+	        window.postDetails = this.model.toJSON(); //debug
 	        this.collection = new _AsteroidCollection2.default(null, { asteroid: this.model.asteroid });
 	        this.comments = new _AsteroidCollection2.default(null, { asteroid: this.model.asteroid });
 	        this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
 	        this.listenTo(_app2.default.user, 'login', this.render);
 	        this.listenTo(_app2.default.user, 'logout', this.render);
 	        this.listenTo(this.comments, 'after:load', this.initCommentsCount);
+	
+	        this.confirmAnswer = new Backbone.Model({ questions: null });
+	        this.listenTo(this.confirmAnswer, 'change', this.deletePost);
+	    },
+	    editPost: function editPost(e) {},
+	    clickDeleteBtn: function clickDeleteBtn(e) {
+	        e.stopPropagation();
+	        e.preventDefault();
+	
+	        var that = this,
+	            model = this.model.toJSON(),
+	            message = model.details.title || '';
+	
+	        //show modal window
+	        var title = i18n.getLanguage() === 'ru' ? 'Удаление поста' : 'Delete post';
+	        _app2.default.layout.showChildView('modal', new _ConfirmView2.default({ answer: this.confirmAnswer, title: title, message: message }));
+	    },
+	    deletePost: function deletePost(e) {
+	        var questions = this.confirmAnswer.get('questions');
+	
+	        var that = this,
+	            model = this.model.toJSON(),
+	            postId = model._id;
+	
+	        setTimeout(function () {
+	            if (questions) {
+	                that.model.loadByMethod('deletePost', postId, function () {
+	                    _app2.default.router.navigate('/posts/my', { trigger: true });
+	                });
+	            }
+	        }, 1500);
+	
+	        this.confirmAnswer.set('questions', null);
 	    },
 	    initCommentsCount: function initCommentsCount() {
 	        if (this.comments.size() > 0) {
@@ -32755,9 +32805,11 @@
 	/* WEBPACK VAR INJECTION */(function(moment, _) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='\r\n<main class="sh-content">\r\n    <div class="sh-post-details">\r\n        <div class="container">\r\n            <div class="sh-page-block">\r\n                <div class="sh-post-details-wrapper">\r\n                    \r\n                    <div class="sh-side-left">\r\n                        <h1>'+
+	__p+='<div id="confirmModal"></div>\r\n<main class="sh-content">\r\n    <div class="sh-post-details">\r\n        <div class="container">\r\n            <div class="sh-page-block">\r\n                <div class="sh-post-details-wrapper">\r\n                    \r\n                    <div class="sh-side-left">\r\n                        <h1>'+
 	((__t=(details.title))==null?'':__t)+
-	'</h1>\r\n                        <div class="sh-post-published">\r\n                            <div class="sh-post-written">\r\n                                <span><i class="fa fa-clock-o"></i> Опубликовано, '+
+	'</h1>\r\n                        <div class="sh-post-published">\r\n                            <div class="sh-post-written">\r\n                                <span><i class="fa fa-clock-o"></i> '+
+	((__t=(i18n('PUBLISHED_BY')))==null?'':__t)+
+	', '+
 	((__t=(moment(obj.timestamp.$date).fromNow()))==null?'':__t)+
 	', - до '+
 	((__t=(moment(obj.endDatePost.$date).format("ll")))==null?'':__t)+
@@ -32781,7 +32833,15 @@
 	((__t=( obj.duration.percent))==null?'':__t)+
 	'%"></span>\r\n                                </span>\r\n                            </div>\r\n                            ';
 	 } 
-	__p+='\r\n                        </div>\r\n\r\n                        <div class="sh-photos">\r\n                            <div class="single-photo">\r\n                                <div id="sh-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"singleItem": true, "autoPlay": false, "navigation": true, "pagination": true, "transitionStyle":"fade"}\'>\r\n                                    ';
+	__p+='\r\n                        </div>\r\n\r\n                        ';
+	if (obj.currentUser._id === user._id) { 
+	__p+='\r\n                            <div class="sh-post-toolbar">\r\n                                <div class="sh-post-toolbar-item">\r\n                                    <a class="ui sh-button small js-edit-post disabled">'+
+	((__t=(i18n('EDIT_POST')))==null?'':__t)+
+	'</a>\r\n                                </div>\r\n                                <div class="sh-post-toolbar-item">\r\n                                    <a class="ui sh-button standard create small js-delete-post">'+
+	((__t=(i18n('TRASH_POST')))==null?'':__t)+
+	'</a>\r\n                                </div>\r\n                            </div>\r\n                        ';
+	 } 
+	__p+='\r\n\r\n                        <div class="sh-photos">\r\n                            <div class="single-photo">\r\n                                <div id="sh-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"singleItem": true, "autoPlay": false, "navigation": true, "pagination": true, "transitionStyle":"fade"}\'>\r\n                                    ';
 	 if (_.size(details.photos)>0){ 
 	__p+='\r\n                                    ';
 	_.each(details.photos,function(photo){ 
@@ -32794,24 +32854,32 @@
 	__p+='\r\n                                    <div>\r\n                                        <div class="sh-responsive-no-image"><span></span></div>\r\n                                    </div>\r\n                                    ';
 	 } 
 	__p+='\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                                               \r\n                        <div class="sh-post-widget-composed hidden-md hidden-lg">\r\n                                                        \r\n                            <div class="sh-post-summary-information sh-info-header">\r\n                                <div class="sh-info-header-within">\r\n                                    <span>Сводная информация</span>\r\n                                </div>\r\n\r\n                                <ul class="sh-post-info sh-with-dotted">\r\n                                    ';
-	if(obj.stats) { 
-	__p+='\r\n                                    <li><div><span class="sh-item">Просмотров</span><span class="sh-item-right">'+
+	if(obj.stats.seenTotal) { 
+	__p+='\r\n                                    <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_views')))==null?'':__t)+
+	'</span><span class="sh-item-right">'+
 	((__t=(stats.seenTotal))==null?'':__t)+
 	'</span></div></li>\r\n                                    ';
 	 } 
 	__p+='\r\n                                    <!--';
 	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
-	__p+='-->\r\n                                    <li><div><span class="sh-item">Статус</span><span class="sh-item-right">'+
+	__p+='-->\r\n                                    <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_status')))==null?'':__t)+
+	'</span><span class="sh-item-right">'+
 	((__t=(user.online ? 'online' : 'offline'))==null?'':__t)+
 	'</span></div></li>\r\n                                    ';
 	if (obj.type) { 
-	__p+='\r\n                                    <li><div><span class="sh-item">Тип</span><span class="sh-item-right"><span class="label bg-type-category-'+
+	__p+='\r\n                                    <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_type')))==null?'':__t)+
+	'</span><span class="sh-item-right"><span class="label bg-type-category-'+
 	((__t=(obj.type))==null?'':__t)+
 	'">'+
 	((__t=(obj.type))==null?'':__t)+
 	'</span></span></div></li>\r\n                                    ';
 	 } 
-	__p+='\r\n                                    <li><div><span class="sh-item">Дистанция</span><span class="sh-item-right">';
+	__p+='\r\n                                    <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_distance')))==null?'':__t)+
+	'</span><span class="sh-item-right">';
 	if(obj.distance && obj.distanceType){ 
 	__p+=' '+
 	((__t=(distance>=0?distance.toFixed(1):'Не определена'))==null?'':__t)+
@@ -32825,7 +32893,13 @@
 	((__t=(details.price))==null?'':__t)+
 	'</div>\r\n                                        <div class="sh-price-prefix"></div>\r\n                                    </div>\r\n                                    <div class="sh-price-footer">за месяц</div>\r\n                                </div>\r\n                            </div>\r\n                            ';
 	 } 
-	__p+='\r\n\r\n                        </div>\r\n\r\n                        <div class="sh-post-tab-menu">\r\n                            <div class="sh-post-tab-menu-wrapper">\r\n                                <ul class="sh-post-tab-items">\r\n                                    <li class="sh-tab-item"><a class="active" href="#sh-description">Описание</a></li>\r\n                                    <li class="sh-tab-item"><a href="#sh-location">Местоположение</a></li>\r\n                                    <li class="sh-tab-item"><a href="#sh-review">Комментарии</a></li>\r\n                                </ul>\r\n                            </div>\r\n                           \r\n                            <div class="sh-post-tab-menu-sticky hidden"></div>\r\n                        </div>\r\n\r\n                        <div class="sh-post-creator">\r\n                            <div class="sh-post-creator-wrapper row">\r\n                                <div class="sh-post-creator-avatar col-md-3">\r\n                                    <a class="sh-creator-photo" href="/user/'+
+	__p+='\r\n\r\n                        </div>\r\n\r\n                        <div class="sh-post-tab-menu">\r\n                            <div class="sh-post-tab-menu-wrapper">\r\n                                <ul class="sh-post-tab-items">\r\n                                    <li class="sh-tab-item"><a class="active" href="#sh-description">'+
+	((__t=(i18n('post_description_t')))==null?'':__t)+
+	'</a></li>\r\n                                    <li class="sh-tab-item"><a href="#sh-location">'+
+	((__t=(i18n('post_location_place_t')))==null?'':__t)+
+	'</a></li>\r\n                                    <li class="sh-tab-item"><a href="#sh-review">'+
+	((__t=(i18n('post_comments_t')))==null?'':__t)+
+	'</a></li>\r\n                                </ul>\r\n                            </div>\r\n                           \r\n                            <div class="sh-post-tab-menu-sticky hidden"></div>\r\n                        </div>\r\n\r\n                        <div class="sh-post-creator">\r\n                            <div class="sh-post-creator-wrapper row">\r\n                                <div class="sh-post-creator-avatar col-md-3">\r\n                                    <a class="sh-creator-photo" href="/user/'+
 	((__t=(user._id))==null?'':__t)+
 	'">\r\n                                        <img class="sh-post-creator-username-avatar" src="'+
 	((__t=(user.image && user.image.imageUrl?'/Img/Index?url='+encodeURIComponent(user.image.imageUrl)+'&w=90&h=90':'/images/avatar.png'))==null?'':__t)+
@@ -32843,11 +32917,17 @@
 	((__t=(user._id))==null?'':__t)+
 	'?postId='+
 	((__t=(_id))==null?'':__t)+
-	'" class="ui sh-button standard action action-link">Связаться с пользователем</a>\r\n                                        </div>\r\n                                    </div>\r\n                                    ';
+	'" class="ui sh-button standard action action-link">'+
+	((__t=(i18n('post_connect_to_user')))==null?'':__t)+
+	'</a>\r\n                                        </div>\r\n                                    </div>\r\n                                    ';
 	 } 
-	__p+='\r\n\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div id="sh-description" class="sh-post-description sh-section">\r\n                            <div class="sh-post-description-wrapper">\r\n                                <h4>Об этом посте</h4>\r\n                                <p>'+
+	__p+='\r\n\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div id="sh-description" class="sh-post-description sh-section">\r\n                            <div class="sh-post-description-wrapper">\r\n                                <h4>'+
+	((__t=(i18n('post_about_post')))==null?'':__t)+
+	'</h4>\r\n                                <p>'+
 	((__t=(details.description))==null?'':__t)+
-	'</p>\r\n                            </div>\r\n                        </div>\r\n\r\n\r\n                        <div id="sh-location" class="sh-post-location sh-section">\r\n                            <div class="sh-post-location-wrapper">\r\n                                <h4>Местоположение</h4>\r\n                                <div class="sh-post-location-info">\r\n                                    <div class="sh-post-location-distance">\r\n                                        <i class="fa fa-location-arrow" aria-hidden="true"></i> От вас <span>';
+	'</p>\r\n                            </div>\r\n                        </div>\r\n\r\n\r\n                        <div id="sh-location" class="sh-post-location sh-section">\r\n                            <div class="sh-post-location-wrapper">\r\n                                <h4>'+
+	((__t=(i18n('post_location_place_t')))==null?'':__t)+
+	'</h4>\r\n                                <div class="sh-post-location-info">\r\n                                    <div class="sh-post-location-distance">\r\n                                        <i class="fa fa-location-arrow" aria-hidden="true"></i> От вас <span>';
 	if(obj.distance && obj.distanceType){ 
 	__p+=' '+
 	((__t=(distance>=0?distance.toFixed(1):'Дистанция не определена'))==null?'':__t)+
@@ -32869,31 +32949,43 @@
 	 } else { 
 	__p+='\r\n                                        <span>Местоположение не определено</span>\r\n                                        ';
 	 } 
-	__p+='\r\n                                    </div>\r\n                                </div>\r\n\r\n                                <div id="sh-map"></div>\r\n                            </div>\r\n                        </div>\r\n                                                                       \r\n                        <div id="sh-review" class="sh-post-review sh-section">\r\n                            <div class="sh-post-reviews-wrapper">\r\n                                <h4>Комментарии <span></span></h4>\r\n                                <div class="sh-post-form-review">\r\n                                    <div id="sh-comments" class="sh-post-reviews"></div>\r\n                                </div>\r\n                            </div>\r\n                        </div>                       \r\n\r\n                    </div>\r\n                    \r\n                    <div class="sh-side-right">\r\n                        <div class="sh-post-widget sh-visible-md-flex sh-visible-lg-flex">\r\n                            ';
+	__p+='\r\n                                    </div>\r\n                                </div>\r\n\r\n                                <div id="sh-map"></div>\r\n                            </div>\r\n                        </div>\r\n                                                                       \r\n                        <div id="sh-review" class="sh-post-review sh-section">\r\n                            <div class="sh-post-reviews-wrapper">\r\n                                <h4>'+
+	((__t=(i18n('post_comments_t')))==null?'':__t)+
+	' <span></span></h4>\r\n                                <div class="sh-post-form-review">\r\n                                    <div id="sh-comments" class="sh-post-reviews"></div>\r\n                                </div>\r\n                            </div>\r\n                        </div>                       \r\n\r\n                    </div>\r\n                    \r\n                    <div class="sh-side-right">\r\n                        <div class="sh-post-widget sh-visible-md-flex sh-visible-lg-flex">\r\n                            ';
 	if (details.price) { 
 	__p+='                            \r\n                            <div class="sh-post-top-price">\r\n                                <div class="sh-price-wrapper sh-rub">\r\n                                    <div class="sh-price-number">'+
 	((__t=(details.price))==null?'':__t)+
 	'</div>\r\n                                    <div class="sh-price-prefix"></div>\r\n                                </div>\r\n                                <div class="sh-price-footer">за месяц</div>\r\n                            </div>\r\n                            ';
 	 } 
-	__p+='\r\n                        </div>\r\n\r\n                        <div class="sh-post-summary-information sh-info-header visible-md visible-lg">\r\n                            <div class="sh-info-header-within">\r\n                                <span>Сводная информация</span>\r\n                            </div>\r\n\r\n                            <ul class="sh-post-info sh-with-dotted">\r\n                                ';
-	if(obj.stats) { 
-	__p+='\r\n                                <li><div><span class="sh-item">Просмотров</span><span class="sh-item-right">'+
+	__p+='\r\n                        </div>\r\n\r\n                        <div class="sh-post-summary-information sh-info-header visible-md visible-lg">\r\n                            <div class="sh-info-header-within">\r\n                                <span>'+
+	((__t=(i18n('post_d_summary_information')))==null?'':__t)+
+	'</span>\r\n                            </div>\r\n                            <ul class="sh-post-info sh-with-dotted">\r\n                                ';
+	if(obj.stats.seenTotal) { 
+	__p+='\r\n                                <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_views')))==null?'':__t)+
+	'</span><span class="sh-item-right">'+
 	((__t=(stats.seenTotal))==null?'':__t)+
 	'</span></div></li>\r\n                                ';
 	 } 
 	__p+='\r\n                                <!--';
 	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
-	__p+='-->\r\n                                <li><div><span class="sh-item">Статус</span><span class="sh-item-right">'+
+	__p+='-->\r\n                                <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_status')))==null?'':__t)+
+	'</span><span class="sh-item-right">'+
 	((__t=(user.online ? 'online' : 'offline'))==null?'':__t)+
 	'</span></div></li>\r\n                                ';
 	if (obj.type) { 
-	__p+='\r\n                                <li><div><span class="sh-item">Тип</span><span class="sh-item-right"><span class="label bg-type-category-'+
+	__p+='\r\n                                <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_type')))==null?'':__t)+
+	'</span><span class="sh-item-right"><span class="label bg-type-category-'+
 	((__t=(obj.type))==null?'':__t)+
 	'">'+
 	((__t=(obj.type))==null?'':__t)+
 	'</span></span></div></li>\r\n                                ';
 	 } 
-	__p+='\r\n                                <li><div><span class="sh-item">Дистанция</span><span class="sh-item-right">';
+	__p+='\r\n                                <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_distance')))==null?'':__t)+
+	'</span><span class="sh-item-right">';
 	if(obj.distance && obj.distanceType){ 
 	__p+=' '+
 	((__t=(distance>=0?distance.toFixed(1):'Не определена'))==null?'':__t)+
@@ -33837,6 +33929,106 @@
 
 /***/ },
 /* 117 */
+/*!********************************************!*\
+  !*** ./wwwroot/sharedViews/ConfirmView.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ConfirmViewHbs = __webpack_require__(/*! ./ConfirmView.hbs.html */ 118);
+	
+	var _ConfirmViewHbs2 = _interopRequireDefault(_ConfirmViewHbs);
+	
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone4 = _interopRequireDefault(_backbone3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _ConfirmViewHbs2.default,
+	    className: 'modal fade',
+	
+	    attributes: {
+	        'tabindex': '-1',
+	        'role': 'dialog',
+	        'aria-hidden': 'true'
+	    },
+	
+	    events: {
+	        'hidden.bs.modal': 'hide',
+	        'click .js-btn-not': 'btnNot',
+	        'click .js-btn-yes': 'btnYes'
+	    },
+	
+	    btnNot: function btnNot(e) {
+	        var modelAnswer = this.model.get('answer');
+	        //Can i use try/catch here?
+	        if (modelAnswer) {
+	            modelAnswer.set('questions', false);
+	        }
+	    },
+	    hide: function hide(e) {
+	        this.$el.trigger('click', '[data-dismiss="modal"]');
+	    },
+	    btnYes: function btnYes(e) {
+	        var modelAnswer = this.model.get('answer');
+	        //Can i use try/catch here?
+	        if (modelAnswer) {
+	            modelAnswer.set('questions', true);
+	        }
+	        this.$el.triggerHandler('hidden.bs.modal');
+	    },
+	    initialize: function initialize(options) {
+	        var opts = options || {};
+	        this.model = new _backbone4.default.Model({ answer: opts.answer, title: opts.title, message: opts.message || false });
+	    },
+	    onAttach: function onAttach() {
+	        this.$el.modal();
+	    }
+	});
+	
+	exports.default = View;
+
+/***/ },
+/* 118 */
+/*!**************************************************!*\
+  !*** ./wwwroot/sharedViews/ConfirmView.hbs.html ***!
+  \**************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="modal-dialog modal-lg">\r\n    <div class="modal-content">\r\n        <div class="modal-header">\r\n            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\r\n            <h4 class="modal-title" id="myLargeModalLabel">'+
+	((__t=( obj.title || ''))==null?'':__t)+
+	'</h4>\r\n        </div>\r\n\r\n        <div class="modal-body">\r\n            ';
+	if(obj.message) { 
+	__p+='<div class="sh-text-center" style="font-size: 28px;line-height: 1.2;font-weight: 400;color: #3a4751">'+
+	((__t=( obj.message))==null?'':__t)+
+	'</div>';
+	 } 
+	__p+='\r\n            <hr />\r\n            <div class="sh-text-center">\r\n                <button type="button" class="ui sh-button standard create big js-btn-yes">'+
+	((__t=(i18n('TITLE_YES')))==null?'':__t)+
+	'</button>\r\n                <button type="button" class="ui sh-button standard action big js-btn-not" data-dismiss="modal">'+
+	((__t=(i18n('TITLE_NO')))==null?'':__t)+
+	'</button>\r\n            </div>\r\n        </div>        \r\n    </div>\r\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 119 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/posts/DetailsView.less ***!
   \************************************************/
@@ -33845,7 +34037,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 118 */
+/* 120 */
 /*!*************************************!*\
   !*** ./wwwroot/data/Domain/User.js ***!
   \*************************************/
@@ -33872,7 +34064,7 @@
 	});
 
 /***/ },
-/* 119 */
+/* 121 */
 /*!****************************************!*\
   !*** ./wwwroot/data/Post/PostModel.js ***!
   \****************************************/
@@ -34029,7 +34221,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 120 */
+/* 122 */
 /*!**********************************************!*\
   !*** ./wwwroot/sharedViews/PreloaderView.js ***!
   \**********************************************/
@@ -34045,7 +34237,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PreloaderViewHbs = __webpack_require__(/*! ./PreloaderView.hbs.html */ 121);
+	var _PreloaderViewHbs = __webpack_require__(/*! ./PreloaderView.hbs.html */ 123);
 	
 	var _PreloaderViewHbs2 = _interopRequireDefault(_PreloaderViewHbs);
 	
@@ -34059,7 +34251,7 @@
 	exports.default = View;
 
 /***/ },
-/* 121 */
+/* 123 */
 /*!****************************************************!*\
   !*** ./wwwroot/sharedViews/PreloaderView.hbs.html ***!
   \****************************************************/
@@ -34075,7 +34267,7 @@
 
 
 /***/ },
-/* 122 */
+/* 124 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/CreatePostView.js ***!
   \********************************************************/
@@ -34091,7 +34283,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _CreatePostViewHbs = __webpack_require__(/*! ./CreatePostView.hbs.html */ 123);
+	var _CreatePostViewHbs = __webpack_require__(/*! ./CreatePostView.hbs.html */ 125);
 	
 	var _CreatePostViewHbs2 = _interopRequireDefault(_CreatePostViewHbs);
 	
@@ -34099,31 +34291,31 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _scriptjs = __webpack_require__(/*! scriptjs */ 124);
+	var _scriptjs = __webpack_require__(/*! scriptjs */ 126);
 	
 	var _scriptjs2 = _interopRequireDefault(_scriptjs);
 	
-	var _UploadedImagesView = __webpack_require__(/*! ./UploadedImagesView.js */ 125);
+	var _UploadedImagesView = __webpack_require__(/*! ./UploadedImagesView.js */ 127);
 	
 	var _UploadedImagesView2 = _interopRequireDefault(_UploadedImagesView);
 	
-	var _SelectedLocationView = __webpack_require__(/*! ./SelectedLocationView.js */ 128);
+	var _SelectedLocationView = __webpack_require__(/*! ./SelectedLocationView.js */ 130);
 	
 	var _SelectedLocationView2 = _interopRequireDefault(_SelectedLocationView);
 	
-	var _ModalContainerView = __webpack_require__(/*! ../../../sharedViews/ModalContainerView.js */ 130);
+	var _ModalContainerView = __webpack_require__(/*! ../../../sharedViews/ModalContainerView.js */ 132);
 	
 	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
 	
-	var _SuccessView = __webpack_require__(/*! ../../../sharedViews/SuccessView.js */ 132);
+	var _SuccessView = __webpack_require__(/*! ../../../sharedViews/SuccessView.js */ 134);
 	
 	var _SuccessView2 = _interopRequireDefault(_SuccessView);
 	
-	var _LocationMapView = __webpack_require__(/*! ./LocationMapView.js */ 134);
+	var _LocationMapView = __webpack_require__(/*! ./LocationMapView.js */ 136);
 	
 	var _LocationMapView2 = _interopRequireDefault(_LocationMapView);
 	
-	__webpack_require__(/*! bootstrap-datepicker */ 138);
+	__webpack_require__(/*! bootstrap-datepicker */ 140);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -34383,7 +34575,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 123 */
+/* 125 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/CreatePostView.hbs.html ***!
   \**************************************************************/
@@ -34408,7 +34600,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 124 */
+/* 126 */
 /*!***********************************!*\
   !*** ./~/scriptjs/dist/script.js ***!
   \***********************************/
@@ -34544,7 +34736,7 @@
 	});
 
 /***/ },
-/* 125 */
+/* 127 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/UploadedImagesView.js ***!
   \************************************************************/
@@ -34560,7 +34752,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ImageView = __webpack_require__(/*! ./ImageView.js */ 126);
+	var _ImageView = __webpack_require__(/*! ./ImageView.js */ 128);
 	
 	var _ImageView2 = _interopRequireDefault(_ImageView);
 	
@@ -34573,7 +34765,7 @@
 	});
 
 /***/ },
-/* 126 */
+/* 128 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/ImageView.js ***!
   \***************************************************/
@@ -34589,7 +34781,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ImageViewHbs = __webpack_require__(/*! ./ImageView.hbs.html */ 127);
+	var _ImageViewHbs = __webpack_require__(/*! ./ImageView.hbs.html */ 129);
 	
 	var _ImageViewHbs2 = _interopRequireDefault(_ImageViewHbs);
 	
@@ -34610,7 +34802,7 @@
 	});
 
 /***/ },
-/* 127 */
+/* 129 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/ImageView.hbs.html ***!
   \*********************************************************/
@@ -34636,7 +34828,7 @@
 
 
 /***/ },
-/* 128 */
+/* 130 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.js ***!
   \**************************************************************/
@@ -34652,7 +34844,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SelectedLocationViewHbs = __webpack_require__(/*! ./SelectedLocationView.hbs.html */ 129);
+	var _SelectedLocationViewHbs = __webpack_require__(/*! ./SelectedLocationView.hbs.html */ 131);
 	
 	var _SelectedLocationViewHbs2 = _interopRequireDefault(_SelectedLocationViewHbs);
 	
@@ -34675,7 +34867,7 @@
 	//              obscuredCoords
 
 /***/ },
-/* 129 */
+/* 131 */
 /*!********************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.hbs.html ***!
   \********************************************************************/
@@ -34701,7 +34893,7 @@
 
 
 /***/ },
-/* 130 */
+/* 132 */
 /*!***************************************************!*\
   !*** ./wwwroot/sharedViews/ModalContainerView.js ***!
   \***************************************************/
@@ -34717,7 +34909,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ModalContainerViewHbs = __webpack_require__(/*! ./ModalContainerView.hbs.html */ 131);
+	var _ModalContainerViewHbs = __webpack_require__(/*! ./ModalContainerView.hbs.html */ 133);
 	
 	var _ModalContainerViewHbs2 = _interopRequireDefault(_ModalContainerViewHbs);
 	
@@ -34765,7 +34957,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 131 */
+/* 133 */
 /*!*********************************************************!*\
   !*** ./wwwroot/sharedViews/ModalContainerView.hbs.html ***!
   \*********************************************************/
@@ -34774,16 +34966,16 @@
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
-	__p+='<div class="modal-dialog modal-lg">\n    <div class="modal-content">\n\n        <div class="modal-header">\n            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\n            <h4 class="modal-title" id="myLargeModalLabel">'+
+	__p+='<div class="modal-dialog modal-lg">\n    <div class="modal-content">\n        <div class="modal-header">\n            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\n            <h4 class="modal-title" id="myLargeModalLabel">'+
 	((__t=(obj.title||''))==null?'':__t)+
-	'</h4>\n        </div>\n\n        <div class="modal-body">\n            \n        </div>\n\n    </div>\n</div>';
+	'</h4>\n        </div>\n        <div class="modal-body"></div>\n    </div>\n</div>';
 	}
 	return __p;
 	};
 
 
 /***/ },
-/* 132 */
+/* 134 */
 /*!********************************************!*\
   !*** ./wwwroot/sharedViews/SuccessView.js ***!
   \********************************************/
@@ -34799,7 +34991,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SuccessView = __webpack_require__(/*! ./SuccessView.html */ 133);
+	var _SuccessView = __webpack_require__(/*! ./SuccessView.html */ 135);
 	
 	var _SuccessView2 = _interopRequireDefault(_SuccessView);
 	
@@ -34824,7 +35016,7 @@
 	exports.default = View;
 
 /***/ },
-/* 133 */
+/* 135 */
 /*!**********************************************!*\
   !*** ./wwwroot/sharedViews/SuccessView.html ***!
   \**********************************************/
@@ -34850,7 +35042,7 @@
 
 
 /***/ },
-/* 134 */
+/* 136 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationMapView.js ***!
   \*********************************************************/
@@ -34866,7 +35058,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _LocationMapViewHbs = __webpack_require__(/*! ./LocationMapView.hbs.html */ 135);
+	var _LocationMapViewHbs = __webpack_require__(/*! ./LocationMapView.hbs.html */ 137);
 	
 	var _LocationMapViewHbs2 = _interopRequireDefault(_LocationMapViewHbs);
 	
@@ -34874,11 +35066,11 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _LocationBindToUserPositionHbs = __webpack_require__(/*! ./LocationBindToUserPosition.hbs.html */ 136);
+	var _LocationBindToUserPositionHbs = __webpack_require__(/*! ./LocationBindToUserPosition.hbs.html */ 138);
 	
 	var _LocationBindToUserPositionHbs2 = _interopRequireDefault(_LocationBindToUserPositionHbs);
 	
-	var _LocationSetButtonHbs = __webpack_require__(/*! ./LocationSetButton.hbs.html */ 137);
+	var _LocationSetButtonHbs = __webpack_require__(/*! ./LocationSetButton.hbs.html */ 139);
 	
 	var _LocationSetButtonHbs2 = _interopRequireDefault(_LocationSetButtonHbs);
 	
@@ -35039,7 +35231,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 135 */
+/* 137 */
 /*!***************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationMapView.hbs.html ***!
   \***************************************************************/
@@ -35055,7 +35247,7 @@
 
 
 /***/ },
-/* 136 */
+/* 138 */
 /*!**************************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationBindToUserPosition.hbs.html ***!
   \**************************************************************************/
@@ -35071,7 +35263,7 @@
 
 
 /***/ },
-/* 137 */
+/* 139 */
 /*!*****************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationSetButton.hbs.html ***!
   \*****************************************************************/
@@ -35089,7 +35281,7 @@
 
 
 /***/ },
-/* 138 */
+/* 140 */
 /*!****************************************************************!*\
   !*** ./~/bootstrap-datepicker/dist/js/bootstrap-datepicker.js ***!
   \****************************************************************/
@@ -36934,7 +37126,7 @@
 	});
 
 /***/ },
-/* 139 */
+/* 141 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostsMyView.js ***!
   \******************************************************/
@@ -36950,11 +37142,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PostsMyViewHbs = __webpack_require__(/*! ./PostsMyView.hbs.html */ 140);
+	var _PostsMyViewHbs = __webpack_require__(/*! ./PostsMyView.hbs.html */ 142);
 	
 	var _PostsMyViewHbs2 = _interopRequireDefault(_PostsMyViewHbs);
 	
-	var _PostItemView = __webpack_require__(/*! ./PostItemView */ 141);
+	var _PostItemView = __webpack_require__(/*! ./PostItemView */ 143);
 	
 	var _PostItemView2 = _interopRequireDefault(_PostItemView);
 	
@@ -36962,7 +37154,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./PostMyView.less */ 143);
+	__webpack_require__(/*! ./PostMyView.less */ 145);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36975,7 +37167,7 @@
 	exports.default = View;
 
 /***/ },
-/* 140 */
+/* 142 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostsMyView.hbs.html ***!
   \************************************************************/
@@ -36991,7 +37183,7 @@
 
 
 /***/ },
-/* 141 */
+/* 143 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostItemView.js ***!
   \*******************************************************/
@@ -37007,9 +37199,13 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _PostItemViewHbs = __webpack_require__(/*! ./PostItemView.hbs.html */ 142);
+	var _PostItemViewHbs = __webpack_require__(/*! ./PostItemView.hbs.html */ 144);
 	
 	var _PostItemViewHbs2 = _interopRequireDefault(_PostItemViewHbs);
+	
+	var _ConfirmView = __webpack_require__(/*! ../../../sharedViews/ConfirmView.js */ 117);
+	
+	var _ConfirmView2 = _interopRequireDefault(_ConfirmView);
 	
 	var _app = __webpack_require__(/*! ../../app.js */ 15);
 	
@@ -37032,6 +37228,10 @@
 	    onBeforeRender: function onBeforeRender() {
 	        this.getDistance();
 	        this.getPostState();
+	    },
+	    initialize: function initialize() {
+	        this.confirmAnswer = new Backbone.Model({ questions: null });
+	        this.listenTo(this.confirmAnswer, 'change', this.deletePost);
 	    },
 	    onRender: function onRender() {},
 	    getDistance: function getDistance() {
@@ -37058,32 +37258,47 @@
 	
 	
 	    events: {
-	        'click .js-delete-post': 'deletePost',
-	
+	        'click .js-delete-post': 'clickDeleteBtn',
 	        '.js-edit-my-post click': function jsEditMyPostClick() {
 	            debugger;
 	        }
 	    },
 	
-	    deletePost: function deletePost(e) {
+	    clickDeleteBtn: function clickDeleteBtn(e) {
 	        e.stopPropagation();
 	        e.preventDefault();
 	
 	        var that = this,
 	            model = this.model.toJSON(),
+	            message = model.details.title || '';
+	
+	        //show modal window
+	        var title = i18n.getLanguage() === 'ru' ? 'Удаление поста' : 'Delete post';
+	        _app2.default.layout.showChildView('modal', new _ConfirmView2.default({ answer: this.confirmAnswer, title: title, message: message }));
+	    },
+	    deletePost: function deletePost(e) {
+	        var questions = this.confirmAnswer.get('questions');
+	
+	        var that = this,
+	            model = this.model.toJSON(),
 	            postId = model._id;
 	
-	        // load by menthod removePost        
-	        this.model.loadByMethod('deletePost', postId, function () {
-	            that.model.collection.remove(that.model);
-	        });
+	        setTimeout(function () {
+	            if (questions) {
+	                that.model.loadByMethod('deletePost', postId, function () {
+	                    that.model.collection.remove(that.model);
+	                });
+	            }
+	        }, 1500);
+	
+	        this.confirmAnswer.set('questions', null);
 	    }
 	});
 	exports.default = View;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 142 */
+/* 144 */
 /*!*************************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostItemView.hbs.html ***!
   \*************************************************************/
@@ -37152,7 +37367,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 143 */
+/* 145 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/posts/postsMy/PostMyView.less ***!
   \*******************************************************/
@@ -37161,7 +37376,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 144 */
+/* 146 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.js ***!
   \******************************************************/
@@ -37177,11 +37392,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _chatsMyViewHbs = __webpack_require__(/*! ./chatsMyView.hbs.html */ 145);
+	var _chatsMyViewHbs = __webpack_require__(/*! ./chatsMyView.hbs.html */ 147);
 	
 	var _chatsMyViewHbs2 = _interopRequireDefault(_chatsMyViewHbs);
 	
-	var _chatItemView = __webpack_require__(/*! ./chatItemView */ 146);
+	var _chatItemView = __webpack_require__(/*! ./chatItemView */ 148);
 	
 	var _chatItemView2 = _interopRequireDefault(_chatItemView);
 	
@@ -37196,7 +37411,7 @@
 	exports.default = View;
 
 /***/ },
-/* 145 */
+/* 147 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.hbs.html ***!
   \************************************************************/
@@ -37214,7 +37429,7 @@
 
 
 /***/ },
-/* 146 */
+/* 148 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.js ***!
   \*******************************************************/
@@ -37230,7 +37445,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _chatItemViewHbs = __webpack_require__(/*! ./chatItemView.hbs.html */ 147);
+	var _chatItemViewHbs = __webpack_require__(/*! ./chatItemView.hbs.html */ 149);
 	
 	var _chatItemViewHbs2 = _interopRequireDefault(_chatItemViewHbs);
 	
@@ -37238,9 +37453,9 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./chatItemView.css */ 148);
+	__webpack_require__(/*! ./chatItemView.css */ 150);
 	
-	__webpack_require__(/*! ./myChatItemView.less */ 150);
+	__webpack_require__(/*! ./myChatItemView.less */ 152);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37265,7 +37480,7 @@
 	exports.default = View;
 
 /***/ },
-/* 147 */
+/* 149 */
 /*!*************************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.hbs.html ***!
   \*************************************************************/
@@ -37302,7 +37517,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 148 */
+/* 150 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.css ***!
   \********************************************************/
@@ -37311,7 +37526,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./chatItemView.css */ 149);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./chatItemView.css */ 151);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 51)(content, {});
@@ -37331,7 +37546,7 @@
 	}
 
 /***/ },
-/* 149 */
+/* 151 */
 /*!***********************************************************************!*\
   !*** ./~/css-loader!./wwwroot/homeApp/chats/chatsMy/chatItemView.css ***!
   \***********************************************************************/
@@ -37341,7 +37556,7 @@
 	exports.push([module.id, ".bz-chat-item .bz-user-avatar {\n  float: left;\n  top: 0;\n  left: 0;\n  padding-right: 10px;\n}\n\n.bz-chat-item .bz-avatar {\n\n  background-size: cover;\n  background-position: center;\n  -webkit-border-radius: 2px;\n  -moz-border-radius: 2px;\n  border-radius: 2px;\n}\n.bz-chat-item .bz-avatar img {\n  width: 50px;\n  height: 50px;\n}\n.bz-chat-item .bz-last-timestamp {\n  font-style: italic;\n  font-size: 12px;\n  padding-top: 12px;\n}\n.bz-chat-item .bz-last-message {\n  font-weight: bold;\n}\n/* temp, not good solution: */\ndiv.blog-post-item {\n  margin-bottom: 10px;\n  padding-bottom: 30px;\n}", ""]);
 
 /***/ },
-/* 150 */
+/* 152 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/myChatItemView.less ***!
   \***********************************************************/
@@ -37350,7 +37565,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 151 */
+/* 153 */
 /*!*********************************************!*\
   !*** ./wwwroot/homeApp/chats/ChatIdView.js ***!
   \*********************************************/
@@ -37366,7 +37581,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ChatIdViewHbs = __webpack_require__(/*! ./ChatIdView.hbs.html */ 152);
+	var _ChatIdViewHbs = __webpack_require__(/*! ./ChatIdView.hbs.html */ 154);
 	
 	var _ChatIdViewHbs2 = _interopRequireDefault(_ChatIdViewHbs);
 	
@@ -37399,7 +37614,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 152 */
+/* 154 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/chats/ChatIdView.hbs.html ***!
   \***************************************************/
@@ -37415,7 +37630,7 @@
 
 
 /***/ },
-/* 153 */
+/* 155 */
 /*!*********************************************!*\
   !*** ./wwwroot/homeApp/user/DetailsView.js ***!
   \*********************************************/
@@ -37435,15 +37650,15 @@
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 154);
+	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 156);
 	
 	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
 	
-	var _SendMessageView = __webpack_require__(/*! ./SendMessageView.js */ 155);
+	var _SendMessageView = __webpack_require__(/*! ./SendMessageView.js */ 157);
 	
 	var _SendMessageView2 = _interopRequireDefault(_SendMessageView);
 	
-	var _ProfileEditView = __webpack_require__(/*! ./ProfileEditView.js */ 158);
+	var _ProfileEditView = __webpack_require__(/*! ./ProfileEditView.js */ 160);
 	
 	var _ProfileEditView2 = _interopRequireDefault(_ProfileEditView);
 	
@@ -37451,7 +37666,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _ModalContainerView = __webpack_require__(/*! ../../sharedViews/ModalContainerView.js */ 130);
+	var _ModalContainerView = __webpack_require__(/*! ../../sharedViews/ModalContainerView.js */ 132);
 	
 	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
 	
@@ -37542,7 +37757,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 154 */
+/* 156 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/user/DetailsView.hbs.html ***!
   \***************************************************/
@@ -37649,7 +37864,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 155 */
+/* 157 */
 /*!*************************************************!*\
   !*** ./wwwroot/homeApp/user/SendMessageView.js ***!
   \*************************************************/
@@ -37665,7 +37880,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SendMessageViewHbs = __webpack_require__(/*! ./SendMessageView.hbs.html */ 156);
+	var _SendMessageViewHbs = __webpack_require__(/*! ./SendMessageView.hbs.html */ 158);
 	
 	var _SendMessageViewHbs2 = _interopRequireDefault(_SendMessageViewHbs);
 	
@@ -37673,7 +37888,7 @@
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	__webpack_require__(/*! ./SendMessageView.less */ 157);
+	__webpack_require__(/*! ./SendMessageView.less */ 159);
 	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
@@ -37735,7 +37950,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 156 */
+/* 158 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/user/SendMessageView.hbs.html ***!
   \*******************************************************/
@@ -37753,7 +37968,7 @@
 
 
 /***/ },
-/* 157 */
+/* 159 */
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/user/SendMessageView.less ***!
   \***************************************************/
@@ -37762,7 +37977,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 158 */
+/* 160 */
 /*!*************************************************!*\
   !*** ./wwwroot/homeApp/user/ProfileEditView.js ***!
   \*************************************************/
@@ -37778,7 +37993,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _ProfileEditViewHbs = __webpack_require__(/*! ./ProfileEditView.hbs.html */ 159);
+	var _ProfileEditViewHbs = __webpack_require__(/*! ./ProfileEditView.hbs.html */ 161);
 	
 	var _ProfileEditViewHbs2 = _interopRequireDefault(_ProfileEditViewHbs);
 	
@@ -37909,7 +38124,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 159 */
+/* 161 */
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/user/ProfileEditView.hbs.html ***!
   \*******************************************************/
@@ -37960,7 +38175,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 160 */
+/* 162 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.js ***!
   \************************************************************/
@@ -37976,11 +38191,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MessagesToUserViewHbs = __webpack_require__(/*! ./MessagesToUserView.hbs.html */ 161);
+	var _MessagesToUserViewHbs = __webpack_require__(/*! ./MessagesToUserView.hbs.html */ 163);
 	
 	var _MessagesToUserViewHbs2 = _interopRequireDefault(_MessagesToUserViewHbs);
 	
-	var _MessagesListView = __webpack_require__(/*! ./MessagesListView.js */ 162);
+	var _MessagesListView = __webpack_require__(/*! ./MessagesListView.js */ 164);
 	
 	var _MessagesListView2 = _interopRequireDefault(_MessagesListView);
 	
@@ -37988,7 +38203,7 @@
 	
 	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
 	
-	__webpack_require__(/*! ./messagesToUserView.less */ 168);
+	__webpack_require__(/*! ./messagesToUserView.less */ 170);
 	
 	var _app = __webpack_require__(/*! ../../app.js */ 15);
 	
@@ -38112,7 +38327,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3), __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 161 */
+/* 163 */
 /*!******************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.hbs.html ***!
   \******************************************************************/
@@ -38138,7 +38353,7 @@
 
 
 /***/ },
-/* 162 */
+/* 164 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesListView.js ***!
   \**********************************************************/
@@ -38154,11 +38369,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _messagesItemView = __webpack_require__(/*! ./messagesItemView.js */ 163);
+	var _messagesItemView = __webpack_require__(/*! ./messagesItemView.js */ 165);
 	
 	var _messagesItemView2 = _interopRequireDefault(_messagesItemView);
 	
-	var _NoMessagesView = __webpack_require__(/*! ./NoMessagesView.js */ 166);
+	var _NoMessagesView = __webpack_require__(/*! ./NoMessagesView.js */ 168);
 	
 	var _NoMessagesView2 = _interopRequireDefault(_NoMessagesView);
 	
@@ -38191,7 +38406,7 @@
 	exports.default = View;
 
 /***/ },
-/* 163 */
+/* 165 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messagesItemView.js ***!
   \**********************************************************/
@@ -38207,11 +38422,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 164);
+	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 166);
 	
 	var _MessagesItemViewHbs2 = _interopRequireDefault(_MessagesItemViewHbs);
 	
-	__webpack_require__(/*! ./messageItemView.less */ 165);
+	__webpack_require__(/*! ./messageItemView.less */ 167);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38265,7 +38480,7 @@
 	exports.default = View;
 
 /***/ },
-/* 164 */
+/* 166 */
 /*!****************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/MessagesItemView.hbs.html ***!
   \****************************************************************/
@@ -38324,7 +38539,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 165 */
+/* 167 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messageItemView.less ***!
   \***********************************************************/
@@ -38333,7 +38548,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 166 */
+/* 168 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/NoMessagesView.js ***!
   \********************************************************/
@@ -38349,7 +38564,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 167);
+	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 169);
 	
 	var _NoMessagesViewHbs2 = _interopRequireDefault(_NoMessagesViewHbs);
 	
@@ -38363,7 +38578,7 @@
 	exports.default = View;
 
 /***/ },
-/* 167 */
+/* 169 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/NoMessagesView.hbs.html ***!
   \**************************************************************/
@@ -38379,7 +38594,7 @@
 
 
 /***/ },
-/* 168 */
+/* 170 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messagesToUserView.less ***!
   \**************************************************************/
@@ -38388,7 +38603,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 169 */
+/* 171 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/account/LoginView.js ***!
   \**********************************************/
@@ -38404,17 +38619,17 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _LoginViewHbs = __webpack_require__(/*! ./LoginView.hbs.html */ 170);
+	var _LoginViewHbs = __webpack_require__(/*! ./LoginView.hbs.html */ 172);
 	
 	var _LoginViewHbs2 = _interopRequireDefault(_LoginViewHbs);
 	
-	__webpack_require__(/*! ./loginView.less */ 171);
+	__webpack_require__(/*! ./loginView.less */ 173);
 	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _LoginModel = __webpack_require__(/*! ../../data/viewModels/LoginModel */ 172);
+	var _LoginModel = __webpack_require__(/*! ../../data/viewModels/LoginModel */ 174);
 	
 	var _LoginModel2 = _interopRequireDefault(_LoginModel);
 	
@@ -38569,7 +38784,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 170 */
+/* 172 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/account/LoginView.hbs.html ***!
   \****************************************************/
@@ -38587,7 +38802,7 @@
 
 
 /***/ },
-/* 171 */
+/* 173 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/account/loginView.less ***!
   \************************************************/
@@ -38596,7 +38811,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 172 */
+/* 174 */
 /*!***********************************************!*\
   !*** ./wwwroot/data/viewModels/LoginModel.js ***!
   \***********************************************/
@@ -38629,7 +38844,7 @@
 	});
 
 /***/ },
-/* 173 */
+/* 175 */
 /*!*****************************************************!*\
   !*** ./wwwroot/homeApp/account/RegisterUserView.js ***!
   \*****************************************************/
@@ -38645,7 +38860,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _RegisterUserViewHbs = __webpack_require__(/*! ./RegisterUserView.hbs.html */ 174);
+	var _RegisterUserViewHbs = __webpack_require__(/*! ./RegisterUserView.hbs.html */ 176);
 	
 	var _RegisterUserViewHbs2 = _interopRequireDefault(_RegisterUserViewHbs);
 	
@@ -38653,7 +38868,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _RegisterModel = __webpack_require__(/*! ../../data/viewModels/RegisterModel */ 175);
+	var _RegisterModel = __webpack_require__(/*! ../../data/viewModels/RegisterModel */ 177);
 	
 	var _RegisterModel2 = _interopRequireDefault(_RegisterModel);
 	
@@ -38711,7 +38926,7 @@
 	exports.default = View;
 
 /***/ },
-/* 174 */
+/* 176 */
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/account/RegisterUserView.hbs.html ***!
   \***********************************************************/
@@ -38727,7 +38942,7 @@
 
 
 /***/ },
-/* 175 */
+/* 177 */
 /*!**************************************************!*\
   !*** ./wwwroot/data/viewModels/RegisterModel.js ***!
   \**************************************************/
@@ -38770,7 +38985,7 @@
 	});
 
 /***/ },
-/* 176 */
+/* 178 */
 /*!********************************************!*\
   !*** ./wwwroot/homeApp/about/AboutView.js ***!
   \********************************************/
@@ -38786,7 +39001,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 177);
+	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 179);
 	
 	var _AboutViewHbs2 = _interopRequireDefault(_AboutViewHbs);
 	
@@ -38794,7 +39009,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./about.less */ 178);
+	__webpack_require__(/*! ./about.less */ 180);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38927,7 +39142,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 177 */
+/* 179 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/about/AboutView.hbs.html ***!
   \**************************************************/
@@ -39017,7 +39232,7 @@
 
 
 /***/ },
-/* 178 */
+/* 180 */
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/about/about.less ***!
   \******************************************/
@@ -39026,7 +39241,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 179 */
+/* 181 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.js ***!
   \****************************************************/
@@ -39042,7 +39257,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _MassMediaViewHbs = __webpack_require__(/*! ./MassMediaView.hbs.html */ 180);
+	var _MassMediaViewHbs = __webpack_require__(/*! ./MassMediaView.hbs.html */ 182);
 	
 	var _MassMediaViewHbs2 = _interopRequireDefault(_MassMediaViewHbs);
 	
@@ -39050,7 +39265,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./MassMediaView.less */ 181);
+	__webpack_require__(/*! ./MassMediaView.less */ 183);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -39119,7 +39334,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 180 */
+/* 182 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.hbs.html ***!
   \**********************************************************/
@@ -39175,7 +39390,7 @@
 
 
 /***/ },
-/* 181 */
+/* 183 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/massMedia/MassMediaView.less ***!
   \******************************************************/
@@ -39184,7 +39399,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 182 */
+/* 184 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.js ***!
   \******************************************************/
@@ -39200,7 +39415,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 183);
+	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 185);
 	
 	var _HowItWorksViewHbs2 = _interopRequireDefault(_HowItWorksViewHbs);
 	
@@ -39212,7 +39427,7 @@
 	exports.default = View;
 
 /***/ },
-/* 183 */
+/* 185 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.hbs.html ***!
   \************************************************************/
@@ -39228,7 +39443,7 @@
 
 
 /***/ },
-/* 184 */
+/* 186 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/account/FogotPasswordView.js ***!
   \******************************************************/
@@ -39244,7 +39459,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 185);
+	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 187);
 	
 	var _FogotPasswordViewHbs2 = _interopRequireDefault(_FogotPasswordViewHbs);
 	
@@ -39256,7 +39471,7 @@
 	exports.default = View;
 
 /***/ },
-/* 185 */
+/* 187 */
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/account/FogotPasswordView.hbs.html ***!
   \************************************************************/
@@ -39272,7 +39487,7 @@
 
 
 /***/ },
-/* 186 */
+/* 188 */
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.js ***!
   \*********************************************************/
@@ -39288,7 +39503,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 187);
+	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 189);
 	
 	var _legalUserAgreementViewHbs2 = _interopRequireDefault(_legalUserAgreementViewHbs);
 	
@@ -39303,7 +39518,7 @@
 	exports.default = View;
 
 /***/ },
-/* 187 */
+/* 189 */
 /*!***************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.hbs.html ***!
   \***************************************************************/
@@ -39319,7 +39534,7 @@
 
 
 /***/ },
-/* 188 */
+/* 190 */
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalConfidentialView.js ***!
   \********************************************************/
@@ -39335,7 +39550,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalConfidentialViewHbs = __webpack_require__(/*! ./legalConfidentialView.hbs.html */ 189);
+	var _legalConfidentialViewHbs = __webpack_require__(/*! ./legalConfidentialView.hbs.html */ 191);
 	
 	var _legalConfidentialViewHbs2 = _interopRequireDefault(_legalConfidentialViewHbs);
 	
@@ -39353,7 +39568,7 @@
 	exports.default = View;
 
 /***/ },
-/* 189 */
+/* 191 */
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalConfidentialView.hbs.html ***!
   \**************************************************************/
@@ -39369,7 +39584,7 @@
 
 
 /***/ },
-/* 190 */
+/* 192 */
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.js ***!
   \**********************************************************/
@@ -39385,7 +39600,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 191);
+	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 193);
 	
 	var _legalPostPublishingViewHbs2 = _interopRequireDefault(_legalPostPublishingViewHbs);
 	
@@ -39400,7 +39615,7 @@
 	exports.default = View;
 
 /***/ },
-/* 191 */
+/* 193 */
 /*!****************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.hbs.html ***!
   \****************************************************************/
@@ -39416,7 +39631,7 @@
 
 
 /***/ },
-/* 192 */
+/* 194 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.js ***!
   \**********************************************/
@@ -39432,7 +39647,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 193);
+	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 195);
 	
 	var _blogHomeViewHbs2 = _interopRequireDefault(_blogHomeViewHbs);
 	
@@ -39442,7 +39657,7 @@
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
-	var _BlogItemsView = __webpack_require__(/*! ./BlogItemsView.js */ 194);
+	var _BlogItemsView = __webpack_require__(/*! ./BlogItemsView.js */ 196);
 	
 	var _BlogItemsView2 = _interopRequireDefault(_BlogItemsView);
 	
@@ -39454,7 +39669,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./blogHomeView.less */ 197);
+	__webpack_require__(/*! ./blogHomeView.less */ 199);
 	
 	var _backbone3 = __webpack_require__(/*! backbone */ 17);
 	
@@ -39480,7 +39695,6 @@
 	    _adaptCollection: function _adaptCollection() {
 	        var ret, p;
 	        ret = this.options.collection.map(function (post) {
-	
 	            p = post.toJSON();
 	            return _underscore2.default.extend({}, p, {
 	                id: p.id,
@@ -39611,7 +39825,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 193 */
+/* 195 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.hbs.html ***!
   \****************************************************/
@@ -39638,7 +39852,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 194 */
+/* 196 */
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemsView.js ***!
   \***********************************************/
@@ -39654,7 +39868,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.js */ 195);
+	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.js */ 197);
 	
 	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
 	
@@ -39668,7 +39882,7 @@
 	exports.default = View;
 
 /***/ },
-/* 195 */
+/* 197 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemView.js ***!
   \**********************************************/
@@ -39684,7 +39898,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.html */ 196);
+	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.html */ 198);
 	
 	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
 	
@@ -39789,7 +40003,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 196 */
+/* 198 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemView.html ***!
   \************************************************/
@@ -39856,7 +40070,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 197 */
+/* 199 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.less ***!
   \************************************************/
@@ -39865,7 +40079,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 198 */
+/* 200 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.js ***!
   \************************************************/
@@ -39881,13 +40095,13 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 199);
+	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 201);
 	
 	var _blogPostIdViewHbs2 = _interopRequireDefault(_blogPostIdViewHbs);
 	
 	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 111);
 	
-	__webpack_require__(/*! ../../lib/magnific-popup/dist/jquery.magnific-popup.min.js */ 200);
+	__webpack_require__(/*! ../../lib/magnific-popup/dist/jquery.magnific-popup.min.js */ 202);
 	
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
@@ -39897,7 +40111,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./blogPostIdView.less */ 201);
+	__webpack_require__(/*! ./blogPostIdView.less */ 203);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -39989,7 +40203,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 199 */
+/* 201 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.hbs.html ***!
   \******************************************************/
@@ -40038,7 +40252,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12), __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 200 */
+/* 202 */
 /*!**********************************************************************!*\
   !*** ./wwwroot/lib/magnific-popup/dist/jquery.magnific-popup.min.js ***!
   \**********************************************************************/
@@ -40423,7 +40637,7 @@
 	});
 
 /***/ },
-/* 201 */
+/* 203 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.less ***!
   \**************************************************/
@@ -40432,7 +40646,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 202 */
+/* 204 */
 /*!*********************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.js ***!
   \*********************************************************************************/
@@ -40448,7 +40662,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SuggestionsModalViewHbs = __webpack_require__(/*! ./SuggestionsModalView.hbs.html */ 203);
+	var _SuggestionsModalViewHbs = __webpack_require__(/*! ./SuggestionsModalView.hbs.html */ 205);
 	
 	var _SuggestionsModalViewHbs2 = _interopRequireDefault(_SuggestionsModalViewHbs);
 	
@@ -40460,7 +40674,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	__webpack_require__(/*! ./SuggestionsModalView.less */ 204);
+	__webpack_require__(/*! ./SuggestionsModalView.less */ 206);
 	
 	var _SuggestionListView = __webpack_require__(/*! ../SuggestionListView.js */ 73);
 	
@@ -40521,7 +40735,7 @@
 	});
 
 /***/ },
-/* 203 */
+/* 205 */
 /*!***************************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.hbs.html ***!
   \***************************************************************************************/
@@ -40540,7 +40754,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 204 */
+/* 206 */
 /*!***********************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.less ***!
   \***********************************************************************************/
@@ -40549,7 +40763,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 205 */
+/* 207 */
 /*!******************************************!*\
   !*** ./wwwroot/css/shiners-override.css ***!
   \******************************************/
@@ -40558,7 +40772,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 206);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 208);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 51)(content, {});
@@ -40578,7 +40792,7 @@
 	}
 
 /***/ },
-/* 206 */
+/* 208 */
 /*!*********************************************************!*\
   !*** ./~/css-loader!./wwwroot/css/shiners-override.css ***!
   \*********************************************************/

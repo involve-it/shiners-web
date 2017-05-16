@@ -27,11 +27,11 @@ var View = Marionette.View.extend({
         this.blogItems = new Collection(null, {asteroid: this.asteroid});        
         //this.listenTo(app.user,'login',this.render);
         //this.listenTo(app.user, 'logout', this.render);
-    },    
+    },
+    
     _adaptCollection() {
         var ret, p;
         ret = this.options.collection.map((post)=> {
-            
             p = post.toJSON();
             return _.extend({}, p, {
                 id: p.id,

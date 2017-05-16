@@ -394,8 +394,7 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-publis
   -webkit-align-items: center;
   -ms-align-items: center;
   align-items: center;
-  margin-top: 8px;
-  margin-bottom: 12px;
+  margin-top: 5px;
 }
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-published .sh-post-written {
   color: #8f8e94;
@@ -438,8 +437,25 @@ body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-publis
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-published .sh-post-item-left.sh-color-green .sh-item-left-fill {
   background: rgba(0, 255, 0, 0.4);
 }
+body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-toolbar {
+  margin-top: 12px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-toolbar .sh-post-toolbar-item {
+  margin-right: 10px;
+}
+body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-post-toolbar .sh-post-toolbar-item:last-child {
+  margin-right: 0;
+}
 body.page--postDetails .sh-post-details .sh-post-details-wrapper .sh-photos {
   position: relative;
+  margin-top: 12px;
   width: 100%;
   overflow: hidden;
   transition: height .2s;
