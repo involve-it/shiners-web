@@ -64,8 +64,7 @@ body {
                 .sh-post-published {
 			        .sh-flex-display();
                     .sh-align-items(center);
-			        margin-top: 8px;
-			        margin-bottom: 12px;
+			        margin-top: 5px;
 
                     .sh-post-written {
 				        color: @sh-main-lightgray-color;
@@ -126,10 +125,27 @@ body {
                     }
 
                 } /* END .sh-post-published */
+
+
+                //Toolbar
+                .sh-post-toolbar {
+                    margin-top: 12px;
+                    .sh-flex-display();
+                    .sh-align-items(center);
+
+                    .sh-post-toolbar-item {
+                        margin-right: 10px;
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
+                }
                 
                 //Photos
 	            .sh-photos {
-		            position: relative;
+		            position: relative;                    
+			        margin-top: 12px;
 		            //height: 335px;
 		            width: 100%;
                     overflow: hidden;

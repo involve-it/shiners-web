@@ -170,10 +170,6 @@ export default Marionette.Object.extend({
     },
 
     blogPostId(id) {
-        console.log('POST ID: ', id);
-        // Загружаем пост из базы по его ID....
-        // 1. находим поста по id
-        // 2. вызываем метод loadByMethod для загрузки и передаем во BlogPostIdView 
         app.layout.showChildView('content', new PreloaderView());
         if (id) {
             app.asteroid.call('bz.blog.getPostById', id).result.then((post) => {

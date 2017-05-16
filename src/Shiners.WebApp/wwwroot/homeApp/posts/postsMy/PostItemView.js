@@ -1,5 +1,6 @@
 ﻿import Marionette from 'backbone.marionette';
 import template from './PostItemView.hbs.html';
+import ConfirmView from '../../../sharedViews/ConfirmView.js';
 import app from '../../app.js';
 import locationHelper from '../../../helpers/locationHelper.js';
 import postDuration from '../../../helpers/postDuration.js';
@@ -12,7 +13,12 @@ var View = Marionette.View.extend({
     onBeforeRender() {
         this.getDistance();
         this.getPostState();
-    },    
+    },   
+
+    initialize() {
+        this.confirmAnswer = new Backbone.Model({questions: null});
+        this.listenTo(this.confirmAnswer,'change', this.deletePost);
+    },   
 
     onRender() {},  
 
@@ -39,25 +45,41 @@ var View = Marionette.View.extend({
     },
 
     events: {
-        'click .js-delete-post': 'deletePost',
-
+        'click .js-delete-post': 'clickDeleteBtn',
         '.js-edit-my-post click': ()=>{
             debugger;
         }
     },
 
-    deletePost(e) {
+    clickDeleteBtn(e) {
         e.stopPropagation();
         e.preventDefault();
 
         var that = this,
             model =  this.model.toJSON(),
+            message = model.details.title || '';
+
+        //show modal window
+        var title = i18n.getLanguage() === 'ru'? 'Удаление поста': 'Delete post';
+        app.layout.showChildView('modal', new ConfirmView({answer: this.confirmAnswer, title: title, message: message}));
+    },
+
+    deletePost(e) {        
+        var questions = this.confirmAnswer.get('questions');
+
+        var that = this,
+            model =  this.model.toJSON(),
             postId = model._id;
 
-        // load by menthod removePost        
-        this.model.loadByMethod('deletePost', postId, function(){
-            that.model.collection.remove(that.model);
-        });        
+        setTimeout(function() {
+            if(questions) {                        
+                that.model.loadByMethod('deletePost', postId, function(){
+                    that.model.collection.remove(that.model);
+                });
+            }
+        }, 1500); 
+        
+        this.confirmAnswer.set('questions', null);                
     }
 });
 export default View;

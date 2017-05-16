@@ -20,6 +20,12 @@ var json = {
     POST_STATUS: 'Объявление закрыто',
     POST_LEFT: 'Осталось',
     SEARCH_PLACEHOLDER: 'Поиск',
+    READ_MORE: 'Читать дальше',
+    COMMENTS: 'Комментариев',
+    BTN_DONE: 'Готово',
+    DELETE_POST: 'Удалить пост',
+    TITLE_YES: 'Да',
+    TITLE_NO: 'Нет',
 
     // BANNER
     shiners_are: 'СВЕТЛЯЧКИ - ЭТО',
@@ -126,7 +132,7 @@ var json = {
     about_btn_send_msg: 'Отправить',
 
     // POST DETAILS
-    post_d_summary_information: '',
+    post_d_summary_information: 'Сводная информация',
     post_d_views: 'Просмотров',
     post_d_status: 'Статус',
     post_d_type: 'Тип',
@@ -149,14 +155,12 @@ var json = {
     EDIT_POST: 'Редактировать',
     TRASH_POST: 'Удалить',
 
-
     //LOGIN/REGISTER
     EMAIL_LABEL: 'E-mail',
     USERNAME_LABEL: 'имя пользователя',
     USERNAME_EMAIL_LABEL: 'имя пользователя или E-mail',
     PASSWORD_LABEL: 'пароль',
     CONFIRM_PASSWORD_LABEL: 'пароль повторно',
-
 
     //VALIDATION MESSAGES
     validation_message_required: 'Укажите {0}',
@@ -176,6 +180,8 @@ var json = {
     validation_message_email: 'Введите корректно значение {0}',
     validation_message_url: 'поле {0} должно быть корректным url-ом',
     validation_message_inlinePattern: 'введите корректное значение {0}',
+
+    PUBLISHED_BY: 'Опубликовано',
 
 };
 i18n.add('ru', json);
