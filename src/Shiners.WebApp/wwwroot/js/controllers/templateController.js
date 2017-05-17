@@ -2,9 +2,22 @@
  * Created by arutu_000 on 12/9/2016.
  */
 Object.assign = Object.assign || require('object.assign');
-const DEFAULT_LANGUAGE = 'ru';
+
+//setCookie('language', 'en', {expires: 31536000, path: '/'});
+//console.log('язык из печеньки: ', getCookie('language'));
+
+const DEFAULT_LANGUAGE = getCookie('language') || 'ru';
+
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 var dataGlobal = {},
     currentLanguage = DEFAULT_LANGUAGE;
+
 var i18n = function(name) {
     var ret, lang = i18n.getLanguage(),
         template = function(key, value) { return `<tran data-key="${ key }">${ value }</tran>`};
@@ -16,6 +29,7 @@ var i18n = function(name) {
 
     return ret;
 }
+
 Object.assign(i18n, {
     init: function() {
         $.fn.translate = function(lang) {
@@ -53,6 +67,7 @@ Object.assign(i18n, {
         }
     }
 });
+
 function emitEvent(lang) {
     $(window).trigger('sh:language:changed', lang);
 }

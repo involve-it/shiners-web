@@ -16133,6 +16133,34 @@
 	    logout: function logout() {
 	        this.asteroid.logout();
 	    },
+	    setCookie: function setCookie(name, value, options) {
+	        options = options || {};
+	
+	        var expires = options.expires;
+	
+	        if (typeof expires == "number" && expires) {
+	            var d = new Date();
+	            d.setTime(d.getTime() + expires * 1000);
+	            expires = options.expires = d;
+	        }
+	        if (expires && expires.toUTCString) {
+	            options.expires = expires.toUTCString();
+	        }
+	
+	        value = encodeURIComponent(value);
+	
+	        var updatedCookie = name + "=" + value;
+	
+	        for (var propName in options) {
+	            updatedCookie += "; " + propName;
+	            var propValue = options[propName];
+	            if (propValue !== true) {
+	                updatedCookie += "=" + propValue;
+	            }
+	        }
+	
+	        document.cookie = updatedCookie;
+	    },
 	    destroyUser: function destroyUser() {
 	        this.user.unset('_id');
 	        this.user.unset('id', { silent: true });
@@ -21635,9 +21663,20 @@
 	 * Created by arutu_000 on 12/9/2016.
 	 */
 	Object.assign = Object.assign || __webpack_require__(/*! object.assign */ 20);
-	var DEFAULT_LANGUAGE = 'ru';
+	
+	//setCookie('language', 'en', {expires: 31536000, path: '/'});
+	//console.log('���� �� ��������: ', getCookie('language'));
+	
+	var DEFAULT_LANGUAGE = getCookie('language') || 'ru';
+	
+	function getCookie(name) {
+	    var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+	    return matches ? decodeURIComponent(matches[1]) : undefined;
+	}
+	
 	var dataGlobal = {},
 	    currentLanguage = DEFAULT_LANGUAGE;
+	
 	var i18n = function i18n(name) {
 	    var ret,
 	        lang = i18n.getLanguage(),
@@ -21652,6 +21691,7 @@
 	
 	    return ret;
 	};
+	
 	Object.assign(i18n, {
 	    init: function init() {
 	        $.fn.translate = function (lang) {
@@ -21689,6 +21729,7 @@
 	        }
 	    }
 	});
+	
 	function emitEvent(lang) {
 	    $(window).trigger('sh:language:changed', lang);
 	}
@@ -26628,6 +26669,15 @@
 	    },
 	    onAttach: function onAttach() {
 	        this.onClickLink();
+	        this.changeSelectlanguage();
+	    },
+	    changeSelectlanguage: function changeSelectlanguage() {
+	        var language = i18n.getLanguage();
+	        this.setSelectBoxByValue('chooseLanguage', language);
+	    },
+	    setSelectBoxByValue: function setSelectBoxByValue(eid, val) {
+	        document.querySelector('#chooseLanguage [value="' + val + '"]').selected = 'selected';
+	        //document.getElementById(eid).value = val;
 	    },
 	    renderMapAndBanner: function renderMapAndBanner() {
 	        var searchModel = new _backbone2.default.Model({ radius: 1 });
@@ -26675,6 +26725,7 @@
 	        this.$('#footer').show();
 	    },
 	    chooseLanguage: function chooseLanguage(e) {
+	        _app2.default.setCookie('language', e.target.value, { expires: 31536000, path: '/' });
 	        _app2.default.i18n.setLanguage(e.target.value);
 	        _app2.default.trigger('change:language', e.target.value);
 	    },
@@ -26756,7 +26807,7 @@
 	((__t=(i18n('footer_menu_privacy_policy')))==null?'':__t)+
 	'</a></dd>\n						<dd class="sh-footer-list-item"><a class="" href="/legal/post-publishing-rules">'+
 	((__t=(i18n('footer_menu_post_publishing_rules')))==null?'':__t)+
-	'</a></dd>\n					</dl>\n				</div>\n			</div>\n		</div>\n\n		<!--3-->\n		<div class="row">\n            <div class="sh-footer-bottom">\n                <div class="sh-choose-language">\n                    <select id="chooseLanguage">\n                        <option selected="selected" value="ru">Русский</option>\n                        <option value="en">English</option>\n                    </select>\n                </div>\n                <div class="col-xs-12 sh-copyright">\n                    <p class="sh-usage-text">'+
+	'</a></dd>\n					</dl>\n				</div>\n			</div>\n		</div>\n\n		<!--3-->\n		<div class="row">\n            <div class="sh-footer-bottom">\n                <div class="sh-choose-language">\n                    <select id="chooseLanguage">\n                        <option value="ru">Русский</option>\n                        <option value="en">English</option>\n                    </select>\n                </div>\n                <div class="col-xs-12 sh-copyright">\n                    <p class="sh-usage-text">'+
 	((__t=(i18n('footer_disclaimer_text')))==null?'':__t)+
 	'<a href="/legal/user-agreement">'+
 	((__t=(i18n('footer_disclaimer_text2')))==null?'':__t)+

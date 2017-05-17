@@ -47,15 +47,25 @@ var View = Marionette.View.extend({
 
     onRender() {
         this.renderMapAndBanner();
-        this.renderMainMenu();
+        this.renderMainMenu();       
         this.listenTo(app.router,'route',this.toggleMapAndBanner);
         //this._adaptUiIfIsIframe();
         //this.listenTo(app.user, 'receivedMeteorUser', this._toggleUserInfo);
         //this._loadIframeView();
-    },
+    },    
 
     onAttach() {
         this.onClickLink();
+        this.changeSelectlanguage();
+    },
+
+    changeSelectlanguage() {
+        var language = i18n.getLanguage(); 
+        this.setSelectBoxByValue('chooseLanguage', language);
+    },
+
+    setSelectBoxByValue(eid, val) {
+        document.querySelector('#chooseLanguage [value="' + val + '"]').selected = 'selected';
     },
 
     renderMapAndBanner() {
@@ -110,9 +120,10 @@ var View = Marionette.View.extend({
     },
 
     chooseLanguage(e) {
-        app.i18n.setLanguage(e.target.value);
+        app.setCookie('language', e.target.value, {expires: 31536000, path: '/'});
+        app.i18n.setLanguage(e.target.value);        
         app.trigger('change:language', e.target.value);
-    },
+    },    
 
     _toggleUserInfo(user) {
         var view = new UserMenuView({ 
