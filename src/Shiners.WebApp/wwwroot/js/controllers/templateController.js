@@ -3,9 +3,6 @@
  */
 Object.assign = Object.assign || require('object.assign');
 
-//setCookie('language', 'en', {expires: 31536000, path: '/'});
-//console.log('язык из печеньки: ', getCookie('language'));
-
 const DEFAULT_LANGUAGE = getCookie('language') || 'ru';
 
 function getCookie(name) {
