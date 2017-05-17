@@ -65,6 +65,14 @@ Object.assign(i18n, {
         } else {
             return false;
         }
+    },
+    getI18nString(name) {
+        var ret, lang = i18n.getLanguage();
+        var dataLang = dataGlobal[lang];
+        if (name && dataLang) {
+            ret = dataLang[name];
+        }
+        return ret;
     }
 });
 
