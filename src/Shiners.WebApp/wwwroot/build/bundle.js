@@ -15967,7 +15967,7 @@
 	
 	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
 	
-	var _SuggestionsModalView = __webpack_require__(/*! ./selectLocation/suggestionsModal/SuggestionsModalView.js */ 204);
+	var _SuggestionsModalView = __webpack_require__(/*! ./selectLocation/suggestionsModal/SuggestionsModalView.js */ 206);
 	
 	var _SuggestionsModalView2 = _interopRequireDefault(_SuggestionsModalView);
 	
@@ -15979,7 +15979,7 @@
 	
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
-	__webpack_require__(/*! ../css/shiners-override.css */ 207);
+	__webpack_require__(/*! ../css/shiners-override.css */ 209);
 	
 	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
@@ -21664,9 +21664,6 @@
 	 */
 	Object.assign = Object.assign || __webpack_require__(/*! object.assign */ 20);
 	
-	//setCookie('language', 'en', {expires: 31536000, path: '/'});
-	//console.log('���� �� ��������: ', getCookie('language'));
-	
 	var DEFAULT_LANGUAGE = getCookie('language') || 'ru';
 	
 	function getCookie(name) {
@@ -21727,6 +21724,15 @@
 	        } else {
 	            return false;
 	        }
+	    },
+	    getI18nString: function getI18nString(name) {
+	        var ret,
+	            lang = i18n.getLanguage();
+	        var dataLang = dataGlobal[lang];
+	        if (name && dataLang) {
+	            ret = dataLang[name];
+	        }
+	        return ret;
 	    }
 	});
 	
@@ -22380,7 +22386,7 @@
 	
 	    //MASS MEDIA
 	    h_information_for_smi: 'Information for the media'
-	}, _defineProperty(_json, 'massMedia', 'Media about us'), _defineProperty(_json, 'press_release', 'Press Releases'), _defineProperty(_json, 'press_contacts', 'Press Contacts'), _defineProperty(_json, 'h_meet_us', 'About us'), _defineProperty(_json, 'h_mass_media', 'Media about us'), _defineProperty(_json, 'm_about_us', 'About us'), _defineProperty(_json, 'm_help', 'Help'), _defineProperty(_json, 'm_confidentiality', 'Confidentiality'), _defineProperty(_json, 'm_terms_of_use', 'Terms of use'), _defineProperty(_json, 'site_published', 'Site published'), _defineProperty(_json, 'download_press_release', 'Download press release'), _defineProperty(_json, 'ashot_a', 'Ashot Arutyunyan'), _defineProperty(_json, 'tatyana_u', 'Tatyana Urusova'), _defineProperty(_json, 'home_accordion_section1', 'If you already have an advertisement on another website, just use that Url to create a Shiner!'), _defineProperty(_json, 'home_accordion_section2', 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone'), _defineProperty(_json, 'home_accordion_section3', 'Use Shiners for finding new live connections everywhere'), _defineProperty(_json, 'home_shiners_are_around', 'Shiners are everywhere'), _defineProperty(_json, 'home_lot_of_opportunities', 'A lot of opportunities for business around'), _defineProperty(_json, 'home_participate', 'Participate '), _defineProperty(_json, 'home_free', 'for free'), _defineProperty(_json, 'home_in_project', ' in the project!'), _defineProperty(_json, 'home_contact_with_people', 'Let others know about your ad instantly'), _defineProperty(_json, 'home_set_your_shiner', 'Create your Shiner'), _defineProperty(_json, 'search_free_search', 'Free search by words'), _defineProperty(_json, 'search_choose_radius', 'Search Radius (km):'), _defineProperty(_json, 'search_parameters', 'Search Parameters'), _defineProperty(_json, 'search_found', 'Found Shiners'), _defineProperty(_json, 'search_not_found', 'No posts found around'), _defineProperty(_json, 'about_intro_text', 'Shiners is a tool that helps people around to cooperate with each other. We will show you people ads around with a link to the person and his location.  Yor new friends, Clients, partners are nearby and ready to meet you'), _defineProperty(_json, 'about_intro_duration', 'Duration'), _defineProperty(_json, 'about_intro_duration_minute', 'min.'), _defineProperty(_json, 'about_menu_how_it_works', 'How does it work?'), _defineProperty(_json, 'about_menu_what_are_we_useful', 'What are we useful for?'), _defineProperty(_json, 'about_menu_our_team', 'Our Team'), _defineProperty(_json, 'about_menu_connect_with_us', 'Connect with us'), _defineProperty(_json, 'about_title_section_1', 'The only one service offering Live presence'), _defineProperty(_json, 'about_title_section_1_p1', 'Shiners allow you to connect an advertisement or any other address on the internet to the current location of a user and as a result you can implement an instant search of information among the people who surround you. It enables you to look for information here and now in order to meet its owner immediately. Unnecessary intermediate link (search on the internet, arranging of the meeting, a road to the particular place) can be excluded if a potentially interesting person is near you. '), _defineProperty(_json, 'about_title_section_1_p2', 'We are expending the abilities of web by connecting an information to real people and to the coordinates that gives web-resources something new – specious and timeless quality in other words a road directly to the aim. You can also see us in Google and social networks and that is why your advertisement will transform into your own internet-page, which can be open to the whole internet.'), _defineProperty(_json, 'about_title_section_2_intro', 'Just imagine a virtual visit-card that you can carry around with you not in the wallet but in your mobile phone and all people who surround you can see it, and not the only chosen ones!'), _defineProperty(_json, 'about_title_create_post', 'Create your post'), _defineProperty(_json, 'about_title_you_are_find', 'You find - You can be found'), _defineProperty(_json, 'about_title_contract_meeting', 'Arrange a meeting – meet people'), _defineProperty(_json, 'about_title_section_3', 'Why we so useful?'), _defineProperty(_json, 'about_title_section_3_intro', 'Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.'), _defineProperty(_json, 'about_block_ads', 'ОБЪЯВЛЕНИЕ'), _defineProperty(_json, 'about_block_ads_text', 'Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".'), _defineProperty(_json, 'about_block_link', 'LINK'), _defineProperty(_json, 'about_block_link_text', 'Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!'), _defineProperty(_json, 'about_block_dynamic', 'ДИНАМИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_dynamic_text', 'Движется вместе с тобой. Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!'), _defineProperty(_json, 'about_block_static', 'СТАТИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_static_text', 'Привязан к заданной тобой местности. Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!'), _defineProperty(_json, 'about_btn_set_your_shiners', 'Установи свой Светлячок'), _defineProperty(_json, 'about_who_we_are_title', 'Who are we?'), _defineProperty(_json, 'about_who_we_are_text', 'Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости.'), _defineProperty(_json, 'about_security_title', 'БЕЗОПАСНОСТЬ'), _defineProperty(_json, 'about_security_text', 'Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!'), _defineProperty(_json, 'about_rules_title', 'ПРАВИЛА'), _defineProperty(_json, 'about_rules_text', 'При регистрации на «Cветлячках» Пользователь соглашается с'), _defineProperty(_json, 'about_rules_text_link1', 'настоящими правилами'), _defineProperty(_json, 'about_title_section_4', 'Связаться с нами'), _defineProperty(_json, 'about_title_section_4_intro', 'Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!'), _defineProperty(_json, 'about_your_name', 'Your name'), _defineProperty(_json, 'about_your_email', 'Your email'), _defineProperty(_json, 'about_your_message', 'Your message'), _defineProperty(_json, 'about_btn_send_msg', 'Send'), _defineProperty(_json, 'post_d_summary_information', 'Summary information'), _defineProperty(_json, 'post_d_views', 'Views'), _defineProperty(_json, 'post_d_status', 'Status'), _defineProperty(_json, 'post_d_type', 'Type'), _defineProperty(_json, 'post_d_distance', 'Distance'), _defineProperty(_json, 'post_d_report_this_post', 'Tell about this post'), _defineProperty(_json, 'post_description_t', 'Description'), _defineProperty(_json, 'post_location_place_t', 'Location'), _defineProperty(_json, 'post_comments_t', 'comments'), _defineProperty(_json, 'post_connect_to_user', 'Connect to user'), _defineProperty(_json, 'post_about_post', 'About this post'), _defineProperty(_json, 'post_comment', 'Comment'), _defineProperty(_json, 'post_comments', 'Comments'), _defineProperty(_json, 'messages_send', 'Send'), _defineProperty(_json, 'messages_for_user', 'Messages for user'), _defineProperty(_json, 'RELOAD_POST_TIME', 'Reload'), _defineProperty(_json, 'EDIT_POST', 'Edit'), _defineProperty(_json, 'TRASH_POST', 'Delete'), _defineProperty(_json, 'PUBLISHED_BY', 'Published by'), _json);
+	}, _defineProperty(_json, 'massMedia', 'Media about us'), _defineProperty(_json, 'press_release', 'Press Releases'), _defineProperty(_json, 'press_contacts', 'Press Contacts'), _defineProperty(_json, 'h_meet_us', 'About us'), _defineProperty(_json, 'h_mass_media', 'Media about us'), _defineProperty(_json, 'm_about_us', 'About us'), _defineProperty(_json, 'm_help', 'Help'), _defineProperty(_json, 'm_confidentiality', 'Confidentiality'), _defineProperty(_json, 'm_terms_of_use', 'Terms of use'), _defineProperty(_json, 'site_published', 'Site published'), _defineProperty(_json, 'download_press_release', 'Download press release'), _defineProperty(_json, 'ashot_a', 'Ashot Arutyunyan'), _defineProperty(_json, 'tatyana_u', 'Tatyana Urusova'), _defineProperty(_json, 'home_accordion_section1', 'If you already have an advertisement on another website, just use that Url to create a Shiner!'), _defineProperty(_json, 'home_accordion_section2', 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone'), _defineProperty(_json, 'home_accordion_section3', 'Use Shiners for finding new live connections everywhere'), _defineProperty(_json, 'home_shiners_are_around', 'Shiners are everywhere'), _defineProperty(_json, 'home_lot_of_opportunities', 'A lot of opportunities for business around'), _defineProperty(_json, 'home_participate', 'Participate '), _defineProperty(_json, 'home_free', 'for free'), _defineProperty(_json, 'home_in_project', ' in the project!'), _defineProperty(_json, 'home_contact_with_people', 'Let others know about your ad instantly'), _defineProperty(_json, 'home_set_your_shiner', 'Create your Shiner'), _defineProperty(_json, 'search_free_search', 'Free search by words'), _defineProperty(_json, 'search_choose_radius', 'Search Radius (km):'), _defineProperty(_json, 'search_parameters', 'Search Parameters'), _defineProperty(_json, 'search_found', 'Found Shiners'), _defineProperty(_json, 'search_not_found', 'No posts found around'), _defineProperty(_json, 'about_intro_text', 'Shiners is a tool that helps people around to cooperate with each other. We will show you people ads around with a link to the person and his location.  Yor new friends, Clients, partners are nearby and ready to meet you'), _defineProperty(_json, 'about_intro_duration', 'Duration'), _defineProperty(_json, 'about_intro_duration_minute', 'min.'), _defineProperty(_json, 'about_menu_how_it_works', 'How does it work?'), _defineProperty(_json, 'about_menu_what_are_we_useful', 'What are we useful for?'), _defineProperty(_json, 'about_menu_our_team', 'Our Team'), _defineProperty(_json, 'about_menu_connect_with_us', 'Connect with us'), _defineProperty(_json, 'about_title_section_1', 'The only one service offering Live presence'), _defineProperty(_json, 'about_title_section_1_p1', 'Shiners allow you to connect an advertisement or any other address on the internet to the current location of a user and as a result you can implement an instant search of information among the people who surround you. It enables you to look for information here and now in order to meet its owner immediately. Unnecessary intermediate link (search on the internet, arranging of the meeting, a road to the particular place) can be excluded if a potentially interesting person is near you. '), _defineProperty(_json, 'about_title_section_1_p2', 'We are expending the abilities of web by connecting an information to real people and to the coordinates that gives web-resources something new – specious and timeless quality in other words a road directly to the aim. You can also see us in Google and social networks and that is why your advertisement will transform into your own internet-page, which can be open to the whole internet.'), _defineProperty(_json, 'about_title_section_2_intro', 'Just imagine a virtual visit-card that you can carry around with you not in the wallet but in your mobile phone and all people who surround you can see it, and not the only chosen ones!'), _defineProperty(_json, 'about_title_create_post', 'Create your post'), _defineProperty(_json, 'about_title_you_are_find', 'You find - You can be found'), _defineProperty(_json, 'about_title_contract_meeting', 'Arrange a meeting – meet people'), _defineProperty(_json, 'about_title_section_3', 'Why we so useful?'), _defineProperty(_json, 'about_title_section_3_intro', 'Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.'), _defineProperty(_json, 'about_block_ads', 'ОБЪЯВЛЕНИЕ'), _defineProperty(_json, 'about_block_ads_text', 'Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".'), _defineProperty(_json, 'about_block_link', 'LINK'), _defineProperty(_json, 'about_block_link_text', 'Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!'), _defineProperty(_json, 'about_block_dynamic', 'ДИНАМИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_dynamic_text', 'Движется вместе с тобой. Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!'), _defineProperty(_json, 'about_block_static', 'СТАТИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_static_text', 'Привязан к заданной тобой местности. Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!'), _defineProperty(_json, 'about_btn_set_your_shiners', 'Установи свой Светлячок'), _defineProperty(_json, 'about_who_we_are_title', 'Who are we?'), _defineProperty(_json, 'about_who_we_are_text', 'Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости.'), _defineProperty(_json, 'about_security_title', 'БЕЗОПАСНОСТЬ'), _defineProperty(_json, 'about_security_text', 'Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!'), _defineProperty(_json, 'about_rules_title', 'ПРАВИЛА'), _defineProperty(_json, 'about_rules_text', 'При регистрации на «Cветлячках» Пользователь соглашается с'), _defineProperty(_json, 'about_rules_text_link1', 'настоящими правилами'), _defineProperty(_json, 'about_title_section_4', 'Связаться с нами'), _defineProperty(_json, 'about_title_section_4_intro', 'Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!'), _defineProperty(_json, 'about_your_name', 'Your name'), _defineProperty(_json, 'about_your_email', 'Your email'), _defineProperty(_json, 'about_your_message', 'Your message'), _defineProperty(_json, 'about_btn_send_msg', 'Send'), _defineProperty(_json, 'post_d_summary_information', 'Summary information'), _defineProperty(_json, 'post_d_views', 'Views'), _defineProperty(_json, 'post_d_status', 'Status'), _defineProperty(_json, 'post_d_type', 'Type'), _defineProperty(_json, 'post_d_distance', 'Distance'), _defineProperty(_json, 'post_d_report_this_post', 'Tell about this post'), _defineProperty(_json, 'post_description_t', 'Description'), _defineProperty(_json, 'post_location_place_t', 'Location'), _defineProperty(_json, 'post_comments_t', 'comments'), _defineProperty(_json, 'post_connect_to_user', 'Connect to user'), _defineProperty(_json, 'post_about_post', 'About this post'), _defineProperty(_json, 'post_comment', 'Comment'), _defineProperty(_json, 'post_comments', 'Comments'), _defineProperty(_json, 'messages_send', 'Send'), _defineProperty(_json, 'messages_for_user', 'Messages for user'), _defineProperty(_json, 'RELOAD_POST_TIME', 'Reload'), _defineProperty(_json, 'EDIT_POST', 'Edit'), _defineProperty(_json, 'TRASH_POST', 'Delete'), _defineProperty(_json, 'EMAIL_LABEL', 'E-mail'), _defineProperty(_json, 'USERNAME_LABEL', 'login'), _defineProperty(_json, 'USERNAME_EMAIL_LABEL', 'login or E-mail'), _defineProperty(_json, 'PASSWORD_LABEL', 'password'), _defineProperty(_json, 'CONFIRM_PASSWORD_LABEL', 'confirm password'), _defineProperty(_json, 'validation_message_required', '{0} required'), _defineProperty(_json, 'validation_message_oneOfProperty', 'you must enter {0}, or {1}'), _defineProperty(_json, 'validation_message_acceptance', '{0} must be accepted'), _defineProperty(_json, 'validation_message_min', 'value of {0} must be greater or equal {1}'), _defineProperty(_json, 'validation_message_max', 'value of {0} must be lesser or equal {1}'), _defineProperty(_json, 'validation_message_range', '{0} must be between {1} and {2}'), _defineProperty(_json, 'validation_message_length', '{0} must be {1} characters'), _defineProperty(_json, 'validation_message_minLength', '{0} must be at least {1} characters'), _defineProperty(_json, 'validation_message_maxLength', '{0} must be at most {1} characters'), _defineProperty(_json, 'validation_message_rangeLength', '{0} must be between {1} and {2} characters'), _defineProperty(_json, 'validation_message_oneOf', '{0} must be one of: {1}'), _defineProperty(_json, 'validation_message_equalTo', '{0} must be the same as {1}'), _defineProperty(_json, 'validation_message_digits', '{0} должно состоять из цифр'), _defineProperty(_json, 'validation_message_number', '{0} required'), _defineProperty(_json, 'validation_message_email', 'Enter correct value in {0}'), _defineProperty(_json, 'validation_message_url', 'Field {0} must be correct url'), _defineProperty(_json, 'validation_message_inlinePattern', 'Enter proper value of {0}'), _defineProperty(_json, 'PUBLISHED_BY', 'Published by'), _defineProperty(_json, 'blog_empty_title', 'Мы извиняемся, но сейчас нам нечего вам показать'), _defineProperty(_json, 'blog_empty_subTitle', 'Пожалуйста, зайдите позже'), _json);
 	i18n.add('en', json);
 
 /***/ },
@@ -22548,7 +22554,39 @@
 	    RELOAD_POST_TIME: 'Перезапустить',
 	    EDIT_POST: 'Редактировать',
 	    TRASH_POST: 'Удалить',
-	    PUBLISHED_BY: 'Опубликовано'
+	
+	    //LOGIN/REGISTER
+	    EMAIL_LABEL: 'E-mail',
+	    USERNAME_LABEL: 'имя пользователя',
+	    USERNAME_EMAIL_LABEL: 'имя пользователя или E-mail',
+	    PASSWORD_LABEL: 'пароль',
+	    CONFIRM_PASSWORD_LABEL: 'пароль повторно',
+	
+	    //VALIDATION MESSAGES
+	    validation_message_required: 'Укажите {0}',
+	    validation_message_oneOfProperty: 'Вы должны указать либо {0}, либо {1}',
+	    validation_message_acceptance: '{0} должно быть принято',
+	    validation_message_min: 'значение {0} должно быть больше или равно {1}',
+	    validation_message_max: 'значение {0} должно быть меньше или равно {1}',
+	    validation_message_range: '{0} must be between {1} and {2}',
+	    validation_message_length: '{0} must be {1} characters',
+	    validation_message_minLength: '{0} must be at least {1} characters',
+	    validation_message_maxLength: '{0} must be at most {1} characters',
+	    validation_message_rangeLength: '{0} must be between {1} and {2} characters',
+	    validation_message_oneOf: '{0} must be one of: {1}',
+	    validation_message_equalTo: '{0} must be the same as {1}',
+	    validation_message_digits: '{0} должно состоять из цифр',
+	    validation_message_number: 'Укажите {0} обязательно',
+	    validation_message_email: 'Введите корректно значение {0}',
+	    validation_message_url: 'поле {0} должно быть корректным url-ом',
+	    validation_message_inlinePattern: 'введите корректное значение {0}',
+	
+	    PUBLISHED_BY: 'Опубликовано',
+	
+	    //BLOG
+	    blog_empty_title: 'Мы извиняемся, но сейчас нам нечего вам показать',
+	    blog_empty_subTitle: 'Пожалуйста, зайдите позже'
+	
 	};
 	i18n.add('ru', json);
 
@@ -26634,7 +26672,8 @@
 	    mapView: null,
 	
 	    events: {
-	        'change #chooseLanguage': 'chooseLanguage'
+	        'change #chooseLanguage': 'chooseLanguage',
+	        'click [data-lang]': 'chooseTopMenuLanguage'
 	    },
 	
 	    regions: {
@@ -26674,10 +26713,25 @@
 	    changeSelectlanguage: function changeSelectlanguage() {
 	        var language = i18n.getLanguage();
 	        this.setSelectBoxByValue('chooseLanguage', language);
+	
+	        var elements = $('.sh-top-choose-language-list').children().find('a');
+	        if (elements) {
+	            elements.each(function () {
+	                $(this).removeClass('active');
+	                if ($(this).data('lang') === language) {
+	                    $(this).addClass('active');
+	                }
+	            });
+	        }
+	    },
+	    chooseTopMenuLanguage: function chooseTopMenuLanguage(e) {
+	        e.preventDefault();
+	        e.stopPropagation();
+	        this.chooseLanguage(e);
+	        this.changeSelectlanguage();
 	    },
 	    setSelectBoxByValue: function setSelectBoxByValue(eid, val) {
 	        document.querySelector('#chooseLanguage [value="' + val + '"]').selected = 'selected';
-	        //document.getElementById(eid).value = val;
 	    },
 	    renderMapAndBanner: function renderMapAndBanner() {
 	        var searchModel = new _backbone2.default.Model({ radius: 1 });
@@ -26725,9 +26779,10 @@
 	        this.$('#footer').show();
 	    },
 	    chooseLanguage: function chooseLanguage(e) {
-	        _app2.default.setCookie('language', e.target.value, { expires: 31536000, path: '/' });
-	        _app2.default.i18n.setLanguage(e.target.value);
-	        _app2.default.trigger('change:language', e.target.value);
+	        var lang = e.target.value ? e.target.value : e.target.getAttribute('data-lang');
+	        _app2.default.setCookie('language', lang, { expires: 31536000, path: '/' });
+	        _app2.default.i18n.setLanguage(lang);
+	        _app2.default.trigger('change:language', lang);
 	    },
 	    _toggleUserInfo: function _toggleUserInfo(user) {
 	        var view = new _userMenuView2.default({
@@ -26781,7 +26836,7 @@
 	with(obj||{}){
 	__p+='\n<div id="showModalContainer"></div>\n\n<div id="header" class="sticky clearfix header-md">\n	<header id="topNav">\n		\n		<div class="sh-header-topline">\n			<div class="container">\n				<div class="sh-header-topline-main">\n					<div class="sh-header-topline-item">\n                        <div class="sh-header-navbar-logo">\r\n                            <a class="sh-logo-header" href="/">\r\n                                <img src="/images/sh-logo.png" alt="logotype Shiners" height="35" width="35" /> <span>'+
 	((__t=(i18n('SITE_NAME')))==null?'':__t)+
-	'</span>\r\n                            </a>\r\n                        </div>\n						<div class="sh-show-modal-city"> \n							<span class="text-weight bold">\n								<span id="navLocation"></span>\n							</span>\n						</div>\n					</div>\n\n					<div class="sh-header-topline-item sh-header-buttons-tools sh-flex-center-items">\n\n						<div id="bzMainMenu"></div>\n\n						<div class="sh-header-dropdown-user">                        \n							<div id="userBar"></div>\n						</div>\n\n						<button class="sh-btn-mobile-menu btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">\n							<i class="fa fa-bars"></i>\n						</button>\n\n					</div>\n				</div>\n			</div>\n		</div>\n		\n		<div class="sh-header-navbar-wrapper sh-blurred-bg hidden-xs">\n			<div class="container">\n\n				<div class="sh-header-navbar-items">\n					<!--<div class="sh-header-navbar-logo">\n						<a class="sh-logo-header" href="/">\n							<img src="/images/sh-logo.png" alt="logotype Shiners" height="50" width="50" />\n							'+
+	'</span>\r\n                            </a>\r\n                        </div>\n						<div class="sh-show-modal-city"> \n							<span class="text-weight bold">\n								<span id="navLocation"></span>\n							</span>\n						</div>\n					</div>\n\n					<div class="sh-header-topline-item sh-header-buttons-tools sh-flex-center-items">\n\n						<div id="bzMainMenu"></div>\n\n                        <div class="sh-top-choose-language hidden-xs">\n                            <ul class="sh-top-choose-language-list">\r\n                                <li><a class="en" data-lang="en" href="#">EN</a></li>\r\n                                <li><a class="ru" data-lang="ru" href="#">RU</a></li>\r\n                            </ul>\n                        </div>\n\n						<div class="sh-header-dropdown-user">                        \n							<div id="userBar"></div>\n						</div>\n\n						<button class="sh-btn-mobile-menu btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">\n							<i class="fa fa-bars"></i>\n						</button>\n\n					</div>\n				</div>\n			</div>\n		</div>\n		\n		<div class="sh-header-navbar-wrapper sh-blurred-bg hidden-xs">\n			<div class="container">\n\n				<div class="sh-header-navbar-items">\n					<!--<div class="sh-header-navbar-logo">\n						<a class="sh-logo-header" href="/">\n							<img src="/images/sh-logo.png" alt="logotype Shiners" height="50" width="50" />\n							'+
 	((__t=(i18n('SITE_NAME')))==null?'':__t)+
 	'\n						</a>\n					</div>-->\n\n					<div class="sh-header-navbar-submenu">\n                        <div class="sh-download-buttons-top">\n\n                            <a target="_blank" data-direct-link href="https://itunes.apple.com/ru/app/shiners/id1136502367?mt=8">\n                                <img src="/images/buttons/app_store_RU_135x40@2x.png" width="135" height="40" alt="Загрузите в App Store">\n                            </a>\n\n                            <a target="_blank" data-direct-link href=\'https://play.google.com/store/apps/details?id=org.buzzar.app&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1\'>\n                                <img src="/images/buttons/google_play_RU_135x40@2x.png" width="135" height="40" alt=\'Доступно в Google Play\' />\n                            </a>\n                        </div>\n                    </div>\n\n					<div class="sh-header-navbar-create">\n						<a class="ui sh-button standard create big hidden-sm" href="/posts/new">'+
 	((__t=(i18n('CREATE_SHINER')))==null?'':__t)+
@@ -31603,7 +31658,7 @@
   \********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+	/* WEBPACK VAR INJECTION */(function(_, $) {'use strict';
 	
 	var _backbone = __webpack_require__(/*! backbone */ 17);
 	
@@ -31647,31 +31702,39 @@
 	        }
 	    }
 	});
-	// дефолтные сообщения об ошибках
-	_.extend(_backbone2.default.Validation.messages, {
-	    required: 'необходимо указать {0}',
-	    oneOfProperty: 'Вы должны указать либо {0}, либо {1}',
-	    acceptance: '{0} должно быть принято',
-	    min: 'значение {0} должно быть больше или равно {1}',
-	    max: 'значение {0} должно быть меньше или равно {1}',
-	    range: '{0} must be between {1} and {2}',
-	    length: '{0} must be {1} characters',
-	    minLength: '{0} must be at least {1} characters',
-	    maxLength: '{0} must be at most {1} characters',
-	    rangeLength: '{0} must be between {1} and {2} characters',
-	    oneOf: '{0} must be one of: {1}',
-	    equalTo: '{0} must be the same as {1}',
-	    digits: '{0} должно состоять из цифр',
-	    number: 'Укажите {0} обязательно',
-	    email: 'Введите корректно значение {0}',
-	    url: 'поле {0} должно быть корректным url-ом',
-	    inlinePattern: 'введите корректное значение {0}'
+	
+	function setDefaultValidationMessages() {
+	    // дефолтные сообщения об ошибках
+	    _.extend(_backbone2.default.Validation.messages, {
+	        required: i18n.getI18nString('validation_message_required'),
+	        oneOfProperty: i18n.getI18nString('validation_message_oneOfProperty'),
+	        acceptance: i18n.getI18nString('validation_message_acceptance'),
+	        min: i18n.getI18nString('validation_message_min'),
+	        max: i18n.getI18nString('validation_message_max'),
+	        range: i18n.getI18nString('validation_message_range'),
+	        length: i18n.getI18nString('validation_message_length'),
+	        minLength: i18n.getI18nString('validation_message_minLength'),
+	        maxLength: i18n.getI18nString('validation_message_maxLength'),
+	        rangeLength: i18n.getI18nString('validation_message_rangeLength'),
+	        oneOf: i18n.getI18nString('validation_message_oneOf'),
+	        equalTo: i18n.getI18nString('validation_message_equalTo'),
+	        digits: i18n.getI18nString('validation_message_digits'),
+	        number: i18n.getI18nString('validation_message_number'),
+	        email: i18n.getI18nString('validation_message_email'),
+	        url: i18n.getI18nString('validation_message_url'),
+	        inlinePattern: i18n.getI18nString('validation_message_inlinePattern')
+	    });
+	}
+	
+	setDefaultValidationMessages();
+	$(window).on('sh:language:changed', function () {
+	    setDefaultValidationMessages();
 	});
 	
 	_.extend(_backbone2.default.Validation.patterns, {
 	    phone: /^(\+\d{1,3})*\s*(\(\d{3}\)\s*)*\d{3}(-{0,1}|\s{0,1})\d{2}(-{0,1}|\s{0,1})\d{2}$/
 	});
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
 /* 97 */
@@ -31758,6 +31821,8 @@
 	        });
 	
 	        $('body').addClass('page--' + name);
+	
+	        window.scrollTo(0, 0); //scroll to top on route change
 	    },
 	    redirectIfLogout: function redirectIfLogout() {
 	        if (_.contains(this.policy.authorized, this.currentRoute)) {
@@ -31876,11 +31941,15 @@
 	
 	var _legalPostPublishingView2 = _interopRequireDefault(_legalPostPublishingView);
 	
-	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 194);
+	var _emptyBlogHomeView = __webpack_require__(/*! ./blog/emptyBlogHomeView */ 194);
+	
+	var _emptyBlogHomeView2 = _interopRequireDefault(_emptyBlogHomeView);
+	
+	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 196);
 	
 	var _blogHomeView2 = _interopRequireDefault(_blogHomeView);
 	
-	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 200);
+	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 202);
 	
 	var _blogPostIdView2 = _interopRequireDefault(_blogPostIdView);
 	
@@ -31890,6 +31959,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	//import Collection from '../data/AsteroidCollection.js';
 	exports.default = _backbone2.default.Object.extend({
 	    index: function index() {
 	        _app2.default.layout.showChildView('content', new _indexView2.default());
@@ -32010,7 +32080,7 @@
 	        var posts = new _AsteroidCollection2.default(null, { asteroid: _app2.default.asteroid, comparator: 'createdAt' });
 	        //app.layout.showChildView('content', new BlogHomeView({ collection: [] }));
 	        posts.loadByMethod('bz.blog.getPosts', {}, function () {
-	            _app2.default.layout.showChildView('content', new _blogHomeView2.default({ collection: posts }));
+	            posts.length === 0 ? _app2.default.layout.showChildView('content', new _emptyBlogHomeView2.default({})) : _app2.default.layout.showChildView('content', new _blogHomeView2.default({ collection: posts }));
 	        });
 	    },
 	    blogPostId: function blogPostId(id) {
@@ -32025,8 +32095,6 @@
 	//import ProfilePageView from './user/ProfilePageView';
 	//import MyMessagesPageView from './user/MyMessagesPageView';
 	//import UserDetailsPageView from './user/UserDetailsPageView';
-	
-	//import Collection from '../data/AsteroidCollection.js';
 
 /***/ },
 /* 99 */
@@ -38693,8 +38761,15 @@
 	    model: new _LoginModel2.default(),
 	
 	    initialize: function initialize() {
+	        var _this = this;
+	
 	        this.listenTo(_app2.default.user, 'login', this.redirect);
 	        this.listenTo(_app2.default.user, 'error:login', this.showError);
+	
+	        this.model.setLabels();
+	        $(window).on('sh:language:changed', function () {
+	            _this.model.setLabels();
+	        });
 	    },
 	    onAttach: function onAttach() {
 	        Backbone.Validation.bind(this);
@@ -38882,6 +38957,15 @@
 	
 	exports.default = _backbone2.default.Model.extend({
 	
+	    labels: {},
+	
+	    setLabels: function setLabels() {
+	        this.labels = {
+	            email: i18n.getI18nString('EMAIL_LABEL'),
+	            password: i18n.getI18nString('PASSWORD_LABEL')
+	        };
+	    },
+	
 	    validation: {
 	        email: {
 	            required: true
@@ -38901,7 +38985,7 @@
   \*****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -38932,8 +39016,14 @@
 	    model: new _RegisterModel2.default(),
 	
 	    initialize: function initialize() {
+	        var _this = this;
+	
 	        this.listenTo(_app2.default.user, 'login', this.redirect);
 	        this.listenTo(_app2.default.user, 'error:create', this.showError);
+	        this.model.setLabels();
+	        $(window).on('sh:language:changed', function () {
+	            _this.model.setLabels();
+	        });
 	    },
 	    onAttach: function onAttach() {
 	        Backbone.Validation.bind(this);
@@ -38975,6 +39065,7 @@
 	    }
 	});
 	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
 /* 176 */
@@ -39012,6 +39103,17 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _backbone2.default.Model.extend({
+	
+	    labels: {},
+	
+	    setLabels: function setLabels() {
+	        this.labels = {
+	            email: i18n.getI18nString('EMAIL_LABEL'),
+	            password: i18n.getI18nString('PASSWORD_LABEL'),
+	            confirmPassword: i18n.getI18nString('CONFIRM_PASSWORD_LABEL'),
+	            username: i18n.getI18nString('USERNAME_LABEL')
+	        };
+	    },
 	
 	    validation: {
 	        username: {
@@ -39683,6 +39785,57 @@
 
 /***/ },
 /* 194 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/blog/emptyBlogHomeView.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _emptyBlogHomeViewHbs = __webpack_require__(/*! ./emptyBlogHomeView.hbs.html */ 195);
+	
+	var _emptyBlogHomeViewHbs2 = _interopRequireDefault(_emptyBlogHomeViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _emptyBlogHomeViewHbs2.default,
+	    tagName: 'div',
+	    className: 'sh-empty-blog'
+	});
+	
+	exports.default = View;
+
+/***/ },
+/* 195 */
+/*!*********************************************************!*\
+  !*** ./wwwroot/homeApp/blog/emptyBlogHomeView.hbs.html ***!
+  \*********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<h1 class="sh-section-hero-headline sh-text-center">'+
+	((__t=(i18n('blog_empty_title')))==null?'':__t)+
+	'</h1>\r\n<p class="sh-section-intro sh-text-center">'+
+	((__t=(i18n('blog_empty_subTitle')))==null?'':__t)+
+	'</p>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 196 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.js ***!
   \**********************************************/
@@ -39698,7 +39851,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 195);
+	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 197);
 	
 	var _blogHomeViewHbs2 = _interopRequireDefault(_blogHomeViewHbs);
 	
@@ -39708,7 +39861,7 @@
 	
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
-	var _BlogItemsView = __webpack_require__(/*! ./BlogItemsView.js */ 196);
+	var _BlogItemsView = __webpack_require__(/*! ./BlogItemsView.js */ 198);
 	
 	var _BlogItemsView2 = _interopRequireDefault(_BlogItemsView);
 	
@@ -39720,7 +39873,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./blogHomeView.less */ 199);
+	__webpack_require__(/*! ./blogHomeView.less */ 201);
 	
 	var _backbone3 = __webpack_require__(/*! backbone */ 17);
 	
@@ -39876,7 +40029,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 195 */
+/* 197 */
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.hbs.html ***!
   \****************************************************/
@@ -39903,7 +40056,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 196 */
+/* 198 */
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemsView.js ***!
   \***********************************************/
@@ -39919,7 +40072,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.js */ 197);
+	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.js */ 199);
 	
 	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
 	
@@ -39933,7 +40086,7 @@
 	exports.default = View;
 
 /***/ },
-/* 197 */
+/* 199 */
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemView.js ***!
   \**********************************************/
@@ -39949,7 +40102,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.html */ 198);
+	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.html */ 200);
 	
 	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
 	
@@ -40054,7 +40207,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 198 */
+/* 200 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemView.html ***!
   \************************************************/
@@ -40121,7 +40274,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
-/* 199 */
+/* 201 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.less ***!
   \************************************************/
@@ -40130,7 +40283,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 200 */
+/* 202 */
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.js ***!
   \************************************************/
@@ -40146,13 +40299,13 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 201);
+	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 203);
 	
 	var _blogPostIdViewHbs2 = _interopRequireDefault(_blogPostIdViewHbs);
 	
 	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 111);
 	
-	__webpack_require__(/*! ../../lib/magnific-popup/dist/jquery.magnific-popup.min.js */ 202);
+	__webpack_require__(/*! ../../lib/magnific-popup/dist/jquery.magnific-popup.min.js */ 204);
 	
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
@@ -40162,7 +40315,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(/*! ./blogPostIdView.less */ 203);
+	__webpack_require__(/*! ./blogPostIdView.less */ 205);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -40254,7 +40407,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
-/* 201 */
+/* 203 */
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.hbs.html ***!
   \******************************************************/
@@ -40303,7 +40456,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12), __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 202 */
+/* 204 */
 /*!**********************************************************************!*\
   !*** ./wwwroot/lib/magnific-popup/dist/jquery.magnific-popup.min.js ***!
   \**********************************************************************/
@@ -40688,7 +40841,7 @@
 	});
 
 /***/ },
-/* 203 */
+/* 205 */
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.less ***!
   \**************************************************/
@@ -40697,7 +40850,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 204 */
+/* 206 */
 /*!*********************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.js ***!
   \*********************************************************************************/
@@ -40713,7 +40866,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _SuggestionsModalViewHbs = __webpack_require__(/*! ./SuggestionsModalView.hbs.html */ 205);
+	var _SuggestionsModalViewHbs = __webpack_require__(/*! ./SuggestionsModalView.hbs.html */ 207);
 	
 	var _SuggestionsModalViewHbs2 = _interopRequireDefault(_SuggestionsModalViewHbs);
 	
@@ -40725,7 +40878,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	__webpack_require__(/*! ./SuggestionsModalView.less */ 206);
+	__webpack_require__(/*! ./SuggestionsModalView.less */ 208);
 	
 	var _SuggestionListView = __webpack_require__(/*! ../SuggestionListView.js */ 73);
 	
@@ -40786,7 +40939,7 @@
 	});
 
 /***/ },
-/* 205 */
+/* 207 */
 /*!***************************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.hbs.html ***!
   \***************************************************************************************/
@@ -40805,7 +40958,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
-/* 206 */
+/* 208 */
 /*!***********************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.less ***!
   \***********************************************************************************/
@@ -40814,7 +40967,7 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 207 */
+/* 209 */
 /*!******************************************!*\
   !*** ./wwwroot/css/shiners-override.css ***!
   \******************************************/
@@ -40823,7 +40976,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 208);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 210);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 51)(content, {});
@@ -40843,7 +40996,7 @@
 	}
 
 /***/ },
-/* 208 */
+/* 210 */
 /*!*********************************************************!*\
   !*** ./~/css-loader!./wwwroot/css/shiners-override.css ***!
   \*********************************************************/

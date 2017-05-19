@@ -19,7 +19,8 @@ var View = Marionette.View.extend({
     mapView:null,
 
     events: {
-        'change #chooseLanguage':'chooseLanguage'
+        'change #chooseLanguage':'chooseLanguage',
+        'click [data-lang]':'chooseTopMenuLanguage'
     },
 
     regions: {
@@ -62,6 +63,23 @@ var View = Marionette.View.extend({
     changeSelectlanguage() {
         var language = i18n.getLanguage(); 
         this.setSelectBoxByValue('chooseLanguage', language);
+
+        var elements = $('.sh-top-choose-language-list').children().find('a');
+        if(elements) {
+            elements.each(function() {
+                $(this).removeClass('active');
+                if($(this).data('lang') === language) {
+                    $(this).addClass('active');
+                }
+            });
+        }
+    },
+
+    chooseTopMenuLanguage(e) {
+        e.preventDefault();
+        e.stopPropagation();        
+        this.chooseLanguage(e);
+        this.changeSelectlanguage();
     },
 
     setSelectBoxByValue(eid, val) {
@@ -120,9 +138,10 @@ var View = Marionette.View.extend({
     },
 
     chooseLanguage(e) {
-        app.setCookie('language', e.target.value, {expires: 31536000, path: '/'});
-        app.i18n.setLanguage(e.target.value);        
-        app.trigger('change:language', e.target.value);
+        var lang = (e.target.value) ? e.target.value : e.target.getAttribute('data-lang');
+        app.setCookie('language', lang, {expires: 31536000, path: '/'});
+        app.i18n.setLanguage(lang);        
+        app.trigger('change:language', lang);
     },    
 
     _toggleUserInfo(user) {
