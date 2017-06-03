@@ -27,6 +27,7 @@ import LegalUserAgreementView from './legal/legalUserAgreementView';
 import LegalConfidentialView from './legal/legalConfidentialView';
 import LegalPostPublishingView from './legal/legalPostPublishingView';
 
+import EmptyBlogHomeView from './blog/emptyBlogHomeView';
 import BlogHomeView from './blog/blogHomeView';
 import BlogPostIdView from './blog/blogPostIdView';
 //import ProfilePageView from './user/ProfilePageView';
@@ -162,18 +163,14 @@ export default Marionette.Object.extend({
 
     // BLOG:
     blogHome() {
-        var posts = new AsteroidCollection(null, {asteroid: app.asteroid, comparator: 'createdAt'});   
+        var posts = new AsteroidCollection(null, {asteroid: app.asteroid, comparator: 'createdAt'});
         //app.layout.showChildView('content', new BlogHomeView({ collection: [] }));
-        posts.loadByMethod('bz.blog.getPosts', {}, () => {            
-           app.layout.showChildView('content', new BlogHomeView({ collection: posts }));
+        posts.loadByMethod('bz.blog.getPosts', {}, () => {
+            (posts.length === 0) ? app.layout.showChildView('content', new EmptyBlogHomeView({})) : app.layout.showChildView('content', new BlogHomeView({ collection: posts }));
         });
     },
 
     blogPostId(id) {
-        console.log('POST ID: ', id);
-        // Загружаем пост из базы по его ID....
-        // 1. находим поста по id
-        // 2. вызываем метод loadByMethod для загрузки и передаем во BlogPostIdView 
         app.layout.showChildView('content', new PreloaderView());
         if (id) {
             app.asteroid.call('bz.blog.getPostById', id).result.then((post) => {

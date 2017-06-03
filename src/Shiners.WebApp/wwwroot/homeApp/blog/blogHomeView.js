@@ -21,19 +21,17 @@ var View = Marionette.View.extend({
     fakeCollection: null,
 
     initialize() {
-
         //Fake instance
         this.fakeCollection = this._adaptCollection();
 
         this.blogItems = new Collection(null, {asteroid: this.asteroid});        
         //this.listenTo(app.user,'login',this.render);
         //this.listenTo(app.user, 'logout', this.render);
-    },    
+    },
+    
     _adaptCollection() {
         var ret, p;
-        debugger;
         ret = this.options.collection.map((post)=> {
-            
             p = post.toJSON();
             return _.extend({}, p, {
                 id: p.id,
@@ -81,7 +79,7 @@ var View = Marionette.View.extend({
     },
 
     onAttach() {
-        this.initCarousel();
+        //this.initCarousel();
     },     
 
     onRender() {
@@ -89,7 +87,9 @@ var View = Marionette.View.extend({
     },
     
     initCarousel() {
-        var slider 		= this.$('#sh-blog-carousel');
+        var slider 		= this.$("#sh-blog-carousel" + this.model.get('id'));
+        console.log(slider);
+       
         var options 	= slider.attr('data-plugin-options');
         var defaults = {
             //items: 5,

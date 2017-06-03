@@ -14,8 +14,33 @@ body {
             padding: 45px 0;
 
             .sh-blog-home-wrapper {
-                padding: 16px;
+                padding: 0;
+
+                > div {
+                    padding: 0;
+                }
+
+                #blog-items {
+                    .blog-post-item-wrapper {
+                        .blog-post-item {
+                            padding: 16px;
+                            margin-bottom: 60px;
+
+                            &:last-child {
+                                border-bottom: none;
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
             }
+        }
+
+        .sh-empty-blog {
+            padding: 45px 0;
+
+            h1 {font-size: 38px;}
+            .sh-section-intro {font-size: 28px;}
         }
     }
 
@@ -25,6 +50,11 @@ body {
 
             .sh-blog-post-id-wrapper {
                 padding: 16px;
+
+                .blog-post-info {
+                    margin-bottom: 20px;
+                    padding-bottom: 16px;
+                }
             }
         }
     }

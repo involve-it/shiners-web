@@ -4,6 +4,7 @@ import '../../lib/owl-carousel/owl.carousel.min.js';
 import Collection from '../../data/AsteroidCollection.js';
 import RelatedPostsView from './RelatedPostsView.js';
 import CommentsListView from './CommentsListView.js';
+import ConfirmView from '../../sharedViews/ConfirmView.js';
 import MapLoader from 'load-google-maps-api';
 import _ from 'underscore';
 import app from '../app.js';
@@ -20,20 +21,61 @@ var View = Marionette.View.extend({
     template:template,
     collection:null,
     comments: null,
+
+    events: {
+        'click .js-edit-post' : 'editPost',
+        'click .js-delete-post' : 'clickDeleteBtn'        
+    },       
+
     regions: {
         'related':'#relatedPostsContainer',
         'comments': '#sh-comments'
     },
 
-
     initialize() {
-        window.postDetails = this.model.toJSON();
+        window.postDetails = this.model.toJSON(); //debug
         this.collection = new Collection(null,{asteroid:this.model.asteroid});
         this.comments = new Collection(null, {asteroid: this.model.asteroid});
         this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
         this.listenTo(app.user,'login',this.render);
         this.listenTo(app.user, 'logout', this.render);
         this.listenTo( this.comments, 'after:load', this.initCommentsCount);
+
+        this.confirmAnswer = new Backbone.Model({questions: null});
+        this.listenTo(this.confirmAnswer,'change', this.deletePost);
+    },
+    
+    editPost(e) {},
+
+    clickDeleteBtn(e) {
+        e.stopPropagation();
+        e.preventDefault();
+
+        var that = this,
+            model =  this.model.toJSON(),
+            message = model.details.title || '';
+
+        //show modal window
+        var title = i18n.getLanguage() === 'ru'? 'Удаление поста': 'Delete post';
+        app.layout.showChildView('modal', new ConfirmView({answer: this.confirmAnswer, title: title, message: message}));
+    },
+
+    deletePost(e) {
+        var questions = this.confirmAnswer.get('questions');
+
+        var that = this,
+            model =  this.model.toJSON(),
+            postId = model._id;
+
+        setTimeout(function() {
+            if(questions) {
+                that.model.loadByMethod('deletePost', postId, function(){            
+                    app.router.navigate('/posts/my', {trigger: true});
+                });
+            }
+        }, 1500);
+        
+        this.confirmAnswer.set('questions', null);
     },
 
     initCommentsCount() {

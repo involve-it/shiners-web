@@ -1,4 +1,4 @@
-﻿
+﻿<div id="confirmModal"></div>
 <main class="sh-content">
     <div class="sh-post-details">
         <div class="container">
@@ -9,7 +9,7 @@
                         <h1>{{=details.title}}</h1>
                         <div class="sh-post-published">
                             <div class="sh-post-written">
-                                <span><i class="fa fa-clock-o"></i> Опубликовано, {{=moment(obj.timestamp.$date).fromNow()}}, - до {{=moment(obj.endDatePost.$date).format("ll")}}</span>
+                                <span><i class="fa fa-clock-o"></i> {{=i18n('PUBLISHED_BY')}}, {{=moment(obj.timestamp.$date).fromNow()}}, - до {{=moment(obj.endDatePost.$date).format("ll")}}</span>
                             </div>
                             <!-- sh-color-red, sh-color-yellow, sh-color-green -->
                             {{if(obj.duration) { }}
@@ -21,6 +21,17 @@
                             </div>
                             {{ } }}
                         </div>
+
+                        {{if (obj.currentUser._id === user._id) { }}
+                            <div class="sh-post-toolbar">
+                                <div class="sh-post-toolbar-item">
+                                    <a class="ui sh-button small js-edit-post disabled">{{=i18n('EDIT_POST')}}</a>
+                                </div>
+                                <div class="sh-post-toolbar-item">
+                                    <a class="ui sh-button standard create small js-delete-post">{{=i18n('TRASH_POST')}}</a>
+                                </div>
+                            </div>
+                        {{ } }}
 
                         <div class="sh-photos">
                             <div class="single-photo">
@@ -48,15 +59,15 @@
                                 </div>
 
                                 <ul class="sh-post-info sh-with-dotted">
-                                    {{if(obj.stats) { }}
-                                    <li><div><span class="sh-item">Просмотров</span><span class="sh-item-right">{{=stats.seenTotal}}</span></div></li>
+                                    {{if(obj.stats.seenTotal) { }}
+                                    <li><div><span class="sh-item">{{=i18n('post_d_views')}}</span><span class="sh-item-right">{{=stats.seenTotal}}</span></div></li>
                                     {{ } }}
                                     <!--{{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}-->
-                                    <li><div><span class="sh-item">Статус</span><span class="sh-item-right">{{=user.online ? 'online' : 'offline'}}</span></div></li>
+                                    <li><div><span class="sh-item">{{=i18n('post_d_status')}}</span><span class="sh-item-right">{{=user.online ? 'online' : 'offline'}}</span></div></li>
                                     {{if (obj.type) { }}
-                                    <li><div><span class="sh-item">Тип</span><span class="sh-item-right"><span class="label bg-type-category-{{=obj.type}}">{{=obj.type}}</span></span></div></li>
+                                    <li><div><span class="sh-item">{{=i18n('post_d_type')}}</span><span class="sh-item-right"><span class="label bg-type-category-{{=obj.type}}">{{=obj.type}}</span></span></div></li>
                                     {{ } }}
-                                    <li><div><span class="sh-item">Дистанция</span><span class="sh-item-right">{{if(obj.distance && obj.distanceType){ }} {{=distance>=0?distance.toFixed(1):'Не определена'}} {{=distanceType==='km'?'км':'miles'}} {{ } }}</span></div></li>
+                                    <li><div><span class="sh-item">{{=i18n('post_d_distance')}}</span><span class="sh-item-right">{{if(obj.distance && obj.distanceType){ }} {{=distance>=0?distance.toFixed(1):'Не определена'}} {{=distanceType==='km'?'км':'miles'}} {{ } }}</span></div></li>
                                 </ul>
                             </div>
 
@@ -78,9 +89,9 @@
                         <div class="sh-post-tab-menu">
                             <div class="sh-post-tab-menu-wrapper">
                                 <ul class="sh-post-tab-items">
-                                    <li class="sh-tab-item"><a class="active" href="#sh-description">Описание</a></li>
-                                    <li class="sh-tab-item"><a href="#sh-location">Местоположение</a></li>
-                                    <li class="sh-tab-item"><a href="#sh-review">Комментарии</a></li>
+                                    <li class="sh-tab-item"><a class="active" href="#sh-description">{{=i18n('post_description_t')}}</a></li>
+                                    <li class="sh-tab-item"><a href="#sh-location">{{=i18n('post_location_place_t')}}</a></li>
+                                    <li class="sh-tab-item"><a href="#sh-review">{{=i18n('post_comments_t')}}</a></li>
                                 </ul>
                             </div>
                            
@@ -104,7 +115,7 @@
                                     {{if (obj.currentUser) { }}
                                     <div class="sh-post-creator-actions">
                                         <div class="sh-actions-btn-group">
-                                            <a href="/messages/to/{{=user._id}}?postId={{=_id}}" class="ui sh-button standard action action-link">Связаться с пользователем</a>
+                                            <a href="/messages/to/{{=user._id}}?postId={{=_id}}" class="ui sh-button standard action action-link">{{=i18n('post_connect_to_user')}}</a>
                                         </div>
                                     </div>
                                     {{ } }}
@@ -115,7 +126,7 @@
 
                         <div id="sh-description" class="sh-post-description sh-section">
                             <div class="sh-post-description-wrapper">
-                                <h4>Об этом посте</h4>
+                                <h4>{{=i18n('post_about_post')}}</h4>
                                 <p>{{=details.description}}</p>
                             </div>
                         </div>
@@ -123,7 +134,7 @@
 
                         <div id="sh-location" class="sh-post-location sh-section">
                             <div class="sh-post-location-wrapper">
-                                <h4>Местоположение</h4>
+                                <h4>{{=i18n('post_location_place_t')}}</h4>
                                 <div class="sh-post-location-info">
                                     <div class="sh-post-location-distance">
                                         <i class="fa fa-location-arrow" aria-hidden="true"></i> От вас <span>{{if(obj.distance && obj.distanceType){ }} {{=distance>=0?distance.toFixed(1):'Дистанция не определена'}} {{=distanceType==='km'?'км':'miles'}} {{ } }}</span>
@@ -145,7 +156,7 @@
                                                                        
                         <div id="sh-review" class="sh-post-review sh-section">
                             <div class="sh-post-reviews-wrapper">
-                                <h4>Комментарии <span></span></h4>
+                                <h4>{{=i18n('post_comments_t')}} <span></span></h4>
                                 <div class="sh-post-form-review">
                                     <div id="sh-comments" class="sh-post-reviews"></div>
                                 </div>
@@ -169,19 +180,18 @@
 
                         <div class="sh-post-summary-information sh-info-header visible-md visible-lg">
                             <div class="sh-info-header-within">
-                                <span>Сводная информация</span>
+                                <span>{{=i18n('post_d_summary_information')}}</span>
                             </div>
-
                             <ul class="sh-post-info sh-with-dotted">
-                                {{if(obj.stats) { }}
-                                <li><div><span class="sh-item">Просмотров</span><span class="sh-item-right">{{=stats.seenTotal}}</span></div></li>
+                                {{if(obj.stats.seenTotal) { }}
+                                <li><div><span class="sh-item">{{=i18n('post_d_views')}}</span><span class="sh-item-right">{{=stats.seenTotal}}</span></div></li>
                                 {{ } }}
                                 <!--{{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}-->
-                                <li><div><span class="sh-item">Статус</span><span class="sh-item-right">{{=user.online ? 'online' : 'offline'}}</span></div></li>
+                                <li><div><span class="sh-item">{{=i18n('post_d_status')}}</span><span class="sh-item-right">{{=user.online ? 'online' : 'offline'}}</span></div></li>
                                 {{if (obj.type) { }}
-                                <li><div><span class="sh-item">Тип</span><span class="sh-item-right"><span class="label bg-type-category-{{=obj.type}}">{{=obj.type}}</span></span></div></li>
+                                <li><div><span class="sh-item">{{=i18n('post_d_type')}}</span><span class="sh-item-right"><span class="label bg-type-category-{{=obj.type}}">{{=obj.type}}</span></span></div></li>
                                 {{ } }}
-                                <li><div><span class="sh-item">Дистанция</span><span class="sh-item-right">{{if(obj.distance && obj.distanceType){ }} {{=distance>=0?distance.toFixed(1):'Не определена'}} {{=distanceType==='km'?'км':'miles'}} {{ } }}</span></div></li>
+                                <li><div><span class="sh-item">{{=i18n('post_d_distance')}}</span><span class="sh-item-right">{{if(obj.distance && obj.distanceType){ }} {{=distance>=0?distance.toFixed(1):'Не определена'}} {{=distanceType==='km'?'км':'miles'}} {{ } }}</span></div></li>
                             </ul>
                         </div>
 
