@@ -36,6 +36,9 @@ export default Model.extend({
 
     _create(options) {
         var self = this;
+<<<<<<< HEAD
+        return this.asteroid.call('addPost',this.attributes).then((resp) => {
+=======
         
         var postPosition = {};
         var navigatorPosition = app.user.get('position'),
@@ -58,6 +61,7 @@ export default Model.extend({
         }
 
         return this.asteroid.call('addPost', this.attributes, postPosition).result.then((resp) => {
+>>>>>>> master
             if (resp.success) {
                 self.set('_id',resp.result,options);
                 if(!options || !options.silent)

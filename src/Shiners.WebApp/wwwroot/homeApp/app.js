@@ -5,7 +5,8 @@ import '../i18n/en.js';
 import '../i18n/ru.js';
 import '../lib/detectmobile.js';
 //import "ddp.js";
-import Asteroid from '../lib/asteroid.browser.js';
+//import Asteroid from '../lib/asteroid.browser.js';
+const AsteroidModule = require('asteroid');
 import RootView from './mainLayoutView.js';
 import Collection from '../data/AsteroidCollection.js';
 import Router from './router.js';
@@ -41,10 +42,21 @@ let App = Marionette.Application.extend({
     },
     initialize() { 
         /* web server */ 
-        this.asteroid = new Asteroid("www.shiners.mobi", true);
+        console.log(AsteroidModule);
+        var Asteroid = AsteroidModule.createClass();
+        this.asteroid = new Asteroid({
+            endpoint: 'ws://shiners.mobi/websocket',
 
+<<<<<<< HEAD
+        })
+        //this.asteroid = new Asteroid("www.shiners.mobi", true);
+
+        ///* local server */
+        ////this.asteroid = new Asteroid("192.168.1.38:3000", false);
+=======
         /* local server */
         //this.asteroid = new Asteroid("192.168.1.34:3000", false);
+>>>>>>> master
 
         //window.asteroid = this.asteroid; // debug        
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
@@ -59,33 +71,31 @@ let App = Marionette.Application.extend({
 
     onStart() {   
         this.showView(new PreloaderView); 
-        if (this.asteroid.resumeLoginPromise)
-            this._startApp();
-        else {
-            var app = this;
-            this.asteroid.on('connected',()=>app._startApp());
-        }
+        var app = this;
+        this.asteroid.on('connected',()=>app._startApp());
         this.listenMessages();
     },
         
 
     _startApp() {
         this.asteroid.off('connected');
-        this.asteroid.resumeLoginPromise.finally((_.bind(() => {
-            this.isMobile = $.browser.mobile;
-            this.postAdTypes.loadByMethod('getPostAdTypes');
-            this.showView(this.layout);        
-            this.initVkApi();
-            this.initFbApi();
-            this.getPosition();  
-            this.asteroid.on('login', _.bind(this.initUser,this));
-            this.asteroid.on('loginError', _.bind(()=>this.user.trigger('error:login'),this));
-            this.asteroid.on('createUserError', _.bind(()=>this.user.trigger('error:create'),this));
-            this.asteroid.on('logout', _.bind(this.destroyUser,this));       
-            if (this.asteroid.loggedIn) {
-                this.initUser(this.asteroid.userId);
-            }
-        },this)));        
+        this.asteroid.on('loggedIn', () => {
+            debugger;
+        });
+        this.isMobile = $.browser.mobile;
+        this.postAdTypes.loadByMethod('getPostAdTypes');
+        this.showView(this.layout);        
+        this.initVkApi();
+        this.initFbApi();
+        this.getPosition();  
+
+        this.asteroid.on('bz:onLoginError', (error) => this.user.trigger('error:login', error));
+        this.asteroid.on('bz:onRegisterError', (error) => this.user.trigger('error:create', error));
+        this.asteroid.on('loggedIn', _.bind(this.initUser,this));
+        this.asteroid.on('loggedOut', _.bind(this.destroyUser,this));       
+        if (this.asteroid.loggedIn) {
+            this.initUser(this.asteroid.userId);
+        }
     },
     /*
     FbButton(container) {
@@ -147,11 +157,28 @@ let App = Marionette.Application.extend({
     },
 
     authorize(email,password) {
-        this.asteroid.loginWithPassword(email, password);
+        const asteroidInstance = this.asteroid;
+        var options = {
+            password: password
+        }
+        if (_.isEmail(email)) {
+            options.email = email;
+        } else {
+            options.username = email;
+        }
+        asteroidInstance.loginWithPassword(options).catch((error) => {
+            asteroidInstance.trigger('bz:onLoginError', error);
+        });
     },
 
     registerUser(accountData) {
-        this.asteroid.createUser(accountData);
+        debugger;
+
+        const asteroidInstance = this.asteroid;
+        this.asteroid.createUser(accountData).catch((error) => {
+            debugger;
+            asteroidInstance.trigger('bz:onRegisterError', error);
+        });
     },
 
     initUser(userId) {

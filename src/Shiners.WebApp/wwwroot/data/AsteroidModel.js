@@ -20,7 +20,7 @@ export default MongoModel.extend({
             self=this,
             argums=!args || _.isFunction(args)?[this.id]:(_.isArray(args)?args:[args]);
         this.trigger('before:load');
-        return this.asteroid.apply(method,argums).result.then((result)=> {
+        return this.asteroid.apply(method,argums).then((result)=> {
             if (result && result.success) {
                 self.set(result.result, _.omit(opts, "context", "callback"));
                 if (callback)
@@ -44,7 +44,7 @@ export default MongoModel.extend({
             self=this,
             argums=!args || _.isFunction(args)?[this.attributes]:(_.isArray(args)?args:[args]);
         this.trigger('before:save');
-        return this.asteroid.apply(method,argums).result.then((id)=> {
+        return this.asteroid.apply(method,argums).then((id)=> {
             self.set('_id',id, _.omit(opts, "context", "callback"));
             if (callback)
                 callback.apply(context, arguments);
@@ -64,7 +64,7 @@ export default MongoModel.extend({
             self=this,
             argums=!args || _.isFunction(args)?[this.attributes]:(_.isArray(args)?args:[args]);
         this.trigger('before:destroy');
-        return this.asteroid.apply(method,argums).result.then(result=> {
+        return this.asteroid.apply(method,argums).then(result=> {
             if (result.success) {
                 self.unset('_id', _.omit(opts, "context", "callback"));
                 if (callback)

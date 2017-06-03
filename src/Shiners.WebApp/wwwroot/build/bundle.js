@@ -53,6 +53,11 @@
 	
 	__webpack_require__(/*! jquery.cookie */ 5);
 	
+<<<<<<< HEAD
+	__webpack_require__(/*! ./helpers/extends */ 218);
+	
+=======
+>>>>>>> master
 	__webpack_require__(/*! ./helpers/helpers */ 6);
 	
 	__webpack_require__(/*! ./helpers/ui */ 8);
@@ -15863,9 +15868,15 @@
 
 	"use strict";
 	
+<<<<<<< HEAD
 	/*
 		MIT License http://www.opensource.org/licenses/mit-license.php
 		Author Tobias Koppers @sokra
+=======
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+>>>>>>> master
 	*/
 	// css base code, injected by the css-loader
 	module.exports = function () {
@@ -15943,6 +15954,17 @@
 	
 	__webpack_require__(/*! ../lib/detectmobile.js */ 33);
 	
+<<<<<<< HEAD
+	var _mainLayoutView = __webpack_require__(/*! ./mainLayoutView.js */ 34);
+	
+	var _mainLayoutView2 = _interopRequireDefault(_mainLayoutView);
+	
+	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 84);
+	
+	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
+	
+	var _router = __webpack_require__(/*! ./router.js */ 91);
+=======
 	var _asteroidBrowser = __webpack_require__(/*! ../lib/asteroid.browser.js */ 34);
 	
 	var _asteroidBrowser2 = _interopRequireDefault(_asteroidBrowser);
@@ -15956,6 +15978,7 @@
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
 	var _router = __webpack_require__(/*! ./router.js */ 97);
+>>>>>>> master
 	
 	var _router2 = _interopRequireDefault(_router);
 	
@@ -15963,6 +15986,25 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
+<<<<<<< HEAD
+	var _ModalContainerView = __webpack_require__(/*! ../sharedViews/ModalContainerView.js */ 124);
+	
+	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
+	
+	var _SuggestionsModalView = __webpack_require__(/*! ./selectLocation/suggestionsModal/SuggestionsModalView.js */ 196);
+	
+	var _SuggestionsModalView2 = _interopRequireDefault(_SuggestionsModalView);
+	
+	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 85);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 114);
+	
+	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
+	
+	__webpack_require__(/*! ../css/shiners-override.css */ 199);
+=======
 	var _ModalContainerView = __webpack_require__(/*! ../sharedViews/ModalContainerView.js */ 132);
 	
 	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
@@ -15980,6 +16022,7 @@
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
 	__webpack_require__(/*! ../css/shiners-override.css */ 209);
+>>>>>>> master
 	
 	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
@@ -15987,6 +16030,14 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+<<<<<<< HEAD
+	//import "ddp.js";
+	//import Asteroid from '../lib/asteroid.browser.js';
+	var AsteroidModule = __webpack_require__(/*! asteroid */ 201);
+	
+	
+=======
+>>>>>>> master
 	var App = _backbone2.default.Application.extend({
 	    region: 'body',
 	    layout: null,
@@ -16009,10 +16060,23 @@
 	    },
 	    initialize: function initialize() {
 	        /* web server */
+<<<<<<< HEAD
+	        console.log(AsteroidModule);
+	        var Asteroid = AsteroidModule.createClass();
+	        this.asteroid = new Asteroid({
+	            endpoint: 'ws://shiners.mobi/websocket'
+	
+	        });
+	        //this.asteroid = new Asteroid("www.shiners.mobi", true);
+	
+	        ///* local server */
+	        ////this.asteroid = new Asteroid("192.168.1.38:3000", false);
+=======
 	        this.asteroid = new _asteroidBrowser2.default("www.shiners.mobi", true);
 	
 	        /* local server */
 	        //this.asteroid = new Asteroid("192.168.1.34:3000", false);
+>>>>>>> master
 	
 	        //window.asteroid = this.asteroid; // debug        
 	        this.user = new _AsteroidModel2.default(null, { asteroid: this.asteroid });
@@ -16026,18 +16090,48 @@
 	    },
 	    onStart: function onStart() {
 	        this.showView(new _PreloaderView2.default());
+<<<<<<< HEAD
+	        var app = this;
+	        this.asteroid.on('connected', function () {
+	            return app._startApp();
+	        });
+=======
 	        if (this.asteroid.resumeLoginPromise) this._startApp();else {
 	            var app = this;
 	            this.asteroid.on('connected', function () {
 	                return app._startApp();
 	            });
 	        }
+>>>>>>> master
 	        this.listenMessages();
 	    },
 	    _startApp: function _startApp() {
 	        var _this = this;
 	
 	        this.asteroid.off('connected');
+<<<<<<< HEAD
+	        this.asteroid.on('loggedIn', function () {
+	            debugger;
+	        });
+	        this.isMobile = _jquery2.default.browser.mobile;
+	        this.postAdTypes.loadByMethod('getPostAdTypes');
+	        this.showView(this.layout);
+	        this.initVkApi();
+	        this.initFbApi();
+	        this.getPosition();
+	
+	        this.asteroid.on('bz:onLoginError', function (error) {
+	            return _this.user.trigger('error:login', error);
+	        });
+	        this.asteroid.on('bz:onRegisterError', function (error) {
+	            return _this.user.trigger('error:create', error);
+	        });
+	        this.asteroid.on('loggedIn', _underscore2.default.bind(this.initUser, this));
+	        this.asteroid.on('loggedOut', _underscore2.default.bind(this.destroyUser, this));
+	        if (this.asteroid.loggedIn) {
+	            this.initUser(this.asteroid.userId);
+	        }
+=======
 	        this.asteroid.resumeLoginPromise.finally(_underscore2.default.bind(function () {
 	            _this.isMobile = _jquery2.default.browser.mobile;
 	            _this.postAdTypes.loadByMethod('getPostAdTypes');
@@ -16057,6 +16151,7 @@
 	                _this.initUser(_this.asteroid.userId);
 	            }
 	        }, this));
+>>>>>>> master
 	    },
 	
 	    /*
@@ -16117,10 +16212,34 @@
 	        });
 	    },
 	    authorize: function authorize(email, password) {
+<<<<<<< HEAD
+	        var asteroidInstance = this.asteroid;
+	        var options = {
+	            password: password
+	        };
+	        if (_underscore2.default.isEmail(email)) {
+	            options.email = email;
+	        } else {
+	            options.username = email;
+	        }
+	        asteroidInstance.loginWithPassword(options).catch(function (error) {
+	            asteroidInstance.trigger('bz:onLoginError', error);
+	        });
+	    },
+	    registerUser: function registerUser(accountData) {
+	        debugger;
+	
+	        var asteroidInstance = this.asteroid;
+	        this.asteroid.createUser(accountData).catch(function (error) {
+	            debugger;
+	            asteroidInstance.trigger('bz:onRegisterError', error);
+	        });
+=======
 	        this.asteroid.loginWithPassword(email, password);
 	    },
 	    registerUser: function registerUser(accountData) {
 	        this.asteroid.createUser(accountData);
+>>>>>>> master
 	    },
 	    initUser: function initUser(userId) {
 	        var _this2 = this;
@@ -16133,6 +16252,8 @@
 	    logout: function logout() {
 	        this.asteroid.logout();
 	    },
+<<<<<<< HEAD
+=======
 	    setCookie: function setCookie(name, value, options) {
 	        options = options || {};
 	
@@ -16161,6 +16282,7 @@
 	
 	        document.cookie = updatedCookie;
 	    },
+>>>>>>> master
 	    destroyUser: function destroyUser() {
 	        this.user.unset('_id');
 	        this.user.unset('id', { silent: true });
@@ -16188,8 +16310,11 @@
 	        app.layout.showChildView('modal', new _ModalContainerView2.default({ view: new _SuggestionsModalView2.default({ model: options.model }), title: options.title }));
 	    }
 	});
+<<<<<<< HEAD
+=======
 	//import "ddp.js";
 	
+>>>>>>> master
 	
 	var app = new App();
 	global.app = app;
@@ -21663,6 +21788,11 @@
 	 * Created by arutu_000 on 12/9/2016.
 	 */
 	Object.assign = Object.assign || __webpack_require__(/*! object.assign */ 20);
+<<<<<<< HEAD
+	var DEFAULT_LANGUAGE = 'ru';
+	var dataGlobal = {},
+	    currentLanguage = DEFAULT_LANGUAGE;
+=======
 	
 	var DEFAULT_LANGUAGE = getCookie('language') || 'ru';
 	
@@ -21674,6 +21804,7 @@
 	var dataGlobal = {},
 	    currentLanguage = DEFAULT_LANGUAGE;
 	
+>>>>>>> master
 	var i18n = function i18n(name) {
 	    var ret,
 	        lang = i18n.getLanguage(),
@@ -21688,7 +21819,10 @@
 	
 	    return ret;
 	};
+<<<<<<< HEAD
+=======
 	
+>>>>>>> master
 	Object.assign(i18n, {
 	    init: function init() {
 	        $.fn.translate = function (lang) {
@@ -21724,6 +21858,10 @@
 	        } else {
 	            return false;
 	        }
+<<<<<<< HEAD
+	    }
+	});
+=======
 	    },
 	    getI18nString: function getI18nString(name) {
 	        var ret,
@@ -21736,6 +21874,7 @@
 	    }
 	});
 	
+>>>>>>> master
 	function emitEvent(lang) {
 	    $(window).trigger('sh:language:changed', lang);
 	}
@@ -22346,12 +22485,15 @@
 	    DIRECT_PROFILE_LINK: 'direct profile link',
 	    CREATE_SHINER: 'Create a shiner',
 	    SEARCH_PLACEHOLDER: 'Search',
+<<<<<<< HEAD
+=======
 	    READ_MORE: 'Read more',
 	    COMMENTS: 'Comment(s)',
 	    BTN_DONE: 'Done',
 	    DELETE_POST: 'Delete post',
 	    TITLE_YES: 'Yes',
 	    TITLE_NO: 'NO',
+>>>>>>> master
 	
 	    // banner
 	    shiners_are: 'SHINERS - ARE',
@@ -22385,8 +22527,13 @@
 	    footer_menu_post_publishing_rules: 'Post publishing rules',
 	
 	    //MASS MEDIA
+<<<<<<< HEAD
+	    h_information_for_smi: 'Информация для СМИ'
+	}, _defineProperty(_json, 'massMedia', 'Пресса о нас'), _defineProperty(_json, 'press_release', 'Пресс-релизы'), _defineProperty(_json, 'press_contacts', 'Контакты для прессы'), _defineProperty(_json, 'h_meet_us', 'Знакомство с нами'), _defineProperty(_json, 'h_mass_media', 'Пресса о нас'), _defineProperty(_json, 'm_about_us', 'О нас'), _defineProperty(_json, 'm_help', 'Помощь'), _defineProperty(_json, 'm_confidentiality', 'Конфиденциальность'), _defineProperty(_json, 'm_terms_of_use', 'Правила пользования'), _defineProperty(_json, 'site_published', 'Сайт публикации'), _defineProperty(_json, 'download_press_release', 'Скачать пресс-релиз'), _defineProperty(_json, 'ashot_a', 'Ашот Арутюнян'), _defineProperty(_json, 'tatyana_u', 'Татьяна Урусова'), _defineProperty(_json, 'home_accordion_section1', 'If you already have an advertisement on another website, just use that Url to create a Shiner!'), _defineProperty(_json, 'home_accordion_section2', 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone'), _defineProperty(_json, 'home_accordion_section3', 'Use Shiners for finding new live connections everywhere'), _defineProperty(_json, 'home_shiners_are_around', 'Shiners are everywhere'), _defineProperty(_json, 'home_lot_of_opportunities', 'A lot of opportunities for business around'), _defineProperty(_json, 'home_participate', 'Participate '), _defineProperty(_json, 'home_free', 'for free'), _defineProperty(_json, 'home_in_project', ' in the project!'), _defineProperty(_json, 'home_contact_with_people', 'Let others know about your ad instantly'), _defineProperty(_json, 'home_set_your_shiner', 'Create your Shiner'), _defineProperty(_json, 'search_free_search', 'Free search by words'), _defineProperty(_json, 'search_choose_radius', 'Search Radius (km):'), _defineProperty(_json, 'search_parameters', 'Search Parameters'), _defineProperty(_json, 'search_found', 'Found Shiners'), _defineProperty(_json, 'search_not_found', 'No posts found around'), _defineProperty(_json, 'about_intro_text', 'Мы считаем, это замечательно - иметь инструмент, который помогает людям вокруг сотрудничать друг с другом, находить людей и занятия прямо здесь, и прямо сейчас. SHINERS показывает людям объявления вокруг с привязкой к человеку и его локации.'), _defineProperty(_json, 'about_intro_duration', 'Продолжительность'), _defineProperty(_json, 'about_intro_duration_minute', 'мин.'), _defineProperty(_json, 'about_menu_how_it_works', 'КАК ЭТО РАБОТАЕТ?'), _defineProperty(_json, 'about_menu_what_are_we_useful', 'ЧЕМ МЫ ПОЛЕЗНЫ?'), _defineProperty(_json, 'about_menu_our_team', 'НАША КОМАНДА'), _defineProperty(_json, 'about_menu_connect_with_us', 'СВЯЗАТЬСЯ С НАМИ'), _defineProperty(_json, 'about_title_section_1', 'Единственный сервис, предлагающий живое присутствие!'), _defineProperty(_json, 'about_title_section_1_p1', 'Светлячки позволяют привязать объявление или любой адрес в интернете к текущему местоположению пользователя, и, как результат, осуществлять мгновенный поиск информации среди людей вокруг. Это позволяет искать информацию здесь и сейчас с целью мгновенной встречи с ее владельцем. Ненужное промежуточное звено (поиск по интернету, договор о встрече, дорогу к месту) можно исключить, если потенциально интересующий нас человек находится поблизости.'), _defineProperty(_json, 'about_title_section_1_p2', 'Мы расширяем возможности Веба, посредством привязки информации к реальным людям и координатам, что дает веб-ресурсам новое,- пространство-временное, качество, то есть путь напрямик к цели! Нас также видно в Google и соцсетях, и поэтому твое объявление превращается в собственную интернет-страницу, которую при желании увидит весь интернет.'), _defineProperty(_json, 'about_title_section_2', 'Как это работает?'), _defineProperty(_json, 'about_title_section_2_intro', 'Представь себе виртуальную визитку, только носишь ты ее не в кошельке, а в мобильном телефоне, и видят ее не избранные, а все, кто рядом!'), _defineProperty(_json, 'about_title_create_post', 'Создай свой пост'), _defineProperty(_json, 'about_title_you_are_find', 'Ты находишь / Тебя находят'), _defineProperty(_json, 'about_title_contract_meeting', 'Договаривайся / Встречайся'), _defineProperty(_json, 'about_title_section_3', 'Чем мы полезны?'), _defineProperty(_json, 'about_title_section_3_intro', 'Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.'), _defineProperty(_json, 'about_block_ads', 'ОБЪЯВЛЕНИЕ'), _defineProperty(_json, 'about_block_ads_text', 'Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".'), _defineProperty(_json, 'about_block_link', 'ССЫЛКА'), _defineProperty(_json, 'about_block_link_text', 'Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!'), _defineProperty(_json, 'about_block_dynamic', 'ДИНАМИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_dynamic_text', 'Движется вместе с тобой. Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!'), _defineProperty(_json, 'about_block_static', 'СТАТИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_static_text', 'Привязан к заданной тобой местности. Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!'), _defineProperty(_json, 'about_btn_set_your_shiners', 'Станови свой Светлячок'), _defineProperty(_json, 'about_who_we_are_title', 'КТО МЫ'), _defineProperty(_json, 'about_who_we_are_text', 'Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости.'), _defineProperty(_json, 'about_security_title', 'БЕЗОПАСНОСТЬ'), _defineProperty(_json, 'about_security_text', 'Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!'), _defineProperty(_json, 'about_rules_title', 'ПРАВИЛА'), _defineProperty(_json, 'about_rules_text', 'При регистрации на «Cветлячках» Пользователь соглашается с'), _defineProperty(_json, 'about_rules_text_link1', 'настоящими правилами'), _defineProperty(_json, 'about_title_section_4', 'Связаться с нами'), _defineProperty(_json, 'about_title_section_4_intro', 'Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!'), _defineProperty(_json, 'about_your_name', 'Ваше имя'), _defineProperty(_json, 'about_your_email', 'Ваш email'), _defineProperty(_json, 'about_your_message', 'Ваше сообщение'), _defineProperty(_json, 'about_btn_send_msg', 'Отправить'), _defineProperty(_json, 'post_d_summary_information', ''), _defineProperty(_json, 'post_d_views', 'Просмотров'), _defineProperty(_json, 'post_d_status', 'Статус'), _defineProperty(_json, 'post_d_type', 'Тип'), _defineProperty(_json, 'post_d_distance', 'Дистанция'), _defineProperty(_json, 'post_d_report_this_post', 'Сообщите об этом объявлении'), _defineProperty(_json, 'post_description_t', 'Описание'), _defineProperty(_json, 'post_location_place_t', 'Местоположение'), _defineProperty(_json, 'post_comments_t', 'Комментарии'), _defineProperty(_json, 'post_connect_to_user', 'Связаться с пользователем'), _defineProperty(_json, 'post_about_post', 'Об этом посте'), _defineProperty(_json, 'post_comment', 'Комментарий'), _defineProperty(_json, 'post_comments', 'Комментарии'), _defineProperty(_json, 'messages_send', 'Отправить'), _defineProperty(_json, 'messages_for_user', 'Сообщение для'), _json);
+=======
 	    h_information_for_smi: 'Information for the media'
 	}, _defineProperty(_json, 'massMedia', 'Media about us'), _defineProperty(_json, 'press_release', 'Press Releases'), _defineProperty(_json, 'press_contacts', 'Press Contacts'), _defineProperty(_json, 'h_meet_us', 'About us'), _defineProperty(_json, 'h_mass_media', 'Media about us'), _defineProperty(_json, 'm_about_us', 'About us'), _defineProperty(_json, 'm_help', 'Help'), _defineProperty(_json, 'm_confidentiality', 'Confidentiality'), _defineProperty(_json, 'm_terms_of_use', 'Terms of use'), _defineProperty(_json, 'site_published', 'Site published'), _defineProperty(_json, 'download_press_release', 'Download press release'), _defineProperty(_json, 'ashot_a', 'Ashot Arutyunyan'), _defineProperty(_json, 'tatyana_u', 'Tatyana Urusova'), _defineProperty(_json, 'home_accordion_section1', 'If you already have an advertisement on another website, just use that Url to create a Shiner!'), _defineProperty(_json, 'home_accordion_section2', 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone'), _defineProperty(_json, 'home_accordion_section3', 'Use Shiners for finding new live connections everywhere'), _defineProperty(_json, 'home_shiners_are_around', 'Shiners are everywhere'), _defineProperty(_json, 'home_lot_of_opportunities', 'A lot of opportunities for business around'), _defineProperty(_json, 'home_participate', 'Participate '), _defineProperty(_json, 'home_free', 'for free'), _defineProperty(_json, 'home_in_project', ' in the project!'), _defineProperty(_json, 'home_contact_with_people', 'Let others know about your ad instantly'), _defineProperty(_json, 'home_set_your_shiner', 'Create your Shiner'), _defineProperty(_json, 'search_free_search', 'Free search by words'), _defineProperty(_json, 'search_choose_radius', 'Search Radius (km):'), _defineProperty(_json, 'search_parameters', 'Search Parameters'), _defineProperty(_json, 'search_found', 'Found Shiners'), _defineProperty(_json, 'search_not_found', 'No posts found around'), _defineProperty(_json, 'about_intro_text', 'Shiners is a tool that helps people around to cooperate with each other. We will show you people ads around with a link to the person and his location.  Yor new friends, Clients, partners are nearby and ready to meet you'), _defineProperty(_json, 'about_intro_duration', 'Duration'), _defineProperty(_json, 'about_intro_duration_minute', 'min.'), _defineProperty(_json, 'about_menu_how_it_works', 'How does it work?'), _defineProperty(_json, 'about_menu_what_are_we_useful', 'What are we useful for?'), _defineProperty(_json, 'about_menu_our_team', 'Our Team'), _defineProperty(_json, 'about_menu_connect_with_us', 'Connect with us'), _defineProperty(_json, 'about_title_section_1', 'The only one service offering Live presence'), _defineProperty(_json, 'about_title_section_1_p1', 'Shiners allow you to connect an advertisement or any other address on the internet to the current location of a user and as a result you can implement an instant search of information among the people who surround you. It enables you to look for information here and now in order to meet its owner immediately. Unnecessary intermediate link (search on the internet, arranging of the meeting, a road to the particular place) can be excluded if a potentially interesting person is near you. '), _defineProperty(_json, 'about_title_section_1_p2', 'We are expending the abilities of web by connecting an information to real people and to the coordinates that gives web-resources something new – specious and timeless quality in other words a road directly to the aim. You can also see us in Google and social networks and that is why your advertisement will transform into your own internet-page, which can be open to the whole internet.'), _defineProperty(_json, 'about_title_section_2_intro', 'Just imagine a virtual visit-card that you can carry around with you not in the wallet but in your mobile phone and all people who surround you can see it, and not the only chosen ones!'), _defineProperty(_json, 'about_title_create_post', 'Create your post'), _defineProperty(_json, 'about_title_you_are_find', 'You find - You can be found'), _defineProperty(_json, 'about_title_contract_meeting', 'Arrange a meeting – meet people'), _defineProperty(_json, 'about_title_section_3', 'Why we so useful?'), _defineProperty(_json, 'about_title_section_3_intro', 'Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.'), _defineProperty(_json, 'about_block_ads', 'ОБЪЯВЛЕНИЕ'), _defineProperty(_json, 'about_block_ads_text', 'Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".'), _defineProperty(_json, 'about_block_link', 'LINK'), _defineProperty(_json, 'about_block_link_text', 'Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!'), _defineProperty(_json, 'about_block_dynamic', 'ДИНАМИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_dynamic_text', 'Движется вместе с тобой. Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!'), _defineProperty(_json, 'about_block_static', 'СТАТИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_static_text', 'Привязан к заданной тобой местности. Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!'), _defineProperty(_json, 'about_btn_set_your_shiners', 'Установи свой Светлячок'), _defineProperty(_json, 'about_who_we_are_title', 'Who are we?'), _defineProperty(_json, 'about_who_we_are_text', 'Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости.'), _defineProperty(_json, 'about_security_title', 'БЕЗОПАСНОСТЬ'), _defineProperty(_json, 'about_security_text', 'Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!'), _defineProperty(_json, 'about_rules_title', 'ПРАВИЛА'), _defineProperty(_json, 'about_rules_text', 'При регистрации на «Cветлячках» Пользователь соглашается с'), _defineProperty(_json, 'about_rules_text_link1', 'настоящими правилами'), _defineProperty(_json, 'about_title_section_4', 'Связаться с нами'), _defineProperty(_json, 'about_title_section_4_intro', 'Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!'), _defineProperty(_json, 'about_your_name', 'Your name'), _defineProperty(_json, 'about_your_email', 'Your email'), _defineProperty(_json, 'about_your_message', 'Your message'), _defineProperty(_json, 'about_btn_send_msg', 'Send'), _defineProperty(_json, 'post_d_summary_information', 'Summary information'), _defineProperty(_json, 'post_d_views', 'Views'), _defineProperty(_json, 'post_d_status', 'Status'), _defineProperty(_json, 'post_d_type', 'Type'), _defineProperty(_json, 'post_d_distance', 'Distance'), _defineProperty(_json, 'post_d_report_this_post', 'Tell about this post'), _defineProperty(_json, 'post_description_t', 'Description'), _defineProperty(_json, 'post_location_place_t', 'Location'), _defineProperty(_json, 'post_comments_t', 'comments'), _defineProperty(_json, 'post_connect_to_user', 'Connect to user'), _defineProperty(_json, 'post_about_post', 'About this post'), _defineProperty(_json, 'post_comment', 'Comment'), _defineProperty(_json, 'post_comments', 'Comments'), _defineProperty(_json, 'messages_send', 'Send'), _defineProperty(_json, 'messages_for_user', 'Messages for user'), _defineProperty(_json, 'RELOAD_POST_TIME', 'Reload'), _defineProperty(_json, 'EDIT_POST', 'Edit'), _defineProperty(_json, 'TRASH_POST', 'Delete'), _defineProperty(_json, 'EMAIL_LABEL', 'E-mail'), _defineProperty(_json, 'USERNAME_LABEL', 'login'), _defineProperty(_json, 'USERNAME_EMAIL_LABEL', 'login or E-mail'), _defineProperty(_json, 'PASSWORD_LABEL', 'password'), _defineProperty(_json, 'CONFIRM_PASSWORD_LABEL', 'confirm password'), _defineProperty(_json, 'validation_message_required', '{0} required'), _defineProperty(_json, 'validation_message_oneOfProperty', 'you must enter {0}, or {1}'), _defineProperty(_json, 'validation_message_acceptance', '{0} must be accepted'), _defineProperty(_json, 'validation_message_min', 'value of {0} must be greater or equal {1}'), _defineProperty(_json, 'validation_message_max', 'value of {0} must be lesser or equal {1}'), _defineProperty(_json, 'validation_message_range', '{0} must be between {1} and {2}'), _defineProperty(_json, 'validation_message_length', '{0} must be {1} characters'), _defineProperty(_json, 'validation_message_minLength', '{0} must be at least {1} characters'), _defineProperty(_json, 'validation_message_maxLength', '{0} must be at most {1} characters'), _defineProperty(_json, 'validation_message_rangeLength', '{0} must be between {1} and {2} characters'), _defineProperty(_json, 'validation_message_oneOf', '{0} must be one of: {1}'), _defineProperty(_json, 'validation_message_equalTo', '{0} must be the same as {1}'), _defineProperty(_json, 'validation_message_digits', '{0} должно состоять из цифр'), _defineProperty(_json, 'validation_message_number', '{0} required'), _defineProperty(_json, 'validation_message_email', 'Enter correct value in {0}'), _defineProperty(_json, 'validation_message_url', 'Field {0} must be correct url'), _defineProperty(_json, 'validation_message_inlinePattern', 'Enter proper value of {0}'), _defineProperty(_json, 'PUBLISHED_BY', 'Published by'), _defineProperty(_json, 'blog_empty_title', 'Мы извиняемся, но сейчас нам нечего вам показать'), _defineProperty(_json, 'blog_empty_subTitle', 'Пожалуйста, зайдите позже'), _json);
+>>>>>>> master
 	i18n.add('en', json);
 
 /***/ },
@@ -22420,12 +22567,15 @@
 	    POST_STATUS: 'Объявление закрыто',
 	    POST_LEFT: 'Осталось',
 	    SEARCH_PLACEHOLDER: 'Поиск',
+<<<<<<< HEAD
+=======
 	    READ_MORE: 'Читать дальше',
 	    COMMENTS: 'Комментариев',
 	    BTN_DONE: 'Готово',
 	    DELETE_POST: 'Удалить пост',
 	    TITLE_YES: 'Да',
 	    TITLE_NO: 'Нет',
+>>>>>>> master
 	
 	    // BANNER
 	    shiners_are: 'СВЕТЛЯЧКИ - ЭТО',
@@ -22532,7 +22682,11 @@
 	    about_btn_send_msg: 'Отправить',
 	
 	    // POST DETAILS
+<<<<<<< HEAD
+	    post_d_summary_information: '',
+=======
 	    post_d_summary_information: 'Сводная информация',
+>>>>>>> master
 	    post_d_views: 'Просмотров',
 	    post_d_status: 'Статус',
 	    post_d_type: 'Тип',
@@ -22548,6 +22702,9 @@
 	
 	    // MESSAGES
 	    messages_send: 'Отправить',
+<<<<<<< HEAD
+	    messages_for_user: 'Сообщение для'
+=======
 	    messages_for_user: 'Сообщение для',
 	
 	    //MY POSTS
@@ -22587,6 +22744,7 @@
 	    blog_empty_title: 'Мы извиняемся, но сейчас нам нечего вам показать',
 	    blog_empty_subTitle: 'Пожалуйста, зайдите позже'
 	
+>>>>>>> master
 	};
 	i18n.add('ru', json);
 
@@ -22612,6 +22770,2240 @@
 
 /***/ },
 /* 34 */
+<<<<<<< HEAD
+/*!*******************************************!*\
+  !*** ./wwwroot/homeApp/mainLayoutView.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _backbone3 = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone4 = _interopRequireDefault(_backbone3);
+	
+	var _mainLayoutViewHbs = __webpack_require__(/*! ./mainLayoutView.hbs.html */ 35);
+	
+	var _mainLayoutViewHbs2 = _interopRequireDefault(_mainLayoutViewHbs);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _MapView = __webpack_require__(/*! ./MapView.js */ 36);
+	
+	var _MapView2 = _interopRequireDefault(_MapView);
+	
+	var _BannerView = __webpack_require__(/*! ./BannerView.js */ 62);
+	
+	var _BannerView2 = _interopRequireDefault(_BannerView);
+	
+	var _UserBarView = __webpack_require__(/*! ./UserBarView.js */ 71);
+	
+	var _UserBarView2 = _interopRequireDefault(_UserBarView);
+	
+	var _NavLocationView = __webpack_require__(/*! ./NavLocationView.js */ 73);
+	
+	var _NavLocationView2 = _interopRequireDefault(_NavLocationView);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _iframeView = __webpack_require__(/*! ./shared/iframeView.js */ 75);
+	
+	var _iframeView2 = _interopRequireDefault(_iframeView);
+	
+	var _userMenuView = __webpack_require__(/*! ./layout/userMenuView */ 79);
+	
+	var _userMenuView2 = _interopRequireDefault(_userMenuView);
+	
+	var _mainMenuView = __webpack_require__(/*! ./mainMenuView */ 81);
+	
+	var _mainMenuView2 = _interopRequireDefault(_mainMenuView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone4.default.View.extend({
+	
+	    template: _mainLayoutViewHbs2.default,
+	    id: "wrapper",
+	    mapView: null,
+	
+	    events: {
+	        'change #chooseLanguage': 'chooseLanguage'
+	    },
+	
+	    regions: {
+	        'content': '#appContent',
+	        'map': '#appMap',
+	        'banner': '#appBanner',
+	        'userBar': '#userBar',
+	        'navLocation': '#navLocation',
+	        'mainMenu': '#bzMainMenu',
+	        'modal': '#showModalContainer'
+	    },
+	
+	    initialize: function initialize() {},
+	    onClickLink: function onClickLink() {
+	        _backbone2.default.$(document).on('click', 'a:not([data-direct-link])a:not([href^=http])', function (e) {
+	            //not data-direct-link class AND not having http in beginning of href
+	            var href = _backbone2.default.$(this).attr('href');
+	            var protocol = this.protocol + '//';
+	            if (href && !_underscore2.default.isEmpty(href) && href.slice(protocol.length) !== protocol) {
+	                e.preventDefault();
+	                _app2.default.router.navigate(href, true);
+	            }
+	        });
+	    },
+	    onRender: function onRender() {
+	        this.renderMapAndBanner();
+	        this.renderMainMenu();
+	        this.listenTo(_app2.default.router, 'route', this.toggleMapAndBanner);
+	        //this._adaptUiIfIsIframe();
+	        //this.listenTo(app.user, 'receivedMeteorUser', this._toggleUserInfo);
+	        //this._loadIframeView();
+	    },
+	    onAttach: function onAttach() {
+	        this.onClickLink();
+	    },
+	    renderMapAndBanner: function renderMapAndBanner() {
+	        var searchModel = new _backbone2.default.Model({ radius: 1 });
+	        this.showChildView('map', new _MapView2.default({ collection: _app2.default.nearbyPosts, model: searchModel }));
+	        this.showChildView('banner', new _BannerView2.default({ model: searchModel }));
+	        this.showChildView('navLocation', new _NavLocationView2.default({ model: searchModel }));
+	        this.showChildView('userBar', new _UserBarView2.default({ model: _app2.default.user }));
+	    },
+	    renderMainMenu: function renderMainMenu() {
+	        this.showChildView('mainMenu', new _mainMenuView2.default());
+	    },
+	    showChangeLocation: function showChangeLocation() {
+	        this.getChildView('banner').showSuggestionsModalView();
+	        //this.getChildView('banner').renderLocationsSelection();
+	    },
+	    toggleBannerView: function toggleBannerView() {
+	        if (this.getRegion('banner').$el.is(':hidden')) {
+	            this.getRegion('banner').$el.show();
+	        } else {
+	            this.getRegion('banner').$el.hide();
+	        }
+	    },
+	    toggleMapAndBanner: function toggleMapAndBanner(routeName) {
+	        if (routeName === "index") {
+	            this.getRegion('map').$el.show();
+	
+	            this.getRegion('banner').$el.show();
+	            /*if (!app.isMobile)
+	                this.getRegion('banner').$el.show();
+	            else
+	                this.hideFooter();
+	            */
+	
+	            if (window.google) window.google.maps.event.trigger(_app2.default.map, 'resize');
+	        } else {
+	            this.showFooter();
+	            this.getRegion('map').$el.hide();
+	            this.getRegion('banner').$el.hide();
+	        }
+	    },
+	    hideFooter: function hideFooter() {
+	        this.$('#footer').hide();
+	    },
+	    showFooter: function showFooter() {
+	        this.$('#footer').show();
+	    },
+	    chooseLanguage: function chooseLanguage(e) {
+	        _app2.default.i18n.setLanguage(e.target.value);
+	        _app2.default.trigger('change:language', e.target.value);
+	    },
+	    _toggleUserInfo: function _toggleUserInfo(user) {
+	        var view = new _userMenuView2.default({
+	            model: new _backbone2.default.Model(user)
+	        });
+	        view.render();
+	        this.$('#userBar .quick-cart').hide();
+	        this.$('#userBar ul').append(view.$el);
+	        this.$('#userBar').show();
+	
+	        // other menu items:
+	        this.$('.js-need-auth').show();
+	    },
+	    _adaptUiIfIsIframe: function _adaptUiIfIsIframe() {
+	        var isIframe = $h.help.getUrlParams().isiframe;
+	        if (isIframe === 'true') {
+	            this.$('#header').hide();
+	            this.hideFooter();
+	            // hide all post-beginning links (we don't want user to go somewhere)
+	            setTimeout(function () {
+	                $('a[href^="/posts/"]').each(function (i, a) {
+	                    $(a).hide();
+	                });
+	            }, 1000);
+	        }
+	    },
+	    _loadIframeView: function _loadIframeView() {
+	        setTimeout(function () {
+	            if (!_app2.default.views.iframeView) {
+	                var iView = new _iframeView2.default({
+	                    //pagePath: 'posts/new'
+	                });
+	                iView.render();
+	                _app2.default.views.iframeView = iView;
+	            }
+	        }, 2000); // let's assume main page is loaded by this time
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 35 */
+/*!*************************************************!*\
+  !*** ./wwwroot/homeApp/mainLayoutView.hbs.html ***!
+  \*************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\n<div id="showModalContainer"></div>\n\n<div id="header" class="sticky clearfix header-md">\n	<header id="topNav">\n		\n		<div class="sh-header-topline">\n			<div class="container">\n				<div class="sh-header-topline-main">\n					<div class="sh-header-topline-item">\n                        <div class="sh-header-navbar-logo">\r\n                            <a class="sh-logo-header" href="/">\r\n                                <img src="/images/sh-logo.png" alt="logotype Shiners" height="35" width="35" /> <span>'+
+	((__t=(i18n('SITE_NAME')))==null?'':__t)+
+	'</span>\r\n                            </a>\r\n                        </div>\n						<div class="sh-show-modal-city"> \n							<span class="text-weight bold">\n								<span id="navLocation"></span>\n							</span>\n						</div>\n					</div>\n\n					<div class="sh-header-topline-item sh-header-buttons-tools sh-flex-center-items">\n\n						<div id="bzMainMenu"></div>\n\n						<div class="sh-header-dropdown-user">                        \n							<div id="userBar"></div>\n						</div>\n\n						<button class="sh-btn-mobile-menu btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">\n							<i class="fa fa-bars"></i>\n						</button>\n\n					</div>\n				</div>\n			</div>\n		</div>\n		\n		<div class="sh-header-navbar-wrapper sh-blurred-bg hidden-xs">\n			<div class="container">\n\n				<div class="sh-header-navbar-items">\n					<!--<div class="sh-header-navbar-logo">\n						<a class="sh-logo-header" href="/">\n							<img src="/images/sh-logo.png" alt="logotype Shiners" height="50" width="50" />\n							'+
+	((__t=(i18n('SITE_NAME')))==null?'':__t)+
+	'\n						</a>\n					</div>-->\n\n					<div class="sh-header-navbar-submenu">\n                        <div class="sh-download-buttons-top">\n\n                            <a target="_blank" data-direct-link href="https://itunes.apple.com/ru/app/shiners/id1136502367?mt=8">\n                                <img src="/images/buttons/app_store_RU_135x40@2x.png" width="135" height="40" alt="Загрузите в App Store">\n                            </a>\n\n                            <a target="_blank" data-direct-link href=\'https://play.google.com/store/apps/details?id=org.buzzar.app&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1\'>\n                                <img src="/images/buttons/google_play_RU_135x40@2x.png" width="135" height="40" alt=\'Доступно в Google Play\' />\n                            </a>\n                        </div>\n                    </div>\n\n					<div class="sh-header-navbar-create">\n						<a class="ui sh-button standard create big hidden-sm" href="/posts/new">'+
+	((__t=(i18n('CREATE_SHINER')))==null?'':__t)+
+	'</a>\n					</div>\n				</div>\n\n				<div class="header-hr-line"></div>\n				<div id="appBanner" style="display: none;">\n					<!--=serverRender(\'~/homeApp/BannerView.hbs.html\',{},\'section\',\'class="page-header page-header-xs"\')-->\n					'+
+	((__t=(serverRender('~/homeApp/BannerView.hbs.html',{},'div','class="sh-header-navbar-info visible-md-block visible-lg-block"')))==null?'':__t)+
+	'\n				</div>\n			</div>\n\n		</div>\n\n		<div class="sh-header-navbar">\n			<div class="sh-header-map">\n				<div id="appMap" style="display: none;"></div>\n			</div>\n		</div>\n\n	</header>\n</div>\n\n<div id="appContent">\n	'+
+	((__t=(serverRender(obj.routeViewPath,obj.routeViewData,obj.routeViewTag,obj.routeViewHtmlAttrs)))==null?'':__t)+
+	'\n</div>\n<div id="iframeHolder" style="display: none;"></div>\n\n<footer id="footer" class="sh-footer">\n	<div class="container">\n		<!--1-->\n		<div class="row footer-section footer-section-download">\n			<div class="col-xs-12">\n				<div class="sh-download-buttons-bottom">\n                    <h3>'+
+	((__t=(i18n('footer_load_free')))==null?'':__t)+
+	'</h3>\n                    <div class="sh-download-buttons-bottom-wrapper">\n                        <a target="_blank" data-direct-link href="https://itunes.apple.com/ru/app/shiners/id1136502367?mt=8">\n                            <img src="/images/buttons/app_store_RU_135x40@2x.png" width="135" height="40" alt="Загрузите в App Store">\n                        </a>\n\n                        <a target="_blank" data-direct-link href=\'https://play.google.com/store/apps/details?id=org.buzzar.app&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1\'>\n                            <img src="/images/buttons/google_play_RU_135x40@2x.png" width="135" height="40" alt=\'Доступно в Google Play\' />\n                        </a>\n                    </div>\n                </div>\n\n				<!--<div class="sh-footer-images">\n					<div class="sh-footer-images-browser"></div>\n				</div>-->\n			</div>\n		</div>\n\n		<!--2-->\n		<div class="row footer-section footer-section-nav">\n			<div class="sh-footer-section-wrapper">\n				<div class="sh-f-col col-sm-3 col-md-3 col-lg-3">\n					<div class="sh-logo-footer">'+
+	((__t=(i18n('SITE_NAME')))==null?'':__t)+
+	'</div>\n				</div>\n\n				<div class="sh-f-col col-sm-1 col-md-3 col-lg-3">\n					<!--https://www.facebook.com/shinersapp-->\n					<!--https://vk.com/shinersnews-->\n				</div>\n\n				<div class="sh-f-col col-sm-4 col-md-3 col-lg-3">\n					<dl class="sh-footer-list">\n						<dt class="sh-footer-list-title middle">'+
+	((__t=(i18n('footer_menu_navigation')))==null?'':__t)+
+	'</dt>\n						<dd class="sh-footer-list-item"><a class="" href="/about-us">'+
+	((__t=(i18n('aboutSite')))==null?'':__t)+
+	'</a></dd>\n                        <dd class="sh-footer-list-item"><a class="" href="/mass-media">'+
+	((__t=(i18n('massMedia')))==null?'':__t)+
+	'</a></dd>\n						<dd class="sh-footer-list-item">\n							<a href="#" class="sh-store-link">\n								<!--<img src="images/download_app_store_RU_135x40@2x.png" width="135" height="40" alt="Download Shiners">-->\n							</a>\n						</dd>\n					</dl>\n				</div>\n\n				<div class="sh-f-col col-sm-4 col-md-3 col-lg-3">\n					<dl class="sh-footer-list">\n						<dt class="sh-footer-list-title middle">'+
+	((__t=(i18n('footer_menu_contacts')))==null?'':__t)+
+	'</dt>\n						<dd class="sh-footer-list-item"><a class="sh-social-link" href="mailto:support@shiners.ru" title="support@shiners.ru"><span class="sh-social-link-text">support@shiners.ru</span></a></dd>\n						<!--<dd class="sh-footer-list-item"><a class="" href="#">Посетите наш Справочный центр</a></dd>-->\n						<dd class="sh-footer-list-item"><a class="" href="/legal/user-agreement">'+
+	((__t=(i18n('footer_menu_terms_of_use')))==null?'':__t)+
+	'</a></dd>\n						<dd class="sh-footer-list-item"><a class="" href="/legal/confidential">'+
+	((__t=(i18n('footer_menu_privacy_policy')))==null?'':__t)+
+	'</a></dd>\n						<dd class="sh-footer-list-item"><a class="" href="/legal/post-publishing-rules">'+
+	((__t=(i18n('footer_menu_post_publishing_rules')))==null?'':__t)+
+	'</a></dd>\n					</dl>\n				</div>\n			</div>\n		</div>\n\n		<!--3-->\n		<div class="row">\n            <div class="sh-footer-bottom">\n                <div class="sh-choose-language">\n                    <select id="chooseLanguage">\n                        <option selected="selected" value="ru">Русский</option>\n                        <option value="en">English</option>\n                    </select>\n                </div>\n                <div class="col-xs-12 sh-copyright">\n                    <p class="sh-usage-text">'+
+	((__t=(i18n('footer_disclaimer_text')))==null?'':__t)+
+	'<a href="/legal/user-agreement">'+
+	((__t=(i18n('footer_disclaimer_text2')))==null?'':__t)+
+	'</a>.</p>\n                    <p class="margin-bottom-0">&#169; '+
+	((__t=(i18n('footer_all_rights_reserved')))==null?'':__t)+
+	' </p>\n                </div>\n            </div>\n		</div>\n	</div>\n</footer>\n\n<a href="#" id="toTop"></a>\n<div id="fb-root"></div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 36 */
+/*!************************************!*\
+  !*** ./wwwroot/homeApp/MapView.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone4 = _interopRequireDefault(_backbone3);
+	
+	var _MapViewHbs = __webpack_require__(/*! ./MapView.hbs.html */ 37);
+	
+	var _MapViewHbs2 = _interopRequireDefault(_MapViewHbs);
+	
+	var _CreateButtonHbs = __webpack_require__(/*! ./CreateButton.hbs.html */ 38);
+	
+	var _CreateButtonHbs2 = _interopRequireDefault(_CreateButtonHbs);
+	
+	var _SetPositionMapButtonHbs = __webpack_require__(/*! ./SetPositionMapButton.hbs.html */ 39);
+	
+	var _SetPositionMapButtonHbs2 = _interopRequireDefault(_SetPositionMapButtonHbs);
+	
+	var _MobileShowInfoButtonHbs = __webpack_require__(/*! ./MobileShowInfoButton.hbs.html */ 40);
+	
+	var _MobileShowInfoButtonHbs2 = _interopRequireDefault(_MobileShowInfoButtonHbs);
+	
+	var _SearchView = __webpack_require__(/*! ./search/SearchView.js */ 41);
+	
+	var _SearchView2 = _interopRequireDefault(_SearchView);
+	
+	var _ShinerInfoView = __webpack_require__(/*! ./ShinerInfoView.js */ 58);
+	
+	var _ShinerInfoView2 = _interopRequireDefault(_ShinerInfoView);
+	
+	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 61);
+	
+	var _loadGoogleMapsApi2 = _interopRequireDefault(_loadGoogleMapsApi);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    tagName: 'section',
+	    className: 'map-section',
+	    template: _MapViewHbs2.default,
+	    map: null,
+	    model: null,
+	    shiners: [],
+	    mapInfoWindow: null,
+	    userMarker: null,
+	    fetchTimeOut: null,
+	    geocodeTimeout: null,
+	    geocoder: null,
+	    regions: {
+	        search: '#searchView',
+	        info: '#shinerInfoView'
+	    },
+	
+	    events: {
+	        'click #closeInfo': 'hideInfoContainer'
+	    },
+	
+	    modelEvents: {
+	        'change': 'fetchPosts'
+	    },
+	
+	    collectionEvents: {
+	        'reset': 'showShiners'
+	    },
+	
+	    onRender: function onRender() {
+	        var _this = this;
+	
+	        var that = this;
+	        this.showChildView('search', new _SearchView2.default({ collection: this.collection, model: this.model }));
+	        $(window).on('sh:language:changed', function () {
+	            that.showChildView('search', new _SearchView2.default({ collection: _this.collection, model: _this.model }));
+	        });
+	    },
+	    onAttach: function onAttach() {
+	        this.initMap();
+	    },
+	    getShinerUrlPin: function getShinerUrlPin(model) {
+	        var details = model.get('details');
+	        var postType = details.locations && _underscore2.default.find(details.locations, function (l) {
+	            return l.placeType === 'dynamic';
+	        }) ? 'dynamic' : 'static';
+	        var category = model.get('type');
+	        var userStatus = model.get('user').online ? 'live' : 'offline';
+	        return category ? '../images/shiners/pins/' + postType + '-' + userStatus + '-flag-' + category + '.png' : '../images/shiners/shiner_marker.png';
+	    },
+	    showShiners: function showShiners() {
+	        var _this2 = this;
+	
+	        this.collection.each(function (model) {
+	            var url = _this2.getShinerUrlPin(model);
+	            var image = {
+	                url: url || '../images/shiners/shiner_marker.png',
+	                scaledSize: new window.google.maps.Size(25, 33),
+	                origin: new window.google.maps.Point(0, 0),
+	                anchor: new window.google.maps.Point(12, 33)
+	            };
+	            if (!_underscore2.default.find(_this2.shiners, function (sh) {
+	                return sh.modelId === model.id;
+	            })) {
+	                var details = model.get('details');
+	                _underscore2.default.each(details.locations, function (location) {
+	                    var shiner = new window.google.maps.Marker({
+	                        position: { lat: location.coords.lat, lng: location.coords.lng },
+	                        map: _this2.map,
+	                        icon: image,
+	                        title: details.title
+	                    });
+	                    shiner.modelId = model.id;
+	                    shiner.addListener('click', _underscore2.default.bind(_this2.shinerInfo, _this2, shiner, model));
+	                    _this2.shiners.push(shiner);
+	                }, _this2);
+	            }
+	        }, this);
+	        for (var i = this.shiners.length; i--;) {
+	            if (!this.collection.get(this.shiners[i].modelId)) {
+	                this.shiners[i].setMap(null);
+	                this.shiners.splice(i, 1);
+	            }
+	        }
+	    },
+	    shinerInfo: function shinerInfo(shiner, model, event) {
+	        if (_app2.default.isMobile) {
+	            _app2.default.router.navigate('posts/' + model.id, { trigger: true });
+	        } else {
+	            if (this.getRegion('info').hasView() && this.getChildView('info').model.id === model.id) {
+	                this.hideInfoContainer();
+	            } else {
+	                this.showChildView('info', new _ShinerInfoView2.default({ model: model }));
+	                this.showInfoContainer();
+	            }
+	        }
+	        //if (this.infoView) {
+	        //    this.infoView.remove();
+	        //    this.infoView = null;
+	        //}
+	        //if (this.googleWindow) {
+	        //    this.googleWindow.close();
+	        //    this.googleWindow = null;
+	        //}
+	        //this.infoView = new ShinerInfoView({model:model});
+	        //var infoView = this.infoView;
+	        //this.googleWindow = new window.google.maps.InfoWindow({
+	        //    content: infoView.render().$el[0]
+	        //});
+	        //this.googleWindow.addListener('closeclick',() => infoView.remove());
+	        //window.google.maps.event.addListener(this.googleWindow,'domready',() => infoView.delegateMapEvent());
+	        //this.googleWindow.open(this.map, shiner);
+	        //this.once('before:destroy',this.infoView.remove,this.infoView);
+	    },
+	    hideInfoContainer: function hideInfoContainer() {
+	        this.getRegion('info').empty();
+	        this.$('#info-container').hide();
+	    },
+	    showInfoContainer: function showInfoContainer() {
+	        this.$('#info-container').show();
+	    },
+	    initMap: function initMap() {
+	        var _this3 = this;
+	
+	        var defaultCoords = { lat: 55.75396, lng: 37.620393 };
+	        (0, _loadGoogleMapsApi2.default)({ key: 'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY', libraries: ['places'] }).then(_underscore2.default.bind(function (maps) {
+	            var center = _app2.default.user.get('position') || defaultCoords;
+	
+	            _this3.map = new maps.Map(document.getElementById('map2'), {
+	                center: center,
+	                zoom: 14,
+	                scrollwheel: false,
+	                disableDefaultUI: true
+	            });
+	
+	            _this3.geocoder = new maps.Geocoder();
+	            _app2.default.map = _this3.map;
+	            window.myMap = _app2.default.map; // debug
+	            _app2.default.geocoder = _this3.geocoder;
+	            //this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
+	            _this3.map.addListener('bounds_changed', _underscore2.default.bind(_this3.findLocationName, _this3));
+	            if (_app2.default.isMobile) {
+	                //this.mobile_CreateInfoButton();
+	                _this3.mobile_mapResize();
+	                _this3.mobile_listenToResize();
+	                $('body').addClass('isMobile');
+	            } else {
+	                $('body').removeClass('isMobile');
+	            }
+	
+	            var zoomControlDiv = document.createElement('div');
+	            var zoomControl = new _this3.ZoomControl(zoomControlDiv, _this3.map);
+	
+	            zoomControlDiv.index = 1;
+	            _this3.map.controls[window.google.maps.ControlPosition.RIGHT_BOTTOM].push(zoomControlDiv);
+	
+	            _this3.mapAddPostButton();
+	            _this3.mapSetPositionButton();
+	
+	            _this3.showUser();
+	            _this3.listenTo(_app2.default.user, 'change:position', _this3.showUser);
+	        }, this));
+	    },
+	    ZoomControl: function ZoomControl(controlDiv, map) {
+	        controlDiv.style.padding = '10px';
+	
+	        // Set CSS for the control wrapper
+	        var controlWrapper = document.createElement('div');
+	        controlWrapper.style.backgroundColor = 'white';
+	        controlWrapper.style.cursor = 'pointer';
+	        controlWrapper.style.textAlign = 'center';
+	        controlWrapper.style.width = '40px';
+	        controlWrapper.style.height = '80px';
+	        controlWrapper.style.borderRadius = '2px';
+	        controlWrapper.style.position = 'relative';
+	        controlDiv.appendChild(controlWrapper);
+	
+	        // Set CSS for the zoomIn
+	        var zoomInButton = document.createElement('div');
+	        zoomInButton.style.width = '40px';
+	        zoomInButton.style.height = '40px';
+	        zoomInButton.className = 'sh-zoom-in-button';
+	        controlWrapper.appendChild(zoomInButton);
+	
+	        // Set CSS for the zoomOut
+	        var zoomOutButton = document.createElement('div');
+	        zoomOutButton.style.width = '40px';
+	        zoomOutButton.style.height = '40px';
+	        zoomOutButton.className = 'sh-zoom-out-button';
+	        controlWrapper.appendChild(zoomOutButton);
+	
+	        // Setup the click event listener - zoomIn
+	        google.maps.event.addDomListener(zoomInButton, 'click', function () {
+	            map.setZoom(map.getZoom() + 1);
+	        });
+	
+	        // Setup the click event listener - zoomOut
+	        google.maps.event.addDomListener(zoomOutButton, 'click', function () {
+	            map.setZoom(map.getZoom() - 1);
+	        });
+	    },
+	    mapAddPostButton: function mapAddPostButton() {
+	        var el = $((0, _CreateButtonHbs2.default)()).get(0);
+	        el.addEventListener('click', function () {
+	            _app2.default.router.navigate('posts/new', { trigger: true });
+	        });
+	        this.map.controls[window.google.maps.ControlPosition.BOTTOM_CENTER].push(el);
+	    },
+	    mapSetPositionButton: function mapSetPositionButton() {
+	        var el = $((0, _SetPositionMapButtonHbs2.default)()).get(0),
+	            self = this;
+	        el.addEventListener('click', function () {
+	            if (navigator.geolocation) {
+	                navigator.geolocation.getCurrentPosition(function (position) {
+	                    _app2.default.user.set('position', { type: 'navigator', lat: position.coords.latitude, lng: position.coords.longitude });
+	                    self.setMapPosition(position);
+	                }, function () {});
+	            }
+	        });
+	        this.map.controls[_app2.default.isMobile ? window.google.maps.ControlPosition.BOTTOM_CENTER : window.google.maps.ControlPosition.RIGHT_BOTTOM].push(el);
+	    },
+	    mobile_CreateInfoButton: function mobile_CreateInfoButton() {
+	        var el = $((0, _MobileShowInfoButtonHbs2.default)()).get(0);
+	        el.addEventListener('click', function () {
+	            _app2.default.router.navigate('mobileIndex', { trigger: true });
+	        });
+	        this.map.controls[window.google.maps.ControlPosition.BOTTOM_CENTER].push(el);
+	    },
+	    mobile_mapResize: function mobile_mapResize() {
+	        //this.$('#map2').height( $(window).height() - $('#header').height() );
+	
+	        this.$('#map2').height($(window).height() - ($('.sh-header-topline').height() + $('.sh-header-navbar-wrapper').height()));
+	        window.google.maps.event.trigger(_app2.default.map, 'resize');
+	    },
+	    mobile_listenToResize: function mobile_listenToResize() {
+	        $(window).resize(_underscore2.default.bind(this.mobile_mapResize, this));
+	    },
+	    showUser: function showUser() {
+	        if (_app2.default.user.has('position')) {
+	            var image = {
+	                url: '../images/shiners/user.png',
+	                scaledSize: new window.google.maps.Size(35, 35),
+	                origin: new window.google.maps.Point(0, 0),
+	                anchor: new window.google.maps.Point(17, 17)
+	            };
+	            var marker = this.userMarker || new window.google.maps.Marker({
+	                map: this.map,
+	                icon: image,
+	                title: 'Вы (' + (_app2.default.user.get('username') || 'анонимный пользователь') + ')'
+	            });
+	            marker.setPosition(_app2.default.user.get('position'));
+	            if (!this.userMarker) this.userMarker = marker;
+	        }
+	    },
+	    setMapPosition: function setMapPosition(position) {
+	        var pos = {
+	            lat: position.coords.latitude,
+	            lng: position.coords.longitude
+	        };
+	        this.map.setCenter(pos);
+	    },
+	
+	
+	    //onBoundsChange() {
+	    //    if (this.fetchTimeOut)
+	    //        clearTimeout(this.fetchTimeOut);
+	    //    this.fetchTimeOut = setTimeout(_.bind( ()=> {            
+	    //        var center = this.map.getCenter();
+	    //        this.model.set({
+	    //            position: {
+	    //                lat:center.lat(),
+	    //                lng:center.lng()
+	    //            }
+	    //        });
+	    //    }, this), 500);
+	    //},
+	
+	    findLocationName: function findLocationName() {
+	        var _this4 = this;
+	
+	        if (this.geocodeTimeout) clearTimeout(this.geocodeTimeout);
+	        this.geocodeTimeout = setTimeout(_underscore2.default.bind(function () {
+	            var center = _this4.map.getCenter();
+	            var latLng = {
+	                lat: center.lat(),
+	                lng: center.lng()
+	            };
+	            var measureUnit,
+	                radius,
+	                bounds = _this4.map.getBounds();
+	            if (bounds) {
+	                measureUnit = i18n.getLanguage() === 'ru' ? 'km' : 'mi';
+	                radius = $h.help.getDistance(bounds.getNorthEast().lat(), bounds.getNorthEast().lng(), bounds.getSouthWest().lat(), bounds.getSouthWest().lng(), measureUnit) / 2;
+	            }
+	
+	            _this4.geocoder.geocode({ 'location': latLng, 'language': _app2.default.i18n.getLanguage() }, _underscore2.default.bind(function (results, status) {
+	                if (status === window.google.maps.GeocoderStatus.OK) {
+	                    var locationName = _underscore2.default.find(results[0].address_components, function (res) {
+	                        return _underscore2.default.find(res.types, function (type) {
+	                            return type === 'locality' || type === 'administrative_area_level_2' || type === 'political';
+	                        });
+	                    }, _this4);
+	                    _this4.model.set({
+	                        position: latLng,
+	                        address: locationName.long_name,
+	                        radius: radius
+	                    });
+	                } else {
+	                    _this4.model.set({
+	                        position: latLng
+	                    });
+	                    console.error('Geocoder failed due to: ' + status);
+	                }
+	            }, _this4));
+	        }, this), 500);
+	    },
+	    fetchPosts: function fetchPosts() {
+	        var query = this.model.get('query'),
+	            method = 'getNearbyPostsTest',
+	            activeCats = this.model.get('activeCats'),
+	            args,
+	            radius = this.model.get('radius');
+	        //radius = this.model.get('radius') * 0.6215;
+	        if (query && !_underscore2.default.isEmpty(query.trim()) || activeCats && !_underscore2.default.isEmpty(activeCats)) {
+	            method = 'searchPosts';
+	            args = {
+	                query: query || "",
+	                lat: this.model.get('position').lat,
+	                lng: this.model.get('position').lng,
+	                radius: radius,
+	                activeCats: activeCats || []
+	            };
+	        } else {
+	            args = {
+	                lat: this.model.get('position').lat,
+	                lng: this.model.get('position').lng,
+	                radius: radius,
+	                take: 200
+	                //limit: 200
+	            };
+	        }
+	
+	        //console.log('Arguments:', args);
+	        //console.log('Method of search:', method);
+	
+	        this.collection.loadByMethod(method, args);
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 37 */
+/*!******************************************!*\
+  !*** ./wwwroot/homeApp/MapView.hbs.html ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div id="googleMapContainer">\r\n    <div id="map2" class="contact-over-map"></div>    \r\n</div>\n\n\n<div class="container-fluid">\n    <div class="row">\n        <div id="searchView" class="col-sm-4 col-md-4 map-frame"></div>\n        <div id="info-container" class="col-md-offset-5 col-sm-offset-4 col-md-3 col-sm-4 map-frame-right" style="display: none">\n            <a class="sh-map-item-button-close" id="closeInfo"><i class="fa fa-close"></i></a>\n            <div id="shinerInfoView" class="sh-map-item-view"></div>\n        </div>\n    </div>\n</div>\n';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 38 */
+/*!***********************************************!*\
+  !*** ./wwwroot/homeApp/CreateButton.hbs.html ***!
+  \***********************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<button class="ui sh-button standard create margin-bottom-20">'+
+	((__t=(i18n('CREATE_SHINER')))==null?'':__t)+
+	'</button>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 39 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/SetPositionMapButton.hbs.html ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<button class="sh-set-position-map margin-bottom-20" title="Уточнить моё местоположение"><i class="fa fa-crosshairs"></i></button>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 40 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/MobileShowInfoButton.hbs.html ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<button class="sh-mobile-show-info margin-bottom-20" title="Главная">\r\n    <i class="fa fa-home"></i>\r\n</button>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 41 */
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/search/SearchView.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, $) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _SearchViewHbs = __webpack_require__(/*! ./SearchView.hbs.html */ 42);
+	
+	var _SearchViewHbs2 = _interopRequireDefault(_SearchViewHbs);
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css */ 43);
+	
+	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js */ 46);
+	
+	__webpack_require__(/*! ../../lib/jquery-slimscroll/jquery.slimscroll.min.js */ 47);
+	
+	var _ShinersListView = __webpack_require__(/*! ./ShinersListView.js */ 48);
+	
+	var _ShinersListView2 = _interopRequireDefault(_ShinersListView);
+	
+	var _CategoriesListView = __webpack_require__(/*! ./CategoriesListView.js */ 53);
+	
+	var _CategoriesListView2 = _interopRequireDefault(_CategoriesListView);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./i18n/en */ 56);
+	
+	__webpack_require__(/*! ./i18n/ru */ 57);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.Marionette.View.extend({
+	    fetchTimeOut: null,
+	    template: _SearchViewHbs2.default,
+	    $radiusSlider: null,
+	    sliderCases: null,
+	    initialize: function initialize() {
+	        this.listenTo(this.collection, 'reset', this.checkIfEmpty);
+	    },
+	    checkIfEmpty: function checkIfEmpty() {
+	        if (this.collection.size() > 0) this.stopListening(this.collection, 'reset');else this._incrementSliderRadius();
+	    },
+	    _incrementSliderRadius: function _incrementSliderRadius() {
+	        var currentVal = this.$radiusSlider.slider('value');
+	        if (currentVal < this.$radiusSlider.slider('option', 'max')) {
+	            this.$radiusSlider.slider('value', currentVal + 1);
+	        } else {
+	            this.stopListening(this.collection, 'reset');
+	        }
+	    },
+	
+	
+	    events: {
+	        'click #searchParametersButton': 'toggleSearchParameters',
+	        'keyup #query': 'onTextSearch',
+	        'click div.toggle > label': 'toggleResults',
+	        'click #userLocation': 'toggleBannerView'
+	    },
+	    regions: {
+	        shiners: '#shinersList',
+	        categories: '#selectCategories'
+	    },
+	
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            isMobile: _app2.default.isMobile
+	        };
+	    },
+	    onRender: function onRender() {
+	        this.showShiners();
+	    },
+	    onAttach: function onAttach() {
+	        this.initRadiusSlider();
+	        this.showCategories();
+	        if (!_app2.default.isMobile) {
+	            this.toggleSearchParameters();
+	        }
+	    },
+	    showShiners: function showShiners() {
+	        this.showChildView('shiners', new _ShinersListView2.default({ collection: this.collection }));
+	    },
+	    showCategories: function showCategories() {
+	        this.showChildView('categories', new _CategoriesListView2.default({ model: this.model, collection: _app2.default.postAdTypes }));
+	    },
+	    setQuery: function setQuery(val) {
+	        this.model.set('query', val);
+	    },
+	    onTextSearch: function onTextSearch(e) {
+	        var val = e.target.value;
+	        if (e.keyCode > 31 || e.keyCode === 13 || e.keyCode === 8) {
+	            if (this.fetchTimeOut) clearTimeout(this.fetchTimeOut);
+	            this.fetchTimeOut = setTimeout(_.bind(this.setQuery, this, val), 400);
+	        }
+	    },
+	    initRadiusSlider: function initRadiusSlider() {
+	        if (i18n.getLanguage() === 'ru') {
+	            this.sliderCases = [{ name: '200м', value: 0.2, zoom: 16 }, { name: '1км', value: 1, zoom: 14 }, { name: '5км', value: 5, zoom: 12 }, { name: '20км', value: 20, zoom: 10 }, { name: 'везде', value: 20000, zoom: 3 }];
+	        } else if (i18n.getLanguage() === 'en') {
+	            this.sliderCases = [{ name: '200m', value: 0.2, zoom: 16 }, { name: '1km', value: 1, zoom: 14 }, { name: '5km', value: 5, zoom: 12 }, { name: '20km', value: 20, zoom: 10 }, { name: 'everywhere', value: 20000, zoom: 3 }];
+	        }
+	        this.$radiusSlider = this.$("#slider3").slider({
+	            range: "min",
+	            animate: true,
+	            min: 0,
+	            max: 4,
+	            value: this.model.get('radius')
+	        });
+	        this.$radiusSlider.slider("pips", { rest: "label", labels: _.map(this.sliderCases, function (c) {
+	                return c.name;
+	            }) });
+	        this.$radiusSlider.on("slidechange", _.bind(this.onRadiusChange, this));
+	    },
+	    onRadiusChange: function onRadiusChange(e, ui) {
+	        this.model.set('radius', this.sliderCases[ui.value].value);
+	        _app2.default.map.setZoom(this.sliderCases[ui.value].zoom);
+	    },
+	    toggleSearchParameters: function toggleSearchParameters() {
+	        this.$('#searchParameters').slideToggle(300);
+	    },
+	    toggleResults: function toggleResults(e) {
+	        var previewParClosedHeight = 25;
+	        var parentSection = $(e.target).parent(),
+	            parentWrapper = $(e.target).parents("div.toggle"),
+	            previewPar = false,
+	            isAccordion = parentWrapper.hasClass("toggle-accordion");
+	        if (isAccordion && typeof e.originalEvent !== "undefined") {
+	            parentWrapper.find("div.toggle.active > label").trigger("click");
+	        }
+	        parentSection.toggleClass("active");
+	        if (parentSection.find("> p").get(0)) {
+	            previewPar = parentSection.find("> p");
+	            var previewParCurrentHeight = previewPar.css("height");
+	            var previewParAnimateHeight = previewPar.css("height");
+	            previewPar.css("height", "auto");
+	            previewPar.css("height", previewParCurrentHeight);
+	        }
+	        var toggleContent = parentSection.find("> div.toggle-content");
+	        if (parentSection.hasClass("active")) {
+	            $(previewPar).animate({ height: previewParAnimateHeight }, 350, function () {
+	                return $(e.target).addClass("preview-active");
+	            });
+	            toggleContent.slideDown(350);
+	        } else {
+	            $(previewPar).animate({ height: previewParClosedHeight }, 350, function () {
+	                return $(e.target).removeClass("preview-active");
+	            });
+	            toggleContent.slideUp(350);
+	        }
+	    },
+	    toggleBannerView: function toggleBannerView() {
+	        _app2.default.layout.toggleBannerView();
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 42 */
+/*!****************************************************!*\
+  !*** ./wwwroot/homeApp/search/SearchView.hbs.html ***!
+  \****************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="sh-map-search-form fancy-form">\r\n    <div class="input-group">\r\n        <span class="input-group-btn">\r\n            <button title="Фильтр поиска" id="searchParametersButton" class="btn btn-default" type="button">\r\n                <i class="fa fa-cog"></i>\r\n            </button>\r\n        </span>\r\n        <input type="text" placeholder="Поиск..." class="form-control" name="query" id="query">\r\n        <span class="input-group-btn hidden-lg hidden-md">\r\n            <a id="userLocation" title="Местоположение" class="sh-user-location btn btn-default btn-block size-14">\r\n                <i class="fa fa-map-marker text-success"></i>\r\n            </a>\r\n        </span>\r\n        <span class="fancy-tooltip top-left">\r\n            <em>'+
+	((__t=(i18n('search_free_search')))==null?'':__t)+
+	'</em>\r\n        </span>\r\n    </div>\r\n</div>\r\n<div class="sh-map-distance">\r\n    <div class="margin-bottom-10">\r\n        <label for="radius">'+
+	((__t=(i18n('search_choose_radius')))==null?'':__t)+
+	'</label>\r\n        <input type="hidden" name="radius" id="radius" class="form-control">\r\n    </div>\r\n    <div class="slider-wrapper info-slider">\r\n        <div id="slider3"></div>\r\n    </div>\r\n</div>\r\n<div id="searchParameters" style="display: none">\r\n    <div class="ui sh-accordion toggle">\r\n        <div class="toggle">\r\n            <label>'+
+	((__t=(i18n('search_parameters')))==null?'':__t)+
+	'</label>\r\n            <div class="toggle-content">                \r\n                <div id="selectCategories"></div>\r\n            </div>\r\n        </div>\r\n        <div class="toggle '+
+	((__t=(isMobile?'':'active'))==null?'':__t)+
+	'">\r\n            <label>'+
+	((__t=(i18n('search_found')))==null?'':__t)+
+	'</label>\r\n            <div class="toggle-content" id="searchResults" style="'+
+	((__t=(isMobile?'':'display: block'))==null?'':__t)+
+	'">\r\n                <div id="shinersList" class="sh-shiners-list-items"></div>               \r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 43 */
+/*!******************************************************************************!*\
+  !*** ./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css ***!
+  \******************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./jquery-ui-slider-pips.min.css */ 44);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 45)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./jquery-ui-slider-pips.min.css", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./jquery-ui-slider-pips.min.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 44 */
+/*!*********************************************************************************************!*\
+  !*** ./~/css-loader!./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css ***!
+  \*********************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 14)();
+	exports.push([module.id, "/*! jQuery-ui-Slider-Pips - v1.11.4 - 2016-09-04\r\n* Copyright (c) 2016 Simon Goellner <simey.me@gmail.com>; Licensed MIT */\r\n\r\n.ui-slider-horizontal.ui-slider-pips{margin-bottom:1.4em}.ui-slider-pips .ui-slider-label,.ui-slider-pips .ui-slider-pip-hide{display:none}.ui-slider-pips .ui-slider-pip-label .ui-slider-label{display:block}.ui-slider-pips .ui-slider-pip{width:2em;height:1em;line-height:1em;position:absolute;font-size:0.8em;color:#999;overflow:visible;text-align:center;top:20px;left:20px;margin-left:-1em;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.ui-state-disabled.ui-slider-pips .ui-slider-pip{cursor:default}.ui-slider-pips .ui-slider-line{background:#999;width:1px;height:3px;position:absolute;left:50%}.ui-slider-pips .ui-slider-label{position:absolute;top:5px;left:50%;margin-left:-1em;width:2em}.ui-slider-pips:not(.ui-slider-disabled) .ui-slider-pip:hover .ui-slider-label{color:black;font-weight:bold}.ui-slider-vertical.ui-slider-pips{margin-bottom:1em;margin-right:2em}.ui-slider-vertical.ui-slider-pips .ui-slider-pip{text-align:left;top:auto;left:20px;margin-left:0;margin-bottom:-0.5em}.ui-slider-vertical.ui-slider-pips .ui-slider-line{width:3px;height:1px;position:absolute;top:50%;left:0}.ui-slider-vertical.ui-slider-pips .ui-slider-label{top:50%;left:0.5em;margin-left:0;margin-top:-0.5em;width:2em}.ui-slider-float .ui-slider-handle:focus,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip-label .ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label{outline:none}.ui-slider-float .ui-slider-tip,.ui-slider-float .ui-slider-tip-label{position:absolute;visibility:hidden;top:-40px;display:block;width:34px;margin-left:-18px;left:50%;height:20px;line-height:20px;background:white;border-radius:3px;border:1px solid #888;text-align:center;font-size:12px;opacity:0;color:#333;-webkit-transition-property:opacity, top, visibility;transition-property:opacity, top, visibility;-webkit-transition-timing-function:ease-in;transition-timing-function:ease-in;-webkit-transition-duration:200ms, 200ms, 0ms;transition-duration:200ms, 200ms, 0ms;-webkit-transition-delay:0ms, 0ms, 200ms;transition-delay:0ms, 0ms, 200ms}.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{opacity:1;top:-30px;visibility:visible;-webkit-transition-timing-function:ease-out;transition-timing-function:ease-out;-webkit-transition-delay:200ms, 200ms, 0ms;transition-delay:200ms, 200ms, 0ms}.ui-slider-float .ui-slider-pip .ui-slider-tip-label{top:42px}.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:32px;font-weight:normal}.ui-slider-float .ui-slider-tip:after,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#fff;position:absolute;bottom:-10px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-tip:before,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#888;position:absolute;bottom:-11px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-bottom-color:#fff;top:-10px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-bottom-color:#888;top:-11px}.ui-slider-vertical.ui-slider-float .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-tip-label{top:50%;margin-top:-11px;width:34px;margin-left:0px;left:-60px;color:#333;-webkit-transition-duration:200ms, 200ms, 0;transition-duration:200ms, 200ms, 0;-webkit-transition-property:opacity, left, visibility;transition-property:opacity, left, visibility;-webkit-transition-delay:0, 0, 200ms;transition-delay:0, 0, 200ms}.ui-slider-vertical.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:50%;margin-top:-11px;left:-50px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label{left:47px}.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{left:37px}.ui-slider-vertical.ui-slider-float .ui-slider-tip:after,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-left-color:#fff;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-10px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-tip:before,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-left-color:#888;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-11px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-right-color:#fff;right:auto;left:-10px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-right-color:#888;right:auto;left:-11px}.ui-slider-pips [class*=ui-slider-pip-initial]{font-weight:bold;color:#14CA82}.ui-slider-pips .ui-slider-pip-initial-2{color:#1897C9}.ui-slider-pips [class*=ui-slider-pip-selected]{font-weight:bold;color:#FF7A00}.ui-slider-pips .ui-slider-pip-inrange{color:black}.ui-slider-pips .ui-slider-pip-selected-2{color:#E70081}.ui-slider-pips [class*=ui-slider-pip-selected] .ui-slider-line,.ui-slider-pips .ui-slider-pip-inrange .ui-slider-line{background:black}\r\n", ""]);
+
+/***/ },
+/* 45 */
+/*!*************************************!*\
+  !*** ./~/style-loader/addStyles.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0,
+		styleElementsInsertedAtTop = [];
+	
+	module.exports = function(list, options) {
+		if(true) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+	
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+	
+		// By default, add <style> tags to the bottom of <head>.
+		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+	
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+	
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
+	}
+	
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+	
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+	
+	function insertStyleElement(options, styleElement) {
+		var head = getHeadElement();
+		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+		if (options.insertAt === "top") {
+			if(!lastStyleElementInsertedAtTop) {
+				head.insertBefore(styleElement, head.firstChild);
+			} else if(lastStyleElementInsertedAtTop.nextSibling) {
+				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+			} else {
+				head.appendChild(styleElement);
+			}
+			styleElementsInsertedAtTop.push(styleElement);
+		} else if (options.insertAt === "bottom") {
+			head.appendChild(styleElement);
+		} else {
+			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+		}
+	}
+	
+	function removeStyleElement(styleElement) {
+		styleElement.parentNode.removeChild(styleElement);
+		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+		if(idx >= 0) {
+			styleElementsInsertedAtTop.splice(idx, 1);
+		}
+	}
+	
+	function createStyleElement(options) {
+		var styleElement = document.createElement("style");
+		styleElement.type = "text/css";
+		insertStyleElement(options, styleElement);
+		return styleElement;
+	}
+	
+	function createLinkElement(options) {
+		var linkElement = document.createElement("link");
+		linkElement.rel = "stylesheet";
+		insertStyleElement(options, linkElement);
+		return linkElement;
+	}
+	
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+	
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement(options));
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else if(obj.sourceMap &&
+			typeof URL === "function" &&
+			typeof URL.createObjectURL === "function" &&
+			typeof URL.revokeObjectURL === "function" &&
+			typeof Blob === "function" &&
+			typeof btoa === "function") {
+			styleElement = createLinkElement(options);
+			update = updateLink.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+				if(styleElement.href)
+					URL.revokeObjectURL(styleElement.href);
+			};
+		} else {
+			styleElement = createStyleElement(options);
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+			};
+		}
+	
+		update(obj);
+	
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+	
+	var replaceText = (function () {
+		var textStore = [];
+	
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
+	
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+	
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+	
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+	
+		if(media) {
+			styleElement.setAttribute("media", media)
+		}
+	
+		if(styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
+	
+	function updateLink(linkElement, obj) {
+		var css = obj.css;
+		var sourceMap = obj.sourceMap;
+	
+		if(sourceMap) {
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+	
+		var blob = new Blob([css], { type: "text/css" });
+	
+		var oldSrc = linkElement.href;
+	
+		linkElement.href = URL.createObjectURL(blob);
+	
+		if(oldSrc)
+			URL.revokeObjectURL(oldSrc);
+	}
+
+
+/***/ },
+/* 46 */
+/*!*************************************************************************!*\
+  !*** ./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js ***!
+  \*************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(jQuery) {"use strict";
+	
+	/*! jQuery-ui-Slider-Pips - v1.11.4 - 2016-09-04
+	* Copyright (c) 2016 Simon Goellner <simey.me@gmail.com>; Licensed MIT */
+	
+	(function ($) {
+	
+	                "use strict";
+	
+	                var extensionMethods = {
+	
+	                                // pips
+	
+	                                pips: function pips(settings) {
+	
+	                                                var slider = this,
+	                                                    i,
+	                                                    j,
+	                                                    p,
+	                                                    collection = "",
+	                                                    mousedownHandlers,
+	                                                    min = slider._valueMin(),
+	                                                    max = slider._valueMax(),
+	                                                    pips = (max - min) / slider.options.step,
+	                                                    $handles = slider.element.find(".ui-slider-handle"),
+	                                                    $pips;
+	
+	                                                var options = {
+	
+	                                                                first: "label",
+	                                                                /* "label", "pip", false */
+	
+	                                                                last: "label",
+	                                                                /* "label", "pip", false */
+	
+	                                                                rest: "pip",
+	                                                                /* "label", "pip", false */
+	
+	                                                                labels: false,
+	                                                                /* [array], { first: "string", rest: [array], last: "string" }, false */
+	
+	                                                                prefix: "",
+	                                                                /* "", string */
+	
+	                                                                suffix: "",
+	                                                                /* "", string */
+	
+	                                                                step: pips > 100 ? Math.floor(pips * 0.05) : 1,
+	                                                                /* number */
+	
+	                                                                formatLabel: function formatLabel(value) {
+	                                                                                return this.prefix + value + this.suffix;
+	                                                                }
+	                                                                /* function
+	                                                                    must return a value to display in the pip labels */
+	
+	                                                };
+	
+	                                                if ($.type(settings) === "object" || $.type(settings) === "undefined") {
+	
+	                                                                $.extend(options, settings);
+	                                                                slider.element.data("pips-options", options);
+	                                                } else {
+	
+	                                                                if (settings === "destroy") {
+	
+	                                                                                destroy();
+	                                                                } else if (settings === "refresh") {
+	
+	                                                                                slider.element.slider("pips", slider.element.data("pips-options"));
+	                                                                }
+	
+	                                                                return;
+	                                                }
+	
+	                                                // we don't want the step ever to be a floating point or negative
+	                                                // (or 0 actually, so we'll set it to 1 in that case).
+	                                                slider.options.pipStep = Math.abs(Math.round(options.step)) || 1;
+	
+	                                                // get rid of all pips that might already exist.
+	                                                slider.element.off(".selectPip").addClass("ui-slider-pips").find(".ui-slider-pip").remove();
+	
+	                                                // small object with functions for marking pips as selected.
+	
+	                                                var selectPip = {
+	
+	                                                                single: function single(value) {
+	
+	                                                                                this.resetClasses();
+	
+	                                                                                $pips.filter(".ui-slider-pip-" + this.classLabel(value)).addClass("ui-slider-pip-selected");
+	
+	                                                                                if (slider.options.range) {
+	
+	                                                                                                $pips.each(function (k, v) {
+	
+	                                                                                                                var pipVal = $(v).children(".ui-slider-label").data("value");
+	
+	                                                                                                                if (slider.options.range === "min" && pipVal < value || slider.options.range === "max" && pipVal > value) {
+	
+	                                                                                                                                $(v).addClass("ui-slider-pip-inrange");
+	                                                                                                                }
+	                                                                                                });
+	                                                                                }
+	                                                                },
+	
+	                                                                range: function range(values) {
+	
+	                                                                                this.resetClasses();
+	
+	                                                                                for (i = 0; i < values.length; i++) {
+	
+	                                                                                                $pips.filter(".ui-slider-pip-" + this.classLabel(values[i])).addClass("ui-slider-pip-selected-" + (i + 1));
+	                                                                                }
+	
+	                                                                                if (slider.options.range) {
+	
+	                                                                                                $pips.each(function (k, v) {
+	
+	                                                                                                                var pipVal = $(v).children(".ui-slider-label").data("value");
+	
+	                                                                                                                if (pipVal > values[0] && pipVal < values[1]) {
+	
+	                                                                                                                                $(v).addClass("ui-slider-pip-inrange");
+	                                                                                                                }
+	                                                                                                });
+	                                                                                }
+	                                                                },
+	
+	                                                                classLabel: function classLabel(value) {
+	
+	                                                                                return value.toString().replace(".", "-");
+	                                                                },
+	
+	                                                                resetClasses: function resetClasses() {
+	
+	                                                                                var regex = /(^|\s*)(ui-slider-pip-selected|ui-slider-pip-inrange)(-{1,2}\d+|\s|$)/gi;
+	
+	                                                                                $pips.removeClass(function (index, css) {
+	                                                                                                return (css.match(regex) || []).join(" ");
+	                                                                                });
+	                                                                }
+	
+	                                                };
+	
+	                                                function getClosestHandle(val) {
+	
+	                                                                var h,
+	                                                                    k,
+	                                                                    sliderVals,
+	                                                                    comparedVals,
+	                                                                    closestVal,
+	                                                                    tempHandles = [],
+	                                                                    closestHandle = 0;
+	
+	                                                                if (slider.values() && slider.values().length) {
+	
+	                                                                                // get the current values of the slider handles
+	                                                                                sliderVals = slider.values();
+	
+	                                                                                // find the offset value from the `val` for each
+	                                                                                // handle, and store it in a new array
+	                                                                                comparedVals = $.map(sliderVals, function (v) {
+	                                                                                                return Math.abs(v - val);
+	                                                                                });
+	
+	                                                                                // figure out the closest handles to the value
+	                                                                                closestVal = Math.min.apply(Math, comparedVals);
+	
+	                                                                                // if a comparedVal is the closestVal, then
+	                                                                                // set the value accordingly, and set the closest handle.
+	                                                                                for (h = 0; h < comparedVals.length; h++) {
+	                                                                                                if (comparedVals[h] === closestVal) {
+	                                                                                                                tempHandles.push(h);
+	                                                                                                }
+	                                                                                }
+	
+	                                                                                // set the closest handle to the first handle in array,
+	                                                                                // just incase we have no _lastChangedValue to compare to.
+	                                                                                closestHandle = tempHandles[0];
+	
+	                                                                                // now we want to find out if any of the closest handles were
+	                                                                                // the last changed handle, if so we specify that handle to change
+	                                                                                for (k = 0; k < tempHandles.length; k++) {
+	                                                                                                if (slider._lastChangedValue === tempHandles[k]) {
+	                                                                                                                closestHandle = tempHandles[k];
+	                                                                                                }
+	                                                                                }
+	
+	                                                                                if (slider.options.range && tempHandles.length === 2) {
+	
+	                                                                                                if (val > sliderVals[1]) {
+	
+	                                                                                                                closestHandle = tempHandles[1];
+	                                                                                                } else if (val < sliderVals[0]) {
+	
+	                                                                                                                closestHandle = tempHandles[0];
+	                                                                                                }
+	                                                                                }
+	                                                                }
+	
+	                                                                return closestHandle;
+	                                                }
+	
+	                                                function destroy() {
+	
+	                                                                slider.element.off(".selectPip").on("mousedown.slider", slider.element.data("mousedown-original")).removeClass("ui-slider-pips").find(".ui-slider-pip").remove();
+	                                                }
+	
+	                                                // when we click on a label, we want to make sure the
+	                                                // slider's handle actually goes to that label!
+	                                                // so we check all the handles and see which one is closest
+	                                                // to the label we clicked. If 2 handles are equidistant then
+	                                                // we move both of them. We also want to trigger focus on the
+	                                                // handle.
+	
+	                                                // without this method the label is just treated like a part
+	                                                // of the slider and there's no accuracy in the selected value
+	
+	                                                function labelClick(label, e) {
+	
+	                                                                if (slider.option("disabled")) {
+	                                                                                return;
+	                                                                }
+	
+	                                                                var val = $(label).data("value"),
+	                                                                    indexToChange = getClosestHandle(val);
+	
+	                                                                if (slider.values() && slider.values().length) {
+	
+	                                                                                slider.options.values[indexToChange] = slider._trimAlignValue(val);
+	                                                                } else {
+	
+	                                                                                slider.options.value = slider._trimAlignValue(val);
+	                                                                }
+	
+	                                                                slider._refreshValue();
+	                                                                slider._change(e, indexToChange);
+	                                                }
+	
+	                                                // method for creating a pip. We loop this for creating all
+	                                                // the pips.
+	
+	                                                function createPip(which) {
+	
+	                                                                var label,
+	                                                                    percent,
+	                                                                    number = which,
+	                                                                    classes = "ui-slider-pip",
+	                                                                    css = "",
+	                                                                    value = slider.value(),
+	                                                                    values = slider.values(),
+	                                                                    labelValue,
+	                                                                    classLabel,
+	                                                                    labelIndex;
+	
+	                                                                if (which === "first") {
+	
+	                                                                                number = 0;
+	                                                                } else if (which === "last") {
+	
+	                                                                                number = pips;
+	                                                                }
+	
+	                                                                // labelValue is the actual value of the pip based on the min/step
+	                                                                labelValue = min + slider.options.step * number;
+	
+	                                                                // classLabel replaces any decimals with hyphens
+	                                                                classLabel = labelValue.toString().replace(".", "-");
+	
+	                                                                // get the index needed for selecting labels out of the array
+	                                                                labelIndex = number + min - min;
+	
+	                                                                // we need to set the human-readable label to either the
+	                                                                // corresponding element in the array, or the appropriate
+	                                                                // item in the object... or an empty string.
+	
+	                                                                if ($.type(options.labels) === "array") {
+	
+	                                                                                label = options.labels[labelIndex] || "";
+	                                                                } else if ($.type(options.labels) === "object") {
+	
+	                                                                                if (which === "first") {
+	
+	                                                                                                // set first label
+	                                                                                                label = options.labels.first || "";
+	                                                                                } else if (which === "last") {
+	
+	                                                                                                // set last label
+	                                                                                                label = options.labels.last || "";
+	                                                                                } else if ($.type(options.labels.rest) === "array") {
+	
+	                                                                                                // set other labels, but our index should start at -1
+	                                                                                                // because of the first pip.
+	                                                                                                label = options.labels.rest[labelIndex - 1] || "";
+	                                                                                } else {
+	
+	                                                                                                // urrggh, the options must be f**ked, just show nothing.
+	                                                                                                label = labelValue;
+	                                                                                }
+	                                                                } else {
+	
+	                                                                                label = labelValue;
+	                                                                }
+	
+	                                                                if (which === "first") {
+	
+	                                                                                // first Pip on the Slider
+	                                                                                percent = "0%";
+	
+	                                                                                classes += " ui-slider-pip-first";
+	                                                                                classes += options.first === "label" ? " ui-slider-pip-label" : "";
+	                                                                                classes += options.first === false ? " ui-slider-pip-hide" : "";
+	                                                                } else if (which === "last") {
+	
+	                                                                                // last Pip on the Slider
+	                                                                                percent = "100%";
+	
+	                                                                                classes += " ui-slider-pip-last";
+	                                                                                classes += options.last === "label" ? " ui-slider-pip-label" : "";
+	                                                                                classes += options.last === false ? " ui-slider-pip-hide" : "";
+	                                                                } else {
+	
+	                                                                                // all other Pips
+	                                                                                percent = (100 / pips * which).toFixed(4) + "%";
+	
+	                                                                                classes += options.rest === "label" ? " ui-slider-pip-label" : "";
+	                                                                                classes += options.rest === false ? " ui-slider-pip-hide" : "";
+	                                                                }
+	
+	                                                                classes += " ui-slider-pip-" + classLabel;
+	
+	                                                                // add classes for the initial-selected values.
+	                                                                if (values && values.length) {
+	
+	                                                                                for (i = 0; i < values.length; i++) {
+	
+	                                                                                                if (labelValue === values[i]) {
+	
+	                                                                                                                classes += " ui-slider-pip-initial-" + (i + 1);
+	                                                                                                                classes += " ui-slider-pip-selected-" + (i + 1);
+	                                                                                                }
+	                                                                                }
+	
+	                                                                                if (slider.options.range) {
+	
+	                                                                                                if (labelValue > values[0] && labelValue < values[1]) {
+	
+	                                                                                                                classes += " ui-slider-pip-inrange";
+	                                                                                                }
+	                                                                                }
+	                                                                } else {
+	
+	                                                                                if (labelValue === value) {
+	
+	                                                                                                classes += " ui-slider-pip-initial";
+	                                                                                                classes += " ui-slider-pip-selected";
+	                                                                                }
+	
+	                                                                                if (slider.options.range) {
+	
+	                                                                                                if (slider.options.range === "min" && labelValue < value || slider.options.range === "max" && labelValue > value) {
+	
+	                                                                                                                classes += " ui-slider-pip-inrange";
+	                                                                                                }
+	                                                                                }
+	                                                                }
+	
+	                                                                css = slider.options.orientation === "horizontal" ? "left: " + percent : "bottom: " + percent;
+	
+	                                                                // add this current pip to the collection
+	                                                                return "<span class=\"" + classes + "\" style=\"" + css + "\">" + "<span class=\"ui-slider-line\"></span>" + "<span class=\"ui-slider-label\" data-value=\"" + labelValue + "\">" + options.formatLabel(label) + "</span>" + "</span>";
+	                                                }
+	
+	                                                // create our first pip
+	                                                collection += createPip("first");
+	
+	                                                // for every stop in the slider where we need a pip; create one.
+	                                                for (p = slider.options.pipStep; p < pips; p += slider.options.pipStep) {
+	                                                                collection += createPip(p);
+	                                                }
+	
+	                                                // create our last pip
+	                                                collection += createPip("last");
+	
+	                                                // append the collection of pips.
+	                                                slider.element.append(collection);
+	
+	                                                // store the pips for setting classes later.
+	                                                $pips = slider.element.find(".ui-slider-pip");
+	
+	                                                // store the mousedown handlers for later, just in case we reset
+	                                                // the slider, the handler would be lost!
+	
+	                                                if ($._data(slider.element.get(0), "events").mousedown && $._data(slider.element.get(0), "events").mousedown.length) {
+	
+	                                                                mousedownHandlers = $._data(slider.element.get(0), "events").mousedown;
+	                                                } else {
+	
+	                                                                mousedownHandlers = slider.element.data("mousedown-handlers");
+	                                                }
+	
+	                                                slider.element.data("mousedown-handlers", mousedownHandlers.slice());
+	
+	                                                // loop through all the mousedown handlers on the slider,
+	                                                // and store the original namespaced (.slider) event handler so
+	                                                // we can trigger it later.
+	                                                for (j = 0; j < mousedownHandlers.length; j++) {
+	                                                                if (mousedownHandlers[j].namespace === "slider") {
+	                                                                                slider.element.data("mousedown-original", mousedownHandlers[j].handler);
+	                                                                }
+	                                                }
+	
+	                                                // unbind the mousedown.slider event, because it interferes with
+	                                                // the labelClick() method (stops smooth animation), and decide
+	                                                // if we want to trigger the original event based on which element
+	                                                // was clicked.
+	                                                slider.element.off("mousedown.slider").on("mousedown.selectPip", function (e) {
+	
+	                                                                var $target = $(e.target),
+	                                                                    closest = getClosestHandle($target.data("value")),
+	                                                                    $handle = $handles.eq(closest);
+	
+	                                                                $handle.addClass("ui-state-active");
+	
+	                                                                if ($target.is(".ui-slider-label")) {
+	
+	                                                                                labelClick($target, e);
+	
+	                                                                                slider.element.one("mouseup.selectPip", function () {
+	
+	                                                                                                $handle.removeClass("ui-state-active").focus();
+	                                                                                });
+	                                                                } else {
+	
+	                                                                                var originalMousedown = slider.element.data("mousedown-original");
+	                                                                                originalMousedown(e);
+	                                                                }
+	                                                });
+	
+	                                                slider.element.on("slide.selectPip slidechange.selectPip", function (e, ui) {
+	
+	                                                                var $slider = $(this),
+	                                                                    value = $slider.slider("value"),
+	                                                                    values = $slider.slider("values");
+	
+	                                                                if (ui) {
+	
+	                                                                                value = ui.value;
+	                                                                                values = ui.values;
+	                                                                }
+	
+	                                                                if (slider.values() && slider.values().length) {
+	
+	                                                                                selectPip.range(values);
+	                                                                } else {
+	
+	                                                                                selectPip.single(value);
+	                                                                }
+	                                                });
+	                                },
+	
+	                                // floats
+	
+	                                float: function float(settings) {
+	
+	                                                var i,
+	                                                    slider = this,
+	                                                    min = slider._valueMin(),
+	                                                    max = slider._valueMax(),
+	                                                    value = slider._value(),
+	                                                    values = slider._values(),
+	                                                    tipValues = [],
+	                                                    $handles = slider.element.find(".ui-slider-handle");
+	
+	                                                var options = {
+	
+	                                                                handle: true,
+	                                                                /* false */
+	
+	                                                                pips: false,
+	                                                                /* true */
+	
+	                                                                labels: false,
+	                                                                /* [array], { first: "string", rest: [array], last: "string" }, false */
+	
+	                                                                prefix: "",
+	                                                                /* "", string */
+	
+	                                                                suffix: "",
+	                                                                /* "", string */
+	
+	                                                                event: "slidechange slide",
+	                                                                /* "slidechange", "slide", "slidechange slide" */
+	
+	                                                                formatLabel: function formatLabel(value) {
+	                                                                                return this.prefix + value + this.suffix;
+	                                                                }
+	                                                                /* function
+	                                                                    must return a value to display in the floats */
+	
+	                                                };
+	
+	                                                if ($.type(settings) === "object" || $.type(settings) === "undefined") {
+	
+	                                                                $.extend(options, settings);
+	                                                                slider.element.data("float-options", options);
+	                                                } else {
+	
+	                                                                if (settings === "destroy") {
+	
+	                                                                                destroy();
+	                                                                } else if (settings === "refresh") {
+	
+	                                                                                slider.element.slider("float", slider.element.data("float-options"));
+	                                                                }
+	
+	                                                                return;
+	                                                }
+	
+	                                                if (value < min) {
+	                                                                value = min;
+	                                                }
+	
+	                                                if (value > max) {
+	                                                                value = max;
+	                                                }
+	
+	                                                if (values && values.length) {
+	
+	                                                                for (i = 0; i < values.length; i++) {
+	
+	                                                                                if (values[i] < min) {
+	                                                                                                values[i] = min;
+	                                                                                }
+	
+	                                                                                if (values[i] > max) {
+	                                                                                                values[i] = max;
+	                                                                                }
+	                                                                }
+	                                                }
+	
+	                                                // add a class for the CSS
+	                                                slider.element.addClass("ui-slider-float").find(".ui-slider-tip, .ui-slider-tip-label").remove();
+	
+	                                                function destroy() {
+	
+	                                                                slider.element.off(".sliderFloat").removeClass("ui-slider-float").find(".ui-slider-tip, .ui-slider-tip-label").remove();
+	                                                }
+	
+	                                                function getPipLabels(values) {
+	
+	                                                                // when checking the array we need to divide
+	                                                                // by the step option, so we store those values here.
+	
+	                                                                var vals = [],
+	                                                                    steppedVals = $.map(values, function (v) {
+	                                                                                return Math.ceil((v - min) / slider.options.step);
+	                                                                });
+	
+	                                                                // now we just get the values we need to return
+	                                                                // by looping through the values array and assigning the
+	                                                                // label if it exists.
+	
+	                                                                if ($.type(options.labels) === "array") {
+	
+	                                                                                for (i = 0; i < values.length; i++) {
+	
+	                                                                                                vals[i] = options.labels[steppedVals[i]] || values[i];
+	                                                                                }
+	                                                                } else if ($.type(options.labels) === "object") {
+	
+	                                                                                for (i = 0; i < values.length; i++) {
+	
+	                                                                                                if (values[i] === min) {
+	
+	                                                                                                                vals[i] = options.labels.first || min;
+	                                                                                                } else if (values[i] === max) {
+	
+	                                                                                                                vals[i] = options.labels.last || max;
+	                                                                                                } else if ($.type(options.labels.rest) === "array") {
+	
+	                                                                                                                vals[i] = options.labels.rest[steppedVals[i] - 1] || values[i];
+	                                                                                                } else {
+	
+	                                                                                                                vals[i] = values[i];
+	                                                                                                }
+	                                                                                }
+	                                                                } else {
+	
+	                                                                                for (i = 0; i < values.length; i++) {
+	
+	                                                                                                vals[i] = values[i];
+	                                                                                }
+	                                                                }
+	
+	                                                                return vals;
+	                                                }
+	
+	                                                // apply handle tip if settings allows.
+	                                                if (options.handle) {
+	
+	                                                                // we need to set the human-readable label to either the
+	                                                                // corresponding element in the array, or the appropriate
+	                                                                // item in the object... or an empty string.
+	
+	                                                                tipValues = slider.values() && slider.values().length ? getPipLabels(values) : getPipLabels([value]);
+	
+	                                                                for (i = 0; i < tipValues.length; i++) {
+	
+	                                                                                $handles.eq(i).append($("<span class=\"ui-slider-tip\">" + options.formatLabel(tipValues[i]) + "</span>"));
+	                                                                }
+	                                                }
+	
+	                                                if (options.pips) {
+	
+	                                                                // if this slider also has pip-labels, we make those into tips, too.
+	                                                                slider.element.find(".ui-slider-label").each(function (k, v) {
+	
+	                                                                                var $this = $(v),
+	                                                                                    val = [$this.data("value")],
+	                                                                                    label,
+	                                                                                    $tip;
+	
+	                                                                                label = options.formatLabel(getPipLabels(val)[0]);
+	
+	                                                                                // create a tip element
+	                                                                                $tip = $("<span class=\"ui-slider-tip-label\">" + label + "</span>").insertAfter($this);
+	                                                                });
+	                                                }
+	
+	                                                // check that the event option is actually valid against our
+	                                                // own list of the slider's events.
+	                                                if (options.event !== "slide" && options.event !== "slidechange" && options.event !== "slide slidechange" && options.event !== "slidechange slide") {
+	
+	                                                                options.event = "slidechange slide";
+	                                                }
+	
+	                                                // when slider changes, update handle tip label.
+	                                                slider.element.off(".sliderFloat").on(options.event + ".sliderFloat", function (e, ui) {
+	
+	                                                                var uiValue = $.type(ui.value) === "array" ? ui.value : [ui.value],
+	                                                                    val = options.formatLabel(getPipLabels(uiValue)[0]);
+	
+	                                                                $(ui.handle).find(".ui-slider-tip").html(val);
+	                                                });
+	                                }
+	
+	                };
+	
+	                $.extend(true, $.ui.slider.prototype, extensionMethods);
+	})(jQuery);
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 47 */
+/*!****************************************************************!*\
+  !*** ./wwwroot/lib/jquery-slimscroll/jquery.slimscroll.min.js ***!
+  \****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(jQuery) {"use strict";
+	
+	/*! Copyright (c) 2011 Piotr Rochala (http://rocha.la)
+	 * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
+	 * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
+	 *
+	 * Version: 1.3.6
+	 *
+	 */
+	(function (e) {
+	  e.fn.extend({ slimScroll: function slimScroll(g) {
+	      var a = e.extend({ width: "auto", height: "250px", size: "7px", color: "#000", position: "right", distance: "1px", start: "top", opacity: .4, alwaysVisible: !1, disableFadeOut: !1, railVisible: !1, railColor: "#333", railOpacity: .2, railDraggable: !0, railClass: "slimScrollRail", barClass: "slimScrollBar", wrapperClass: "slimScrollDiv", allowPageScroll: !1, wheelStep: 20, touchScrollStep: 200, borderRadius: "7px", railBorderRadius: "7px" }, g);this.each(function () {
+	        function v(d) {
+	          if (r) {
+	            d = d || window.event;
+	            var c = 0;d.wheelDelta && (c = -d.wheelDelta / 120);d.detail && (c = d.detail / 3);e(d.target || d.srcTarget || d.srcElement).closest("." + a.wrapperClass).is(b.parent()) && m(c, !0);d.preventDefault && !k && d.preventDefault();k || (d.returnValue = !1);
+	          }
+	        }function m(d, e, g) {
+	          k = !1;var f = d,
+	              h = b.outerHeight() - c.outerHeight();e && (f = parseInt(c.css("top")) + d * parseInt(a.wheelStep) / 100 * c.outerHeight(), f = Math.min(Math.max(f, 0), h), f = 0 < d ? Math.ceil(f) : Math.floor(f), c.css({ top: f + "px" }));l = parseInt(c.css("top")) / (b.outerHeight() - c.outerHeight());
+	          f = l * (b[0].scrollHeight - b.outerHeight());g && (f = d, d = f / b[0].scrollHeight * b.outerHeight(), d = Math.min(Math.max(d, 0), h), c.css({ top: d + "px" }));b.scrollTop(f);b.trigger("slimscrolling", ~~f);w();p();
+	        }function x() {
+	          u = Math.max(b.outerHeight() / b[0].scrollHeight * b.outerHeight(), 30);c.css({ height: u + "px" });var a = u == b.outerHeight() ? "none" : "block";c.css({ display: a });
+	        }function w() {
+	          x();clearTimeout(B);l == ~~l ? (k = a.allowPageScroll, C != l && b.trigger("slimscroll", 0 == ~~l ? "top" : "bottom")) : k = !1;C = l;u >= b.outerHeight() ? k = !0 : (c.stop(!0, !0).fadeIn("fast"), a.railVisible && h.stop(!0, !0).fadeIn("fast"));
+	        }function p() {
+	          a.alwaysVisible || (B = setTimeout(function () {
+	            a.disableFadeOut && r || y || z || (c.fadeOut("slow"), h.fadeOut("slow"));
+	          }, 1E3));
+	        }var r,
+	            y,
+	            z,
+	            B,
+	            A,
+	            u,
+	            l,
+	            C,
+	            k = !1,
+	            b = e(this);if (b.parent().hasClass(a.wrapperClass)) {
+	          var n = b.scrollTop(),
+	              c = b.closest("." + a.barClass),
+	              h = b.closest("." + a.railClass);x();if (e.isPlainObject(g)) {
+	            if ("height" in g && "auto" == g.height) {
+	              b.parent().css("height", "auto");b.css("height", "auto");var q = b.parent().parent().height();b.parent().css("height", q);b.css("height", q);
+	            }if ("scrollTo" in g) n = parseInt(a.scrollTo);else if ("scrollBy" in g) n += parseInt(a.scrollBy);else if ("destroy" in g) {
+	              c.remove();h.remove();b.unwrap();return;
+	            }m(n, !1, !0);
+	          }
+	        } else if (!(e.isPlainObject(g) && "destroy" in g)) {
+	          a.height = "auto" == a.height ? b.parent().height() : a.height;n = e("<div></div>").addClass(a.wrapperClass).css({ position: "relative", overflow: "hidden", width: a.width, height: a.height });b.css({ overflow: "hidden", width: a.width, height: a.height });var h = e("<div></div>").addClass(a.railClass).css({ width: a.size,
+	            height: "100%", position: "absolute", top: 0, display: a.alwaysVisible && a.railVisible ? "block" : "none", "border-radius": a.railBorderRadius, background: a.railColor, opacity: a.railOpacity, zIndex: 90 }),
+	              c = e("<div></div>").addClass(a.barClass).css({ background: a.color, width: a.size, position: "absolute", top: 0, opacity: a.opacity, display: a.alwaysVisible ? "block" : "none", "border-radius": a.borderRadius, BorderRadius: a.borderRadius, MozBorderRadius: a.borderRadius, WebkitBorderRadius: a.borderRadius, zIndex: 99 }),
+	              q = "right" == a.position ? { right: a.distance } : { left: a.distance };h.css(q);c.css(q);b.wrap(n);b.parent().append(c);b.parent().append(h);a.railDraggable && c.bind("mousedown", function (a) {
+	            var b = e(document);z = !0;t = parseFloat(c.css("top"));pageY = a.pageY;b.bind("mousemove.slimscroll", function (a) {
+	              currTop = t + a.pageY - pageY;c.css("top", currTop);m(0, c.position().top, !1);
+	            });b.bind("mouseup.slimscroll", function (a) {
+	              z = !1;p();b.unbind(".slimscroll");
+	            });return !1;
+	          }).bind("selectstart.slimscroll", function (a) {
+	            a.stopPropagation();a.preventDefault();return !1;
+	          });
+	          h.hover(function () {
+	            w();
+	          }, function () {
+	            p();
+	          });c.hover(function () {
+	            y = !0;
+	          }, function () {
+	            y = !1;
+	          });b.hover(function () {
+	            r = !0;w();p();
+	          }, function () {
+	            r = !1;p();
+	          });b.bind("touchstart", function (a, b) {
+	            a.originalEvent.touches.length && (A = a.originalEvent.touches[0].pageY);
+	          });b.bind("touchmove", function (b) {
+	            k || b.originalEvent.preventDefault();b.originalEvent.touches.length && (m((A - b.originalEvent.touches[0].pageY) / a.touchScrollStep, !0), A = b.originalEvent.touches[0].pageY);
+	          });x();"bottom" === a.start ? (c.css({ top: b.outerHeight() - c.outerHeight() }), m(0, !0)) : "top" !== a.start && (m(e(a.start).position().top, null, !0), a.alwaysVisible || c.hide());window.addEventListener ? (this.addEventListener("DOMMouseScroll", v, !1), this.addEventListener("mousewheel", v, !1)) : document.attachEvent("onmousewheel", v);
+	        }
+	      });return this;
+	    } });e.fn.extend({ slimscroll: e.fn.slimScroll });
+	})(jQuery);
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 48 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/search/ShinersListView.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ShinersListItemView = __webpack_require__(/*! ./ShinersListItemView.js */ 49);
+	
+	var _ShinersListItemView2 = _interopRequireDefault(_ShinersListItemView);
+	
+	var _ShinersEmptyView = __webpack_require__(/*! ./ShinersEmptyView.js */ 51);
+	
+	var _ShinersEmptyView2 = _interopRequireDefault(_ShinersEmptyView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	    className: 'sh-shiners-list-height slimscroll',
+	    tagName: 'div',
+	    emptyView: _ShinersEmptyView2.default,
+	    childView: _ShinersListItemView2.default,
+	
+	    onAttach: function onAttach() {
+	        this.initSlimscroll();
+	    },
+	    initSlimscroll: function initSlimscroll() {
+	        var $el = this.$el;
+	        var height = $el.height();
+	        $el.slimScroll({
+	            size: '5px',
+	            opacity: 0.4,
+	            position: 'right',
+	            allowPageScroll: false,
+	            disableFadeOut: false,
+	            railOpacity: 0.05,
+	            alwaysVisible: true,
+	            railVisible: true,
+	            color: '#333',
+	            wrapperClass: 'slimScrollDiv',
+	            railColor: '#eaeaea',
+	            height: height
+	        });
+	
+	        if ($el.attr('disable-body-scroll') == 'true') {
+	            $el.bind('mousewheel DOMMouseScroll', function (e) {
+	                var scrollTo = null;
+	                if (e.type == 'mousewheel') {
+	                    scrollTo = e.originalEvent.wheelDelta * -1;
+	                } else if (e.type == 'DOMMouseScroll') {
+	                    scrollTo = 40 * e.originalEvent.detail;
+	                }
+	                if (scrollTo) {
+	                    e.preventDefault();
+	                    $el.scrollTop(scrollTo + $el.scrollTop());
+	                }
+	            });
+	        }
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 49 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/search/ShinersListItemView.js ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ShinersListItemViewHbs = __webpack_require__(/*! ./ShinersListItemView.hbs.html */ 50);
+	
+	var _ShinersListItemViewHbs2 = _interopRequireDefault(_ShinersListItemViewHbs);
+	
+	var _app = __webpack_require__(/*! ../app */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _locationHelper = __webpack_require__(/*! ../../helpers/locationHelper.js */ 9);
+	
+	var _locationHelper2 = _interopRequireDefault(_locationHelper);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    className: 'sh-shiners-list-item clearfix',
+	    tagName: 'div',
+	    template: _ShinersListItemViewHbs2.default,
+	
+	    initialize: function initialize() {},
+	    onBeforeRender: function onBeforeRender() {
+	        this.setModelDistance();
+	    },
+	    setModelDistance: function setModelDistance() {
+	        var locations = this.model.get('details').locations;
+	        if (locations && _.size(locations) > 0 && _app2.default.user.has('position')) {
+	            var location = _.find(locations, function (l) {
+	                return l.placeType === 'dynamic';
+	            });
+	            if (!location) location = locations[0];
+	            var dist = _locationHelper2.default.getDistance(location.coords.lat, location.coords.lng, _app2.default.user.get('position').lat, _app2.default.user.get('position').lng);
+	            this.model.set('distance', dist);
+	            this.model.set('distanceType', 'km');
+	        } else {
+	            this.model.set('distance', -1);
+	        }
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 50 */
+/*!*************************************************************!*\
+  !*** ./wwwroot/homeApp/search/ShinersListItemView.hbs.html ***!
+  \*************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<a href="/posts/'+
+	((__t=(_id))==null?'':_.escape(__t))+
+	'">\r\n    <img class="thumbnail pull-left" src="'+
+	((__t=(details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/no_image.png'))==null?'':__t)+
+	'" width="60" height="60" alt="" />\r\n    <h4 class="noborder nopadding">'+
+	((__t=(details.title))==null?'':__t)+
+	'</h4>\r\n    <div class="sh-shiners-list-footer pull-right">\r\n        ';
+	if(obj.type) { 
+	__p+='\r\n            <span class="label bg-type-category-'+
+	((__t=(type))==null?'':__t)+
+	'">'+
+	((__t=(type))==null?'':__t)+
+	'</span>\r\n        ';
+	 } 
+	__p+=' \r\n        <span class="sh-shiners-list-time">\r\n            '+
+	((__t=(moment(timestamp).fromNow()))==null?'':__t)+
+	'          \r\n        </span>\r\n        <span>\r\n            ';
+	if(obj.distance && obj.distanceType){ 
+	__p+='\r\n                <i class="fa fa-location-arrow"></i> '+
+	((__t=(distance>=0?distance.toFixed(1):'Не определена'))==null?'':__t)+
+	' '+
+	((__t=(distanceType==='km'?'км':'miles'))==null?'':__t)+
+	'\r\n            ';
+	 } 
+	__p+='\r\n        </span>\r\n    </div>\r\n</a>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 51 */
+/*!****************************************************!*\
+  !*** ./wwwroot/homeApp/search/ShinersEmptyView.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ShinersEmptyViewHbs = __webpack_require__(/*! ./ShinersEmptyView.hbs.html */ 52);
+	
+	var _ShinersEmptyViewHbs2 = _interopRequireDefault(_ShinersEmptyViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    className: 'sh-shiners-noitem',
+	    tagName: 'div',
+	    template: _ShinersEmptyViewHbs2.default
+	});
+	exports.default = View;
+
+/***/ },
+/* 52 */
+/*!**********************************************************!*\
+  !*** ./wwwroot/homeApp/search/ShinersEmptyView.hbs.html ***!
+  \**********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<i class="fa fa-search" aria-hidden="true"></i>\r\n<h4 class="sh-shiners-noitem-text text-center">'+
+	((__t=(i18n('search_not_found')))==null?'':__t)+
+	'</h4>\r\n';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 53 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/search/CategoriesListView.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _CategoriesItemView = __webpack_require__(/*! ./CategoriesItemView.js */ 54);
+	
+	var _CategoriesItemView2 = _interopRequireDefault(_CategoriesItemView);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	    childView: _CategoriesItemView2.default,
+	    className: 'sh-list-unstyled margin-zero list-unstyled uppercase',
+	    tagName: 'ul',
+	    childViewEvents: {
+	        'check:category': 'onCheckCategory'
+	    },
+	
+	    onCheckCategory: function onCheckCategory(model, isChecked) {
+	        if (isChecked) {
+	            this.model.set('activeCats', _underscore2.default.union(this.model.get('activeCats') || [], [model.get('name')]));
+	        } else {
+	            this.model.set('activeCats', _underscore2.default.without(this.model.get('activeCats') || [], model.get('name')));
+	        }
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 54 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/search/CategoriesItemView.js ***!
+  \******************************************************/
+=======
 /*!*****************************************!*\
   !*** ./wwwroot/lib/asteroid.browser.js ***!
   \*****************************************/
@@ -28599,6 +30991,7 @@
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersListView.js ***!
   \***************************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28611,6 +31004,32 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _CategoriesItemViewHbs = __webpack_require__(/*! ./CategoriesItemView.hbs.html */ 55);
+	
+	var _CategoriesItemViewHbs2 = _interopRequireDefault(_CategoriesItemViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CompositeView.extend({
+	    template: _CategoriesItemViewHbs2.default,
+	    tagName: 'li',
+	    events: {
+	        'click a': 'toggleCheck'
+	    },
+	
+	    initialize: function initialize() {
+	        this.templateContext = {
+	            isChecked: false
+	        };
+	    },
+	    toggleCheck: function toggleCheck(e) {
+	        e.preventDefault();
+	        this.templateContext.isChecked = !this.templateContext.isChecked;
+	        console.info('isChecked: ' + this.templateContext.isChecked);
+	        this.render();
+	        this.trigger('check:category', this.model, this.templateContext.isChecked);
+=======
 	var _ShinersListItemView = __webpack_require__(/*! ./ShinersListItemView.js */ 55);
 	
 	var _ShinersListItemView2 = _interopRequireDefault(_ShinersListItemView);
@@ -28662,12 +31081,32 @@
 	                }
 	            });
 	        }
+>>>>>>> master
 	    }
 	});
 	exports.default = View;
 
 /***/ },
 /* 55 */
+<<<<<<< HEAD
+/*!************************************************************!*\
+  !*** ./wwwroot/homeApp/search/CategoriesItemView.hbs.html ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<a class="">\r\n    <span class="pull-right"><i class="fa '+
+	((__t=(isChecked?'fa-check-square text-success':'fa-square-o'))==null?'':_.escape(__t))+
+	'"></i></span> '+
+	((__t=(i18n.ru.name))==null?'':__t)+
+	'\r\n</a> ';
+	}
+	return __p;
+	};
+	
+=======
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersListItemView.js ***!
   \*******************************************************/
@@ -28722,10 +31161,216 @@
 	    }
 	});
 	exports.default = View;
+>>>>>>> master
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
 /* 56 */
+<<<<<<< HEAD
+/*!*******************************************!*\
+  !*** ./wwwroot/homeApp/search/i18n/en.js ***!
+  \*******************************************/
+/***/ function(module, exports) {
+
+	/**
+	 * Created by arutu_000 on 12/9/2016.
+	 */
+	
+	/*
+	var json = {
+	    home_accordion_section1: 'If you already have an advertisement on another website, just use that Url to create a Shiner!',
+	    home_accordion_section2: 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone',
+	    home_accordion_section3: 'Use Shiners for finding new live connections everywhere',
+	    home_shiners_are_around: 'Shiners are everywhere',
+	    home_lot_of_opportunities: 'A lot of opportunities for business around',
+	    home_participate: 'Participate ',
+	    home_free: 'for free',
+	    home_in_project: ' in the project!',
+	    home_contact_with_people: 'Let others know about your ad instantly',
+	    home_set_your_shiner: 'Create your Shiner',
+	    search_free_search: 'Free search by words',
+	    search_choose_radius: 'Search Radius (km):',
+	    search_parameters: 'Search Parameters',
+	    search_found: 'Found Shiners',
+	    search_not_found: 'No posts found around'
+	};
+
+	i18n.add('en', json);
+	*/
+	"use strict";
+
+/***/ },
+/* 57 */
+/*!*******************************************!*\
+  !*** ./wwwroot/homeApp/search/i18n/ru.js ***!
+  \*******************************************/
+/***/ function(module, exports) {
+
+	/**
+	 * Created by arutu_000 on 12/9/2016.
+	 */
+	
+	/*
+	var json = {
+	    home_accordion_section1: 'Если у тебя уже есть пост на другом ресурсе–просто размести ссылку на него-и получи готовый Светлячок!',
+	    home_accordion_section2: 'Светлячки — это живые объявления от людей поблизости. Представь себе виртуальную визитку, только носят её не в кошельке, а в мобильном телефоне, и видят её не избранные, а все те, кто рядом',
+	    home_accordion_section3: 'Используй Светлячки для установки быстрых живых контактов- встреч, в нужное время, в нужном месте.',
+	    home_shiners_are_around: 'Светлячки повсюду',
+	    home_lot_of_opportunities: 'Множество возможностей для бизнеса вместе с Shiners',
+	    home_participate: 'Участвуй ',
+	    home_free: 'бесплатно',
+	    home_in_project: ' в проекте!',
+	    home_contact_with_people: 'Контактируй с людьми, предложи свои услуги на сайте',
+	    home_set_your_shiner: 'Создай свой пост',
+
+	    search_free_search: 'Свободный поиск по словам',
+	    search_choose_radius: 'Радиус поиска (км):',
+	    search_parameters: 'Параметры поиска',
+	    search_found: 'Найденные светлячки',
+	    search_not_found: 'Поблизости не найдено светлячков'
+	};
+
+	i18n.add('ru', json);
+	*/
+	"use strict";
+
+/***/ },
+/* 58 */
+/*!*******************************************!*\
+  !*** ./wwwroot/homeApp/ShinerInfoView.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ShinerInfoViewHbs = __webpack_require__(/*! ./ShinerInfoView.hbs.html */ 59);
+	
+	var _ShinerInfoViewHbs2 = _interopRequireDefault(_ShinerInfoViewHbs);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _locationHelper = __webpack_require__(/*! ../helpers/locationHelper.js */ 9);
+	
+	var _locationHelper2 = _interopRequireDefault(_locationHelper);
+	
+	var _postDuration = __webpack_require__(/*! ../helpers/postDuration.js */ 60);
+	
+	var _postDuration2 = _interopRequireDefault(_postDuration);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _ShinerInfoViewHbs2.default,
+	
+	    initialize: function initialize() {
+	        window.postInCollection = this.model.attributes; // debug
+	    },
+	
+	
+	    events: {
+	        'click a': 'redirectToDetails'
+	    },
+	
+	    onBeforeRender: function onBeforeRender() {
+	        this.getDistance();
+	    },
+	    getDistance: function getDistance() {
+	        var locations = this.model.get('details').locations;
+	        if (locations && _.size(locations) > 0 && _app2.default.user.has('position')) {
+	            var location = _.find(locations, function (l) {
+	                return l.placeType === 'dynamic';
+	            });
+	            if (!location) location = locations[0];
+	            var dist = _locationHelper2.default.getDistance(location.coords.lat, location.coords.lng, _app2.default.user.get('position').lat, _app2.default.user.get('position').lng);
+	            this.model.set('distance', dist);
+	            this.model.set('distanceType', 'km');
+	            var obj = _postDuration2.default.getPostDuration(this.model);
+	            this.model.set('progress', obj.percent);
+	        } else {
+	            this.model.set('distance', -1);
+	            this.model.set('progress', 0);
+	        }
+	    },
+	    redirectToDetails: function redirectToDetails() {
+	        _app2.default.router.navigate('posts/' + this.model.id, { trigger: true });
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 59 */
+/*!*************************************************!*\
+  !*** ./wwwroot/homeApp/ShinerInfoView.hbs.html ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="sh-map-item-view-wrapper">\n    ';
+	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
+	__p+='\n\n    <a title="'+
+	((__t=(details.title))==null?'':__t)+
+	'" class="block height-250 text-right" style="background-image: url('+
+	((__t=(details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/demo/300x250.png'))==null?'':_.escape(__t))+
+	'); background-position: center; background-repeat: no-repeat; background-size: 120%"></a>\n\n    <div class="sh-map-item-view-info-panel">\n        <div class="sh-map-item-view-info-panel-first">\n            <span class="sh-label-box transparent-dark">\n                <i class="fa fa-calendar"></i> '+
+	((__t=(moment(timestamp).fromNow()))==null?'':__t)+
+	'\n            </span>\n        </div>\n        <div class="sh-map-item-view-info-panel-second">\n            <span class="sh-label-box transparent-dark">\n                <i class="fa fa-eye"></i> '+
+	((__t=(obj.stats?stats.seenAll:0))==null?'':__t)+
+	'\n            </span>\n            <span title="'+
+	((__t=(isDynamic?'Динамическое объявление':'Статическое'))==null?'':__t)+
+	'" class="sh-label-box transparent-dark margin-left-3">\n                <i class="fa fa-'+
+	((__t=(isDynamic?'man':'flag' ))==null?'':__t)+
+	' '+
+	((__t=(isDynamic?'success':''))==null?'':__t)+
+	'"></i>\n            </span>\n            <span class="sh-label-box transparent-dark margin-left-3">\n                <i class="fa fa-location-arrow"></i> '+
+	((__t=(distance>-1?distance.toFixed(1) + ' '+distanceType:''))==null?'':__t)+
+	'\n            </span>\n        </div>\n    </div>\n\n    <h3 class="sh-item-title elipsis" style="border: none">\n        <a>'+
+	((__t=(details.title))==null?'':__t)+
+	'</a>\n    </h3>\n    \n    <p class="sh-item-text">        \n        ';
+	var loc = _.find(details.locations,function(l) { return l.placeType==='dynamic' })||details.locations[0]; 
+	__p+='\n        ';
+	 if (loc) { 
+	__p+='\n        '+
+	((__t=(loc.name))==null?'':__t)+
+	'\n        ';
+	 } 
+	__p+='\n    </p>\n    \n    <div class="sh-progress-bar progress">\r\n        <div class="progress-bar '+
+	((__t=( progress >= 50 ? 'progress-bar-success' : (progress >=20 && progress < 50 ? 'progress-bar-warning' : 'progress-bar-danger')))==null?'':__t)+
+	'" role="progressbar" style="width: '+
+	((__t=( progress))==null?'':__t)+
+	'%; min-width: 1em; ">\r\n            <span class="sr-only"></span>\r\n        </div>\r\n    </div>\n\n    <div class="sh-map-item-view-info-panel-bottom">\n        <div class="sh-map-item-view-info-panel-bottom-wrapper">\n            <div>\n                <span class="label bg-type-category-'+
+	((__t=(type))==null?'':__t)+
+	' pull-left">'+
+	((__t=(type))==null?'':__t)+
+	'</span>\n            </div>\n            <div>\n                <a class="sh-info-panel-send-message">Написать сообщение</a>\n            </div>\n        </div>\n    </div>\n\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 60 */
+/*!*****************************************!*\
+  !*** ./wwwroot/helpers/postDuration.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, global) {'use strict';
+=======
 /*!*************************************************************!*\
   !*** ./wwwroot/homeApp/search/ShinersListItemView.hbs.html ***!
   \*************************************************************/
@@ -28866,10 +31511,400 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+<<<<<<< HEAD
+	var helper = {
+	    getPostDuration: function getPostDuration(model) {
+	
+	        var modelJSON = model.toJSON(),
+	            status = true,
+	            now = new Date(),
+	            start,
+	            finish,
+	            duration,
+	            days,
+	            hours,
+	            min,
+	            percent,
+	            barClass,
+	            language,
+	            titleDays,
+	            titleHours,
+	            titleMinutes,
+	            unit;
+	
+	        if (!modelJSON.timestamp.$date && !modelJSON.endDatePost.$date) return;
+	        start = modelJSON.timestamp.$date;
+	        finish = modelJSON.endDatePost.$date;
+	
+	        /* ALL ms or 100% */
+	        duration = finish - start;
+	
+	        /* left time */
+	        var ms = modelJSON.status.visible ? finish - now : ms = modelJSON.timePause.$date;
+	
+	        days = Math.floor(ms / 86400000);
+	        hours = Math.floor((ms - days * 86400000) / 3600000);
+	        min = Math.floor((ms - days * 86400000 - hours * 3600000) / 60000);
+	
+	        percent = ms / duration * 100;
+	
+	        /* get barClass */
+	        if (percent < 20) {
+	            barClass = 'red';
+	        } else if (percent < 50) {
+	            barClass = 'yellow';
+	        } else if (percent >= 50) {
+	            barClass = 'green';
+	        }
+	
+	        /* will close the post */
+	        if (percent <= 0) {
+	            percent = 0;
+	            status = false;
+	
+	            // update the status on visible, null
+	            var object = { 'status': { visible: null }, timePause: 0 };
+	            model.loadByMethod('timePostUpdate', [modelJSON._id, object]);
+	        }
+	
+	        language = app.i18n.getLanguage();
+	
+	        function endingOfTheWord(lang, number, title, titleEng) {
+	            if (lang === 'en') {
+	                var eng = [0, 1];
+	                return titleEng[number > 1 ? 1 : 0];
+	            } else if (lang === 'ru') {
+	                var rus = [2, 0, 1, 1, 1, 2];
+	                return title[number % 100 > 4 && number % 100 < 20 ? 2 : rus[number % 10 < 5 ? number % 10 : 5]];
+	            }
+	        }
+	
+	        if (days > 1) {
+	            titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
+	            unit = days + ' ' + titleDays;
+	        } else if (days == 1) {
+	            titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
+	            titleHours = endingOfTheWord(language, hours, ['час', 'часа', 'часов'], ['hour', 'hours']);
+	            titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
+	            unit = hours == 0 ? days + ' ' + titleDays + '   ' + min + ' ' + titleMinutes : days + ' ' + titleDays + '   ' + hours + ' ' + titleHours;
+	        } else if (days == 0) {
+	            titleHours = endingOfTheWord(language, hours, ['час', 'часа', 'часов'], ['hour', 'hours']);
+	            titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
+	            unit = days == 0 && hours == 0 ? min + ' ' + titleMinutes : hours + ' ' + titleHours + '   ' + min + ' ' + titleMinutes;
+	        }
+	
+	        return {
+	            'percent': percent,
+	            'leftDays': days,
+	            'unit': unit,
+	            'barClass': barClass,
+	            'status': status
+	        };
+	    }
+	};
+	
+	_.extend(global.$h.help, helper);
+	exports.default = helper;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), (function() { return this; }())))
+
+/***/ },
+/* 61 */
+/*!*********************************************!*\
+  !*** ./~/load-google-maps-api/lib/index.js ***!
+  \*********************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	exports.default = function () {
+	  var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	
+	  var client = _ref.client;
+	  var key = _ref.key;
+	  var language = _ref.language;
+	  var _ref$libraries = _ref.libraries;
+	  var libraries = _ref$libraries === undefined ? [] : _ref$libraries;
+	  var _ref$timeout = _ref.timeout;
+	  var timeout = _ref$timeout === undefined ? 10000 : _ref$timeout;
+	  var v = _ref.v;
+	
+	  var callbackName = '__googleMapsApiOnLoadCallback';
+	
+	  return new Promise(function (resolve, reject) {
+	
+	    // Exit if not running inside a browser.
+	    if (typeof window === 'undefined') {
+	      return reject(new Error('Can only load the Google Maps API in the browser'));
+	    }
+	
+	    // Prepare the `script` tag to be inserted into the page.
+	    var scriptElement = document.createElement('script');
+	    var params = ['callback=' + callbackName];
+	    if (client) params.push('client=' + client);
+	    if (key) params.push('key=' + key);
+	    if (language) params.push('language=' + language);
+	    libraries = [].concat(libraries); // Ensure that `libraries` is an array
+	    if (libraries.length) params.push('libraries=' + libraries.join(','));
+	    if (v) params.push('v=' + v);
+	    scriptElement.src = 'https://maps.googleapis.com/maps/api/js?' + params.join('&');
+	
+	    // Timeout if necessary.
+	    var timeoutId = null;
+	    if (timeout) {
+	      timeoutId = setTimeout(function () {
+	        window[callbackName] = function () {}; // Set the on load callback to a no-op.
+	        reject(new Error('Could not load the Google Maps API'));
+	      }, timeout);
+	    }
+	
+	    // Hook up the on load callback.
+	    window[callbackName] = function () {
+	      if (timeoutId !== null) {
+	        clearTimeout(timeoutId);
+	      }
+	      resolve(window.google.maps);
+	      delete window[callbackName];
+	    };
+	
+	    // Insert the `script` tag.
+	    document.body.appendChild(scriptElement);
+	  });
+	};
+
+/***/ },
+/* 62 */
+/*!***************************************!*\
+  !*** ./wwwroot/homeApp/BannerView.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _OsmSearchCollection = __webpack_require__(/*! ../data/OsmSearchCollection.js */ 63);
+	
+	var _OsmSearchCollection2 = _interopRequireDefault(_OsmSearchCollection);
+	
+	var _BannerViewHbs = __webpack_require__(/*! ./BannerView.hbs.html */ 64);
+	
+	var _BannerViewHbs2 = _interopRequireDefault(_BannerViewHbs);
+	
+	var _BannerViewLocationSelectHbs = __webpack_require__(/*! ./selectLocation/BannerViewLocationSelect.hbs.html */ 65);
+	
+	var _BannerViewLocationSelectHbs2 = _interopRequireDefault(_BannerViewLocationSelectHbs);
+	
+	__webpack_require__(/*! ../lib/jquery.countTo.js */ 66);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _SuggestionListView = __webpack_require__(/*! ./selectLocation/SuggestionListView.js */ 67);
+	
+	var _SuggestionListView2 = _interopRequireDefault(_SuggestionListView);
+	
+	__webpack_require__(/*! ./BannerView.less */ 70);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    tagName: 'div',
+	    className: 'sh-header-navbar-info visible-md-block visible-lg-block',
+	    template: _BannerViewHbs2.default,
+	    searchTimeOut: null,
+	    osmCollection: null,
+	
+	    modelEvents: {
+	        'change:address': 'render'
+	    },
+	
+	    initialize: function initialize() {
+	        this.osmCollection = new _OsmSearchCollection2.default();
+	    },
+	
+	
+	    regions: {
+	        'suggestions': '#suggestionsListBox'
+	    },
+	
+	    events: {
+	        //'click #selectLocation': 'renderLocationsSelection',
+	        'click #cancelSelection': 'render',
+	        'keyup #locationQuery': 'onLocationsSearch',
+	        'click #locationQuery': 'showSuggestions',
+	        'click #hideView': 'hideView'
+	    },
+	
+	    onDomRefresh: function onDomRefresh() {
+	        if (!_app2.default.isMobile) this.initCounters();
+	    },
+	    renderLocationsSelection: function renderLocationsSelection() {
+	        this.template = _BannerViewLocationSelectHbs2.default;
+	        this.render();
+	        this.showChildView('suggestions', new _SuggestionListView2.default({ collection: this.osmCollection, model: this.model }));
+	        this.template = _BannerViewHbs2.default;
+	    },
+	    showSuggestionsModalView: function showSuggestionsModalView() {
+	        var options = {
+	            model: this.model,
+	            title: 'Выберите местоположение'
+	        };
+	
+	        _app2.default.showModalApp(options);
+	    },
+	    onLocationsSearch: function onLocationsSearch(e) {
+	        if (e && (e.keyCode > 31 || e.keyCode === 13 || e.keyCode === 8)) {
+	            if (this.searchTimeOut) clearTimeout(this.searchTimeOut);
+	            this.searchTimeOut = setTimeout(_.bind(function () {
+	                this.osmCollection.fetch({
+	                    data: {
+	                        q: e.target.value,
+	                        format: 'json',
+	                        'accept-language': 'ru',
+	                        limit: 20,
+	                        polygon_geojson: 0
+	                        //city:e.target.value,
+	                        //county:e.target.value,
+	                        //state:e.target.value,
+	                        //country:e.target.value
+	                    }
+	                });
+	            }, this), 400);
+	        }
+	    },
+	    showSuggestions: function showSuggestions(e) {
+	        var quickCartBox = this.$('#suggestionsBox');
+	        if (!quickCartBox.is(":visible")) {
+	            quickCartBox.fadeIn(300);
+	        }
+	    },
+	    initCounters: function initCounters() {
+	        var self = this;
+	        var $countTo = self.$(".countTo");
+	        var _from = $countTo.attr('data-from') || 0,
+	            _speed = $countTo.attr('data-speed') || 1300,
+	            _refreshInterval = $countTo.attr('data-refreshInterval') || 60;
+	        $countTo.countTo({
+	            from: parseInt(_from),
+	            to: $countTo.html(),
+	            speed: parseInt(_speed),
+	            refreshInterval: parseInt(_refreshInterval)
+	        });
+	        var $wordRotator = this.$('.word-rotator');
+	        var _items = $wordRotator.find(".items");
+	        var items = _items.find("> span");
+	        var firstItem = items.eq(0);
+	        var firstItemClone = firstItem.clone();
+	        var _iHeight = $wordRotator.height();
+	        var _cItem = 1;
+	        var _cTop = 0;
+	        var _delay = $wordRotator.attr('data-delay') || 2000;
+	        _items.append(firstItemClone);
+	        $wordRotator.height(_iHeight).addClass("active");
+	        setInterval(function () {
+	            _cTop = _cItem * _iHeight;
+	            _items.animate({ top: -_cTop + "px" }, 300, "easeOutQuad", function () {
+	                _cItem++;
+	                if (_cItem > items.length) {
+	                    _items.css("top", 0);
+	                    _cItem = 1;
+	                }
+	            });
+	        }, _delay);
+	    },
+	    hideView: function hideView() {
+	        _app2.default.layout.toggleBannerView();
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 63 */
+/*!*********************************************!*\
+  !*** ./wwwroot/data/OsmSearchCollection.js ***!
+  \*********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.Collection.extend({
+	    url: 'https://nominatim.openstreetmap.org/search',
+	    parse: function parse(resp) {
+	        return resp;
+	    }
+	});
+
+/***/ },
+/* 64 */
+/*!*********************************************!*\
+  !*** ./wwwroot/homeApp/BannerView.hbs.html ***!
+  \*********************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n<h1 class="sh-text-rotate hidden-xs hidden-sm sh-view--banner">\r\n    <span class="sh-red-bg">'+
+	((__t=(i18n('shiners_are')))==null?'':__t)+
+	'</span>\r\n    <span class="word-rotator" data-delay="4000">\r\n        <span class="items">\r\n            <span>'+
+	((__t=(i18n('live_meetings')))==null?'':__t)+
+	'</span>\r\n            <span>'+
+	((__t=(i18n('nearby_business')))==null?'':__t)+
+	'</span>\r\n            <span>'+
+	((__t=(i18n('LIVE_ADS')))==null?'':__t)+
+	'</span>\r\n            <span>'+
+	((__t=(i18n('NEARBY_SERVICES')))==null?'':__t)+
+	'</span>\r\n        </span>\r\n    </span>\r\n</h1>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 65 */
+/*!**************************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/BannerViewLocationSelect.hbs.html ***!
+  \**************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="container text-center">\r\n    <div class="input-group">   \r\n        <input placeholder="'+
+	((__t=(obj.address||'Поиск по городам и регионам'))==null?'':_.escape(__t))+
+	'" class="form-control" id="locationQuery" type="text">\r\n        <span class="input-group-btn">\r\n            <button title="Отмена" id="cancelSelection" class="btn btn-default" type="button"><i class="fa fa-remove"></i></button>\r\n        </span>\r\n        <div class="suggestion-box" id="suggestionsBox">\r\n            <h5>Поиск городов, регионов</h5>\r\n            <div id="suggestionsListBox"></div>\r\n        </div>\r\n    </div>\r\n</div>';
+=======
 	
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
@@ -29115,10 +32150,163 @@
 	' pull-left">'+
 	((__t=(type))==null?'':__t)+
 	'</span>\n            </div>\n            <div>\n                <a class="sh-info-panel-send-message">Написать сообщение</a>\n            </div>\n        </div>\n    </div>\n\n</div>';
+>>>>>>> master
 	}
 	return __p;
 	};
 	
+<<<<<<< HEAD
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 66 */
+/*!***************************************!*\
+  !*** ./wwwroot/lib/jquery.countTo.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	(function (factory) {
+	  if (true) {
+	    // AMD
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ 3)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
+	    // CommonJS
+	    factory(require('jquery'));
+	  } else {
+	    // Browser globals
+	    factory(jQuery);
+	  }
+	})(function ($) {
+	  var CountTo = function CountTo(element, options) {
+	    this.$element = $(element);
+	    this.options = $.extend({}, CountTo.DEFAULTS, this.dataOptions(), options);
+	    this.init();
+	  };
+	
+	  CountTo.DEFAULTS = {
+	    from: 0, // the number the element should start at
+	    to: 0, // the number the element should end at
+	    speed: 1000, // how long it should take to count between the target numbers
+	    refreshInterval: 100, // how often the element should be updated
+	    decimals: 0, // the number of decimal places to show
+	    formatter: formatter, // handler for formatting the value before rendering
+	    onUpdate: null, // callback method for every time the element is updated
+	    onComplete: null // callback method for when the element finishes updating
+	  };
+	
+	  CountTo.prototype.init = function () {
+	    this.value = this.options.from;
+	    this.loops = Math.ceil(this.options.speed / this.options.refreshInterval);
+	    this.loopCount = 0;
+	    this.increment = (this.options.to - this.options.from) / this.loops;
+	  };
+	
+	  CountTo.prototype.dataOptions = function () {
+	    var options = {
+	      from: this.$element.data('from'),
+	      to: this.$element.data('to'),
+	      speed: this.$element.data('speed'),
+	      refreshInterval: this.$element.data('refresh-interval'),
+	      decimals: this.$element.data('decimals')
+	    };
+	
+	    var keys = Object.keys(options);
+	
+	    for (var i in keys) {
+	      var key = keys[i];
+	
+	      if (typeof options[key] === 'undefined') {
+	        delete options[key];
+	      }
+	    }
+	
+	    return options;
+	  };
+	
+	  CountTo.prototype.update = function () {
+	    this.value += this.increment;
+	    this.loopCount++;
+	
+	    this.render();
+	
+	    if (typeof this.options.onUpdate == 'function') {
+	      this.options.onUpdate.call(this.$element, this.value);
+	    }
+	
+	    if (this.loopCount >= this.loops) {
+	      clearInterval(this.interval);
+	      this.value = this.options.to;
+	
+	      if (typeof this.options.onComplete == 'function') {
+	        this.options.onComplete.call(this.$element, this.value);
+	      }
+	    }
+	  };
+	
+	  CountTo.prototype.render = function () {
+	    var formattedValue = this.options.formatter.call(this.$element, this.value, this.options);
+	    this.$element.text(formattedValue);
+	  };
+	
+	  CountTo.prototype.restart = function () {
+	    this.stop();
+	    this.init();
+	    this.start();
+	  };
+	
+	  CountTo.prototype.start = function () {
+	    this.stop();
+	    this.render();
+	    this.interval = setInterval(this.update.bind(this), this.options.refreshInterval);
+	  };
+	
+	  CountTo.prototype.stop = function () {
+	    if (this.interval) {
+	      clearInterval(this.interval);
+	    }
+	  };
+	
+	  CountTo.prototype.toggle = function () {
+	    if (this.interval) {
+	      this.stop();
+	    } else {
+	      this.start();
+	    }
+	  };
+	
+	  function formatter(value, options) {
+	    return value.toFixed(options.decimals);
+	  }
+	
+	  $.fn.countTo = function (option) {
+	    return this.each(function () {
+	      var $this = $(this);
+	      var data = $this.data('countTo');
+	      var init = !data || (typeof option === 'undefined' ? 'undefined' : _typeof(option)) === 'object';
+	      var options = (typeof option === 'undefined' ? 'undefined' : _typeof(option)) === 'object' ? option : {};
+	      var method = typeof option === 'string' ? option : 'start';
+	
+	      if (init) {
+	        if (data) data.stop();
+	        $this.data('countTo', data = new CountTo(this, options));
+	      }
+	
+	      data[method].call(data);
+	    });
+	  };
+	});
+
+/***/ },
+/* 67 */
+/*!**************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/SuggestionListView.js ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+=======
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
 
 /***/ },
@@ -29236,10 +32424,56 @@
   !*** ./~/load-google-maps-api/lib/index.js ***!
   \*********************************************/
 /***/ function(module, exports) {
+>>>>>>> master
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
+<<<<<<< HEAD
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _SuggestionItemView = __webpack_require__(/*! ./SuggestionItemView.js */ 68);
+	
+	var _SuggestionItemView2 = _interopRequireDefault(_SuggestionItemView);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	    childView: _SuggestionItemView2.default,
+	    tagName: 'div',
+	    className: 'suggestion-box-wrapper',
+	    childViewEvents: {
+	        'location:selected': 'setAddress'
+	    },
+	
+	    setAddress: function setAddress(model) {
+	        _app2.default.user.set('position', { type: 'manual', lat: parseFloat(model.get('lat')), lng: parseFloat(model.get('lon')) });
+	        _app2.default.map.setCenter({
+	            lat: parseFloat(model.get('lat')),
+	            lng: parseFloat(model.get('lon'))
+	        });
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 68 */
+/*!**************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/SuggestionItemView.js ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+=======
 	  value: true
 	});
 	
@@ -29306,6 +32540,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -29315,6 +32550,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _SuggestionItemViewHbs = __webpack_require__(/*! ./SuggestionItemView.hbs.html */ 69);
+	
+	var _SuggestionItemViewHbs2 = _interopRequireDefault(_SuggestionItemViewHbs);
+=======
 	var _OsmSearchCollection = __webpack_require__(/*! ../data/OsmSearchCollection.js */ 69);
 	
 	var _OsmSearchCollection2 = _interopRequireDefault(_OsmSearchCollection);
@@ -29338,10 +32578,146 @@
 	var _SuggestionListView2 = _interopRequireDefault(_SuggestionListView);
 	
 	__webpack_require__(/*! ./BannerView.less */ 76);
+>>>>>>> master
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.View.extend({
+<<<<<<< HEAD
+	    template: _SuggestionItemViewHbs2.default,
+	    tagName: 'a',
+	    className: 'suggestion-item',
+	    initialize: function initialize() {
+	        var nameParts = this.model.get('display_name').split(', ');
+	        this.model.set('name', nameParts[0] + ', ' + nameParts[1]);
+	        this.model.set('country', nameParts[nameParts.length - 1]);
+	    },
+	
+	
+	    events: {
+	        'click': 'onClick'
+	    },
+	    onClick: function onClick() {
+	        this.trigger('location:selected', this.model);
+	        this.$el.closest('.modal-content').find('.modal-header .close').trigger('click');
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 69 */
+/*!********************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/SuggestionItemView.hbs.html ***!
+  \********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<h6>'+
+	((__t=(name))==null?'':__t)+
+	'</h6>\r\n<small>'+
+	((__t=(country))==null?'':_.escape(__t))+
+	'</small>\r\n';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 70 */
+/*!*****************************************!*\
+  !*** ./wwwroot/homeApp/BannerView.less ***!
+  \*****************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 71 */
+/*!****************************************!*\
+  !*** ./wwwroot/homeApp/UserBarView.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _UserBarViewHbs = __webpack_require__(/*! ./UserBarView.hbs.html */ 72);
+	
+	var _UserBarViewHbs2 = _interopRequireDefault(_UserBarViewHbs);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _UserBarViewHbs2.default,
+	    tagName: 'div',
+	    events: {
+	        'click #logout': 'logout',
+	        'click #userBarLink': 'toggleView'
+	    },
+	    logout: function logout() {
+	        _app2.default.logout();
+	    },
+	    toggleView: function toggleView() {
+	        if (this.$('.quick-cart-box').is(':visible')) {
+	            this.$('.quick-cart-box').fadeOut(300);
+	        } else {
+	            this.$('.quick-cart-box').fadeIn(300);
+	        }
+	    },
+	
+	
+	    modelEvents: {
+	        'logout': 'render',
+	        'login': 'render'
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 72 */
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/UserBarView.hbs.html ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='';
+	if (obj._id) { 
+	__p+='\n<div class="sh-registers-buttons">\r\n    <a href="/profile" class="ui standard sign-up sh-button" id="userBarLink">'+
+	((__t=(username))==null?'':_.escape(__t))+
+	'</a>\r\n    <button id="logout" class="ui sh-white basic sh-button"><i class="fa fa-sign-out"></i></button>\r\n</div>\n\n';
+	 } else { 
+	__p+='\n<!-- IF ACCOUNT USER IS FALSE -->\r\n<div class="sh-registers-buttons">\r\n    <a href="/Account/Login" class="ui standard sign-up sh-button">Вход</a>\r\n    <!--<button class="ui sh-white basic sh-button">Регистрация</button>-->\r\n</div>\n';
+	 } 
+	__p+='';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 73 */
+/*!********************************************!*\
+  !*** ./wwwroot/homeApp/NavLocationView.js ***!
+  \********************************************/
+=======
 	    tagName: 'div',
 	    className: 'sh-header-navbar-info visible-md-block visible-lg-block',
 	    template: _BannerViewHbs2.default,
@@ -29675,6 +33051,7 @@
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/SuggestionListView.js ***!
   \**************************************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29687,16 +33064,41 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _NavLocationViewHbs = __webpack_require__(/*! ./NavLocationView.hbs.html */ 74);
+	
+	var _NavLocationViewHbs2 = _interopRequireDefault(_NavLocationViewHbs);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+=======
 	var _SuggestionItemView = __webpack_require__(/*! ./SuggestionItemView.js */ 74);
 	
 	var _SuggestionItemView2 = _interopRequireDefault(_SuggestionItemView);
 	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
+>>>>>>> master
 	
 	var _app2 = _interopRequireDefault(_app);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+<<<<<<< HEAD
+	var View = _backbone2.default.View.extend({
+	    template: _NavLocationViewHbs2.default,
+	    tagName: 'a',
+	    className: 'sh-nav-h white-link',
+	
+	    modelEvents: {
+	        'change:address': 'render'
+	    },
+	
+	    events: {
+	        'click': 'showChangeLocation'
+	    },
+	
+	    showChangeLocation: function showChangeLocation() {
+	        _app2.default.layout.showChangeLocation();
+=======
 	var View = _backbone2.default.CollectionView.extend({
 	    childView: _SuggestionItemView2.default,
 	    tagName: 'div',
@@ -29711,12 +33113,277 @@
 	            lat: parseFloat(model.get('lat')),
 	            lng: parseFloat(model.get('lon'))
 	        });
+>>>>>>> master
 	    }
 	});
 	exports.default = View;
 
 /***/ },
 /* 74 */
+<<<<<<< HEAD
+/*!**************************************************!*\
+  !*** ./wwwroot/homeApp/NavLocationView.hbs.html ***!
+  \**************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<i class="icon-map-marker"></i>&nbsp;\r\n<span class="sh-nav-location-value">\r\n    ';
+	if (obj.address) { 
+	__p+='\r\n        '+
+	((__t=(address))==null?'':__t)+
+	'\r\n    ';
+	 } else { 
+	__p+='\r\n        '+
+	((__t=(i18n('undefined_place')))==null?'':__t)+
+	'\r\n    ';
+	 } 
+	__p+='\r\n</span>\r\n<i class="fa fa-angle-down icon"></i>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 75 */
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/shared/iframeView.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone4 = _interopRequireDefault(_backbone3);
+	
+	var _iframeViewHbs = __webpack_require__(/*! ./iframeView.hbs.html */ 76);
+	
+	var _iframeViewHbs2 = _interopRequireDefault(_iframeViewHbs);
+	
+	__webpack_require__(/*! ./iframeView.css */ 77);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var FRAME_DOMAIN = 'https://shiners.mobi';
+	//const FRAME_DOMAIN = 'http://localhost:3000';
+	
+	var View = function (_Marionette$View$exte) {
+	    _inherits(View, _Marionette$View$exte);
+	
+	    function View(options) {
+	        _classCallCheck(this, View);
+	
+	        options = Object.assign({
+	            width: '100%',
+	            pagePath: '/home'
+	            //pathName: 'posts/new'
+	        }, options);
+	
+	        var _this = _possibleConstructorReturn(this, (View.__proto__ || Object.getPrototypeOf(View)).call(this, options));
+	
+	        _this.options = options;
+	        return _this;
+	    }
+	
+	    _createClass(View, [{
+	        key: 'setPage',
+	        value: function setPage(newPath) {
+	            this._updatePath(newPath);
+	        }
+	    }, {
+	        key: '_updatePath',
+	        value: function _updatePath(newPath) {
+	            // trigger new path command to iFrame:
+	            this.sendMessage(this._addQsParamsToPath(newPath));
+	        }
+	    }, {
+	        key: '_addQsParamsToPath',
+	        value: function _addQsParamsToPath(url) {
+	            var ret = url;
+	            var latLngStr = '',
+	                position = _app2.default.user.get('position');
+	            if (position) {
+	                latLngStr = '&lat=' + position.lat + '&lng=' + position.lng;
+	            }
+	            if (url.indexOf('isiframe') === -1) {
+	                if (url.indexOf('?') === -1) {
+	                    ret += '?isiframe=true' + latLngStr;
+	                } else {
+	                    ret += '&isiframe=true' + latLngStr;
+	                }
+	            }
+	            return ret;
+	        }
+	    }, {
+	        key: 'serializeData',
+	        value: function serializeData() {
+	            var attr = this.options,
+	                that = this,
+	                src = function (a) {
+	                var url = '' + FRAME_DOMAIN + attr.pagePath;
+	                url = that._addQsParamsToPath(url);
+	
+	                console.log('iframeview:serializeData:url: ', url);
+	                return url;
+	            }(),
+	                height = $(window).height() - ($('#header').height() + $('#footer').height());
+	            return {
+	                height: height,
+	                width: attr.width,
+	                src: src
+	            };
+	        }
+	    }, {
+	        key: 'onRender',
+	        value: function onRender() {
+	            this._setMessageEvents();
+	            $('#iframeHolder').append(this.$el);
+	        }
+	        // inter-iframe communication:
+	
+	    }, {
+	        key: 'sendMessage',
+	        value: function sendMessage(newPath) {
+	            window.iframeView.postMessage({
+	                pagePath: newPath
+	            }, "*");
+	        }
+	    }, {
+	        key: '_setMessageEvents',
+	        value: function _setMessageEvents() {
+	            var that = this;
+	            this.$('#iframeView').load(function () {
+	                console.log('iframeView:load');
+	            });
+	            this.listenTo(window, 'message', function (e) {
+	                //var origin = e.origin || e.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+	            });
+	            window.addEventListener("message", receiveMessage, false);
+	
+	            function receiveMessage(event) {
+	                if (event.data && event.data.user) {
+	                    // user-logged in event!
+	                    if (!_app2.default.userMeteorObj) {
+	                        _app2.default.userMeteorObj = event.data.user;
+	                        _app2.default.user.trigger('receivedMeteorUser', event.data.user);
+	                    }
+	                }
+	                event.data && event.data.height && that.$el.height(event.data.height);
+	                // some staff
+	                //var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+	                //if (origin !== "http://example.org:8080")
+	                //  return;
+	
+	                // ...
+	            }
+	        }
+	    }]);
+	
+	    return View;
+	}(_backbone2.default.View.extend({
+	    template: _iframeViewHbs2.default,
+	
+	    removeHeader: function removeHeader(e) {
+	        window.myIframe = e.target;
+	    },
+	    onAttach: function onAttach() {
+	        //this.$el.height(window.innerHeight-$('#header').height());
+	    }
+	}));
+	
+	;
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 76 */
+/*!****************************************************!*\
+  !*** ./wwwroot/homeApp/shared/iframeView.hbs.html ***!
+  \****************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<section style ="height:100%;" class="sh-iframe-view">\r\n    <div class="container"; style ="height:100%;">\r\n        <iframe name="iframeView" width="'+
+	((__t=( width ))==null?'':__t)+
+	'"  height="'+
+	((__t=( height ))==null?'':__t)+
+	'" src="'+
+	((__t=( src ))==null?'':__t)+
+	'"></iframe>\r\n    </div>\r\n</section>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 77 */
+/*!***********************************************!*\
+  !*** ./wwwroot/homeApp/shared/iframeView.css ***!
+  \***********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./iframeView.css */ 78);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 45)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./iframeView.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./iframeView.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 78 */
+/*!**************************************************************!*\
+  !*** ./~/css-loader!./wwwroot/homeApp/shared/iframeView.css ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 14)();
+	exports.push([module.id, ".sh-iframe-view {\r\n    padding: 0 !important;\r\n}\r\n\r\n.sh-iframe-view .container {\r\n    width: auto !important;\r\n}\r\n\r\nbody.sh-hidden-overflow {\r\n    overflow: hidden !important;\r\n}\r\nbody.sh-hidden-overflow #wrapper {\r\n    background-color: #eaeaea;\r\n}\r\nbody.sh-hidden-overflow #iframeHolder section {\r\n    padding: 0 !important;\r\n    margin: 0 !important;\r\n}\r\nbody.sh-hidden-overflow #iframeHolder .container {\r\n    padding: 0 !important;\r\n    margin: 0 !important;\r\n}", ""]);
+
+/***/ },
+/* 79 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/layout/userMenuView.js ***!
+  \************************************************/
+=======
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/SuggestionItemView.js ***!
   \**************************************************************/
@@ -29872,6 +33539,7 @@
 /*!********************************************!*\
   !*** ./wwwroot/homeApp/NavLocationView.js ***!
   \********************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29880,6 +33548,17 @@
 	    value: true
 	});
 	
+<<<<<<< HEAD
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _userMenuViewHbs = __webpack_require__(/*! ./userMenuView.hbs.html */ 80);
+	
+	var _userMenuViewHbs2 = _interopRequireDefault(_userMenuViewHbs);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+=======
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
@@ -29889,11 +33568,19 @@
 	var _NavLocationViewHbs2 = _interopRequireDefault(_NavLocationViewHbs);
 	
 	var _app = __webpack_require__(/*! ./app.js */ 15);
+>>>>>>> master
 	
 	var _app2 = _interopRequireDefault(_app);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+<<<<<<< HEAD
+	var View = _backbone2.default.Marionette.View.extend({
+	    template: _userMenuViewHbs2.default,
+	    tagName: 'li',
+	    events: {}
+	
+=======
 	var View = _backbone2.default.View.extend({
 	    template: _NavLocationViewHbs2.default,
 	    tagName: 'a',
@@ -29910,19 +33597,31 @@
 	    showChangeLocation: function showChangeLocation() {
 	        _app2.default.layout.showChangeLocation();
 	    }
+>>>>>>> master
 	});
 	exports.default = View;
 
 /***/ },
 /* 80 */
+<<<<<<< HEAD
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/layout/userMenuView.hbs.html ***!
+  \******************************************************/
+=======
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/NavLocationView.hbs.html ***!
   \**************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
+	__p+='<a href="/profile" style="color:#fff">\r\n    Welcome,\r\n    '+
+	((__t=( username ))==null?'':__t)+
+	'\r\n</a>\r\n';
+=======
 	__p+='<i class="icon-map-marker"></i>&nbsp;\n<span class="sh-nav-location-value">\n    ';
 	if (obj.address) { 
 	__p+='\n        '+
@@ -29934,6 +33633,7 @@
 	'\n    ';
 	 } 
 	__p+='\n</span>\n<i class="fa fa-angle-down icon"></i>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -29941,9 +33641,15 @@
 
 /***/ },
 /* 81 */
+<<<<<<< HEAD
+/*!*****************************************!*\
+  !*** ./wwwroot/homeApp/mainMenuView.js ***!
+  \*****************************************/
+=======
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/shared/iframeView.js ***!
   \**********************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -29952,12 +33658,24 @@
 	    value: true
 	});
 	
+<<<<<<< HEAD
+=======
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
+>>>>>>> master
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _mainMenuViewHbs = __webpack_require__(/*! ./mainMenuView.hbs.html */ 82);
+	
+	var _mainMenuViewHbs2 = _interopRequireDefault(_mainMenuViewHbs);
+	
+	__webpack_require__(/*! ./mainMenuView.less */ 83);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+=======
 	var _backbone3 = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
@@ -29969,11 +33687,68 @@
 	__webpack_require__(/*! ./iframeView.css */ 83);
 	
 	var _app = __webpack_require__(/*! ../app.js */ 15);
+>>>>>>> master
 	
 	var _app2 = _interopRequireDefault(_app);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+<<<<<<< HEAD
+	/**
+	 * Created by arutu_000 on 1/15/2017.
+	 */
+	var View = _backbone2.default.View.extend({
+	    template: _mainMenuViewHbs2.default,
+	    onRender: function onRender() {
+	        var that = this;
+	        this.listenTo(_app2.default.user, 'login', this.toggleMenuItems);
+	        this.listenTo(_app2.default.user, 'logout', this.toggleMenuItems);
+	        this.listenTo(_app2.default.router, 'route', this.setActiveItemForCurrentRoute);
+	        this.$('.navbar-collapse').on('shown.bs.collapse', function () {
+	            // do something…
+	            $(window).on('click', that.hideMobileCollapsableMenu);
+	        });
+	        this.$('.navbar-collapse').on('hidden.bs.collapse', function () {
+	            // do something…
+	            $(window).off('click', that.hideMobileCollapsableMenu);
+	        });
+	    },
+	    onAttach: function onAttach() {
+	        //this.onClickLink();
+	        this.toggleMenuItems();
+	    },
+	
+	    // custom:
+	    toggleMenuItems: function toggleMenuItems() {
+	        if (_app2.default.user.has('_id')) this.$('.js-need-auth').show();else {
+	            this.$('.js-need-auth').hide();
+	        }
+	    },
+	    hideMobileCollapsableMenu: function hideMobileCollapsableMenu(e) {
+	        if (e.target !== $('.sh-btn-mobile-menu').get(0)) {
+	            this.$('.navbar-collapse').collapse('hide');
+	        }
+	    },
+	    setActiveItemForCurrentRoute: function setActiveItemForCurrentRoute() {
+	        var _this = this;
+	
+	        this.$('.main-menu-item').each(function (i, el) {
+	            if (el.dataset.routeName === _app2.default.router.currentRoute) {
+	                _this.$('.main-menu-item').removeClass('active');
+	                $(el).addClass('active');
+	            }
+	        });
+	    },
+	
+	    events: {
+	        'click .main-menu-item': function clickMainMenuItem(e) {
+	
+	            $(e.target).find('>a').click();
+	        }
+	
+	    }
+	});
+=======
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -30108,19 +33883,41 @@
 	}));
 	
 	;
+>>>>>>> master
 	exports.default = View;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
 /* 82 */
+<<<<<<< HEAD
+/*!***********************************************!*\
+  !*** ./wwwroot/homeApp/mainMenuView.hbs.html ***!
+  \***********************************************/
+=======
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/shared/iframeView.hbs.html ***!
   \****************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
+	__p+='<!-- Menu -->\n<div class="navbar-collapse pull-right nav-main-collapse collapse submenu-dark">\n    <nav class="sh-nav-menu nav-main">\n        <ul id="topMain" class="nav nav-pills nav-main">\n            <li class="main-menu-item active" data-route-name="index">\n                <a href="/">'+
+	((__t=(i18n('mainPage')))==null?'':__t)+
+	'</a>\n            </li>\n            <li class="main-menu-item hidden-lg hidden-md" data-route-name="createPost">\n                <a href="/posts/new">\n                    '+
+	((__t=(i18n('create')))==null?'':__t)+
+	'\n                </a>\n            </li>\n            <li class="main-menu-item" data-route-name="about">\n                <a href="/about-us" >\n                    '+
+	((__t=(i18n('aboutSite')))==null?'':__t)+
+	'\n                </a>\n            </li>\n            <li class="main-menu-item js-need-auth" style="display: none;" data-route-name="chatsMy">\n                <a href="/chats/my">\n                    '+
+	((__t=(i18n('messages')))==null?'':__t)+
+	'\n                </a>\n            </li>\n            <li class="main-menu-item js-need-auth" style="display: none;" data-route-name="postsMy">\n                <a href="/posts/my">\n                    '+
+	((__t=(i18n('myPosts')))==null?'':__t)+
+	'\n                </a>\n            </li>\n            <li class="main-menu-item" data-route-name="blog">\n                <a href="/blog">\n                    '+
+	((__t=(i18n('mainMenuBlog')))==null?'':__t)+
+	'\n                </a>\n            </li>\n        </ul>\n    </nav>\n</div>';
+=======
 	__p+='<section style ="height:100%;" class="sh-iframe-view">\n    <div class="container"; style ="height:100%;">\n        <iframe name="iframeView" width="'+
 	((__t=( width ))==null?'':__t)+
 	'"  height="'+
@@ -30128,6 +33925,7 @@
 	'" src="'+
 	((__t=( src ))==null?'':__t)+
 	'"></iframe>\n    </div>\n</section>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -30135,6 +33933,111 @@
 
 /***/ },
 /* 83 */
+<<<<<<< HEAD
+/*!*******************************************!*\
+  !*** ./wwwroot/homeApp/mainMenuView.less ***!
+  \*******************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 84 */
+/*!********************************************!*\
+  !*** ./wwwroot/data/AsteroidCollection.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _AsteroidModel = __webpack_require__(/*! ./AsteroidModel.js */ 85);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.Collection.extend({
+	    model: _AsteroidModel2.default,
+	
+	    asteroid: null,
+	    subscriptions: null,
+	    initialize: function initialize(models, options) {
+	        this.subscriptions = [];
+	        this.asteroid = (options || {}).asteroid || null;
+	        _backbone2.default.Collection.prototype.initialize.apply(this, arguments);
+	    },
+	    loadByMethod: function loadByMethod(method, args, callbk, options) {
+	        var _arguments = arguments;
+	
+	        if (!this.asteroid) throw new Error("Asteroid instanse of this collection is not exists!");
+	        var opts = options || {};
+	        var context = opts.context || this,
+	            callback = callbk || null,
+	            self = this;
+	        this.trigger('before:load', this);
+	        this.asteroid.call(method, args).then(function (result) {
+	            var res = _underscore2.default.isArray(result) ? result : result.result;
+	            if (_underscore2.default.isArray(res) || result.success) {
+	                self.reset(res && !_underscore2.default.isEmpty(res) ? res : null, _underscore2.default.omit(opts, "context", "callback"));
+	                if (callback) callback.apply(context, _arguments);
+	                self.trigger('after:load', self, result);
+	            } else {
+	                throw new Error(result.error ? result.error.errorId : "error fetch asteroid collection by method " + method);
+	            }
+	        }).catch(function (error) {
+	            throw new Error(error);
+	        });
+	    },
+	    sub: function sub() {
+	        var _arguments2 = arguments;
+	
+	        var subscription = this.asteroid.subscribe.apply(this.asteroid, arguments);
+	        if (!_underscore2.default.find(function (sub) {
+	            return sub.id === subscription.id;
+	        })) {
+	            this.subscriptions.push(subscription);
+	            var self = this;
+	            window.messagesSubscription = subscription; // debug
+	            subscription.ready.done(function (resp) {
+	                alert('publication' + resp);
+	                window.publicationResp = resp; // debug
+	                if (_underscore2.default.isArray(resp)) self.add(resp);else {
+	                    if (resp.success) {
+	                        self.add(resp.result);
+	                    } else {
+	                        throw new Error(resp.error ? resp.error.errorId : "error publication asteroid collection by " + _arguments2[0]);
+	                    }
+	                }
+	            });
+	        }
+	        return subscription;
+	    },
+	    unsub: function unsub() {
+	        _underscore2.default.each(this.subscriptions, function (sub) {
+	            return sub.stop();
+	        });
+	        this.subscriptions.length = 0;
+	    }
+	});
+
+/***/ },
+/* 85 */
+/*!***************************************!*\
+  !*** ./wwwroot/data/AsteroidModel.js ***!
+  \***************************************/
+=======
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/shared/iframeView.css ***!
   \***********************************************/
@@ -30177,6 +34080,7 @@
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/layout/userMenuView.js ***!
   \************************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30185,6 +34089,868 @@
 	    value: true
 	});
 	
+<<<<<<< HEAD
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _MongoModel = __webpack_require__(/*! ./MongoModel.js */ 86);
+	
+	var _MongoModel2 = _interopRequireDefault(_MongoModel);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _MongoModel2.default.extend({
+	
+	    asteroid: null,
+	
+	    initialize: function initialize(attrs, options) {
+	        this.asteroid = options && options.asteroid ? options.asteroid : this.collection && this.collection.asteroid ? this.collection.asteroid : null;
+	        _MongoModel2.default.prototype.initialize.apply(this, arguments);
+	    },
+	    loadByMethod: function loadByMethod(method, args, callbk, options) {
+	        var _arguments = arguments;
+	
+	        if (!this.asteroid) throw new Error("Asteroid instanse of model with id=" + this.id + " is not exists!");
+	        var opts = options || (callbk && !_underscore2.default.isFunction(callbk) ? callbk : {});
+	        var context = opts.context || this,
+	            callback = callbk || (_underscore2.default.isFunction(args) ? args : null),
+	            self = this,
+	            argums = !args || _underscore2.default.isFunction(args) ? [this.id] : _underscore2.default.isArray(args) ? args : [args];
+	        this.trigger('before:load');
+	        return this.asteroid.apply(method, argums).then(function (result) {
+	            if (result && result.success) {
+	                self.set(result.result, _underscore2.default.omit(opts, "context", "callback"));
+	                if (callback) callback.apply(context, _arguments);
+	                self.trigger('after:load', result);
+	            } else if (result.error) {
+	
+	                throw new Error("Fetch fail from meteor! Error Id: " + result.error.errorId);
+	            }
+	        }).catch(function (err) {
+	            throw new Error("Fetch fail from meteor! Custom access error: " + err);
+	        });
+	    },
+	    save: function save(method, args, callbk, options) {
+	        var _arguments2 = arguments;
+	
+	        if (!this.asteroid) throw new Error("Asteroid instanse of model with id=" + this.id + " is not exists!");
+	        var opts = options || (callbk && !_underscore2.default.isFunction(callbk) ? callbk : {});
+	        var context = opts.context || this,
+	            callback = callbk || (_underscore2.default.isFunction(args) ? args : null),
+	            self = this,
+	            argums = !args || _underscore2.default.isFunction(args) ? [this.attributes] : _underscore2.default.isArray(args) ? args : [args];
+	        this.trigger('before:save');
+	        return this.asteroid.apply(method, argums).then(function (id) {
+	            self.set('_id', id, _underscore2.default.omit(opts, "context", "callback"));
+	            if (callback) callback.apply(context, _arguments2);
+	            self.trigger('save', id);
+	        }).catch(function (err) {
+	            self.trigger('error:save', id);
+	            throw new Error("Save fail from meteor! Custom error: " + err);
+	        });
+	    },
+	    remove: function remove(method, args, callbk, options) {
+	        var _arguments3 = arguments;
+	
+	        if (!this.asteroid) throw new Error("Asteroid instanse of model with id=" + this.id + " is not exists!");
+	        var opts = options || (callbk && !_underscore2.default.isFunction(callbk) ? callbk : {});
+	        var context = opts.context || this,
+	            callback = callbk || (_underscore2.default.isFunction(args) ? args : null),
+	            self = this,
+	            argums = !args || _underscore2.default.isFunction(args) ? [this.attributes] : _underscore2.default.isArray(args) ? args : [args];
+	        this.trigger('before:destroy');
+	        return this.asteroid.apply(method, argums).then(function (result) {
+	            if (result.success) {
+	                self.unset('_id', _underscore2.default.omit(opts, "context", "callback"));
+	                if (callback) callback.apply(context, _arguments3);
+	                self.trigger('destroy', result);
+	            } else {
+	                self.trigger('error:destroy', result);
+	            }
+	        }).catch(function (err) {
+	            self.trigger('error:destroy', result);
+	            throw new Error("Destroy fail from meteor! Custom error: " + err);
+	        });
+	    }
+	});
+
+/***/ },
+/* 86 */
+/*!************************************!*\
+  !*** ./wwwroot/data/MongoModel.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _BaseModel = __webpack_require__(/*! ./BaseModel.js */ 87);
+	
+	var _BaseModel2 = _interopRequireDefault(_BaseModel);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _BaseModel2.default.extend({
+	    idAttribute: "_id",
+	    parse: function parse(resp) {
+	        return resp;
+	    }
+	});
+
+/***/ },
+/* 87 */
+/*!***********************************!*\
+  !*** ./wwwroot/data/BaseModel.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _backboneValidation = __webpack_require__(/*! backbone-validation */ 88);
+	
+	var _backboneValidation2 = _interopRequireDefault(_backboneValidation);
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	__webpack_require__(/*! ./backbone-deffered.js */ 89);
+	
+	__webpack_require__(/*! ../helpers/ConfigureBackboneValidation.js */ 90);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.Model.extend(_backboneValidation2.default.mixin);
+
+/***/ },
+/* 88 */
+/*!***************************************************************!*\
+  !*** ./~/backbone-validation/dist/backbone-validation-amd.js ***!
+  \***************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	// Backbone.Validation v0.11.5
+	//
+	// Copyright (c) 2011-2015 Thomas Pedersen
+	// Distributed under MIT License
+	//
+	// Documentation and full license available at:
+	// http://thedersen.com/projects/backbone-validation
+	(function (factory) {
+	  if (( false ? 'undefined' : _typeof(exports)) === 'object') {
+	    module.exports = factory(__webpack_require__(/*! backbone */ 17), __webpack_require__(/*! underscore */ 7));
+	  } else if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! backbone */ 17), __webpack_require__(/*! underscore */ 7)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  }
+	})(function (Backbone, _) {
+	  Backbone.Validation = function (_) {
+	    'use strict';
+	
+	    // Default options
+	    // ---------------
+	
+	    var defaultOptions = {
+	      forceUpdate: false,
+	      selector: 'name',
+	      labelFormatter: 'sentenceCase',
+	      valid: Function.prototype,
+	      invalid: Function.prototype
+	    };
+	
+	    // Helper functions
+	    // ----------------
+	
+	    // Formatting functions used for formatting error messages
+	    var formatFunctions = {
+	      // Uses the configured label formatter to format the attribute name
+	      // to make it more readable for the user
+	      formatLabel: function formatLabel(attrName, model) {
+	        return defaultLabelFormatters[defaultOptions.labelFormatter](attrName, model);
+	      },
+	
+	      // Replaces nummeric placeholders like {0} in a string with arguments
+	      // passed to the function
+	      format: function format() {
+	        var args = Array.prototype.slice.call(arguments),
+	            text = args.shift();
+	        return text.replace(/\{(\d+)\}/g, function (match, number) {
+	          return typeof args[number] !== 'undefined' ? args[number] : match;
+	        });
+	      }
+	    };
+	
+	    // Flattens an object
+	    // eg:
+	    //
+	    //     var o = {
+	    //       owner: {
+	    //         name: 'Backbone',
+	    //         address: {
+	    //           street: 'Street',
+	    //           zip: 1234
+	    //         }
+	    //       }
+	    //     };
+	    //
+	    // becomes:
+	    //
+	    //     var o = {
+	    //       'owner': {
+	    //         name: 'Backbone',
+	    //         address: {
+	    //           street: 'Street',
+	    //           zip: 1234
+	    //         }
+	    //       },
+	    //       'owner.name': 'Backbone',
+	    //       'owner.address': {
+	    //         street: 'Street',
+	    //         zip: 1234
+	    //       },
+	    //       'owner.address.street': 'Street',
+	    //       'owner.address.zip': 1234
+	    //     };
+	    // This may seem redundant, but it allows for maximum flexibility
+	    // in validation rules.
+	    var flatten = function flatten(obj, into, prefix) {
+	      into = into || {};
+	      prefix = prefix || '';
+	
+	      _.each(obj, function (val, key) {
+	        if (obj.hasOwnProperty(key)) {
+	          if (!!val && _.isArray(val)) {
+	            _.forEach(val, function (v, k) {
+	              flatten(v, into, prefix + key + '.' + k + '.');
+	              into[prefix + key + '.' + k] = v;
+	            });
+	          } else if (!!val && (typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object' && val.constructor === Object) {
+	            flatten(val, into, prefix + key + '.');
+	          }
+	
+	          // Register the current level object as well
+	          into[prefix + key] = val;
+	        }
+	      });
+	
+	      return into;
+	    };
+	
+	    // Validation
+	    // ----------
+	
+	    var Validation = function () {
+	
+	      // Returns an object with undefined properties for all
+	      // attributes on the model that has defined one or more
+	      // validation rules.
+	      var getValidatedAttrs = function getValidatedAttrs(model, attrs) {
+	        attrs = attrs || _.keys(_.result(model, 'validation') || {});
+	        return _.reduce(attrs, function (memo, key) {
+	          memo[key] = void 0;
+	          return memo;
+	        }, {});
+	      };
+	
+	      // Returns an array with attributes passed through options
+	      var getOptionsAttrs = function getOptionsAttrs(options, view) {
+	        var attrs = options.attributes;
+	        if (_.isFunction(attrs)) {
+	          attrs = attrs(view);
+	        } else if (_.isString(attrs) && _.isFunction(defaultAttributeLoaders[attrs])) {
+	          attrs = defaultAttributeLoaders[attrs](view);
+	        }
+	        if (_.isArray(attrs)) {
+	          return attrs;
+	        }
+	      };
+	
+	      // Looks on the model for validations for a specified
+	      // attribute. Returns an array of any validators defined,
+	      // or an empty array if none is defined.
+	      var getValidators = function getValidators(model, attr) {
+	        var attrValidationSet = model.validation ? _.result(model, 'validation')[attr] || {} : {};
+	
+	        // If the validator is a function or a string, wrap it in a function validator
+	        if (_.isFunction(attrValidationSet) || _.isString(attrValidationSet)) {
+	          attrValidationSet = {
+	            fn: attrValidationSet
+	          };
+	        }
+	
+	        // Stick the validator object into an array
+	        if (!_.isArray(attrValidationSet)) {
+	          attrValidationSet = [attrValidationSet];
+	        }
+	
+	        // Reduces the array of validators into a new array with objects
+	        // with a validation method to call, the value to validate against
+	        // and the specified error message, if any
+	        return _.reduce(attrValidationSet, function (memo, attrValidation) {
+	          _.each(_.without(_.keys(attrValidation), 'msg'), function (validator) {
+	            memo.push({
+	              fn: defaultValidators[validator],
+	              val: attrValidation[validator],
+	              msg: attrValidation.msg
+	            });
+	          });
+	          return memo;
+	        }, []);
+	      };
+	
+	      // Validates an attribute against all validators defined
+	      // for that attribute. If one or more errors are found,
+	      // the first error message is returned.
+	      // If the attribute is valid, an empty string is returned.
+	      var validateAttr = function validateAttr(model, attr, value, computed) {
+	        // Reduces the array of validators to an error message by
+	        // applying all the validators and returning the first error
+	        // message, if any.
+	        return _.reduce(getValidators(model, attr), function (memo, validator) {
+	          // Pass the format functions plus the default
+	          // validators as the context to the validator
+	          var ctx = _.extend({}, formatFunctions, defaultValidators),
+	              result = validator.fn.call(ctx, value, attr, validator.val, model, computed);
+	
+	          if (result === false || memo === false) {
+	            return false;
+	          }
+	          if (result && !memo) {
+	            return _.result(validator, 'msg') || result;
+	          }
+	          return memo;
+	        }, '');
+	      };
+	
+	      // Loops through the model's attributes and validates the specified attrs.
+	      // Returns and object containing names of invalid attributes
+	      // as well as error messages.
+	      var validateModel = function validateModel(model, attrs, validatedAttrs) {
+	        var error,
+	            invalidAttrs = {},
+	            isValid = true,
+	            computed = _.clone(attrs);
+	
+	        _.each(validatedAttrs, function (val, attr) {
+	          error = validateAttr(model, attr, val, computed);
+	          if (error) {
+	            invalidAttrs[attr] = error;
+	            isValid = false;
+	          }
+	        });
+	
+	        return {
+	          invalidAttrs: invalidAttrs,
+	          isValid: isValid
+	        };
+	      };
+	
+	      // Contains the methods that are mixed in on the model when binding
+	      var mixin = function mixin(view, options) {
+	        return {
+	
+	          // Check whether or not a value, or a hash of values
+	          // passes validation without updating the model
+	          preValidate: function preValidate(attr, value) {
+	            var self = this,
+	                result = {},
+	                error;
+	
+	            if (_.isObject(attr)) {
+	              _.each(attr, function (value, key) {
+	                error = self.preValidate(key, value);
+	                if (error) {
+	                  result[key] = error;
+	                }
+	              });
+	
+	              return _.isEmpty(result) ? undefined : result;
+	            } else {
+	              return validateAttr(this, attr, value, _.extend({}, this.attributes));
+	            }
+	          },
+	
+	          // Check to see if an attribute, an array of attributes or the
+	          // entire model is valid. Passing true will force a validation
+	          // of the model.
+	          isValid: function isValid(option) {
+	            var flattened, attrs, error, invalidAttrs;
+	
+	            option = option || getOptionsAttrs(options, view);
+	
+	            if (_.isString(option)) {
+	              attrs = [option];
+	            } else if (_.isArray(option)) {
+	              attrs = option;
+	            }
+	            if (attrs) {
+	              flattened = flatten(this.attributes);
+	              //Loop through all associated views
+	              _.each(this.associatedViews, function (view) {
+	                _.each(attrs, function (attr) {
+	                  error = validateAttr(this, attr, flattened[attr], _.extend({}, this.attributes));
+	                  if (error) {
+	                    options.invalid(view, attr, error, options.selector);
+	                    invalidAttrs = invalidAttrs || {};
+	                    invalidAttrs[attr] = error;
+	                  } else {
+	                    options.valid(view, attr, options.selector);
+	                  }
+	                }, this);
+	              }, this);
+	            }
+	
+	            if (option === true) {
+	              invalidAttrs = this.validate();
+	            }
+	            if (invalidAttrs) {
+	              this.trigger('invalid', this, invalidAttrs, { validationError: invalidAttrs });
+	            }
+	            return attrs ? !invalidAttrs : this.validation ? this._isValid : true;
+	          },
+	
+	          // This is called by Backbone when it needs to perform validation.
+	          // You can call it manually without any parameters to validate the
+	          // entire model.
+	          validate: function validate(attrs, setOptions) {
+	            var model = this,
+	                validateAll = !attrs,
+	                opt = _.extend({}, options, setOptions),
+	                validatedAttrs = getValidatedAttrs(model, getOptionsAttrs(options, view)),
+	                allAttrs = _.extend({}, validatedAttrs, model.attributes, attrs),
+	                flattened = flatten(allAttrs),
+	                changedAttrs = attrs ? flatten(attrs) : flattened,
+	                result = validateModel(model, allAttrs, _.pick(flattened, _.keys(validatedAttrs)));
+	
+	            model._isValid = result.isValid;
+	
+	            //After validation is performed, loop through all associated views
+	            _.each(model.associatedViews, function (view) {
+	
+	              // After validation is performed, loop through all validated and changed attributes
+	              // and call the valid and invalid callbacks so the view is updated.
+	              _.each(validatedAttrs, function (val, attr) {
+	                var invalid = result.invalidAttrs.hasOwnProperty(attr),
+	                    changed = changedAttrs.hasOwnProperty(attr);
+	
+	                if (!invalid) {
+	                  opt.valid(view, attr, opt.selector);
+	                }
+	                if (invalid && (changed || validateAll)) {
+	                  opt.invalid(view, attr, result.invalidAttrs[attr], opt.selector);
+	                }
+	              });
+	            });
+	
+	            // Trigger validated events.
+	            // Need to defer this so the model is actually updated before
+	            // the event is triggered.
+	            _.defer(function () {
+	              model.trigger('validated', model._isValid, model, result.invalidAttrs);
+	              model.trigger('validated:' + (model._isValid ? 'valid' : 'invalid'), model, result.invalidAttrs);
+	            });
+	
+	            // Return any error messages to Backbone, unless the forceUpdate flag is set.
+	            // Then we do not return anything and fools Backbone to believe the validation was
+	            // a success. That way Backbone will update the model regardless.
+	            if (!opt.forceUpdate && _.intersection(_.keys(result.invalidAttrs), _.keys(changedAttrs)).length > 0) {
+	              return result.invalidAttrs;
+	            }
+	          }
+	        };
+	      };
+	
+	      // Helper to mix in validation on a model. Stores the view in the associated views array.
+	      var bindModel = function bindModel(view, model, options) {
+	        if (model.associatedViews) {
+	          model.associatedViews.push(view);
+	        } else {
+	          model.associatedViews = [view];
+	        }
+	        _.extend(model, mixin(view, options));
+	      };
+	
+	      // Removes view from associated views of the model or the methods
+	      // added to a model if no view or single view provided
+	      var unbindModel = function unbindModel(model, view) {
+	        if (view && model.associatedViews && model.associatedViews.length > 1) {
+	          model.associatedViews = _.without(model.associatedViews, view);
+	        } else {
+	          delete model.validate;
+	          delete model.preValidate;
+	          delete model.isValid;
+	          delete model.associatedViews;
+	        }
+	      };
+	
+	      // Mix in validation on a model whenever a model is
+	      // added to a collection
+	      var collectionAdd = function collectionAdd(model) {
+	        bindModel(this.view, model, this.options);
+	      };
+	
+	      // Remove validation from a model whenever a model is
+	      // removed from a collection
+	      var collectionRemove = function collectionRemove(model) {
+	        unbindModel(model);
+	      };
+	
+	      // Returns the public methods on Backbone.Validation
+	      return {
+	
+	        // Current version of the library
+	        version: '0.11.3',
+	
+	        // Called to configure the default options
+	        configure: function configure(options) {
+	          _.extend(defaultOptions, options);
+	        },
+	
+	        // Hooks up validation on a view with a model
+	        // or collection
+	        bind: function bind(view, options) {
+	          options = _.extend({}, defaultOptions, defaultCallbacks, options);
+	
+	          var model = options.model || view.model,
+	              collection = options.collection || view.collection;
+	
+	          if (typeof model === 'undefined' && typeof collection === 'undefined') {
+	            throw 'Before you execute the binding your view must have a model or a collection.\n' + 'See http://thedersen.com/projects/backbone-validation/#using-form-model-validation for more information.';
+	          }
+	
+	          if (model) {
+	            bindModel(view, model, options);
+	          } else if (collection) {
+	            collection.each(function (model) {
+	              bindModel(view, model, options);
+	            });
+	            collection.bind('add', collectionAdd, { view: view, options: options });
+	            collection.bind('remove', collectionRemove);
+	          }
+	        },
+	
+	        // Removes validation from a view with a model
+	        // or collection
+	        unbind: function unbind(view, options) {
+	          options = _.extend({}, options);
+	          var model = options.model || view.model,
+	              collection = options.collection || view.collection;
+	
+	          if (model) {
+	            unbindModel(model, view);
+	          } else if (collection) {
+	            collection.each(function (model) {
+	              unbindModel(model, view);
+	            });
+	            collection.unbind('add', collectionAdd);
+	            collection.unbind('remove', collectionRemove);
+	          }
+	        },
+	
+	        // Used to extend the Backbone.Model.prototype
+	        // with validation
+	        mixin: mixin(null, defaultOptions)
+	      };
+	    }();
+	
+	    // Callbacks
+	    // ---------
+	
+	    var defaultCallbacks = Validation.callbacks = {
+	
+	      // Gets called when a previously invalid field in the
+	      // view becomes valid. Removes any error message.
+	      // Should be overridden with custom functionality.
+	      valid: function valid(view, attr, selector) {
+	        view.$('[' + selector + '~="' + attr + '"]').removeClass('invalid').removeAttr('data-error');
+	      },
+	
+	      // Gets called when a field in the view becomes invalid.
+	      // Adds a error message.
+	      // Should be overridden with custom functionality.
+	      invalid: function invalid(view, attr, error, selector) {
+	        view.$('[' + selector + '~="' + attr + '"]').addClass('invalid').attr('data-error', error);
+	      }
+	    };
+	
+	    // Patterns
+	    // --------
+	
+	    var defaultPatterns = Validation.patterns = {
+	      // Matches any digit(s) (i.e. 0-9)
+	      digits: /^\d+$/,
+	
+	      // Matches any number (e.g. 100.000)
+	      number: /^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/,
+	
+	      // Matches a valid email address (e.g. mail@example.com)
+	      email: /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i,
+	
+	      // Mathes any valid url (e.g. http://www.xample.com)
+	      url: /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i
+	    };
+	
+	    // Error messages
+	    // --------------
+	
+	    // Error message for the build in validators.
+	    // {x} gets swapped out with arguments form the validator.
+	    var defaultMessages = Validation.messages = {
+	      required: '{0} is required',
+	      acceptance: '{0} must be accepted',
+	      min: '{0} must be greater than or equal to {1}',
+	      max: '{0} must be less than or equal to {1}',
+	      range: '{0} must be between {1} and {2}',
+	      length: '{0} must be {1} characters',
+	      minLength: '{0} must be at least {1} characters',
+	      maxLength: '{0} must be at most {1} characters',
+	      rangeLength: '{0} must be between {1} and {2} characters',
+	      oneOf: '{0} must be one of: {1}',
+	      equalTo: '{0} must be the same as {1}',
+	      digits: '{0} must only contain digits',
+	      number: '{0} must be a number',
+	      email: '{0} must be a valid email',
+	      url: '{0} must be a valid url',
+	      inlinePattern: '{0} is invalid'
+	    };
+	
+	    // Label formatters
+	    // ----------------
+	
+	    // Label formatters are used to convert the attribute name
+	    // to a more human friendly label when using the built in
+	    // error messages.
+	    // Configure which one to use with a call to
+	    //
+	    //     Backbone.Validation.configure({
+	    //       labelFormatter: 'label'
+	    //     });
+	    var defaultLabelFormatters = Validation.labelFormatters = {
+	
+	      // Returns the attribute name with applying any formatting
+	      none: function none(attrName) {
+	        return attrName;
+	      },
+	
+	      // Converts attributeName or attribute_name to Attribute name
+	      sentenceCase: function sentenceCase(attrName) {
+	        return attrName.replace(/(?:^\w|[A-Z]|\b\w)/g, function (match, index) {
+	          return index === 0 ? match.toUpperCase() : ' ' + match.toLowerCase();
+	        }).replace(/_/g, ' ');
+	      },
+	
+	      // Looks for a label configured on the model and returns it
+	      //
+	      //      var Model = Backbone.Model.extend({
+	      //        validation: {
+	      //          someAttribute: {
+	      //            required: true
+	      //          }
+	      //        },
+	      //
+	      //        labels: {
+	      //          someAttribute: 'Custom label'
+	      //        }
+	      //      });
+	      label: function label(attrName, model) {
+	        return model.labels && model.labels[attrName] || defaultLabelFormatters.sentenceCase(attrName, model);
+	      }
+	    };
+	
+	    // AttributeLoaders
+	
+	    var defaultAttributeLoaders = Validation.attributeLoaders = {
+	      inputNames: function inputNames(view) {
+	        var attrs = [];
+	        if (view) {
+	          view.$('form [name]').each(function () {
+	            if (/^(?:input|select|textarea)$/i.test(this.nodeName) && this.name && this.type !== 'submit' && attrs.indexOf(this.name) === -1) {
+	              attrs.push(this.name);
+	            }
+	          });
+	        }
+	        return attrs;
+	      }
+	    };
+	
+	    // Built in validators
+	    // -------------------
+	
+	    var defaultValidators = Validation.validators = function () {
+	      // Use native trim when defined
+	      var trim = String.prototype.trim ? function (text) {
+	        return text === null ? '' : String.prototype.trim.call(text);
+	      } : function (text) {
+	        var trimLeft = /^\s+/,
+	            trimRight = /\s+$/;
+	
+	        return text === null ? '' : text.toString().replace(trimLeft, '').replace(trimRight, '');
+	      };
+	
+	      // Determines whether or not a value is a number
+	      var isNumber = function isNumber(value) {
+	        return _.isNumber(value) || _.isString(value) && value.match(defaultPatterns.number);
+	      };
+	
+	      // Determines whether or not a value is empty
+	      var hasValue = function hasValue(value) {
+	        return !(_.isNull(value) || _.isUndefined(value) || _.isString(value) && trim(value) === '' || _.isArray(value) && _.isEmpty(value));
+	      };
+	
+	      return {
+	        // Function validator
+	        // Lets you implement a custom function used for validation
+	        fn: function fn(value, attr, _fn, model, computed) {
+	          if (_.isString(_fn)) {
+	            _fn = model[_fn];
+	          }
+	          return _fn.call(model, value, attr, computed);
+	        },
+	
+	        // Required validator
+	        // Validates if the attribute is required or not
+	        // This can be specified as either a boolean value or a function that returns a boolean value
+	        required: function required(value, attr, _required, model, computed) {
+	          var isRequired = _.isFunction(_required) ? _required.call(model, value, attr, computed) : _required;
+	          if (!isRequired && !hasValue(value)) {
+	            return false; // overrides all other validators
+	          }
+	          if (isRequired && !hasValue(value)) {
+	            return this.format(defaultMessages.required, this.formatLabel(attr, model));
+	          }
+	        },
+	
+	        // Acceptance validator
+	        // Validates that something has to be accepted, e.g. terms of use
+	        // `true` or 'true' are valid
+	        acceptance: function acceptance(value, attr, accept, model) {
+	          if (value !== 'true' && (!_.isBoolean(value) || value === false)) {
+	            return this.format(defaultMessages.acceptance, this.formatLabel(attr, model));
+	          }
+	        },
+	
+	        // Min validator
+	        // Validates that the value has to be a number and equal to or greater than
+	        // the min value specified
+	        min: function min(value, attr, minValue, model) {
+	          if (!isNumber(value) || value < minValue) {
+	            return this.format(defaultMessages.min, this.formatLabel(attr, model), minValue);
+	          }
+	        },
+	
+	        // Max validator
+	        // Validates that the value has to be a number and equal to or less than
+	        // the max value specified
+	        max: function max(value, attr, maxValue, model) {
+	          if (!isNumber(value) || value > maxValue) {
+	            return this.format(defaultMessages.max, this.formatLabel(attr, model), maxValue);
+	          }
+	        },
+	
+	        // Range validator
+	        // Validates that the value has to be a number and equal to or between
+	        // the two numbers specified
+	        range: function range(value, attr, _range, model) {
+	          if (!isNumber(value) || value < _range[0] || value > _range[1]) {
+	            return this.format(defaultMessages.range, this.formatLabel(attr, model), _range[0], _range[1]);
+	          }
+	        },
+	
+	        // Length validator
+	        // Validates that the value has to be a string with length equal to
+	        // the length value specified
+	        length: function length(value, attr, _length, model) {
+	          if (!_.isString(value) || value.length !== _length) {
+	            return this.format(defaultMessages.length, this.formatLabel(attr, model), _length);
+	          }
+	        },
+	
+	        // Min length validator
+	        // Validates that the value has to be a string with length equal to or greater than
+	        // the min length value specified
+	        minLength: function minLength(value, attr, _minLength, model) {
+	          if (!_.isString(value) || value.length < _minLength) {
+	            return this.format(defaultMessages.minLength, this.formatLabel(attr, model), _minLength);
+	          }
+	        },
+	
+	        // Max length validator
+	        // Validates that the value has to be a string with length equal to or less than
+	        // the max length value specified
+	        maxLength: function maxLength(value, attr, _maxLength, model) {
+	          if (!_.isString(value) || value.length > _maxLength) {
+	            return this.format(defaultMessages.maxLength, this.formatLabel(attr, model), _maxLength);
+	          }
+	        },
+	
+	        // Range length validator
+	        // Validates that the value has to be a string and equal to or between
+	        // the two numbers specified
+	        rangeLength: function rangeLength(value, attr, range, model) {
+	          if (!_.isString(value) || value.length < range[0] || value.length > range[1]) {
+	            return this.format(defaultMessages.rangeLength, this.formatLabel(attr, model), range[0], range[1]);
+	          }
+	        },
+	
+	        // One of validator
+	        // Validates that the value has to be equal to one of the elements in
+	        // the specified array. Case sensitive matching
+	        oneOf: function oneOf(value, attr, values, model) {
+	          if (!_.include(values, value)) {
+	            return this.format(defaultMessages.oneOf, this.formatLabel(attr, model), values.join(', '));
+	          }
+	        },
+	
+	        // Equal to validator
+	        // Validates that the value has to be equal to the value of the attribute
+	        // with the name specified
+	        equalTo: function equalTo(value, attr, _equalTo, model, computed) {
+	          if (value !== computed[_equalTo]) {
+	            return this.format(defaultMessages.equalTo, this.formatLabel(attr, model), this.formatLabel(_equalTo, model));
+	          }
+	        },
+	
+	        // Pattern validator
+	        // Validates that the value has to match the pattern specified.
+	        // Can be a regular expression or the name of one of the built in patterns
+	        pattern: function pattern(value, attr, _pattern, model) {
+	          if (!hasValue(value) || !value.toString().match(defaultPatterns[_pattern] || _pattern)) {
+	            return this.format(defaultMessages[_pattern] || defaultMessages.inlinePattern, this.formatLabel(attr, model), _pattern);
+	          }
+	        }
+	      };
+	    }();
+	
+	    // Set the correct context for all validators
+	    // when used from within a method validator
+	    _.each(defaultValidators, function (validator, key) {
+	      defaultValidators[key] = _.bind(defaultValidators[key], _.extend({}, formatFunctions, defaultValidators));
+	    });
+	
+	    return Validation;
+	  }(_);
+	  return Backbone.Validation;
+	});
+=======
 	var _backbone = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
@@ -30338,10 +35104,356 @@
 	return __p;
 	};
 
+>>>>>>> master
 
 /***/ },
 /* 89 */
 /*!*******************************************!*\
+<<<<<<< HEAD
+  !*** ./wwwroot/data/backbone-deffered.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _jquery = __webpack_require__(/*! jquery */ 3);
+	
+	var _jquery2 = _interopRequireDefault(_jquery);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//backbone-deferred-jquery переделанная version: '0.4.0'
+	_backbone2.default.Deferred = {};
+	(function () {
+	    var __hasProp = {}.hasOwnProperty,
+	        __extends = function __extends(child, parent) {
+	        for (var key in parent) {
+	            if (__hasProp.call(parent, key)) child[key] = parent[key];
+	        }function ctor() {
+	            this.constructor = child;
+	        }ctor.prototype = parent.prototype;child.prototype = new ctor();child.__super__ = parent.prototype;return child;
+	    };
+	
+	    _backbone2.default.Deferred.Reject = function () {
+	        function Reject(xhr, options) {
+	            this.xhr = xhr;
+	            this.options = options;
+	        }
+	
+	        Reject.prototype.getXhr = function () {
+	            return this.xhr;
+	        };
+	
+	        Reject.prototype.getOptions = function () {
+	            return this.options;
+	        };
+	
+	        return Reject;
+	    }();
+	
+	    _backbone2.default.Deferred.RejectModel = function (_super) {
+	        __extends(RejectModel, _super);
+	
+	        function RejectModel(model, response, options) {
+	            this.model = model;
+	            this.response = response;
+	            this.options = options;
+	            RejectModel.__super__.constructor.call(this, this.response, this.options);
+	        }
+	
+	        RejectModel.prototype.getModel = function () {
+	            return this.model;
+	        };
+	
+	        return RejectModel;
+	    }(_backbone2.default.Deferred.Reject);
+	
+	    _backbone2.default.Deferred.RejectCollection = function (_super) {
+	        __extends(RejectCollection, _super);
+	
+	        function RejectCollection(collection, response, options) {
+	            this.collection = collection;
+	            this.response = response;
+	            this.options = options;
+	            RejectCollection.__super__.constructor.call(this, this.response, this.options);
+	        }
+	
+	        RejectCollection.prototype.getCollection = function () {
+	            return this.collection;
+	        };
+	
+	        return RejectCollection;
+	    }(_backbone2.default.Deferred.Reject);
+	}).call(undefined);
+	
+	(function () {
+	    var __hasProp = {}.hasOwnProperty,
+	        __extends = function __extends(child, parent) {
+	        for (var key in parent) {
+	            if (__hasProp.call(parent, key)) child[key] = parent[key];
+	        }function ctor() {
+	            this.constructor = child;
+	        }ctor.prototype = parent.prototype;child.prototype = new ctor();child.__super__ = parent.prototype;return child;
+	    };
+	
+	    _backbone2.default.Deferred.Resolve = function () {
+	        function Resolve(response, options) {
+	            this.response = response;
+	            this.options = options;
+	        }
+	
+	        Resolve.prototype.getResponse = function () {
+	            return this.response;
+	        };
+	
+	        Resolve.prototype.getOptions = function () {
+	            return this.options;
+	        };
+	
+	        return Resolve;
+	    }();
+	
+	    _backbone2.default.Deferred.ResolveModel = function (_super) {
+	        __extends(ResolveModel, _super);
+	
+	        function ResolveModel(model, response, options) {
+	            this.model = model;
+	            this.response = response;
+	            this.options = options;
+	            ResolveModel.__super__.constructor.call(this, this.response, this.options);
+	        }
+	
+	        ResolveModel.prototype.getModel = function () {
+	            return this.model;
+	        };
+	
+	        return ResolveModel;
+	    }(_backbone2.default.Deferred.Resolve);
+	
+	    _backbone2.default.Deferred.ResolveCollection = function (_super) {
+	        __extends(ResolveCollection, _super);
+	
+	        function ResolveCollection(collection, response, options) {
+	            this.collection = collection;
+	            this.response = response;
+	            this.options = options;
+	            ResolveCollection.__super__.constructor.call(this, this.response, this.options);
+	        }
+	
+	        ResolveCollection.prototype.getCollection = function () {
+	            return this.collection;
+	        };
+	
+	        return ResolveCollection;
+	    }(_backbone2.default.Deferred.Resolve);
+	}).call(undefined);
+	
+	(function () {
+	    _backbone2.default.Deferred.Promise = function () {
+	        function Promise() {
+	            this.deferred = _jquery2.default.Deferred();
+	        }
+	
+	        Promise.prototype.get = function () {
+	            return this.deferred;
+	        };
+	
+	        Promise.prototype.resolve = function (result) {
+	            this.deferred.resolve(result);
+	            return this;
+	        };
+	
+	        Promise.prototype.reject = function (result) {
+	            this.deferred.reject(result);
+	            return this;
+	        };
+	
+	        Promise.prototype.promise = function () {
+	            return this.deferred.promise();
+	        };
+	
+	        return Promise;
+	    }();
+	})();
+	
+	(function () {
+	    var _ref,
+	        __hasProp = {}.hasOwnProperty,
+	        __extends = function __extends(child, parent) {
+	        for (var key in parent) {
+	            if (__hasProp.call(parent, key)) child[key] = parent[key];
+	        }function ctor() {
+	            this.constructor = child;
+	        }ctor.prototype = parent.prototype;child.prototype = new ctor();child.__super__ = parent.prototype;return child;
+	    };
+	
+	    _backbone2.default.Deferred.Model = function (_super) {
+	        __extends(Model, _super);
+	
+	        function Model() {
+	            _ref = Model.__super__.constructor.apply(this, arguments);
+	            return _ref;
+	        }
+	
+	        Model.prototype.fetch = function (options) {
+	            var defer, params, _error, _success;
+	            if (options == null) {
+	                options = {};
+	            }
+	            defer = new _backbone2.default.Deferred.Promise();
+	            _success = _.isFunction(options.success) ? options.success : null;
+	            _error = _.isFunction(options.error) ? options.error : null;
+	            params = {
+	                success: function success(model, response, options) {
+	                    if (_success != null) {
+	                        _success.call(this, model, response, options);
+	                    }
+	                    return defer.resolve(new _backbone2.default.Deferred.ResolveModel(model, response, options));
+	                },
+	                error: function error(model, xhr, options) {
+	                    if (_error != null) {
+	                        _error.call(this, model, xhr, options);
+	                    }
+	                    return defer.reject(new _backbone2.default.Deferred.RejectModel(model, xhr, options));
+	                }
+	            };
+	            _.extend(options, params);
+	            Model.__super__.fetch.call(this, options);
+	            return defer.promise();
+	        };
+	
+	        Model.prototype.save = function (key, value, options) {
+	            var data, defer, params, _error, _success;
+	            if (options == null) {
+	                options = {};
+	            }
+	            defer = new _backbone2.default.Deferred.Promise();
+	            data = {};
+	            if (key != null && _.isObject(key)) {
+	                data = key;
+	                options = _.extend({}, value);
+	            } else if (_.isString(key)) {
+	                data[key] = value;
+	            } else {
+	                key = null;
+	                value = null;
+	            }
+	            _success = _.isFunction(options.success) ? options.success : null;
+	            _error = _.isFunction(options.error) ? options.error : null;
+	            params = {
+	                success: function success(model, response, options) {
+	                    if (_success != null) {
+	                        _success.call(this, model, response, options);
+	                    }
+	                    return defer.resolve(new _backbone2.default.Deferred.ResolveModel(model, response, options));
+	                },
+	                error: function error(model, xhr, options) {
+	                    if (_error != null) {
+	                        _error.call(this, model, xhr, options);
+	                    }
+	                    return defer.reject(new _backbone2.default.Deferred.RejectModel(model, xhr, options));
+	                }
+	            };
+	            _.extend(options, params);
+	            Model.__super__.save.call(this, data, options);
+	            return defer.promise();
+	        };
+	
+	        Model.prototype.destroy = function (options) {
+	            var defer, params, _error, _success;
+	            if (options == null) {
+	                options = {};
+	            }
+	            defer = new _backbone2.default.Deferred.Promise();
+	            _success = _.isFunction(options.success) ? options.success : null;
+	            _error = _.isFunction(options.error) ? options.error : null;
+	            params = {
+	                success: function success(model, response, options) {
+	                    if (_success != null) {
+	                        _success.call(this, model, response, options);
+	                    }
+	                    return defer.resolve(new _backbone2.default.Deferred.ResolveModel(model, response, options));
+	                },
+	                error: function error(model, xhr, options) {
+	                    if (_error != null) {
+	                        _error.call(this, model, xhr, options);
+	                    }
+	                    return defer.reject(new _backbone2.default.Deferred.RejectModel(model, xhr, options));
+	                }
+	            };
+	            _.extend(options, params);
+	            Model.__super__.destroy.call(this, options);
+	            return defer.promise();
+	        };
+	
+	        return Model;
+	    }(_backbone2.default.Model);
+	})();
+	
+	(function () {
+	    var _ref,
+	        __hasProp = {}.hasOwnProperty,
+	        __extends = function __extends(child, parent) {
+	        for (var key in parent) {
+	            if (__hasProp.call(parent, key)) child[key] = parent[key];
+	        }function ctor() {
+	            this.constructor = child;
+	        }ctor.prototype = parent.prototype;child.prototype = new ctor();child.__super__ = parent.prototype;return child;
+	    };
+	
+	    _backbone2.default.Deferred.Collection = function (_super) {
+	        __extends(Collection, _super);
+	
+	        function Collection() {
+	            _ref = Collection.__super__.constructor.apply(this, arguments);
+	            return _ref;
+	        }
+	
+	        Collection.prototype.fetch = function (options) {
+	            var defer, params, _error, _success;
+	            if (options == null) {
+	                options = {};
+	            }
+	            defer = new _backbone2.default.Deferred.Promise();
+	            _success = _.isFunction(options.success) ? options.success : null;
+	            _error = _.isFunction(options.error) ? options.error : null;
+	            params = {
+	                success: function success(model, response, options) {
+	                    if (_success != null) {
+	                        _success.call(this, model, response, options);
+	                    }
+	                    return defer.resolve(new _backbone2.default.Deferred.ResolveCollection(model, response, options));
+	                },
+	                error: function error(model, xhr, options) {
+	                    if (_error != null) {
+	                        _error.call(this, model, xhr, options);
+	                    }
+	                    return defer.reject(new _backbone2.default.Deferred.RejectCollection(model, xhr, options));
+	                }
+	            };
+	            _.extend(options, params);
+	            Collection.__super__.fetch.call(this, options);
+	            return defer.promise();
+	        };
+	
+	        return Collection;
+	    }(_backbone2.default.Collection);
+	})();
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 90 */
+/*!********************************************************!*\
+  !*** ./wwwroot/helpers/ConfigureBackboneValidation.js ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+=======
   !*** ./wwwroot/homeApp/mainMenuView.less ***!
   \*******************************************/
 /***/ function(module, exports) {
@@ -30360,11 +35472,86 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+>>>>>>> master
 	
 	var _backbone = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	__webpack_require__(/*! backbone-validation */ 88);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	_backbone2.default.Validation.configure({
+	    labelFormatter: 'label'
+	});
+	
+	_.extend(_backbone2.default.Validation.callbacks, {
+	    valid: function valid(view, attr, selector) {
+	        if (!_.isEmpty(attr)) {
+	            var elt = view.$('[' + selector + '~="' + attr + '"]').parent();
+	            elt.removeClass('has-error').find('.error').remove();
+	        } else {
+	            view.$('.summary-errors').empty();
+	        }
+	    },
+	
+	    invalid: function invalid(view, attr, error, selector) {
+	        _backbone2.default.Validation.callbacks.valid(view, attr, selector);
+	        if (!_.isEmpty(attr)) {
+	            var elt = view.$('[' + selector + '~="' + attr + '"]').parent();
+	            if (!elt.hasClass('has-error')) {
+	                elt.addClass('has-error');
+	                elt.append('<small class="error">' + error + '</small>');
+	            }
+	        } else {
+	            var elt = view.$('.summary-errors');
+	            elt.empty();
+	            for (var i = 0; i < error.length; i += 1) {
+	                if (error[i]) {
+	                    elt.append('<small class="error">' + error[i] + '</small>');
+	                    elt.append('<br/>');
+	                }
+	            }
+	        }
+	    }
+	});
+	// дефолтные сообщения об ошибках
+	_.extend(_backbone2.default.Validation.messages, {
+	    required: 'необходимо указать {0}',
+	    oneOfProperty: 'Вы должны указать либо {0}, либо {1}',
+	    acceptance: '{0} должно быть принято',
+	    min: 'значение {0} должно быть больше или равно {1}',
+	    max: 'значение {0} должно быть меньше или равно {1}',
+	    range: '{0} must be between {1} and {2}',
+	    length: '{0} must be {1} characters',
+	    minLength: '{0} must be at least {1} characters',
+	    maxLength: '{0} must be at most {1} characters',
+	    rangeLength: '{0} must be between {1} and {2} characters',
+	    oneOf: '{0} must be one of: {1}',
+	    equalTo: '{0} must be the same as {1}',
+	    digits: '{0} должно состоять из цифр',
+	    number: 'Укажите {0} обязательно',
+	    email: 'Введите корректно значение {0}',
+	    url: 'поле {0} должно быть корректным url-ом',
+	    inlinePattern: 'введите корректное значение {0}'
+	});
+	
+	_.extend(_backbone2.default.Validation.patterns, {
+	    phone: /^(\+\d{1,3})*\s*(\(\d{3}\)\s*)*\d{3}(-{0,1}|\s{0,1})\d{2}(-{0,1}|\s{0,1})\d{2}$/
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 91 */
+/*!***********************************!*\
+  !*** ./wwwroot/homeApp/router.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, $) {'use strict';
+=======
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
@@ -30447,11 +35634,100 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	
+<<<<<<< HEAD
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _controller = __webpack_require__(/*! ./controller */ 92);
+	
+	var _controller2 = _interopRequireDefault(_controller);
+	
+	var _app = __webpack_require__(/*! ./app */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.AppRouter.extend({
+	    initialize: function initialize(setts) {
+	        this.app = setts.app;
+	        this.controller = new _controller2.default({ app: this });
+	        this.listenTo(this.app.user, 'logout', this.redirectIfLogout);
+	    },
+	
+	    currentRoute: null,
+	    appRoutes: {
+	        '': 'index',
+	        'mobileIndex': 'mobileIndex',
+	        'posts/new': 'createPost',
+	        //'Posts/new':'createPost',
+	        //'Posts/New':'createPost',
+	        'posts/my': 'postsMy',
+	        //'chats/my':'myMessagesPage',
+	        'chats/my': 'chatsMy',
+	        'chats/:id?remoteUserId=:remoteUserId': 'chatId',
+	        'posts/:id': 'postDetails',
+	        'user/:id': 'userDetails',
+	        'Account/Login': 'login',
+	        'Account/Login/:url': 'login',
+	        'Account/FogotPassword': 'fogotPassword',
+	        'account/register?returnUrl=:url': 'registerUser',
+	        'account/register': 'registerUser',
+	        'Home/HowItWorks': 'howItWorks',
+	        'about-us': 'about',
+	        'mass-media': 'massMedia',
+	        'profile': 'myProfile',
+	        'messages/to/:remoteUserId?postId=:postId': 'messagesTo',
+	        'messages/to/:remoteUserId': 'messagesTo',
+	        'legal/confidential': 'legalConfidential', // same as Privacy Policy
+	        'legal/user-agreement': 'legalUserAgreement', // Terms of Use?
+	        'legal/post-publishing-rules': 'legalPostPublishingRules',
+	
+	        //blog:
+	        'blog': 'blogHome',
+	        'blog/post/:id': 'blogPostId'
+	    },
+	
+	    policy: {
+	        authorized: ['createPost', 'postsMy', 'chatId', 'myProfile', 'messagesTo']
+	    },
+	
+	    onRoute: function onRoute(name, path, args) {
+	        this.currentRoute = name;
+	
+	        if (_.contains(this.policy.authorized, name)) {
+	            if (!_app2.default.user.id) {
+	                this.navigate('Account/Login/' + encodeURIComponent(path), { trigger: true });
+	            }
+	        }
+	
+	        $('body').removeClass(function (index, className) {
+	            return (className.match(/(^|\s)page--\S+/g) || []).join(' ');
+	        });
+	
+	        $('body').addClass('page--' + name);
+	    },
+	    redirectIfLogout: function redirectIfLogout() {
+	        if (_.contains(this.policy.authorized, this.currentRoute)) {
+	            this.navigate('', { trigger: true });
+	        }
+	    }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 92 */
+/*!***************************************!*\
+  !*** ./wwwroot/homeApp/controller.js ***!
+  \***************************************/
+=======
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
@@ -30542,6 +35818,7 @@
 /*!************************************!*\
   !*** ./wwwroot/data/MongoModel.js ***!
   \************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30550,6 +35827,538 @@
 	    value: true
 	});
 	
+<<<<<<< HEAD
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _indexView = __webpack_require__(/*! ./index/indexView.js */ 93);
+	
+	var _indexView2 = _interopRequireDefault(_indexView);
+	
+	var _MobileIndexView = __webpack_require__(/*! ./index/MobileIndexView.js */ 101);
+	
+	var _MobileIndexView2 = _interopRequireDefault(_MobileIndexView);
+	
+	var _DetailsView = __webpack_require__(/*! ./posts/DetailsView.js */ 103);
+	
+	var _DetailsView2 = _interopRequireDefault(_DetailsView);
+	
+	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 85);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 84);
+	
+	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
+	
+	var _User = __webpack_require__(/*! ../data/Domain/User.js */ 112);
+	
+	var _User2 = _interopRequireDefault(_User);
+	
+	var _PostModel = __webpack_require__(/*! ../data/Post/PostModel.js */ 113);
+	
+	var _PostModel2 = _interopRequireDefault(_PostModel);
+	
+	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 114);
+	
+	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
+	
+	var _CreatePostView = __webpack_require__(/*! ./posts/create/CreatePostView.js */ 116);
+	
+	var _CreatePostView2 = _interopRequireDefault(_CreatePostView);
+	
+	var _PostsMyView = __webpack_require__(/*! ./posts/postsMy/PostsMyView.js */ 133);
+	
+	var _PostsMyView2 = _interopRequireDefault(_PostsMyView);
+	
+	var _chatsMyView = __webpack_require__(/*! ./chats/chatsMy/chatsMyView.js */ 138);
+	
+	var _chatsMyView2 = _interopRequireDefault(_chatsMyView);
+	
+	var _ChatIdView = __webpack_require__(/*! ./chats/ChatIdView.js */ 145);
+	
+	var _ChatIdView2 = _interopRequireDefault(_ChatIdView);
+	
+	var _DetailsView3 = __webpack_require__(/*! ./user/DetailsView.js */ 147);
+	
+	var _DetailsView4 = _interopRequireDefault(_DetailsView3);
+	
+	var _MessagesToUserView = __webpack_require__(/*! ./chats/native/MessagesToUserView.js */ 154);
+	
+	var _MessagesToUserView2 = _interopRequireDefault(_MessagesToUserView);
+	
+	var _LoginView = __webpack_require__(/*! ./account/LoginView.js */ 163);
+	
+	var _LoginView2 = _interopRequireDefault(_LoginView);
+	
+	var _RegisterUserView = __webpack_require__(/*! ./account/RegisterUserView */ 167);
+	
+	var _RegisterUserView2 = _interopRequireDefault(_RegisterUserView);
+	
+	var _AboutView = __webpack_require__(/*! ./about/AboutView.js */ 170);
+	
+	var _AboutView2 = _interopRequireDefault(_AboutView);
+	
+	var _MassMediaView = __webpack_require__(/*! ./massMedia/MassMediaView.js */ 173);
+	
+	var _MassMediaView2 = _interopRequireDefault(_MassMediaView);
+	
+	var _HowItWorksView = __webpack_require__(/*! ./howItWorks/HowItWorksView.js */ 176);
+	
+	var _HowItWorksView2 = _interopRequireDefault(_HowItWorksView);
+	
+	var _FogotPasswordView = __webpack_require__(/*! ./account/FogotPasswordView.js */ 178);
+	
+	var _FogotPasswordView2 = _interopRequireDefault(_FogotPasswordView);
+	
+	var _legalUserAgreementView = __webpack_require__(/*! ./legal/legalUserAgreementView */ 180);
+	
+	var _legalUserAgreementView2 = _interopRequireDefault(_legalUserAgreementView);
+	
+	var _legalConfidentialView = __webpack_require__(/*! ./legal/legalConfidentialView */ 182);
+	
+	var _legalConfidentialView2 = _interopRequireDefault(_legalConfidentialView);
+	
+	var _legalPostPublishingView = __webpack_require__(/*! ./legal/legalPostPublishingView */ 184);
+	
+	var _legalPostPublishingView2 = _interopRequireDefault(_legalPostPublishingView);
+	
+	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 186);
+	
+	var _blogHomeView2 = _interopRequireDefault(_blogHomeView);
+	
+	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 192);
+	
+	var _blogPostIdView2 = _interopRequireDefault(_blogPostIdView);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.Object.extend({
+	    index: function index() {
+	        debugger;
+	
+	        _app2.default.layout.showChildView('content', new _indexView2.default());
+	    },
+	    mobileIndex: function mobileIndex() {
+	        _app2.default.layout.showChildView('content', new _MobileIndexView2.default({ IndexView: _indexView2.default }));
+	    },
+	    postsMy: function postsMy() {
+	        _app2.default.myPosts.loadByMethod('getMyPosts', { skip: 0, take: 100, type: 'all' }, function () {
+	            _app2.default.layout.showChildView('content', new _PostsMyView2.default({ collection: _app2.default.myPosts }));
+	        });
+	    },
+	    postDetails: function postDetails(id) {
+	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
+	        var post = new _AsteroidModel2.default({ _id: id }, { asteroid: _app2.default.asteroid });
+	        post.loadByMethod('getPost', null, function () {
+	            //window.detailsPost = post; // debug
+	            _app2.default.layout.showChildView('content', new _DetailsView2.default({ model: post }));
+	        });
+	    },
+	    createPost: function createPost() {
+	        var model = new _PostModel2.default({ details: {}, stats: { seenToday: 0, seenTotal: 0, seenAll: 0 } }, { asteroid: _app2.default.asteroid });
+	        _app2.default.layout.showChildView('content', new _CreatePostView2.default({ model: model }));
+	    },
+	    editPost: function editPost(id) {
+	        var post = new _PostModel2.default({ _id: id });
+	        post.isOwnerAsync(_app2.default.user.id).done(function (resp) {
+	            if (resp) {
+	                alert(resp);
+	            }
+	        });
+	    },
+	    login: function login(url) {
+	        _app2.default.layout.showChildView('content', new _LoginView2.default({ returnUrl: url || null }));
+	    },
+	    registerUser: function registerUser(url) {
+	        _app2.default.layout.showChildView('content', new _RegisterUserView2.default({ returnUrl: url || null }));
+	    },
+	    fogotPassword: function fogotPassword() {
+	        _app2.default.layout.showChildView('content', new _FogotPasswordView2.default());
+	    },
+	    about: function about() {
+	        _app2.default.layout.showChildView('content', new _AboutView2.default());
+	    },
+	    massMedia: function massMedia() {
+	        _app2.default.layout.showChildView('content', new _MassMediaView2.default());
+	    },
+	    howItWorks: function howItWorks() {
+	        _app2.default.layout.showChildView('content', new _HowItWorksView2.default());
+	    },
+	    chatsMy: function chatsMy() {
+	        _app2.default.myChats.loadByMethod('getChats', { skip: 0, take: 100 }, function (res) {
+	            _app2.default.layout.showChildView('content', new _chatsMyView2.default({ collection: _app2.default.myChats }));
+	        });
+	    },
+	    chatId: function chatId(_chatId, remoteUserId) {
+	        //app.layout.showChildView('content', new PreloaderView());
+	        //var chatModel = new Backbone.Model({ _id:id });
+	        //app.layout.showChildView('content', new ChatIdView( {model: chatModel } ));
+	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
+	        var messages = new _AsteroidCollection2.default(null, { asteroid: _app2.default.asteroid, comparator: 'timestamp' });
+	        var remoteUser = new _AsteroidModel2.default({ _id: remoteUserId }, { asteroid: _app2.default.asteroid });
+	        messages.loadByMethod('getMessages', { chatId: _chatId, skip: 0, take: 20 }, function () {
+	            remoteUser.loadByMethod('getUser', function () {
+	                var chat = new _AsteroidModel2.default({
+	                    _id: _chatId,
+	                    remoteUser: remoteUser.toJSON(),
+	                    user: _app2.default.user.toJSON() /*,postId:postId*/
+	                }, { asteroid: _app2.default.asteroid });
+	                _app2.default.layout.showChildView('content', new _MessagesToUserView2.default({ model: chat, collection: messages }));
+	            });
+	        });
+	    },
+	    messagesTo: function messagesTo(remoteUserId, postId) {
+	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
+	        if (_app2.default.asteroid.loggedIn) {
+	            var remoteUser = new _AsteroidModel2.default({ _id: remoteUserId }, { asteroid: _app2.default.asteroid });
+	            _app2.default.asteroid.call('bz.chats.createChatIfFirstMessage', _app2.default.user.id, remoteUserId).then(function (chatId) {
+	                _app2.default.router.navigate('/chats/' + chatId + '?remoteUserId=' + remoteUserId, { trigger: true, replace: true });
+	            });
+	        } else {
+	            _app2.default.router.navigate('', { trigger: true });
+	        }
+	    },
+	    myProfile: function myProfile() {
+	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
+	
+	        var userModel = new _User2.default({ _id: _app2.default.user.get('_id') });
+	        // window.currentUser = userModel;
+	        userModel.fetch().done(function () {
+	            return _app2.default.layout.showChildView('content', new _DetailsView4.default({ model: userModel }));
+	        });
+	    },
+	    userDetails: function userDetails(id) {
+	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
+	        var userModel = new _User2.default({ _id: id });
+	        window.currentUser = userModel;
+	        userModel.fetch().done(function () {
+	            return _app2.default.layout.showChildView('content', new _DetailsView4.default({ model: userModel }));
+	        });
+	    },
+	
+	
+	    // LEGAL:
+	    legalConfidential: function legalConfidential() {
+	        _app2.default.layout.showChildView('content', new _legalConfidentialView2.default());
+	    },
+	    legalUserAgreement: function legalUserAgreement() {
+	        _app2.default.layout.showChildView('content', new _legalUserAgreementView2.default());
+	    },
+	    legalPostPublishingRules: function legalPostPublishingRules() {
+	        _app2.default.layout.showChildView('content', new _legalPostPublishingView2.default());
+	    },
+	
+	
+	    // BLOG:
+	    blogHome: function blogHome() {
+	        var posts = new _AsteroidCollection2.default(null, { asteroid: _app2.default.asteroid, comparator: 'createdAt' });
+	        posts.loadByMethod('bz.blog.getPosts', {}, function () {
+	            _app2.default.layout.showChildView('content', new _blogHomeView2.default({ collection: posts }));
+	        });
+	    },
+	    blogPostId: function blogPostId(id) {
+	        console.log('POST ID: ', id);
+	        // Загружаем пост из базы по его ID....
+	        // 1. находим поста по id
+	        // 2. вызываем метод loadByMethod для загрузки и передаем во BlogPostIdView 
+	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
+	        if (id) {
+	            _app2.default.asteroid.call('bz.blog.getPostById', id).then(function (post) {
+	                _app2.default.layout.showChildView('content', new _blogPostIdView2.default({ model: post }));
+	            });
+	        }
+	    }
+	});
+	//import ProfilePageView from './user/ProfilePageView';
+	//import MyMessagesPageView from './user/MyMessagesPageView';
+	//import UserDetailsPageView from './user/UserDetailsPageView';
+	
+	//import Collection from '../data/AsteroidCollection.js';
+
+/***/ },
+/* 93 */
+/*!********************************************!*\
+  !*** ./wwwroot/homeApp/index/indexView.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _IndexViewHbs = __webpack_require__(/*! ./IndexView.hbs.html */ 94);
+	
+	var _IndexViewHbs2 = _interopRequireDefault(_IndexViewHbs);
+	
+	__webpack_require__(/*! ../../lib/jquery-parallax/scripts/jquery.parallax-1.1.3.js */ 95);
+	
+	var _PostTypesView = __webpack_require__(/*! ./PostTypesView.js */ 96);
+	
+	var _PostTypesView2 = _interopRequireDefault(_PostTypesView);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./i18n/ru */ 99);
+	
+	__webpack_require__(/*! ./i18n/en */ 100);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	
+	    template: _IndexViewHbs2.default,
+	
+	    events: {
+	        'click div.toggle > label': "toggleSlide"
+	    },
+	
+	    regions: {
+	        'postTypes': '#postAdTypes'
+	    },
+	
+	    onRender: function onRender() {
+	        this.showChildView('postTypes', new _PostTypesView2.default({ collection: _app2.default.postAdTypes }));
+	    },
+	    onAttach: function onAttach() {},
+	    toggleSlide: function toggleSlide(e) {
+	        var previewParClosedHeight = 25;
+	
+	        var parentSection = $(e.target).parent(),
+	            parentWrapper = $(e.target).parents("div.toggle"),
+	            previewPar = false,
+	            isAccordion = parentWrapper.hasClass("toggle-accordion");
+	
+	        if (isAccordion && typeof e.originalEvent != "undefined") {
+	            parentWrapper.find("div.toggle.active > label").trigger("click");
+	        }
+	
+	        parentSection.toggleClass("active");
+	
+	        if (parentSection.find("> p").get(0)) {
+	
+	            previewPar = parentSection.find("> p");
+	            var previewParCurrentHeight = previewPar.css("height");
+	            var previewParAnimateHeight = previewPar.css("height");
+	            previewPar.css("height", "auto");
+	            previewPar.css("height", previewParCurrentHeight);
+	        }
+	
+	        var toggleContent = parentSection.find("> div.toggle-content");
+	
+	        if (parentSection.hasClass("active")) {
+	            $(previewPar).animate({ height: previewParAnimateHeight }, 350, function () {
+	                $(e.target).addClass("preview-active");
+	            });
+	            toggleContent.slideDown(350);
+	        } else {
+	            $(previewPar).animate({ height: previewParClosedHeight }, 350, function () {
+	                $(e.target).removeClass("preview-active");
+	            });
+	            toggleContent.slideUp(350);
+	        }
+	    }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 94 */
+/*!**************************************************!*\
+  !*** ./wwwroot/homeApp/index/IndexView.hbs.html ***!
+  \**************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n<!-- How its work -->\r\n<section id="sh-works">\r\n    <div class="container">\r\n        <div class="sh-work-wrapper">\r\n            <h1 class="sh-section-hero-headline sh-text-center">'+
+	((__t=(i18n('how_it_works')))==null?'':__t)+
+	'</h1>\r\n            <p class="sh-section-intro sh-text-center">'+
+	((__t=(i18n('SITE_SUBTITLE')))==null?'':__t)+
+	'</p>\r\n\r\n            <div class="sh-work-tabs">\r\n                <ul class="sh-progress-steps process-steps nav nav-justified">\r\n                    <li class="active">\r\n                        <a data-toggle="tab" href="#step1" data-direct-link><i class="icon-plus"></i></a>\r\n                        <h5>'+
+	((__t=(i18n('create_your_post')))==null?'':__t)+
+	'</h5>\r\n                    </li>\r\n                    <li>\r\n                        <a data-toggle="tab" href="#step2" data-direct-link><i class="icon-map-marker"></i></a>\r\n                        <h5>'+
+	((__t=(i18n('you_found')))==null?'':__t)+
+	'</h5>\r\n                    </li>\r\n                    <li>\r\n                        <a data-toggle="tab" href="#step3" data-direct-link><i class="icon-ok"></i></a>\r\n                        <h5>'+
+	((__t=(i18n('connect_and_meet')))==null?'':__t)+
+	'</h5>\r\n                    </li>\r\n                </ul>\r\n\r\n                <div class="tab-content margin-top-60">\r\n                    <div role="tabpanel" class="tab-pane active" id="step1">\r\n                        <h4>'+
+	((__t=(i18n('create_your_post')))==null?'':__t)+
+	'</h4>\r\n                        <div class="text-content">\r\n                            '+
+	((__t=(i18n('create_your_post_descr')))==null?'':__t)+
+	'\r\n                        </div>\r\n                    </div>\r\n\r\n                    <div role="tabpanel" class="tab-pane" id="step2">\r\n                        <h4>'+
+	((__t=(i18n('you_found')))==null?'':__t)+
+	'</h4>\r\n                        <div class="text-content">\r\n                            '+
+	((__t=(i18n('you_found_descr')))==null?'':__t)+
+	'\r\n                        </div>\r\n                    </div>\r\n\r\n                    <div role="tabpanel" class="tab-pane" id="step3">\r\n                        <h4>'+
+	((__t=(i18n('connect_and_meet')))==null?'':__t)+
+	'</h4>\r\n                        <div class="text-content">\r\n                            '+
+	((__t=(i18n('connect_and_meet_descr')))==null?'':__t)+
+	'\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n\r\n<section id="sh-service">\r\n    <div class="container">\r\n        <div class="sh-service-wrapper">\r\n            <div class="sh-service-item col-xs-12 col-sm-5 col-md-6">\r\n\r\n\r\n                <!--\r\n                <div class="ui sh-styled styled accordion sh-accordion">\r\n                    <div class="active title"><i class="dropdown icon"></i> Один сервис для всех ресурсов </div>\r\n                    <div class="active content">\r\n                        <p class="transition">Если у тебя уже есть пост на другом ресурсе–просто размести ссылку на него-и получи готовый Светлячок!</p>\r\n                    </div>\r\n                    <div class="title"><i class="dropdown icon"></i> Живые объявления поблизости </div>\r\n                    <div class="content">\r\n                        <p class="transition hidden">There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n                    </div>\r\n                    <div class="title"><i class="dropdown icon"></i> Быстрые встречи и контакты </div>\r\n                    <div class="content">\r\n                        <p class="transition hidden">Three common ways for a prospective owner to acquire a dog is from pet shops, private owners, or shelters.</p>\r\n                        <p class="transition hidden">A pet shop may be the most convenient way to buy a dog. Buying a dog from a private owner allows you to assess the pedigree and upbringing of your dog before choosing to take it home. Lastly, finding your dog from a shelter, helps give a good home to a dog who may not find one so readily.</p>\r\n                    </div>\r\n                </div>\r\n                -->\r\n\r\n\r\n                <div class="ui sh-accordion toggle toggle-accordion toggle-transparent">\r\n                    <div class="toggle active">\r\n                        <label>'+
+	((__t=(i18n('one_service_for_all')))==null?'':__t)+
+	'</label>\r\n                        <div class="toggle-content" style="display:block">\r\n                            <p>\r\n                                '+
+	((__t=(i18n('home_accordion_section1')))==null?'':__t)+
+	'\r\n                            </p>\r\n                        </div>\r\n                    </div>\r\n                    <div class="toggle">\r\n                        <label>'+
+	((__t=(i18n('life_ads_nearby')))==null?'':__t)+
+	'</label>\r\n                        <div class="toggle-content">\r\n                            <p>\r\n                                '+
+	((__t=(i18n('home_accordion_section2')))==null?'':__t)+
+	'\r\n                            </p>\r\n                        </div>\r\n                    </div>\r\n                    <div class="toggle">\r\n                        <label>'+
+	((__t=(i18n('quick_connects')))==null?'':__t)+
+	'</label>\r\n                        <div class="toggle-content">\r\n                            <p>'+
+	((__t=(i18n('home_accordion_section3')))==null?'':__t)+
+	'</p>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n            <div class="sh-service-item col-xs-12 col-sm-7 col-md-6">\r\n                <dl class="sh-post-type">\r\n                    <dt class="sh-section-headline">'+
+	((__t=(i18n('post_types')))==null?'':__t)+
+	'</dt>\r\n                    <span id="postAdTypes"></span>                    \r\n                </dl>               \r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n<!-- Shiners anywhere -->\r\n<section id="sh-anywhere">\r\n    <div class="container-fluid">\r\n        <div class="sh-anywhere-wrapper">\r\n            <h1 class="sh-section-hero-headline sh-text-center">'+
+	((__t=(i18n('home_shiners_are_around')))==null?'':__t)+
+	'</h1>\r\n            <p class="sh-section-intro sh-text-center">'+
+	((__t=(i18n('home_lot_of_opportunities')))==null?'':__t)+
+	'</p>\r\n        </div>\r\n\r\n        <div class="sh-anywhere-bg">\r\n            <div class="sh-anywhere-bg-clouds">\r\n                <div class="cloud x1"></div>\r\n                <div class="cloud x2"></div>\r\n                <div class="cloud x3"></div>\r\n                <div class="cloud x4"></div>\r\n                <div class="cloud x5"></div>\r\n            </div>\r\n            <div class="sh-anywhere-bg-city">\r\n                <div class="sh-anywhere-bg-shs">\r\n                    <div class="shs-1"></div>\r\n                    <div class="shs-2"></div>\r\n                    <div class="shs-3"></div>\r\n                    <div class="shs-4"></div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n</section>\r\n\r\n<!-- Set shiners -->\r\n<section id="sh-set-shiners">\r\n    <div class="container">\r\n        <div class="sh-set-shiners-wrapper">\r\n            <div class="sh-text-group col-xs-12 col-md-8 col-lg-9">\r\n                <h3 class="sh-section-headline">'+
+	((__t=(i18n('home_participate')))==null?'':__t)+
+	' <a class="link">'+
+	((__t=(i18n('home_free')))==null?'':__t)+
+	'</a>'+
+	((__t=(i18n('home_in_project')))==null?'':__t)+
+	'</h3>\r\n                <h4 class="sh-section-subline">'+
+	((__t=(i18n('home_contact_with_people')))==null?'':__t)+
+	'</h4>\r\n            </div>\r\n            <div class="sh-set-shiners-item col-xs-12 col-md-4 col-lg-3">\r\n                <a class="ui sh-button standard create big" href="/posts/new">'+
+	((__t=(i18n('home_set_your_shiner')))==null?'':__t)+
+	'</a>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 95 */
+/*!**********************************************************************!*\
+  !*** ./wwwroot/lib/jquery-parallax/scripts/jquery.parallax-1.1.3.js ***!
+  \**********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(jQuery) {"use strict";
+	
+	/*
+	Plugin: jQuery Parallax
+	Version 1.1.3
+	Author: Ian Lunn
+	Twitter: @IanLunn
+	Author URL: http://www.ianlunn.co.uk/
+	Plugin URL: http://www.ianlunn.co.uk/plugins/jquery-parallax/
+	
+	Dual licensed under the MIT and GPL licenses:
+	http://www.opensource.org/licenses/mit-license.php
+	http://www.gnu.org/licenses/gpl.html
+	*/
+	
+	(function ($) {
+		var $window = $(window);
+		var windowHeight = $window.height();
+	
+		$window.resize(function () {
+			windowHeight = $window.height();
+		});
+	
+		$.fn.parallax = function (xpos, speedFactor, outerHeight) {
+			var $this = $(this);
+			var getHeight;
+			var firstTop;
+			var paddingTop = 0;
+	
+			//get the starting position of each element to have parallax applied to it		
+			$this.each(function () {
+				firstTop = $this.offset().top;
+			});
+	
+			if (outerHeight) {
+				getHeight = function getHeight(jqo) {
+					return jqo.outerHeight(true);
+				};
+			} else {
+				getHeight = function getHeight(jqo) {
+					return jqo.height();
+				};
+			}
+	
+			// setup defaults if arguments aren't specified
+			if (arguments.length < 1 || xpos === null) xpos = "50%";
+			if (arguments.length < 2 || speedFactor === null) speedFactor = 0.1;
+			if (arguments.length < 3 || outerHeight === null) outerHeight = true;
+	
+			// function to be called whenever the window is scrolled or resized
+			function update() {
+				var pos = $window.scrollTop();
+	
+				$this.each(function () {
+					var $element = $(this);
+					var top = $element.offset().top;
+					var height = getHeight($element);
+	
+					// Check if totally above or totally below viewport
+					if (top + height < pos || top > pos + windowHeight) {
+						return;
+					}
+	
+					$this.css('backgroundPosition', xpos + " " + Math.round((firstTop - pos) * speedFactor) + "px");
+				});
+			}
+	
+			$window.bind('scroll', update).resize(update);
+			update();
+		};
+	})(jQuery);
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 96 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/index/PostTypesView.js ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.js */ 97);
+	
+	var _PostTypeItemView2 = _interopRequireDefault(_PostTypeItemView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	    childView: _PostTypeItemView2.default,
+	    className: 'sh-post-type',
+	    tagName: 'dl'
+	});
+	exports.default = View;
+
+/***/ },
+/* 97 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/index/PostTypeItemView.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+=======
 	var _BaseModel = __webpack_require__(/*! ./BaseModel.js */ 93);
 	
 	var _BaseModel2 = _interopRequireDefault(_BaseModel);
@@ -31744,6 +37553,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(_, $) {'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -31753,16 +37563,185 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.html */ 98);
+	
+	var _PostTypeItemView2 = _interopRequireDefault(_PostTypeItemView);
+	
+	var _app = __webpack_require__(/*! ../app */ 15);
+=======
 	var _controller = __webpack_require__(/*! ./controller */ 98);
 	
 	var _controller2 = _interopRequireDefault(_controller);
 	
 	var _app = __webpack_require__(/*! ./app */ 15);
+>>>>>>> master
 	
 	var _app2 = _interopRequireDefault(_app);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+<<<<<<< HEAD
+	var View = _backbone2.default.View.extend({
+	    tagName: 'span',
+	    template: _PostTypeItemView2.default,
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            currentLang: _app2.default.i18n.getLanguage()
+	        };
+	    },
+	    initialize: function initialize() {
+	        this.listenTo(_app2.default, 'change:language', this.render);
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 98 */
+/*!*****************************************************!*\
+  !*** ./wwwroot/homeApp/index/PostTypeItemView.html ***!
+  \*****************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<dd class="'+
+	((__t=(name))==null?'':__t)+
+	'">'+
+	((__t=(obj.i18n[currentLang]? obj.i18n[currentLang].fullName:obj.fullName))==null?'':__t)+
+	'</dd>\r\n<br>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 99 */
+/*!******************************************!*\
+  !*** ./wwwroot/homeApp/index/i18n/ru.js ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	/**
+	 * Created by arutu_000 on 12/9/2016.
+	 */
+	/*
+	var json = {
+	    home_accordion_section1: 'Если у тебя уже есть пост на другом ресурсе–просто размести ссылку на него-и получи готовый Светлячок!',
+	    home_accordion_section2: 'Светлячки — это живые объявления от людей поблизости. Представь себе виртуальную визитку, только носят её не в кошельке, а в мобильном телефоне, и видят её не избранные, а все те, кто рядом',
+	    home_accordion_section3: 'Используй Светлячки для установки быстрых живых контактов- встреч, в нужное время, в нужном месте.',
+	    home_shiners_are_around: 'Светлячки повсюду',
+	    home_lot_of_opportunities: 'Множество возможностей для бизнеса вместе с Shiners',
+	    home_participate: 'Участвуй ',
+	    home_free: 'бесплатно',
+	    home_in_project: ' в проекте!',
+	    home_contact_with_people: 'Контактируй с людьми, предложи свои услуги на сайте',
+	    home_set_your_shiner: 'Создай свой пост'
+	};
+
+	i18n.add('ru', json);
+	*/
+	"use strict";
+
+/***/ },
+/* 100 */
+/*!******************************************!*\
+  !*** ./wwwroot/homeApp/index/i18n/en.js ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	/**
+	 * Created by arutu_000 on 12/9/2016.
+	 */
+	
+	/*
+	var json = {
+	    home_accordion_section1: 'If you already have an advertisement on another website, just use that Url to create a Shiner!',
+	    home_accordion_section2: 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone',
+	    home_accordion_section3: 'Use Shiners for finding new live connections everywhere',
+	    home_shiners_are_around: 'Shiners are everywhere',
+	    home_lot_of_opportunities: 'A lot of opportunities for business around',
+	    home_participate: 'Participate ',
+	    home_free: 'for free',
+	    home_in_project: ' in the project!',
+	    home_contact_with_people: 'Let others know about your ad instantly',
+	    home_set_your_shiner: 'Create your Shiner'
+	    
+	};
+
+	i18n.add('en', json);
+	*/
+	"use strict";
+
+/***/ },
+/* 101 */
+/*!**************************************************!*\
+  !*** ./wwwroot/homeApp/index/MobileIndexView.js ***!
+  \**************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _MobileIndexViewHbs = __webpack_require__(/*! ./MobileIndexView.hbs.html */ 102);
+	
+	var _MobileIndexViewHbs2 = _interopRequireDefault(_MobileIndexViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    regions: {
+	        'index': '#indexContainer'
+	    },
+	    template: _MobileIndexViewHbs2.default,
+	    IndexView: null,
+	    initialize: function initialize(opts) {
+	        this.IndexView = opts.IndexView;
+	    },
+	    onRender: function onRender() {
+	        this.showIndex();
+	    },
+	    showIndex: function showIndex() {
+	        this.showChildView('index', new this.IndexView());
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 102 */
+/*!********************************************************!*\
+  !*** ./wwwroot/homeApp/index/MobileIndexView.hbs.html ***!
+  \********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<a href="/" class="btn btn-block"><i class="fa fa-map-marker"></i> '+
+	((__t=(i18n('map')))==null?'':__t)+
+	'</a>\r\n<div id="indexContainer"></div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 103 */
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/posts/DetailsView.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+=======
 	exports.default = _backbone2.default.AppRouter.extend({
 	    initialize: function initialize(setts) {
 	        this.app = setts.app;
@@ -32373,6 +38352,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -32382,6 +38362,1343 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 104);
+	
+	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
+	
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 105);
+	
+	var _AsteroidCollection = __webpack_require__(/*! ../../data/AsteroidCollection.js */ 84);
+	
+	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
+	
+	var _RelatedPostsView = __webpack_require__(/*! ./RelatedPostsView.js */ 106);
+	
+	var _RelatedPostsView2 = _interopRequireDefault(_RelatedPostsView);
+	
+	var _CommentsListView = __webpack_require__(/*! ./CommentsListView.js */ 108);
+	
+	var _CommentsListView2 = _interopRequireDefault(_CommentsListView);
+	
+	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 61);
+	
+	var _loadGoogleMapsApi2 = _interopRequireDefault(_loadGoogleMapsApi);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./DetailsView.less */ 111);
+	
+	var _locationHelper = __webpack_require__(/*! ../../helpers/locationHelper.js */ 9);
+	
+	var _locationHelper2 = _interopRequireDefault(_locationHelper);
+	
+	var _postDuration = __webpack_require__(/*! ../../helpers/postDuration.js */ 60);
+	
+	var _postDuration2 = _interopRequireDefault(_postDuration);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    map: null,
+	    postLocation: {},
+	    pinn: null,
+	    geocoder: null,
+	    template: _DetailsViewHbs2.default,
+	    collection: null,
+	    comments: null,
+	    regions: {
+	        'related': '#relatedPostsContainer',
+	        'comments': '#sh-comments'
+	    },
+	
+	    initialize: function initialize() {
+	        window.postDetails = this.model.toJSON();
+	        this.collection = new _AsteroidCollection2.default(null, { asteroid: this.model.asteroid });
+	        this.comments = new _AsteroidCollection2.default(null, { asteroid: this.model.asteroid });
+	        this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
+	        this.listenTo(_app2.default.user, 'login', this.render);
+	        this.listenTo(_app2.default.user, 'logout', this.render);
+	    },
+	    onBeforeRender: function onBeforeRender() {
+	        this.setModelDistance();
+	        this.getPostDuration();
+	
+	        if (_app2.default.asteroid.loggedIn) {
+	            this.templateContext = {
+	                currentUser: _app2.default.user.toJSON()
+	            };
+	        }
+	    },
+	    onRender: function onRender() {
+	        var center = _app2.default.map.getCenter();
+	        this.collection.loadByMethod('getPopularPosts', [center.lat(), center.lng(), 200, 0, 10]);
+	        //this.initVkSocialButton(); 
+	        this.initCarousel();
+	
+	        this.comments.loadByMethod('getComments', { postId: this.model.get('_id'), take: 100, skip: 0 });
+	        this.showChildView('comments', new _CommentsListView2.default({ collection: this.comments }));
+	    },
+	    onAttach: function onAttach() {
+	        this.initStickMenu();
+	        this.initMapPost();
+	    },
+	    initVkSocialButton: function initVkSocialButton() {
+	        var details = this.model.get('details');
+	        var options = {
+	            pageTitle: details.title,
+	            pageDescription: details.description,
+	            pageImage: details.photos && details.photos.length > 0 ? details.photos[0].data : null,
+	            type: 'button'
+	        };
+	        VK.Widgets.Like("vk_like", options, this.model.id);
+	        _app2.default.FbButton(this.$('#fb_like').get(0));
+	    },
+	    getPostDuration: function getPostDuration() {
+	        var obj = _postDuration2.default.getPostDuration(this.model);
+	        this.model.set('duration', obj);
+	    },
+	    initMapPost: function initMapPost() {
+	        var defaultCoords = { lat: 55.75396, lng: 37.620393 };
+	        var postLocation = this.postLocation;
+	        var center = postLocation || defaultCoords;
+	
+	        this.map = new google.maps.Map(this.$('#sh-map')[0], {
+	            center: center,
+	            zoom: 14
+	        });
+	
+	        this.showPostPin();
+	
+	        //this.geocoder = new maps.Geocoder();
+	        _app2.default.map = this.map;
+	        //window.myMap = app.map; // debug
+	        //app.geocoder = this.geocoder;
+	    },
+	    getPostlocation: function getPostlocation(locations) {
+	        var postCoordinate = {};
+	        if (locations && _underscore2.default.size(locations) > 0) {
+	            var isDynamic = locations && _underscore2.default.find(locations, function (l) {
+	                return l.placeType === 'dynamic';
+	            });
+	            if (isDynamic) {
+	                postCoordinate = {
+	                    lat: isDynamic.coords.lat,
+	                    lng: isDynamic.coords.lng
+	                };
+	                return postCoordinate;
+	            } else {
+	                postCoordinate = {
+	                    lat: locations[0].coords.lat,
+	                    lng: locations[0].coords.lng
+	                };
+	                return postCoordinate;
+	            }
+	        }
+	    },
+	    showPostPin: function showPostPin() {
+	        var image = {
+	            url: '/images/shiners/shiner_marker.png',
+	            scaledSize: new window.google.maps.Size(25, 33),
+	            origin: new window.google.maps.Point(0, 0),
+	            anchor: new window.google.maps.Point(12, 33)
+	        };
+	
+	        this.pinn = new window.google.maps.Marker({
+	            position: this.map.getCenter(),
+	            map: this.map,
+	            icon: image,
+	            title: 'Ваш пост тут'
+	        });
+	
+	        //window.pinn = this.pinn; // debug
+	    },
+	    setModelDistance: function setModelDistance() {
+	        var locations = this.model.get('details').locations;
+	        //console.log(locations);
+	        this.postLocation = this.getPostlocation(locations);
+	        if (locations && _underscore2.default.size(locations) > 0 && _app2.default.user.has('position')) {
+	            var location = _underscore2.default.find(locations, function (l) {
+	                return l.placeType === 'dynamic';
+	            });
+	            if (!location) location = locations[0];
+	            var dist = _locationHelper2.default.getDistance(location.coords.lat, location.coords.lng, _app2.default.user.get('position').lat, _app2.default.user.get('position').lng);
+	            this.model.set('distance', dist);
+	            this.model.set('distanceType', 'km');
+	        } else {
+	            this.model.set('distance', -1);
+	        }
+	    },
+	    initCarousel: function initCarousel() {
+	        var slider = this.$('#sh-carousel');
+	        //var slider 		= this.$('#postImages');
+	        var options = slider.attr('data-plugin-options');
+	        var defaults = {
+	            //items: 5,
+	            itemsCustom: false,
+	            //itemsDesktop: [1199, 4],
+	            //itemsDesktopSmall: [980, 3],
+	            //itemsTablet: [768, 2],
+	            //itemsTabletSmall: false,
+	            //itemsMobile: [479, 1],
+	            singleItem: true,
+	            itemsScaleUp: false,
+	
+	            slideSpeed: 200,
+	            paginationSpeed: 800,
+	            rewindSpeed: 1000,
+	
+	            autoPlay: false,
+	            stopOnHover: false,
+	
+	            navigation: false,
+	            navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+	            rewindNav: true,
+	            scrollPerPage: false,
+	
+	            pagination: true,
+	            paginationNumbers: false,
+	
+	            responsive: true,
+	            responsiveRefreshRate: 200,
+	            responsiveBaseWidth: window,
+	
+	            baseClass: "owl-carousel",
+	            theme: "owl-theme",
+	
+	            lazyLoad: false,
+	            lazyFollow: true,
+	            lazyEffect: "fade",
+	
+	            autoHeight: false,
+	
+	            jsonPath: false,
+	            jsonSuccess: false,
+	
+	            dragBeforeAnimFinish: true,
+	            mouseDrag: true,
+	            touchDrag: true,
+	
+	            transitionStyle: false,
+	
+	            addClassActive: false,
+	
+	            beforeUpdate: false,
+	            afterUpdate: false,
+	            beforeInit: false,
+	            afterInit: false,
+	            beforeMove: false,
+	            afterMove: false,
+	            afterAction: false,
+	            startDragging: false,
+	            afterLazyLoad: false
+	        };
+	        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+	        slider.owlCarousel(config).addClass("owl-carousel-init");
+	    },
+	    initStickMenu: function initStickMenu() {
+	
+	        setTimeout(function () {
+	            var navTabMenu = $('.sh-post-tab-menu-wrapper');
+	
+	            if (navTabMenu.length > 0) {
+	                var navTabMenuTopPosition, postTabMenuTopPosition, contentSections;
+	
+	                (function () {
+	                    var updateNavigation = function updateNavigation() {
+	                        contentSections.each(function () {
+	                            var actual = $(this),
+	                                actualHeight = actual.height() + parseInt(actual.css('paddingTop').replace('px', '')) + parseInt(actual.css('paddingBottom').replace('px', '')),
+	                                actualAnchor = navTabMenu.find('a[href="#' + actual.attr('id') + '"]');
+	
+	                            if (actual.offset().top - navTabMenu.height() - 12 <= $(window).scrollTop() && actual.offset().top + actualHeight - navTabMenu.height() - 12 > $(window).scrollTop()) {
+	                                actualAnchor.addClass('active');
+	                            } else {
+	                                actualAnchor.removeClass('active');
+	                            }
+	                        });
+	                    };
+	
+	                    navTabMenuTopPosition = navTabMenu.offset().top;
+	                    postTabMenuTopPosition = $('.sh-post-tab-menu').offset().top;
+	                    contentSections = $('.sh-section');
+	
+	
+	                    $(window).scroll(function () {
+	
+	                        if ($(window).scrollTop() > postTabMenuTopPosition + 12) {
+	                            $('.sh-post-tab-menu-wrapper').addClass('stick-menu');
+	                            $('.sh-post-tab-menu-sticky').removeClass('hidden');
+	                            $('.sh-content').addClass('has-top-margin');
+	                        } else {
+	                            $('.sh-post-tab-menu-wrapper').removeClass('stick-menu');
+	                            $('.sh-post-tab-menu-sticky').addClass('hidden');
+	                            $('.sh-content').removeClass('has-top-margin');
+	                        }
+	
+	                        updateNavigation();
+	                    });
+	
+	                    //smooth scroll when clicking navTabMenu
+	                    navTabMenu.find('ul a').on('click', function (event) {
+	                        event.preventDefault();
+	                        event.stopPropagation();
+	
+	                        var target = $(this.hash);
+	                        $('body, html').animate({
+	                            'scrollTop': target.offset().top - navTabMenu.height() + 1
+	                        }, 400);
+	                    });
+	                })();
+	            }
+	        }, 500);
+	    },
+	    showRelatedPosts: function showRelatedPosts() {
+	        this.showChildView('related', new _RelatedPostsView2.default({ collection: this.collection }));
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 104 */
+/*!****************************************************!*\
+  !*** ./wwwroot/homeApp/posts/DetailsView.hbs.html ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(moment, _) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n<main class="sh-content">\r\n    <div class="sh-post-details">\r\n        <div class="container">\r\n            <div class="sh-page-block">\r\n                <div class="sh-post-details-wrapper">\r\n                    \r\n                    <div class="sh-side-left">\r\n                        <h1>'+
+	((__t=(details.title))==null?'':__t)+
+	'</h1>\r\n                        <div class="sh-post-published">\r\n                            <div class="sh-post-written">\r\n                                <span><i class="fa fa-clock-o"></i> Опубликовано, '+
+	((__t=(moment(obj.timestamp.$date).fromNow()))==null?'':__t)+
+	', - до '+
+	((__t=(moment(obj.endDatePost.$date).format("ll")))==null?'':__t)+
+	'</span>\r\n                            </div>\r\n                            <!-- sh-color-red, sh-color-yellow, sh-color-green -->\r\n                            ';
+	if(obj.duration) { 
+	__p+='\r\n                            <div class="sh-post-item-left sh-color-'+
+	((__t=( obj.duration.barClass))==null?'':__t)+
+	'">\r\n                                <span class="sh-item-left-text">';
+	 if(obj.duration.status) { 
+	__p+='  '+
+	((__t=(i18n('POST_LEFT')))==null?'':__t)+
+	' '+
+	((__t=( obj.duration.unit))==null?'':__t)+
+	' ';
+	 } else { 
+	__p+=' '+
+	((__t=(i18n('POST_STATUS')))==null?'':__t)+
+	' ';
+	 } 
+	__p+='</span>\r\n                                <span class="sh-item-left-track">\r\n                                    <span class="sh-item-left-fill" style="width: '+
+	((__t=( obj.duration.percent))==null?'':__t)+
+	'%"></span>\r\n                                </span>\r\n                            </div>\r\n                            ';
+	 } 
+	__p+='\r\n                        </div>\r\n\r\n                        <div class="sh-photos">\r\n                            <div class="single-photo">\r\n                                <div id="sh-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"singleItem": true, "autoPlay": false, "navigation": true, "pagination": true, "transitionStyle":"fade"}\'>\r\n                                    ';
+	 if (_.size(details.photos)>0){ 
+	__p+='\r\n                                    ';
+	_.each(details.photos,function(photo){ 
+	__p+='\r\n                                    <div>\r\n                                        <img class="img-responsive" src="'+
+	((__t=(photo.data))==null?'':__t)+
+	'" alt="">\r\n                                    </div>\r\n                                    ';
+	});
+	__p+='\r\n                                    ';
+	 } else { 
+	__p+='\r\n                                    <div>\r\n                                        <div class="sh-responsive-no-image"><span></span></div>\r\n                                    </div>\r\n                                    ';
+	 } 
+	__p+='\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                                               \r\n                        <div class="sh-post-widget-composed hidden-md hidden-lg">\r\n                                                        \r\n                            <div class="sh-post-summary-information sh-info-header">\r\n                                <div class="sh-info-header-within">\r\n                                    <span>Сводная информация</span>\r\n                                </div>\r\n\r\n                                <ul class="sh-post-info sh-with-dotted">\r\n                                    ';
+	if(obj.stats) { 
+	__p+='\r\n                                    <li><div><span class="sh-item">Просмотров</span><span class="sh-item-right">'+
+	((__t=(stats.seenTotal))==null?'':__t)+
+	'</span></div></li>\r\n                                    ';
+	 } 
+	__p+='\r\n                                    <!--';
+	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
+	__p+='-->\r\n                                    <li><div><span class="sh-item">Статус</span><span class="sh-item-right">'+
+	((__t=(user.online ? 'online' : 'offline'))==null?'':__t)+
+	'</span></div></li>\r\n                                    ';
+	if (obj.type) { 
+	__p+='\r\n                                    <li><div><span class="sh-item">Тип</span><span class="sh-item-right"><span class="label bg-type-category-'+
+	((__t=(obj.type))==null?'':__t)+
+	'">'+
+	((__t=(obj.type))==null?'':__t)+
+	'</span></span></div></li>\r\n                                    ';
+	 } 
+	__p+='\r\n                                    <li><div><span class="sh-item">Дистанция</span><span class="sh-item-right">';
+	if(obj.distance && obj.distanceType){ 
+	__p+=' '+
+	((__t=(distance>=0?distance.toFixed(1):'Не определена'))==null?'':__t)+
+	' '+
+	((__t=(distanceType==='km'?'км':'miles'))==null?'':__t)+
+	' ';
+	 } 
+	__p+='</span></div></li>\r\n                                </ul>\r\n                            </div>\r\n\r\n                            ';
+	if (details.price) { 
+	__p+='\r\n\r\n                            <div class="sh-post-widget">\r\n                                <div class="sh-post-top-price">\r\n                                    <div class="sh-price-wrapper sh-rub">\r\n                                        <div class="sh-price-number">'+
+	((__t=(details.price))==null?'':__t)+
+	'</div>\r\n                                        <div class="sh-price-prefix"></div>\r\n                                    </div>\r\n                                    <div class="sh-price-footer">за месяц</div>\r\n                                </div>\r\n                            </div>\r\n                            ';
+	 } 
+	__p+='\r\n\r\n                        </div>\r\n\r\n                        <div class="sh-post-tab-menu">\r\n                            <div class="sh-post-tab-menu-wrapper">\r\n                                <ul class="sh-post-tab-items">\r\n                                    <li class="sh-tab-item"><a class="active" href="#sh-description">Описание</a></li>\r\n                                    <li class="sh-tab-item"><a href="#sh-location">Местоположение</a></li>\r\n                                    <li class="sh-tab-item"><a href="#sh-review">Комментарии</a></li>\r\n                                </ul>\r\n                            </div>\r\n                           \r\n                            <div class="sh-post-tab-menu-sticky hidden"></div>\r\n                        </div>\r\n\r\n                        <div class="sh-post-creator">\r\n                            <div class="sh-post-creator-wrapper row">\r\n                                <div class="sh-post-creator-avatar col-md-3">\r\n                                    <a class="sh-creator-photo" href="/user/'+
+	((__t=(user._id))==null?'':__t)+
+	'">\r\n                                        <img class="sh-post-creator-username-avatar" src="'+
+	((__t=(user.image && user.image.imageUrl?'/Img/Index?url='+encodeURIComponent(user.image.imageUrl)+'&w=90&h=90':'/images/avatar.png'))==null?'':__t)+
+	'" alt="Фотография в профиле">\r\n                                    </a>\r\n                                </div>\r\n\r\n                                <div class="sh-post-creator-info col-md-9">\r\n                                    <div class="sh-post-creator-username"><a href="/user/'+
+	((__t=(user._id))==null?'':__t)+
+	'">'+
+	((__t=(user.username))==null?'':__t)+
+	'</a></div>                                   \r\n                                    <div class="sh-post-creator-display-loc-rew">\r\n                                        <a href="/user/'+
+	((__t=(user._id))==null?'':__t)+
+	'">'+
+	((__t=(user.online?'online':'offline'))==null?'':__t)+
+	'</a>\r\n                                    </div>\r\n\r\n                                    ';
+	if (obj.currentUser) { 
+	__p+='\r\n                                    <div class="sh-post-creator-actions">\r\n                                        <div class="sh-actions-btn-group">\r\n                                            <a href="/messages/to/'+
+	((__t=(user._id))==null?'':__t)+
+	'?postId='+
+	((__t=(_id))==null?'':__t)+
+	'" class="ui sh-button standard action action-link">Связаться с пользователем</a>\r\n                                        </div>\r\n                                    </div>\r\n                                    ';
+	 } 
+	__p+='\r\n\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div id="sh-description" class="sh-post-description sh-section">\r\n                            <div class="sh-post-description-wrapper">\r\n                                <h4>Об этом посте</h4>\r\n                                <p>'+
+	((__t=(details.description))==null?'':__t)+
+	'</p>\r\n                            </div>\r\n                        </div>\r\n\r\n\r\n                        <div id="sh-location" class="sh-post-location sh-section">\r\n                            <div class="sh-post-location-wrapper">\r\n                                <h4>Местоположение</h4>\r\n                                <div class="sh-post-location-info">\r\n                                    <div class="sh-post-location-distance">\r\n                                        <i class="fa fa-location-arrow" aria-hidden="true"></i> От вас <span>';
+	if(obj.distance && obj.distanceType){ 
+	__p+=' '+
+	((__t=(distance>=0?distance.toFixed(1):'Дистанция не определена'))==null?'':__t)+
+	' '+
+	((__t=(distanceType==='km'?'км':'miles'))==null?'':__t)+
+	' ';
+	 } 
+	__p+='</span>\r\n                                    </div>\r\n                                    <div class="sh-post-location-address '+
+	((__t=(isDynamic?'dynamic':'static'))==null?'':__t)+
+	'">\r\n                                        ';
+	 if (_.size(details.locations) > 0) { 
+	__p+='\r\n                                        ';
+	_.each(details.locations, function(location){ 
+	__p+='\r\n                                        <span><i class="fa fa-map-marker" aria-hidden="true"></i> '+
+	((__t=(location.name))==null?'':__t)+
+	'</span>\r\n                                        ';
+	});
+	__p+='\r\n                                        ';
+	 } else { 
+	__p+='\r\n                                        <span>Местоположение не определено</span>\r\n                                        ';
+	 } 
+	__p+='\r\n                                    </div>\r\n                                </div>\r\n\r\n                                <div id="sh-map"></div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <!-- if comments > 0 -->\r\n                        <div id="sh-review" class="sh-post-review sh-section">\r\n                            <div class="sh-post-reviews-wrapper">\r\n                                <h4>Комментарии <span></span></h4>\r\n                                <div class="sh-post-form-review">\r\n                                    <div id="sh-comments" class="sh-post-reviews"></div>\r\n                                </div>\r\n                            </div>\r\n                        </div>                       \r\n\r\n                    </div>\r\n                    \r\n                    <div class="sh-side-right">\r\n                        <div class="sh-post-widget sh-visible-md-flex sh-visible-lg-flex">\r\n                            ';
+	if (details.price) { 
+	__p+='                            \r\n                            <div class="sh-post-top-price">\r\n                                <div class="sh-price-wrapper sh-rub">\r\n                                    <div class="sh-price-number">'+
+	((__t=(details.price))==null?'':__t)+
+	'</div>\r\n                                    <div class="sh-price-prefix"></div>\r\n                                </div>\r\n                                <div class="sh-price-footer">за месяц</div>\r\n                            </div>\r\n                            ';
+	 } 
+	__p+='\r\n                        </div>\r\n\r\n                        <div class="sh-post-summary-information sh-info-header visible-md visible-lg">\r\n                            <div class="sh-info-header-within">\r\n                                <span>Сводная информация</span>\r\n                            </div>\r\n\r\n                            <ul class="sh-post-info sh-with-dotted">\r\n                                ';
+	if(obj.stats) { 
+	__p+='\r\n                                <li><div><span class="sh-item">Просмотров</span><span class="sh-item-right">'+
+	((__t=(stats.seenTotal))==null?'':__t)+
+	'</span></div></li>\r\n                                ';
+	 } 
+	__p+='\r\n                                <!--';
+	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
+	__p+='-->\r\n                                <li><div><span class="sh-item">Статус</span><span class="sh-item-right">'+
+	((__t=(user.online ? 'online' : 'offline'))==null?'':__t)+
+	'</span></div></li>\r\n                                ';
+	if (obj.type) { 
+	__p+='\r\n                                <li><div><span class="sh-item">Тип</span><span class="sh-item-right"><span class="label bg-type-category-'+
+	((__t=(obj.type))==null?'':__t)+
+	'">'+
+	((__t=(obj.type))==null?'':__t)+
+	'</span></span></div></li>\r\n                                ';
+	 } 
+	__p+='\r\n                                <li><div><span class="sh-item">Дистанция</span><span class="sh-item-right">';
+	if(obj.distance && obj.distanceType){ 
+	__p+=' '+
+	((__t=(distance>=0?distance.toFixed(1):'Не определена'))==null?'':__t)+
+	' '+
+	((__t=(distanceType==='km'?'км':'miles'))==null?'':__t)+
+	' ';
+	 } 
+	__p+='</span></div></li>\r\n                            </ul>\r\n                        </div>\r\n\r\n                        <div class="sh-post-wish-and-more">\r\n                            <div class="sh-post-wish hidden"></div>\r\n                            <div class="sh-post-more">\r\n                                <div class="sh-post-more-wrapper">\r\n                                    <a href="#" class="sh-share-btn sh-text-center">\r\n                                        <span>E-mail</span>\r\n                                    </a>\r\n                                    <a href="#" class="sh-share-btn sh-text-center">\r\n                                        <span>Вконтакте</span>\r\n                                    </a>\r\n                                    <span class="sh-more-btn sh-text-center">\r\n                                        ··· <span>Ещё</span>\r\n                                    </span>\r\n                                </div>\r\n\r\n                                <div class="sh-report-message">\r\n                                    <i class="fa fa-exclamation" aria-hidden="true"></i>\r\n                                    <a href="#">Сообщите об этом объявлении</a>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="sh-same-posts hidden">\r\n                    <div class="container">\r\n                        <div class="sh-same-posts-wrapper">\r\n                            <h4>Похожие посты</h4>\r\n\r\n                            <div class="sh-text-center">Скоро на всех устройствах мира</div>\r\n                            <br>\r\n\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</main>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12), __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 105 */
+/*!******************************************************!*\
+  !*** ./wwwroot/lib/owl-carousel/owl.carousel.min.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(jQuery) {"use strict";
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	if (typeof Object.create !== "function") {
+	  Object.create = function (e) {
+	    function t() {}t.prototype = e;return new t();
+	  };
+	}(function (e, t, n) {
+	  var r = { init: function init(t, n) {
+	      var r = this;r.$elem = e(n);r.options = e.extend({}, e.fn.owlCarousel.options, r.$elem.data(), t);r.userOptions = t;r.loadContent();
+	    }, loadContent: function loadContent() {
+	      function r(e) {
+	        var n,
+	            r = "";if (typeof t.options.jsonSuccess === "function") {
+	          t.options.jsonSuccess.apply(this, [e]);
+	        } else {
+	          for (n in e.owl) {
+	            if (e.owl.hasOwnProperty(n)) {
+	              r += e.owl[n].item;
+	            }
+	          }t.$elem.html(r);
+	        }t.logIn();
+	      }var t = this,
+	          n;if (typeof t.options.beforeInit === "function") {
+	        t.options.beforeInit.apply(this, [t.$elem]);
+	      }if (typeof t.options.jsonPath === "string") {
+	        n = t.options.jsonPath;e.getJSON(n, r);
+	      } else {
+	        t.logIn();
+	      }
+	    }, logIn: function logIn() {
+	      var e = this;e.$elem.data("owl-originalStyles", e.$elem.attr("style"));e.$elem.data("owl-originalClasses", e.$elem.attr("class"));e.$elem.css({ opacity: 0 });e.orignalItems = e.options.items;e.checkBrowser();e.wrapperWidth = 0;e.checkVisible = null;e.setVars();
+	    }, setVars: function setVars() {
+	      var e = this;if (e.$elem.children().length === 0) {
+	        return false;
+	      }e.baseClass();e.eventTypes();e.$userItems = e.$elem.children();e.itemsAmount = e.$userItems.length;e.wrapItems();e.$owlItems = e.$elem.find(".owl-item");e.$owlWrapper = e.$elem.find(".owl-wrapper");e.playDirection = "next";e.prevItem = 0;e.prevArr = [0];e.currentItem = 0;e.customEvents();e.onStartup();
+	    }, onStartup: function onStartup() {
+	      var e = this;e.updateItems();e.calculateAll();e.buildControls();e.updateControls();e.response();e.moveEvents();e.stopOnHover();e.owlStatus();if (e.options.transitionStyle !== false) {
+	        e.transitionTypes(e.options.transitionStyle);
+	      }if (e.options.autoPlay === true) {
+	        e.options.autoPlay = 5e3;
+	      }e.play();e.$elem.find(".owl-wrapper").css("display", "block");if (!e.$elem.is(":visible")) {
+	        e.watchVisibility();
+	      } else {
+	        e.$elem.css("opacity", 1);
+	      }e.onstartup = false;e.eachMoveUpdate();if (typeof e.options.afterInit === "function") {
+	        e.options.afterInit.apply(this, [e.$elem]);
+	      }
+	    }, eachMoveUpdate: function eachMoveUpdate() {
+	      var e = this;if (e.options.lazyLoad === true) {
+	        e.lazyLoad();
+	      }if (e.options.autoHeight === true) {
+	        e.autoHeight();
+	      }e.onVisibleItems();if (typeof e.options.afterAction === "function") {
+	        e.options.afterAction.apply(this, [e.$elem]);
+	      }
+	    }, updateVars: function updateVars() {
+	      var e = this;if (typeof e.options.beforeUpdate === "function") {
+	        e.options.beforeUpdate.apply(this, [e.$elem]);
+	      }e.watchVisibility();e.updateItems();e.calculateAll();e.updatePosition();e.updateControls();e.eachMoveUpdate();if (typeof e.options.afterUpdate === "function") {
+	        e.options.afterUpdate.apply(this, [e.$elem]);
+	      }
+	    }, reload: function reload() {
+	      var e = this;t.setTimeout(function () {
+	        e.updateVars();
+	      }, 0);
+	    }, watchVisibility: function watchVisibility() {
+	      var e = this;if (e.$elem.is(":visible") === false) {
+	        e.$elem.css({ opacity: 0 });t.clearInterval(e.autoPlayInterval);t.clearInterval(e.checkVisible);
+	      } else {
+	        return false;
+	      }e.checkVisible = t.setInterval(function () {
+	        if (e.$elem.is(":visible")) {
+	          e.reload();e.$elem.animate({ opacity: 1 }, 200);t.clearInterval(e.checkVisible);
+	        }
+	      }, 500);
+	    }, wrapItems: function wrapItems() {
+	      var e = this;e.$userItems.wrapAll('<div class="owl-wrapper">').wrap('<div class="owl-item"></div>');e.$elem.find(".owl-wrapper").wrap('<div class="owl-wrapper-outer">');e.wrapperOuter = e.$elem.find(".owl-wrapper-outer");e.$elem.css("display", "block");
+	    }, baseClass: function baseClass() {
+	      var e = this,
+	          t = e.$elem.hasClass(e.options.baseClass),
+	          n = e.$elem.hasClass(e.options.theme);if (!t) {
+	        e.$elem.addClass(e.options.baseClass);
+	      }if (!n) {
+	        e.$elem.addClass(e.options.theme);
+	      }
+	    }, updateItems: function updateItems() {
+	      var t = this,
+	          n,
+	          r;if (t.options.responsive === false) {
+	        return false;
+	      }if (t.options.singleItem === true) {
+	        t.options.items = t.orignalItems = 1;t.options.itemsCustom = false;t.options.itemsDesktop = false;t.options.itemsDesktopSmall = false;t.options.itemsTablet = false;t.options.itemsTabletSmall = false;t.options.itemsMobile = false;return false;
+	      }n = e(t.options.responsiveBaseWidth).width();if (n > (t.options.itemsDesktop[0] || t.orignalItems)) {
+	        t.options.items = t.orignalItems;
+	      }if (t.options.itemsCustom !== false) {
+	        t.options.itemsCustom.sort(function (e, t) {
+	          return e[0] - t[0];
+	        });for (r = 0; r < t.options.itemsCustom.length; r += 1) {
+	          if (t.options.itemsCustom[r][0] <= n) {
+	            t.options.items = t.options.itemsCustom[r][1];
+	          }
+	        }
+	      } else {
+	        if (n <= t.options.itemsDesktop[0] && t.options.itemsDesktop !== false) {
+	          t.options.items = t.options.itemsDesktop[1];
+	        }if (n <= t.options.itemsDesktopSmall[0] && t.options.itemsDesktopSmall !== false) {
+	          t.options.items = t.options.itemsDesktopSmall[1];
+	        }if (n <= t.options.itemsTablet[0] && t.options.itemsTablet !== false) {
+	          t.options.items = t.options.itemsTablet[1];
+	        }if (n <= t.options.itemsTabletSmall[0] && t.options.itemsTabletSmall !== false) {
+	          t.options.items = t.options.itemsTabletSmall[1];
+	        }if (n <= t.options.itemsMobile[0] && t.options.itemsMobile !== false) {
+	          t.options.items = t.options.itemsMobile[1];
+	        }
+	      }if (t.options.items > t.itemsAmount && t.options.itemsScaleUp === true) {
+	        t.options.items = t.itemsAmount;
+	      }
+	    }, response: function response() {
+	      var n = this,
+	          r,
+	          i;if (n.options.responsive !== true) {
+	        return false;
+	      }i = e(t).width();n.resizer = function () {
+	        if (e(t).width() !== i) {
+	          if (n.options.autoPlay !== false) {
+	            t.clearInterval(n.autoPlayInterval);
+	          }t.clearTimeout(r);r = t.setTimeout(function () {
+	            i = e(t).width();n.updateVars();
+	          }, n.options.responsiveRefreshRate);
+	        }
+	      };e(t).resize(n.resizer);
+	    }, updatePosition: function updatePosition() {
+	      var e = this;e.jumpTo(e.currentItem);if (e.options.autoPlay !== false) {
+	        e.checkAp();
+	      }
+	    }, appendItemsSizes: function appendItemsSizes() {
+	      var t = this,
+	          n = 0,
+	          r = t.itemsAmount - t.options.items;t.$owlItems.each(function (i) {
+	        var s = e(this);s.css({ width: t.itemWidth }).data("owl-item", Number(i));if (i % t.options.items === 0 || i === r) {
+	          if (!(i > r)) {
+	            n += 1;
+	          }
+	        }s.data("owl-roundPages", n);
+	      });
+	    }, appendWrapperSizes: function appendWrapperSizes() {
+	      var e = this,
+	          t = e.$owlItems.length * e.itemWidth;e.$owlWrapper.css({ width: t * 2, left: 0 });e.appendItemsSizes();
+	    }, calculateAll: function calculateAll() {
+	      var e = this;e.calculateWidth();e.appendWrapperSizes();e.loops();e.max();
+	    }, calculateWidth: function calculateWidth() {
+	      var e = this;e.itemWidth = Math.round(e.$elem.width() / e.options.items);
+	    }, max: function max() {
+	      var e = this,
+	          t = (e.itemsAmount * e.itemWidth - e.options.items * e.itemWidth) * -1;if (e.options.items > e.itemsAmount) {
+	        e.maximumItem = 0;t = 0;e.maximumPixels = 0;
+	      } else {
+	        e.maximumItem = e.itemsAmount - e.options.items;e.maximumPixels = t;
+	      }return t;
+	    }, min: function min() {
+	      return 0;
+	    }, loops: function loops() {
+	      var t = this,
+	          n = 0,
+	          r = 0,
+	          i,
+	          s,
+	          o;t.positionsInArray = [0];t.pagesInArray = [];for (i = 0; i < t.itemsAmount; i += 1) {
+	        r += t.itemWidth;t.positionsInArray.push(-r);if (t.options.scrollPerPage === true) {
+	          s = e(t.$owlItems[i]);o = s.data("owl-roundPages");if (o !== n) {
+	            t.pagesInArray[n] = t.positionsInArray[i];n = o;
+	          }
+	        }
+	      }
+	    }, buildControls: function buildControls() {
+	      var t = this;if (t.options.navigation === true || t.options.pagination === true) {
+	        t.owlControls = e('<div class="owl-controls"/>').toggleClass("clickable", !t.browser.isTouch).appendTo(t.$elem);
+	      }if (t.options.pagination === true) {
+	        t.buildPagination();
+	      }if (t.options.navigation === true) {
+	        t.buildButtons();
+	      }
+	    }, buildButtons: function buildButtons() {
+	      var t = this,
+	          n = e('<div class="owl-buttons"/>');t.owlControls.append(n);t.buttonPrev = e("<div/>", { "class": "owl-prev", html: t.options.navigationText[0] || "" });t.buttonNext = e("<div/>", { "class": "owl-next", html: t.options.navigationText[1] || "" });n.append(t.buttonPrev).append(t.buttonNext);n.on("touchstart.owlControls mousedown.owlControls", 'div[class^="owl"]', function (e) {
+	        e.preventDefault();
+	      });n.on("touchend.owlControls mouseup.owlControls", 'div[class^="owl"]', function (n) {
+	        n.preventDefault();if (e(this).hasClass("owl-next")) {
+	          t.next();
+	        } else {
+	          t.prev();
+	        }
+	      });
+	    }, buildPagination: function buildPagination() {
+	      var t = this;t.paginationWrapper = e('<div class="owl-pagination"/>');t.owlControls.append(t.paginationWrapper);t.paginationWrapper.on("touchend.owlControls mouseup.owlControls", ".owl-page", function (n) {
+	        n.preventDefault();if (Number(e(this).data("owl-page")) !== t.currentItem) {
+	          t.goTo(Number(e(this).data("owl-page")), true);
+	        }
+	      });
+	    }, updatePagination: function updatePagination() {
+	      var t = this,
+	          n,
+	          r,
+	          i,
+	          s,
+	          o,
+	          u;if (t.options.pagination === false) {
+	        return false;
+	      }t.paginationWrapper.html("");n = 0;r = t.itemsAmount - t.itemsAmount % t.options.items;for (s = 0; s < t.itemsAmount; s += 1) {
+	        if (s % t.options.items === 0) {
+	          n += 1;if (r === s) {
+	            i = t.itemsAmount - t.options.items;
+	          }o = e("<div/>", { "class": "owl-page" });u = e("<span></span>", { text: t.options.paginationNumbers === true ? n : "", "class": t.options.paginationNumbers === true ? "owl-numbers" : "" });o.append(u);o.data("owl-page", r === s ? i : s);o.data("owl-roundPages", n);t.paginationWrapper.append(o);
+	        }
+	      }t.checkPagination();
+	    }, checkPagination: function checkPagination() {
+	      var t = this;if (t.options.pagination === false) {
+	        return false;
+	      }t.paginationWrapper.find(".owl-page").each(function () {
+	        if (e(this).data("owl-roundPages") === e(t.$owlItems[t.currentItem]).data("owl-roundPages")) {
+	          t.paginationWrapper.find(".owl-page").removeClass("active");e(this).addClass("active");
+	        }
+	      });
+	    }, checkNavigation: function checkNavigation() {
+	      var e = this;if (e.options.navigation === false) {
+	        return false;
+	      }if (e.options.rewindNav === false) {
+	        if (e.currentItem === 0 && e.maximumItem === 0) {
+	          e.buttonPrev.addClass("disabled");e.buttonNext.addClass("disabled");
+	        } else if (e.currentItem === 0 && e.maximumItem !== 0) {
+	          e.buttonPrev.addClass("disabled");e.buttonNext.removeClass("disabled");
+	        } else if (e.currentItem === e.maximumItem) {
+	          e.buttonPrev.removeClass("disabled");e.buttonNext.addClass("disabled");
+	        } else if (e.currentItem !== 0 && e.currentItem !== e.maximumItem) {
+	          e.buttonPrev.removeClass("disabled");e.buttonNext.removeClass("disabled");
+	        }
+	      }
+	    }, updateControls: function updateControls() {
+	      var e = this;e.updatePagination();e.checkNavigation();if (e.owlControls) {
+	        if (e.options.items >= e.itemsAmount) {
+	          e.owlControls.hide();
+	        } else {
+	          e.owlControls.show();
+	        }
+	      }
+	    }, destroyControls: function destroyControls() {
+	      var e = this;if (e.owlControls) {
+	        e.owlControls.remove();
+	      }
+	    }, next: function next(e) {
+	      var t = this;if (t.isTransition) {
+	        return false;
+	      }t.currentItem += t.options.scrollPerPage === true ? t.options.items : 1;if (t.currentItem > t.maximumItem + (t.options.scrollPerPage === true ? t.options.items - 1 : 0)) {
+	        if (t.options.rewindNav === true) {
+	          t.currentItem = 0;e = "rewind";
+	        } else {
+	          t.currentItem = t.maximumItem;return false;
+	        }
+	      }t.goTo(t.currentItem, e);
+	    }, prev: function prev(e) {
+	      var t = this;if (t.isTransition) {
+	        return false;
+	      }if (t.options.scrollPerPage === true && t.currentItem > 0 && t.currentItem < t.options.items) {
+	        t.currentItem = 0;
+	      } else {
+	        t.currentItem -= t.options.scrollPerPage === true ? t.options.items : 1;
+	      }if (t.currentItem < 0) {
+	        if (t.options.rewindNav === true) {
+	          t.currentItem = t.maximumItem;e = "rewind";
+	        } else {
+	          t.currentItem = 0;return false;
+	        }
+	      }t.goTo(t.currentItem, e);
+	    }, goTo: function goTo(e, n, r) {
+	      var i = this,
+	          s;if (i.isTransition) {
+	        return false;
+	      }if (typeof i.options.beforeMove === "function") {
+	        i.options.beforeMove.apply(this, [i.$elem]);
+	      }if (e >= i.maximumItem) {
+	        e = i.maximumItem;
+	      } else if (e <= 0) {
+	        e = 0;
+	      }i.currentItem = i.owl.currentItem = e;if (i.options.transitionStyle !== false && r !== "drag" && i.options.items === 1 && i.browser.support3d === true) {
+	        i.swapSpeed(0);if (i.browser.support3d === true) {
+	          i.transition3d(i.positionsInArray[e]);
+	        } else {
+	          i.css2slide(i.positionsInArray[e], 1);
+	        }i.afterGo();i.singleItemTransition();return false;
+	      }s = i.positionsInArray[e];if (i.browser.support3d === true) {
+	        i.isCss3Finish = false;if (n === true) {
+	          i.swapSpeed("paginationSpeed");t.setTimeout(function () {
+	            i.isCss3Finish = true;
+	          }, i.options.paginationSpeed);
+	        } else if (n === "rewind") {
+	          i.swapSpeed(i.options.rewindSpeed);t.setTimeout(function () {
+	            i.isCss3Finish = true;
+	          }, i.options.rewindSpeed);
+	        } else {
+	          i.swapSpeed("slideSpeed");t.setTimeout(function () {
+	            i.isCss3Finish = true;
+	          }, i.options.slideSpeed);
+	        }i.transition3d(s);
+	      } else {
+	        if (n === true) {
+	          i.css2slide(s, i.options.paginationSpeed);
+	        } else if (n === "rewind") {
+	          i.css2slide(s, i.options.rewindSpeed);
+	        } else {
+	          i.css2slide(s, i.options.slideSpeed);
+	        }
+	      }i.afterGo();
+	    }, jumpTo: function jumpTo(e) {
+	      var t = this;if (typeof t.options.beforeMove === "function") {
+	        t.options.beforeMove.apply(this, [t.$elem]);
+	      }if (e >= t.maximumItem || e === -1) {
+	        e = t.maximumItem;
+	      } else if (e <= 0) {
+	        e = 0;
+	      }t.swapSpeed(0);if (t.browser.support3d === true) {
+	        t.transition3d(t.positionsInArray[e]);
+	      } else {
+	        t.css2slide(t.positionsInArray[e], 1);
+	      }t.currentItem = t.owl.currentItem = e;t.afterGo();
+	    }, afterGo: function afterGo() {
+	      var e = this;console.log(this.currentItem);e.prevArr.push(e.currentItem);e.prevItem = e.owl.prevItem = e.prevArr[e.prevArr.length - 2];e.prevArr.shift(0);if (e.prevItem !== e.currentItem) {
+	        e.checkPagination();e.checkNavigation();e.eachMoveUpdate();if (e.options.autoPlay !== false) {
+	          e.checkAp();
+	        }
+	      }if (typeof e.options.afterMove === "function" && e.prevItem !== e.currentItem) {
+	        e.options.afterMove.apply(this, [e.$elem]);
+	      }
+	    }, stop: function stop() {
+	      var e = this;e.apStatus = "stop";t.clearInterval(e.autoPlayInterval);
+	    }, checkAp: function checkAp() {
+	      var e = this;if (e.apStatus !== "stop") {
+	        e.play();
+	      }
+	    }, play: function play() {
+	      var e = this;e.apStatus = "play";if (e.options.autoPlay === false) {
+	        return false;
+	      }t.clearInterval(e.autoPlayInterval);e.autoPlayInterval = t.setInterval(function () {
+	        e.next(true);
+	      }, e.options.autoPlay);
+	    }, swapSpeed: function swapSpeed(e) {
+	      var t = this;if (e === "slideSpeed") {
+	        t.$owlWrapper.css(t.addCssSpeed(t.options.slideSpeed));
+	      } else if (e === "paginationSpeed") {
+	        t.$owlWrapper.css(t.addCssSpeed(t.options.paginationSpeed));
+	      } else if (typeof e !== "string") {
+	        t.$owlWrapper.css(t.addCssSpeed(e));
+	      }
+	    }, addCssSpeed: function addCssSpeed(e) {
+	      return { "-webkit-transition": "all " + e + "ms ease", "-moz-transition": "all " + e + "ms ease", "-o-transition": "all " + e + "ms ease", transition: "all " + e + "ms ease" };
+	    }, removeTransition: function removeTransition() {
+	      return { "-webkit-transition": "", "-moz-transition": "", "-o-transition": "", transition: "" };
+	    }, doTranslate: function doTranslate(e) {
+	      return { "-webkit-transform": "translate3d(" + e + "px, 0px, 0px)", "-moz-transform": "translate3d(" + e + "px, 0px, 0px)", "-o-transform": "translate3d(" + e + "px, 0px, 0px)", "-ms-transform": "translate3d(" + e + "px, 0px, 0px)", transform: "translate3d(" + e + "px, 0px,0px)" };
+	    }, transition3d: function transition3d(e) {
+	      var t = this;t.$owlWrapper.css(t.doTranslate(e));
+	    }, css2move: function css2move(e) {
+	      var t = this;t.$owlWrapper.css({ left: e });
+	    }, css2slide: function css2slide(e, t) {
+	      var n = this;n.isCssFinish = false;n.$owlWrapper.stop(true, true).animate({ left: e }, { duration: t || n.options.slideSpeed, complete: function complete() {
+	          n.isCssFinish = true;
+	        } });
+	    }, checkBrowser: function checkBrowser() {
+	      var e = this,
+	          r = "translate3d(0px, 0px, 0px)",
+	          i = n.createElement("div"),
+	          s,
+	          o,
+	          u,
+	          a,
+	          f = n.documentElement.style;i.style.cssText = "  -moz-transform:" + r + "; -ms-transform:" + r + "; -o-transform:" + r + "; -webkit-transform:" + r + "; transform:" + r;s = /translate3d\(0px, 0px, 0px\)/g;o = i.style.cssText.match(s);u = f.webkitTransition !== undefined || f.MozTransition !== undefined || f.OTransition !== undefined || f.transition !== undefined;a = "ontouchstart" in t || t.navigator.msMaxTouchPoints;e.browser = { support3d: u, isTouch: a };
+	    }, moveEvents: function moveEvents() {
+	      var e = this;if (e.options.mouseDrag !== false || e.options.touchDrag !== false) {
+	        e.gestures();e.disabledEvents();
+	      }
+	    }, eventTypes: function eventTypes() {
+	      var e = this,
+	          t = ["s", "e", "x"];e.ev_types = {};if (e.options.mouseDrag === true && e.options.touchDrag === true) {
+	        t = ["touchstart.owl mousedown.owl", "touchmove.owl mousemove.owl", "touchend.owl touchcancel.owl mouseup.owl"];
+	      } else if (e.options.mouseDrag === false && e.options.touchDrag === true) {
+	        t = ["touchstart.owl", "touchmove.owl", "touchend.owl touchcancel.owl"];
+	      } else if (e.options.mouseDrag === true && e.options.touchDrag === false) {
+	        t = ["mousedown.owl", "mousemove.owl", "mouseup.owl"];
+	      }e.ev_types.start = t[0];e.ev_types.move = t[1];e.ev_types.end = t[2];
+	    }, disabledEvents: function disabledEvents() {
+	      var t = this;t.$elem.on("dragstart.owl", function (e) {
+	        e.preventDefault();
+	      });t.$elem.on("mousedown.disableTextSelect", function (t) {
+	        return e(t.target).is("input, textarea, select, option");
+	      });
+	    }, gestures: function gestures() {
+	      function s(e) {
+	        if (e.touches !== undefined) {
+	          return { x: e.touches[0].pageX, y: e.touches[0].pageY };
+	        }if (e.touches === undefined) {
+	          if (e.pageX !== undefined) {
+	            return { x: e.pageX, y: e.pageY };
+	          }if (e.pageX === undefined) {
+	            return { x: e.clientX, y: e.clientY };
+	          }
+	        }
+	      }function o(t) {
+	        if (t === "on") {
+	          e(n).on(r.ev_types.move, a);e(n).on(r.ev_types.end, f);
+	        } else if (t === "off") {
+	          e(n).off(r.ev_types.move);e(n).off(r.ev_types.end);
+	        }
+	      }function u(n) {
+	        var u = n.originalEvent || n || t.event,
+	            a;if (u.which === 3) {
+	          return false;
+	        }if (r.itemsAmount <= r.options.items) {
+	          return;
+	        }if (r.isCssFinish === false && !r.options.dragBeforeAnimFinish) {
+	          return false;
+	        }if (r.isCss3Finish === false && !r.options.dragBeforeAnimFinish) {
+	          return false;
+	        }if (r.options.autoPlay !== false) {
+	          t.clearInterval(r.autoPlayInterval);
+	        }if (r.browser.isTouch !== true && !r.$owlWrapper.hasClass("grabbing")) {
+	          r.$owlWrapper.addClass("grabbing");
+	        }r.newPosX = 0;r.newRelativeX = 0;e(this).css(r.removeTransition());a = e(this).position();i.relativePos = a.left;i.offsetX = s(u).x - a.left;i.offsetY = s(u).y - a.top;o("on");i.sliding = false;i.targetElement = u.target || u.srcElement;
+	      }function a(o) {
+	        var u = o.originalEvent || o || t.event,
+	            a,
+	            f;r.newPosX = s(u).x - i.offsetX;r.newPosY = s(u).y - i.offsetY;r.newRelativeX = r.newPosX - i.relativePos;if (typeof r.options.startDragging === "function" && i.dragging !== true && r.newRelativeX !== 0) {
+	          i.dragging = true;r.options.startDragging.apply(r, [r.$elem]);
+	        }if ((r.newRelativeX > 8 || r.newRelativeX < -8) && r.browser.isTouch === true) {
+	          if (u.preventDefault !== undefined) {
+	            u.preventDefault();
+	          } else {
+	            u.returnValue = false;
+	          }i.sliding = true;
+	        }if ((r.newPosY > 10 || r.newPosY < -10) && i.sliding === false) {
+	          e(n).off("touchmove.owl");
+	        }a = function a() {
+	          return r.newRelativeX / 5;
+	        };f = function f() {
+	          return r.maximumPixels + r.newRelativeX / 5;
+	        };r.newPosX = Math.max(Math.min(r.newPosX, a()), f());if (r.browser.support3d === true) {
+	          r.transition3d(r.newPosX);
+	        } else {
+	          r.css2move(r.newPosX);
+	        }
+	      }function f(n) {
+	        var s = n.originalEvent || n || t.event,
+	            u,
+	            a,
+	            f;s.target = s.target || s.srcElement;i.dragging = false;if (r.browser.isTouch !== true) {
+	          r.$owlWrapper.removeClass("grabbing");
+	        }if (r.newRelativeX < 0) {
+	          r.dragDirection = r.owl.dragDirection = "left";
+	        } else {
+	          r.dragDirection = r.owl.dragDirection = "right";
+	        }if (r.newRelativeX !== 0) {
+	          u = r.getNewPosition();r.goTo(u, false, "drag");if (i.targetElement === s.target && r.browser.isTouch !== true) {
+	            e(s.target).on("click.disable", function (t) {
+	              t.stopImmediatePropagation();t.stopPropagation();t.preventDefault();e(t.target).off("click.disable");
+	            });a = e._data(s.target, "events").click;f = a.pop();a.splice(0, 0, f);
+	          }
+	        }o("off");
+	      }var r = this,
+	          i = { offsetX: 0, offsetY: 0, baseElWidth: 0, relativePos: 0, position: null, minSwipe: null, maxSwipe: null, sliding: null, dargging: null, targetElement: null };r.isCssFinish = true;r.$elem.on(r.ev_types.start, ".owl-wrapper", u);
+	    }, getNewPosition: function getNewPosition() {
+	      var e = this,
+	          t = e.closestItem();if (t > e.maximumItem) {
+	        e.currentItem = e.maximumItem;t = e.maximumItem;
+	      } else if (e.newPosX >= 0) {
+	        t = 0;e.currentItem = 0;
+	      }return t;
+	    }, closestItem: function closestItem() {
+	      var t = this,
+	          n = t.options.scrollPerPage === true ? t.pagesInArray : t.positionsInArray,
+	          r = t.newPosX,
+	          i = null;e.each(n, function (s, o) {
+	        if (r - t.itemWidth / 20 > n[s + 1] && r - t.itemWidth / 20 < o && t.moveDirection() === "left") {
+	          i = o;if (t.options.scrollPerPage === true) {
+	            t.currentItem = e.inArray(i, t.positionsInArray);
+	          } else {
+	            t.currentItem = s;
+	          }
+	        } else if (r + t.itemWidth / 20 < o && r + t.itemWidth / 20 > (n[s + 1] || n[s] - t.itemWidth) && t.moveDirection() === "right") {
+	          if (t.options.scrollPerPage === true) {
+	            i = n[s + 1] || n[n.length - 1];t.currentItem = e.inArray(i, t.positionsInArray);
+	          } else {
+	            i = n[s + 1];t.currentItem = s + 1;
+	          }
+	        }
+	      });return t.currentItem;
+	    }, moveDirection: function moveDirection() {
+	      var e = this,
+	          t;if (e.newRelativeX < 0) {
+	        t = "right";e.playDirection = "next";
+	      } else {
+	        t = "left";e.playDirection = "prev";
+	      }return t;
+	    }, customEvents: function customEvents() {
+	      var e = this;e.$elem.on("owl.next", function () {
+	        e.next();
+	      });e.$elem.on("owl.prev", function () {
+	        e.prev();
+	      });e.$elem.on("owl.play", function (t, n) {
+	        e.options.autoPlay = n;e.play();e.hoverStatus = "play";
+	      });e.$elem.on("owl.stop", function () {
+	        e.stop();e.hoverStatus = "stop";
+	      });e.$elem.on("owl.goTo", function (t, n) {
+	        e.goTo(n);
+	      });e.$elem.on("owl.jumpTo", function (t, n) {
+	        e.jumpTo(n);
+	      });
+	    }, stopOnHover: function stopOnHover() {
+	      var e = this;if (e.options.stopOnHover === true && e.browser.isTouch !== true && e.options.autoPlay !== false) {
+	        e.$elem.on("mouseover", function () {
+	          e.stop();
+	        });e.$elem.on("mouseout", function () {
+	          if (e.hoverStatus !== "stop") {
+	            e.play();
+	          }
+	        });
+	      }
+	    }, lazyLoad: function lazyLoad() {
+	      var t = this,
+	          n,
+	          r,
+	          i,
+	          s,
+	          o;if (t.options.lazyLoad === false) {
+	        return false;
+	      }for (n = 0; n < t.itemsAmount; n += 1) {
+	        r = e(t.$owlItems[n]);if (r.data("owl-loaded") === "loaded") {
+	          continue;
+	        }i = r.data("owl-item");s = r.find(".lazyOwl");if (typeof s.data("src") !== "string") {
+	          r.data("owl-loaded", "loaded");continue;
+	        }if (r.data("owl-loaded") === undefined) {
+	          s.hide();r.addClass("loading").data("owl-loaded", "checked");
+	        }if (t.options.lazyFollow === true) {
+	          o = i >= t.currentItem;
+	        } else {
+	          o = true;
+	        }if (o && i < t.currentItem + t.options.items && s.length) {
+	          t.lazyPreload(r, s);
+	        }
+	      }
+	    }, lazyPreload: function lazyPreload(e, n) {
+	      function o() {
+	        e.data("owl-loaded", "loaded").removeClass("loading");n.removeAttr("data-src");if (r.options.lazyEffect === "fade") {
+	          n.fadeIn(400);
+	        } else {
+	          n.show();
+	        }if (typeof r.options.afterLazyLoad === "function") {
+	          r.options.afterLazyLoad.apply(this, [r.$elem]);
+	        }
+	      }function u() {
+	        i += 1;if (r.completeImg(n.get(0)) || s === true) {
+	          o();
+	        } else if (i <= 100) {
+	          t.setTimeout(u, 100);
+	        } else {
+	          o();
+	        }
+	      }var r = this,
+	          i = 0,
+	          s;if (n.prop("tagName") === "DIV") {
+	        n.css("background-image", "url(" + n.data("src") + ")");s = true;
+	      } else {
+	        n[0].src = n.data("src");
+	      }u();
+	    }, autoHeight: function autoHeight() {
+	      function s() {
+	        var r = e(n.$owlItems[n.currentItem]).height();n.wrapperOuter.css("height", r + "px");if (!n.wrapperOuter.hasClass("autoHeight")) {
+	          t.setTimeout(function () {
+	            n.wrapperOuter.addClass("autoHeight");
+	          }, 0);
+	        }
+	      }function o() {
+	        i += 1;if (n.completeImg(r.get(0))) {
+	          s();
+	        } else if (i <= 100) {
+	          t.setTimeout(o, 100);
+	        } else {
+	          n.wrapperOuter.css("height", "");
+	        }
+	      }var n = this,
+	          r = e(n.$owlItems[n.currentItem]).find("img"),
+	          i;if (r.get(0) !== undefined) {
+	        i = 0;o();
+	      } else {
+	        s();
+	      }
+	    }, completeImg: function completeImg(e) {
+	      var t;if (!e.complete) {
+	        return false;
+	      }t = _typeof(e.naturalWidth);if (t !== "undefined" && e.naturalWidth === 0) {
+	        return false;
+	      }return true;
+	    }, onVisibleItems: function onVisibleItems() {
+	      var t = this,
+	          n;if (t.options.addClassActive === true) {
+	        t.$owlItems.removeClass("active");
+	      }t.visibleItems = [];for (n = t.currentItem; n < t.currentItem + t.options.items; n += 1) {
+	        t.visibleItems.push(n);if (t.options.addClassActive === true) {
+	          e(t.$owlItems[n]).addClass("active");
+	        }
+	      }t.owl.visibleItems = t.visibleItems;
+	    }, transitionTypes: function transitionTypes(e) {
+	      var t = this;t.outClass = "owl-" + e + "-out";t.inClass = "owl-" + e + "-in";
+	    }, singleItemTransition: function singleItemTransition() {
+	      function a(e) {
+	        return { position: "relative", left: e + "px" };
+	      }var e = this,
+	          t = e.outClass,
+	          n = e.inClass,
+	          r = e.$owlItems.eq(e.currentItem),
+	          i = e.$owlItems.eq(e.prevItem),
+	          s = Math.abs(e.positionsInArray[e.currentItem]) + e.positionsInArray[e.prevItem],
+	          o = Math.abs(e.positionsInArray[e.currentItem]) + e.itemWidth / 2,
+	          u = "webkitAnimationEnd oAnimationEnd MSAnimationEnd animationend";e.isTransition = true;e.$owlWrapper.addClass("owl-origin").css({ "-webkit-transform-origin": o + "px", "-moz-perspective-origin": o + "px", "perspective-origin": o + "px" });i.css(a(s, 10)).addClass(t).on(u, function () {
+	        e.endPrev = true;i.off(u);e.clearTransStyle(i, t);
+	      });r.addClass(n).on(u, function () {
+	        e.endCurrent = true;r.off(u);e.clearTransStyle(r, n);
+	      });
+	    }, clearTransStyle: function clearTransStyle(e, t) {
+	      var n = this;e.css({ position: "", left: "" }).removeClass(t);if (n.endPrev && n.endCurrent) {
+	        n.$owlWrapper.removeClass("owl-origin");n.endPrev = false;n.endCurrent = false;n.isTransition = false;
+	      }
+	    }, owlStatus: function owlStatus() {
+	      var e = this;e.owl = { userOptions: e.userOptions, baseElement: e.$elem, userItems: e.$userItems, owlItems: e.$owlItems, currentItem: e.currentItem, prevItem: e.prevItem, visibleItems: e.visibleItems, isTouch: e.browser.isTouch, browser: e.browser, dragDirection: e.dragDirection };
+	    }, clearEvents: function clearEvents() {
+	      var r = this;r.$elem.off(".owl owl mousedown.disableTextSelect");e(n).off(".owl owl");e(t).off("resize", r.resizer);
+	    }, unWrap: function unWrap() {
+	      var e = this;if (e.$elem.children().length !== 0) {
+	        e.$owlWrapper.unwrap();e.$userItems.unwrap().unwrap();if (e.owlControls) {
+	          e.owlControls.remove();
+	        }
+	      }e.clearEvents();e.$elem.attr("style", e.$elem.data("owl-originalStyles") || "").attr("class", e.$elem.data("owl-originalClasses"));
+	    }, destroy: function destroy() {
+	      var e = this;e.stop();t.clearInterval(e.checkVisible);e.unWrap();e.$elem.removeData();
+	    }, reinit: function reinit(t) {
+	      var n = this,
+	          r = e.extend({}, n.userOptions, t);n.unWrap();n.init(r, n.$elem);
+	    }, addItem: function addItem(e, t) {
+	      var n = this,
+	          r;if (!e) {
+	        return false;
+	      }if (n.$elem.children().length === 0) {
+	        n.$elem.append(e);n.setVars();return false;
+	      }n.unWrap();if (t === undefined || t === -1) {
+	        r = -1;
+	      } else {
+	        r = t;
+	      }if (r >= n.$userItems.length || r === -1) {
+	        n.$userItems.eq(-1).after(e);
+	      } else {
+	        n.$userItems.eq(r).before(e);
+	      }n.setVars();
+	    }, removeItem: function removeItem(e) {
+	      var t = this,
+	          n;if (t.$elem.children().length === 0) {
+	        return false;
+	      }if (e === undefined || e === -1) {
+	        n = -1;
+	      } else {
+	        n = e;
+	      }t.unWrap();t.$userItems.eq(n).remove();t.setVars();
+	    } };e.fn.owlCarousel = function (t) {
+	    return this.each(function () {
+	      if (e(this).data("owl-init") === true) {
+	        return false;
+	      }e(this).data("owl-init", true);var n = Object.create(r);n.init(t, this);e.data(this, "owlCarousel", n);
+	    });
+	  };e.fn.owlCarousel.options = { items: 5, itemsCustom: false, itemsDesktop: [1199, 4], itemsDesktopSmall: [979, 3], itemsTablet: [768, 2], itemsTabletSmall: false, itemsMobile: [479, 1], singleItem: false, itemsScaleUp: false, slideSpeed: 200, paginationSpeed: 800, rewindSpeed: 1e3, autoPlay: false, stopOnHover: false, navigation: false, navigationText: ["prev", "next"], rewindNav: true, scrollPerPage: false, pagination: true, paginationNumbers: false, responsive: true, responsiveRefreshRate: 200, responsiveBaseWidth: t, baseClass: "owl-carousel", theme: "owl-theme", lazyLoad: false, lazyFollow: true, lazyEffect: "fade", autoHeight: false, jsonPath: false, jsonSuccess: false, dragBeforeAnimFinish: true, mouseDrag: true, touchDrag: true, addClassActive: false, transitionStyle: false, beforeUpdate: false, afterUpdate: false, beforeInit: false, afterInit: false, beforeMove: false, afterMove: false, afterAction: false, startDragging: false, afterLazyLoad: false };
+	})(jQuery, window, document);
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 106 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/posts/RelatedPostsView.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	            value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _RelatedPostsViewHbs = __webpack_require__(/*! ./RelatedPostsView.hbs.html */ 107);
+	
+	var _RelatedPostsViewHbs2 = _interopRequireDefault(_RelatedPostsViewHbs);
+	
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 105);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	            collection: null,
+	            template: _RelatedPostsViewHbs2.default,
+	
+	            onAttach: function onAttach() {
+	
+	                        this.initCarousel();
+	            },
+	            initCarousel: function initCarousel() {
+	                        var slider = this.$('#relatedPosts');
+	                        var options = slider.attr('data-plugin-options');
+	                        var defaults = {
+	                                    items: 5,
+	                                    itemsCustom: false,
+	                                    itemsDesktop: [1199, 4],
+	                                    itemsDesktopSmall: [980, 3],
+	                                    itemsTablet: [768, 2],
+	                                    itemsTabletSmall: false,
+	                                    itemsMobile: [479, 1],
+	                                    singleItem: true,
+	                                    itemsScaleUp: false,
+	
+	                                    slideSpeed: 200,
+	                                    paginationSpeed: 800,
+	                                    rewindSpeed: 1000,
+	
+	                                    autoPlay: false,
+	                                    stopOnHover: false,
+	
+	                                    navigation: false,
+	                                    navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+	                                    rewindNav: true,
+	                                    scrollPerPage: false,
+	
+	                                    pagination: true,
+	                                    paginationNumbers: false,
+	
+	                                    responsive: true,
+	                                    responsiveRefreshRate: 200,
+	                                    responsiveBaseWidth: window,
+	
+	                                    baseClass: "owl-carousel",
+	                                    theme: "owl-theme",
+	
+	                                    lazyLoad: false,
+	                                    lazyFollow: true,
+	                                    lazyEffect: "fade",
+	
+	                                    autoHeight: false,
+	
+	                                    jsonPath: false,
+	                                    jsonSuccess: false,
+	
+	                                    dragBeforeAnimFinish: true,
+	                                    mouseDrag: true,
+	                                    touchDrag: true,
+	
+	                                    transitionStyle: false,
+	
+	                                    addClassActive: false,
+	
+	                                    beforeUpdate: false,
+	                                    afterUpdate: false,
+	                                    beforeInit: false,
+	                                    afterInit: false,
+	                                    beforeMove: false,
+	                                    afterMove: false,
+	                                    afterAction: false,
+	                                    startDragging: false,
+	                                    afterLazyLoad: false
+	                        };
+	                        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+	                        slider.owlCarousel(config).addClass("owl-carousel-init");
+	            }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 107 */
+/*!*********************************************************!*\
+  !*** ./wwwroot/homeApp/posts/RelatedPostsView.hbs.html ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="heading-title heading-border">\r\n    <h3 class="weight-300">Похожие <span>объявления</span></h3>\r\n</div>\r\n<div class="text-center">\r\n    \r\n    <div class="owl-carousel owl-padding-1 nomargin buttons-autohide controlls-over" id="relatedPosts" data-plugin-options=\'{"singleItem": false, "items": "4", "autoPlay": 3500, "navigation": true, "pagination": false}\'>\r\n        ';
+	_.each(items,function(item) { 
+	__p+='\r\n        <div class="item-box">\r\n            <figure class="height-150" style="background-image: url('+
+	((__t=(encodeURI((item.details.photosUrls?item.details.photosUrls[0]:null)||'/images/noimage.jpg')))==null?'':_.escape(__t))+
+	'); background-position: center; background-repeat: no-repeat; background-size: 115%">\r\n                <span class="item-hover">\r\n                    <span class="overlay dark-5"></span>\r\n                    <span class="inner">\r\n                        <a title="'+
+	((__t=(item.details.title))==null?'':__t)+
+	'" class="ico-rounded" href="/posts/'+
+	((__t=(item._id))==null?'':__t)+
+	'">\r\n                            <span class="glyphicon glyphicon-option-horizontal size-20"></span>\r\n                        </a>\r\n                    </span>\r\n                </span>\r\n            </figure>\r\n            <div class="item-box-desc">\r\n                <h3 title="'+
+	((__t=(item.details.title))==null?'':__t)+
+	'">'+
+	((__t=(item.details.title.length <= 21? item.details.title:item.details.title.substring(0,18)+'...'))==null?'':__t)+
+	'</h3>\r\n                <ul class="list-inline categories nomargin">\r\n                    <li><a >'+
+	((__t=(item.type))==null?'':__t)+
+	'</a></li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        ';
+	});
+	__p+='\r\n    </div>\r\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 108 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/posts/CommentsListView.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _CommentsItemView = __webpack_require__(/*! ./CommentsItemView.js */ 109);
+	
+	var _CommentsItemView2 = _interopRequireDefault(_CommentsItemView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	
+	    childView: _CommentsItemView2.default,
+	    className: 'sh-reviews-items',
+	    tagName: 'div'
+	
+	});
+	
+	exports.default = View;
+
+/***/ },
+/* 109 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/posts/CommentsItemView.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+=======
 	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.html */ 104);
 	
 	var _PostTypeItemView2 = _interopRequireDefault(_PostTypeItemView);
@@ -32551,6 +39868,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -32560,6 +39878,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _CommentsItemViewHbs = __webpack_require__(/*! ./CommentsItemView.hbs.html */ 110);
+	
+	var _CommentsItemViewHbs2 = _interopRequireDefault(_CommentsItemViewHbs);
+=======
 	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 110);
 	
 	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
@@ -32603,11 +39926,50 @@
 	var _postDuration = __webpack_require__(/*! ../../helpers/postDuration.js */ 66);
 	
 	var _postDuration2 = _interopRequireDefault(_postDuration);
+>>>>>>> master
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.View.extend({
 	
+<<<<<<< HEAD
+	    className: 'sh-reviews-item',
+	    template: _CommentsItemViewHbs2.default
+	
+	});
+	
+	exports.default = View;
+
+/***/ },
+/* 110 */
+/*!*********************************************************!*\
+  !*** ./wwwroot/homeApp/posts/CommentsItemView.hbs.html ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n<div class="sh-reviews-avatar">\r\n    <a class="sh-creator-photo" href="/user/'+
+	((__t=(user._id))==null?'':__t)+
+	'">\r\n        ';
+	if(user.image.imageUrl != null) { 
+	__p+='\r\n            <img src="'+
+	((__t=(user.image.imageUrl))==null?'':__t)+
+	'" alt="Фотография в профиле"> \r\n        ';
+	 } else { 
+	__p+=' \r\n            <img src="/images/avatar2.jpg" alt="Фотография отсутствует"> \r\n        ';
+	 } 
+	__p+='\r\n    </a>\r\n</div>\r\n<div class="sh-reviews-content">\r\n    <div class="sh-reviews-content-inner">\r\n        <p class="sh-reviews-content-message">'+
+	((__t=(text))==null?'':__t)+
+	'</p>\r\n    </div>\r\n    <div class="sh-reviews-content-footer">\r\n        <a class="sh-reviews-content-user" href="/user/'+
+	((__t=(user._id))==null?'':__t)+
+	'">'+
+	((__t=(user.username))==null?'':__t)+
+	'</a>\r\n        <span>·</span>\r\n        <span class="sh-reviews-content-meta">'+
+	((__t=(moment(dateTime).fromNow()))==null?'':__t)+
+	'</span>\r\n    </div>\r\n</div>\r\n';
+=======
 	    map: null,
 	    postLocation: {},
 	    pinn: null,
@@ -33113,10 +40475,32 @@
 	' ';
 	 } 
 	__p+='</span></div></li>\r\n                            </ul>\r\n                        </div>\r\n\r\n                        <div class="sh-post-wish-and-more" style="display: none;">\r\n                            <div class="sh-post-wish hidden"></div>\r\n                            <div class="sh-post-more">\r\n                                <div class="sh-post-more-wrapper">\r\n                                    <a href="#" class="sh-share-btn sh-text-center">\r\n                                        <span>E-mail</span>\r\n                                    </a>\r\n                                    <a href="#" class="sh-share-btn sh-text-center">\r\n                                        <span>Вконтакте</span>\r\n                                    </a>\r\n                                    <span class="sh-more-btn sh-text-center">\r\n                                        ··· <span>Ещё</span>\r\n                                    </span>\r\n                                </div>\r\n\r\n                                <div class="sh-report-message">\r\n                                    <i class="fa fa-exclamation" aria-hidden="true"></i>\r\n                                    <a href="#">Сообщите об этом объявлении</a>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="sh-same-posts hidden">\r\n                    <div class="container">\r\n                        <div class="sh-same-posts-wrapper">\r\n                            <h4>Похожие посты</h4>\r\n\r\n                            <div class="sh-text-center">Скоро на всех устройствах мира</div>\r\n                            <br>\r\n\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</main>';
+>>>>>>> master
 	}
 	return __p;
 	};
 	
+<<<<<<< HEAD
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 111 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/posts/DetailsView.less ***!
+  \************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 112 */
+/*!*************************************!*\
+  !*** ./wwwroot/data/Domain/User.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+=======
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12), __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
@@ -33814,11 +41198,17 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	
+<<<<<<< HEAD
+	var _MongoModel = __webpack_require__(/*! ../MongoModel.js */ 86);
+	
+	var _MongoModel2 = _interopRequireDefault(_MongoModel);
+=======
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
@@ -33828,6 +41218,7 @@
 	var _RelatedPostsViewHbs2 = _interopRequireDefault(_RelatedPostsViewHbs);
 	
 	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 111);
+>>>>>>> master
 	
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
@@ -33835,6 +41226,153 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+<<<<<<< HEAD
+	exports.default = _MongoModel2.default.extend({
+	    urlRoot: '/api/Users'
+	});
+
+/***/ },
+/* 113 */
+/*!****************************************!*\
+  !*** ./wwwroot/data/Post/PostModel.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, $) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _AsteroidModel = __webpack_require__(/*! ../AsteroidModel.js */ 85);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _AsteroidModel2.default.extend({
+	    create: function create(options) {
+	        var self = this;
+	        if (!options || !options.silent) this.trigger('before:save');
+	        var photos = this.get('details').photos;
+	        if (photos && !_.isEmpty(photos)) {
+	            $.ajax({
+	                type: "POST",
+	                url: "/Img/CommitUploadImage",
+	                contentType: "application/json",
+	                dataType: "json",
+	                data: JSON.stringify(photos)
+	            }).done(function (resp) {
+	                var details = self.get('details');
+	                details.photos = resp;
+	                self.set('details', details, { silent: true });
+	                self._create(options);
+	            });
+	        } else {
+	            this._create(options);
+	        }
+	    },
+	    isOwnerAsync: function isOwnerAsync(userId) {
+	        return $.ajax({
+	            url: '/api/posts/hasPost',
+	            data: { userId: userId, postId: this.get('_id') },
+	            method: 'GET',
+	            type: 'json'
+	        });
+	    },
+	    _create: function _create(options) {
+	        var self = this;
+	        return this.asteroid.call('addPost', this.attributes).then(function (resp) {
+	            if (resp.success) {
+	                self.set('_id', resp.result, options);
+	                if (!options || !options.silent) self.trigger('save', resp);
+	            } else {
+	                if (!options || !options.silent) self.trigger('error:save', resp.error);
+	                throw new Error("Creating post error: " + resp.error);
+	            }
+	        }).catch(function (err) {
+	            if (!options || !options.silent) self.trigger('error:save', err);
+	            console.error(err);
+	            throw new Error("Save fail from meteor! Custom error: " + err);
+	        });
+	    },
+	
+	
+	    validation: {
+	
+	        type: {
+	            required: true,
+	            msg: 'Введите категорию объявления'
+	        },
+	
+	        endDatePost: {
+	            required: true,
+	            msg: 'Введите длительность объявления'
+	        },
+	        'details.title': {
+	            required: true,
+	            msg: 'Введите название объявления'
+	        },
+	
+	        'details.locations': function detailsLocations(value, attr, computedState) {
+	            if (!value || _.isEmpty(value)) return "укажите местоположение";
+	        }
+	    }
+	});
+	
+	//addPost(request, currentLocation)
+	
+	//curentLocation={lat, lng}
+	
+	//request={details, type, tags, jobsDetails, trainingDetails}
+	
+	
+	//details={anonymousPost,
+	//    url,
+	//    title,
+	//    description,
+	//    price,
+	//    photos,
+	//    locations,
+	//    other}
+	//locations=userId,
+	//              name,
+	//              accurateAddress="asfasf",
+	//              coords = {lat,lng,timestamp},
+	//              placeType=dynamic | static,
+	//              public=false,
+	//              _id,
+	//              obscuredCoords
+	//};
+	
+	//photo = {
+	//    data,
+	//    thumbnail
+	//};
+	
+	
+	//jobsDetails={seniority,
+	//    gender,
+	//    contacts,
+	//    attachment,
+	//    typeCategory,
+	//    jobsType,
+	//    payMethod}
+	
+	//trainingsDetails = {
+	//    sectionLearning,
+	//    typeCategory
+	//}
+	
+	//return {success: true, result: post}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 114 */
+/*!**********************************************!*\
+  !*** ./wwwroot/sharedViews/PreloaderView.js ***!
+  \**********************************************/
+=======
 	var View = _backbone2.default.View.extend({
 	    collection: null,
 	    template: _RelatedPostsViewHbs2.default,
@@ -33951,6 +41489,7 @@
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/posts/CommentsListView.js ***!
   \***************************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33963,6 +41502,19 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _PreloaderViewHbs = __webpack_require__(/*! ./PreloaderView.hbs.html */ 115);
+	
+	var _PreloaderViewHbs2 = _interopRequireDefault(_PreloaderViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _PreloaderViewHbs2.default,
+	    id: 'preloader'
+	});
+=======
 	var _CommentsItemView = __webpack_require__(/*! ./CommentsItemView.js */ 115);
 	
 	var _CommentsItemView2 = _interopRequireDefault(_CommentsItemView);
@@ -33977,10 +41529,526 @@
 	
 	});
 	
+>>>>>>> master
 	exports.default = View;
 
 /***/ },
 /* 115 */
+<<<<<<< HEAD
+/*!****************************************************!*\
+  !*** ./wwwroot/sharedViews/PreloaderView.hbs.html ***!
+  \****************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="inner">\r\n    <span class="loader"></span>\r\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 116 */
+/*!********************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/CreatePostView.js ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment, $) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _CreatePostViewHbs = __webpack_require__(/*! ./CreatePostView.hbs.html */ 117);
+	
+	var _CreatePostViewHbs2 = _interopRequireDefault(_CreatePostViewHbs);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _scriptjs = __webpack_require__(/*! scriptjs */ 118);
+	
+	var _scriptjs2 = _interopRequireDefault(_scriptjs);
+	
+	var _UploadedImagesView = __webpack_require__(/*! ./UploadedImagesView.js */ 119);
+	
+	var _UploadedImagesView2 = _interopRequireDefault(_UploadedImagesView);
+	
+	var _SelectedLocationView = __webpack_require__(/*! ./SelectedLocationView.js */ 122);
+	
+	var _SelectedLocationView2 = _interopRequireDefault(_SelectedLocationView);
+	
+	var _ModalContainerView = __webpack_require__(/*! ../../../sharedViews/ModalContainerView.js */ 124);
+	
+	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
+	
+	var _SuccessView = __webpack_require__(/*! ../../../sharedViews/SuccessView.js */ 126);
+	
+	var _SuccessView2 = _interopRequireDefault(_SuccessView);
+	
+	var _LocationMapView = __webpack_require__(/*! ./LocationMapView.js */ 128);
+	
+	var _LocationMapView2 = _interopRequireDefault(_LocationMapView);
+	
+	__webpack_require__(/*! bootstrap-datepicker */ 132);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _CreatePostViewHbs2.default,
+	    tagName: 'section',
+	    className: 'sh-create-post',
+	    changeTimeOut: null,
+	    images: null,
+	    events: {
+	        'click #back': 'back',
+	        "change #detailsTitle": 'setTitle',
+	        // "change #detailsUrl":'setUrl',
+	        //"change #detailsPrice":'setPrice',
+	        "change #postType": 'setPostType',
+	        "change #detailsDescription": 'setDescription',
+	        "click #saveShiner": 'save',
+	        'click #addImgButton': 'showImageDialog',
+	        'change #addImgInput': 'uploadImage',
+	        'click #selectLocation': 'onSelectLocation',
+	        'change #dateDurationSelect': 'setFixedDuration',
+	        'change #dateDuration': 'setDate',
+	        'change #anonymous-post': 'setAnonimous'
+	    },
+	
+	    regions: {
+	        'images': '#uploadedImages',
+	        'location': '#locationName',
+	        'modal': '#modalContainer'
+	    },
+	
+	    modelEvents: {
+	        'change': 'toggleCreateButton',
+	        'save': 'showSuccess',
+	        'error:save': 'showError'
+	    },
+	
+	    initialize: function initialize() {
+	        this.images = new Backbone.Collection();
+	        this.selectedLocation = new Backbone.Model({
+	            coords: _app2.default.user.get('position')
+	        });
+	        this.listenTo(this.selectedLocation, 'change', this.showLocation);
+	        this.listenTo(this.selectedLocation, 'change', this.setLocation);
+	        this.listenTo(this.images, 'change', this.setImages);
+	        window.uploadedImages = this.images; // debug
+	    },
+	    setAnonimous: function setAnonimous(e) {
+	        this.model.set('anonymousPost', e.target.checked);
+	    },
+	    setLocation: function setLocation() {
+	        var details = this.model.get('details');
+	        var location = this.selectedLocation.toJSON() || {};
+	        if (location["name"]) {
+	            location["userId"] = _app2.default.user.id;
+	            location["public"] = false;
+	            details.locations = [location];
+	            this.model.set('details', details, { validate: true });
+	        }
+	    },
+	    setImages: function setImages() {
+	        var details = this.model.get('details');
+	        var images = [];
+	        this.images.each(function (img) {
+	            if (img.has('data')) {
+	                images.push(img.toJSON());
+	            }
+	        }, this);
+	        details.photos = images;
+	        this.model.set('details', details);
+	    },
+	    setTitle: function setTitle(e) {
+	        var details = this.model.get('details') || {};
+	        if (e.target.value && !_.isEmpty(e.target.value.trim())) {
+	            details.title = e.target.value.trim();
+	        } else {
+	            delete details.title;
+	        }
+	        this.model.set('details', details, { validate: true });
+	    },
+	    setUrl: function setUrl(e) {
+	        var details = this.model.get('details') || {};
+	        if (e.target.value && !_.isEmpty(e.target.value.trim())) {
+	            details.url = e.target.value.trim();
+	        } else {
+	            delete details.url;
+	        }
+	        this.model.set('details', details);
+	    },
+	    setPrice: function setPrice(e) {
+	        var details = this.model.get('details') || {};
+	        if (e.target.value && !_.isEmpty(e.target.value.trim())) {
+	            details.price = e.target.value.trim();
+	        } else {
+	            delete details.price;
+	        }
+	        this.model.set('details', details);
+	    },
+	    setPostType: function setPostType(e) {
+	        var id = e.target.value;
+	        var postType = _app2.default.postAdTypes.get(id);
+	        this.model.set('type', postType ? postType.get('name') : void 0, { validate: true });
+	    },
+	    setDescription: function setDescription(e) {
+	        var _this = this;
+	
+	        if (this.changeTimeOut) clearTimeout(this.changeTimeOut);
+	        this.changeTimeOut = setTimeout(_.bind(function () {
+	            var val = e.editor.getData();
+	            val = val && !_.isEmpty(val) ? val.trim() : void 0;
+	            var details = _this.model.get('details') || {};
+	            if (val && !_.isEmpty(val.trim())) {
+	                details.description = val.trim();
+	            } else {
+	                delete details.description;
+	            }
+	            _this.model.set('details', details);
+	        }, this), 400);
+	    },
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            postTypes: _app2.default.postAdTypes.toJSON()
+	        };
+	    },
+	    onRender: function onRender() {
+	        this.showChildView('images', new _UploadedImagesView2.default({ collection: this.images }));
+	        this.showChildView('location', new _SelectedLocationView2.default({ model: this.selectedLocation }));
+	    },
+	    onAttach: function onAttach() {
+	        this.initHtmlEditor();
+	        this.initDatepicker();
+	        Backbone.Validation.bind(this);
+	    },
+	    initHtmlEditor: function initHtmlEditor() {
+	        //ru-RU
+	        var self = this;
+	        (0, _scriptjs2.default)('/lib/ckeditor/ckeditor.js', function () {
+	            CKEDITOR.config.language = 'ru';
+	            if (CKEDITOR.status == 'loaded') {
+	                CKEDITOR.replace("detailsDescription");
+	                CKEDITOR.instances["detailsDescription"].on('change', _.bind(self.setDescription, self));
+	            } else {
+	                CKEDITOR.on('loaded', function () {
+	                    CKEDITOR.replace("detailsDescription");
+	                    CKEDITOR.instances["detailsDescription"].on('change', _.bind(self.setDescription, self));
+	                });
+	            }
+	        });
+	    },
+	    initDatepicker: function initDatepicker() {
+	        this.$('#dateDuration').datepicker({
+	            language: 'ru',
+	            format: 'dd/mm/yyyy'
+	        });
+	    },
+	    setFixedDuration: function setFixedDuration(e) {
+	        var hours = parseInt(e.target.value);
+	        var ms = hours * 3600000;
+	        var dateMoment = moment();
+	        dateMoment = dateMoment.add(ms);
+	        this.$('#dateDuration').datepicker('setDate', dateMoment.toDate());
+	    },
+	    setDate: function setDate(e) {
+	        if (e.target.value && !_.isEmpty(e.target.value)) {
+	            var val = moment(e.target.value, "DD/MM/YYYY");
+	            this.model.set('endDatePost', val.valueOf());
+	        }
+	    },
+	    onBeforeRemove: function onBeforeRemove() {
+	        if (CKEDITOR) CKEDITOR.instances["detailsDescription"].destroy();
+	        Backbone.Validation.unbind(this);
+	    },
+	    showImageDialog: function showImageDialog() {
+	        this.$('#addImgInput').trigger('click');
+	    },
+	
+	
+	    uploadImage: function uploadImage(e) {
+	        var _this2 = this;
+	
+	        var re_text = /\.bmp|\.jpeg|\.jpg|\.png/i;
+	        if (e.target.value.search(re_text) == -1) {
+	            console.error("Некорректное расширение картинки\n Должно быть  bmp, jpeg, jpg, png ");
+	            alert("Некорректное расширение картинки\n Должно быть  bmp, jpeg, jpg, png ");
+	        } else {
+	            var data = new FormData();
+	            var files = $(e.target).get(0).files;
+	            _.each(files, function (f) {
+	                data.append(f.name, f);
+	                var model = new Backbone.Model({
+	                    type: f.type,
+	                    name: f.name,
+	                    id: f.name
+	                });
+	                _this2.images.add(model);
+	            }, this);
+	
+	            var self = this;
+	            $.ajax({
+	                type: "POST",
+	                url: "/Img/UploadTempImage",
+	                contentType: false,
+	                processData: false,
+	                data: data
+	            }).done(function (resp, textStatus, xhr) {
+	                if (textStatus === 'success') {
+	                    _.each(resp, function (item) {
+	                        var m = self.images.get(item.id);
+	                        m.set('data', item.data);
+	                    });
+	                }
+	            });
+	        }
+	        e.target.value = null;
+	    },
+	
+	    onSelectLocation: function onSelectLocation(e) {
+	        this.showChildView('modal', new _ModalContainerView2.default({ view: new _LocationMapView2.default({ model: this.selectedLocation }), title: 'Выбор местоположения' }));
+	    },
+	    toggleCreateButton: function toggleCreateButton() {
+	        var errors = this.model.validate();
+	        var $btn = this.$('#saveShiner');
+	        if (!errors) {
+	            $btn.removeClass('disabled');
+	        } else {
+	            if (!$btn.hasClass('disabled')) $btn.addClass('disabled');
+	        }
+	    },
+	    save: function save() {
+	        if (!this.model.validate()) {
+	
+	            this.model.create();
+	        }
+	    },
+	    showSuccess: function showSuccess() {
+	        this.showChildView('modal', new _ModalContainerView2.default({
+	            view: new _SuccessView2.default({
+	                resultUrl: '/posts/' + this.model.id,
+	                title: 'Новый светлячок успешно установлен и доступен для пользователей.',
+	                message: 'Перейдите на персональную страницу Вашего объявления для просмотра визитов, комментариев и другой информации.'
+	            }),
+	            title: 'Поздравляем, Вы добавили новый светлячок!'
+	        }));
+	    },
+	    showError: function showError(er) {
+	        alert("Ошибка создания поста. " + er);
+	    },
+	    back: function back() {
+	        history.back();
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12), __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 117 */
+/*!**************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/CreatePostView.hbs.html ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div id="modalContainer"></div>\r\n<div class="container">\r\n    <div class="sh-form">\r\n        <!--1-->\r\n        <div class="sh-form-step">\r\n            <div class="sh-form-row sh-caption">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Что\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text sh-padding-title">\r\n                        Информация из этой секции будет использоваться при поиске вашего объявления. Пожалуйста, указывайте точные сведения, чтобы найти подходящий вариант.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!--\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title"></div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text"></div>\r\n                </div>\r\n            </div>\r\n            -->\r\n\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Анонимный пост\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-checkbox">\r\n                            <input id="anonymous-post" type="checkbox" class="js-toggle-checked"> <span>Включить анонимный пост</span>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Заголовок\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-input">\r\n                            <input type="text" name="details.title" class="sh-input-control form-control" placeholder="Название должно быть конкретным" id="detailsTitle">\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Описание\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-textarea">\r\n                            <textarea class="sh-textarea-control" id="detailsDescription" placeholder="Подробное описание – это обязательный параметр объявления"></textarea>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Категория\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-select">\r\n                            <select class="js-ad-type-select" required="" id="postType" name="type">\r\n                                <option value=""> -- Выберите тип -- </option>\r\n                                ';
+	_.each(postTypes,function(type) { 
+	__p+='\r\n                                <option value="'+
+	((__t=(type._id))==null?'':__t)+
+	'">'+
+	((__t=(type.i18n.ru.fullName))==null?'':__t)+
+	'</option>\r\n                                ';
+	 }); 
+	__p+='\r\n                            </select>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Фотографии\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-photos-upload">\r\n                            <div class="sh-photos-upload-wrapper">\r\n                                <div class="sh-photos-upload-image">\r\n                                    <i class="fa fa-camera"></i>\r\n                                </div>\r\n                                <div class="sh-photos-upload-description">\r\n                                    <span>Добавьте фотографии для объявления.<br />Вы всегда можете вернуться к сохраненному объявлению и добавить новые фотографии.</span>\r\n                                </div>\r\n                                <div class="sh-photos-upload-button">\r\n                                    <a class="ui sh-button" id="addImgButton"> Добавить фото</a>\r\n                                    <input id="addImgInput" type="file" style="display: none" />\r\n                                </div>\r\n                            </div>\r\n                            <div id="uploadedImages">\r\n\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n        <!--2-->\r\n        <div class="sh-form-step">\r\n            <div class="sh-form-row sh-caption">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Где\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text sh-padding-title">\r\n                        Выберите надстройку для вашего объявления. С помощью этих данных пользователи найдут объявления в подходящем для них месте.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title"></div>\r\n                </div>\r\n                \r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text text-center">\r\n                        <a id="selectLocation">Выбрать Местонахождение объявления</a>\r\n                        <div id="locationName" class="sh-location-name" name="details.locations"></div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <!--3-->\r\n        <div class="sh-form-step">\r\n            <div class="sh-form-row sh-caption">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Когда\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text sh-padding-title">\r\n                        Установите время, в течении которого ваше объявление будет активным.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Продолжительность\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-datepicker">\r\n                            <div class="sh-datepicker-wrapper">\r\n                                <div class="sh-textfield-picker action l input">\r\n                                    <input id="dateDuration" type="text" class="sh-input-control form-control sh-datepicker" placeholder="Нажмите, чтобы выбрать дату" data-format="yyyy-mm-dd" data-lang="en" data-RTL="false">\r\n                                </div>\r\n                                <div class="sh-select sh-select-duration-picker">\r\n                                    <select class="form-control select2" id="dateDurationSelect">\r\n                                        <option value="24">Один день</option>\r\n                                        <option value="48">Два дня</option>\r\n                                        <option value="168">Неделя</option>\r\n                                        <option value="336">Две недели</option>\r\n                                        <option value="720">Месяц</option>\r\n                                        <option value="8760">Год</option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class="sh-create-post-btn pull-right">\r\n            <button class="ui sh-button standard create big disabled" id="saveShiner">Установить Светлячок</button>\r\n        </div>\r\n\r\n\r\n    </div>\r\n\r\n\r\n    <!--\r\n    <div class="sh-work-wrapper">\r\n        <h1 class="sh-section-hero-headline sh-text-center">Как это работает</h1>\r\n        <p class="sh-section-intro sh-text-center">Сайт для поиска услуг, мероприятий и других объявлений от людей вокруг Вас</p>\r\n\r\n        <div class="sh-work-tabs"></div>\r\n    </div>\r\n    -->\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 118 */
+/*!***********************************!*\
+  !*** ./~/scriptjs/dist/script.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+	
+	/*!
+	  * $script.js JS loader & dependency manager
+	  * https://github.com/ded/script.js
+	  * (c) Dustin Diaz 2014 | License MIT
+	  */
+	
+	(function (name, definition) {
+	  if (typeof module != 'undefined' && module.exports) module.exports = definition();else if (true) !(__WEBPACK_AMD_DEFINE_FACTORY__ = (definition), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else this[name] = definition();
+	})('$script', function () {
+	  var doc = document,
+	      head = doc.getElementsByTagName('head')[0],
+	      s = 'string',
+	      f = false,
+	      push = 'push',
+	      readyState = 'readyState',
+	      onreadystatechange = 'onreadystatechange',
+	      list = {},
+	      ids = {},
+	      delay = {},
+	      scripts = {},
+	      scriptpath,
+	      urlArgs;
+	
+	  function every(ar, fn) {
+	    for (var i = 0, j = ar.length; i < j; ++i) {
+	      if (!fn(ar[i])) return f;
+	    }return 1;
+	  }
+	  function each(ar, fn) {
+	    every(ar, function (el) {
+	      return !fn(el);
+	    });
+	  }
+	
+	  function $script(paths, idOrDone, optDone) {
+	    paths = paths[push] ? paths : [paths];
+	    var idOrDoneIsDone = idOrDone && idOrDone.call,
+	        done = idOrDoneIsDone ? idOrDone : optDone,
+	        id = idOrDoneIsDone ? paths.join('') : idOrDone,
+	        queue = paths.length;
+	    function loopFn(item) {
+	      return item.call ? item() : list[item];
+	    }
+	    function callback() {
+	      if (! --queue) {
+	        list[id] = 1;
+	        done && done();
+	        for (var dset in delay) {
+	          every(dset.split('|'), loopFn) && !each(delay[dset], loopFn) && (delay[dset] = []);
+	        }
+	      }
+	    }
+	    setTimeout(function () {
+	      each(paths, function loading(path, force) {
+	        if (path === null) return callback();
+	
+	        if (!force && !/^https?:\/\//.test(path) && scriptpath) {
+	          path = path.indexOf('.js') === -1 ? scriptpath + path + '.js' : scriptpath + path;
+	        }
+	
+	        if (scripts[path]) {
+	          if (id) ids[id] = 1;
+	          return scripts[path] == 2 ? callback() : setTimeout(function () {
+	            loading(path, true);
+	          }, 0);
+	        }
+	
+	        scripts[path] = 1;
+	        if (id) ids[id] = 1;
+	        create(path, callback);
+	      });
+	    }, 0);
+	    return $script;
+	  }
+	
+	  function create(path, fn) {
+	    var el = doc.createElement('script'),
+	        loaded;
+	    el.onload = el.onerror = el[onreadystatechange] = function () {
+	      if (el[readyState] && !/^c|loade/.test(el[readyState]) || loaded) return;
+	      el.onload = el[onreadystatechange] = null;
+	      loaded = 1;
+	      scripts[path] = 2;
+	      fn();
+	    };
+	    el.async = 1;
+	    el.src = urlArgs ? path + (path.indexOf('?') === -1 ? '?' : '&') + urlArgs : path;
+	    head.insertBefore(el, head.lastChild);
+	  }
+	
+	  $script.get = create;
+	
+	  $script.order = function (scripts, id, done) {
+	    (function callback(s) {
+	      s = scripts.shift();
+	      !scripts.length ? $script(s, id, done) : $script(s, callback);
+	    })();
+	  };
+	
+	  $script.path = function (p) {
+	    scriptpath = p;
+	  };
+	  $script.urlArgs = function (str) {
+	    urlArgs = str;
+	  };
+	  $script.ready = function (deps, ready, req) {
+	    deps = deps[push] ? deps : [deps];
+	    var missing = [];
+	    !each(deps, function (dep) {
+	      list[dep] || missing[push](dep);
+	    }) && every(deps, function (dep) {
+	      return list[dep];
+	    }) ? ready() : !function (key) {
+	      delay[key] = delay[key] || [];
+	      delay[key][push](ready);
+	      req && req(missing);
+	    }(deps.join('|'));
+	    return $script;
+	  };
+	
+	  $script.done = function (idOrDone) {
+	    $script([null], idOrDone);
+	  };
+	
+	  return $script;
+	});
+
+/***/ },
+/* 119 */
+/*!************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/UploadedImagesView.js ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ImageView = __webpack_require__(/*! ./ImageView.js */ 120);
+	
+	var _ImageView2 = _interopRequireDefault(_ImageView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.CollectionView.extend({
+	    childView: _ImageView2.default,
+	    tagName: 'div',
+	    className: 'sh-photos-upload-thumbs'
+	});
+
+/***/ },
+/* 120 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/ImageView.js ***!
+  \***************************************************/
+=======
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/posts/CommentsItemView.js ***!
   \***************************************************/
@@ -34160,6 +42228,7 @@
 /*!*************************************!*\
   !*** ./wwwroot/data/Domain/User.js ***!
   \*************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34168,6 +42237,30 @@
 	    value: true
 	});
 	
+<<<<<<< HEAD
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ImageViewHbs = __webpack_require__(/*! ./ImageView.hbs.html */ 121);
+	
+	var _ImageViewHbs2 = _interopRequireDefault(_ImageViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	    template: _ImageViewHbs2.default,
+	    className: 'img-item',
+	    modelEvents: {
+	        'change:data': 'render'
+	    },
+	    events: {
+	        'click .removeImage': 'onRemoveImage'
+	    },
+	    onRemoveImage: function onRemoveImage() {
+	        this.model.collection.remove(this.model);
+	    }
+=======
 	var _MongoModel = __webpack_require__(/*! ../MongoModel.js */ 92);
 	
 	var _MongoModel2 = _interopRequireDefault(_MongoModel);
@@ -34180,10 +42273,42 @@
 	
 	exports.default = _MongoModel2.default.extend({
 	    urlRoot: '/api/Users'
+>>>>>>> master
 	});
 
 /***/ },
 /* 121 */
+<<<<<<< HEAD
+/*!*********************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/ImageView.hbs.html ***!
+  \*********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='';
+	if(obj.data) { 
+	__p+='\r\n<img width="120" src="data:'+
+	((__t=(type))==null?'':__t)+
+	';base64,'+
+	((__t=(data))==null?'':__t)+
+	'"/>\r\n';
+	 } else { 
+	__p+='\r\n<img width="120" class="img-responsive" src="/images/working.gif" />\r\n';
+	 } 
+	__p+='\r\n<a title="Удалить" class="removeImage"><i class="fa fa-remove text-danger"></i></a>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 122 */
+/*!**************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.js ***!
+  \**************************************************************/
+=======
 /*!****************************************!*\
   !*** ./wwwroot/data/Post/PostModel.js ***!
   \****************************************/
@@ -34344,6 +42469,7 @@
 /*!**********************************************!*\
   !*** ./wwwroot/sharedViews/PreloaderView.js ***!
   \**********************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34356,6 +42482,35 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _SelectedLocationViewHbs = __webpack_require__(/*! ./SelectedLocationView.hbs.html */ 123);
+	
+	var _SelectedLocationViewHbs2 = _interopRequireDefault(_SelectedLocationViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	    template: _SelectedLocationViewHbs2.default,
+	    modelEvents: {
+	        'change': 'render'
+	    }
+	});
+	
+	//locations=userId,
+	//              name,
+	//              accurateAddress="asfasf",
+	//              coords = {lat,lng,timestamp},
+	//              placeType=dynamic | static,
+	//              public=false,
+	//              _id,
+	//              obscuredCoords
+
+/***/ },
+/* 123 */
+/*!********************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.hbs.html ***!
+  \********************************************************************/
+=======
 	var _PreloaderViewHbs = __webpack_require__(/*! ./PreloaderView.hbs.html */ 123);
 	
 	var _PreloaderViewHbs2 = _interopRequireDefault(_PreloaderViewHbs);
@@ -34374,12 +42529,27 @@
 /*!****************************************************!*\
   !*** ./wwwroot/sharedViews/PreloaderView.hbs.html ***!
   \****************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
+	__p+='<i class="fa fa-map-marker"></i> '+
+	((__t=(obj.accurateAddress||obj.name||'Местоположение не выбрано'))==null?'':__t)+
+	'\r\n';
+	if (obj.placeType) { 
+	__p+='\r\n    ';
+	if (obj.placeType=='dynamic') { 
+	__p+='\r\n        <span class="label label-info">Привязано к местоположению пользователя</span>\r\n    ';
+	 } 
+	__p+='\r\n';
+	 } 
+	__p+='\r\n\r\n';
+=======
 	__p+='<div class="inner">\n    <span class="loader"></span>\n</div>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -34387,12 +42557,21 @@
 
 /***/ },
 /* 124 */
+<<<<<<< HEAD
+/*!***************************************************!*\
+  !*** ./wwwroot/sharedViews/ModalContainerView.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+=======
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/CreatePostView.js ***!
   \********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(_, moment, $) {'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -34402,6 +42581,144 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _ModalContainerViewHbs = __webpack_require__(/*! ./ModalContainerView.hbs.html */ 125);
+	
+	var _ModalContainerViewHbs2 = _interopRequireDefault(_ModalContainerViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	    template: _ModalContainerViewHbs2.default,
+	    className: 'modal fade',
+	
+	    containerView: null,
+	
+	    attributes: {
+	        'tabindex': '-1',
+	        'role': 'dialog',
+	        'aria-hidden': 'true'
+	    },
+	
+	    events: {
+	        'hidden.bs.modal': 'hide',
+	        'shown.bs.modal': 'onShow'
+	    },
+	
+	    regions: {
+	        'childView': '.modal-body'
+	    },
+	
+	    initialize: function initialize(options) {
+	        this.model = new Backbone.Model({ title: options.title || '' });
+	        this.containerView = options.view;
+	    },
+	    hide: function hide() {
+	        this.$el.modal('hide');
+	    },
+	    onShow: function onShow() {
+	        this.showChildView('childView', this.containerView);
+	        this.listenToOnce(this.containerView, 'destroy', this.hide);
+	        //detach
+	    },
+	    onAttach: function onAttach() {
+	        this.$el.modal();
+	    }
+	});
+
+/***/ },
+/* 125 */
+/*!*********************************************************!*\
+  !*** ./wwwroot/sharedViews/ModalContainerView.hbs.html ***!
+  \*********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="modal-dialog modal-lg">\r\n    <div class="modal-content">\r\n\r\n        <div class="modal-header">\r\n            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\r\n            <h4 class="modal-title" id="myLargeModalLabel">'+
+	((__t=(obj.title||''))==null?'':__t)+
+	'</h4>\r\n        </div>\r\n\r\n        <div class="modal-body">\r\n            \r\n        </div>\r\n\r\n    </div>\r\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 126 */
+/*!********************************************!*\
+  !*** ./wwwroot/sharedViews/SuccessView.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _SuccessView = __webpack_require__(/*! ./SuccessView.html */ 127);
+	
+	var _SuccessView2 = _interopRequireDefault(_SuccessView);
+	
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone4 = _interopRequireDefault(_backbone3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _SuccessView2.default,
+	    initialize: function initialize(options) {
+	        var opts = options || {};
+	        this.model = new _backbone4.default.Model({
+	            resultUrl: opts.resultUrl,
+	            title: opts.title,
+	            message: opts.message
+	        });
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 127 */
+/*!**********************************************!*\
+  !*** ./wwwroot/sharedViews/SuccessView.html ***!
+  \**********************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="alert alert-success margin-bottom-30" style="min-height: 250px">\r\n\r\n    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Закрыть</span></button>\r\n\r\n    <h4>'+
+	((__t=(obj.title))==null?'':__t)+
+	'</h4>\r\n\r\n    <p>\r\n        '+
+	((__t=(obj.message))==null?'':__t)+
+	'\r\n    </p>\r\n\r\n    ';
+	if(obj.resultUrl) { 
+	__p+='\r\n        <a href="'+
+	((__t=(resultUrl))==null?'':__t)+
+	'" class="btn btn-info btn-sm margin-top-10">Перейти</a>\r\n    ';
+	 } 
+	__p+='\r\n\r\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 128 */
+/*!*********************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/LocationMapView.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, $) {'use strict';
+=======
 	var _CreatePostViewHbs = __webpack_require__(/*! ./CreatePostView.hbs.html */ 125);
 	
 	var _CreatePostViewHbs2 = _interopRequireDefault(_CreatePostViewHbs);
@@ -34891,6 +43208,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -34900,13 +43218,190 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _LocationMapViewHbs = __webpack_require__(/*! ./LocationMapView.hbs.html */ 129);
+	
+	var _LocationMapViewHbs2 = _interopRequireDefault(_LocationMapViewHbs);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _LocationBindToUserPositionHbs = __webpack_require__(/*! ./LocationBindToUserPosition.hbs.html */ 130);
+	
+	var _LocationBindToUserPositionHbs2 = _interopRequireDefault(_LocationBindToUserPositionHbs);
+	
+	var _LocationSetButtonHbs = __webpack_require__(/*! ./LocationSetButton.hbs.html */ 131);
+	
+	var _LocationSetButtonHbs2 = _interopRequireDefault(_LocationSetButtonHbs);
+=======
 	var _ImageViewHbs = __webpack_require__(/*! ./ImageView.hbs.html */ 129);
 	
 	var _ImageViewHbs2 = _interopRequireDefault(_ImageViewHbs);
+>>>>>>> master
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _backbone2.default.View.extend({
+<<<<<<< HEAD
+	    template: _LocationMapViewHbs2.default,
+	    map: null,
+	    shiner: null,
+	    userMarker: null,
+	    infoWindow: null,
+	    geocodeTimeout: null,
+	    searchInput: null,
+	
+	    modelEvents: {
+	        'change:name': 'renderName',
+	        'change:placeType': 'bindOrUnbindToUser'
+	    },
+	
+	    onAttach: function onAttach() {
+	        this.initMap();
+	        this.showShiner();
+	        this.showUser();
+	        this.showDoneButton();
+	        this.showDynamicOrStaticSelection();
+	        this.showSearchBox();
+	    },
+	    renderName: function renderName() {
+	        this.$('#locationMap_locationName').val(this.model.get('accurateAddress'));
+	    },
+	    initMap: function initMap() {
+	        var defaultCoords = { lat: 55.75396, lng: 37.620393 };
+	        var center = _app2.default.user.get('position') || defaultCoords;
+	        this.map = new google.maps.Map(this.$('#selectLocation_map')[0], {
+	            center: center,
+	            zoom: 14
+	        });
+	    },
+	    showShiner: function showShiner() {
+	        var image = {
+	            url: '/images/shiners/shiner_marker.png',
+	            scaledSize: new window.google.maps.Size(25, 33),
+	            origin: new window.google.maps.Point(0, 0),
+	            anchor: new window.google.maps.Point(12, 33)
+	        };
+	        this.shiner = new window.google.maps.Marker({
+	            position: this.map.getCenter(),
+	            map: this.map,
+	            icon: image,
+	            title: 'перетащите светлячок',
+	            draggable: true
+	        });
+	        window.shiner = this.shiner; // debug
+	        this.infoWindow = new google.maps.InfoWindow({
+	            content: "Перетащите светлячок"
+	        });
+	        this.shiner.addListener('position_changed', _.bind(this.setLocation, this));
+	        this.infoWindow.open(this.map, this.shiner);
+	        this.setLocation();
+	    },
+	    showUser: function showUser() {
+	        var image = {
+	            url: '/images/shiners/user.png',
+	            scaledSize: new window.google.maps.Size(35, 35),
+	            origin: new window.google.maps.Point(0, 0),
+	            anchor: new window.google.maps.Point(17, 17)
+	        };
+	        this.userMarker = new window.google.maps.Marker({
+	            position: _app2.default.user.get('position'),
+	            map: this.map,
+	            icon: image,
+	            title: 'Вы (' + _app2.default.user.get('username') + ')'
+	        });
+	    },
+	    showDoneButton: function showDoneButton() {
+	        var el = $((0, _LocationSetButtonHbs2.default)()).get(0);
+	        var self = this;
+	        el.addEventListener('click', function () {
+	            //self.setLocation();
+	            self.remove();
+	            self.trigger('destroy');
+	        });
+	        this.map.controls[window.google.maps.ControlPosition.BOTTOM_CENTER].push(el);
+	    },
+	    showDynamicOrStaticSelection: function showDynamicOrStaticSelection() {
+	        var $container = $((0, _LocationBindToUserPositionHbs2.default)()),
+	            self = this;
+	        this.changePlaceTypeEl = $container.find('input')[0];
+	
+	        this.changePlaceTypeEl.addEventListener('change', function () {
+	            if (self.changePlaceTypeEl.checked) {
+	                self.model.set('placeType', 'dynamic');
+	                self.shiner.setDraggable(false);
+	            } else {
+	                self.model.set('placeType', 'static');
+	            }
+	        });
+	        this.map.controls[window.google.maps.ControlPosition.TOP_CENTER].push($container[0]);
+	        $container.tooltip();
+	    },
+	    bindOrUnbindToUser: function bindOrUnbindToUser() {
+	        if (this.model.get('placeType') === 'dynamic') {
+	            this.infoWindow.close();
+	            this.shiner.setPosition(_app2.default.user.get('position'));
+	            this.shiner.setDraggable(false);
+	            this.$(this.searchInput).prop('readonly', true);
+	
+	            var bounds = new google.maps.LatLngBounds();
+	            this.map.setCenter(this.shiner.getPosition());
+	        } else {
+	            this.shiner.setDraggable(true);
+	            this.infoWindow.open(this.map, this.shiner);
+	            this.$(this.searchInput).prop('readonly', false);
+	        }
+	    },
+	    setLocation: function setLocation() {
+	        var model = this.model,
+	            self = this;
+	        if (this.geocodeTimeout) clearTimeout(this.geocodeTimeout);
+	        this.geocodeTimeout = setTimeout(function () {
+	
+	            _app2.default.geocoder.geocode({ 'location': self.shiner.getPosition() }, function (results, status) {
+	                if (status === window.google.maps.GeocoderStatus.OK) {
+	                    var parts = results[0].formatted_address.split(', ');
+	                    parts.length = parts.length > 3 ? 3 : parts.length;
+	                    model.set({
+	                        coords: self.shiner.getPosition(),
+	                        name: results[0].formatted_address,
+	                        accurateAddress: parts.join(', '),
+	                        placeType: self.shiner.getDraggable() ? 'static' : 'dynamic'
+	                    });
+	                }
+	            });
+	        }, 300);
+	    },
+	    onBeforeRemove: function onBeforeRemove() {
+	        this.map.unbindAll();
+	        delete this.map;
+	    },
+	    showSearchBox: function showSearchBox() {
+	        this.searchInput = document.getElementById('locationMap_locationName');
+	        var searchBox = new google.maps.places.SearchBox(this.searchInput);
+	        //this.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(input);
+	        var model = this.model,
+	            self = this;
+	        searchBox.addListener('places_changed', function () {
+	            var places = searchBox.getPlaces();
+	            if (places.length == 0) {
+	                return;
+	            }
+	            var place = places[0];
+	            self.shiner.setPosition(place.geometry.location);
+	            self.map.setCenter(self.shiner.getPosition());
+	        });
+	    }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 129 */
+/*!***************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/LocationMapView.hbs.html ***!
+  \***************************************************************/
+=======
 	    template: _ImageViewHbs2.default,
 	    className: 'img-item',
 	    modelEvents: {
@@ -34925,11 +43420,15 @@
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/ImageView.hbs.html ***!
   \*********************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
+	__p+='<div id="selectLocation_map" style="height: 400px">\r\n   \r\n</div>\r\n<div>\r\n      <div class="input-group">\r\n            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>\r\n            <input id="locationMap_locationName" type="text" class="form-control"aria-describedby="sizing-addon1">\r\n      </div>\r\n</div>';
+=======
 	__p+='';
 	if(obj.data) { 
 	__p+='\n<img width="120" src="data:'+
@@ -34941,6 +43440,7 @@
 	__p+='\n<img width="120" class="img-responsive" src="/images/working.gif" />\n';
 	 } 
 	__p+='\n<a title="Удалить" class="removeImage"><i class="fa fa-remove text-danger"></i></a>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -34948,6 +43448,27 @@
 
 /***/ },
 /* 130 */
+<<<<<<< HEAD
+/*!**************************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/LocationBindToUserPosition.hbs.html ***!
+  \**************************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<label style="background-color: white;" class="switch switch-primary margin-top-6" data-toggle="tooltip" data-placement="bottom" title="Объявление будет менять свое местоположение с Вами">\r\n    <input type="checkbox">\r\n    <span class="switch-label" data-on="Да" data-off="Нет"></span>\r\n    <span> Привязать к Вашему местоположению?</span>\r\n    <small class="text-muted"></small>\r\n</label>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 131 */
+/*!*****************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/LocationSetButton.hbs.html ***!
+  \*****************************************************************/
+=======
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.js ***!
   \**************************************************************/
@@ -34990,11 +43511,15 @@
 /*!********************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.hbs.html ***!
   \********************************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
+	__p+='<button class="ui sh-button standard create margin-bottom-10">Готово</button>';
+=======
 	__p+='<i class="fa fa-map-marker"></i> '+
 	((__t=(obj.accurateAddress||obj.name||'Местоположение не выбрано'))==null?'':__t)+
 	'\n';
@@ -35006,6 +43531,7 @@
 	__p+='\n';
 	 } 
 	__p+='\n\n';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -35013,6 +43539,2104 @@
 
 /***/ },
 /* 132 */
+<<<<<<< HEAD
+/*!****************************************************************!*\
+  !*** ./~/bootstrap-datepicker/dist/js/bootstrap-datepicker.js ***!
+  \****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	/*!
+	 * Datepicker for Bootstrap v1.6.4 (https://github.com/eternicode/bootstrap-datepicker)
+	 *
+	 * Copyright 2012 Stefan Petre
+	 * Improvements by Andrew Rowls
+	 * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+	 */(function (factory) {
+		if (true) {
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ 3)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object') {
+			factory(require('jquery'));
+		} else {
+			factory(jQuery);
+		}
+	})(function ($, undefined) {
+	
+		function UTCDate() {
+			return new Date(Date.UTC.apply(Date, arguments));
+		}
+		function UTCToday() {
+			var today = new Date();
+			return UTCDate(today.getFullYear(), today.getMonth(), today.getDate());
+		}
+		function isUTCEquals(date1, date2) {
+			return date1.getUTCFullYear() === date2.getUTCFullYear() && date1.getUTCMonth() === date2.getUTCMonth() && date1.getUTCDate() === date2.getUTCDate();
+		}
+		function alias(method) {
+			return function () {
+				return this[method].apply(this, arguments);
+			};
+		}
+		function isValidDate(d) {
+			return d && !isNaN(d.getTime());
+		}
+	
+		var DateArray = function () {
+			var extras = {
+				get: function get(i) {
+					return this.slice(i)[0];
+				},
+				contains: function contains(d) {
+					// Array.indexOf is not cross-browser;
+					// $.inArray doesn't work with Dates
+					var val = d && d.valueOf();
+					for (var i = 0, l = this.length; i < l; i++) {
+						if (this[i].valueOf() === val) return i;
+					}return -1;
+				},
+				remove: function remove(i) {
+					this.splice(i, 1);
+				},
+				replace: function replace(new_array) {
+					if (!new_array) return;
+					if (!$.isArray(new_array)) new_array = [new_array];
+					this.clear();
+					this.push.apply(this, new_array);
+				},
+				clear: function clear() {
+					this.length = 0;
+				},
+				copy: function copy() {
+					var a = new DateArray();
+					a.replace(this);
+					return a;
+				}
+			};
+	
+			return function () {
+				var a = [];
+				a.push.apply(a, arguments);
+				$.extend(a, extras);
+				return a;
+			};
+		}();
+	
+		// Picker object
+	
+		var Datepicker = function Datepicker(element, options) {
+			$(element).data('datepicker', this);
+			this._process_options(options);
+	
+			this.dates = new DateArray();
+			this.viewDate = this.o.defaultViewDate;
+			this.focusDate = null;
+	
+			this.element = $(element);
+			this.isInput = this.element.is('input');
+			this.inputField = this.isInput ? this.element : this.element.find('input');
+			this.component = this.element.hasClass('date') ? this.element.find('.add-on, .input-group-addon, .btn') : false;
+			this.hasInput = this.component && this.inputField.length;
+			if (this.component && this.component.length === 0) this.component = false;
+			this.isInline = !this.component && this.element.is('div');
+	
+			this.picker = $(DPGlobal.template);
+	
+			// Checking templates and inserting
+			if (this._check_template(this.o.templates.leftArrow)) {
+				this.picker.find('.prev').html(this.o.templates.leftArrow);
+			}
+			if (this._check_template(this.o.templates.rightArrow)) {
+				this.picker.find('.next').html(this.o.templates.rightArrow);
+			}
+	
+			this._buildEvents();
+			this._attachEvents();
+	
+			if (this.isInline) {
+				this.picker.addClass('datepicker-inline').appendTo(this.element);
+			} else {
+				this.picker.addClass('datepicker-dropdown dropdown-menu');
+			}
+	
+			if (this.o.rtl) {
+				this.picker.addClass('datepicker-rtl');
+			}
+	
+			this.viewMode = this.o.startView;
+	
+			if (this.o.calendarWeeks) this.picker.find('thead .datepicker-title, tfoot .today, tfoot .clear').attr('colspan', function (i, val) {
+				return parseInt(val) + 1;
+			});
+	
+			this._allow_update = false;
+	
+			this.setStartDate(this._o.startDate);
+			this.setEndDate(this._o.endDate);
+			this.setDaysOfWeekDisabled(this.o.daysOfWeekDisabled);
+			this.setDaysOfWeekHighlighted(this.o.daysOfWeekHighlighted);
+			this.setDatesDisabled(this.o.datesDisabled);
+	
+			this.fillDow();
+			this.fillMonths();
+	
+			this._allow_update = true;
+	
+			this.update();
+			this.showMode();
+	
+			if (this.isInline) {
+				this.show();
+			}
+		};
+	
+		Datepicker.prototype = {
+			constructor: Datepicker,
+	
+			_resolveViewName: function _resolveViewName(view, default_value) {
+				if (view === 0 || view === 'days' || view === 'month') {
+					return 0;
+				}
+				if (view === 1 || view === 'months' || view === 'year') {
+					return 1;
+				}
+				if (view === 2 || view === 'years' || view === 'decade') {
+					return 2;
+				}
+				if (view === 3 || view === 'decades' || view === 'century') {
+					return 3;
+				}
+				if (view === 4 || view === 'centuries' || view === 'millennium') {
+					return 4;
+				}
+				return default_value === undefined ? false : default_value;
+			},
+	
+			_check_template: function _check_template(tmp) {
+				try {
+					// If empty
+					if (tmp === undefined || tmp === "") {
+						return false;
+					}
+					// If no html, everything ok
+					if ((tmp.match(/[<>]/g) || []).length <= 0) {
+						return true;
+					}
+					// Checking if html is fine
+					var jDom = $(tmp);
+					return jDom.length > 0;
+				} catch (ex) {
+					return false;
+				}
+			},
+	
+			_process_options: function _process_options(opts) {
+				// Store raw options for reference
+				this._o = $.extend({}, this._o, opts);
+				// Processed options
+				var o = this.o = $.extend({}, this._o);
+	
+				// Check if "de-DE" style date is available, if not language should
+				// fallback to 2 letter code eg "de"
+				var lang = o.language;
+				if (!dates[lang]) {
+					lang = lang.split('-')[0];
+					if (!dates[lang]) lang = defaults.language;
+				}
+				o.language = lang;
+	
+				// Retrieve view index from any aliases
+				o.startView = this._resolveViewName(o.startView, 0);
+				o.minViewMode = this._resolveViewName(o.minViewMode, 0);
+				o.maxViewMode = this._resolveViewName(o.maxViewMode, 4);
+	
+				// Check that the start view is between min and max
+				o.startView = Math.min(o.startView, o.maxViewMode);
+				o.startView = Math.max(o.startView, o.minViewMode);
+	
+				// true, false, or Number > 0
+				if (o.multidate !== true) {
+					o.multidate = Number(o.multidate) || false;
+					if (o.multidate !== false) o.multidate = Math.max(0, o.multidate);
+				}
+				o.multidateSeparator = String(o.multidateSeparator);
+	
+				o.weekStart %= 7;
+				o.weekEnd = (o.weekStart + 6) % 7;
+	
+				var format = DPGlobal.parseFormat(o.format);
+				if (o.startDate !== -Infinity) {
+					if (!!o.startDate) {
+						if (o.startDate instanceof Date) o.startDate = this._local_to_utc(this._zero_time(o.startDate));else o.startDate = DPGlobal.parseDate(o.startDate, format, o.language, o.assumeNearbyYear);
+					} else {
+						o.startDate = -Infinity;
+					}
+				}
+				if (o.endDate !== Infinity) {
+					if (!!o.endDate) {
+						if (o.endDate instanceof Date) o.endDate = this._local_to_utc(this._zero_time(o.endDate));else o.endDate = DPGlobal.parseDate(o.endDate, format, o.language, o.assumeNearbyYear);
+					} else {
+						o.endDate = Infinity;
+					}
+				}
+	
+				o.daysOfWeekDisabled = o.daysOfWeekDisabled || [];
+				if (!$.isArray(o.daysOfWeekDisabled)) o.daysOfWeekDisabled = o.daysOfWeekDisabled.split(/[,\s]*/);
+				o.daysOfWeekDisabled = $.map(o.daysOfWeekDisabled, function (d) {
+					return parseInt(d, 10);
+				});
+	
+				o.daysOfWeekHighlighted = o.daysOfWeekHighlighted || [];
+				if (!$.isArray(o.daysOfWeekHighlighted)) o.daysOfWeekHighlighted = o.daysOfWeekHighlighted.split(/[,\s]*/);
+				o.daysOfWeekHighlighted = $.map(o.daysOfWeekHighlighted, function (d) {
+					return parseInt(d, 10);
+				});
+	
+				o.datesDisabled = o.datesDisabled || [];
+				if (!$.isArray(o.datesDisabled)) {
+					o.datesDisabled = [o.datesDisabled];
+				}
+				o.datesDisabled = $.map(o.datesDisabled, function (d) {
+					return DPGlobal.parseDate(d, format, o.language, o.assumeNearbyYear);
+				});
+	
+				var plc = String(o.orientation).toLowerCase().split(/\s+/g),
+				    _plc = o.orientation.toLowerCase();
+				plc = $.grep(plc, function (word) {
+					return (/^auto|left|right|top|bottom$/.test(word)
+					);
+				});
+				o.orientation = { x: 'auto', y: 'auto' };
+				if (!_plc || _plc === 'auto') ; // no action
+				else if (plc.length === 1) {
+						switch (plc[0]) {
+							case 'top':
+							case 'bottom':
+								o.orientation.y = plc[0];
+								break;
+							case 'left':
+							case 'right':
+								o.orientation.x = plc[0];
+								break;
+						}
+					} else {
+						_plc = $.grep(plc, function (word) {
+							return (/^left|right$/.test(word)
+							);
+						});
+						o.orientation.x = _plc[0] || 'auto';
+	
+						_plc = $.grep(plc, function (word) {
+							return (/^top|bottom$/.test(word)
+							);
+						});
+						o.orientation.y = _plc[0] || 'auto';
+					}
+				if (o.defaultViewDate) {
+					var year = o.defaultViewDate.year || new Date().getFullYear();
+					var month = o.defaultViewDate.month || 0;
+					var day = o.defaultViewDate.day || 1;
+					o.defaultViewDate = UTCDate(year, month, day);
+				} else {
+					o.defaultViewDate = UTCToday();
+				}
+			},
+			_events: [],
+			_secondaryEvents: [],
+			_applyEvents: function _applyEvents(evs) {
+				for (var i = 0, el, ch, ev; i < evs.length; i++) {
+					el = evs[i][0];
+					if (evs[i].length === 2) {
+						ch = undefined;
+						ev = evs[i][1];
+					} else if (evs[i].length === 3) {
+						ch = evs[i][1];
+						ev = evs[i][2];
+					}
+					el.on(ev, ch);
+				}
+			},
+			_unapplyEvents: function _unapplyEvents(evs) {
+				for (var i = 0, el, ev, ch; i < evs.length; i++) {
+					el = evs[i][0];
+					if (evs[i].length === 2) {
+						ch = undefined;
+						ev = evs[i][1];
+					} else if (evs[i].length === 3) {
+						ch = evs[i][1];
+						ev = evs[i][2];
+					}
+					el.off(ev, ch);
+				}
+			},
+			_buildEvents: function _buildEvents() {
+				var events = {
+					keyup: $.proxy(function (e) {
+						if ($.inArray(e.keyCode, [27, 37, 39, 38, 40, 32, 13, 9]) === -1) this.update();
+					}, this),
+					keydown: $.proxy(this.keydown, this),
+					paste: $.proxy(this.paste, this)
+				};
+	
+				if (this.o.showOnFocus === true) {
+					events.focus = $.proxy(this.show, this);
+				}
+	
+				if (this.isInput) {
+					// single input
+					this._events = [[this.element, events]];
+				} else if (this.component && this.hasInput) {
+					// component: input + button
+					this._events = [
+					// For components that are not readonly, allow keyboard nav
+					[this.inputField, events], [this.component, {
+						click: $.proxy(this.show, this)
+					}]];
+				} else {
+					this._events = [[this.element, {
+						click: $.proxy(this.show, this),
+						keydown: $.proxy(this.keydown, this)
+					}]];
+				}
+				this._events.push(
+				// Component: listen for blur on element descendants
+				[this.element, '*', {
+					blur: $.proxy(function (e) {
+						this._focused_from = e.target;
+					}, this)
+				}],
+				// Input: listen for blur on element
+				[this.element, {
+					blur: $.proxy(function (e) {
+						this._focused_from = e.target;
+					}, this)
+				}]);
+	
+				if (this.o.immediateUpdates) {
+					// Trigger input updates immediately on changed year/month
+					this._events.push([this.element, {
+						'changeYear changeMonth': $.proxy(function (e) {
+							this.update(e.date);
+						}, this)
+					}]);
+				}
+	
+				this._secondaryEvents = [[this.picker, {
+					click: $.proxy(this.click, this)
+				}], [$(window), {
+					resize: $.proxy(this.place, this)
+				}], [$(document), {
+					mousedown: $.proxy(function (e) {
+						// Clicked outside the datepicker, hide it
+						if (!(this.element.is(e.target) || this.element.find(e.target).length || this.picker.is(e.target) || this.picker.find(e.target).length || this.isInline)) {
+							this.hide();
+						}
+					}, this)
+				}]];
+			},
+			_attachEvents: function _attachEvents() {
+				this._detachEvents();
+				this._applyEvents(this._events);
+			},
+			_detachEvents: function _detachEvents() {
+				this._unapplyEvents(this._events);
+			},
+			_attachSecondaryEvents: function _attachSecondaryEvents() {
+				this._detachSecondaryEvents();
+				this._applyEvents(this._secondaryEvents);
+			},
+			_detachSecondaryEvents: function _detachSecondaryEvents() {
+				this._unapplyEvents(this._secondaryEvents);
+			},
+			_trigger: function _trigger(event, altdate) {
+				var date = altdate || this.dates.get(-1),
+				    local_date = this._utc_to_local(date);
+	
+				this.element.trigger({
+					type: event,
+					date: local_date,
+					dates: $.map(this.dates, this._utc_to_local),
+					format: $.proxy(function (ix, format) {
+						if (arguments.length === 0) {
+							ix = this.dates.length - 1;
+							format = this.o.format;
+						} else if (typeof ix === 'string') {
+							format = ix;
+							ix = this.dates.length - 1;
+						}
+						format = format || this.o.format;
+						var date = this.dates.get(ix);
+						return DPGlobal.formatDate(date, format, this.o.language);
+					}, this)
+				});
+			},
+	
+			show: function show() {
+				if (this.inputField.prop('disabled') || this.inputField.prop('readonly') && this.o.enableOnReadonly === false) return;
+				if (!this.isInline) this.picker.appendTo(this.o.container);
+				this.place();
+				this.picker.show();
+				this._attachSecondaryEvents();
+				this._trigger('show');
+				if ((window.navigator.msMaxTouchPoints || 'ontouchstart' in document) && this.o.disableTouchKeyboard) {
+					$(this.element).blur();
+				}
+				return this;
+			},
+	
+			hide: function hide() {
+				if (this.isInline || !this.picker.is(':visible')) return this;
+				this.focusDate = null;
+				this.picker.hide().detach();
+				this._detachSecondaryEvents();
+				this.viewMode = this.o.startView;
+				this.showMode();
+	
+				if (this.o.forceParse && this.inputField.val()) this.setValue();
+				this._trigger('hide');
+				return this;
+			},
+	
+			destroy: function destroy() {
+				this.hide();
+				this._detachEvents();
+				this._detachSecondaryEvents();
+				this.picker.remove();
+				delete this.element.data().datepicker;
+				if (!this.isInput) {
+					delete this.element.data().date;
+				}
+				return this;
+			},
+	
+			paste: function paste(evt) {
+				var dateString;
+				if (evt.originalEvent.clipboardData && evt.originalEvent.clipboardData.types && $.inArray('text/plain', evt.originalEvent.clipboardData.types) !== -1) {
+					dateString = evt.originalEvent.clipboardData.getData('text/plain');
+				} else if (window.clipboardData) {
+					dateString = window.clipboardData.getData('Text');
+				} else {
+					return;
+				}
+				this.setDate(dateString);
+				this.update();
+				evt.preventDefault();
+			},
+	
+			_utc_to_local: function _utc_to_local(utc) {
+				return utc && new Date(utc.getTime() + utc.getTimezoneOffset() * 60000);
+			},
+			_local_to_utc: function _local_to_utc(local) {
+				return local && new Date(local.getTime() - local.getTimezoneOffset() * 60000);
+			},
+			_zero_time: function _zero_time(local) {
+				return local && new Date(local.getFullYear(), local.getMonth(), local.getDate());
+			},
+			_zero_utc_time: function _zero_utc_time(utc) {
+				return utc && new Date(Date.UTC(utc.getUTCFullYear(), utc.getUTCMonth(), utc.getUTCDate()));
+			},
+	
+			getDates: function getDates() {
+				return $.map(this.dates, this._utc_to_local);
+			},
+	
+			getUTCDates: function getUTCDates() {
+				return $.map(this.dates, function (d) {
+					return new Date(d);
+				});
+			},
+	
+			getDate: function getDate() {
+				return this._utc_to_local(this.getUTCDate());
+			},
+	
+			getUTCDate: function getUTCDate() {
+				var selected_date = this.dates.get(-1);
+				if (typeof selected_date !== 'undefined') {
+					return new Date(selected_date);
+				} else {
+					return null;
+				}
+			},
+	
+			clearDates: function clearDates() {
+				if (this.inputField) {
+					this.inputField.val('');
+				}
+	
+				this.update();
+				this._trigger('changeDate');
+	
+				if (this.o.autoclose) {
+					this.hide();
+				}
+			},
+			setDates: function setDates() {
+				var args = $.isArray(arguments[0]) ? arguments[0] : arguments;
+				this.update.apply(this, args);
+				this._trigger('changeDate');
+				this.setValue();
+				return this;
+			},
+	
+			setUTCDates: function setUTCDates() {
+				var args = $.isArray(arguments[0]) ? arguments[0] : arguments;
+				this.update.apply(this, $.map(args, this._utc_to_local));
+				this._trigger('changeDate');
+				this.setValue();
+				return this;
+			},
+	
+			setDate: alias('setDates'),
+			setUTCDate: alias('setUTCDates'),
+			remove: alias('destroy'),
+	
+			setValue: function setValue() {
+				var formatted = this.getFormattedDate();
+				this.inputField.val(formatted);
+				return this;
+			},
+	
+			getFormattedDate: function getFormattedDate(format) {
+				if (format === undefined) format = this.o.format;
+	
+				var lang = this.o.language;
+				return $.map(this.dates, function (d) {
+					return DPGlobal.formatDate(d, format, lang);
+				}).join(this.o.multidateSeparator);
+			},
+	
+			getStartDate: function getStartDate() {
+				return this.o.startDate;
+			},
+	
+			setStartDate: function setStartDate(startDate) {
+				this._process_options({ startDate: startDate });
+				this.update();
+				this.updateNavArrows();
+				return this;
+			},
+	
+			getEndDate: function getEndDate() {
+				return this.o.endDate;
+			},
+	
+			setEndDate: function setEndDate(endDate) {
+				this._process_options({ endDate: endDate });
+				this.update();
+				this.updateNavArrows();
+				return this;
+			},
+	
+			setDaysOfWeekDisabled: function setDaysOfWeekDisabled(daysOfWeekDisabled) {
+				this._process_options({ daysOfWeekDisabled: daysOfWeekDisabled });
+				this.update();
+				this.updateNavArrows();
+				return this;
+			},
+	
+			setDaysOfWeekHighlighted: function setDaysOfWeekHighlighted(daysOfWeekHighlighted) {
+				this._process_options({ daysOfWeekHighlighted: daysOfWeekHighlighted });
+				this.update();
+				return this;
+			},
+	
+			setDatesDisabled: function setDatesDisabled(datesDisabled) {
+				this._process_options({ datesDisabled: datesDisabled });
+				this.update();
+				this.updateNavArrows();
+			},
+	
+			place: function place() {
+				if (this.isInline) return this;
+				var calendarWidth = this.picker.outerWidth(),
+				    calendarHeight = this.picker.outerHeight(),
+				    visualPadding = 10,
+				    container = $(this.o.container),
+				    windowWidth = container.width(),
+				    scrollTop = this.o.container === 'body' ? $(document).scrollTop() : container.scrollTop(),
+				    appendOffset = container.offset();
+	
+				var parentsZindex = [];
+				this.element.parents().each(function () {
+					var itemZIndex = $(this).css('z-index');
+					if (itemZIndex !== 'auto' && itemZIndex !== 0) parentsZindex.push(parseInt(itemZIndex));
+				});
+				var zIndex = Math.max.apply(Math, parentsZindex) + this.o.zIndexOffset;
+				var offset = this.component ? this.component.parent().offset() : this.element.offset();
+				var height = this.component ? this.component.outerHeight(true) : this.element.outerHeight(false);
+				var width = this.component ? this.component.outerWidth(true) : this.element.outerWidth(false);
+				var left = offset.left - appendOffset.left,
+				    top = offset.top - appendOffset.top;
+	
+				if (this.o.container !== 'body') {
+					top += scrollTop;
+				}
+	
+				this.picker.removeClass('datepicker-orient-top datepicker-orient-bottom ' + 'datepicker-orient-right datepicker-orient-left');
+	
+				if (this.o.orientation.x !== 'auto') {
+					this.picker.addClass('datepicker-orient-' + this.o.orientation.x);
+					if (this.o.orientation.x === 'right') left -= calendarWidth - width;
+				}
+				// auto x orientation is best-placement: if it crosses a window
+				// edge, fudge it sideways
+				else {
+						if (offset.left < 0) {
+							// component is outside the window on the left side. Move it into visible range
+							this.picker.addClass('datepicker-orient-left');
+							left -= offset.left - visualPadding;
+						} else if (left + calendarWidth > windowWidth) {
+							// the calendar passes the widow right edge. Align it to component right side
+							this.picker.addClass('datepicker-orient-right');
+							left += width - calendarWidth;
+						} else {
+							// Default to left
+							this.picker.addClass('datepicker-orient-left');
+						}
+					}
+	
+				// auto y orientation is best-situation: top or bottom, no fudging,
+				// decision based on which shows more of the calendar
+				var yorient = this.o.orientation.y,
+				    top_overflow;
+				if (yorient === 'auto') {
+					top_overflow = -scrollTop + top - calendarHeight;
+					yorient = top_overflow < 0 ? 'bottom' : 'top';
+				}
+	
+				this.picker.addClass('datepicker-orient-' + yorient);
+				if (yorient === 'top') top -= calendarHeight + parseInt(this.picker.css('padding-top'));else top += height;
+	
+				if (this.o.rtl) {
+					var right = windowWidth - (left + width);
+					this.picker.css({
+						top: top,
+						right: right,
+						zIndex: zIndex
+					});
+				} else {
+					this.picker.css({
+						top: top,
+						left: left,
+						zIndex: zIndex
+					});
+				}
+				return this;
+			},
+	
+			_allow_update: true,
+			update: function update() {
+				if (!this._allow_update) return this;
+	
+				var oldDates = this.dates.copy(),
+				    dates = [],
+				    fromArgs = false;
+				if (arguments.length) {
+					$.each(arguments, $.proxy(function (i, date) {
+						if (date instanceof Date) date = this._local_to_utc(date);
+						dates.push(date);
+					}, this));
+					fromArgs = true;
+				} else {
+					dates = this.isInput ? this.element.val() : this.element.data('date') || this.inputField.val();
+					if (dates && this.o.multidate) dates = dates.split(this.o.multidateSeparator);else dates = [dates];
+					delete this.element.data().date;
+				}
+	
+				dates = $.map(dates, $.proxy(function (date) {
+					return DPGlobal.parseDate(date, this.o.format, this.o.language, this.o.assumeNearbyYear);
+				}, this));
+				dates = $.grep(dates, $.proxy(function (date) {
+					return !this.dateWithinRange(date) || !date;
+				}, this), true);
+				this.dates.replace(dates);
+	
+				if (this.dates.length) this.viewDate = new Date(this.dates.get(-1));else if (this.viewDate < this.o.startDate) this.viewDate = new Date(this.o.startDate);else if (this.viewDate > this.o.endDate) this.viewDate = new Date(this.o.endDate);else this.viewDate = this.o.defaultViewDate;
+	
+				if (fromArgs) {
+					// setting date by clicking
+					this.setValue();
+				} else if (dates.length) {
+					// setting date by typing
+					if (String(oldDates) !== String(this.dates)) this._trigger('changeDate');
+				}
+				if (!this.dates.length && oldDates.length) this._trigger('clearDate');
+	
+				this.fill();
+				this.element.change();
+				return this;
+			},
+	
+			fillDow: function fillDow() {
+				var dowCnt = this.o.weekStart,
+				    html = '<tr>';
+				if (this.o.calendarWeeks) {
+					this.picker.find('.datepicker-days .datepicker-switch').attr('colspan', function (i, val) {
+						return parseInt(val) + 1;
+					});
+					html += '<th class="cw">&#160;</th>';
+				}
+				while (dowCnt < this.o.weekStart + 7) {
+					html += '<th class="dow';
+					if ($.inArray(dowCnt, this.o.daysOfWeekDisabled) > -1) html += ' disabled';
+					html += '">' + dates[this.o.language].daysMin[dowCnt++ % 7] + '</th>';
+				}
+				html += '</tr>';
+				this.picker.find('.datepicker-days thead').append(html);
+			},
+	
+			fillMonths: function fillMonths() {
+				var localDate = this._utc_to_local(this.viewDate);
+				var html = '',
+				    i = 0;
+				while (i < 12) {
+					var focused = localDate && localDate.getMonth() === i ? ' focused' : '';
+					html += '<span class="month' + focused + '">' + dates[this.o.language].monthsShort[i++] + '</span>';
+				}
+				this.picker.find('.datepicker-months td').html(html);
+			},
+	
+			setRange: function setRange(range) {
+				if (!range || !range.length) delete this.range;else this.range = $.map(range, function (d) {
+					return d.valueOf();
+				});
+				this.fill();
+			},
+	
+			getClassNames: function getClassNames(date) {
+				var cls = [],
+				    year = this.viewDate.getUTCFullYear(),
+				    month = this.viewDate.getUTCMonth(),
+				    today = new Date();
+				if (date.getUTCFullYear() < year || date.getUTCFullYear() === year && date.getUTCMonth() < month) {
+					cls.push('old');
+				} else if (date.getUTCFullYear() > year || date.getUTCFullYear() === year && date.getUTCMonth() > month) {
+					cls.push('new');
+				}
+				if (this.focusDate && date.valueOf() === this.focusDate.valueOf()) cls.push('focused');
+				// Compare internal UTC date with local today, not UTC today
+				if (this.o.todayHighlight && date.getUTCFullYear() === today.getFullYear() && date.getUTCMonth() === today.getMonth() && date.getUTCDate() === today.getDate()) {
+					cls.push('today');
+				}
+				if (this.dates.contains(date) !== -1) cls.push('active');
+				if (!this.dateWithinRange(date)) {
+					cls.push('disabled');
+				}
+				if (this.dateIsDisabled(date)) {
+					cls.push('disabled', 'disabled-date');
+				}
+				if ($.inArray(date.getUTCDay(), this.o.daysOfWeekHighlighted) !== -1) {
+					cls.push('highlighted');
+				}
+	
+				if (this.range) {
+					if (date > this.range[0] && date < this.range[this.range.length - 1]) {
+						cls.push('range');
+					}
+					if ($.inArray(date.valueOf(), this.range) !== -1) {
+						cls.push('selected');
+					}
+					if (date.valueOf() === this.range[0]) {
+						cls.push('range-start');
+					}
+					if (date.valueOf() === this.range[this.range.length - 1]) {
+						cls.push('range-end');
+					}
+				}
+				return cls;
+			},
+	
+			_fill_yearsView: function _fill_yearsView(selector, cssClass, factor, step, currentYear, startYear, endYear, callback) {
+				var html, view, year, steps, startStep, endStep, thisYear, i, classes, tooltip, before;
+	
+				html = '';
+				view = this.picker.find(selector);
+				year = parseInt(currentYear / factor, 10) * factor;
+				startStep = parseInt(startYear / step, 10) * step;
+				endStep = parseInt(endYear / step, 10) * step;
+				steps = $.map(this.dates, function (d) {
+					return parseInt(d.getUTCFullYear() / step, 10) * step;
+				});
+	
+				view.find('.datepicker-switch').text(year + '-' + (year + step * 9));
+	
+				thisYear = year - step;
+				for (i = -1; i < 11; i += 1) {
+					classes = [cssClass];
+					tooltip = null;
+	
+					if (i === -1) {
+						classes.push('old');
+					} else if (i === 10) {
+						classes.push('new');
+					}
+					if ($.inArray(thisYear, steps) !== -1) {
+						classes.push('active');
+					}
+					if (thisYear < startStep || thisYear > endStep) {
+						classes.push('disabled');
+					}
+					if (thisYear === this.viewDate.getFullYear()) {
+						classes.push('focused');
+					}
+	
+					if (callback !== $.noop) {
+						before = callback(new Date(thisYear, 0, 1));
+						if (before === undefined) {
+							before = {};
+						} else if (typeof before === 'boolean') {
+							before = { enabled: before };
+						} else if (typeof before === 'string') {
+							before = { classes: before };
+						}
+						if (before.enabled === false) {
+							classes.push('disabled');
+						}
+						if (before.classes) {
+							classes = classes.concat(before.classes.split(/\s+/));
+						}
+						if (before.tooltip) {
+							tooltip = before.tooltip;
+						}
+					}
+	
+					html += '<span class="' + classes.join(' ') + '"' + (tooltip ? ' title="' + tooltip + '"' : '') + '>' + thisYear + '</span>';
+					thisYear += step;
+				}
+				view.find('td').html(html);
+			},
+	
+			fill: function fill() {
+				var d = new Date(this.viewDate),
+				    year = d.getUTCFullYear(),
+				    month = d.getUTCMonth(),
+				    startYear = this.o.startDate !== -Infinity ? this.o.startDate.getUTCFullYear() : -Infinity,
+				    startMonth = this.o.startDate !== -Infinity ? this.o.startDate.getUTCMonth() : -Infinity,
+				    endYear = this.o.endDate !== Infinity ? this.o.endDate.getUTCFullYear() : Infinity,
+				    endMonth = this.o.endDate !== Infinity ? this.o.endDate.getUTCMonth() : Infinity,
+				    todaytxt = dates[this.o.language].today || dates['en'].today || '',
+				    cleartxt = dates[this.o.language].clear || dates['en'].clear || '',
+				    titleFormat = dates[this.o.language].titleFormat || dates['en'].titleFormat,
+				    tooltip,
+				    before;
+				if (isNaN(year) || isNaN(month)) return;
+				this.picker.find('.datepicker-days .datepicker-switch').text(DPGlobal.formatDate(d, titleFormat, this.o.language));
+				this.picker.find('tfoot .today').text(todaytxt).toggle(this.o.todayBtn !== false);
+				this.picker.find('tfoot .clear').text(cleartxt).toggle(this.o.clearBtn !== false);
+				this.picker.find('thead .datepicker-title').text(this.o.title).toggle(this.o.title !== '');
+				this.updateNavArrows();
+				this.fillMonths();
+				var prevMonth = UTCDate(year, month - 1, 28),
+				    day = DPGlobal.getDaysInMonth(prevMonth.getUTCFullYear(), prevMonth.getUTCMonth());
+				prevMonth.setUTCDate(day);
+				prevMonth.setUTCDate(day - (prevMonth.getUTCDay() - this.o.weekStart + 7) % 7);
+				var nextMonth = new Date(prevMonth);
+				if (prevMonth.getUTCFullYear() < 100) {
+					nextMonth.setUTCFullYear(prevMonth.getUTCFullYear());
+				}
+				nextMonth.setUTCDate(nextMonth.getUTCDate() + 42);
+				nextMonth = nextMonth.valueOf();
+				var html = [];
+				var clsName;
+				while (prevMonth.valueOf() < nextMonth) {
+					if (prevMonth.getUTCDay() === this.o.weekStart) {
+						html.push('<tr>');
+						if (this.o.calendarWeeks) {
+							// ISO 8601: First week contains first thursday.
+							// ISO also states week starts on Monday, but we can be more abstract here.
+							var
+							// Start of current week: based on weekstart/current date
+							ws = new Date(+prevMonth + (this.o.weekStart - prevMonth.getUTCDay() - 7) % 7 * 864e5),
+	
+							// Thursday of this week
+							th = new Date(Number(ws) + (7 + 4 - ws.getUTCDay()) % 7 * 864e5),
+	
+							// First Thursday of year, year from thursday
+							yth = new Date(Number(yth = UTCDate(th.getUTCFullYear(), 0, 1)) + (7 + 4 - yth.getUTCDay()) % 7 * 864e5),
+	
+							// Calendar week: ms between thursdays, div ms per day, div 7 days
+							calWeek = (th - yth) / 864e5 / 7 + 1;
+							html.push('<td class="cw">' + calWeek + '</td>');
+						}
+					}
+					clsName = this.getClassNames(prevMonth);
+					clsName.push('day');
+	
+					if (this.o.beforeShowDay !== $.noop) {
+						before = this.o.beforeShowDay(this._utc_to_local(prevMonth));
+						if (before === undefined) before = {};else if (typeof before === 'boolean') before = { enabled: before };else if (typeof before === 'string') before = { classes: before };
+						if (before.enabled === false) clsName.push('disabled');
+						if (before.classes) clsName = clsName.concat(before.classes.split(/\s+/));
+						if (before.tooltip) tooltip = before.tooltip;
+					}
+	
+					//Check if uniqueSort exists (supported by jquery >=1.12 and >=2.2)
+					//Fallback to unique function for older jquery versions
+					if ($.isFunction($.uniqueSort)) {
+						clsName = $.uniqueSort(clsName);
+					} else {
+						clsName = $.unique(clsName);
+					}
+	
+					html.push('<td class="' + clsName.join(' ') + '"' + (tooltip ? ' title="' + tooltip + '"' : '') + '>' + prevMonth.getUTCDate() + '</td>');
+					tooltip = null;
+					if (prevMonth.getUTCDay() === this.o.weekEnd) {
+						html.push('</tr>');
+					}
+					prevMonth.setUTCDate(prevMonth.getUTCDate() + 1);
+				}
+				this.picker.find('.datepicker-days tbody').empty().append(html.join(''));
+	
+				var monthsTitle = dates[this.o.language].monthsTitle || dates['en'].monthsTitle || 'Months';
+				var months = this.picker.find('.datepicker-months').find('.datepicker-switch').text(this.o.maxViewMode < 2 ? monthsTitle : year).end().find('span').removeClass('active');
+	
+				$.each(this.dates, function (i, d) {
+					if (d.getUTCFullYear() === year) months.eq(d.getUTCMonth()).addClass('active');
+				});
+	
+				if (year < startYear || year > endYear) {
+					months.addClass('disabled');
+				}
+				if (year === startYear) {
+					months.slice(0, startMonth).addClass('disabled');
+				}
+				if (year === endYear) {
+					months.slice(endMonth + 1).addClass('disabled');
+				}
+	
+				if (this.o.beforeShowMonth !== $.noop) {
+					var that = this;
+					$.each(months, function (i, month) {
+						var moDate = new Date(year, i, 1);
+						var before = that.o.beforeShowMonth(moDate);
+						if (before === undefined) before = {};else if (typeof before === 'boolean') before = { enabled: before };else if (typeof before === 'string') before = { classes: before };
+						if (before.enabled === false && !$(month).hasClass('disabled')) $(month).addClass('disabled');
+						if (before.classes) $(month).addClass(before.classes);
+						if (before.tooltip) $(month).prop('title', before.tooltip);
+					});
+				}
+	
+				// Generating decade/years picker
+				this._fill_yearsView('.datepicker-years', 'year', 10, 1, year, startYear, endYear, this.o.beforeShowYear);
+	
+				// Generating century/decades picker
+				this._fill_yearsView('.datepicker-decades', 'decade', 100, 10, year, startYear, endYear, this.o.beforeShowDecade);
+	
+				// Generating millennium/centuries picker
+				this._fill_yearsView('.datepicker-centuries', 'century', 1000, 100, year, startYear, endYear, this.o.beforeShowCentury);
+			},
+	
+			updateNavArrows: function updateNavArrows() {
+				if (!this._allow_update) return;
+	
+				var d = new Date(this.viewDate),
+				    year = d.getUTCFullYear(),
+				    month = d.getUTCMonth();
+				switch (this.viewMode) {
+					case 0:
+						if (this.o.startDate !== -Infinity && year <= this.o.startDate.getUTCFullYear() && month <= this.o.startDate.getUTCMonth()) {
+							this.picker.find('.prev').css({ visibility: 'hidden' });
+						} else {
+							this.picker.find('.prev').css({ visibility: 'visible' });
+						}
+						if (this.o.endDate !== Infinity && year >= this.o.endDate.getUTCFullYear() && month >= this.o.endDate.getUTCMonth()) {
+							this.picker.find('.next').css({ visibility: 'hidden' });
+						} else {
+							this.picker.find('.next').css({ visibility: 'visible' });
+						}
+						break;
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+						if (this.o.startDate !== -Infinity && year <= this.o.startDate.getUTCFullYear() || this.o.maxViewMode < 2) {
+							this.picker.find('.prev').css({ visibility: 'hidden' });
+						} else {
+							this.picker.find('.prev').css({ visibility: 'visible' });
+						}
+						if (this.o.endDate !== Infinity && year >= this.o.endDate.getUTCFullYear() || this.o.maxViewMode < 2) {
+							this.picker.find('.next').css({ visibility: 'hidden' });
+						} else {
+							this.picker.find('.next').css({ visibility: 'visible' });
+						}
+						break;
+				}
+			},
+	
+			click: function click(e) {
+				e.preventDefault();
+				e.stopPropagation();
+	
+				var target, dir, day, year, month, monthChanged, yearChanged;
+				target = $(e.target);
+	
+				// Clicked on the switch
+				if (target.hasClass('datepicker-switch')) {
+					this.showMode(1);
+				}
+	
+				// Clicked on prev or next
+				var navArrow = target.closest('.prev, .next');
+				if (navArrow.length > 0) {
+					dir = DPGlobal.modes[this.viewMode].navStep * (navArrow.hasClass('prev') ? -1 : 1);
+					if (this.viewMode === 0) {
+						this.viewDate = this.moveMonth(this.viewDate, dir);
+						this._trigger('changeMonth', this.viewDate);
+					} else {
+						this.viewDate = this.moveYear(this.viewDate, dir);
+						if (this.viewMode === 1) {
+							this._trigger('changeYear', this.viewDate);
+						}
+					}
+					this.fill();
+				}
+	
+				// Clicked on today button
+				if (target.hasClass('today') && !target.hasClass('day')) {
+					this.showMode(-2);
+					this._setDate(UTCToday(), this.o.todayBtn === 'linked' ? null : 'view');
+				}
+	
+				// Clicked on clear button
+				if (target.hasClass('clear')) {
+					this.clearDates();
+				}
+	
+				if (!target.hasClass('disabled')) {
+					// Clicked on a day
+					if (target.hasClass('day')) {
+						day = parseInt(target.text(), 10) || 1;
+						year = this.viewDate.getUTCFullYear();
+						month = this.viewDate.getUTCMonth();
+	
+						// From last month
+						if (target.hasClass('old')) {
+							if (month === 0) {
+								month = 11;
+								year = year - 1;
+								monthChanged = true;
+								yearChanged = true;
+							} else {
+								month = month - 1;
+								monthChanged = true;
+							}
+						}
+	
+						// From next month
+						if (target.hasClass('new')) {
+							if (month === 11) {
+								month = 0;
+								year = year + 1;
+								monthChanged = true;
+								yearChanged = true;
+							} else {
+								month = month + 1;
+								monthChanged = true;
+							}
+						}
+						this._setDate(UTCDate(year, month, day));
+						if (yearChanged) {
+							this._trigger('changeYear', this.viewDate);
+						}
+						if (monthChanged) {
+							this._trigger('changeMonth', this.viewDate);
+						}
+					}
+	
+					// Clicked on a month
+					if (target.hasClass('month')) {
+						this.viewDate.setUTCDate(1);
+						day = 1;
+						month = target.parent().find('span').index(target);
+						year = this.viewDate.getUTCFullYear();
+						this.viewDate.setUTCMonth(month);
+						this._trigger('changeMonth', this.viewDate);
+						if (this.o.minViewMode === 1) {
+							this._setDate(UTCDate(year, month, day));
+							this.showMode();
+						} else {
+							this.showMode(-1);
+						}
+						this.fill();
+					}
+	
+					// Clicked on a year
+					if (target.hasClass('year') || target.hasClass('decade') || target.hasClass('century')) {
+						this.viewDate.setUTCDate(1);
+	
+						day = 1;
+						month = 0;
+						year = parseInt(target.text(), 10) || 0;
+						this.viewDate.setUTCFullYear(year);
+	
+						if (target.hasClass('year')) {
+							this._trigger('changeYear', this.viewDate);
+							if (this.o.minViewMode === 2) {
+								this._setDate(UTCDate(year, month, day));
+							}
+						}
+						if (target.hasClass('decade')) {
+							this._trigger('changeDecade', this.viewDate);
+							if (this.o.minViewMode === 3) {
+								this._setDate(UTCDate(year, month, day));
+							}
+						}
+						if (target.hasClass('century')) {
+							this._trigger('changeCentury', this.viewDate);
+							if (this.o.minViewMode === 4) {
+								this._setDate(UTCDate(year, month, day));
+							}
+						}
+	
+						this.showMode(-1);
+						this.fill();
+					}
+				}
+	
+				if (this.picker.is(':visible') && this._focused_from) {
+					$(this._focused_from).focus();
+				}
+				delete this._focused_from;
+			},
+	
+			_toggle_multidate: function _toggle_multidate(date) {
+				var ix = this.dates.contains(date);
+				if (!date) {
+					this.dates.clear();
+				}
+	
+				if (ix !== -1) {
+					if (this.o.multidate === true || this.o.multidate > 1 || this.o.toggleActive) {
+						this.dates.remove(ix);
+					}
+				} else if (this.o.multidate === false) {
+					this.dates.clear();
+					this.dates.push(date);
+				} else {
+					this.dates.push(date);
+				}
+	
+				if (typeof this.o.multidate === 'number') while (this.dates.length > this.o.multidate) {
+					this.dates.remove(0);
+				}
+			},
+	
+			_setDate: function _setDate(date, which) {
+				if (!which || which === 'date') this._toggle_multidate(date && new Date(date));
+				if (!which || which === 'view') this.viewDate = date && new Date(date);
+	
+				this.fill();
+				this.setValue();
+				if (!which || which !== 'view') {
+					this._trigger('changeDate');
+				}
+				if (this.inputField) {
+					this.inputField.change();
+				}
+				if (this.o.autoclose && (!which || which === 'date')) {
+					this.hide();
+				}
+			},
+	
+			moveDay: function moveDay(date, dir) {
+				var newDate = new Date(date);
+				newDate.setUTCDate(date.getUTCDate() + dir);
+	
+				return newDate;
+			},
+	
+			moveWeek: function moveWeek(date, dir) {
+				return this.moveDay(date, dir * 7);
+			},
+	
+			moveMonth: function moveMonth(date, dir) {
+				if (!isValidDate(date)) return this.o.defaultViewDate;
+				if (!dir) return date;
+				var new_date = new Date(date.valueOf()),
+				    day = new_date.getUTCDate(),
+				    month = new_date.getUTCMonth(),
+				    mag = Math.abs(dir),
+				    new_month,
+				    test;
+				dir = dir > 0 ? 1 : -1;
+				if (mag === 1) {
+					test = dir === -1
+					// If going back one month, make sure month is not current month
+					// (eg, Mar 31 -> Feb 31 == Feb 28, not Mar 02)
+					? function () {
+						return new_date.getUTCMonth() === month;
+					}
+					// If going forward one month, make sure month is as expected
+					// (eg, Jan 31 -> Feb 31 == Feb 28, not Mar 02)
+					: function () {
+						return new_date.getUTCMonth() !== new_month;
+					};
+					new_month = month + dir;
+					new_date.setUTCMonth(new_month);
+					// Dec -> Jan (12) or Jan -> Dec (-1) -- limit expected date to 0-11
+					if (new_month < 0 || new_month > 11) new_month = (new_month + 12) % 12;
+				} else {
+					// For magnitudes >1, move one month at a time...
+					for (var i = 0; i < mag; i++) {
+						// ...which might decrease the day (eg, Jan 31 to Feb 28, etc)...
+						new_date = this.moveMonth(new_date, dir);
+					} // ...then reset the day, keeping it in the new month
+					new_month = new_date.getUTCMonth();
+					new_date.setUTCDate(day);
+					test = function test() {
+						return new_month !== new_date.getUTCMonth();
+					};
+				}
+				// Common date-resetting loop -- if date is beyond end of month, make it
+				// end of month
+				while (test()) {
+					new_date.setUTCDate(--day);
+					new_date.setUTCMonth(new_month);
+				}
+				return new_date;
+			},
+	
+			moveYear: function moveYear(date, dir) {
+				return this.moveMonth(date, dir * 12);
+			},
+	
+			moveAvailableDate: function moveAvailableDate(date, dir, fn) {
+				do {
+					date = this[fn](date, dir);
+	
+					if (!this.dateWithinRange(date)) return false;
+	
+					fn = 'moveDay';
+				} while (this.dateIsDisabled(date));
+	
+				return date;
+			},
+	
+			weekOfDateIsDisabled: function weekOfDateIsDisabled(date) {
+				return $.inArray(date.getUTCDay(), this.o.daysOfWeekDisabled) !== -1;
+			},
+	
+			dateIsDisabled: function dateIsDisabled(date) {
+				return this.weekOfDateIsDisabled(date) || $.grep(this.o.datesDisabled, function (d) {
+					return isUTCEquals(date, d);
+				}).length > 0;
+			},
+	
+			dateWithinRange: function dateWithinRange(date) {
+				return date >= this.o.startDate && date <= this.o.endDate;
+			},
+	
+			keydown: function keydown(e) {
+				if (!this.picker.is(':visible')) {
+					if (e.keyCode === 40 || e.keyCode === 27) {
+						// allow down to re-show picker
+						this.show();
+						e.stopPropagation();
+					}
+					return;
+				}
+				var dateChanged = false,
+				    dir,
+				    newViewDate,
+				    focusDate = this.focusDate || this.viewDate;
+				switch (e.keyCode) {
+					case 27:
+						// escape
+						if (this.focusDate) {
+							this.focusDate = null;
+							this.viewDate = this.dates.get(-1) || this.viewDate;
+							this.fill();
+						} else this.hide();
+						e.preventDefault();
+						e.stopPropagation();
+						break;
+					case 37: // left
+					case 38: // up
+					case 39: // right
+					case 40:
+						// down
+						if (!this.o.keyboardNavigation || this.o.daysOfWeekDisabled.length === 7) break;
+						dir = e.keyCode === 37 || e.keyCode === 38 ? -1 : 1;
+						if (this.viewMode === 0) {
+							if (e.ctrlKey) {
+								newViewDate = this.moveAvailableDate(focusDate, dir, 'moveYear');
+	
+								if (newViewDate) this._trigger('changeYear', this.viewDate);
+							} else if (e.shiftKey) {
+								newViewDate = this.moveAvailableDate(focusDate, dir, 'moveMonth');
+	
+								if (newViewDate) this._trigger('changeMonth', this.viewDate);
+							} else if (e.keyCode === 37 || e.keyCode === 39) {
+								newViewDate = this.moveAvailableDate(focusDate, dir, 'moveDay');
+							} else if (!this.weekOfDateIsDisabled(focusDate)) {
+								newViewDate = this.moveAvailableDate(focusDate, dir, 'moveWeek');
+							}
+						} else if (this.viewMode === 1) {
+							if (e.keyCode === 38 || e.keyCode === 40) {
+								dir = dir * 4;
+							}
+							newViewDate = this.moveAvailableDate(focusDate, dir, 'moveMonth');
+						} else if (this.viewMode === 2) {
+							if (e.keyCode === 38 || e.keyCode === 40) {
+								dir = dir * 4;
+							}
+							newViewDate = this.moveAvailableDate(focusDate, dir, 'moveYear');
+						}
+						if (newViewDate) {
+							this.focusDate = this.viewDate = newViewDate;
+							this.setValue();
+							this.fill();
+							e.preventDefault();
+						}
+						break;
+					case 13:
+						// enter
+						if (!this.o.forceParse) break;
+						focusDate = this.focusDate || this.dates.get(-1) || this.viewDate;
+						if (this.o.keyboardNavigation) {
+							this._toggle_multidate(focusDate);
+							dateChanged = true;
+						}
+						this.focusDate = null;
+						this.viewDate = this.dates.get(-1) || this.viewDate;
+						this.setValue();
+						this.fill();
+						if (this.picker.is(':visible')) {
+							e.preventDefault();
+							e.stopPropagation();
+							if (this.o.autoclose) this.hide();
+						}
+						break;
+					case 9:
+						// tab
+						this.focusDate = null;
+						this.viewDate = this.dates.get(-1) || this.viewDate;
+						this.fill();
+						this.hide();
+						break;
+				}
+				if (dateChanged) {
+					if (this.dates.length) this._trigger('changeDate');else this._trigger('clearDate');
+					if (this.inputField) {
+						this.inputField.change();
+					}
+				}
+			},
+	
+			showMode: function showMode(dir) {
+				if (dir) {
+					this.viewMode = Math.max(this.o.minViewMode, Math.min(this.o.maxViewMode, this.viewMode + dir));
+				}
+				this.picker.children('div').hide().filter('.datepicker-' + DPGlobal.modes[this.viewMode].clsName).show();
+				this.updateNavArrows();
+			}
+		};
+	
+		var DateRangePicker = function DateRangePicker(element, options) {
+			$(element).data('datepicker', this);
+			this.element = $(element);
+			this.inputs = $.map(options.inputs, function (i) {
+				return i.jquery ? i[0] : i;
+			});
+			delete options.inputs;
+	
+			datepickerPlugin.call($(this.inputs), options).on('changeDate', $.proxy(this.dateUpdated, this));
+	
+			this.pickers = $.map(this.inputs, function (i) {
+				return $(i).data('datepicker');
+			});
+			this.updateDates();
+		};
+		DateRangePicker.prototype = {
+			updateDates: function updateDates() {
+				this.dates = $.map(this.pickers, function (i) {
+					return i.getUTCDate();
+				});
+				this.updateRanges();
+			},
+			updateRanges: function updateRanges() {
+				var range = $.map(this.dates, function (d) {
+					return d.valueOf();
+				});
+				$.each(this.pickers, function (i, p) {
+					p.setRange(range);
+				});
+			},
+			dateUpdated: function dateUpdated(e) {
+				// `this.updating` is a workaround for preventing infinite recursion
+				// between `changeDate` triggering and `setUTCDate` calling.  Until
+				// there is a better mechanism.
+				if (this.updating) return;
+				this.updating = true;
+	
+				var dp = $(e.target).data('datepicker');
+	
+				if (typeof dp === "undefined") {
+					return;
+				}
+	
+				var new_date = dp.getUTCDate(),
+				    i = $.inArray(e.target, this.inputs),
+				    j = i - 1,
+				    k = i + 1,
+				    l = this.inputs.length;
+				if (i === -1) return;
+	
+				$.each(this.pickers, function (i, p) {
+					if (!p.getUTCDate()) p.setUTCDate(new_date);
+				});
+	
+				if (new_date < this.dates[j]) {
+					// Date being moved earlier/left
+					while (j >= 0 && new_date < this.dates[j]) {
+						this.pickers[j--].setUTCDate(new_date);
+					}
+				} else if (new_date > this.dates[k]) {
+					// Date being moved later/right
+					while (k < l && new_date > this.dates[k]) {
+						this.pickers[k++].setUTCDate(new_date);
+					}
+				}
+				this.updateDates();
+	
+				delete this.updating;
+			},
+			remove: function remove() {
+				$.map(this.pickers, function (p) {
+					p.remove();
+				});
+				delete this.element.data().datepicker;
+			}
+		};
+	
+		function opts_from_el(el, prefix) {
+			// Derive options from element data-attrs
+			var data = $(el).data(),
+			    out = {},
+			    inkey,
+			    replace = new RegExp('^' + prefix.toLowerCase() + '([A-Z])');
+			prefix = new RegExp('^' + prefix.toLowerCase());
+			function re_lower(_, a) {
+				return a.toLowerCase();
+			}
+			for (var key in data) {
+				if (prefix.test(key)) {
+					inkey = key.replace(replace, re_lower);
+					out[inkey] = data[key];
+				}
+			}return out;
+		}
+	
+		function opts_from_locale(lang) {
+			// Derive options from locale plugins
+			var out = {};
+			// Check if "de-DE" style date is available, if not language should
+			// fallback to 2 letter code eg "de"
+			if (!dates[lang]) {
+				lang = lang.split('-')[0];
+				if (!dates[lang]) return;
+			}
+			var d = dates[lang];
+			$.each(locale_opts, function (i, k) {
+				if (k in d) out[k] = d[k];
+			});
+			return out;
+		}
+	
+		var old = $.fn.datepicker;
+		var datepickerPlugin = function datepickerPlugin(option) {
+			var args = Array.apply(null, arguments);
+			args.shift();
+			var internal_return;
+			this.each(function () {
+				var $this = $(this),
+				    data = $this.data('datepicker'),
+				    options = (typeof option === "undefined" ? "undefined" : _typeof(option)) === 'object' && option;
+				if (!data) {
+					var elopts = opts_from_el(this, 'date'),
+	
+					// Preliminary otions
+					xopts = $.extend({}, defaults, elopts, options),
+					    locopts = opts_from_locale(xopts.language),
+	
+					// Options priority: js args, data-attrs, locales, defaults
+					opts = $.extend({}, defaults, locopts, elopts, options);
+					if ($this.hasClass('input-daterange') || opts.inputs) {
+						$.extend(opts, {
+							inputs: opts.inputs || $this.find('input').toArray()
+						});
+						data = new DateRangePicker(this, opts);
+					} else {
+						data = new Datepicker(this, opts);
+					}
+					$this.data('datepicker', data);
+				}
+				if (typeof option === 'string' && typeof data[option] === 'function') {
+					internal_return = data[option].apply(data, args);
+				}
+			});
+	
+			if (internal_return === undefined || internal_return instanceof Datepicker || internal_return instanceof DateRangePicker) return this;
+	
+			if (this.length > 1) throw new Error('Using only allowed for the collection of a single element (' + option + ' function)');else return internal_return;
+		};
+		$.fn.datepicker = datepickerPlugin;
+	
+		var defaults = $.fn.datepicker.defaults = {
+			assumeNearbyYear: false,
+			autoclose: false,
+			beforeShowDay: $.noop,
+			beforeShowMonth: $.noop,
+			beforeShowYear: $.noop,
+			beforeShowDecade: $.noop,
+			beforeShowCentury: $.noop,
+			calendarWeeks: false,
+			clearBtn: false,
+			toggleActive: false,
+			daysOfWeekDisabled: [],
+			daysOfWeekHighlighted: [],
+			datesDisabled: [],
+			endDate: Infinity,
+			forceParse: true,
+			format: 'mm/dd/yyyy',
+			keyboardNavigation: true,
+			language: 'en',
+			minViewMode: 0,
+			maxViewMode: 4,
+			multidate: false,
+			multidateSeparator: ',',
+			orientation: "auto",
+			rtl: false,
+			startDate: -Infinity,
+			startView: 0,
+			todayBtn: false,
+			todayHighlight: false,
+			weekStart: 0,
+			disableTouchKeyboard: false,
+			enableOnReadonly: true,
+			showOnFocus: true,
+			zIndexOffset: 10,
+			container: 'body',
+			immediateUpdates: false,
+			title: '',
+			templates: {
+				leftArrow: '&laquo;',
+				rightArrow: '&raquo;'
+			}
+		};
+		var locale_opts = $.fn.datepicker.locale_opts = ['format', 'rtl', 'weekStart'];
+		$.fn.datepicker.Constructor = Datepicker;
+		var dates = $.fn.datepicker.dates = {
+			en: {
+				days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+				daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+				daysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+				months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+				monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+				today: "Today",
+				clear: "Clear",
+				titleFormat: "MM yyyy"
+			}
+		};
+	
+		var DPGlobal = {
+			modes: [{
+				clsName: 'days',
+				navFnc: 'Month',
+				navStep: 1
+			}, {
+				clsName: 'months',
+				navFnc: 'FullYear',
+				navStep: 1
+			}, {
+				clsName: 'years',
+				navFnc: 'FullYear',
+				navStep: 10
+			}, {
+				clsName: 'decades',
+				navFnc: 'FullDecade',
+				navStep: 100
+			}, {
+				clsName: 'centuries',
+				navFnc: 'FullCentury',
+				navStep: 1000
+			}],
+			isLeapYear: function isLeapYear(year) {
+				return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
+			},
+			getDaysInMonth: function getDaysInMonth(year, month) {
+				return [31, DPGlobal.isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
+			},
+			validParts: /dd?|DD?|mm?|MM?|yy(?:yy)?/g,
+			nonpunctuation: /[^ -\/:-@\u5e74\u6708\u65e5\[-`{-~\t\n\r]+/g,
+			parseFormat: function parseFormat(format) {
+				if (typeof format.toValue === 'function' && typeof format.toDisplay === 'function') return format;
+				// IE treats \0 as a string end in inputs (truncating the value),
+				// so it's a bad format delimiter, anyway
+				var separators = format.replace(this.validParts, '\0').split('\0'),
+				    parts = format.match(this.validParts);
+				if (!separators || !separators.length || !parts || parts.length === 0) {
+					throw new Error("Invalid date format.");
+				}
+				return { separators: separators, parts: parts };
+			},
+			parseDate: function parseDate(date, format, language, assumeNearby) {
+				if (!date) return undefined;
+				if (date instanceof Date) return date;
+				if (typeof format === 'string') format = DPGlobal.parseFormat(format);
+				if (format.toValue) return format.toValue(date, format, language);
+				var part_re = /([\-+]\d+)([dmwy])/,
+				    parts = date.match(/([\-+]\d+)([dmwy])/g),
+				    fn_map = {
+					d: 'moveDay',
+					m: 'moveMonth',
+					w: 'moveWeek',
+					y: 'moveYear'
+				},
+				    dateAliases = {
+					yesterday: '-1d',
+					today: '+0d',
+					tomorrow: '+1d'
+				},
+				    part,
+				    dir,
+				    i,
+				    fn;
+				if (/^[\-+]\d+[dmwy]([\s,]+[\-+]\d+[dmwy])*$/.test(date)) {
+					date = new Date();
+					for (i = 0; i < parts.length; i++) {
+						part = part_re.exec(parts[i]);
+						dir = parseInt(part[1]);
+						fn = fn_map[part[2]];
+						date = Datepicker.prototype[fn](date, dir);
+					}
+					return UTCDate(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+				}
+	
+				if (typeof dateAliases[date] !== 'undefined') {
+					date = dateAliases[date];
+					parts = date.match(/([\-+]\d+)([dmwy])/g);
+	
+					if (/^[\-+]\d+[dmwy]([\s,]+[\-+]\d+[dmwy])*$/.test(date)) {
+						date = new Date();
+						for (i = 0; i < parts.length; i++) {
+							part = part_re.exec(parts[i]);
+							dir = parseInt(part[1]);
+							fn = fn_map[part[2]];
+							date = Datepicker.prototype[fn](date, dir);
+						}
+	
+						return UTCDate(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+					}
+				}
+	
+				parts = date && date.match(this.nonpunctuation) || [];
+				date = new Date();
+	
+				function applyNearbyYear(year, threshold) {
+					if (threshold === true) threshold = 10;
+	
+					// if year is 2 digits or less, than the user most likely is trying to get a recent century
+					if (year < 100) {
+						year += 2000;
+						// if the new year is more than threshold years in advance, use last century
+						if (year > new Date().getFullYear() + threshold) {
+							year -= 100;
+						}
+					}
+	
+					return year;
+				}
+	
+				var parsed = {},
+				    setters_order = ['yyyy', 'yy', 'M', 'MM', 'm', 'mm', 'd', 'dd'],
+				    setters_map = {
+					yyyy: function yyyy(d, v) {
+						return d.setUTCFullYear(assumeNearby ? applyNearbyYear(v, assumeNearby) : v);
+					},
+					yy: function yy(d, v) {
+						return d.setUTCFullYear(assumeNearby ? applyNearbyYear(v, assumeNearby) : v);
+					},
+					m: function m(d, v) {
+						if (isNaN(d)) return d;
+						v -= 1;
+						while (v < 0) {
+							v += 12;
+						}v %= 12;
+						d.setUTCMonth(v);
+						while (d.getUTCMonth() !== v) {
+							d.setUTCDate(d.getUTCDate() - 1);
+						}return d;
+					},
+					d: function d(_d, v) {
+						return _d.setUTCDate(v);
+					}
+				},
+				    val,
+				    filtered;
+				setters_map['M'] = setters_map['MM'] = setters_map['mm'] = setters_map['m'];
+				setters_map['dd'] = setters_map['d'];
+				date = UTCToday();
+				var fparts = format.parts.slice();
+				// Remove noop parts
+				if (parts.length !== fparts.length) {
+					fparts = $(fparts).filter(function (i, p) {
+						return $.inArray(p, setters_order) !== -1;
+					}).toArray();
+				}
+				// Process remainder
+				function match_part() {
+					var m = this.slice(0, parts[i].length),
+					    p = parts[i].slice(0, m.length);
+					return m.toLowerCase() === p.toLowerCase();
+				}
+				if (parts.length === fparts.length) {
+					var cnt;
+					for (i = 0, cnt = fparts.length; i < cnt; i++) {
+						val = parseInt(parts[i], 10);
+						part = fparts[i];
+						if (isNaN(val)) {
+							switch (part) {
+								case 'MM':
+									filtered = $(dates[language].months).filter(match_part);
+									val = $.inArray(filtered[0], dates[language].months) + 1;
+									break;
+								case 'M':
+									filtered = $(dates[language].monthsShort).filter(match_part);
+									val = $.inArray(filtered[0], dates[language].monthsShort) + 1;
+									break;
+							}
+						}
+						parsed[part] = val;
+					}
+					var _date, s;
+					for (i = 0; i < setters_order.length; i++) {
+						s = setters_order[i];
+						if (s in parsed && !isNaN(parsed[s])) {
+							_date = new Date(date);
+							setters_map[s](_date, parsed[s]);
+							if (!isNaN(_date)) date = _date;
+						}
+					}
+				}
+				return date;
+			},
+			formatDate: function formatDate(date, format, language) {
+				if (!date) return '';
+				if (typeof format === 'string') format = DPGlobal.parseFormat(format);
+				if (format.toDisplay) return format.toDisplay(date, format, language);
+				var val = {
+					d: date.getUTCDate(),
+					D: dates[language].daysShort[date.getUTCDay()],
+					DD: dates[language].days[date.getUTCDay()],
+					m: date.getUTCMonth() + 1,
+					M: dates[language].monthsShort[date.getUTCMonth()],
+					MM: dates[language].months[date.getUTCMonth()],
+					yy: date.getUTCFullYear().toString().substring(2),
+					yyyy: date.getUTCFullYear()
+				};
+				val.dd = (val.d < 10 ? '0' : '') + val.d;
+				val.mm = (val.m < 10 ? '0' : '') + val.m;
+				date = [];
+				var seps = $.extend([], format.separators);
+				for (var i = 0, cnt = format.parts.length; i <= cnt; i++) {
+					if (seps.length) date.push(seps.shift());
+					date.push(val[format.parts[i]]);
+				}
+				return date.join('');
+			},
+			headTemplate: '<thead>' + '<tr>' + '<th colspan="7" class="datepicker-title"></th>' + '</tr>' + '<tr>' + '<th class="prev">&laquo;</th>' + '<th colspan="5" class="datepicker-switch"></th>' + '<th class="next">&raquo;</th>' + '</tr>' + '</thead>',
+			contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
+			footTemplate: '<tfoot>' + '<tr>' + '<th colspan="7" class="today"></th>' + '</tr>' + '<tr>' + '<th colspan="7" class="clear"></th>' + '</tr>' + '</tfoot>'
+		};
+		DPGlobal.template = '<div class="datepicker">' + '<div class="datepicker-days">' + '<table class="table-condensed">' + DPGlobal.headTemplate + '<tbody></tbody>' + DPGlobal.footTemplate + '</table>' + '</div>' + '<div class="datepicker-months">' + '<table class="table-condensed">' + DPGlobal.headTemplate + DPGlobal.contTemplate + DPGlobal.footTemplate + '</table>' + '</div>' + '<div class="datepicker-years">' + '<table class="table-condensed">' + DPGlobal.headTemplate + DPGlobal.contTemplate + DPGlobal.footTemplate + '</table>' + '</div>' + '<div class="datepicker-decades">' + '<table class="table-condensed">' + DPGlobal.headTemplate + DPGlobal.contTemplate + DPGlobal.footTemplate + '</table>' + '</div>' + '<div class="datepicker-centuries">' + '<table class="table-condensed">' + DPGlobal.headTemplate + DPGlobal.contTemplate + DPGlobal.footTemplate + '</table>' + '</div>' + '</div>';
+	
+		$.fn.datepicker.DPGlobal = DPGlobal;
+	
+		/* DATEPICKER NO CONFLICT
+	 * =================== */
+	
+		$.fn.datepicker.noConflict = function () {
+			$.fn.datepicker = old;
+			return this;
+		};
+	
+		/* DATEPICKER VERSION
+	  * =================== */
+		$.fn.datepicker.version = '1.6.4';
+	
+		/* DATEPICKER DATA-API
+	 * ================== */
+	
+		$(document).on('focus.datepicker.data-api click.datepicker.data-api', '[data-provide="datepicker"]', function (e) {
+			var $this = $(this);
+			if ($this.data('datepicker')) return;
+			e.preventDefault();
+			// component click requires us to explicitly show it
+			datepickerPlugin.call($this, 'show');
+		});
+		$(function () {
+			datepickerPlugin.call($('[data-provide="datepicker-inline"]'));
+		});
+	});
+
+/***/ },
+/* 133 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/posts/postsMy/PostsMyView.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _PostsMyViewHbs = __webpack_require__(/*! ./PostsMyView.hbs.html */ 134);
+	
+	var _PostsMyViewHbs2 = _interopRequireDefault(_PostsMyViewHbs);
+	
+	var _PostItemView = __webpack_require__(/*! ./PostItemView */ 135);
+	
+	var _PostItemView2 = _interopRequireDefault(_PostItemView);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./PostMyView.less */ 137);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CompositeView.extend({
+	    template: _PostsMyViewHbs2.default,
+	    childView: _PostItemView2.default,
+	    childViewContainer: '#myPostsContaner',
+	
+	    onRender: function onRender() {}
+	});
+	exports.default = View;
+
+/***/ },
+/* 134 */
+/*!************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/postsMy/PostsMyView.hbs.html ***!
+  \************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="sh-content">\r\n    <div class="sh-my-posts">\r\n        <div class="container">\r\n            <div id="myPostsContaner" class="sh-my-posts-wrapper"></div>\r\n        </div>\r\n    </div>\r\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 135 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/posts/postsMy/PostItemView.js ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _PostItemViewHbs = __webpack_require__(/*! ./PostItemView.hbs.html */ 136);
+	
+	var _PostItemViewHbs2 = _interopRequireDefault(_PostItemViewHbs);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _locationHelper = __webpack_require__(/*! ../../../helpers/locationHelper.js */ 9);
+	
+	var _locationHelper2 = _interopRequireDefault(_locationHelper);
+	
+	var _postDuration = __webpack_require__(/*! ../../../helpers/postDuration.js */ 60);
+	
+	var _postDuration2 = _interopRequireDefault(_postDuration);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _PostItemViewHbs2.default,
+	    className: 'sh-my-posts-item sh-page-block',
+	    onBeforeRender: function onBeforeRender() {
+	        this.getDistance();
+	        this.getPostState();
+	    },
+	    getDistance: function getDistance() {
+	        window.mypost = this.model.toJSON(); //debug
+	
+	        var locations = this.model.get('details').locations;
+	        if (locations && _.size(locations) > 0 && _app2.default.user.has('position')) {
+	            var location = _.find(locations, function (l) {
+	                return l.placeType === 'dynamic';
+	            });
+	            if (!location) location = locations[0];
+	            var dist = _locationHelper2.default.getDistance(location.coords.lat, location.coords.lng, _app2.default.user.get('position').lat, _app2.default.user.get('position').lng);
+	            this.model.set('distance', dist);
+	            this.model.set('distanceType', 'km');
+	            var obj = _postDuration2.default.getPostDuration(this.model);
+	            this.model.set('progress', obj.percent);
+	        } else {
+	            this.model.set('distance', -1);
+	            this.model.set('progress', 0);
+	        }
+	    },
+	    getPostState: function getPostState() {
+	        var state = this.model.get('status').visible;
+	        this.model.set('postState', state === 'visible' ? 'on' : 'off');
+	    },
+	
+	
+	    events: {
+	        '.js-remove-my-post click': function jsRemoveMyPostClick() {
+	            debugger;
+	        },
+	        '.js-edit-my-post click': function jsEditMyPostClick() {
+	            debugger;
+	        }
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 136 */
+/*!*************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/postsMy/PostItemView.hbs.html ***!
+  \*************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<!-- class .sh-my-posts-item-wrapper include .sh-post-live or .sh-post-away -->\n<div class="sh-my-posts-item-wrapper sh-post-'+
+	((__t=( postState))==null?'':__t)+
+	' sh-type-category-'+
+	((__t=(type))==null?'':__t)+
+	'">\n    ';
+	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
+	__p+='\n    <div class="sh-my-posts-item-photo">        \n        <div class="sh-my-posts-item-photo-wrapper">\n            <a href="/posts/'+
+	((__t=(_id))==null?'':_.escape(__t))+
+	'">\r\n                <div class="img img-responsive" style="background-image:url(\''+
+	((__t=( details.photos && details.photos.length > 0 ? details.photos[0].thumbnail||details.photos[0].data : '/images/no_image.jpg'))==null?'':__t)+
+	'\')" alt="Photo of the post"></div>\r\n            </a>\n        </div> \n        ';
+	 if (_.size(details.photos) > 0){ 
+	__p+='\n            <div class="sh-my-posts-item-photo-count">\n                <span>\n                    '+
+	((__t=(details.photos.length))==null?'':__t)+
+	'\n                </span>\n            </div>\n        ';
+	 } 
+	__p+='       \n    </div>\n\n    <div class="sh-my-posts-item-content">\n        <div class="sh-my-posts-item-content-header">\n            <div class="sh-my-posts-item-content-header-wrapper">\n                <span class="label bg-type-category-'+
+	((__t=(type))==null?'':__t)+
+	' pull-right">'+
+	((__t=(type))==null?'':__t)+
+	'</span>\r\n                <div class="sh-my-posts-item-content-title">\r\n                    <h2><a href="/posts/'+
+	((__t=(_id))==null?'':_.escape(__t))+
+	'">'+
+	((__t=(details.title))==null?'':__t)+
+	'</a></h2>\r\n                </div>\n            </div>\n            <div class="sh-my-posts-item-content-header-stat">\n                <ul class="sh-my-posts-item-stat">\r\n                    <li><a href="#"><i class="fa fa-clock-o"></i> <span class="">'+
+	((__t=(moment(obj.timestamp.$date).fromNow()))==null?'':__t)+
+	'</span></a></li>\r\n                    <li><a href="#"><i class="fa fa-eye"></i> <span class="">'+
+	((__t=(obj.stats?stats.seenAll:0))==null?'':__t)+
+	'</span></a></li>\r\n                    <li><a title="'+
+	((__t=(isDynamic ? 'Динамическое объявление' : 'Статическое'))==null?'':__t)+
+	'" href="#"><i class="fa fa-'+
+	((__t=(isDynamic?'man':'flag' ))==null?'':__t)+
+	'"></i> <span class="">'+
+	((__t=(isDynamic ? 'success' : ''))==null?'':__t)+
+	'</span></a></li>\r\n                    <li><a href="#"><i class="fa fa-location-arrow"></i> <span class="">'+
+	((__t=(distance>-1?distance.toFixed(1) + ' '+distanceType:''))==null?'':__t)+
+	'</span></a></li>\r\n                </ul>\n            </div>            \n        </div>\n\n        <div class="sh-my-posts-item-content-body"></div>\n\n        <div class="sh-my-posts-item-content-footer">\n            <div class="sh-my-posts-item-content-footer-wrapper">\n                <div class="sh-my-posts-item-content-footer-location">\r\n                    <div class="sh-my-posts-item-content-footer-location-wrapper">\r\n                        <i class="fa fa-map-marker" aria-hidden="true"></i> \r\n                        ';
+	var loc = _.find(details.locations,function(l) { return l.placeType==='dynamic' })||details.locations[0]; 
+	__p+='\r\n                        ';
+	 if (loc) { 
+	__p+='\r\n                            <span>'+
+	((__t=(loc.name))==null?'':__t)+
+	'</span>\r\n                        ';
+	 } 
+	__p+='\r\n                    </div>\r\n                </div>\r\n                <div class="sh-my-posts-item-content-footer-progress">\r\n                    <div class="sh-progress-bar progress">\r\n                        <div class="progress-bar '+
+	((__t=( progress >= 50 ? 'progress-bar-success' : (progress >=20 && progress < 50 ? 'progress-bar-warning' : 'progress-bar-danger')))==null?'':__t)+
+	'" role="progressbar" style="width: '+
+	((__t=( progress))==null?'':__t)+
+	'%; min-width: 1em; ">\r\n                            <span class="sr-only"></span>\r\n                        </div>\r\n                    </div>\r\n                </div>\n            </div>            \n        </div>\n        \n        <!--\n\n        <p>'+
+	((__t=(details.description))==null?'':__t)+
+	'</p>\n\n        -->\n\n\n        <!--<a href="#" class="btn btn-reveal btn-default js-edit-my-chat">\n            <i class="fa fa-edit"></i>\n            <span>Редактировать</span>\n        </a>\n        <a href="#" class="btn btn-reveal btn-danger js-remove-my-post">\n            <i class="fa fa-remove"></i>\n            <span>Удалить</span>\n        </a>-->\n    </div>\n\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 137 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/posts/postsMy/PostMyView.less ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 138 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _chatsMyViewHbs = __webpack_require__(/*! ./chatsMyView.hbs.html */ 139);
+	
+	var _chatsMyViewHbs2 = _interopRequireDefault(_chatsMyViewHbs);
+	
+	var _chatItemView = __webpack_require__(/*! ./chatItemView */ 140);
+	
+	var _chatItemView2 = _interopRequireDefault(_chatItemView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CompositeView.extend({
+	    template: _chatsMyViewHbs2.default,
+	    childView: _chatItemView2.default,
+	    childViewContainer: '#myChatsContaner',
+	    onRender: function onRender() {}
+	});
+	exports.default = View;
+
+/***/ },
+/* 139 */
+/*!************************************************************!*\
+  !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.hbs.html ***!
+  \************************************************************/
+=======
 /*!***************************************************!*\
   !*** ./wwwroot/sharedViews/ModalContainerView.js ***!
   \***************************************************/
@@ -35386,14 +46010,21 @@
 /*!*****************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationSetButton.hbs.html ***!
   \*****************************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
+	__p+='<main class="sh-content">\r\n    <div class="sh-page-chats">\r\n        <div class="container">\r\n            <!--<h1 class="sh-section-hero-headline">'+
+	((__t=(i18n('h_messages')))==null?'':__t)+
+	'</h1>-->\r\n            <div id="myChatsContaner" class="sh-page-block sh-pages-chats-wrapper"></div>\r\n        </div>\r\n    </div>    \r\n</main>';
+=======
 	__p+='<button class="ui sh-button standard create big margin-bottom-20">'+
 	((__t=(i18n('BTN_DONE')))==null?'':__t)+
 	'</button>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -35401,6 +46032,1001 @@
 
 /***/ },
 /* 140 */
+<<<<<<< HEAD
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.js ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _chatItemViewHbs = __webpack_require__(/*! ./chatItemView.hbs.html */ 141);
+	
+	var _chatItemViewHbs2 = _interopRequireDefault(_chatItemViewHbs);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./chatItemView.css */ 142);
+	
+	__webpack_require__(/*! ./myChatItemView.less */ 144);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _chatItemViewHbs2.default,
+	    onBeforeRender: function onBeforeRender() {
+	        //this.getDistance();
+	    },
+	    getDistance: function getDistance() {
+	        // todo
+	    },
+	
+	    events: {
+	        '.js-remove-my-post click': function jsRemoveMyPostClick() {
+	            //debugger;
+	        },
+	        '.js-edit-my-post click': function jsEditMyPostClick() {
+	            //debugger;
+	        }
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 141 */
+/*!*************************************************************!*\
+  !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.hbs.html ***!
+  \*************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="sh-chat-item-container">\n    ';
+	 obj.__otherParty = {} 
+	__p+='\n    ';
+	 if(obj.otherParty && obj.otherParty[0]) { obj.__otherParty = obj.otherParty[0]; } 
+	__p+='\n    ';
+	 obj.__lastMessage = obj.lastMessage || {} 
+	__p+='\n    <div class="sh-chat-item">\n        <a href="/messages/to/'+
+	((__t=( obj.__otherParty._id ))==null?'':__t)+
+	'">\n        <!--<a href="/messages/to/'+
+	((__t=(_id ))==null?'':_.escape(__t))+
+	'?remoteUserId='+
+	((__t=( obj.__otherParty.remoteUserId ))==null?'':__t)+
+	'">-->\n            <div class="sh-meta-info">                \n                <div class="sh-chat-user">\r\n                    <div class="sh-avatar">\r\n                        <img src="'+
+	((__t=( obj.__otherParty.image ? obj.__otherParty.image.thumbnail || obj.__otherParty.image.imageUrl || '/images/no_avatar.png' : '/images/no_avatar.png' ))==null?'':__t)+
+	'"\r\n                                alt="null" />\r\n                    </div>                   \r\n                </div>               \n                \n                <div class="sh-chat-content">\n                    <span class="sh-last-timestamp">'+
+	((__t=( moment(obj.lastMessageTs).fromNow() ))==null?'':__t)+
+	'</span>\n                    <div class="sh-username">'+
+	((__t=( obj.__otherParty.username ))==null?'':__t)+
+	'</div>\n                    <div class="sh-users-messages">\r\n                        <div class="sh-last-message">'+
+	((__t=( obj.__lastMessage.text ))==null?'':__t)+
+	'</div>\r\n                    </div>\n                </div>        \n            </div>\n        </a>\n    </div>\n\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 142 */
+/*!********************************************************!*\
+  !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.css ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./chatItemView.css */ 143);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 45)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./chatItemView.css", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./chatItemView.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 143 */
+/*!***********************************************************************!*\
+  !*** ./~/css-loader!./wwwroot/homeApp/chats/chatsMy/chatItemView.css ***!
+  \***********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 14)();
+	exports.push([module.id, ".bz-chat-item .bz-user-avatar {\r\n  float: left;\r\n  top: 0;\r\n  left: 0;\r\n  padding-right: 10px;\r\n}\r\n\r\n.bz-chat-item .bz-avatar {\r\n\r\n  background-size: cover;\r\n  background-position: center;\r\n  -webkit-border-radius: 2px;\r\n  -moz-border-radius: 2px;\r\n  border-radius: 2px;\r\n}\r\n.bz-chat-item .bz-avatar img {\r\n  width: 50px;\r\n  height: 50px;\r\n}\r\n.bz-chat-item .bz-last-timestamp {\r\n  font-style: italic;\r\n  font-size: 12px;\r\n  padding-top: 12px;\r\n}\r\n.bz-chat-item .bz-last-message {\r\n  font-weight: bold;\r\n}\r\n/* temp, not good solution: */\r\ndiv.blog-post-item {\r\n  margin-bottom: 10px;\r\n  padding-bottom: 30px;\r\n}", ""]);
+
+/***/ },
+/* 144 */
+/*!***********************************************************!*\
+  !*** ./wwwroot/homeApp/chats/chatsMy/myChatItemView.less ***!
+  \***********************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 145 */
+/*!*********************************************!*\
+  !*** ./wwwroot/homeApp/chats/ChatIdView.js ***!
+  \*********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ChatIdViewHbs = __webpack_require__(/*! ./ChatIdView.hbs.html */ 146);
+	
+	var _ChatIdViewHbs2 = _interopRequireDefault(_ChatIdViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _ChatIdViewHbs2.default,
+	    initialize: function initialize() {},
+	
+	    /*  tagName:'iframe',
+	        attributes: {
+	          width:'100%',
+	          src:'https://shiners.mobi/chat/'+chatId._id+'?isiframe=true'
+	      },
+	      */
+	    events: {
+	        'load iframe': 'removeHeader'
+	    },
+	
+	    removeHeader: function removeHeader(e) {
+	        console.info('remove header');
+	        window.myIframe = e.target;
+	        console.info(src);
+	    },
+	    onAttach: function onAttach() {
+	        this.$el.height(window.innerHeight - $('#header').height());
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 146 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/chats/ChatIdView.hbs.html ***!
+  \***************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<section style ="height:100%;">\r\n    <div class="container">\r\n    </div>\r\n</section>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 147 */
+/*!*********************************************!*\
+  !*** ./wwwroot/homeApp/user/DetailsView.js ***!
+  \*********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _AsteroidModel = __webpack_require__(/*! ../../data/AsteroidModel.js */ 85);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 148);
+	
+	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
+	
+	var _SendMessageView = __webpack_require__(/*! ./SendMessageView.js */ 149);
+	
+	var _SendMessageView2 = _interopRequireDefault(_SendMessageView);
+	
+	var _ProfileEditView = __webpack_require__(/*! ./ProfileEditView.js */ 152);
+	
+	var _ProfileEditView2 = _interopRequireDefault(_ProfileEditView);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _ModalContainerView = __webpack_require__(/*! ../../sharedViews/ModalContainerView.js */ 124);
+	
+	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _DetailsViewHbs2.default,
+	    tagName: 'div',
+	    className: 'sh-user-profile',
+	    c_user: null,
+	    r_user: null,
+	
+	    events: {
+	        'click #logout': 'logout',
+	        'click #profile-send': 'profileSend',
+	        'click #profile-edit': 'profileEdit',
+	        'click #checkPosts': 'checkPosts',
+	        'click #profile-link': 'directProfileLink'
+	    },
+	
+	    regions: {
+	        'modal': '#modalContainer'
+	    },
+	
+	    modelEvents: {
+	        "sync": "render"
+	    },
+	
+	    initialize: function initialize() {
+	        this.r_user = this.model.toJSON();
+	        this.c_user = _app2.default.user.toJSON();
+	
+	        this.sendMessageModel = new _AsteroidModel2.default({
+	            name: this.r_user.username,
+	            user_id: _app2.default.user.get('_id'),
+	            remoteUser_id: this.r_user._id
+	        }, { asteroid: _app2.default.asteroid });
+	
+	        this.profileEditModel = new _AsteroidModel2.default(this.c_user, { asteroid: _app2.default.asteroid });
+	
+	        this.listenTo(this.profileEditModel, 'save', this.render);
+	    },
+	    renderr: function renderr() {
+	        console.log('Профиль rrrrrr');
+	        ///this.render();
+	    },
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            user: _app2.default.user.toJSON()
+	        };
+	    },
+	    onRender: function onRender() {
+	        //this.showChildView('content', new UserDetailsView({model: this.profileEditModel}))
+	        console.log('Профиль отреднерился');
+	    },
+	    logout: function logout() {
+	        _app2.default.logout();
+	    },
+	    profileSend: function profileSend(e) {
+	        //Необходима проверка -> залогинен или нет, иначе отправлять на регистрацию
+	        this.showChildView('modal', new _ModalContainerView2.default({ view: new _SendMessageView2.default({ model: this.sendMessageModel }), title: 'Сообщение для пользователя' }));
+	    },
+	    profileEdit: function profileEdit(e) {
+	        this.showChildView('modal', new _ModalContainerView2.default({ view: new _ProfileEditView2.default({ model: this.profileEditModel }), title: 'Настройки профиля' }));
+	    },
+	    checkPosts: function checkPosts(e) {
+	        var checkbox = $(e.target),
+	            toggle;
+	
+	        toggle = checkbox.prop('checked');
+	        // -> method to update profile field
+	    },
+	    directProfileLink: function directProfileLink(e) {
+	        var t = e.target.closest('#profile-link'),
+	            c = t.dataset.copytarget,
+	            inp = c ? document.querySelector(c) : null;
+	
+	        if (inp && inp.select) {
+	            inp.select();
+	
+	            try {
+	                document.execCommand('copy');
+	                setTimeout(function () {
+	                    inp.blur();
+	                }, 250);
+	            } catch (err) {
+	                console.warn('please press Ctrl/Cmd+C to copy');
+	            }
+	        }
+	    }
+	});
+	
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 148 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/user/DetailsView.hbs.html ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\n';
+	var isCurrentUser = (_id === user._id); 
+	__p+='\r\n';
+	var someUser = obj; 
+	__p+='\n\n';
+	var firstName = (_.find(someUser.profileDetails,{key:'firstName'})||{}).value;
+	__p+='\n';
+	var lastName = (_.findWhere(someUser.profileDetails,{key:'lastName'})||{}).value; 
+	__p+='\n';
+	var city = (_.find(someUser.profileDetails,{key:'city'})||{}).value;
+	__p+='\n';
+	var phone = (_.findWhere(someUser.profileDetails,{key:'phone'})||{}).value; 
+	__p+='\n';
+	var skype = (_.find(someUser.profileDetails,{key:'skype'})||{}).value;
+	__p+='\n';
+	var vk = (_.findWhere(someUser.profileDetails,{key:'vk'})||{}).value; 
+	__p+='\n';
+	var twitter = (_.find(someUser.profileDetails,{key:'twitter'})||{}).value;
+	__p+='\n';
+	var facebook = (_.findWhere(someUser.profileDetails,{key:'facebook'})||{}).value; 
+	__p+='\n\n<div id="modalContainer"></div>\n\n<div class="container">\n    <div class="sh-user-profile-wrapper">\n        <div class="sh-side-left">\n            <div class="sh-page-block sh-user-box">\n                <div class="sh-user-avatar">\n                    <div class="sh-user-avatar-wrap">\n                        <a class="sh-user-profile-photo-link" href="#">\n                            <img src="'+
+	((__t=(profile.image && profile.image.data?profile.image.data:'/images/no_image.jpg'))==null?'':__t)+
+	'" alt="#">\n                        </a>\n                        <div class="sh-avatar-user-status">\n                            <div class="sh-avatar-user-status-wrapper '+
+	((__t=(someUser.online ? 'sh-online' : 'sh-offline' ))==null?'':__t)+
+	'"></div>\n                        </div>\n                    </div>\n                </div>\n                <div class="sh-profile-action">\n                    ';
+	if(!isCurrentUser) { 
+	__p+='\n                    <a id="profile-send" class="ui sh-button sh-profile-send"> '+
+	((__t=(i18n('addMessage')))==null?'':__t)+
+	'</a>\n                    ';
+	 } else { 
+	__p+='\n                    <a id="profile-edit" class="ui sh-button sh-profile-edit">Редактировать</a>\n                    ';
+	 } 
+	__p+='\n                </div>\n            </div>\n            <div class="sh-page-block">\n                <ul class="sh-user-action">\n                    <!--<li><a href="#">'+
+	((__t=(i18n('complain')))==null?'':__t)+
+	'</a></li>-->\n                    ';
+	if(isCurrentUser) { 
+	__p+='\n                    <li class="sh-user-action-exit"><a id="logout">'+
+	((__t=(i18n('exit')))==null?'':__t)+
+	'</a></li>\n                    ';
+	 } 
+	__p+='\n                </ul>\n            </div>\n        </div>\n        <div class="sh-side-right">\n            <div class="sh-page-block sh-user-info">\n                <div class="sh-user-info-top">\n                    <small class="sh-user-was">'+
+	((__t=(i18n('WAS_ONLINE')))==null?'':__t)+
+	' '+
+	((__t=(moment(status.lastlogin.date).calendar()))==null?'':__t)+
+	'</small>\n                    <h2 class="sh-user-name">'+
+	((__t=( firstName))==null?'':__t)+
+	' '+
+	((__t=(lastName))==null?'':__t)+
+	' '+
+	((__t=((!firstName && !lastName) ? someUser.username : ''))==null?'':__t)+
+	'</h2>\n                </div>\n                <div class="sh-user-profile-info">\n                    <div class="sh-user-profile-info-wrapper">\n                        <!--Direct link to my profile-->\n                        <div class="sh-user-profile-info-row sh-col">\n                            <div class="sh-info-title">'+
+	((__t=(i18n('DIRECT_PROFILE_LINK')))==null?'':__t)+
+	'</div>\n                            <div class="sh-info-text">\n                                <div class="sh-direct-link-block">\n                                    <div class="sh-direct-link-wrapper">\n                                        <div class="sh-icon-direct-link">\n                                            <i class="fa fa-link" aria-hidden="true"></i>\n                                        </div>\n                                        <a href="https://shiners.ru/user/'+
+	((__t=(_id))==null?'':__t)+
+	'" style="width:100%"><input type="text" readonly id="directProfileLink" value="https://www.shiners.ru/user/'+
+	((__t=(_id))==null?'':__t)+
+	'" /></a>\n                                    </div>\n                                    <div class="sh-direct-link-btn-copy"><a id="profile-link" data-copytarget="#directProfileLink" title="Копировать" class="ui sh-button"><i class="fa fa-clipboard" aria-hidden="true"></i></a></div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--The publication available to all users-->\n                        ';
+	if(isCurrentUser) { 
+	__p+='\n                        <div class="sh-user-profile-info-row sh-col">\n                            <div class="sh-info-title">Настройка для постов</div>\n                            <div class="sh-info-text">\n                                <div class="sh-direct-link-block">\n                                    <div class="sh-direct-link-wrapper">\n                                        <label class="sh-checkbox">\n                                            <input id="checkPosts" type="checkbox" '+
+	((__t=(isCurrentUser && someUser.profile.checkOwnPosts ? 'checked' : ''))==null?'':__t)+
+	' value="1">\n                                            <label>Сделать мои публикации доступными для всех пользователей</label>\n                                        </label>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        ';
+	 } 
+	__p+='\n\n                        <!--Public info-->\n                        ';
+	 if (city || skype || vk || facebook) { 
+	__p+='\n\n                            <div class="sh-user-profile-info-row sh-profile-info-header">\n                                <div class="sh-profile-info-header-within">\n                                    <span>Публичная информация</span>\n                                </div>\n                            </div>\n\n                            <!--City-->\n                            ';
+	 if (city) { 
+	__p+='\n                            <div class="sh-user-profile-info-row">\n                                <div class="sh-info-title">Город</div>\n                                <div class="sh-info-text">'+
+	((__t=(city))==null?'':__t)+
+	'</div>\n                            </div>\n                            ';
+	 } 
+	__p+='\n\n                            <!--Social links-->\n                            ';
+	 if (skype) { 
+	__p+='\n                            <div class="sh-user-profile-info-row">\n                                <div class="sh-info-title">Логин Skype</div>\n                                <div class="sh-info-text">'+
+	((__t=(skype))==null?'':__t)+
+	'</div>\n                            </div>\n                            ';
+	 } 
+	__p+='\n\n                            ';
+	 if (vk) { 
+	__p+='\n                            <div class="sh-user-profile-info-row sh-social-links sh-vk">\n                                <div class="sh-info-title">Вконтакте</div>\n                                <div class="sh-info-text">'+
+	((__t=(vk))==null?'':__t)+
+	'</div>\n                            </div>\n                            ';
+	 } 
+	__p+='\n\n                            ';
+	 if (facebook) { 
+	__p+='\n                            <div class="sh-user-profile-info-row sh-social-links sh-facebook">\n                                <div class="sh-info-title">Facebook</div>\n                                <div class="sh-info-text">'+
+	((__t=(facebook))==null?'':__t)+
+	'</div>\n                            </div>\n                            ';
+	 } 
+	__p+='\n\n                        ';
+	 } 
+	__p+='\n\n                        <!--<div class="sh-user-profile-info-row">-->\n                        <!--<div class="sh-info-title"></div>-->\n                        <!--<div class="sh-info-text"></div>-->\n                        <!--</div>-->\n                    </div>\n                </div>\n                <div class="sh-user-profile-links">\n                    <div class="sh-user-profile-links-wrapper">\n                        <div class="sh-user-profile-links-item">Постов <span>0</span></div>\n                        <div class="sh-user-profile-links-item">Комментариев <span>0</span></div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 149 */
+/*!*************************************************!*\
+  !*** ./wwwroot/homeApp/user/SendMessageView.js ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _SendMessageViewHbs = __webpack_require__(/*! ./SendMessageView.hbs.html */ 150);
+	
+	var _SendMessageViewHbs2 = _interopRequireDefault(_SendMessageViewHbs);
+	
+	var _AsteroidModel = __webpack_require__(/*! ../../data/AsteroidModel.js */ 85);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	__webpack_require__(/*! ./SendMessageView.less */ 151);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	    template: _SendMessageViewHbs2.default,
+	
+	    events: {
+	        'submit form': 'sendMessage'
+	    },
+	
+	    sendMessage: function sendMessage(e) {
+	        var _this = this;
+	
+	        e.preventDefault();
+	        var self = this;
+	        var $textEl = this.$('#message-to-user'),
+	            value = ($textEl.val() || "").trim(),
+	            remoteUserId = this.model.get('remoteUser_id');
+	
+	        if (!_.isEmpty(value)) {
+	            if (_app2.default.asteroid.loggedIn) {
+	                //var remoteUser = new Model({_id: remoteUserId}, {asteroid: app.asteroid});
+	                _app2.default.asteroid.call('bz.chats.createChatIfFirstMessage', _app2.default.user.id, remoteUserId).then(function (chatId) {
+	
+	                    var model = new _AsteroidModel2.default({
+	                        text: value,
+	                        timestamp: new Date(),
+	                        userId: _this.model.get('user_id'),
+	                        toUserId: remoteUserId,
+	                        chatId: chatId
+	                    }, { asteroid: _app2.default.asteroid });
+	
+	                    model.save('addMessage', {
+	                        destinationUserId: remoteUserId,
+	                        message: value,
+	                        type: 'text'
+	                    });
+	
+	                    $textEl.val('');
+	                    $textEl.focus();
+	
+	                    self.remove();
+	                    self.trigger('destroy');
+	
+	                    setTimeout(function () {
+	                        _app2.default.router.navigate('/chats/' + chatId + '?remoteUserId=' + remoteUserId, { trigger: true, replace: true });
+	                    }, 1000);
+	                });
+	            } else {
+	                _app2.default.router.navigate('', { trigger: true });
+	            }
+	        }
+	    }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 150 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/user/SendMessageView.hbs.html ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div id="messageToUser" class="sh-message-to-user">\r\n  \r\n    <form id="sendMessageForm" action="/" method="post">\r\n        <div class="row">\r\n            <div class="col-12">\r\n                <div class="panel-body sh-panel-body">\r\n                    <textarea required rows="4" class="sh-message-to-user" id="message-to-user" name="sendToUser[message]" placeholder="Начните сообщение..."></textarea>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class="row">\r\n            <div class="sh-send-message-actions">\r\n                <div class="sh-send-message-actions-wrapper">\r\n                    <div class="col-4">\r\n                        <div class="sh-msg-info-title">Сообщение для:</div>\r\n                        <div class="sh-msg-user-name">'+
+	((__t=(name))==null?'':__t)+
+	'</div>\r\n                    </div>\r\n                    <div class="col-7">\r\n                        <button type="submit" class="ui sh-button standard action big"><i class="fa fa-check"></i> <span>Отправить сообщение</span></button>\r\n                    </div>\r\n                </div>\r\n            </div>            \r\n        </div>\r\n        <input type="hidden" name="message-save" value="1">\r\n    </form>\r\n\r\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 151 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/user/SendMessageView.less ***!
+  \***************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 152 */
+/*!*************************************************!*\
+  !*** ./wwwroot/homeApp/user/ProfileEditView.js ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ProfileEditViewHbs = __webpack_require__(/*! ./ProfileEditView.hbs.html */ 153);
+	
+	var _ProfileEditViewHbs2 = _interopRequireDefault(_ProfileEditViewHbs);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	    template: _ProfileEditViewHbs2.default,
+	    items: null,
+	
+	    regions: {},
+	
+	    events: {
+	        'blur #sh-profile-first-name, #sh-profile-last-name, #sh-profile-city, #sh-profile-phone, #sh-profile-skype, #sh-profile-vk, #sh-profile-facebook': 'profileAttributesChange',
+	        'click #sh-policy-1': 'openedPrivacy',
+	        'click #sh-policy-0': 'lockedPrivacy',
+	        'click #sh-profile-edit-action-save': 'profileEditSave'
+	    },
+	
+	    modelEvents: {
+	        'save': 'showSuccess'
+	    },
+	
+	    initialize: function initialize() {
+	        this.items = this.model.get('profileDetails') || {};
+	    },
+	    onAttach: function onAttach() {
+	        Backbone.Validation.bind(this);
+	    },
+	    profileAttributesChange: function profileAttributesChange(e) {
+	        var target = e.target;
+	
+	        if (target && target.id == 'sh-profile-first-name') {
+	            this.fieldIteration('firstName', target);
+	        } else if (target && target.id == 'sh-profile-last-name') {
+	            this.fieldIteration('lastName', target);
+	        } else if (target && target.id == 'sh-profile-city') {
+	            this.fieldIteration('city', target);
+	        } else if (target && target.id == 'sh-profile-phone') {
+	            this.fieldIteration('phone', target);
+	        } else if (target && target.id == 'sh-profile-skype') {
+	            this.fieldIteration('skype', target);
+	        } else if (target && target.id == 'sh-profile-vk') {
+	            this.fieldIteration('vk', target);
+	        } else if (target && target.id == 'sh-profile-facebook') {
+	            this.fieldIteration('facebook', target);
+	        }
+	
+	        this.model.set('profileDetails', this.items, { validate: true });
+	    },
+	    fieldIteration: function fieldIteration(name, el) {
+	        _underscore2.default.each(this.items, function (item) {
+	            if (item.key == name) {
+	                if (el.value && !_underscore2.default.isEmpty(el.value.trim())) {
+	                    item.value = el.value.trim();
+	                } else {
+	                    item.value = '';
+	                }
+	            }
+	        });
+	    },
+	    openedPrivacy: function openedPrivacy(e) {
+	        var target = $(e.target),
+	            button = target.closest('.sh-profile-edit-privacy-control').find('.sh-privacy-dropdown');
+	
+	        if (button) {
+	            var child = button.children();
+	
+	            if (child.hasClass('fa-lock')) {
+	                child.removeClass('fa-lock');
+	                child.addClass('fa-unlock-alt');
+	            }
+	        }
+	
+	        _underscore2.default.each(this.items, function (item) {
+	            if (item.key == 'phone') {
+	                item.policy = '1';
+	            }
+	        });
+	
+	        this.model.set('profileDetails', this.items);
+	    },
+	    lockedPrivacy: function lockedPrivacy(e) {
+	        var target = $(e.target),
+	            button = target.closest('.sh-profile-edit-privacy-control').find('.sh-privacy-dropdown');
+	
+	        if (button) {
+	            var child = button.children();
+	
+	            if (child.hasClass('fa-unlock-alt')) {
+	                child.removeClass('fa-unlock-alt');
+	                child.addClass('fa-lock');
+	            }
+	        }
+	
+	        _underscore2.default.each(this.items, function (item) {
+	            if (item.key == 'phone') {
+	                item.policy = '0';
+	            }
+	        });
+	
+	        this.model.set('profileDetails', this.items);
+	    },
+	    profileEditSave: function profileEditSave(e) {
+	        this.model.save('editUser', { profileDetails: this.items } /*, {
+	                                                                   success: function() {
+	                                                                   console.log('Model saved')
+	                                                                   },
+	                                                                   error: function() {
+	                                                                   console.log('ERROR Model saved')}
+	                                                                   }*/);
+	    },
+	    showSuccess: function showSuccess() {
+	        //-> Нужно сделать рендер для detailsView
+	
+	        this.remove();
+	        this.trigger('destroy');
+	        //this.$el.closest('.modal-content').find('.modal-header .close').trigger('click');
+	    }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 153 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/user/ProfileEditView.hbs.html ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n';
+	var firstName = (_.find(obj.profileDetails, {key:'firstName'}) || {}).value;
+	__p+='\r\n';
+	var lastName = (_.findWhere(obj.profileDetails, {key:'lastName'}) || {}).value;
+	__p+='\r\n';
+	var city = (_.find(obj.profileDetails, {key:'city'}) || {}).value;
+	__p+='\r\n';
+	var phone = (_.findWhere(obj.profileDetails, {key:'phone'}) || {}).value; 
+	__p+='\r\n';
+	var policyPhone = (_.find(obj.profileDetails, {key:'phone'}) || {}).policy; 
+	__p+='\r\n';
+	var skype = (_.find(obj.profileDetails, {key:'skype'}) || {}).value;
+	__p+='\r\n';
+	var vk = (_.findWhere(obj.profileDetails, {key:'vk'}) || {}).value; 
+	__p+='\r\n';
+	var twitter = (_.find(obj.profileDetails, {key:'twitter'}) || {}).value;
+	__p+='\r\n';
+	var facebook = (_.findWhere(obj.profileDetails, {key:'facebook'}) || {}).value; 
+	__p+='\r\n\r\n<div id="profileEdit" class="sh-profile-edit">    \r\n    <div class="sh-profile-edit-wrapper">\r\n        <div id="sh-profile-edit-result" class="sh-profile-edit-result"></div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Имя:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( firstName))==null?'':__t)+
+	'" placeholder="Не указано" id="sh-profile-first-name" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Фамилия:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( lastName))==null?'':__t)+
+	'" placeholder="Не указано" id="sh-profile-last-name" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        \r\n        <div class="sh-profile-edit-row sh-profile-info-header">\r\n            <div class="sh-profile-info-header-within">\r\n                <span>Контакты</span>\r\n            </div>\r\n        </div>\r\n\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Город:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( city))==null?'':__t)+
+	'" placeholder="Не указано" id="sh-profile-city" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Телефон:</div>\r\n            <div class="sh-profile-edit-labeled sh-inner-icon">\r\n                <input type="text" value="'+
+	((__t=( phone))==null?'':__t)+
+	'" placeholder="Не указано" id="sh-profile-phone" class="sh-profile-input" autocomplete="off">\r\n                <div class="sh-profile-edit-privacy-control sh-profile-locked">                    \r\n                    <button type="button" class="sh-privacy-dropdown dropdown-toggle" data-toggle="dropdown"><i class="fa '+
+	((__t=( (policyPhone === '1') ? 'fa-unlock-alt' : 'fa-lock'))==null?'':__t)+
+	'" aria-hidden="true"></i></button>\r\n                    <ul class="dropdown-menu" role="menu">\r\n                        <li><a id="sh-policy-1" data-target="opened">Всем пользователям</a></li>\r\n                        <li><a id="sh-policy-0" data-target="locked">Скрыто для всех</a></li>                            \r\n                    </ul>                    \r\n                </div>\r\n            </div>            \r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Логин Skype:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( skype))==null?'':__t)+
+	'" placeholder="Не указано" id="sh-profile-skype" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Вконтакте:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( vk))==null?'':__t)+
+	'" placeholder="Ссылка на профиль" id="sh-profile-vk" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Facebook:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( facebook))==null?'':__t)+
+	'" placeholder="Ссылка на профиль" id="sh-profile-facebook" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n\r\n        <hr>\r\n\r\n        <div class="sh-profile-edit-action sh-text-center">\r\n            <a id="sh-profile-edit-action-save" class="ui sh-button standard action big"><i class="fa fa-check"></i> <span>Сохранить</span></a>\r\n        </div>\r\n\r\n    </div>\r\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 154 */
+/*!************************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.js ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($, _) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _MessagesToUserViewHbs = __webpack_require__(/*! ./MessagesToUserView.hbs.html */ 155);
+	
+	var _MessagesToUserViewHbs2 = _interopRequireDefault(_MessagesToUserViewHbs);
+	
+	var _MessagesListView = __webpack_require__(/*! ./MessagesListView.js */ 156);
+	
+	var _MessagesListView2 = _interopRequireDefault(_MessagesListView);
+	
+	var _AsteroidModel = __webpack_require__(/*! ../../../data/AsteroidModel.js */ 85);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	__webpack_require__(/*! ./messagesToUserView.less */ 162);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _MessagesToUserViewHbs2.default,
+	    className: 'sh-content',
+	    tagName: 'div',
+	
+	    regions: {
+	        'messages': '#messagesList'
+	    },
+	
+	    onRender: function onRender() {
+	        this.showChildView('messages', new _MessagesListView2.default({ collection: this.collection, model: this.model, childViewOptions: { chat: this.model } }));
+	    },
+	
+	
+	    events: {
+	        'submit form': 'sendMessage',
+	        'keyup #messageText': function keyupMessageText(e) {
+	
+	            var messText = $.trim($('#messageText').val());
+	
+	            if (messText.length > 0) {
+	                var btn = $('.sh-messages-input-action').find('button');
+	                if (btn.hasClass('disabled')) {
+	                    $('.sh-messages-input-action').find('button').removeClass('disabled');
+	                }
+	            } else {
+	                $('.sh-messages-input-action').find('button').addClass('disabled');
+	                return;
+	            }
+	
+	            if (e.charCode === 13 || e.keyCode === 13) {
+	                this.sendMessage(e);
+	            }
+	        }
+	    },
+	
+	    onAttach: function onAttach() {
+	        this.messagesList_listenToResize();
+	        this.keyupInput();
+	        this.scrollMessages();
+	    },
+	    onDomRefresh: function onDomRefresh() {
+	        this.messagesList();
+	    },
+	    sendMessage: function sendMessage(e) {
+	        e.preventDefault();
+	        var $textEl = this.$('#messageText');
+	        var value = ($textEl.val() || "").trim();
+	        if (!_.isEmpty(value)) {
+	            var model = new _AsteroidModel2.default({
+	                text: value,
+	                timestamp: new Date(),
+	                userId: this.model.get('user')._id,
+	                toUserId: this.model.get('remoteUser')._id,
+	                chatId: this.model.id
+	            }, { asteroid: _app2.default.asteroid });
+	            //this.collection.add(model);
+	
+	            model.save('addMessage', { destinationUserId: this.model.get('remoteUser')._id, message: value, type: 'text', associatedPostId: this.model.get('postId') });
+	            $textEl.val('');
+	            $textEl.focus();
+	
+	            this.scrollMessages();
+	        }
+	    },
+	    messagesList: function messagesList() {
+	        var windowH = $(window).height(),
+	            content = $('.sh-messages-to-user-content'),
+	            header = $('#header').outerHeight(),
+	            messagesHeader = $('.sh-messages-to-user-header').outerHeight(),
+	            messagesFooter = $('.sh-messages-to-user-input').outerHeight(),
+	            footer = 0,
+	            padding = parseInt($('.sh-messages-to-user').css('paddingTop').replace('px', '')) + parseInt($('.sh-messages-to-user').css('paddingBottom').replace('px', ''));
+	
+	        if (_app2.default.isMobile) {
+	            //footer hide here
+	            console.log('mobile foorter'); //debug
+	            footer = 0;
+	        } else {
+	            footer = $('#footer').outerHeight();
+	        }
+	
+	        content.css('height', windowH - header - footer - messagesHeader - messagesFooter - padding);
+	    },
+	    messagesList_listenToResize: function messagesList_listenToResize() {
+	        $(window).resize(_.bind(this.messagesList, this));
+	    },
+	    keyupInput: function keyupInput() {
+	        var that = this;
+	        $.each($('textarea[data-autoresize]'), function () {
+	            var offset = this.offsetHeight - this.clientHeight;
+	            var resizeTextarea = function resizeTextarea(el) {
+	                $(el).css('height', 'auto').css('height', el.scrollHeight + offset);
+	            };
+	
+	            $(this).on('keyup input', function () {
+	                if (this.scrollHeight > 44) {
+	                    resizeTextarea(this);
+	                    that.messagesList();
+	                }
+	            }).removeAttr('data-autoresize');
+	        });
+	    },
+	    scrollMessages: function scrollMessages() {
+	        var element = $('.sh-messages-to-user-content').find('ul'),
+	            container = element.closest('div');
+	        if (element.length && container.length > 0) {
+	            container.stop().animate({ scrollTop: element[0].scrollHeight }, 250, 'swing');
+	        }
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3), __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 155 */
+/*!******************************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.hbs.html ***!
+  \******************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\n<div class="sh-messages-to-user">\n    <div class="container">\n        <!-- Вынести в отдельный VIEW #sh-messages-empty -->\n        <div id="sh-messages-empty"></div>\n        <div class="sh-messages-to-user-wrapper sh-page-block">\n            <div class="sh-messages-to-user-header">\n                <div class="sh-messages-to-user-header-wrapper">\n                    <div class="sh-messages-to-user-avatar">\n                        <img class="rounded" src="'+
+	((__t=(remoteUser.image && remoteUser.image.imageUrl ? remoteUser.image.imageUrl : '/images/no_avatar.png'))==null?'':__t)+
+	'" alt="" width="50" height="50">\n                    </div>\n                    <div class="sh-messages-to-user-info">\n                        <div class="sh-messages-to-user-username">\n                            <span>'+
+	((__t=(remoteUser.username))==null?'':__t)+
+	'</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div id="messagesList" class="sh-messages-to-user-content"></div>\n            <div class="sh-messages-to-user-input">\n                <form method="post" action="#" class="">\r\n                    <div class="sh-messages-to-user-input-wrapper">\r\n                        <div class="sh-messages-input-textarea">\r\n                            <textarea id="messageText" required="" data-autoresize class="form-control" data-maxlength="100" rows="1" placeholder="Сообщение для '+
+	((__t=(remoteUser.username))==null?'':__t)+
+	'"></textarea>\r\n                        </div>\r\n                        <div class="sh-messages-input-action">\r\n                            <button type="submit" class="ui sh-button standard action disabled">Отправить</button>\r\n                        </div>\r\n                    </div>\r\n                </form>\r\n            </div>\n        </div>\n    </div>\n</div>\n\n\n\n\n\n<!--\n<img class="rounded" src="'+
+	((__t=(remoteUser.image && remoteUser.image.imageUrl?'/Img?url='+encodeURIComponent(remoteUser.image.imageUrl)+'&w=70&h=70':'/images/avatar.png'))==null?'':__t)+
+	'" alt="" width="70" height="70"> '+
+	((__t=(remoteUser.username))==null?'':__t)+
+	'\n-->';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 156 */
+/*!**********************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/MessagesListView.js ***!
+  \**********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _messagesItemView = __webpack_require__(/*! ./messagesItemView.js */ 157);
+	
+	var _messagesItemView2 = _interopRequireDefault(_messagesItemView);
+	
+	var _NoMessagesView = __webpack_require__(/*! ./NoMessagesView.js */ 160);
+	
+	var _NoMessagesView2 = _interopRequireDefault(_NoMessagesView);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	    childView: _messagesItemView2.default,
+	    emptyView: _NoMessagesView2.default,
+	    tagName: 'ul',
+	    className: 'sh-messages-container list-unstyled',
+	
+	    initialize: function initialize() {
+	        var _this = this;
+	
+	        this.listenTo(_app2.default, 'add:message', function (fields) {
+	            return _this.collection.add(fields);
+	        });
+	    },
+	    onRender: function onRender() {
+	        // this.collection.sub('messages-new');
+	    },
+	    onBeforeDestroy: function onBeforeDestroy() {
+	        //this.collection.unsub();
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 157 */
+/*!**********************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/messagesItemView.js ***!
+  \**********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+=======
 /*!****************************************************************!*\
   !*** ./~/bootstrap-datepicker/dist/js/bootstrap-datepicker.js ***!
   \****************************************************************/
@@ -37990,6 +49616,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -37999,6 +49626,129 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 158);
+	
+	var _MessagesItemViewHbs2 = _interopRequireDefault(_MessagesItemViewHbs);
+	
+	__webpack_require__(/*! ./messageItemView.less */ 159);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _MessagesItemViewHbs2.default,
+	    tagName: 'li',
+	    className: function className() {
+	        return 'sh-message ' + (this.model.get('userId') === this.options.chat.get('user')._id ? 'sh-message-my' : 'sh-message-remote');
+	    },
+	    status: null,
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            user: this.options.chat.get('user'),
+	            remoteUser: this.options.chat.get('remoteUser'),
+	            status: this.status ? this.status : this.model.id ? this.model.id === this.options.chat.get('user').id ? 'old' : 'remote' : 'sending'
+	        };
+	    },
+	    onRender: function onRender() {
+	        this.status = null;
+	    },
+	
+	
+	    events: {
+	        'click .removeMessage': 'removeMessage',
+	        'click .editMessage': 'debugCHeck'
+	    },
+	
+	    modelEvents: {
+	        'save': 'onSuccessSave',
+	        'error:save': 'onErrorSave',
+	        'before:save': 'onBeforeSave'
+	    },
+	
+	    onSuccessSave: function onSuccessSave() {
+	        this.status = 'success';
+	        this.render();
+	    },
+	    onErrorSave: function onErrorSave() {
+	        this.status = 'error';
+	        this.render();
+	    },
+	    onBeforeSave: function onBeforeSave() {
+	        this.status = 'sending';
+	        this.render();
+	    },
+	    removeMessage: function removeMessage() {
+	        this.model.remove('deleteMessages', [[this.model.id]]);
+	        this.model.collection.remove(this.model);
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 158 */
+/*!****************************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/MessagesItemView.hbs.html ***!
+  \****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n\r\n<div class="sh-message-wrapper">\r\n    <div class="sh-message-photo">\r\n        <div class="sh-message-photo-wrapper">\r\n            <!--<a href="/profile/'+
+	((__t=(userId))==null?'':__t)+
+	'">555555</a>-->\r\n            <!--'+
+	((__t=( user.image && user.image.imageUrl ? '/Img/Index?url='+encodeURIComponent(user.image.imageUrl) +'&w=50&h=50' : '/images/no_avatar.png'))==null?'':__t)+
+	'-->\r\n            ';
+	if (userId===user._id) { 
+	__p+='\r\n            <img class="avatar" src="'+
+	((__t=( user.image && user.image.imageUrl ? user.image.imageUrl : '/images/no_avatar.png'))==null?'':__t)+
+	'" alt="'+
+	((__t=(user.username))==null?'':__t)+
+	'" width="50" height="50">\r\n            ';
+	 } else { 
+	__p+='\r\n            <img class="avatar" src="'+
+	((__t=( remoteUser.image && remoteUser.image.imageUrl ? remoteUser.image.imageUrl : '/images/no_avatar.png'))==null?'':__t)+
+	'" alt="'+
+	((__t=(remoteUser.username))==null?'':__t)+
+	'" width="50" height="50">\r\n            ';
+	 } 
+	__p+='\r\n        </div>\r\n    </div>\r\n\r\n    <div class="sh-message-content">\r\n        <div class="sh-message-content-wrapper">\r\n            <div class="sh-message-content-info">\r\n                <div class="sh-message-content-username"><a href="/user/'+
+	((__t=(userId))==null?'':__t)+
+	'">'+
+	((__t=( userId==user._id?user.username:remoteUser.username))==null?'':__t)+
+	'</a></div>\r\n                <span class="sh-message-content-dot"> · </span>\r\n                <span class="sh-message-content-tools">'+
+	((__t=(moment(timestamp).calendar()))==null?'':__t)+
+	'</span>\r\n            </div>\r\n            <div class="sh-message-content-messages">'+
+	((__t=(text))==null?'':__t)+
+	'</div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n<ul class="sh-messages-tools">\r\n    <li>\r\n        ';
+	 switch (status) { case 'sending': 
+	__p+='\r\n\r\n                <a class="text-muted"><i class="fa fa-time"></i> отправка</a>\r\n\r\n        ';
+	 break; case 'success': 
+	__p+='\r\n\r\n                <a class="text-success"><i class="fa fa-check"></i> отправлено</a>\r\n\r\n        ';
+	 break; case 'error': 
+	__p+='\r\n\r\n                <a class="text-danger"><i class="fa fa-remove"></i> не отправлено</a>\r\n\r\n        ';
+	 break; case 'remote': 
+	__p+='\r\n\r\n                <span class="text-muted">&nbsp;</span>\r\n        ';
+	 break; case 'old': 
+	__p+='\r\n\r\n            <span class="text-muted">&nbsp;</span>\r\n\r\n        ';
+	 break; default: throw new Error("Unknown status"); } 
+	__p+='\r\n    </li>\r\n    ';
+	 if (obj.userId === user._id) { 
+	__p+='\r\n    <li>\r\n        <a class="removeMessage" title="Удалить сообщение"><i class="fa fa-times" aria-hidden="true"></i></a>\r\n    </li>\r\n    ';
+	 } 
+	__p+='\r\n</ul>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 159 */
+/*!***********************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/messageItemView.less ***!
+  \***********************************************************/
+=======
 	var _SendMessageViewHbs = __webpack_require__(/*! ./SendMessageView.hbs.html */ 158);
 	
 	var _SendMessageViewHbs2 = _interopRequireDefault(_SendMessageViewHbs);
@@ -38091,15 +49841,81 @@
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/user/SendMessageView.less ***!
   \***************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 /* 160 */
+<<<<<<< HEAD
+/*!********************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/NoMessagesView.js ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+=======
 /*!*************************************************!*\
   !*** ./wwwroot/homeApp/user/ProfileEditView.js ***!
   \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+>>>>>>> master
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+<<<<<<< HEAD
+	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 161);
+	
+	var _NoMessagesViewHbs2 = _interopRequireDefault(_NoMessagesViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _NoMessagesViewHbs2.default,
+	    tagName: 'li'
+	
+	});
+	exports.default = View;
+
+/***/ },
+/* 161 */
+/*!**************************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/NoMessagesView.hbs.html ***!
+  \**************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<p class="text-center">\r\n    Нет сообщений\r\n</p>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 162 */
+/*!**************************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/messagesToUserView.less ***!
+  \**************************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 163 */
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/account/LoginView.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -38112,6 +49928,767 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+	var _LoginViewHbs = __webpack_require__(/*! ./LoginView.hbs.html */ 164);
+	
+	var _LoginViewHbs2 = _interopRequireDefault(_LoginViewHbs);
+	
+	__webpack_require__(/*! ./loginView.less */ 165);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _LoginModel = __webpack_require__(/*! ../../data/viewModels/LoginModel */ 166);
+	
+	var _LoginModel2 = _interopRequireDefault(_LoginModel);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _LoginViewHbs2.default,
+	    className: 'sh-auth-page',
+	    model: new _LoginModel2.default(),
+	
+	    initialize: function initialize() {
+	        this.listenTo(_app2.default.user, 'login', this.redirect);
+	        this.listenTo(_app2.default.user, 'error:login', this.showError);
+	    },
+	    onAttach: function onAttach() {
+	        Backbone.Validation.bind(this);
+	        // add returnUrl for navigating from register page:
+	        if (this.options.returnUrl) {
+	            this.$('.js-login-register-link').attr('href', this.$('.js-login-register-link').attr('href') + this.options.returnUrl);
+	        }
+	    },
+	
+	
+	    events: {
+	        'submit form': 'onSubmit',
+	        'change input': 'onChange'
+	    },
+	
+	    authVk: function authVk(e) {
+	        e.preventDefault();
+	
+	        //Вызов окна авторизации пользователя
+	        VK.Auth.login(function (response) {
+	            if (response.session && response.status == 'connected') {
+	                /* Пользователь успешно авторизовался */
+	
+	                var data = {};
+	                data = response.session;
+	
+	                var user = {};
+	                user = response.session.user;
+	
+	                VK.Api.call('users.get', { fields: 'sex,photo_50' }, function (res) {
+	                    if (res.response) {
+	                        user.photo = res.response[0].photo_50;
+	                        user.gender = res.response[0].sex;
+	
+	                        data.user = user;
+	
+	                        $.ajax({
+	                            url: '/auth/vk',
+	                            method: 'POST',
+	                            data: data,
+	                            dataType: 'JSON',
+	                            success: function success(res) {
+	                                console.log(res);
+	                            }
+	                        });
+	                    }
+	                });
+	
+	                console.log('Пользователь успешно авторизовался ', response);
+	                window.vkUser = response; //debug
+	
+	                if (response.settings) {
+	
+	                    /* Выбранные настройки доступа пользователя, если они были запрошены */
+	
+	                }
+	            } else {
+	
+	                /* Пользователь нажал кнопку Отмена в окне авторизации */
+	                console.log('Пользователь нажал кнопку Отмена в окне авторизации ', response);
+	            }
+	        }, 4194304);
+	
+	        //VK.Auth.login(function(res) {}, 4194304);
+	        console.log('CLICK VK', e.currentTarget);
+	    },
+	    authFacebook: function authFacebook(e) {
+	        e.preventDefault();
+	        //-> //developers.facebook.com/docs/javascript/reference/v2.8
+	
+	        FB.login(function (response) {
+	
+	            console.log(response);
+	
+	            if (response.status === 'connected') {
+	                // Logged into your app and Facebook.
+	                var uid = response.authResponse.userID,
+	                    accessToken = response.authResponse.accessToken,
+	                    fields = ['id', 'first_name', 'last_name', 'link', 'gender', 'picture', 'email'];
+	
+	                // Получили token и можно сделать запрос на сервер
+	                // Формируем url запроса -> url: 'https://graph.facebook.com/me?access_token=' + accessToken + '&fields=' + profileFields.join(',')
+	
+	                FB.api('/me?fields=' + fields.join(','), function (response) {
+	                    console.log(response);
+	                });
+	            } else if (response.status === 'not_authorized') {
+	                // The person is logged into Facebook, but not your app.
+	                console.log('Please log ' + 'into this app.');
+	            } else {
+	                // The person is not logged into Facebook, so we're not sure if
+	                // they are logged into this app or not.
+	                console.log('Please log ' + 'into Facebook.');
+	            }
+	        }, { scope: 'public_profile,email' });
+	
+	        /*        
+	        FB.getLoginStatus(function(response) {
+	            console.log(response);
+	        }, true);        
+	        */
+	    },
+	    authGooglePlus: function authGooglePlus(e) {},
+	    onSubmit: function onSubmit(e) {
+	        e.preventDefault();
+	        if (!this.model.validate()) {
+	            // turn on spinner:
+	            $h.ui.spinnerShowOn$element(this.$('button i.fa'));
+	            _app2.default.authorize(this.model.get('email'), this.model.get('password'));
+	        }
+	    },
+	    onChange: function onChange(e) {
+	        var val = e.target.value,
+	            name = e.target.name;
+	        this.model.set(name, val, { validate: true });
+	    },
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            returnUrl: this.options.returnUrl ? decodeURIComponent(this.options.returnUrl) : null
+	        };
+	    },
+	    redirect: function redirect() {
+	        if (this.options.returnUrl) {
+	            _app2.default.router.navigate(decodeURIComponent(this.options.returnUrl), { trigger: true, replace: true });
+	        } else {
+	            history.back();
+	        }
+	    },
+	    showError: function showError(error) {
+	        $h.ui.spinnerHideOn$element(this.$('button i.fa'));
+	        $h.ui.alert("Ошибка! Неверно указаны имя пользователя или пароль");
+	    },
+	    onBeforeRemove: function onBeforeRemove() {
+	        Backbone.Validation.unbind(this);
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 164 */
+/*!****************************************************!*\
+  !*** ./wwwroot/homeApp/account/LoginView.hbs.html ***!
+  \****************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\n<div class="sh-login-page">\n    <div class="container">\n        <div class="sh-login-page-wrapper">\n            <div class="sh-wrap2">                \n                <div class="sh-side-right">\n                    <!-- ALERT -->\n                    <!--\n                    <div class="alert alert-mini alert-danger margin-bottom-30">\n                        <strong>Oh snap!</strong> Login Incorrect!\n                    </div>\n                    -->\n                    <!-- /ALERT -->\n                    <!-- login form -->\n                    <form method="post" class="sky-form sh-auth-form">\n                        <div class="sh-page-block padding-20">\r\n                            <fieldset class="nomargin">\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-envelope"></i>\r\n                                    <input type="text" name="email" id="userLogin" placeholder="E-mail /  Имя пользователя">\r\n                                    <span class="tooltip tooltip-top-right">Email адрес / Имя пользователя</span>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-lock"></i>\r\n                                    <input type="password" id="userPassword" name="password" placeholder="Пароль">\r\n                                    <b class="tooltip tooltip-top-right">Укажите Ваш пароль</b>\r\n                                </label>\r\n                                <label class="checkbox">\r\n                                    <input type="checkbox" name="checkbox-inline" id="rememberMe">\r\n                                    <i></i> Запомнить меня\r\n                                </label>\r\n                            </fieldset>\r\n                            <footer class="celarfix">\r\n                                <button type="submit" class="ui sh-button standard action pull-right">\r\n                                    <i class="fa fa-check"></i>\r\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                    ВОЙТИ\r\n                                </button>\r\n                                <div class="login-forgot-password pull-left">\r\n                                    <a href="/Account/FogotPassword">Забыли пароль?</a>\r\n                                </div>\r\n                            </footer>\r\n                        </div>\n\n                        <div class="sh-page-block padding-20 celarfix"> \r\n                            <header>Впервые на сайте?<small>Регистрация быстро и бесплатно</small></header>                               \r\n                            <a type="submit" class="js-login-register-link sh-login-register ui sh-button standard create " href="/account/register?returnUrl=/">\r\n                                <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                Регистрация\r\n                            </a>\r\n                            <!--<div class="sh-login-additional">\r\n                                <span>или</span>\r\n                                <div class="sh-login-social">\r\n                                    <ul>\r\n                                        <li><a class="sh-facebook" id="sh-auth-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>\r\n                                        <li><a class="sh-vk" id="sh-auth-vk"><i class="fa fa-vk" aria-hidden="true"></i></a></li>\r\n                                        <li><a class="sh-google-plus" id="sh-auth-google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>-->                              \r\n                        </div>\n                    </form>\n                </div>\n                <div class="sh-side-left">\n                    <h2 class="text-center-xs">Преимущества авторизованных пользователей</h2>\n                    <ul class="list-unstyled sh-login-features">\n                        <li>\n                            <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-user"></i> Ещё не регистрировались? <a href="/account/register?returnUrl=somedata'+
+	((__t=( returnUrl ? '?returnUrl='+returnUrl:''))==null?'':__t)+
+	'">Регистрация</a>\n                        </li>\n                    </ul>\n                </div>    \n            </div>\n        </div>\n    </div>\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 165 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/account/loginView.less ***!
+  \************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 166 */
+/*!***********************************************!*\
+  !*** ./wwwroot/data/viewModels/LoginModel.js ***!
+  \***********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.Model.extend({
+	
+	    validation: {
+	        email: {
+	            required: true
+	        },
+	
+	        password: {
+	            required: true
+	        }
+	    }
+	
+	});
+
+/***/ },
+/* 167 */
+/*!*****************************************************!*\
+  !*** ./wwwroot/homeApp/account/RegisterUserView.js ***!
+  \*****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _RegisterUserViewHbs = __webpack_require__(/*! ./RegisterUserView.hbs.html */ 168);
+	
+	var _RegisterUserViewHbs2 = _interopRequireDefault(_RegisterUserViewHbs);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _RegisterModel = __webpack_require__(/*! ../../data/viewModels/RegisterModel */ 169);
+	
+	var _RegisterModel2 = _interopRequireDefault(_RegisterModel);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _RegisterUserViewHbs2.default,
+	    className: 'sh-auth-page',
+	    model: new _RegisterModel2.default(),
+	
+	    initialize: function initialize() {
+	        this.listenTo(_app2.default.user, 'login', this.redirect);
+	        this.listenTo(_app2.default.user, 'error:create', this.showError);
+	    },
+	    onAttach: function onAttach() {
+	        Backbone.Validation.bind(this);
+	    },
+	
+	
+	    events: {
+	        'submit form': 'onSubmit',
+	        'change input': 'onChange'
+	    },
+	
+	    onChange: function onChange(e) {
+	        var val = e.target.value,
+	            name = e.target.name;
+	        this.model.set(name, val, { validate: true });
+	    },
+	    onSubmit: function onSubmit(e) {
+	        e.preventDefault();
+	        if (!this.model.validate()) {
+	            $h.ui.spinnerShowOn$element(this.$('button i.fa'));
+	
+	            _app2.default.registerUser(this.model.attributes);
+	        }
+	    },
+	    redirect: function redirect() {
+	        if (this.options.returnUrl) {
+	            var returnUrl = decodeURIComponent($h.help.getUrlParams()['returnUrl']);
+	            _app2.default.router.navigate(returnUrl, { trigger: true, replace: true });
+	        } else {
+	            history.back();
+	        }
+	    },
+	    showError: function showError(error) {
+	        debugger;
+	        $h.ui.spinnerHideOn$element(this.$('button i.fa'));
+	        $h.ui.alert(error && error.message || 'Error!');
+	    },
+	    onBeforeRemove: function onBeforeRemove() {
+	        Backbone.Validation.unbind(this);
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 168 */
+/*!***********************************************************!*\
+  !*** ./wwwroot/homeApp/account/RegisterUserView.hbs.html ***!
+  \***********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\n<div class="sh-login-page">\r\n    <div class="container">\r\n        <div class="sh-login-page-wrapper">\r\n            <div class="sh-wrap2">\r\n                <div class="sh-side-right">\r\n                    <form method="post" class="sky-form sh-auth-form">\r\n                        <div class="sh-page-block padding-20">\r\n                            <fieldset class="nomargin">\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-envelope"></i>\r\n                                    <input type="text" placeholder="Имя пользователя" id="userLogin" name="username">\r\n                                    <b class="tooltip tooltip-bottom-right">Уникальное имя пользователя</b>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-envelope"></i>\r\n                                    <input type="text" placeholder="Email адрес" id="userEmail" name="email">\r\n                                    <b class="tooltip tooltip-bottom-right">email адрес</b>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-lock"></i>\r\n                                    <input type="password" placeholder="Пароль" id="userPassword" name="password">\r\n                                    <b class="tooltip tooltip-bottom-right">Пароль</b>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-lock"></i>\r\n                                    <input type="password" placeholder="Подтвердите пароль" id="confirmPassword" name="confirmPassword">\r\n                                    <b class="tooltip tooltip-bottom-right">Подтверждение пароля</b>\r\n                                </label>\r\n                            </fieldset>\r\n                            <footer class="celarfix">                                \r\n                                <button type="submit" class="ui sh-button standard action pull-right">\r\n                                <i class="fa fa-check"></i>\r\n                                <span class="spinner"><i class="icon-spin icon-refresh"></i></span> \r\n                                РЕГИСТРИРОВАТЬСЯ</button>                                \r\n                            </footer>                            \r\n                        </div>\r\n\r\n                        <div class="sh-page-block padding-20 celarfix">\r\n                            <header>Уже есть аккаунт?</header>                            \r\n                            <a type="submit" class="sh-login-register ui sh-button standard create" href="/Account/Login?returnUrl=/">\r\n                                <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                Вход\r\n                            </a>                                                       \r\n                        </div>\r\n                    </form>\r\n                </div>\r\n                <div class="sh-side-left">\r\n                    <h2 class="text-center-xs">Преимущества авторизованных пользователей</h2>\r\n                    <ul class="list-unstyled sh-login-features">\r\n                        <li><i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления</li>\r\n                        <li><i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)</li>\r\n                        <li><i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками</li>\r\n                        <li><i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным</li>\r\n                        <li><i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий</li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\n\n';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 169 */
+/*!**************************************************!*\
+  !*** ./wwwroot/data/viewModels/RegisterModel.js ***!
+  \**************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.Model.extend({
+	
+	    validation: {
+	        username: {
+	            required: true
+	        },
+	
+	        password: {
+	            required: true
+	        },
+	
+	        confirmPassword: {
+	            required: true,
+	            equalTo: 'password'
+	        },
+	
+	        email: {
+	            required: true,
+	            pattern: 'email'
+	        }
+	    }
+	
+	});
+
+/***/ },
+/* 170 */
+/*!********************************************!*\
+  !*** ./wwwroot/homeApp/about/AboutView.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 171);
+	
+	var _AboutViewHbs2 = _interopRequireDefault(_AboutViewHbs);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./about.less */ 172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _AboutViewHbs2.default,
+	
+	    events: {
+	        'submit form': 'sendMessage',
+	        'click .sh-btn-video-watch': 'videoWatch',
+	        'click .sh-close-video': 'videoStop'
+	    },
+	
+	    onAttach: function onAttach() {
+	        this.initStickMenu();
+	    },
+	    videoWatch: function videoWatch(e) {
+	        var topH = $('#topNav').height();
+	        var wrap = $('.sh-intro-wrapper'),
+	            fullVideo = wrap.find('.sh-full-video'),
+	            videoWrap = fullVideo.find(".sh-video-wrapper"),
+	            iframe = videoWrap.find('iframe');
+	
+	        var videoID = 'gLwq8LYiebI',
+	            controls = _app2.default.isMobile ? 1 : 0;
+	
+	        if (iframe.length) {
+	            iframe[0].contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', "*");
+	            fullVideo.addClass('playing');
+	        } else {
+	            videoWrap.append('<iframe id="iframe" src="//www.youtube.com/embed/' + videoID + '?modestbranding=1&amp;autohide=1&amp;enablejsapi=1&amp;version=3&amp;rel=0&amp;autoplay=1&amp;controls=' + controls + '&amp;showinfo=0&amp;iv_load_policy=3&amp;wmode=opaque&amp;html5=1" frameborder="0" allowfullscreen="1" allowscriptaccess="always"></iframe>');
+	            fullVideo.addClass('playing');
+	        }
+	
+	        if (fullVideo && $('body').hasClass('isMobile')) {
+	            $("html, body").scrollTop(fullVideo.offset().top - 60);
+	        }
+	    },
+	    videoStop: function videoStop(e) {
+	        var wrap = $('.sh-intro-wrapper'),
+	            fullVideo = wrap.find('.sh-full-video'),
+	            videoWrap = fullVideo.find(".sh-video-wrapper"),
+	            iframe = videoWrap.find('iframe');
+	
+	        if (iframe.length) {
+	            iframe[0].contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', "*");
+	            fullVideo.removeClass("playing");
+	        }
+	    },
+	    sendMessage: function sendMessage(e) {
+	        e.preventDefault();
+	        var text = this.$('#message_text').val(),
+	            name = this.$('#user_name').val(),
+	            email = this.$('#user_email').val();
+	
+	        var msg = "user: " + name + "\n" + "email: " + email + "\n" + text;
+	        var self = this;
+	        _app2.default.asteroid.call('sendMessageContactUs', msg).then(function () {
+	            alert('Сообщение отправлено');
+	            self.render();
+	        });
+	    },
+	    initStickMenu: function initStickMenu() {
+	
+	        setTimeout(function () {
+	            var secondaryNav = $('.sh-secondary-nav');
+	
+	            if (secondaryNav.length > 0) {
+	                var topPosition, shIntroTaglineTop, contentSections;
+	
+	                (function () {
+	                    var updateSecondaryNavigation = function updateSecondaryNavigation() {
+	                        contentSections.each(function () {
+	                            var actual = $(this),
+	                                actualHeight = actual.height() + parseInt(actual.css('paddingTop').replace('px', '')) + parseInt(actual.css('paddingBottom').replace('px', '')),
+	                                actualAnchor = secondaryNav.find('a[href="#' + actual.attr('id') + '"]');
+	                            if (actual.offset().top - secondaryNav.height() <= $(window).scrollTop() && actual.offset().top + actualHeight - secondaryNav.height() > $(window).scrollTop()) {
+	                                actualAnchor.addClass('active');
+	                            } else {
+	                                actualAnchor.removeClass('active');
+	                            }
+	                        });
+	                    };
+	
+	                    topPosition = secondaryNav.offset().top;
+	                    shIntroTaglineTop = $('.sh-intro-tagline-wrapper').offset().top + $('.sh-intro-tagline-wrapper').height() + parseInt($('.sh-intro-tagline-wrapper').css('paddingTop').replace('px', ''));
+	                    contentSections = $('.sh-section');
+	
+	
+	                    $(window).on('scroll', function () {
+	
+	                        $(window).scrollTop() > shIntroTaglineTop ? $('.sh-logo-about-us, .sh-create-about-us').addClass('is-hidden') : $('.sh-logo-about-us, .sh-create-about-us').removeClass('is-hidden');
+	
+	                        //on desktop - fix secondary navigation on scrolling
+	                        if ($(window).scrollTop() > topPosition) {
+	                            secondaryNav.addClass('is-fixed');
+	                            $('.sh-content').addClass('has-top-margin');
+	                            setTimeout(function () {
+	                                secondaryNav.addClass('sh-animated');
+	                                $('.sh-logo-about-us').addClass('slide-in');
+	                                $('.sh-create-about-us').addClass('slide-in');
+	                            }, 50);
+	                        } else {
+	                            secondaryNav.removeClass('is-fixed');
+	                            $('.sh-content').removeClass('has-top-margin');
+	                            setTimeout(function () {
+	                                secondaryNav.removeClass('sh-animated');
+	                                $('.sh-logo-about-us').removeClass('slide-in');
+	                                $('.sh-create-about-us').removeClass('slide-in');
+	                            }, 50);
+	                        }
+	
+	                        updateSecondaryNavigation();
+	                    });
+	
+	                    secondaryNav.find('ul a').on('click', function (event) {
+	                        event.preventDefault();
+	                        event.stopPropagation();
+	
+	                        var target = $(this.hash);
+	                        $('body,html').animate({
+	                            'scrollTop': target.offset().top - secondaryNav.height() + 1
+	                        }, 400);
+	                    });
+	                })();
+	            }
+	        }, 500);
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 171 */
+/*!**************************************************!*\
+  !*** ./wwwroot/homeApp/about/AboutView.hbs.html ***!
+  \**************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<!-- <div id="sh-intro" style="background: url(/images/banner-med.jpg) no-repeat 0% 30px; background-size: auto 100%; background-position-x: right; background-color: #f0f0f0;"> -->\r\n<div id="sh-intro">\r\n    <div class="sh-intro-wrapper">\r\n\r\n        <div class="sh-full-video">\r\n            <div class="sh-video-wrapper">\r\n                <!--iFrame YT -->                \r\n            </div>\r\n            <div class="sh-close-video"><i class="fa fa-times-circle" aria-hidden="true"></i></div>\r\n        </div>\r\n\r\n        <div class="sh-intro-tagline container">\r\n            <div class="sh-intro-tagline-wrapper">\r\n                <h1 class="sh-logo-about-us" style="display: none;"><a href="/">Shiners</a></h1>\r\n                <p class="sh-sub-intro-text">Мы считаем, это замечательно - иметь инструмент, который помогает людям вокруг сотрудничать друг с другом, находить людей и занятия прямо здесь, и прямо сейчас. <strong>SHINERS</strong> показывает людям объявления вокруг с привязкой к человеку и его локации.</p>\r\n                <div class="sh-sub-intro-text-info">\r\n                    <div class="sh-btn-video-watch"><i class="fa fa-play-circle" aria-hidden="true"></i></div>\r\n                    <div class="sh-sub-intro-vw-info">Продолжительность: <span>1:12 мин.</span></div>\r\n                    <a href="/posts/new" class="ui sh-button standard create big sh-create-about-us">'+
+	((__t=(i18n('CREATE_SHINER')))==null?'':__t)+
+	'</a>\r\n                </div>                \r\n            </div>\r\n        </div>\r\n\r\n        <div class="sh-gradient sh-gradient-blue"></div>\r\n\r\n        <div class="sh-background-about-image"></div>\r\n\r\n        <!--<div class="sh-intro-mockup"></div>-->\r\n    </div>\r\n</div>\r\n\r\n<div class="sh-secondary-nav">\r\n    <nav>\r\n        <ul>\r\n            <li><a href="#sh-section-1">Как это работает?</a></li>\r\n            <li><a href="#sh-section-2">Чем мы полезны?</a></li>\r\n            <li><a href="#sh-section-3">Наша команда</a></li>\r\n            <li><a href="#sh-section-4">Связаться с нами</a></li>\r\n        </ul>\r\n    </nav>\r\n</div>\r\n\r\n<main class="sh-content">\r\n    <div class="sh-about-us">\r\n        <div class="container">\r\n            <div class="sh-about-us-wrapper sh-page-block">\r\n\r\n                <!-- INTRO -->\r\n                <div class="sh-intro-description">\r\n                    <div class="sh-intro-description-wrapper">\r\n                        <h1>Единственный сервис, предлагающий живое присутствие!</h1>\r\n                        <p>Светлячки позволяют привязать объявление или любой адрес в интернете к текущему местоположению пользователя, и, как результат, осуществлять мгновенный поиск информации среди людей вокруг. Это позволяет искать информацию здесь и сейчас с целью мгновенной встречи с ее владельцем. Ненужное промежуточное звено (поиск по интернету, договор о встрече, дорогу к месту) можно исключить, если потенциально интересующий нас человек находится поблизости.</p>\r\n                        <p>Мы расширяем возможности Веба, посредством привязки информации к реальным людям и координатам, что дает веб-ресурсам новое,- пространство-временное, качество, то есть путь напрямик к цели! Нас также видно в Google и соцсетях, и поэтому твое объявление превращается в собственную интернет-страницу, которую при желании увидит весь интернет.</p>\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- HOW IT WORK -->\r\n                <div id="sh-section-1" class="sh-intro-how-it-work sh-section">\r\n                    <div class="sh-intro-how-it-work-wrapper">\r\n                        <h1 class="sh-section-hero-headline sh-text-center">Как это работает?</h1>\r\n                        <p class="sh-section-intro sh-text-center">Представь себе виртуальную визитку, только носишь ты ее не в кошельке, а в мобильном телефоне, и видят ее не избранные, а все, кто рядом!</p>\r\n                        <div class="sh-intro-how-it-work-ul">\r\n                            <ul class="sh-intro-how-it-work-list">\r\n                                <li>\r\n                                    <a data-toggle="tab" href="#step1" data-direct-link=""><i class="icon-plus"></i></a>\r\n                                    <h5><tran data-key="create_your_post">Создай свой пост</tran></h5>\r\n                                </li>\r\n                                <li>\r\n                                    <a data-toggle="tab" href="#step2" data-direct-link=""><i class="icon-map-marker"></i></a>\r\n                                    <h5><tran data-key="you_found">Ты находишь / Тебя находят</tran></h5>\r\n                                </li>\r\n                                <li>\r\n                                    <a data-toggle="tab" href="#step3" data-direct-link=""><i class="icon-ok"></i></a>\r\n                                    <h5><tran data-key="connect_and_meet">Договаривайся / встречайся</tran></h5>\r\n                                </li>\r\n                            </ul>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- WHAT WE ARE USEFUL -->\r\n                <div id="sh-section-2" class="sh-what-we-are-useful sh-section">\r\n                    <div class="sh-what-we-are-useful-wrapper">\r\n                        <h1 class="sh-section-hero-headline sh-text-center">Чем мы полезны?</h1>\r\n                        <p class="sh-section-intro sh-text-center">Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.</p>\r\n\r\n                        <div class="sh-what-we-are-useful-bg"></div>\r\n\r\n                        <hr>\r\n\r\n                        <div class="sh-what-we-are-useful-features">\r\n                            <div class="sh-features-left">\r\n                                <div class="sh-features-block">\r\n                                    <h5>ОБЪЯВЛЕНИЕ</h5>\r\n                                    <p>Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".</p>\r\n                                </div>\r\n\r\n                                <div class="sh-features-block">\r\n                                    <h5>ССЫЛКА</h5>\r\n                                    <p>Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!</p>\r\n                                </div>\r\n                            </div>\r\n                            <div class="sh-features-center">\r\n                                <div class="sh-is-sh"><span></span></div>\r\n                            </div>\r\n                            <div class="sh-features-right">\r\n                                <div class="sh-features-block">\r\n                                    <h5>ДИНАМИЧЕСКИЙ ПОСТ</h5>\r\n                                    <p>\r\n                                        Движется вместе с тобой.\r\n                                        Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!\r\n                                    </p>\r\n                                </div>\r\n\r\n                                <div class="sh-features-block">\r\n                                    <h5>СТАТИЧЕСКИЙ ПОСТ</h5>\r\n                                    <p>\r\n                                        Привязан к заданной тобой местности.\r\n                                        Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!\r\n                                    </p>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class="sh-set-sh sh-text-center">\r\n                            \r\n                            <a href="/posts/new" class="sh-woman-shiners"></a>\r\n\r\n                            <!--<a href="/posts/new" class="ui sh-button standard create big">Установи свой Светлячок</a>-->\r\n                        </div>\r\n\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- WHO WE ARE -->\r\n                <div id="sh-section-3" class="sh-who-we-are sh-section">\r\n                    <div class="sh-who-we-are-wrapper">\r\n                        <div class="sh-red col-md-4 col-lg-4">\r\n                            <h5>Кто мы</h5>\r\n                            <p>Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости</p>\r\n                        </div>\r\n                        <div class="sh-blue col-md-4 col-lg-4">\r\n                            <h5>Безопасность</h5>\r\n                            <p>Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!</p>\r\n                        </div>\r\n                        <div class="sh-orange col-md-4 col-lg-4">\r\n                            <h5>Правила</h5>\r\n                            <p>При регистрации на «Cветлячках» Пользователь соглашается с <a href="/legal/user-agreement">настоящими правилами</a></p>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- CONTACT US -->\r\n                <div id="sh-section-4" class="sh-contact-us sh-section">\r\n                    <div class="sh-contact-us-bg"></div>\r\n                    <div class="sh-contact-us-wrapper">\r\n                        <h1 class="sh-section-hero-headline sh-text-center">Связаться с нами</h1>\r\n                        <p class="sh-section-intro sh-text-center">Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!</p>\r\n                        <form action="/" method="post">\r\n                            <fieldset>\r\n                                <input type="hidden" name="action" value="contact_send">\r\n                                <div class="row">\r\n                                    <div class="form-group">\r\n                                        <div class="col-xs-12 col-md-6">\r\n                                            <input required="" type="text" value="" placeholder="Ваше имя" class="form-control" name="contact[name][required]" id="contact:name">\r\n                                        </div>\r\n                                        <div class="col-xs-12 col-md-6">\r\n                                            <input required="" type="email" value="" placeholder="Ваш email" class="form-control" name="contact[email][required]" id="contact:email">\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                                <div class="row">\r\n                                    <div class="form-group">\r\n                                        <div class="col-xs-12 col-md-12">\r\n                                            <textarea required="" placeholder="Ваше сообщение" maxlength="10000" rows="8" class="form-control" name="contact[message]" id="contact:message"></textarea>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </fieldset>\r\n                            <div class="row">\r\n                                <div class="col-md-12">\r\n                                    <button type="submit" class="ui sh-button standard action big pull-right"><i class="fa fa-check"></i> Отправить</button>\r\n                                </div>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</main>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 172 */
+/*!******************************************!*\
+  !*** ./wwwroot/homeApp/about/about.less ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 173 */
+/*!****************************************************!*\
+  !*** ./wwwroot/homeApp/massMedia/MassMediaView.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(jQuery) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _MassMediaViewHbs = __webpack_require__(/*! ./MassMediaView.hbs.html */ 174);
+	
+	var _MassMediaViewHbs2 = _interopRequireDefault(_MassMediaViewHbs);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./MassMediaView.less */ 175);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _MassMediaViewHbs2.default,
+	
+	    onAttach: function onAttach() {
+	        this.initShTab();
+	    },
+	    initShTab: function initShTab() {
+	
+	        jQuery(document).ready(function ($) {
+	            function ProductBuilder(element) {
+	                this.element = element;
+	                this.stepsWrapper = this.element.children('.sh-tab-steps');
+	                this.steps = this.element.find('.builder-step');
+	                this.mainNavigation = this.element.find('.sh-tab-main-nav');
+	                // bind builder events
+	                this.bindEvents();
+	            }
+	
+	            ProductBuilder.prototype.bindEvents = function () {
+	                var self = this;
+	                //detect click on the left navigation
+	                this.mainNavigation.on('click', 'li:not(.active)', function (event) {
+	                    event.preventDefault();
+	                    event.stopPropagation();
+	                    self.showNewContent($(this).index());
+	                    self.updatePrimaryNav($(this).index());
+	                });
+	                this.element.find('.click-press-contact').on('click', function (event) {
+	                    event.preventDefault();
+	                    self.showNewContent(2);
+	                    self.updatePrimaryNav(2);
+	                });
+	            };
+	
+	            ProductBuilder.prototype.showNewContent = function (nextStep) {
+	                var actualStep = this.steps.filter('.active').index() + 1;
+	                if (actualStep < nextStep + 1) {
+	                    //go to next section
+	                    this.steps.eq(actualStep - 1).removeClass('active back').addClass('move-left');
+	                    this.steps.eq(nextStep).addClass('active').removeClass('move-left back');
+	                } else {
+	                    //go to previous section
+	                    this.steps.eq(actualStep - 1).removeClass('active back move-left');
+	                    this.steps.eq(nextStep).addClass('active back').removeClass('move-left');
+	                }
+	            };
+	
+	            ProductBuilder.prototype.updatePrimaryNav = function (nextStep) {
+	                this.mainNavigation.find('li').eq(nextStep).addClass('active').siblings('.active').removeClass('active');
+	            };
+	
+	            if ($('.sh-tab-builder').length > 0) {
+	                $('.sh-tab-builder').each(function () {
+	                    //create a productBuilder object for each .cd-product-builder
+	                    new ProductBuilder($(this));
+	                });
+	            }
+	        });
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 174 */
+/*!**********************************************************!*\
+  !*** ./wwwroot/homeApp/massMedia/MassMediaView.hbs.html ***!
+  \**********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n<main class="sh-content">\r\n\r\n    <div class="sh-mass-media">\r\n        <div class="container">\r\n            <h1 class="sh-section-hero-headline">'+
+	((__t=(i18n('h_information_for_smi')))==null?'':__t)+
+	'</h1>\r\n            <div class="sh-page-block">\r\n                <div class="sh-mass-media-wrapper">\r\n                    <!-- SIDE LEFT -->\r\n                    <div class="sh-side-left sh-tab-builder">\r\n\r\n                        <ul class="nav nav-tabs nav-justified sh-mm-tabs sh-tab-main-nav">\r\n                            <li class="active"><a href="#press-about" data-toggle="tab">'+
+	((__t=(i18n('massMedia')))==null?'':__t)+
+	'</a></li>\r\n                            <li><a href="#press-release" data-toggle="tab">'+
+	((__t=(i18n('press_release')))==null?'':__t)+
+	'</a></li>\r\n                            <li><a href="#press-contact" data-toggle="tab">'+
+	((__t=(i18n('press_contacts')))==null?'':__t)+
+	'</a></li>\r\n                        </ul>\r\n\r\n                        <div class="tab-content sh-tab-content sh-tab-steps">\r\n                            <div class="tab-pane builder-step active" id="press-about">\r\n                                <div class="sh-tab-content-wrapper">\r\n                                    <p>У нас в <a class="sh-uppercase" href="/">Shiners</a> постоянно происходит что-то интересное. Поэтому мы регулярно делимся своими новостями с прессой и всегда реагируем на события, которые затрагивают нас.</p>\r\n                                    <p>В этом разделе вы сможете найти публикации в СМИ о нас и подготовленные при нашем участи. Для получения дополнительной информации о компании и ее сервисах, пожалуйста, свяжитесь с нашей <a class="click-press-contact" href="#press-contact">пресс-службой</a>.</p>\r\n\r\n                                    <div class="sh-article-block">\r\n                                        <time datetime="2017-01-31T17:00:00" class="sh-date"><a href="#2017-1">2017</a></time>\r\n                                        <hr>\r\n                                        <div id="2017-1">\r\n                                            <!-- 1 -->\r\n                                            <article class="sh-article-wrapper">\r\n                                                <div class="sh-press-log" style="background-image: url(\'http://fakeimg.pl/150x130/\')"></div>\r\n                                                <div class="sh-press-content">\r\n                                                    <small>31.01.2017</small>\r\n                                                    <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.</p>\r\n                                                    <a href="#">'+
+	((__t=(i18n('site_published')))==null?'':__t)+
+	'</a>\r\n                                                </div>\r\n                                            </article>\r\n\r\n                                            <!-- 2 -->\r\n                                            <article class="sh-article-wrapper">\r\n                                                <div class="sh-press-log" style="background-image: url(\'http://fakeimg.pl/150x130/\')"></div>\r\n                                                <div class="sh-press-content">\r\n                                                    <small>31.01.2017</small>\r\n                                                    <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.</p>\r\n                                                    <a href="#">'+
+	((__t=(i18n('site_published')))==null?'':__t)+
+	'</a>\r\n                                                </div>\r\n                                            </article>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="tab-pane builder-step" id="press-release">\r\n                                <div class="sh-tab-content-wrapper">\r\n                                    <p>В этом разделе вы найдете все официальные пресс-релизы и новости компании, которые помогут вам узнать о <a class="sh-uppercase" href="/">Shiners</a> чуть больше. Для получения дополнительной информации о компании и ее сервисах, пожалуйста, свяжитесь с нашей <a class="click-press-contact" href="#press-contact">пресс-службой</a>.</p>\r\n                                    <div class="sh-article-block">\r\n                                        <time datetime="2017-01-31T17:00:00" class="sh-date"><a href="#2017-2">2017</a></time>\r\n                                        <hr>\r\n                                        <div id="2017-2">\r\n                                            <!-- 1 -->\r\n                                            <article class="sh-article-wrapper">\r\n                                                <div class="sh-press-log" style="background-image: url(\'http://fakeimg.pl/150x130/\')"></div>\r\n                                                <div class="sh-press-content">\r\n                                                    <small>31.01.2017</small>\r\n                                                    <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.</p>\r\n                                                    <a href="#">'+
+	((__t=(i18n('download_press_release')))==null?'':__t)+
+	'</a>\r\n                                                </div>\r\n                                            </article>\r\n\r\n                                            <!-- 2 -->\r\n                                            <article class="sh-article-wrapper">\r\n                                                <div class="sh-press-log" style="background-image: url(\'http://fakeimg.pl/150x130/\')"></div>\r\n                                                <div class="sh-press-content">\r\n                                                    <small>31.01.2017</small>\r\n                                                    <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.</p>\r\n                                                    <a href="#">'+
+	((__t=(i18n('download_press_release')))==null?'':__t)+
+	'</a>\r\n                                                </div>\r\n                                            </article>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="tab-pane builder-step" id="press-contact">\r\n                                <div class="sh-tab-content-wrapper">\r\n                                    <p>Если вы хотите получить комментарий, данные или информацию о компании, а также пригласить <a class="sh-uppercase" href="/">Shiners</a> к участию в интересном мероприятии или проекте, пожалуйста, свяжитесь с нашими представителями: <strong>Ашот Арутюнян</strong> и <strong>Татьяна Урусова</strong>.</p>\r\n                                    <p>Если вы хотите стать нашим партнером или предложить иное сотрудничество, напишите нам на <a href="mailto:russia-pr@shiners.ru">russia-pr@shiners.ru</a></p>\r\n                                    <p>Информацию о работе сайта и ответы на все вопросы, вы сможете найти в разделе <a href="/help">Помощь</a>.</p>\r\n                                    <p>Если вы хотите узнать больше о нас, вы можете посетить наш специальный раздел <a href="/about-us">О нас</a>.</p>\r\n\r\n                                    <div class="sh-contact-press">\r\n                                        <div class="sh-contact-press-wrapper">\r\n                                            <div class="sh-items">\r\n                                                <div class="sh-item">\r\n                                                    <div class="sh-avatar" style="background: url(\'http://fakeimg.pl/90x90/\');"></div>\r\n                                                    <div class="sh-contact-name">'+
+	((__t=(i18n('ashot_a')))==null?'':__t)+
+	'</div>\r\n                                                    <div class="sh-contact-email">Email: <a href="mailto:arutune@gmail.com">arutune@gmail.com</a></div>\r\n                                                </div>\r\n                                                <div class="sh-item">\r\n                                                    <div class="sh-avatar" style="background: url(\'http://fakeimg.pl/90x90/\');"></div>\r\n                                                    <div class="sh-contact-name">'+
+	((__t=(i18n('tatyana_u')))==null?'':__t)+
+	'</div>\r\n                                                    <div class="sh-contact-email">Email: <a href="mailto:tatiana@napodiume.ru">tatiana@napodiume.ru</a></div>\r\n                                                </div>\r\n                                            </div>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                    </div>\r\n\r\n                    <!-- SIDE RIGHT -->\r\n                    <div class="sh-side-right sh-side-menu visible-md visible-lg">\r\n                        <div class="sh-section-box">\r\n                            <h2>'+
+	((__t=(i18n('h_meet_us')))==null?'':__t)+
+	'</h2>\r\n                            <ul>\r\n                                <li><a href="#">'+
+	((__t=(i18n('m_about_us')))==null?'':__t)+
+	'</a> </li>\r\n                                <li><a href="#">'+
+	((__t=(i18n('m_help')))==null?'':__t)+
+	'</a></li>\r\n                                <li><a href="#">'+
+	((__t=(i18n('m_confidentiality')))==null?'':__t)+
+	'</a></li>\r\n                                <li><a href="#">'+
+	((__t=(i18n('m_terms_of_use')))==null?'':__t)+
+	'</a></li>\r\n                            </ul>\r\n                        </div>\r\n                        <div class="sh-section-box">\r\n                            <h2>'+
+	((__t=(i18n('h_mass_media')))==null?'':__t)+
+	'</h2>\r\n                            <div class="sh-quotes">\r\n                                <div class="sh-quotes-wrapper">\r\n                                    <div class="sh-quote">\r\n                                        <a href="#">В наминации продукт года побеждает проект со светлым названием SHINERS. Присуждается приз за вклад в развитии …</a>\r\n                                        <span class="sh-press-site"><i class="fa fa-word"></i> - Правда.ру</span>\r\n                                    </div>\r\n\r\n                                    <div class="sh-quote">\r\n                                        <a href="#">В наминации продукт года побеждает проект со светлым названием SHINERS. Присуждается приз за вклад в развитии …</a>\r\n                                        <span class="sh-press-site"><i class="fa fa-word"></i> - Правда.ру</span>\r\n                                    </div>\r\n\r\n                                    <div class="sh-quote">\r\n                                        <a href="#">В наминации продукт года побеждает проект со светлым названием SHINERS. Присуждается приз за вклад в развитии …</a>\r\n                                        <span class="sh-press-site"><i class="fa fa-word"></i> - Правда.ру</span>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n\r\n                </div>\r\n\r\n                <div class="sh-second-meet-menu hidden-md hidden-lg">\r\n                    <ul>\r\n                        <li><a href="#">'+
+	((__t=(i18n('m_about_us')))==null?'':__t)+
+	'</a> </li>\r\n                        <li><a href="#">'+
+	((__t=(i18n('m_help')))==null?'':__t)+
+	'</a></li>\r\n                        <li><a href="#">'+
+	((__t=(i18n('m_confidentiality')))==null?'':__t)+
+	'</a></li>\r\n                        <li><a href="#">'+
+	((__t=(i18n('m_terms_of_use')))==null?'':__t)+
+	'</a></li>\r\n                    </ul>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n</main>\r\n';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 175 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/massMedia/MassMediaView.less ***!
+  \******************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 176 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 177);
+	
+	var _HowItWorksViewHbs2 = _interopRequireDefault(_HowItWorksViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _HowItWorksViewHbs2.default
+	});
+	exports.default = View;
+
+/***/ },
+/* 177 */
+/*!************************************************************!*\
+  !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.hbs.html ***!
+  \************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div>\r\n    <h2>Как это работает</h2>\r\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 178 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/account/FogotPasswordView.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+=======
 	var _ProfileEditViewHbs = __webpack_require__(/*! ./ProfileEditView.hbs.html */ 161);
 	
 	var _ProfileEditViewHbs2 = _interopRequireDefault(_ProfileEditViewHbs);
@@ -39145,6 +51722,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -39154,6 +51732,11 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 179);
+	
+	var _FogotPasswordViewHbs2 = _interopRequireDefault(_FogotPasswordViewHbs);
+=======
 	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 179);
 	
 	var _AboutViewHbs2 = _interopRequireDefault(_AboutViewHbs);
@@ -39163,10 +51746,22 @@
 	var _app2 = _interopRequireDefault(_app);
 	
 	__webpack_require__(/*! ./about.less */ 180);
+>>>>>>> master
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.View.extend({
+<<<<<<< HEAD
+	    template: _FogotPasswordViewHbs2.default
+	});
+	exports.default = View;
+
+/***/ },
+/* 179 */
+/*!************************************************************!*\
+  !*** ./wwwroot/homeApp/account/FogotPasswordView.hbs.html ***!
+  \************************************************************/
+=======
 	    template: _AboutViewHbs2.default,
 	
 	    events: {
@@ -39299,11 +51894,15 @@
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/about/AboutView.hbs.html ***!
   \**************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
+	__p+='<div>\r\n    <h2>Забыли пароль? Печалька</h2>\r\n</div>';
+=======
 	__p+='<!-- <div id="sh-intro" style="background: url(/images/banner-med.jpg) no-repeat 0% 30px; background-size: auto 100%; background-position-x: right; background-color: #f0f0f0;"> -->\r\n\r\n<!-- '+
 	((__t=(i18n('')))==null?'':__t)+
 	' -->\r\n\r\n<div id="sh-intro">\r\n    <div class="sh-intro-wrapper">\r\n\r\n        <div class="sh-full-video">\r\n            <div class="sh-video-wrapper">\r\n                <!--iFrame YT -->                \r\n            </div>\r\n            <div class="sh-close-video"><i class="fa fa-times-circle" aria-hidden="true"></i></div>\r\n        </div>\r\n\r\n        <div class="sh-intro-tagline container">\r\n            <div class="sh-intro-tagline-wrapper">\r\n                <h1 class="sh-logo-about-us" style="display: none;"><a href="/">Shiners</a></h1>\r\n                <p class="sh-sub-intro-text">'+
@@ -39379,6 +51978,7 @@
 	'</p>\r\n                        <form action="/" method="post">\r\n                            <fieldset>\r\n                                <input type="hidden" name="action" value="contact_send">\r\n                                <div class="row">\r\n                                    <div class="form-group">\r\n                                        <div class="col-xs-12 col-md-6">\r\n                                            <input required="" type="text" value="" placeholder="Ваше имя" class="form-control" name="contact[name][required]" id="contact:name">\r\n                                        </div>\r\n                                        <div class="col-xs-12 col-md-6">\r\n                                            <input required="" type="email" value="" placeholder="Ваш email" class="form-control" name="contact[email][required]" id="contact:email">\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                                <div class="row">\r\n                                    <div class="form-group">\r\n                                        <div class="col-xs-12 col-md-12">\r\n                                            <textarea required="" placeholder="Ваше сообщение" maxlength="10000" rows="8" class="form-control" name="contact[message]" id="contact:message"></textarea>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </fieldset>\r\n                            <div class="row">\r\n                                <div class="col-md-12">\r\n                                    <button type="submit" class="ui sh-button standard action big pull-right"><i class="fa fa-check"></i> '+
 	((__t=(i18n('Send')))==null?'':__t)+
 	'</button>\r\n                                </div>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</main>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -39386,6 +51986,108 @@
 
 /***/ },
 /* 180 */
+<<<<<<< HEAD
+/*!*********************************************************!*\
+  !*** ./wwwroot/homeApp/legal/legalUserAgreementView.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 181);
+	
+	var _legalUserAgreementViewHbs2 = _interopRequireDefault(_legalUserAgreementViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Created by arutu_000 on 1/15/2017.
+	 */
+	var View = _backbone2.default.View.extend({
+	  template: _legalUserAgreementViewHbs2.default
+	});
+	exports.default = View;
+
+/***/ },
+/* 181 */
+/*!***************************************************************!*\
+  !*** ./wwwroot/homeApp/legal/legalUserAgreementView.hbs.html ***!
+  \***************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="page--legal-confidential">\r\n    <iframe src="https://docs.google.com/document/d/1MKCBacnlxgWNHX9NWy7Eoco64q5FH6RITTm_E2kDnYE/pub?embedded=true" width="100%" height="500"></iframe>\r\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 182 */
+/*!********************************************************!*\
+  !*** ./wwwroot/homeApp/legal/legalConfidentialView.js ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _legalConfidentialViewHbs = __webpack_require__(/*! ./legalConfidentialView.hbs.html */ 183);
+	
+	var _legalConfidentialViewHbs2 = _interopRequireDefault(_legalConfidentialViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Created by arutu_000 on 1/15/2017.
+	 */
+	var View = _backbone2.default.View.extend({
+	    template: _legalConfidentialViewHbs2.default,
+	    onRender: function onRender() {
+	        debugger;
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 183 */
+/*!**************************************************************!*\
+  !*** ./wwwroot/homeApp/legal/legalConfidentialView.hbs.html ***!
+  \**************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="page--legal-confidential">\r\n    <iframe src="https://docs.google.com/document/d/1MKCBacnlxgWNHX9NWy7Eoco64q5FH6RITTm_E2kDnYE/pub?embedded=true" width="100%" height="500"></iframe>\r\n\r\n    <!--<iframe src="https://drive.google.com/file/d/0B55GYt-og1BUVzRZNWFlVVE0U21SYnExYlhYMzNKV2ZIUnRN/preview" width="100%" height="500"></iframe>-->\r\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 184 */
+/*!**********************************************************!*\
+  !*** ./wwwroot/homeApp/legal/legalPostPublishingView.js ***!
+  \**********************************************************/
+=======
 /*!******************************************!*\
   !*** ./wwwroot/homeApp/about/about.less ***!
   \******************************************/
@@ -39556,18 +52258,36 @@
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.js ***!
   \******************************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
+<<<<<<< HEAD
+	  value: true
+=======
 	    value: true
+>>>>>>> master
 	});
 	
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 185);
+	
+	var _legalPostPublishingViewHbs2 = _interopRequireDefault(_legalPostPublishingViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Created by arutu_000 on 1/15/2017.
+	 */
+	var View = _backbone2.default.View.extend({
+	  template: _legalPostPublishingViewHbs2.default
+=======
 	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 185);
 	
 	var _HowItWorksViewHbs2 = _interopRequireDefault(_HowItWorksViewHbs);
@@ -39576,20 +52296,31 @@
 	
 	var View = _backbone2.default.View.extend({
 	    template: _HowItWorksViewHbs2.default
+>>>>>>> master
 	});
 	exports.default = View;
 
 /***/ },
 /* 185 */
+<<<<<<< HEAD
+/*!****************************************************************!*\
+  !*** ./wwwroot/homeApp/legal/legalPostPublishingView.hbs.html ***!
+  \****************************************************************/
+=======
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.hbs.html ***!
   \************************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
+	__p+='<div class="page--legal-confidential">\r\n    <iframe src="https://docs.google.com/document/d/1fi04pKKonBP_O7zakR5m0NJqVXvscwqGbWZUV_0yCr4/pub?embedded=true" width="100%" height="500"></iframe>\r\n</div>';
+=======
 	__p+='<div>\n    <h2>Как это работает</h2>\n</div>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -39597,12 +52328,21 @@
 
 /***/ },
 /* 186 */
+<<<<<<< HEAD
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/blog/blogHomeView.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+=======
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/account/FogotPasswordView.js ***!
   \******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -39612,13 +52352,222 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 187);
+	
+	var _blogHomeViewHbs2 = _interopRequireDefault(_blogHomeViewHbs);
+	
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 105);
+	
+	var _AsteroidCollection = __webpack_require__(/*! ../../data/AsteroidCollection.js */ 84);
+	
+	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
+	
+	var _BlogItemsView = __webpack_require__(/*! ./BlogItemsView.js */ 188);
+	
+	var _BlogItemsView2 = _interopRequireDefault(_BlogItemsView);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./blogHomeView.less */ 191);
+	
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone4 = _interopRequireDefault(_backbone3);
+=======
 	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 187);
 	
 	var _FogotPasswordViewHbs2 = _interopRequireDefault(_FogotPasswordViewHbs);
+>>>>>>> master
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.View.extend({
+<<<<<<< HEAD
+	
+	    template: _blogHomeViewHbs2.default,
+	    blogItems: null,
+	    className: 'sh-content',
+	    fakeCollection: null,
+	
+	    initialize: function initialize() {
+	
+	        //Fake instance
+	        this.fakeCollection = this._adaptCollection();
+	
+	        this.blogItems = new _AsteroidCollection2.default(null, { asteroid: this.asteroid });
+	        //this.listenTo(app.user,'login',this.render);
+	        //this.listenTo(app.user, 'logout', this.render);
+	    },
+	    _adaptCollection: function _adaptCollection() {
+	        var ret, p;
+	        ret = this.options.collection.map(function (post) {
+	            p = post.toJSON();
+	            return _underscore2.default.extend({}, p, {
+	                id: p.id,
+	                timestamp: new Date(p.createdAt.$date),
+	                title: p.title,
+	                description: p.body,
+	                images: [{
+	                    src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
+	                    alt: '�����-�� �����'
+	                }, {
+	                    src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
+	                    alt: '�����-�� �����'
+	                }],
+	                comments: [],
+	                author: 'Shiners',
+	                //categories: ['shiners','news', 'tutorials'],
+	                tags: p.tags[0].split(' ')
+	            });
+	        });
+	
+	        return new _backbone4.default.Collection(ret);
+	    },
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            blogDetails: this.getBlogDetails()
+	        };
+	    },
+	    getBlogDetails: function getBlogDetails() {
+	        var details = {},
+	            blogData = this.fakeCollection.toJSON();
+	
+	        if (blogData) {
+	            details.tags = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6'];
+	        }
+	
+	        return details;
+	    },
+	
+	
+	    regions: {
+	        'blogItems': '#blog-items'
+	    },
+	
+	    onAttach: function onAttach() {
+	        this.initCarousel();
+	    },
+	    onRender: function onRender() {
+	        this.showChildView('blogItems', new _BlogItemsView2.default({ collection: this.fakeCollection }));
+	    },
+	    initCarousel: function initCarousel() {
+	        var slider = this.$('#sh-blog-carousel');
+	        var options = slider.attr('data-plugin-options');
+	        var defaults = {
+	            //items: 5,
+	            itemsCustom: false,
+	            singleItem: true,
+	            itemsScaleUp: false,
+	
+	            slideSpeed: 200,
+	            paginationSpeed: 800,
+	            rewindSpeed: 1000,
+	
+	            autoPlay: false,
+	            stopOnHover: false,
+	
+	            navigation: false,
+	            navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+	            rewindNav: true,
+	            scrollPerPage: false,
+	
+	            pagination: true,
+	            paginationNumbers: false,
+	
+	            responsive: true,
+	            responsiveRefreshRate: 200,
+	            responsiveBaseWidth: window,
+	
+	            baseClass: "owl-carousel",
+	            theme: "owl-theme",
+	
+	            lazyLoad: false,
+	            lazyFollow: true,
+	            lazyEffect: "fade",
+	
+	            autoHeight: false,
+	
+	            jsonPath: false,
+	            jsonSuccess: false,
+	
+	            dragBeforeAnimFinish: true,
+	            mouseDrag: true,
+	            touchDrag: true,
+	
+	            transitionStyle: false,
+	
+	            addClassActive: false,
+	
+	            beforeUpdate: false,
+	            afterUpdate: false,
+	            beforeInit: false,
+	            afterInit: false,
+	            beforeMove: false,
+	            afterMove: false,
+	            afterAction: false,
+	            startDragging: false,
+	            afterLazyLoad: false
+	        };
+	        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+	        slider.owlCarousel(config).addClass("owl-carousel-init");
+	    },
+	    initMobileBtnBlog: function initMobileBtnBlog() {
+	        $("div.side-nav").each(function () {
+	            var _t = $('ul', this);
+	            $('button', this).bind("click", function () {
+	                _t.slideToggle(300);
+	            });
+	        });
+	    }
+	});
+	
+	//Fake instance
+	/**
+	 * Created by arutu_000 on 1/15/2017.
+	 */
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 187 */
+/*!****************************************************!*\
+  !*** ./wwwroot/homeApp/blog/blogHomeView.hbs.html ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\n<div class="sh-blog-home">\n    <div class="container">\n        <div class="page--blog-home">\n            <div class="sh-page-block sh-blog-home-wrapper row">\n                <!--LEFT-->\n                <div class="col-md-9 col-sm-9">\n                    <div id="blog-items"></div>\r\n                </div>\n\n                <!--RIGHT-->\n                <div class="col-md-3 col-sm-3">\n\n                    <!-- INLINE SEARCH -->\r\n                    <div class="inline-search clearfix margin-bottom-30">\r\n                        <form action="" method="get" class="widget_search">\r\n                            <input type="search" placeholder="Start Searching..." id="s" name="s" class="serch-input">\r\n                            <button type="submit">\r\n                                <i class="fa fa-search"></i>\r\n                            </button>\r\n                        </form>\r\n                    </div>\r\n                    <!-- /INLINE SEARCH -->\n\n                    <hr />\r\n\r\n                    <!-- side navigation -->\r\n                    <div class="side-nav margin-bottom-60 margin-top-30">\r\n\r\n                        <div class="side-nav-head">\r\n                            <button class="fa fa-bars"></button>\r\n                            <h4>CATEGORIES</h4>\r\n                        </div>\r\n                        <ul class="list-group list-group-bordered list-group-noicon uppercase">\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(12)</span> MEDIA</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(8)</span> MOVIES</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(32)</span> NEW</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(16)</span> TUTORIALS</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(2)</span> DEVELOPMENT</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(1)</span> UNCATEGORIZED</a></li>\r\n\r\n                        </ul>\r\n                        <!-- /side navigation -->\r\n\r\n\r\n                    </div>\n\n                    <!-- TAGS -->\r\n                    ';
+	 if(blogDetails) { 
+	__p+='\r\n                    <h3 class="hidden-xs size-16 margin-bottom-20">SEARCH FOR TAGS</h3>\r\n                    <div class="hidden-xs margin-bottom-60">\r\n                        ';
+	_.each(blogDetails.tags, function(tag){ 
+	__p+='                            \r\n                            <a class="tag" href="#">\r\n                                <span class="txt">'+
+	((__t=( tag))==null?'':__t)+
+	'</span>\r\n                            </a>                           \r\n                        ';
+	});
+	__p+='                        \r\n                    </div>\n                    ';
+	 } 
+	__p+='\n                    <hr />\r\n\r\n\r\n                    <!-- SOCIAL ICONS -->\r\n                    <div class="hidden-xs margin-top-30 margin-bottom-60">\r\n                        <a href="#" class="social-icon social-icon-border social-facebook pull-left" data-toggle="tooltip" data-placement="top" title="Facebook">\r\n                            <i class="icon-facebook"></i>\r\n                            <i class="icon-facebook"></i>\r\n                        </a>\r\n\r\n                        <a href="#" class="social-icon social-icon-border social-twitter pull-left" data-toggle="tooltip" data-placement="top" title="Twitter">\r\n                            <i class="icon-twitter"></i>\r\n                            <i class="icon-twitter"></i>\r\n                        </a>\r\n\r\n                        <a href="#" class="social-icon social-icon-border social-gplus pull-left" data-toggle="tooltip" data-placement="top" title="Google plus">\r\n                            <i class="icon-gplus"></i>\r\n                            <i class="icon-gplus"></i>\r\n                        </a>                        \r\n                    </div>\n\n                </div>               \n            </div>\n        </div>\n    </div>\n</div>\n';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 188 */
+/*!***********************************************!*\
+  !*** ./wwwroot/homeApp/blog/BlogItemsView.js ***!
+  \***********************************************/
+=======
 	    template: _FogotPasswordViewHbs2.default
 	});
 	exports.default = View;
@@ -39644,18 +52593,35 @@
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.js ***!
   \*********************************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
+<<<<<<< HEAD
+	    value: true
+=======
 	  value: true
+>>>>>>> master
 	});
 	
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.js */ 189);
+	
+	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	    childView: _BlogItemView2.default,
+	    className: 'blog-post-item-wrapper',
+	    tagName: 'div'
+=======
 	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 189);
 	
 	var _legalUserAgreementViewHbs2 = _interopRequireDefault(_legalUserAgreementViewHbs);
@@ -39667,11 +52633,132 @@
 	 */
 	var View = _backbone2.default.View.extend({
 	  template: _legalUserAgreementViewHbs2.default
+>>>>>>> master
 	});
 	exports.default = View;
 
 /***/ },
 /* 189 */
+<<<<<<< HEAD
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/blog/BlogItemView.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.html */ 190);
+	
+	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
+	
+	var _app = __webpack_require__(/*! ../app */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    tagName: 'div',
+	    className: 'blog-post-item',
+	    template: _BlogItemView2.default,
+	
+	    initialize: function initialize() {}
+	});
+	
+	exports.default = View;
+
+/***/ },
+/* 190 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/blog/BlogItemView.html ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n<!-- POST ITEM -->\r\n';
+	 if (_.size(obj.images) > 1) { 
+	__p+='\r\n <!-- OWL SLIDER -->\r\n<div id="sh-blog-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"items": 1, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}\'>\r\n    ';
+	_.each(obj.images, function(image){ 
+	__p+='\r\n    <div>\r\n        <img class="img-responsive" src="'+
+	((__t=( image.src))==null?'':__t)+
+	'" alt="'+
+	((__t=( image.alt))==null?'':__t)+
+	'">\r\n    </div> \r\n    ';
+	});
+	__p+='   \r\n</div>\r\n<!-- /OWL SLIDER -->\r\n';
+	 } else { 
+	__p+='\r\n    <!-- IMAGE -->\r\n    ';
+	 if(images && images[0].src) { 
+	__p+='\r\n    <figure class="margin-bottom-20">\r\n        <img class="img-responsive" src="'+
+	((__t=(obj.images[0].src))==null?'':__t)+
+	'" alt="'+
+	((__t=(obj.images[0].alt))==null?'':__t)+
+	'">\r\n    </figure>\r\n    ';
+	 } 
+	__p+='\r\n';
+	 } 
+	__p+='\r\n\r\n<h2><a href="blog/post/'+
+	((__t=(id))==null?'':__t)+
+	'">'+
+	((__t=( obj.title))==null?'':__t)+
+	'</a></h2>\r\n\r\n<ul class="blog-post-info list-inline">\r\n    <li>\r\n        <a href="#">\r\n            <i class="fa fa-clock-o"></i>\r\n            <span class="font-lato">'+
+	((__t=( moment(obj.timestamp).calendar()))==null?'':__t)+
+	'</span>\r\n        </a>\r\n    </li>\r\n\r\n    <li>\r\n        <a href="#">\r\n            <i class="fa fa-comment-o"></i>\r\n            <span class="font-lato">Комментариев: '+
+	((__t=( (_.size(obj.comments) > 0) ? obj.comments.length : '0' ))==null?'':__t)+
+	'</span>\r\n        </a>\r\n    </li>\r\n\r\n    ';
+	 if(_.size(obj.categories) > 0){ 
+	__p+='\r\n    <li>\r\n        <i class="fa fa-folder-open-o"></i>\r\n        ';
+	_.each(obj.categories, function(category){ 
+	__p+='\r\n        <a class="category" href="#">\r\n            <span class="font-lato">'+
+	((__t=( category))==null?'':__t)+
+	'</span>\r\n        </a>\r\n        ';
+	});
+	__p+='                \r\n    </li>\r\n    ';
+	 } 
+	__p+='\r\n\r\n    <li>\r\n        <a href="#">\r\n            <i class="fa fa-user"></i>\r\n            <span class="font-lato">'+
+	((__t=( obj.author))==null?'':__t)+
+	'</span>\r\n        </a>\r\n    </li>\r\n</ul>\r\n\r\n<p class="sh-post-description">'+
+	((__t=( obj.description))==null?'':_.escape(__t))+
+	'</p>\r\n\r\n<a href="/blog/post/'+
+	((__t=(id))==null?'':__t)+
+	'" class="btn btn-reveal btn-default">\r\n    <i class="fa fa-plus"></i> <span>Read More</span>\r\n</a>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 191 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/blog/blogHomeView.less ***!
+  \************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 192 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/blog/blogPostIdView.js ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+=======
 /*!***************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.hbs.html ***!
   \***************************************************************/
@@ -39747,12 +52834,119 @@
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
+>>>>>>> master
 	});
 	
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 193);
+	
+	var _blogPostIdViewHbs2 = _interopRequireDefault(_blogPostIdViewHbs);
+	
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 105);
+	
+	__webpack_require__(/*! ../../lib/magnific-popup/dist/jquery.magnific-popup.min.js */ 194);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./blogPostIdView.less */ 195);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _blogPostIdViewHbs2.default,
+	
+	    initialize: function initialize() {
+	        console.log('POST ID -> MODEL: ', this.model);
+	    },
+	    onAttach: function onAttach() {
+	        this.initLightBox();
+	        this.initCarousel();
+	    },
+	    onRender: function onRender() {},
+	    initCarousel: function initCarousel() {
+	        var slider = this.$('#sh-blog-carousel');
+	        var options = slider.attr('data-plugin-options');
+	        var defaults = {
+	            //items: 5,
+	            itemsCustom: false,
+	            singleItem: true,
+	            itemsScaleUp: false,
+	
+	            slideSpeed: 200,
+	            paginationSpeed: 800,
+	            rewindSpeed: 1000,
+	
+	            autoPlay: false,
+	            stopOnHover: false,
+	
+	            navigation: false,
+	            navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+	            rewindNav: true,
+	            scrollPerPage: false,
+	
+	            pagination: true,
+	            paginationNumbers: false,
+	
+	            responsive: true,
+	            responsiveRefreshRate: 200,
+	            responsiveBaseWidth: window,
+	
+	            baseClass: "owl-carousel",
+	            theme: "owl-theme",
+	
+	            lazyLoad: false,
+	            lazyFollow: true,
+	            lazyEffect: "fade",
+	
+	            autoHeight: false,
+	
+	            jsonPath: false,
+	            jsonSuccess: false,
+	
+	            dragBeforeAnimFinish: true,
+	            mouseDrag: true,
+	            touchDrag: true,
+	
+	            transitionStyle: false,
+	
+	            addClassActive: false,
+	
+	            beforeUpdate: false,
+	            afterUpdate: false,
+	            beforeInit: false,
+	            afterInit: false,
+	            beforeMove: false,
+	            afterMove: false,
+	            afterAction: false,
+	            startDragging: false,
+	            afterLazyLoad: false
+	        };
+	        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+	        slider.owlCarousel(config).addClass("owl-carousel-init");
+	    },
+	    initLightBox: function initLightBox() {}
+	});
+	
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 193 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/blog/blogPostIdView.hbs.html ***!
+  \******************************************************/
+=======
 	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 193);
 	
 	var _legalPostPublishingViewHbs2 = _interopRequireDefault(_legalPostPublishingViewHbs);
@@ -39772,12 +52966,17 @@
 /*!****************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.hbs.html ***!
   \****************************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
+	__p+='<div class="sh-blog-post-id">\n    <!-- -->\r\n    <div class="container">\r\n        <div class="sh-page-block sh-blog-post-id-wrapper">\r\n\r\n            <h1 class="blog-post-title">BLOG POST TITLE HERE</h1>\r\n            <ul class="blog-post-info list-inline">\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-clock-o"></i>\r\n                        <span class="font-lato">June 29, 2015</span>\r\n                    </a>\r\n                </li>\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-comment-o"></i>\r\n                        <span class="font-lato">28 Comments</span>\r\n                    </a>\r\n                </li>\r\n                <li>\r\n                    <i class="fa fa-folder-open-o"></i>\r\n\r\n                    <a class="category" href="#">\r\n                        <span class="font-lato">Design</span>\r\n                    </a>\r\n                    <a class="category" href="#">\r\n                        <span class="font-lato">Photography</span>\r\n                    </a>\r\n                </li>\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-user"></i>\r\n                        <span class="font-lato">John Doe</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n\r\n            <!-- OWL SLIDER -->\r\n            <div id="sh-blog-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"items": 1, "autoPlay": 4500, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}\'>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n            </div>\r\n            <!-- /OWL SLIDER -->\r\n            <!-- IMAGE -->\r\n            <!--\r\n            <figure class="margin-bottom-20">\r\n                <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="img" />\r\n            </figure>\r\n            -->\r\n            <!-- /IMAGE -->\r\n            <!-- VIDEO -->\r\n            <!--\r\n            <div class="margin-bottom-20 embed-responsive embed-responsive-16by9">\r\n                <iframe class="embed-responsive-item" src="http://player.vimeo.com/video/8408210" width="800" height="450"></iframe>\r\n            </div>\r\n            -->\r\n            <!-- /VIDEO -->\r\n\r\n            <!-- article content -->\r\n            <p class="dropcap">Aliquam fringilla, sapien eget scelerisque placerat, lorem libero cursus lorem, sed sodales lorem libero eu sapien. Nunc mattis feugiat justo vel faucibus. Nulla consequat feugiat malesuada. Ut justo nulla, <strong>facilisis vel molestie id</strong>, dictum ut arcu. Nunc ipsum nulla, eleifend non blandit quis, luctus quis orci. Cras blandit turpis mattis nulla ultrices interdum. Mauris pretium pretium dictum. Nunc commodo, felis sed dictum bibendum, risus justo iaculis dui, nec euismod orci sem eget neque. Donec in metus metus, vitae eleifend lorem. Ut vestibulum gravida venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque suscipit tincidunt magna non mollis. Fusce tempus tincidunt nisi, in luctus elit pellentesque quis. Sed velit mi, ullamcorper ut tempor ut, mattis eu lacus. Morbi rhoncus aliquet tellus, id accumsan enim sollicitudin vitae.</p>\r\n            <p>Vivamus <a href="#">magna justo</a>, lacinia eget consectetur sed, convallis at tellus. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Sed porttitor lectus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla porttitor accumsan tincidunt.</p>\r\n\r\n            <!-- BLOCKQUOTE -->\r\n            <blockquote>\r\n                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>\r\n                <cite>Source Title</cite>\r\n            </blockquote>\r\n\r\n            <p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.Quisque velit nisi, pretium ut lacinia in, elementum id enim. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Pellentesque in ipsum id orci porta dapibus. Nulla quis lorem ut libero malesuada feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>\r\n            <p>Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor accumsan tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>\r\n            <!-- /article content -->\r\n\r\n\r\n            <div class="divider divider-dotted"><!-- divider --></div>\r\n\r\n\r\n            <!-- TAGS -->\r\n            <a class="tag" href="#">\r\n                <span class="txt">RESPONSIVE</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">CSS</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">HTML</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">JAVASCRIPT</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">DESIGN</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">DEVELOPMENT</span>\r\n            </a>\r\n            <!-- /TAGS -->\r\n            <!-- SHARE POST -->\r\n            <div class="clearfix margin-top-30">\r\n\r\n                <span class="pull-left margin-top-6 bold hidden-xs">\r\n                    Share Post:\r\n                </span>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-facebook pull-right" data-toggle="tooltip" data-placement="top" title="Facebook">\r\n                    <i class="icon-facebook"></i>\r\n                    <i class="icon-facebook"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-twitter pull-right" data-toggle="tooltip" data-placement="top" title="Twitter">\r\n                    <i class="icon-twitter"></i>\r\n                    <i class="icon-twitter"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-gplus pull-right" data-toggle="tooltip" data-placement="top" title="Google plus">\r\n                    <i class="icon-gplus"></i>\r\n                    <i class="icon-gplus"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-linkedin pull-right" data-toggle="tooltip" data-placement="top" title="Linkedin">\r\n                    <i class="icon-linkedin"></i>\r\n                    <i class="icon-linkedin"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-pinterest pull-right" data-toggle="tooltip" data-placement="top" title="Pinterest">\r\n                    <i class="icon-pinterest"></i>\r\n                    <i class="icon-pinterest"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-call pull-right" data-toggle="tooltip" data-placement="top" title="Email">\r\n                    <i class="icon-email3"></i>\r\n                    <i class="icon-email3"></i>\r\n                </a>\r\n\r\n            </div>\r\n            <!-- /SHARE POST -->\r\n\r\n\r\n            <div class="divider"><!-- divider --></div>\r\n\r\n\r\n            <ul class="pager">\r\n                <li class="previous"><a class="noborder" href="#">&larr; Previous Post</a></li>\r\n                <li class="next"><a class="noborder" href="#">Next Post &rarr;</a></li>\r\n            </ul>\r\n\r\n\r\n        </div>\r\n   </div>\n</div>';
+=======
 	__p+='<div class="page--legal-confidential">\n    <iframe src="https://docs.google.com/document/d/1fi04pKKonBP_O7zakR5m0NJqVXvscwqGbWZUV_0yCr4/pub?embedded=true" width="100%" height="500"></iframe>\n</div>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -39785,6 +52984,408 @@
 
 /***/ },
 /* 194 */
+<<<<<<< HEAD
+/*!**********************************************************************!*\
+  !*** ./wwwroot/lib/magnific-popup/dist/jquery.magnific-popup.min.js ***!
+  \**********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	/*! Magnific Popup - v1.1.0 - 2016-02-20
+	* http://dimsemenov.com/plugins/magnific-popup/
+	* Copyright (c) 2016 Dmitry Semenov; */
+	!function (a) {
+	   true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ 3)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : a("object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) ? require("jquery") : window.jQuery || window.Zepto);
+	}(function (a) {
+	  var b,
+	      c,
+	      d,
+	      e,
+	      f,
+	      g,
+	      h = "Close",
+	      i = "BeforeClose",
+	      j = "AfterClose",
+	      k = "BeforeAppend",
+	      l = "MarkupParse",
+	      m = "Open",
+	      n = "Change",
+	      o = "mfp",
+	      p = "." + o,
+	      q = "mfp-ready",
+	      r = "mfp-removing",
+	      s = "mfp-prevent-close",
+	      t = function t() {},
+	      u = !!window.jQuery,
+	      v = a(window),
+	      w = function w(a, c) {
+	    b.ev.on(o + a + p, c);
+	  },
+	      x = function x(b, c, d, e) {
+	    var f = document.createElement("div");return f.className = "mfp-" + b, d && (f.innerHTML = d), e ? c && c.appendChild(f) : (f = a(f), c && f.appendTo(c)), f;
+	  },
+	      y = function y(c, d) {
+	    b.ev.triggerHandler(o + c, d), b.st.callbacks && (c = c.charAt(0).toLowerCase() + c.slice(1), b.st.callbacks[c] && b.st.callbacks[c].apply(b, a.isArray(d) ? d : [d]));
+	  },
+	      z = function z(c) {
+	    return c === g && b.currTemplate.closeBtn || (b.currTemplate.closeBtn = a(b.st.closeMarkup.replace("%title%", b.st.tClose)), g = c), b.currTemplate.closeBtn;
+	  },
+	      A = function A() {
+	    a.magnificPopup.instance || (b = new t(), b.init(), a.magnificPopup.instance = b);
+	  },
+	      B = function B() {
+	    var a = document.createElement("p").style,
+	        b = ["ms", "O", "Moz", "Webkit"];if (void 0 !== a.transition) return !0;for (; b.length;) {
+	      if (b.pop() + "Transition" in a) return !0;
+	    }return !1;
+	  };t.prototype = { constructor: t, init: function init() {
+	      var c = navigator.appVersion;b.isLowIE = b.isIE8 = document.all && !document.addEventListener, b.isAndroid = /android/gi.test(c), b.isIOS = /iphone|ipad|ipod/gi.test(c), b.supportsTransition = B(), b.probablyMobile = b.isAndroid || b.isIOS || /(Opera Mini)|Kindle|webOS|BlackBerry|(Opera Mobi)|(Windows Phone)|IEMobile/i.test(navigator.userAgent), d = a(document), b.popupsCache = {};
+	    }, open: function open(c) {
+	      var e;if (c.isObj === !1) {
+	        b.items = c.items.toArray(), b.index = 0;var g,
+	            h = c.items;for (e = 0; e < h.length; e++) {
+	          if (g = h[e], g.parsed && (g = g.el[0]), g === c.el[0]) {
+	            b.index = e;break;
+	          }
+	        }
+	      } else b.items = a.isArray(c.items) ? c.items : [c.items], b.index = c.index || 0;if (b.isOpen) return void b.updateItemHTML();b.types = [], f = "", c.mainEl && c.mainEl.length ? b.ev = c.mainEl.eq(0) : b.ev = d, c.key ? (b.popupsCache[c.key] || (b.popupsCache[c.key] = {}), b.currTemplate = b.popupsCache[c.key]) : b.currTemplate = {}, b.st = a.extend(!0, {}, a.magnificPopup.defaults, c), b.fixedContentPos = "auto" === b.st.fixedContentPos ? !b.probablyMobile : b.st.fixedContentPos, b.st.modal && (b.st.closeOnContentClick = !1, b.st.closeOnBgClick = !1, b.st.showCloseBtn = !1, b.st.enableEscapeKey = !1), b.bgOverlay || (b.bgOverlay = x("bg").on("click" + p, function () {
+	        b.close();
+	      }), b.wrap = x("wrap").attr("tabindex", -1).on("click" + p, function (a) {
+	        b._checkIfClose(a.target) && b.close();
+	      }), b.container = x("container", b.wrap)), b.contentContainer = x("content"), b.st.preloader && (b.preloader = x("preloader", b.container, b.st.tLoading));var i = a.magnificPopup.modules;for (e = 0; e < i.length; e++) {
+	        var j = i[e];j = j.charAt(0).toUpperCase() + j.slice(1), b["init" + j].call(b);
+	      }y("BeforeOpen"), b.st.showCloseBtn && (b.st.closeBtnInside ? (w(l, function (a, b, c, d) {
+	        c.close_replaceWith = z(d.type);
+	      }), f += " mfp-close-btn-in") : b.wrap.append(z())), b.st.alignTop && (f += " mfp-align-top"), b.fixedContentPos ? b.wrap.css({ overflow: b.st.overflowY, overflowX: "hidden", overflowY: b.st.overflowY }) : b.wrap.css({ top: v.scrollTop(), position: "absolute" }), (b.st.fixedBgPos === !1 || "auto" === b.st.fixedBgPos && !b.fixedContentPos) && b.bgOverlay.css({ height: d.height(), position: "absolute" }), b.st.enableEscapeKey && d.on("keyup" + p, function (a) {
+	        27 === a.keyCode && b.close();
+	      }), v.on("resize" + p, function () {
+	        b.updateSize();
+	      }), b.st.closeOnContentClick || (f += " mfp-auto-cursor"), f && b.wrap.addClass(f);var k = b.wH = v.height(),
+	          n = {};if (b.fixedContentPos && b._hasScrollBar(k)) {
+	        var o = b._getScrollbarSize();o && (n.marginRight = o);
+	      }b.fixedContentPos && (b.isIE7 ? a("body, html").css("overflow", "hidden") : n.overflow = "hidden");var r = b.st.mainClass;return b.isIE7 && (r += " mfp-ie7"), r && b._addClassToMFP(r), b.updateItemHTML(), y("BuildControls"), a("html").css(n), b.bgOverlay.add(b.wrap).prependTo(b.st.prependTo || a(document.body)), b._lastFocusedEl = document.activeElement, setTimeout(function () {
+	        b.content ? (b._addClassToMFP(q), b._setFocus()) : b.bgOverlay.addClass(q), d.on("focusin" + p, b._onFocusIn);
+	      }, 16), b.isOpen = !0, b.updateSize(k), y(m), c;
+	    }, close: function close() {
+	      b.isOpen && (y(i), b.isOpen = !1, b.st.removalDelay && !b.isLowIE && b.supportsTransition ? (b._addClassToMFP(r), setTimeout(function () {
+	        b._close();
+	      }, b.st.removalDelay)) : b._close());
+	    }, _close: function _close() {
+	      y(h);var c = r + " " + q + " ";if (b.bgOverlay.detach(), b.wrap.detach(), b.container.empty(), b.st.mainClass && (c += b.st.mainClass + " "), b._removeClassFromMFP(c), b.fixedContentPos) {
+	        var e = { marginRight: "" };b.isIE7 ? a("body, html").css("overflow", "") : e.overflow = "", a("html").css(e);
+	      }d.off("keyup" + p + " focusin" + p), b.ev.off(p), b.wrap.attr("class", "mfp-wrap").removeAttr("style"), b.bgOverlay.attr("class", "mfp-bg"), b.container.attr("class", "mfp-container"), !b.st.showCloseBtn || b.st.closeBtnInside && b.currTemplate[b.currItem.type] !== !0 || b.currTemplate.closeBtn && b.currTemplate.closeBtn.detach(), b.st.autoFocusLast && b._lastFocusedEl && a(b._lastFocusedEl).focus(), b.currItem = null, b.content = null, b.currTemplate = null, b.prevHeight = 0, y(j);
+	    }, updateSize: function updateSize(a) {
+	      if (b.isIOS) {
+	        var c = document.documentElement.clientWidth / window.innerWidth,
+	            d = window.innerHeight * c;b.wrap.css("height", d), b.wH = d;
+	      } else b.wH = a || v.height();b.fixedContentPos || b.wrap.css("height", b.wH), y("Resize");
+	    }, updateItemHTML: function updateItemHTML() {
+	      var c = b.items[b.index];b.contentContainer.detach(), b.content && b.content.detach(), c.parsed || (c = b.parseEl(b.index));var d = c.type;if (y("BeforeChange", [b.currItem ? b.currItem.type : "", d]), b.currItem = c, !b.currTemplate[d]) {
+	        var f = b.st[d] ? b.st[d].markup : !1;y("FirstMarkupParse", f), f ? b.currTemplate[d] = a(f) : b.currTemplate[d] = !0;
+	      }e && e !== c.type && b.container.removeClass("mfp-" + e + "-holder");var g = b["get" + d.charAt(0).toUpperCase() + d.slice(1)](c, b.currTemplate[d]);b.appendContent(g, d), c.preloaded = !0, y(n, c), e = c.type, b.container.prepend(b.contentContainer), y("AfterChange");
+	    }, appendContent: function appendContent(a, c) {
+	      b.content = a, a ? b.st.showCloseBtn && b.st.closeBtnInside && b.currTemplate[c] === !0 ? b.content.find(".mfp-close").length || b.content.append(z()) : b.content = a : b.content = "", y(k), b.container.addClass("mfp-" + c + "-holder"), b.contentContainer.append(b.content);
+	    }, parseEl: function parseEl(c) {
+	      var d,
+	          e = b.items[c];if (e.tagName ? e = { el: a(e) } : (d = e.type, e = { data: e, src: e.src }), e.el) {
+	        for (var f = b.types, g = 0; g < f.length; g++) {
+	          if (e.el.hasClass("mfp-" + f[g])) {
+	            d = f[g];break;
+	          }
+	        }e.src = e.el.attr("data-mfp-src"), e.src || (e.src = e.el.attr("href"));
+	      }return e.type = d || b.st.type || "inline", e.index = c, e.parsed = !0, b.items[c] = e, y("ElementParse", e), b.items[c];
+	    }, addGroup: function addGroup(a, c) {
+	      var d = function d(_d) {
+	        _d.mfpEl = this, b._openClick(_d, a, c);
+	      };c || (c = {});var e = "click.magnificPopup";c.mainEl = a, c.items ? (c.isObj = !0, a.off(e).on(e, d)) : (c.isObj = !1, c.delegate ? a.off(e).on(e, c.delegate, d) : (c.items = a, a.off(e).on(e, d)));
+	    }, _openClick: function _openClick(c, d, e) {
+	      var f = void 0 !== e.midClick ? e.midClick : a.magnificPopup.defaults.midClick;if (f || !(2 === c.which || c.ctrlKey || c.metaKey || c.altKey || c.shiftKey)) {
+	        var g = void 0 !== e.disableOn ? e.disableOn : a.magnificPopup.defaults.disableOn;if (g) if (a.isFunction(g)) {
+	          if (!g.call(b)) return !0;
+	        } else if (v.width() < g) return !0;c.type && (c.preventDefault(), b.isOpen && c.stopPropagation()), e.el = a(c.mfpEl), e.delegate && (e.items = d.find(e.delegate)), b.open(e);
+	      }
+	    }, updateStatus: function updateStatus(a, d) {
+	      if (b.preloader) {
+	        c !== a && b.container.removeClass("mfp-s-" + c), d || "loading" !== a || (d = b.st.tLoading);var e = { status: a, text: d };y("UpdateStatus", e), a = e.status, d = e.text, b.preloader.html(d), b.preloader.find("a").on("click", function (a) {
+	          a.stopImmediatePropagation();
+	        }), b.container.addClass("mfp-s-" + a), c = a;
+	      }
+	    }, _checkIfClose: function _checkIfClose(c) {
+	      if (!a(c).hasClass(s)) {
+	        var d = b.st.closeOnContentClick,
+	            e = b.st.closeOnBgClick;if (d && e) return !0;if (!b.content || a(c).hasClass("mfp-close") || b.preloader && c === b.preloader[0]) return !0;if (c === b.content[0] || a.contains(b.content[0], c)) {
+	          if (d) return !0;
+	        } else if (e && a.contains(document, c)) return !0;return !1;
+	      }
+	    }, _addClassToMFP: function _addClassToMFP(a) {
+	      b.bgOverlay.addClass(a), b.wrap.addClass(a);
+	    }, _removeClassFromMFP: function _removeClassFromMFP(a) {
+	      this.bgOverlay.removeClass(a), b.wrap.removeClass(a);
+	    }, _hasScrollBar: function _hasScrollBar(a) {
+	      return (b.isIE7 ? d.height() : document.body.scrollHeight) > (a || v.height());
+	    }, _setFocus: function _setFocus() {
+	      (b.st.focus ? b.content.find(b.st.focus).eq(0) : b.wrap).focus();
+	    }, _onFocusIn: function _onFocusIn(c) {
+	      return c.target === b.wrap[0] || a.contains(b.wrap[0], c.target) ? void 0 : (b._setFocus(), !1);
+	    }, _parseMarkup: function _parseMarkup(b, c, d) {
+	      var e;d.data && (c = a.extend(d.data, c)), y(l, [b, c, d]), a.each(c, function (c, d) {
+	        if (void 0 === d || d === !1) return !0;if (e = c.split("_"), e.length > 1) {
+	          var f = b.find(p + "-" + e[0]);if (f.length > 0) {
+	            var g = e[1];"replaceWith" === g ? f[0] !== d[0] && f.replaceWith(d) : "img" === g ? f.is("img") ? f.attr("src", d) : f.replaceWith(a("<img>").attr("src", d).attr("class", f.attr("class"))) : f.attr(e[1], d);
+	          }
+	        } else b.find(p + "-" + c).html(d);
+	      });
+	    }, _getScrollbarSize: function _getScrollbarSize() {
+	      if (void 0 === b.scrollbarSize) {
+	        var a = document.createElement("div");a.style.cssText = "width: 99px; height: 99px; overflow: scroll; position: absolute; top: -9999px;", document.body.appendChild(a), b.scrollbarSize = a.offsetWidth - a.clientWidth, document.body.removeChild(a);
+	      }return b.scrollbarSize;
+	    } }, a.magnificPopup = { instance: null, proto: t.prototype, modules: [], open: function open(b, c) {
+	      return A(), b = b ? a.extend(!0, {}, b) : {}, b.isObj = !0, b.index = c || 0, this.instance.open(b);
+	    }, close: function close() {
+	      return a.magnificPopup.instance && a.magnificPopup.instance.close();
+	    }, registerModule: function registerModule(b, c) {
+	      c.options && (a.magnificPopup.defaults[b] = c.options), a.extend(this.proto, c.proto), this.modules.push(b);
+	    }, defaults: { disableOn: 0, key: null, midClick: !1, mainClass: "", preloader: !0, focus: "", closeOnContentClick: !1, closeOnBgClick: !0, closeBtnInside: !0, showCloseBtn: !0, enableEscapeKey: !0, modal: !1, alignTop: !1, removalDelay: 0, prependTo: null, fixedContentPos: "auto", fixedBgPos: "auto", overflowY: "auto", closeMarkup: '<button title="%title%" type="button" class="mfp-close">&#215;</button>', tClose: "Close (Esc)", tLoading: "Loading...", autoFocusLast: !0 } }, a.fn.magnificPopup = function (c) {
+	    A();var d = a(this);if ("string" == typeof c) {
+	      if ("open" === c) {
+	        var e,
+	            f = u ? d.data("magnificPopup") : d[0].magnificPopup,
+	            g = parseInt(arguments[1], 10) || 0;f.items ? e = f.items[g] : (e = d, f.delegate && (e = e.find(f.delegate)), e = e.eq(g)), b._openClick({ mfpEl: e }, d, f);
+	      } else b.isOpen && b[c].apply(b, Array.prototype.slice.call(arguments, 1));
+	    } else c = a.extend(!0, {}, c), u ? d.data("magnificPopup", c) : d[0].magnificPopup = c, b.addGroup(d, c);return d;
+	  };var C,
+	      D,
+	      E,
+	      F = "inline",
+	      G = function G() {
+	    E && (D.after(E.addClass(C)).detach(), E = null);
+	  };a.magnificPopup.registerModule(F, { options: { hiddenClass: "hide", markup: "", tNotFound: "Content not found" }, proto: { initInline: function initInline() {
+	        b.types.push(F), w(h + "." + F, function () {
+	          G();
+	        });
+	      }, getInline: function getInline(c, d) {
+	        if (G(), c.src) {
+	          var e = b.st.inline,
+	              f = a(c.src);if (f.length) {
+	            var g = f[0].parentNode;g && g.tagName && (D || (C = e.hiddenClass, D = x(C), C = "mfp-" + C), E = f.after(D).detach().removeClass(C)), b.updateStatus("ready");
+	          } else b.updateStatus("error", e.tNotFound), f = a("<div>");return c.inlineElement = f, f;
+	        }return b.updateStatus("ready"), b._parseMarkup(d, {}, c), d;
+	      } } });var H,
+	      I = "ajax",
+	      J = function J() {
+	    H && a(document.body).removeClass(H);
+	  },
+	      K = function K() {
+	    J(), b.req && b.req.abort();
+	  };a.magnificPopup.registerModule(I, { options: { settings: null, cursor: "mfp-ajax-cur", tError: '<a href="%url%">The content</a> could not be loaded.' }, proto: { initAjax: function initAjax() {
+	        b.types.push(I), H = b.st.ajax.cursor, w(h + "." + I, K), w("BeforeChange." + I, K);
+	      }, getAjax: function getAjax(c) {
+	        H && a(document.body).addClass(H), b.updateStatus("loading");var d = a.extend({ url: c.src, success: function success(d, e, f) {
+	            var g = { data: d, xhr: f };y("ParseAjax", g), b.appendContent(a(g.data), I), c.finished = !0, J(), b._setFocus(), setTimeout(function () {
+	              b.wrap.addClass(q);
+	            }, 16), b.updateStatus("ready"), y("AjaxContentAdded");
+	          }, error: function error() {
+	            J(), c.finished = c.loadError = !0, b.updateStatus("error", b.st.ajax.tError.replace("%url%", c.src));
+	          } }, b.st.ajax.settings);return b.req = a.ajax(d), "";
+	      } } });var L,
+	      M = function M(c) {
+	    if (c.data && void 0 !== c.data.title) return c.data.title;var d = b.st.image.titleSrc;if (d) {
+	      if (a.isFunction(d)) return d.call(b, c);if (c.el) return c.el.attr(d) || "";
+	    }return "";
+	  };a.magnificPopup.registerModule("image", { options: { markup: '<div class="mfp-figure"><div class="mfp-close"></div><figure><div class="mfp-img"></div><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter"></div></div></figcaption></figure></div>', cursor: "mfp-zoom-out-cur", titleSrc: "title", verticalFit: !0, tError: '<a href="%url%">The image</a> could not be loaded.' }, proto: { initImage: function initImage() {
+	        var c = b.st.image,
+	            d = ".image";b.types.push("image"), w(m + d, function () {
+	          "image" === b.currItem.type && c.cursor && a(document.body).addClass(c.cursor);
+	        }), w(h + d, function () {
+	          c.cursor && a(document.body).removeClass(c.cursor), v.off("resize" + p);
+	        }), w("Resize" + d, b.resizeImage), b.isLowIE && w("AfterChange", b.resizeImage);
+	      }, resizeImage: function resizeImage() {
+	        var a = b.currItem;if (a && a.img && b.st.image.verticalFit) {
+	          var c = 0;b.isLowIE && (c = parseInt(a.img.css("padding-top"), 10) + parseInt(a.img.css("padding-bottom"), 10)), a.img.css("max-height", b.wH - c);
+	        }
+	      }, _onImageHasSize: function _onImageHasSize(a) {
+	        a.img && (a.hasSize = !0, L && clearInterval(L), a.isCheckingImgSize = !1, y("ImageHasSize", a), a.imgHidden && (b.content && b.content.removeClass("mfp-loading"), a.imgHidden = !1));
+	      }, findImageSize: function findImageSize(a) {
+	        var c = 0,
+	            d = a.img[0],
+	            e = function e(f) {
+	          L && clearInterval(L), L = setInterval(function () {
+	            return d.naturalWidth > 0 ? void b._onImageHasSize(a) : (c > 200 && clearInterval(L), c++, void (3 === c ? e(10) : 40 === c ? e(50) : 100 === c && e(500)));
+	          }, f);
+	        };e(1);
+	      }, getImage: function getImage(c, d) {
+	        var e = 0,
+	            f = function f() {
+	          c && (c.img[0].complete ? (c.img.off(".mfploader"), c === b.currItem && (b._onImageHasSize(c), b.updateStatus("ready")), c.hasSize = !0, c.loaded = !0, y("ImageLoadComplete")) : (e++, 200 > e ? setTimeout(f, 100) : g()));
+	        },
+	            g = function g() {
+	          c && (c.img.off(".mfploader"), c === b.currItem && (b._onImageHasSize(c), b.updateStatus("error", h.tError.replace("%url%", c.src))), c.hasSize = !0, c.loaded = !0, c.loadError = !0);
+	        },
+	            h = b.st.image,
+	            i = d.find(".mfp-img");if (i.length) {
+	          var j = document.createElement("img");j.className = "mfp-img", c.el && c.el.find("img").length && (j.alt = c.el.find("img").attr("alt")), c.img = a(j).on("load.mfploader", f).on("error.mfploader", g), j.src = c.src, i.is("img") && (c.img = c.img.clone()), j = c.img[0], j.naturalWidth > 0 ? c.hasSize = !0 : j.width || (c.hasSize = !1);
+	        }return b._parseMarkup(d, { title: M(c), img_replaceWith: c.img }, c), b.resizeImage(), c.hasSize ? (L && clearInterval(L), c.loadError ? (d.addClass("mfp-loading"), b.updateStatus("error", h.tError.replace("%url%", c.src))) : (d.removeClass("mfp-loading"), b.updateStatus("ready")), d) : (b.updateStatus("loading"), c.loading = !0, c.hasSize || (c.imgHidden = !0, d.addClass("mfp-loading"), b.findImageSize(c)), d);
+	      } } });var N,
+	      O = function O() {
+	    return void 0 === N && (N = void 0 !== document.createElement("p").style.MozTransform), N;
+	  };a.magnificPopup.registerModule("zoom", { options: { enabled: !1, easing: "ease-in-out", duration: 300, opener: function opener(a) {
+	        return a.is("img") ? a : a.find("img");
+	      } }, proto: { initZoom: function initZoom() {
+	        var a,
+	            c = b.st.zoom,
+	            d = ".zoom";if (c.enabled && b.supportsTransition) {
+	          var e,
+	              f,
+	              g = c.duration,
+	              j = function j(a) {
+	            var b = a.clone().removeAttr("style").removeAttr("class").addClass("mfp-animated-image"),
+	                d = "all " + c.duration / 1e3 + "s " + c.easing,
+	                e = { position: "fixed", zIndex: 9999, left: 0, top: 0, "-webkit-backface-visibility": "hidden" },
+	                f = "transition";return e["-webkit-" + f] = e["-moz-" + f] = e["-o-" + f] = e[f] = d, b.css(e), b;
+	          },
+	              k = function k() {
+	            b.content.css("visibility", "visible");
+	          };w("BuildControls" + d, function () {
+	            if (b._allowZoom()) {
+	              if (clearTimeout(e), b.content.css("visibility", "hidden"), a = b._getItemToZoom(), !a) return void k();f = j(a), f.css(b._getOffset()), b.wrap.append(f), e = setTimeout(function () {
+	                f.css(b._getOffset(!0)), e = setTimeout(function () {
+	                  k(), setTimeout(function () {
+	                    f.remove(), a = f = null, y("ZoomAnimationEnded");
+	                  }, 16);
+	                }, g);
+	              }, 16);
+	            }
+	          }), w(i + d, function () {
+	            if (b._allowZoom()) {
+	              if (clearTimeout(e), b.st.removalDelay = g, !a) {
+	                if (a = b._getItemToZoom(), !a) return;f = j(a);
+	              }f.css(b._getOffset(!0)), b.wrap.append(f), b.content.css("visibility", "hidden"), setTimeout(function () {
+	                f.css(b._getOffset());
+	              }, 16);
+	            }
+	          }), w(h + d, function () {
+	            b._allowZoom() && (k(), f && f.remove(), a = null);
+	          });
+	        }
+	      }, _allowZoom: function _allowZoom() {
+	        return "image" === b.currItem.type;
+	      }, _getItemToZoom: function _getItemToZoom() {
+	        return b.currItem.hasSize ? b.currItem.img : !1;
+	      }, _getOffset: function _getOffset(c) {
+	        var d;d = c ? b.currItem.img : b.st.zoom.opener(b.currItem.el || b.currItem);var e = d.offset(),
+	            f = parseInt(d.css("padding-top"), 10),
+	            g = parseInt(d.css("padding-bottom"), 10);e.top -= a(window).scrollTop() - f;var h = { width: d.width(), height: (u ? d.innerHeight() : d[0].offsetHeight) - g - f };return O() ? h["-moz-transform"] = h.transform = "translate(" + e.left + "px," + e.top + "px)" : (h.left = e.left, h.top = e.top), h;
+	      } } });var P = "iframe",
+	      Q = "//about:blank",
+	      R = function R(a) {
+	    if (b.currTemplate[P]) {
+	      var c = b.currTemplate[P].find("iframe");c.length && (a || (c[0].src = Q), b.isIE8 && c.css("display", a ? "block" : "none"));
+	    }
+	  };a.magnificPopup.registerModule(P, { options: { markup: '<div class="mfp-iframe-scaler"><div class="mfp-close"></div><iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen></iframe></div>', srcAction: "iframe_src", patterns: { youtube: { index: "youtube.com", id: "v=", src: "//www.youtube.com/embed/%id%?autoplay=1" }, vimeo: { index: "vimeo.com/", id: "/", src: "//player.vimeo.com/video/%id%?autoplay=1" }, gmaps: { index: "//maps.google.", src: "%id%&output=embed" } } }, proto: { initIframe: function initIframe() {
+	        b.types.push(P), w("BeforeChange", function (a, b, c) {
+	          b !== c && (b === P ? R() : c === P && R(!0));
+	        }), w(h + "." + P, function () {
+	          R();
+	        });
+	      }, getIframe: function getIframe(c, d) {
+	        var e = c.src,
+	            f = b.st.iframe;a.each(f.patterns, function () {
+	          return e.indexOf(this.index) > -1 ? (this.id && (e = "string" == typeof this.id ? e.substr(e.lastIndexOf(this.id) + this.id.length, e.length) : this.id.call(this, e)), e = this.src.replace("%id%", e), !1) : void 0;
+	        });var g = {};return f.srcAction && (g[f.srcAction] = e), b._parseMarkup(d, g, c), b.updateStatus("ready"), d;
+	      } } });var S = function S(a) {
+	    var c = b.items.length;return a > c - 1 ? a - c : 0 > a ? c + a : a;
+	  },
+	      T = function T(a, b, c) {
+	    return a.replace(/%curr%/gi, b + 1).replace(/%total%/gi, c);
+	  };a.magnificPopup.registerModule("gallery", { options: { enabled: !1, arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>', preload: [0, 2], navigateByImgClick: !0, arrows: !0, tPrev: "Previous (Left arrow key)", tNext: "Next (Right arrow key)", tCounter: "%curr% of %total%" }, proto: { initGallery: function initGallery() {
+	        var c = b.st.gallery,
+	            e = ".mfp-gallery";return b.direction = !0, c && c.enabled ? (f += " mfp-gallery", w(m + e, function () {
+	          c.navigateByImgClick && b.wrap.on("click" + e, ".mfp-img", function () {
+	            return b.items.length > 1 ? (b.next(), !1) : void 0;
+	          }), d.on("keydown" + e, function (a) {
+	            37 === a.keyCode ? b.prev() : 39 === a.keyCode && b.next();
+	          });
+	        }), w("UpdateStatus" + e, function (a, c) {
+	          c.text && (c.text = T(c.text, b.currItem.index, b.items.length));
+	        }), w(l + e, function (a, d, e, f) {
+	          var g = b.items.length;e.counter = g > 1 ? T(c.tCounter, f.index, g) : "";
+	        }), w("BuildControls" + e, function () {
+	          if (b.items.length > 1 && c.arrows && !b.arrowLeft) {
+	            var d = c.arrowMarkup,
+	                e = b.arrowLeft = a(d.replace(/%title%/gi, c.tPrev).replace(/%dir%/gi, "left")).addClass(s),
+	                f = b.arrowRight = a(d.replace(/%title%/gi, c.tNext).replace(/%dir%/gi, "right")).addClass(s);e.click(function () {
+	              b.prev();
+	            }), f.click(function () {
+	              b.next();
+	            }), b.container.append(e.add(f));
+	          }
+	        }), w(n + e, function () {
+	          b._preloadTimeout && clearTimeout(b._preloadTimeout), b._preloadTimeout = setTimeout(function () {
+	            b.preloadNearbyImages(), b._preloadTimeout = null;
+	          }, 16);
+	        }), void w(h + e, function () {
+	          d.off(e), b.wrap.off("click" + e), b.arrowRight = b.arrowLeft = null;
+	        })) : !1;
+	      }, next: function next() {
+	        b.direction = !0, b.index = S(b.index + 1), b.updateItemHTML();
+	      }, prev: function prev() {
+	        b.direction = !1, b.index = S(b.index - 1), b.updateItemHTML();
+	      }, goTo: function goTo(a) {
+	        b.direction = a >= b.index, b.index = a, b.updateItemHTML();
+	      }, preloadNearbyImages: function preloadNearbyImages() {
+	        var a,
+	            c = b.st.gallery.preload,
+	            d = Math.min(c[0], b.items.length),
+	            e = Math.min(c[1], b.items.length);for (a = 1; a <= (b.direction ? e : d); a++) {
+	          b._preloadItem(b.index + a);
+	        }for (a = 1; a <= (b.direction ? d : e); a++) {
+	          b._preloadItem(b.index - a);
+	        }
+	      }, _preloadItem: function _preloadItem(c) {
+	        if (c = S(c), !b.items[c].preloaded) {
+	          var d = b.items[c];d.parsed || (d = b.parseEl(c)), y("LazyLoad", d), "image" === d.type && (d.img = a('<img class="mfp-img" />').on("load.mfploader", function () {
+	            d.hasSize = !0;
+	          }).on("error.mfploader", function () {
+	            d.hasSize = !0, d.loadError = !0, y("LazyLoadError", d);
+	          }).attr("src", d.src)), d.preloaded = !0;
+	        }
+	      } } });var U = "retina";a.magnificPopup.registerModule(U, { options: { replaceSrc: function replaceSrc(a) {
+	        return a.src.replace(/\.\w+$/, function (a) {
+	          return "@2x" + a;
+	        });
+	      }, ratio: 1 }, proto: { initRetina: function initRetina() {
+	        if (window.devicePixelRatio > 1) {
+	          var a = b.st.retina,
+	              c = a.ratio;c = isNaN(c) ? c() : c, c > 1 && (w("ImageHasSize." + U, function (a, b) {
+	            b.img.css({ "max-width": b.img[0].naturalWidth / c, width: "100%" });
+	          }), w("ElementParse." + U, function (b, d) {
+	            d.src = a.replaceSrc(d, c);
+	          }));
+	        }
+	      } } }), A();
+	});
+
+/***/ },
+/* 195 */
+/*!**************************************************!*\
+  !*** ./wwwroot/homeApp/blog/blogPostIdView.less ***!
+  \**************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 196 */
+/*!*********************************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.js ***!
+  \*********************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+=======
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/blog/emptyBlogHomeView.js ***!
   \***************************************************/
@@ -39842,6 +53443,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -39851,6 +53453,15 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
+	var _SuggestionsModalViewHbs = __webpack_require__(/*! ./SuggestionsModalView.hbs.html */ 197);
+	
+	var _SuggestionsModalViewHbs2 = _interopRequireDefault(_SuggestionsModalViewHbs);
+	
+	var _OsmSearchCollection = __webpack_require__(/*! ../../../data/OsmSearchCollection.js */ 63);
+	
+	var _OsmSearchCollection2 = _interopRequireDefault(_OsmSearchCollection);
+=======
 	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 197);
 	
 	var _blogHomeViewHbs2 = _interopRequireDefault(_blogHomeViewHbs);
@@ -39864,11 +53475,79 @@
 	var _BlogItemsView = __webpack_require__(/*! ./BlogItemsView.js */ 198);
 	
 	var _BlogItemsView2 = _interopRequireDefault(_BlogItemsView);
+>>>>>>> master
 	
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
+<<<<<<< HEAD
+	__webpack_require__(/*! ./SuggestionsModalView.less */ 198);
+	
+	var _SuggestionListView = __webpack_require__(/*! ../SuggestionListView.js */ 67);
+	
+	var _SuggestionListView2 = _interopRequireDefault(_SuggestionListView);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	
+	    template: _SuggestionsModalViewHbs2.default,
+	    osmCollection: null,
+	
+	    regions: {
+	        'suggestions': '#suggestionsListBox'
+	    },
+	
+	    events: {
+	        'click #locationQuery': 'showSuggestions',
+	        'keyup #locationQuery': 'onLocationsSearch'
+	    },
+	
+	    initialize: function initialize() {
+	        this.osmCollection = new _OsmSearchCollection2.default();
+	    },
+	    onRender: function onRender() {
+	        this.showChildView('suggestions', new _SuggestionListView2.default({ collection: this.osmCollection, model: this.model }));
+	    },
+	    onLocationsSearch: function onLocationsSearch(e) {
+	        if (e && (e.keyCode > 31 || e.keyCode === 13 || e.keyCode === 8)) {
+	            if (this.searchTimeOut) clearTimeout(this.searchTimeOut);
+	            this.searchTimeOut = setTimeout(_underscore2.default.bind(function () {
+	                this.osmCollection.fetch({
+	                    data: {
+	                        q: e.target.value,
+	                        format: 'json',
+	                        'accept-language': 'ru',
+	                        limit: 20,
+	                        polygon_geojson: 0
+	                        //city:e.target.value,
+	                        //county:e.target.value,
+	                        //state:e.target.value,
+	                        //country:e.target.value
+	                    }
+	                });
+	            }, this), 400);
+	        }
+	    },
+	    showSuggestions: function showSuggestions(e) {
+	        var quickCartBox = this.$('#suggestionsBox');
+	        if (!quickCartBox.is(":visible")) {
+	            quickCartBox.fadeIn(300);
+	        }
+	    }
+	});
+
+/***/ },
+/* 197 */
+/*!***************************************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.hbs.html ***!
+  \***************************************************************************************/
+=======
 	var _app = __webpack_require__(/*! ../app.js */ 15);
 	
 	var _app2 = _interopRequireDefault(_app);
@@ -40033,11 +53712,17 @@
 /*!****************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.hbs.html ***!
   \****************************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
+	__p+='<div class="suggestions-modal-view">\r\n    <div class="suggestions-modal-view-wrapper">\r\n        <div class="sh-input-group">\r\n            <input placeholder="'+
+	((__t=(obj.address||'Поиск по городам и регионам'))==null?'':_.escape(__t))+
+	'" class="sh-input-suggestions form-control" id="locationQuery" type="text">            \r\n            <div class="suggestion-box" id="suggestionsBox">\r\n                <h5>Поиск городов, регионов</h5>\r\n                <div id="suggestionsListBox"></div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>';
+=======
 	__p+='\n<div class="sh-blog-home">\n    <div class="container">\n        <div class="page--blog-home">\n            <div class="sh-page-block sh-blog-home-wrapper row">\n                <!--LEFT-->\n                <div class="col-md-12 col-sm-12">\n                    <div id="blog-items"></div>\r\n                </div>\n\n                <!--RIGHT-->\n                <div class="col-md-3 col-sm-3" style="display:none;">\n\n                    <!-- INLINE SEARCH -->\r\n                    <div class="inline-search clearfix margin-bottom-30">\r\n                        <form action="" method="get" class="widget_search">\r\n                            <input type="search" placeholder="Start Searching..." id="s" name="s" class="serch-input">\r\n                            <button type="submit">\r\n                                <i class="fa fa-search"></i>\r\n                            </button>\r\n                        </form>\r\n                    </div>\r\n                    <!-- /INLINE SEARCH -->\n\n                    <hr />\r\n\r\n                    <!-- side navigation -->\r\n                    <div class="side-nav margin-bottom-60 margin-top-30">\r\n\r\n                        <div class="side-nav-head">\r\n                            <button class="fa fa-bars"></button>\r\n                            <h4>CATEGORIES</h4>\r\n                        </div>\r\n                        <ul class="list-group list-group-bordered list-group-noicon uppercase">\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(12)</span> MEDIA</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(8)</span> MOVIES</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(32)</span> NEW</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(16)</span> TUTORIALS</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(2)</span> DEVELOPMENT</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(1)</span> UNCATEGORIZED</a></li>\r\n\r\n                        </ul>\r\n                        <!-- /side navigation -->\r\n\r\n\r\n                    </div>\n\n                    <!-- TAGS -->\r\n                    ';
 	 if(blogDetails) { 
 	__p+='\r\n                    <h3 class="hidden-xs size-16 margin-bottom-20">SEARCH FOR TAGS</h3>\r\n                    <div class="hidden-xs margin-bottom-60">\r\n                        ';
@@ -40049,6 +53734,7 @@
 	__p+='                        \r\n                    </div>\n                    ';
 	 } 
 	__p+='\n                    <hr />\r\n\r\n\r\n                    <!-- SOCIAL ICONS -->\r\n                    <div class="hidden-xs margin-top-30 margin-bottom-60">\r\n                        <a href="#" class="social-icon social-icon-border social-facebook pull-left" data-toggle="tooltip" data-placement="top" title="Facebook">\r\n                            <i class="icon-facebook"></i>\r\n                            <i class="icon-facebook"></i>\r\n                        </a>\r\n\r\n                        <a href="#" class="social-icon social-icon-border social-twitter pull-left" data-toggle="tooltip" data-placement="top" title="Twitter">\r\n                            <i class="icon-twitter"></i>\r\n                            <i class="icon-twitter"></i>\r\n                        </a>\r\n\r\n                        <a href="#" class="social-icon social-icon-border social-gplus pull-left" data-toggle="tooltip" data-placement="top" title="Google plus">\r\n                            <i class="icon-gplus"></i>\r\n                            <i class="icon-gplus"></i>\r\n                        </a>                        \r\n                    </div>\n\n                </div>               \n            </div>\n        </div>\n    </div>\n</div>\n';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -40057,16 +53743,2661 @@
 
 /***/ },
 /* 198 */
+<<<<<<< HEAD
+/*!***********************************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.less ***!
+  \***********************************************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 199 */
+/*!******************************************!*\
+  !*** ./wwwroot/css/shiners-override.css ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 200);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 45)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./shiners-override.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./shiners-override.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 200 */
+/*!*********************************************************!*\
+  !*** ./~/css-loader!./wwwroot/css/shiners-override.css ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 14)();
+	exports.push([module.id, "/*this file contains rules that override template/bootstrap etc.*/\r\nbody.sh-body #topNav button.btn-mobile {\r\n    color: #f7fafb;\r\n}\r\n", ""]);
+
+/***/ },
+/* 201 */
+/*!************************************!*\
+  !*** ./~/asteroid/lib/asteroid.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+=======
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemsView.js ***!
   \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+<<<<<<< HEAD
+	exports.createClass = createClass;
+	
+	var _lodash = __webpack_require__(/*! lodash.assign */ 202);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	var _wolfy87Eventemitter = __webpack_require__(/*! wolfy87-eventemitter */ 203);
+	
+	var _wolfy87Eventemitter2 = _interopRequireDefault(_wolfy87Eventemitter);
+	
+	var _ddp = __webpack_require__(/*! ./base-mixins/ddp */ 204);
+	
+	var ddp = _interopRequireWildcard(_ddp);
+	
+	var _login = __webpack_require__(/*! ./base-mixins/login */ 210);
+	
+	var login = _interopRequireWildcard(_login);
+	
+	var _methods = __webpack_require__(/*! ./base-mixins/methods */ 213);
+	
+	var methods = _interopRequireWildcard(_methods);
+	
+	var _passwordLogin = __webpack_require__(/*! ./base-mixins/password-login */ 214);
+	
+	var loginWithPassword = _interopRequireWildcard(_passwordLogin);
+	
+	var _subscriptions = __webpack_require__(/*! ./base-mixins/subscriptions */ 215);
+	
+	var subscriptions = _interopRequireWildcard(_subscriptions);
+	
+	function _interopRequireWildcard(obj) {
+	    if (obj && obj.__esModule) {
+	        return obj;
+	    } else {
+	        var newObj = {};if (obj != null) {
+	            for (var key in obj) {
+	                if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+	            }
+	        }newObj.default = obj;return newObj;
+	    }
+	}
+	
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	function _toConsumableArray(arr) {
+	    if (Array.isArray(arr)) {
+	        for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+	            arr2[i] = arr[i];
+	        }return arr2;
+	    } else {
+	        return Array.from(arr);
+	    }
+	}
+	
+	/*
+	*   A mixin is a plain javascript object. Mixins are composed by merging the
+	*   mixin object own enumerable properties into the Asteroid's base prototype.
+	*   The only exception is the `init` method. If the mixin defines an `init`
+	*   method, it will _not_ be merged into the prototype, instead it'll be called
+	*   at construction time.
+	*
+	*   Example usage:
+	*   ```js
+	*   import {createClass} from "asteroid";
+	*   import * as myMixinOne from "asteroid-my-mixin-one";
+	*   import * as myMixinTwo from "asteroid-my-mixin-two";
+	*   const Asteroid = createClass([myMixinOne, myMixinTwo]);
+	*   ```
+	*/
+	
+	function createClass() {
+	    var customMixins = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+	
+	    // Include base mixins before custom ones
+	    var mixins = [ddp, methods, subscriptions, login, loginWithPassword].concat(customMixins);
+	
+	    var Asteroid = function Asteroid() /* arguments */{
+	        var _this = this,
+	            _arguments = arguments;
+	
+	        // Call each init method
+	        mixins.forEach(function (_ref) {
+	            var init = _ref.init;
+	            return init && init.apply(_this, _arguments);
+	        });
+	    };
+	
+	    Asteroid.prototype = Object.create(_wolfy87Eventemitter2.default.prototype);
+	    Asteroid.prototype.constructor = Asteroid;
+	    // Merge all mixins into Asteroid.prototype
+	    _lodash2.default.apply(undefined, [Asteroid.prototype].concat(_toConsumableArray(mixins)));
+	    // And delete the "dangling" init property
+	    delete Asteroid.prototype.init;
+	
+	    // Return the newly constructed class
+	    return Asteroid;
+	}
+
+/***/ },
+/* 202 */
+/*!**********************************!*\
+  !*** ./~/lodash.assign/index.js ***!
+  \**********************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	/**
+	 * lodash (Custom Build) <https://lodash.com/>
+	 * Build: `lodash modularize exports="npm" -o ./`
+	 * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+	 * Released under MIT license <https://lodash.com/license>
+	 * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+	 * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+	 */
+	
+	/** Used as references for various `Number` constants. */
+	var MAX_SAFE_INTEGER = 9007199254740991;
+	
+	/** `Object#toString` result references. */
+	var argsTag = '[object Arguments]',
+	    funcTag = '[object Function]',
+	    genTag = '[object GeneratorFunction]';
+	
+	/** Used to detect unsigned integer values. */
+	var reIsUint = /^(?:0|[1-9]\d*)$/;
+	
+	/**
+	 * A faster alternative to `Function#apply`, this function invokes `func`
+	 * with the `this` binding of `thisArg` and the arguments of `args`.
+	 *
+	 * @private
+	 * @param {Function} func The function to invoke.
+	 * @param {*} thisArg The `this` binding of `func`.
+	 * @param {Array} args The arguments to invoke `func` with.
+	 * @returns {*} Returns the result of `func`.
+	 */
+	function apply(func, thisArg, args) {
+	  switch (args.length) {
+	    case 0:
+	      return func.call(thisArg);
+	    case 1:
+	      return func.call(thisArg, args[0]);
+	    case 2:
+	      return func.call(thisArg, args[0], args[1]);
+	    case 3:
+	      return func.call(thisArg, args[0], args[1], args[2]);
+	  }
+	  return func.apply(thisArg, args);
+	}
+	
+	/**
+	 * The base implementation of `_.times` without support for iteratee shorthands
+	 * or max array length checks.
+	 *
+	 * @private
+	 * @param {number} n The number of times to invoke `iteratee`.
+	 * @param {Function} iteratee The function invoked per iteration.
+	 * @returns {Array} Returns the array of results.
+	 */
+	function baseTimes(n, iteratee) {
+	  var index = -1,
+	      result = Array(n);
+	
+	  while (++index < n) {
+	    result[index] = iteratee(index);
+	  }
+	  return result;
+	}
+	
+	/**
+	 * Creates a unary function that invokes `func` with its argument transformed.
+	 *
+	 * @private
+	 * @param {Function} func The function to wrap.
+	 * @param {Function} transform The argument transform.
+	 * @returns {Function} Returns the new function.
+	 */
+	function overArg(func, transform) {
+	  return function (arg) {
+	    return func(transform(arg));
+	  };
+	}
+	
+	/** Used for built-in method references. */
+	var objectProto = Object.prototype;
+	
+	/** Used to check objects for own properties. */
+	var hasOwnProperty = objectProto.hasOwnProperty;
+	
+	/**
+	 * Used to resolve the
+	 * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+	 * of values.
+	 */
+	var objectToString = objectProto.toString;
+	
+	/** Built-in value references. */
+	var propertyIsEnumerable = objectProto.propertyIsEnumerable;
+	
+	/* Built-in method references for those with the same name as other `lodash` methods. */
+	var nativeKeys = overArg(Object.keys, Object),
+	    nativeMax = Math.max;
+	
+	/** Detect if properties shadowing those on `Object.prototype` are non-enumerable. */
+	var nonEnumShadows = !propertyIsEnumerable.call({ 'valueOf': 1 }, 'valueOf');
+	
+	/**
+	 * Creates an array of the enumerable property names of the array-like `value`.
+	 *
+	 * @private
+	 * @param {*} value The value to query.
+	 * @param {boolean} inherited Specify returning inherited property names.
+	 * @returns {Array} Returns the array of property names.
+	 */
+	function arrayLikeKeys(value, inherited) {
+	  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
+	  // Safari 9 makes `arguments.length` enumerable in strict mode.
+	  var result = isArray(value) || isArguments(value) ? baseTimes(value.length, String) : [];
+	
+	  var length = result.length,
+	      skipIndexes = !!length;
+	
+	  for (var key in value) {
+	    if ((inherited || hasOwnProperty.call(value, key)) && !(skipIndexes && (key == 'length' || isIndex(key, length)))) {
+	      result.push(key);
+	    }
+	  }
+	  return result;
+	}
+	
+	/**
+	 * Assigns `value` to `key` of `object` if the existing value is not equivalent
+	 * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+	 * for equality comparisons.
+	 *
+	 * @private
+	 * @param {Object} object The object to modify.
+	 * @param {string} key The key of the property to assign.
+	 * @param {*} value The value to assign.
+	 */
+	function assignValue(object, key, value) {
+	  var objValue = object[key];
+	  if (!(hasOwnProperty.call(object, key) && eq(objValue, value)) || value === undefined && !(key in object)) {
+	    object[key] = value;
+	  }
+	}
+	
+	/**
+	 * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
+	 *
+	 * @private
+	 * @param {Object} object The object to query.
+	 * @returns {Array} Returns the array of property names.
+	 */
+	function baseKeys(object) {
+	  if (!isPrototype(object)) {
+	    return nativeKeys(object);
+	  }
+	  var result = [];
+	  for (var key in Object(object)) {
+	    if (hasOwnProperty.call(object, key) && key != 'constructor') {
+	      result.push(key);
+	    }
+	  }
+	  return result;
+	}
+	
+	/**
+	 * The base implementation of `_.rest` which doesn't validate or coerce arguments.
+	 *
+	 * @private
+	 * @param {Function} func The function to apply a rest parameter to.
+	 * @param {number} [start=func.length-1] The start position of the rest parameter.
+	 * @returns {Function} Returns the new function.
+	 */
+	function baseRest(func, start) {
+	  start = nativeMax(start === undefined ? func.length - 1 : start, 0);
+	  return function () {
+	    var args = arguments,
+	        index = -1,
+	        length = nativeMax(args.length - start, 0),
+	        array = Array(length);
+	
+	    while (++index < length) {
+	      array[index] = args[start + index];
+	    }
+	    index = -1;
+	    var otherArgs = Array(start + 1);
+	    while (++index < start) {
+	      otherArgs[index] = args[index];
+	    }
+	    otherArgs[start] = array;
+	    return apply(func, this, otherArgs);
+	  };
+	}
+	
+	/**
+	 * Copies properties of `source` to `object`.
+	 *
+	 * @private
+	 * @param {Object} source The object to copy properties from.
+	 * @param {Array} props The property identifiers to copy.
+	 * @param {Object} [object={}] The object to copy properties to.
+	 * @param {Function} [customizer] The function to customize copied values.
+	 * @returns {Object} Returns `object`.
+	 */
+	function copyObject(source, props, object, customizer) {
+	  object || (object = {});
+	
+	  var index = -1,
+	      length = props.length;
+	
+	  while (++index < length) {
+	    var key = props[index];
+	
+	    var newValue = customizer ? customizer(object[key], source[key], key, object, source) : undefined;
+	
+	    assignValue(object, key, newValue === undefined ? source[key] : newValue);
+	  }
+	  return object;
+	}
+	
+	/**
+	 * Creates a function like `_.assign`.
+	 *
+	 * @private
+	 * @param {Function} assigner The function to assign values.
+	 * @returns {Function} Returns the new assigner function.
+	 */
+	function createAssigner(assigner) {
+	  return baseRest(function (object, sources) {
+	    var index = -1,
+	        length = sources.length,
+	        customizer = length > 1 ? sources[length - 1] : undefined,
+	        guard = length > 2 ? sources[2] : undefined;
+	
+	    customizer = assigner.length > 3 && typeof customizer == 'function' ? (length--, customizer) : undefined;
+	
+	    if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+	      customizer = length < 3 ? undefined : customizer;
+	      length = 1;
+	    }
+	    object = Object(object);
+	    while (++index < length) {
+	      var source = sources[index];
+	      if (source) {
+	        assigner(object, source, index, customizer);
+	      }
+	    }
+	    return object;
+	  });
+	}
+	
+	/**
+	 * Checks if `value` is a valid array-like index.
+	 *
+	 * @private
+	 * @param {*} value The value to check.
+	 * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+	 * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+	 */
+	function isIndex(value, length) {
+	  length = length == null ? MAX_SAFE_INTEGER : length;
+	  return !!length && (typeof value == 'number' || reIsUint.test(value)) && value > -1 && value % 1 == 0 && value < length;
+	}
+	
+	/**
+	 * Checks if the given arguments are from an iteratee call.
+	 *
+	 * @private
+	 * @param {*} value The potential iteratee value argument.
+	 * @param {*} index The potential iteratee index or key argument.
+	 * @param {*} object The potential iteratee object argument.
+	 * @returns {boolean} Returns `true` if the arguments are from an iteratee call,
+	 *  else `false`.
+	 */
+	function isIterateeCall(value, index, object) {
+	  if (!isObject(object)) {
+	    return false;
+	  }
+	  var type = typeof index === 'undefined' ? 'undefined' : _typeof(index);
+	  if (type == 'number' ? isArrayLike(object) && isIndex(index, object.length) : type == 'string' && index in object) {
+	    return eq(object[index], value);
+	  }
+	  return false;
+	}
+	
+	/**
+	 * Checks if `value` is likely a prototype object.
+	 *
+	 * @private
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+	 */
+	function isPrototype(value) {
+	  var Ctor = value && value.constructor,
+	      proto = typeof Ctor == 'function' && Ctor.prototype || objectProto;
+	
+	  return value === proto;
+	}
+	
+	/**
+	 * Performs a
+	 * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+	 * comparison between two values to determine if they are equivalent.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to compare.
+	 * @param {*} other The other value to compare.
+	 * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+	 * @example
+	 *
+	 * var object = { 'a': 1 };
+	 * var other = { 'a': 1 };
+	 *
+	 * _.eq(object, object);
+	 * // => true
+	 *
+	 * _.eq(object, other);
+	 * // => false
+	 *
+	 * _.eq('a', 'a');
+	 * // => true
+	 *
+	 * _.eq('a', Object('a'));
+	 * // => false
+	 *
+	 * _.eq(NaN, NaN);
+	 * // => true
+	 */
+	function eq(value, other) {
+	  return value === other || value !== value && other !== other;
+	}
+	
+	/**
+	 * Checks if `value` is likely an `arguments` object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+	 *  else `false`.
+	 * @example
+	 *
+	 * _.isArguments(function() { return arguments; }());
+	 * // => true
+	 *
+	 * _.isArguments([1, 2, 3]);
+	 * // => false
+	 */
+	function isArguments(value) {
+	  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
+	  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') && (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
+	}
+	
+	/**
+	 * Checks if `value` is classified as an `Array` object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+	 * @example
+	 *
+	 * _.isArray([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isArray(document.body.children);
+	 * // => false
+	 *
+	 * _.isArray('abc');
+	 * // => false
+	 *
+	 * _.isArray(_.noop);
+	 * // => false
+	 */
+	var isArray = Array.isArray;
+	
+	/**
+	 * Checks if `value` is array-like. A value is considered array-like if it's
+	 * not a function and has a `value.length` that's an integer greater than or
+	 * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+	 * @example
+	 *
+	 * _.isArrayLike([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isArrayLike(document.body.children);
+	 * // => true
+	 *
+	 * _.isArrayLike('abc');
+	 * // => true
+	 *
+	 * _.isArrayLike(_.noop);
+	 * // => false
+	 */
+	function isArrayLike(value) {
+	  return value != null && isLength(value.length) && !isFunction(value);
+	}
+	
+	/**
+	 * This method is like `_.isArrayLike` except that it also checks if `value`
+	 * is an object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is an array-like object,
+	 *  else `false`.
+	 * @example
+	 *
+	 * _.isArrayLikeObject([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isArrayLikeObject(document.body.children);
+	 * // => true
+	 *
+	 * _.isArrayLikeObject('abc');
+	 * // => false
+	 *
+	 * _.isArrayLikeObject(_.noop);
+	 * // => false
+	 */
+	function isArrayLikeObject(value) {
+	  return isObjectLike(value) && isArrayLike(value);
+	}
+	
+	/**
+	 * Checks if `value` is classified as a `Function` object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+	 * @example
+	 *
+	 * _.isFunction(_);
+	 * // => true
+	 *
+	 * _.isFunction(/abc/);
+	 * // => false
+	 */
+	function isFunction(value) {
+	  // The use of `Object#toString` avoids issues with the `typeof` operator
+	  // in Safari 8-9 which returns 'object' for typed array and other constructors.
+	  var tag = isObject(value) ? objectToString.call(value) : '';
+	  return tag == funcTag || tag == genTag;
+	}
+	
+	/**
+	 * Checks if `value` is a valid array-like length.
+	 *
+	 * **Note:** This method is loosely based on
+	 * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+	 * @example
+	 *
+	 * _.isLength(3);
+	 * // => true
+	 *
+	 * _.isLength(Number.MIN_VALUE);
+	 * // => false
+	 *
+	 * _.isLength(Infinity);
+	 * // => false
+	 *
+	 * _.isLength('3');
+	 * // => false
+	 */
+	function isLength(value) {
+	  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+	}
+	
+	/**
+	 * Checks if `value` is the
+	 * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+	 * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+	 * @example
+	 *
+	 * _.isObject({});
+	 * // => true
+	 *
+	 * _.isObject([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isObject(_.noop);
+	 * // => true
+	 *
+	 * _.isObject(null);
+	 * // => false
+	 */
+	function isObject(value) {
+	  var type = typeof value === 'undefined' ? 'undefined' : _typeof(value);
+	  return !!value && (type == 'object' || type == 'function');
+	}
+	
+	/**
+	 * Checks if `value` is object-like. A value is object-like if it's not `null`
+	 * and has a `typeof` result of "object".
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+	 * @example
+	 *
+	 * _.isObjectLike({});
+	 * // => true
+	 *
+	 * _.isObjectLike([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isObjectLike(_.noop);
+	 * // => false
+	 *
+	 * _.isObjectLike(null);
+	 * // => false
+	 */
+	function isObjectLike(value) {
+	  return !!value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) == 'object';
+	}
+	
+	/**
+	 * Assigns own enumerable string keyed properties of source objects to the
+	 * destination object. Source objects are applied from left to right.
+	 * Subsequent sources overwrite property assignments of previous sources.
+	 *
+	 * **Note:** This method mutates `object` and is loosely based on
+	 * [`Object.assign`](https://mdn.io/Object/assign).
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.10.0
+	 * @category Object
+	 * @param {Object} object The destination object.
+	 * @param {...Object} [sources] The source objects.
+	 * @returns {Object} Returns `object`.
+	 * @see _.assignIn
+	 * @example
+	 *
+	 * function Foo() {
+	 *   this.a = 1;
+	 * }
+	 *
+	 * function Bar() {
+	 *   this.c = 3;
+	 * }
+	 *
+	 * Foo.prototype.b = 2;
+	 * Bar.prototype.d = 4;
+	 *
+	 * _.assign({ 'a': 0 }, new Foo, new Bar);
+	 * // => { 'a': 1, 'c': 3 }
+	 */
+	var assign = createAssigner(function (object, source) {
+	  if (nonEnumShadows || isPrototype(source) || isArrayLike(source)) {
+	    copyObject(source, keys(source), object);
+	    return;
+	  }
+	  for (var key in source) {
+	    if (hasOwnProperty.call(source, key)) {
+	      assignValue(object, key, source[key]);
+	    }
+	  }
+	});
+	
+	/**
+	 * Creates an array of the own enumerable property names of `object`.
+	 *
+	 * **Note:** Non-object values are coerced to objects. See the
+	 * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+	 * for more details.
+	 *
+	 * @static
+	 * @since 0.1.0
+	 * @memberOf _
+	 * @category Object
+	 * @param {Object} object The object to query.
+	 * @returns {Array} Returns the array of property names.
+	 * @example
+	 *
+	 * function Foo() {
+	 *   this.a = 1;
+	 *   this.b = 2;
+	 * }
+	 *
+	 * Foo.prototype.c = 3;
+	 *
+	 * _.keys(new Foo);
+	 * // => ['a', 'b'] (iteration order is not guaranteed)
+	 *
+	 * _.keys('hi');
+	 * // => ['0', '1']
+	 */
+	function keys(object) {
+	  return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
+	}
+	
+	module.exports = assign;
+
+/***/ },
+/* 203 */
+/*!************************************************!*\
+  !*** ./~/wolfy87-eventemitter/EventEmitter.js ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	/*!
+	 * EventEmitter v5.1.0 - git.io/ee
+	 * Unlicense - http://unlicense.org/
+	 * Oliver Caldwell - http://oli.me.uk/
+	 * @preserve
+	 */
+	
+	;(function (exports) {
+	    'use strict';
+	
+	    /**
+	     * Class for managing events.
+	     * Can be extended to provide event functionality in other classes.
+	     *
+	     * @class EventEmitter Manages event registering and emitting.
+	     */
+	
+	    function EventEmitter() {}
+	
+	    // Shortcuts to improve speed and size
+	    var proto = EventEmitter.prototype;
+	    var originalGlobalValue = exports.EventEmitter;
+	
+	    /**
+	     * Finds the index of the listener for the event in its storage array.
+	     *
+	     * @param {Function[]} listeners Array of listeners to search through.
+	     * @param {Function} listener Method to look for.
+	     * @return {Number} Index of the specified listener, -1 if not found
+	     * @api private
+	     */
+	    function indexOfListener(listeners, listener) {
+	        var i = listeners.length;
+	        while (i--) {
+	            if (listeners[i].listener === listener) {
+	                return i;
+	            }
+	        }
+	
+	        return -1;
+	    }
+	
+	    /**
+	     * Alias a method while keeping the context correct, to allow for overwriting of target method.
+	     *
+	     * @param {String} name The name of the target method.
+	     * @return {Function} The aliased method
+	     * @api private
+	     */
+	    function alias(name) {
+	        return function aliasClosure() {
+	            return this[name].apply(this, arguments);
+	        };
+	    }
+	
+	    /**
+	     * Returns the listener array for the specified event.
+	     * Will initialise the event object and listener arrays if required.
+	     * Will return an object if you use a regex search. The object contains keys for each matched event. So /ba[rz]/ might return an object containing bar and baz. But only if you have either defined them with defineEvent or added some listeners to them.
+	     * Each property in the object response is an array of listener functions.
+	     *
+	     * @param {String|RegExp} evt Name of the event to return the listeners from.
+	     * @return {Function[]|Object} All listener functions for the event.
+	     */
+	    proto.getListeners = function getListeners(evt) {
+	        var events = this._getEvents();
+	        var response;
+	        var key;
+	
+	        // Return a concatenated array of all matching events if
+	        // the selector is a regular expression.
+	        if (evt instanceof RegExp) {
+	            response = {};
+	            for (key in events) {
+	                if (events.hasOwnProperty(key) && evt.test(key)) {
+	                    response[key] = events[key];
+	                }
+	            }
+	        } else {
+	            response = events[evt] || (events[evt] = []);
+	        }
+	
+	        return response;
+	    };
+	
+	    /**
+	     * Takes a list of listener objects and flattens it into a list of listener functions.
+	     *
+	     * @param {Object[]} listeners Raw listener objects.
+	     * @return {Function[]} Just the listener functions.
+	     */
+	    proto.flattenListeners = function flattenListeners(listeners) {
+	        var flatListeners = [];
+	        var i;
+	
+	        for (i = 0; i < listeners.length; i += 1) {
+	            flatListeners.push(listeners[i].listener);
+	        }
+	
+	        return flatListeners;
+	    };
+	
+	    /**
+	     * Fetches the requested listeners via getListeners but will always return the results inside an object. This is mainly for internal use but others may find it useful.
+	     *
+	     * @param {String|RegExp} evt Name of the event to return the listeners from.
+	     * @return {Object} All listener functions for an event in an object.
+	     */
+	    proto.getListenersAsObject = function getListenersAsObject(evt) {
+	        var listeners = this.getListeners(evt);
+	        var response;
+	
+	        if (listeners instanceof Array) {
+	            response = {};
+	            response[evt] = listeners;
+	        }
+	
+	        return response || listeners;
+	    };
+	
+	    function isValidListener(listener) {
+	        if (typeof listener === 'function' || listener instanceof RegExp) {
+	            return true;
+	        } else if (listener && (typeof listener === 'undefined' ? 'undefined' : _typeof(listener)) === 'object') {
+	            return isValidListener(listener.listener);
+	        } else {
+	            return false;
+	        }
+	    }
+	
+	    /**
+	     * Adds a listener function to the specified event.
+	     * The listener will not be added if it is a duplicate.
+	     * If the listener returns true then it will be removed after it is called.
+	     * If you pass a regular expression as the event name then the listener will be added to all events that match it.
+	     *
+	     * @param {String|RegExp} evt Name of the event to attach the listener to.
+	     * @param {Function} listener Method to be called when the event is emitted. If the function returns true then it will be removed after calling.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.addListener = function addListener(evt, listener) {
+	        if (!isValidListener(listener)) {
+	            throw new TypeError('listener must be a function');
+	        }
+	
+	        var listeners = this.getListenersAsObject(evt);
+	        var listenerIsWrapped = (typeof listener === 'undefined' ? 'undefined' : _typeof(listener)) === 'object';
+	        var key;
+	
+	        for (key in listeners) {
+	            if (listeners.hasOwnProperty(key) && indexOfListener(listeners[key], listener) === -1) {
+	                listeners[key].push(listenerIsWrapped ? listener : {
+	                    listener: listener,
+	                    once: false
+	                });
+	            }
+	        }
+	
+	        return this;
+	    };
+	
+	    /**
+	     * Alias of addListener
+	     */
+	    proto.on = alias('addListener');
+	
+	    /**
+	     * Semi-alias of addListener. It will add a listener that will be
+	     * automatically removed after its first execution.
+	     *
+	     * @param {String|RegExp} evt Name of the event to attach the listener to.
+	     * @param {Function} listener Method to be called when the event is emitted. If the function returns true then it will be removed after calling.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.addOnceListener = function addOnceListener(evt, listener) {
+	        return this.addListener(evt, {
+	            listener: listener,
+	            once: true
+	        });
+	    };
+	
+	    /**
+	     * Alias of addOnceListener.
+	     */
+	    proto.once = alias('addOnceListener');
+	
+	    /**
+	     * Defines an event name. This is required if you want to use a regex to add a listener to multiple events at once. If you don't do this then how do you expect it to know what event to add to? Should it just add to every possible match for a regex? No. That is scary and bad.
+	     * You need to tell it what event names should be matched by a regex.
+	     *
+	     * @param {String} evt Name of the event to create.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.defineEvent = function defineEvent(evt) {
+	        this.getListeners(evt);
+	        return this;
+	    };
+	
+	    /**
+	     * Uses defineEvent to define multiple events.
+	     *
+	     * @param {String[]} evts An array of event names to define.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.defineEvents = function defineEvents(evts) {
+	        for (var i = 0; i < evts.length; i += 1) {
+	            this.defineEvent(evts[i]);
+	        }
+	        return this;
+	    };
+	
+	    /**
+	     * Removes a listener function from the specified event.
+	     * When passed a regular expression as the event name, it will remove the listener from all events that match it.
+	     *
+	     * @param {String|RegExp} evt Name of the event to remove the listener from.
+	     * @param {Function} listener Method to remove from the event.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.removeListener = function removeListener(evt, listener) {
+	        var listeners = this.getListenersAsObject(evt);
+	        var index;
+	        var key;
+	
+	        for (key in listeners) {
+	            if (listeners.hasOwnProperty(key)) {
+	                index = indexOfListener(listeners[key], listener);
+	
+	                if (index !== -1) {
+	                    listeners[key].splice(index, 1);
+	                }
+	            }
+	        }
+	
+	        return this;
+	    };
+	
+	    /**
+	     * Alias of removeListener
+	     */
+	    proto.off = alias('removeListener');
+	
+	    /**
+	     * Adds listeners in bulk using the manipulateListeners method.
+	     * If you pass an object as the second argument you can add to multiple events at once. The object should contain key value pairs of events and listeners or listener arrays. You can also pass it an event name and an array of listeners to be added.
+	     * You can also pass it a regular expression to add the array of listeners to all events that match it.
+	     * Yeah, this function does quite a bit. That's probably a bad thing.
+	     *
+	     * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to add to multiple events at once.
+	     * @param {Function[]} [listeners] An optional array of listener functions to add.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.addListeners = function addListeners(evt, listeners) {
+	        // Pass through to manipulateListeners
+	        return this.manipulateListeners(false, evt, listeners);
+	    };
+	
+	    /**
+	     * Removes listeners in bulk using the manipulateListeners method.
+	     * If you pass an object as the second argument you can remove from multiple events at once. The object should contain key value pairs of events and listeners or listener arrays.
+	     * You can also pass it an event name and an array of listeners to be removed.
+	     * You can also pass it a regular expression to remove the listeners from all events that match it.
+	     *
+	     * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to remove from multiple events at once.
+	     * @param {Function[]} [listeners] An optional array of listener functions to remove.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.removeListeners = function removeListeners(evt, listeners) {
+	        // Pass through to manipulateListeners
+	        return this.manipulateListeners(true, evt, listeners);
+	    };
+	
+	    /**
+	     * Edits listeners in bulk. The addListeners and removeListeners methods both use this to do their job. You should really use those instead, this is a little lower level.
+	     * The first argument will determine if the listeners are removed (true) or added (false).
+	     * If you pass an object as the second argument you can add/remove from multiple events at once. The object should contain key value pairs of events and listeners or listener arrays.
+	     * You can also pass it an event name and an array of listeners to be added/removed.
+	     * You can also pass it a regular expression to manipulate the listeners of all events that match it.
+	     *
+	     * @param {Boolean} remove True if you want to remove listeners, false if you want to add.
+	     * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to add/remove from multiple events at once.
+	     * @param {Function[]} [listeners] An optional array of listener functions to add/remove.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.manipulateListeners = function manipulateListeners(remove, evt, listeners) {
+	        var i;
+	        var value;
+	        var single = remove ? this.removeListener : this.addListener;
+	        var multiple = remove ? this.removeListeners : this.addListeners;
+	
+	        // If evt is an object then pass each of its properties to this method
+	        if ((typeof evt === 'undefined' ? 'undefined' : _typeof(evt)) === 'object' && !(evt instanceof RegExp)) {
+	            for (i in evt) {
+	                if (evt.hasOwnProperty(i) && (value = evt[i])) {
+	                    // Pass the single listener straight through to the singular method
+	                    if (typeof value === 'function') {
+	                        single.call(this, i, value);
+	                    } else {
+	                        // Otherwise pass back to the multiple function
+	                        multiple.call(this, i, value);
+	                    }
+	                }
+	            }
+	        } else {
+	            // So evt must be a string
+	            // And listeners must be an array of listeners
+	            // Loop over it and pass each one to the multiple method
+	            i = listeners.length;
+	            while (i--) {
+	                single.call(this, evt, listeners[i]);
+	            }
+	        }
+	
+	        return this;
+	    };
+	
+	    /**
+	     * Removes all listeners from a specified event.
+	     * If you do not specify an event then all listeners will be removed.
+	     * That means every event will be emptied.
+	     * You can also pass a regex to remove all events that match it.
+	     *
+	     * @param {String|RegExp} [evt] Optional name of the event to remove all listeners for. Will remove from every event if not passed.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.removeEvent = function removeEvent(evt) {
+	        var type = typeof evt === 'undefined' ? 'undefined' : _typeof(evt);
+	        var events = this._getEvents();
+	        var key;
+	
+	        // Remove different things depending on the state of evt
+	        if (type === 'string') {
+	            // Remove all listeners for the specified event
+	            delete events[evt];
+	        } else if (evt instanceof RegExp) {
+	            // Remove all events matching the regex.
+	            for (key in events) {
+	                if (events.hasOwnProperty(key) && evt.test(key)) {
+	                    delete events[key];
+	                }
+	            }
+	        } else {
+	            // Remove all listeners in all events
+	            delete this._events;
+	        }
+	
+	        return this;
+	    };
+	
+	    /**
+	     * Alias of removeEvent.
+	     *
+	     * Added to mirror the node API.
+	     */
+	    proto.removeAllListeners = alias('removeEvent');
+	
+	    /**
+	     * Emits an event of your choice.
+	     * When emitted, every listener attached to that event will be executed.
+	     * If you pass the optional argument array then those arguments will be passed to every listener upon execution.
+	     * Because it uses `apply`, your array of arguments will be passed as if you wrote them out separately.
+	     * So they will not arrive within the array on the other side, they will be separate.
+	     * You can also pass a regular expression to emit to all events that match it.
+	     *
+	     * @param {String|RegExp} evt Name of the event to emit and execute listeners for.
+	     * @param {Array} [args] Optional array of arguments to be passed to each listener.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.emitEvent = function emitEvent(evt, args) {
+	        var listenersMap = this.getListenersAsObject(evt);
+	        var listeners;
+	        var listener;
+	        var i;
+	        var key;
+	        var response;
+	
+	        for (key in listenersMap) {
+	            if (listenersMap.hasOwnProperty(key)) {
+	                listeners = listenersMap[key].slice(0);
+	
+	                for (i = 0; i < listeners.length; i++) {
+	                    // If the listener returns true then it shall be removed from the event
+	                    // The function is executed either with a basic call or an apply if there is an args array
+	                    listener = listeners[i];
+	
+	                    if (listener.once === true) {
+	                        this.removeListener(evt, listener.listener);
+	                    }
+	
+	                    response = listener.listener.apply(this, args || []);
+	
+	                    if (response === this._getOnceReturnValue()) {
+	                        this.removeListener(evt, listener.listener);
+	                    }
+	                }
+	            }
+	        }
+	
+	        return this;
+	    };
+	
+	    /**
+	     * Alias of emitEvent
+	     */
+	    proto.trigger = alias('emitEvent');
+	
+	    /**
+	     * Subtly different from emitEvent in that it will pass its arguments on to the listeners, as opposed to taking a single array of arguments to pass on.
+	     * As with emitEvent, you can pass a regex in place of the event name to emit to all events that match it.
+	     *
+	     * @param {String|RegExp} evt Name of the event to emit and execute listeners for.
+	     * @param {...*} Optional additional arguments to be passed to each listener.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.emit = function emit(evt) {
+	        var args = Array.prototype.slice.call(arguments, 1);
+	        return this.emitEvent(evt, args);
+	    };
+	
+	    /**
+	     * Sets the current value to check against when executing listeners. If a
+	     * listeners return value matches the one set here then it will be removed
+	     * after execution. This value defaults to true.
+	     *
+	     * @param {*} value The new value to check for when executing listeners.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.setOnceReturnValue = function setOnceReturnValue(value) {
+	        this._onceReturnValue = value;
+	        return this;
+	    };
+	
+	    /**
+	     * Fetches the current value to check against when executing listeners. If
+	     * the listeners return value matches this one then it should be removed
+	     * automatically. It will return true by default.
+	     *
+	     * @return {*|Boolean} The current value to check for or the default, true.
+	     * @api private
+	     */
+	    proto._getOnceReturnValue = function _getOnceReturnValue() {
+	        if (this.hasOwnProperty('_onceReturnValue')) {
+	            return this._onceReturnValue;
+	        } else {
+	            return true;
+	        }
+	    };
+	
+	    /**
+	     * Fetches the events object and creates one if required.
+	     *
+	     * @return {Object} The events storage object.
+	     * @api private
+	     */
+	    proto._getEvents = function _getEvents() {
+	        return this._events || (this._events = {});
+	    };
+	
+	    /**
+	     * Reverts the global {@link EventEmitter} to its previous value and returns a reference to this version.
+	     *
+	     * @return {Function} Non conflicting EventEmitter class.
+	     */
+	    EventEmitter.noConflict = function noConflict() {
+	        exports.EventEmitter = originalGlobalValue;
+	        return EventEmitter;
+	    };
+	
+	    // Expose the class either via AMD, CommonJS or the global object
+	    if (true) {
+	        !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+	            return EventEmitter;
+	        }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
+	        module.exports = EventEmitter;
+	    } else {
+	        exports.EventEmitter = EventEmitter;
+	    }
+	})(undefined || {});
+
+/***/ },
+/* 204 */
+/*!*******************************************!*\
+  !*** ./~/asteroid/lib/base-mixins/ddp.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.connect = connect;
+	exports.disconnect = disconnect;
+	exports.init = init;
+	
+	var _ddp = __webpack_require__(/*! ddp.js */ 205);
+	
+	var _ddp2 = _interopRequireDefault(_ddp);
+	
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	/*
+	*   Public methods
+	*/
+	
+	function connect() {
+	    this.ddp.connect();
+	} /*
+	  *   The ddp mixin:
+	  *   - instantiates the ddp connection to the server (a DDP instance) and stores
+	  *     it in the `ddp` property of the Asteroid instance
+	  *   - listens for the `connected` and `disconnected` events of the DDP instance
+	  *     and proxies them to the Asteroid instance
+	  *   - exposes the `endpoint` public property
+	  *   - defines the `connect` and `disconnect` methods, used to control the ddp
+	  *     connection with the server
+	  */
+	
+	function disconnect() {
+	    this.ddp.disconnect();
+	}
+	
+	/*
+	*   Init method
+	*/
+	
+	function init(options) {
+	    var _this = this;
+	
+	    var endpoint = options.endpoint;
+	    var _options$SocketConstr = options.SocketConstructor;
+	    var SocketConstructor = _options$SocketConstr === undefined ? WebSocket : _options$SocketConstr;
+	    var autoConnect = options.autoConnect;
+	    var autoReconnect = options.autoReconnect;
+	    var reconnectInterval = options.reconnectInterval;
+	
+	    this.endpoint = endpoint;
+	    var ddpOptions = {
+	        endpoint: endpoint,
+	        SocketConstructor: SocketConstructor,
+	        autoConnect: autoConnect,
+	        autoReconnect: autoReconnect,
+	        reconnectInterval: reconnectInterval
+	    };
+	    this.ddp = new _ddp2.default(ddpOptions).on("connected", function () {
+	        return _this.emit("connected");
+	    }).on("disconnected", function () {
+	        return _this.emit("disconnected");
+	    });
+	}
+
+/***/ },
+/* 205 */
+/*!****************************************!*\
+  !*** ./~/asteroid/~/ddp.js/lib/ddp.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () {
+	    function defineProperties(target, props) {
+	        for (var i = 0; i < props.length; i++) {
+	            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+	        }
+	    }return function (Constructor, protoProps, staticProps) {
+	        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+	    };
+	}();
+	
+	var _get = function get(object, property, receiver) {
+	    if (object === null) object = Function.prototype;var desc = Object.getOwnPropertyDescriptor(object, property);if (desc === undefined) {
+	        var parent = Object.getPrototypeOf(object);if (parent === null) {
+	            return undefined;
+	        } else {
+	            return get(parent, property, receiver);
+	        }
+	    } else if ("value" in desc) {
+	        return desc.value;
+	    } else {
+	        var getter = desc.get;if (getter === undefined) {
+	            return undefined;
+	        }return getter.call(receiver);
+	    }
+	};
+	
+	var _wolfy87Eventemitter = __webpack_require__(/*! wolfy87-eventemitter */ 206);
+	
+	var _wolfy87Eventemitter2 = _interopRequireDefault(_wolfy87Eventemitter);
+	
+	var _queue = __webpack_require__(/*! ./queue */ 207);
+	
+	var _queue2 = _interopRequireDefault(_queue);
+	
+	var _socket = __webpack_require__(/*! ./socket */ 208);
+	
+	var _socket2 = _interopRequireDefault(_socket);
+	
+	var _utils = __webpack_require__(/*! ./utils */ 209);
+	
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	function _classCallCheck(instance, Constructor) {
+	    if (!(instance instanceof Constructor)) {
+	        throw new TypeError("Cannot call a class as a function");
+	    }
+	}
+	
+	function _possibleConstructorReturn(self, call) {
+	    if (!self) {
+	        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+	}
+	
+	function _inherits(subClass, superClass) {
+	    if (typeof superClass !== "function" && superClass !== null) {
+	        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+	    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	}
+	
+	var DDP_VERSION = "1";
+	var PUBLIC_EVENTS = [
+	// Subscription messages
+	"ready", "nosub", "added", "changed", "removed",
+	// Method messages
+	"result", "updated",
+	// Error messages
+	"error"];
+	var DEFAULT_RECONNECT_INTERVAL = 10000;
+	
+	var DDP = function (_EventEmitter) {
+	    _inherits(DDP, _EventEmitter);
+	
+	    _createClass(DDP, [{
+	        key: "emit",
+	        value: function emit() {
+	            var _get2;
+	
+	            setTimeout((_get2 = _get(Object.getPrototypeOf(DDP.prototype), "emit", this)).bind.apply(_get2, [this].concat(Array.prototype.slice.call(arguments))), 0);
+	        }
+	    }]);
+	
+	    function DDP(options) {
+	        _classCallCheck(this, DDP);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DDP).call(this));
+	
+	        _this.status = "disconnected";
+	
+	        // Default `autoConnect` and `autoReconnect` to true
+	        _this.autoConnect = options.autoConnect !== false;
+	        _this.autoReconnect = options.autoReconnect !== false;
+	        _this.reconnectInterval = options.reconnectInterval || DEFAULT_RECONNECT_INTERVAL;
+	
+	        _this.messageQueue = new _queue2.default(function (message) {
+	            if (_this.status === "connected") {
+	                _this.socket.send(message);
+	                return true;
+	            } else {
+	                return false;
+	            }
+	        });
+	
+	        _this.socket = new _socket2.default(options.SocketConstructor, options.endpoint);
+	
+	        _this.socket.on("open", function () {
+	            // When the socket opens, send the `connect` message
+	            // to establish the DDP connection
+	            _this.socket.send({
+	                msg: "connect",
+	                version: DDP_VERSION,
+	                support: [DDP_VERSION]
+	            });
+	        });
+	
+	        _this.socket.on("close", function () {
+	            _this.status = "disconnected";
+	            _this.messageQueue.empty();
+	            _this.emit("disconnected");
+	            if (_this.autoReconnect) {
+	                // Schedule a reconnection
+	                setTimeout(_this.socket.open.bind(_this.socket), _this.reconnectInterval);
+	            }
+	        });
+	
+	        _this.socket.on("message:in", function (message) {
+	            if (message.msg === "connected") {
+	                _this.status = "connected";
+	                _this.messageQueue.process();
+	                _this.emit("connected");
+	            } else if (message.msg === "ping") {
+	                // Reply with a `pong` message to prevent the server from
+	                // closing the connection
+	                _this.socket.send({ msg: "pong", id: message.id });
+	            } else if ((0, _utils.contains)(PUBLIC_EVENTS, message.msg)) {
+	                _this.emit(message.msg, message);
+	            }
+	        });
+	
+	        if (_this.autoConnect) {
+	            _this.connect();
+	        }
+	
+	        return _this;
+	    }
+	
+	    _createClass(DDP, [{
+	        key: "connect",
+	        value: function connect() {
+	            this.socket.open();
+	        }
+	    }, {
+	        key: "disconnect",
+	        value: function disconnect() {
+	            /*
+	            *   If `disconnect` is called, the caller likely doesn't want the
+	            *   the instance to try to auto-reconnect. Therefore we set the
+	            *   `autoReconnect` flag to false.
+	            */
+	            this.autoReconnect = false;
+	            this.socket.close();
+	        }
+	    }, {
+	        key: "method",
+	        value: function method(name, params) {
+	            var id = (0, _utils.uniqueId)();
+	            this.messageQueue.push({
+	                msg: "method",
+	                id: id,
+	                method: name,
+	                params: params
+	            });
+	            return id;
+	        }
+	    }, {
+	        key: "sub",
+	        value: function sub(name, params) {
+	            var id = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+	
+	            id || (id = (0, _utils.uniqueId)());
+	            this.messageQueue.push({
+	                msg: "sub",
+	                id: id,
+	                name: name,
+	                params: params
+	            });
+	            return id;
+	        }
+	    }, {
+	        key: "unsub",
+	        value: function unsub(id) {
+	            this.messageQueue.push({
+	                msg: "unsub",
+	                id: id
+	            });
+	            return id;
+	        }
+	    }]);
+	
+	    return DDP;
+	}(_wolfy87Eventemitter2.default);
+	
+	exports.default = DDP;
+
+/***/ },
+/* 206 */
+/*!********************************************************************!*\
+  !*** ./~/asteroid/~/ddp.js/~/wolfy87-eventemitter/EventEmitter.js ***!
+  \********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	/*!
+	 * EventEmitter v4.2.11 - git.io/ee
+	 * Unlicense - http://unlicense.org/
+	 * Oliver Caldwell - http://oli.me.uk/
+	 * @preserve
+	 */
+	
+	;(function () {
+	    //'use strict';
+	
+	    /**
+	     * Class for managing events.
+	     * Can be extended to provide event functionality in other classes.
+	     *
+	     * @class EventEmitter Manages event registering and emitting.
+	     */
+	    function EventEmitter() {}
+	
+	    // Shortcuts to improve speed and size
+	    var proto = EventEmitter.prototype;
+	    var exports = this;
+	    var originalGlobalValue = exports.EventEmitter;
+	
+	    /**
+	     * Finds the index of the listener for the event in its storage array.
+	     *
+	     * @param {Function[]} listeners Array of listeners to search through.
+	     * @param {Function} listener Method to look for.
+	     * @return {Number} Index of the specified listener, -1 if not found
+	     * @api private
+	     */
+	    function indexOfListener(listeners, listener) {
+	        var i = listeners.length;
+	        while (i--) {
+	            if (listeners[i].listener === listener) {
+	                return i;
+	            }
+	        }
+	
+	        return -1;
+	    }
+	
+	    /**
+	     * Alias a method while keeping the context correct, to allow for overwriting of target method.
+	     *
+	     * @param {String} name The name of the target method.
+	     * @return {Function} The aliased method
+	     * @api private
+	     */
+	    function alias(name) {
+	        return function aliasClosure() {
+	            return this[name].apply(this, arguments);
+	        };
+	    }
+	
+	    /**
+	     * Returns the listener array for the specified event.
+	     * Will initialise the event object and listener arrays if required.
+	     * Will return an object if you use a regex search. The object contains keys for each matched event. So /ba[rz]/ might return an object containing bar and baz. But only if you have either defined them with defineEvent or added some listeners to them.
+	     * Each property in the object response is an array of listener functions.
+	     *
+	     * @param {String|RegExp} evt Name of the event to return the listeners from.
+	     * @return {Function[]|Object} All listener functions for the event.
+	     */
+	    proto.getListeners = function getListeners(evt) {
+	        var events = this._getEvents();
+	        var response;
+	        var key;
+	
+	        // Return a concatenated array of all matching events if
+	        // the selector is a regular expression.
+	        if (evt instanceof RegExp) {
+	            response = {};
+	            for (key in events) {
+	                if (events.hasOwnProperty(key) && evt.test(key)) {
+	                    response[key] = events[key];
+	                }
+	            }
+	        } else {
+	            response = events[evt] || (events[evt] = []);
+	        }
+	
+	        return response;
+	    };
+	
+	    /**
+	     * Takes a list of listener objects and flattens it into a list of listener functions.
+	     *
+	     * @param {Object[]} listeners Raw listener objects.
+	     * @return {Function[]} Just the listener functions.
+	     */
+	    proto.flattenListeners = function flattenListeners(listeners) {
+	        var flatListeners = [];
+	        var i;
+	
+	        for (i = 0; i < listeners.length; i += 1) {
+	            flatListeners.push(listeners[i].listener);
+	        }
+	
+	        return flatListeners;
+	    };
+	
+	    /**
+	     * Fetches the requested listeners via getListeners but will always return the results inside an object. This is mainly for internal use but others may find it useful.
+	     *
+	     * @param {String|RegExp} evt Name of the event to return the listeners from.
+	     * @return {Object} All listener functions for an event in an object.
+	     */
+	    proto.getListenersAsObject = function getListenersAsObject(evt) {
+	        var listeners = this.getListeners(evt);
+	        var response;
+	
+	        if (listeners instanceof Array) {
+	            response = {};
+	            response[evt] = listeners;
+	        }
+	
+	        return response || listeners;
+	    };
+	
+	    /**
+	     * Adds a listener function to the specified event.
+	     * The listener will not be added if it is a duplicate.
+	     * If the listener returns true then it will be removed after it is called.
+	     * If you pass a regular expression as the event name then the listener will be added to all events that match it.
+	     *
+	     * @param {String|RegExp} evt Name of the event to attach the listener to.
+	     * @param {Function} listener Method to be called when the event is emitted. If the function returns true then it will be removed after calling.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.addListener = function addListener(evt, listener) {
+	        var listeners = this.getListenersAsObject(evt);
+	        var listenerIsWrapped = (typeof listener === 'undefined' ? 'undefined' : _typeof(listener)) === 'object';
+	        var key;
+	
+	        for (key in listeners) {
+	            if (listeners.hasOwnProperty(key) && indexOfListener(listeners[key], listener) === -1) {
+	                listeners[key].push(listenerIsWrapped ? listener : {
+	                    listener: listener,
+	                    once: false
+	                });
+	            }
+	        }
+	
+	        return this;
+	    };
+	
+	    /**
+	     * Alias of addListener
+	     */
+	    proto.on = alias('addListener');
+	
+	    /**
+	     * Semi-alias of addListener. It will add a listener that will be
+	     * automatically removed after its first execution.
+	     *
+	     * @param {String|RegExp} evt Name of the event to attach the listener to.
+	     * @param {Function} listener Method to be called when the event is emitted. If the function returns true then it will be removed after calling.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.addOnceListener = function addOnceListener(evt, listener) {
+	        return this.addListener(evt, {
+	            listener: listener,
+	            once: true
+	        });
+	    };
+	
+	    /**
+	     * Alias of addOnceListener.
+	     */
+	    proto.once = alias('addOnceListener');
+	
+	    /**
+	     * Defines an event name. This is required if you want to use a regex to add a listener to multiple events at once. If you don't do this then how do you expect it to know what event to add to? Should it just add to every possible match for a regex? No. That is scary and bad.
+	     * You need to tell it what event names should be matched by a regex.
+	     *
+	     * @param {String} evt Name of the event to create.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.defineEvent = function defineEvent(evt) {
+	        this.getListeners(evt);
+	        return this;
+	    };
+	
+	    /**
+	     * Uses defineEvent to define multiple events.
+	     *
+	     * @param {String[]} evts An array of event names to define.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.defineEvents = function defineEvents(evts) {
+	        for (var i = 0; i < evts.length; i += 1) {
+	            this.defineEvent(evts[i]);
+	        }
+	        return this;
+	    };
+	
+	    /**
+	     * Removes a listener function from the specified event.
+	     * When passed a regular expression as the event name, it will remove the listener from all events that match it.
+	     *
+	     * @param {String|RegExp} evt Name of the event to remove the listener from.
+	     * @param {Function} listener Method to remove from the event.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.removeListener = function removeListener(evt, listener) {
+	        var listeners = this.getListenersAsObject(evt);
+	        var index;
+	        var key;
+	
+	        for (key in listeners) {
+	            if (listeners.hasOwnProperty(key)) {
+	                index = indexOfListener(listeners[key], listener);
+	
+	                if (index !== -1) {
+	                    listeners[key].splice(index, 1);
+	                }
+	            }
+	        }
+	
+	        return this;
+	    };
+	
+	    /**
+	     * Alias of removeListener
+	     */
+	    proto.off = alias('removeListener');
+	
+	    /**
+	     * Adds listeners in bulk using the manipulateListeners method.
+	     * If you pass an object as the second argument you can add to multiple events at once. The object should contain key value pairs of events and listeners or listener arrays. You can also pass it an event name and an array of listeners to be added.
+	     * You can also pass it a regular expression to add the array of listeners to all events that match it.
+	     * Yeah, this function does quite a bit. That's probably a bad thing.
+	     *
+	     * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to add to multiple events at once.
+	     * @param {Function[]} [listeners] An optional array of listener functions to add.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.addListeners = function addListeners(evt, listeners) {
+	        // Pass through to manipulateListeners
+	        return this.manipulateListeners(false, evt, listeners);
+	    };
+	
+	    /**
+	     * Removes listeners in bulk using the manipulateListeners method.
+	     * If you pass an object as the second argument you can remove from multiple events at once. The object should contain key value pairs of events and listeners or listener arrays.
+	     * You can also pass it an event name and an array of listeners to be removed.
+	     * You can also pass it a regular expression to remove the listeners from all events that match it.
+	     *
+	     * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to remove from multiple events at once.
+	     * @param {Function[]} [listeners] An optional array of listener functions to remove.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.removeListeners = function removeListeners(evt, listeners) {
+	        // Pass through to manipulateListeners
+	        return this.manipulateListeners(true, evt, listeners);
+	    };
+	
+	    /**
+	     * Edits listeners in bulk. The addListeners and removeListeners methods both use this to do their job. You should really use those instead, this is a little lower level.
+	     * The first argument will determine if the listeners are removed (true) or added (false).
+	     * If you pass an object as the second argument you can add/remove from multiple events at once. The object should contain key value pairs of events and listeners or listener arrays.
+	     * You can also pass it an event name and an array of listeners to be added/removed.
+	     * You can also pass it a regular expression to manipulate the listeners of all events that match it.
+	     *
+	     * @param {Boolean} remove True if you want to remove listeners, false if you want to add.
+	     * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to add/remove from multiple events at once.
+	     * @param {Function[]} [listeners] An optional array of listener functions to add/remove.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.manipulateListeners = function manipulateListeners(remove, evt, listeners) {
+	        var i;
+	        var value;
+	        var single = remove ? this.removeListener : this.addListener;
+	        var multiple = remove ? this.removeListeners : this.addListeners;
+	
+	        // If evt is an object then pass each of its properties to this method
+	        if ((typeof evt === 'undefined' ? 'undefined' : _typeof(evt)) === 'object' && !(evt instanceof RegExp)) {
+	            for (i in evt) {
+	                if (evt.hasOwnProperty(i) && (value = evt[i])) {
+	                    // Pass the single listener straight through to the singular method
+	                    if (typeof value === 'function') {
+	                        single.call(this, i, value);
+	                    } else {
+	                        // Otherwise pass back to the multiple function
+	                        multiple.call(this, i, value);
+	                    }
+	                }
+	            }
+	        } else {
+	            // So evt must be a string
+	            // And listeners must be an array of listeners
+	            // Loop over it and pass each one to the multiple method
+	            i = listeners.length;
+	            while (i--) {
+	                single.call(this, evt, listeners[i]);
+	            }
+	        }
+	
+	        return this;
+	    };
+	
+	    /**
+	     * Removes all listeners from a specified event.
+	     * If you do not specify an event then all listeners will be removed.
+	     * That means every event will be emptied.
+	     * You can also pass a regex to remove all events that match it.
+	     *
+	     * @param {String|RegExp} [evt] Optional name of the event to remove all listeners for. Will remove from every event if not passed.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.removeEvent = function removeEvent(evt) {
+	        var type = typeof evt === 'undefined' ? 'undefined' : _typeof(evt);
+	        var events = this._getEvents();
+	        var key;
+	
+	        // Remove different things depending on the state of evt
+	        if (type === 'string') {
+	            // Remove all listeners for the specified event
+	            delete events[evt];
+	        } else if (evt instanceof RegExp) {
+	            // Remove all events matching the regex.
+	            for (key in events) {
+	                if (events.hasOwnProperty(key) && evt.test(key)) {
+	                    delete events[key];
+	                }
+	            }
+	        } else {
+	            // Remove all listeners in all events
+	            delete this._events;
+	        }
+	
+	        return this;
+	    };
+	
+	    /**
+	     * Alias of removeEvent.
+	     *
+	     * Added to mirror the node API.
+	     */
+	    proto.removeAllListeners = alias('removeEvent');
+	
+	    /**
+	     * Emits an event of your choice.
+	     * When emitted, every listener attached to that event will be executed.
+	     * If you pass the optional argument array then those arguments will be passed to every listener upon execution.
+	     * Because it uses `apply`, your array of arguments will be passed as if you wrote them out separately.
+	     * So they will not arrive within the array on the other side, they will be separate.
+	     * You can also pass a regular expression to emit to all events that match it.
+	     *
+	     * @param {String|RegExp} evt Name of the event to emit and execute listeners for.
+	     * @param {Array} [args] Optional array of arguments to be passed to each listener.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.emitEvent = function emitEvent(evt, args) {
+	        var listenersMap = this.getListenersAsObject(evt);
+	        var listeners;
+	        var listener;
+	        var i;
+	        var key;
+	        var response;
+	
+	        for (key in listenersMap) {
+	            if (listenersMap.hasOwnProperty(key)) {
+	                listeners = listenersMap[key].slice(0);
+	                i = listeners.length;
+	
+	                while (i--) {
+	                    // If the listener returns true then it shall be removed from the event
+	                    // The function is executed either with a basic call or an apply if there is an args array
+	                    listener = listeners[i];
+	
+	                    if (listener.once === true) {
+	                        this.removeListener(evt, listener.listener);
+	                    }
+	
+	                    response = listener.listener.apply(this, args || []);
+	
+	                    if (response === this._getOnceReturnValue()) {
+	                        this.removeListener(evt, listener.listener);
+	                    }
+	                }
+	            }
+	        }
+	
+	        return this;
+	    };
+	
+	    /**
+	     * Alias of emitEvent
+	     */
+	    proto.trigger = alias('emitEvent');
+	
+	    /**
+	     * Subtly different from emitEvent in that it will pass its arguments on to the listeners, as opposed to taking a single array of arguments to pass on.
+	     * As with emitEvent, you can pass a regex in place of the event name to emit to all events that match it.
+	     *
+	     * @param {String|RegExp} evt Name of the event to emit and execute listeners for.
+	     * @param {...*} Optional additional arguments to be passed to each listener.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.emit = function emit(evt) {
+	        var args = Array.prototype.slice.call(arguments, 1);
+	        return this.emitEvent(evt, args);
+	    };
+	
+	    /**
+	     * Sets the current value to check against when executing listeners. If a
+	     * listeners return value matches the one set here then it will be removed
+	     * after execution. This value defaults to true.
+	     *
+	     * @param {*} value The new value to check for when executing listeners.
+	     * @return {Object} Current instance of EventEmitter for chaining.
+	     */
+	    proto.setOnceReturnValue = function setOnceReturnValue(value) {
+	        this._onceReturnValue = value;
+	        return this;
+	    };
+	
+	    /**
+	     * Fetches the current value to check against when executing listeners. If
+	     * the listeners return value matches this one then it should be removed
+	     * automatically. It will return true by default.
+	     *
+	     * @return {*|Boolean} The current value to check for or the default, true.
+	     * @api private
+	     */
+	    proto._getOnceReturnValue = function _getOnceReturnValue() {
+	        if (this.hasOwnProperty('_onceReturnValue')) {
+	            return this._onceReturnValue;
+	        } else {
+	            return true;
+	        }
+	    };
+	
+	    /**
+	     * Fetches the events object and creates one if required.
+	     *
+	     * @return {Object} The events storage object.
+	     * @api private
+	     */
+	    proto._getEvents = function _getEvents() {
+	        return this._events || (this._events = {});
+	    };
+	
+	    /**
+	     * Reverts the global {@link EventEmitter} to its previous value and returns a reference to this version.
+	     *
+	     * @return {Function} Non conflicting EventEmitter class.
+	     */
+	    EventEmitter.noConflict = function noConflict() {
+	        exports.EventEmitter = originalGlobalValue;
+	        return EventEmitter;
+	    };
+	
+	    // Expose the class either via AMD, CommonJS or the global object
+	    if (true) {
+	        !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+	            return EventEmitter;
+	        }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
+	        module.exports = EventEmitter;
+	    } else {
+	        exports.EventEmitter = EventEmitter;
+	    }
+	}).call(undefined);
+
+/***/ },
+/* 207 */
+/*!******************************************!*\
+  !*** ./~/asteroid/~/ddp.js/lib/queue.js ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () {
+	    function defineProperties(target, props) {
+	        for (var i = 0; i < props.length; i++) {
+	            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+	        }
+	    }return function (Constructor, protoProps, staticProps) {
+	        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+	    };
+	}();
+	
+	function _classCallCheck(instance, Constructor) {
+	    if (!(instance instanceof Constructor)) {
+	        throw new TypeError("Cannot call a class as a function");
+	    }
+	}
+	
+	var Queue = function () {
+	
+	    /*
+	    *   As the name implies, `consumer` is the (sole) consumer of the queue.
+	    *   It gets called with each element of the queue and its return value
+	    *   serves as a ack, determining whether the element is removed or not from
+	    *   the queue, allowing then subsequent elements to be processed.
+	    */
+	
+	    function Queue(consumer) {
+	        _classCallCheck(this, Queue);
+	
+	        this.consumer = consumer;
+	        this.queue = [];
+	    }
+	
+	    _createClass(Queue, [{
+	        key: "push",
+	        value: function push(element) {
+	            this.queue.push(element);
+	            this.process();
+	        }
+	    }, {
+	        key: "process",
+	        value: function process() {
+	            if (this.queue.length !== 0) {
+	                var ack = this.consumer(this.queue[0]);
+	                if (ack) {
+	                    this.queue.shift();
+	                    this.process();
+	                }
+	            }
+	        }
+	    }, {
+	        key: "empty",
+	        value: function empty() {
+	            this.queue = [];
+	        }
+	    }]);
+	
+	    return Queue;
+	}();
+	
+	exports.default = Queue;
+
+/***/ },
+/* 208 */
+/*!*******************************************!*\
+  !*** ./~/asteroid/~/ddp.js/lib/socket.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () {
+	    function defineProperties(target, props) {
+	        for (var i = 0; i < props.length; i++) {
+	            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+	        }
+	    }return function (Constructor, protoProps, staticProps) {
+	        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+	    };
+	}();
+	
+	var _wolfy87Eventemitter = __webpack_require__(/*! wolfy87-eventemitter */ 206);
+	
+	var _wolfy87Eventemitter2 = _interopRequireDefault(_wolfy87Eventemitter);
+	
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	function _classCallCheck(instance, Constructor) {
+	    if (!(instance instanceof Constructor)) {
+	        throw new TypeError("Cannot call a class as a function");
+	    }
+	}
+	
+	function _possibleConstructorReturn(self, call) {
+	    if (!self) {
+	        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+	}
+	
+	function _inherits(subClass, superClass) {
+	    if (typeof superClass !== "function" && superClass !== null) {
+	        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+	    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	}
+	
+	var Socket = function (_EventEmitter) {
+	    _inherits(Socket, _EventEmitter);
+	
+	    function Socket(SocketConstructor, endpoint) {
+	        _classCallCheck(this, Socket);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Socket).call(this));
+	
+	        _this.SocketConstructor = SocketConstructor;
+	        _this.endpoint = endpoint;
+	        _this.rawSocket = null;
+	        return _this;
+	    }
+	
+	    _createClass(Socket, [{
+	        key: "send",
+	        value: function send(object) {
+	            var message = JSON.stringify(object);
+	            this.rawSocket.send(message);
+	            // Emit a copy of the object, as the listener might mutate it.
+	            this.emit("message:out", JSON.parse(message));
+	        }
+	    }, {
+	        key: "open",
+	        value: function open() {
+	            var _this2 = this;
+	
+	            /*
+	            *   Makes `open` a no-op if there's already a `rawSocket`. This avoids
+	            *   memory / socket leaks if `open` is called twice (e.g. by a user
+	            *   calling `ddp.connect` twice) without properly disposing of the
+	            *   socket connection. `rawSocket` gets automatically set to `null` only
+	            *   when it goes into a closed or error state. This way `rawSocket` is
+	            *   disposed of correctly: the socket connection is closed, and the
+	            *   object can be garbage collected.
+	            */
+	            if (this.rawSocket) {
+	                return;
+	            }
+	            this.rawSocket = new this.SocketConstructor(this.endpoint);
+	
+	            /*
+	            *   Calls to `onopen` and `onclose` directly trigger the `open` and
+	            *   `close` events on the `Socket` instance.
+	            */
+	            this.rawSocket.onopen = function () {
+	                return _this2.emit("open");
+	            };
+	            this.rawSocket.onclose = function () {
+	                _this2.rawSocket = null;
+	                _this2.emit("close");
+	            };
+	            /*
+	            *   Calls to `onerror` trigger the `close` event on the `Socket`
+	            *   instance, and cause the `rawSocket` object to be disposed of.
+	            *   Since it's not clear what conditions could cause the error and if
+	            *   it's possible to recover from it, we prefer to always close the
+	            *   connection (if it isn't already) and dispose of the socket object.
+	            */
+	            this.rawSocket.onerror = function () {
+	                // It's not clear what the socket lifecycle is when errors occurr.
+	                // Hence, to avoid the `close` event to be emitted twice, before
+	                // manually closing the socket we de-register the `onclose`
+	                // callback.
+	                delete _this2.rawSocket.onclose;
+	                // Safe to perform even if the socket is already closed
+	                _this2.rawSocket.close();
+	                _this2.rawSocket = null;
+	                _this2.emit("close");
+	            };
+	            /*
+	            *   Calls to `onmessage` trigger a `message:in` event on the `Socket`
+	            *   instance only once the message (first parameter to `onmessage`) has
+	            *   been successfully parsed into a javascript object.
+	            */
+	            this.rawSocket.onmessage = function (message) {
+	                var object;
+	                try {
+	                    object = JSON.parse(message.data);
+	                } catch (ignore) {
+	                    // Simply ignore the malformed message and return
+	                    return;
+	                }
+	                // Outside the try-catch block as it must only catch JSON parsing
+	                // errors, not errors that may occur inside a "message:in" event
+	                // handler
+	                _this2.emit("message:in", object);
+	            };
+	        }
+	    }, {
+	        key: "close",
+	        value: function close() {
+	            /*
+	            *   Avoid throwing an error if `rawSocket === null`
+	            */
+	            if (this.rawSocket) {
+	                this.rawSocket.close();
+	            }
+	        }
+	    }]);
+	
+	    return Socket;
+	}(_wolfy87Eventemitter2.default);
+	
+	exports.default = Socket;
+
+/***/ },
+/* 209 */
+/*!******************************************!*\
+  !*** ./~/asteroid/~/ddp.js/lib/utils.js ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.uniqueId = uniqueId;
+	exports.contains = contains;
+	var i = 0;
+	function uniqueId() {
+	    return (i++).toString();
+	}
+	
+	function contains(array, element) {
+	    return array.indexOf(element) !== -1;
+	}
+
+/***/ },
+/* 210 */
+/*!*********************************************!*\
+  !*** ./~/asteroid/lib/base-mixins/login.js ***!
+  \*********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.login = login;
+	exports.logout = logout;
+	exports.init = init;
+	
+	var _loginMethod = __webpack_require__(/*! ../common/login-method */ 211);
+	
+	/*
+	*   Public methods
+	*/
+	
+	function login(loginParameters) {
+	    return this.call("login", loginParameters).then(_loginMethod.onLogin.bind(this));
+	} /*
+	  *   Login mixin:
+	  *    - defines the `login` and `logout` methods
+	  *    - exposes the `userId` and `loggedIn` public properties
+	  */
+	
+	function logout() {
+	    return this.call("logout").then(_loginMethod.onLogout.bind(this));
+	}
+	
+	/*
+	*   Init method
+	*/
+	
+	function init() {
+	    this.userId = null;
+	    this.loggedIn = false;
+	    this.ddp.on("connected", _loginMethod.resumeLogin.bind(this));
+	}
+
+/***/ },
+/* 211 */
+/*!***********************************************!*\
+  !*** ./~/asteroid/lib/common/login-method.js ***!
+  \***********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.onLogin = onLogin;
+	exports.onLogout = onLogout;
+	exports.resumeLogin = resumeLogin;
+	
+	var _multiStorage = __webpack_require__(/*! ./multi-storage */ 212);
+	
+	var multiStorage = _interopRequireWildcard(_multiStorage);
+	
+	function _interopRequireWildcard(obj) {
+	    if (obj && obj.__esModule) {
+	        return obj;
+	    } else {
+	        var newObj = {};if (obj != null) {
+	            for (var key in obj) {
+	                if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+	            }
+	        }newObj.default = obj;return newObj;
+	    }
+	}
+	
+	function onLogin(_ref) {
+	    var id = _ref.id;
+	    var token = _ref.token;
+	
+	    this.userId = id;
+	    this.loggedIn = true;
+	    return multiStorage.set(this.endpoint + "__login_token__", token).then(this.emit.bind(this, "loggedIn", id)).then(function () {
+	        return id;
+	    });
+	}
+	
+	function onLogout() {
+	    this.userId = null;
+	    this.loggedIn = false;
+	    return multiStorage.del(this.endpoint + "__login_token__").then(this.emit.bind(this, "loggedOut")).then(function () {
+	        return null;
+	    });
+	}
+	
+	function resumeLogin() {
+	    return multiStorage.get(this.endpoint + "__login_token__").then(function (resume) {
+	        if (!resume) {
+	            throw new Error("No login token");
+	        }
+	        return { resume: resume };
+	    }).then(this.login.bind(this)).catch(onLogout.bind(this));
+	}
+
+/***/ },
+/* 212 */
+/*!************************************************!*\
+  !*** ./~/asteroid/lib/common/multi-storage.js ***!
+  \************************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.get = get;
+	exports.set = set;
+	exports.del = del;
+	
+	function _defineProperty(obj, key, value) {
+	    if (key in obj) {
+	        Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
+	    } else {
+	        obj[key] = value;
+	    }return obj;
+	}
+	
+	var genericStorage = {};
+	
+	function get(key) {
+	    return new Promise(function (resolve, reject) {
+	        if (typeof chrome !== "undefined" && chrome.storage) {
+	            chrome.storage.local.get(key, function (data) {
+	                return resolve(data[key]);
+	            });
+	        } else if (typeof localStorage !== "undefined") {
+	            resolve(localStorage[key]);
+	        } else if (typeof AsyncStorage !== "undefined") {
+	            AsyncStorage.getItem(key, function (error, data) {
+	                if (error) {
+	                    reject(error);
+	                } else {
+	                    resolve(data);
+	                }
+	            });
+	        } else {
+	            resolve(genericStorage[key]);
+	        }
+	    });
+	}
+	
+	function set(key, value) {
+	    return new Promise(function (resolve, reject) {
+	        if (typeof chrome !== "undefined" && chrome.storage) {
+	            var data = _defineProperty({}, key, value);
+	            chrome.storage.local.set(data, resolve);
+	        } else if (typeof localStorage !== "undefined") {
+	            localStorage[key] = value;
+	            resolve();
+	        } else if (typeof AsyncStorage !== "undefined") {
+	            AsyncStorage.setItem(key, value, function (error) {
+	                if (error) {
+	                    reject(error);
+	                } else {
+	                    resolve();
+	                }
+	            });
+	        } else {
+	            genericStorage[key] = value;
+	            resolve();
+	        }
+	    });
+	}
+	
+	function del(key) {
+	    return new Promise(function (resolve, reject) {
+	        if (typeof chrome !== "undefined" && chrome.storage) {
+	            chrome.storage.local.remove(key, resolve);
+	        } else if (typeof localStorage !== "undefined") {
+	            delete localStorage[key];
+	            resolve();
+	        } else if (typeof AsyncStorage !== "undefined") {
+	            AsyncStorage.removeItem(key, function (error) {
+	                if (error) {
+	                    reject(error);
+	                } else {
+	                    resolve();
+	                }
+	            });
+	        } else {
+	            delete genericStorage[key];
+	            resolve();
+	        }
+	    });
+	}
+
+/***/ },
+/* 213 */
+/*!***********************************************!*\
+  !*** ./~/asteroid/lib/base-mixins/methods.js ***!
+  \***********************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.apply = apply;
+	exports.call = call;
+	exports.init = init;
+	/*
+	*   The methods mixin:
+	*   - defines the `apply` and `call` methods, used to send a ddp `method`
+	*     message to the server. In order to do so - due to the asynchronicity of
+	*     the ddp method call - it must maintain a cache (under the `methods.cache`
+	*     property of the Asteroid instance) of ddp method calls, which is then used
+	*     to match ddp `result` messages received from the server
+	*/
+	
+	/*
+	*   Public methods
+	*/
+	
+	function apply(method, params) {
+	    var _this = this;
+	
+	    return new Promise(function (resolve, reject) {
+	        var id = _this.ddp.method(method, params);
+	        _this.methods.cache[id] = { resolve: resolve, reject: reject };
+	    });
+	}
+	
+	function call(method) {
+	    for (var _len = arguments.length, params = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	        params[_key - 1] = arguments[_key];
+	    }
+	
+	    return this.apply(method, params);
+	}
+	
+	/*
+	*   Init method
+	*/
+	
+	function init() {
+	    var _this2 = this;
+	
+	    this.methods = {
+	        cache: {}
+	    };
+	    this.ddp.on("result", function (_ref) {
+	        var id = _ref.id;
+	        var error = _ref.error;
+	        var result = _ref.result;
+	
+	        var method = _this2.methods.cache[id];
+	        if (error) {
+	            method.reject(error);
+	        } else {
+	            method.resolve(result);
+	        }
+	        delete _this2.methods.cache[id];
+	    });
+	}
+
+/***/ },
+/* 214 */
+/*!******************************************************!*\
+  !*** ./~/asteroid/lib/base-mixins/password-login.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.createUser = createUser;
+	exports.loginWithPassword = loginWithPassword;
+	
+	var _loginMethod = __webpack_require__(/*! ../common/login-method */ 211);
+	
+	/*
+	*   Public methods
+	*/
+	
+	function createUser(_ref) {
+	    var username = _ref.username;
+	    var email = _ref.email;
+	    var password = _ref.password;
+	
+	    var options = {
+	        password: password,
+	        user: {
+	            username: username,
+	            email: email
+	        }
+	    };
+	    return this.call("createUser", options).then(_loginMethod.onLogin.bind(this));
+	} /*
+	  *   The password-login mixin:
+	  *   - defines the `createUser` and `loginWithPassword` methods, porcelain for
+	  *     calling the `createUser` and `login` ddp methods
+	  */
+	
+	function loginWithPassword(_ref2) {
+	    var username = _ref2.username;
+	    var email = _ref2.email;
+	    var password = _ref2.password;
+	
+	    var loginParameters = {
+	        password: password,
+	        user: {
+	            username: username,
+	            email: email
+	        }
+	    };
+	    return this.call("login", loginParameters).then(_loginMethod.onLogin.bind(this));
+	}
+
+/***/ },
+/* 215 */
+/*!*****************************************************!*\
+  !*** ./~/asteroid/lib/base-mixins/subscriptions.js ***!
+  \*****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+=======
 	
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
@@ -40857,10 +57188,246 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+<<<<<<< HEAD
+	exports.subscribe = subscribe;
+	exports.unsubscribe = unsubscribe;
+	exports.init = init;
+	
+	var _lodash = __webpack_require__(/*! lodash.assign */ 202);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	var _wolfy87Eventemitter = __webpack_require__(/*! wolfy87-eventemitter */ 203);
+	
+	var _wolfy87Eventemitter2 = _interopRequireDefault(_wolfy87Eventemitter);
+	
+	var _subscriptionCache = __webpack_require__(/*! ../common/subscription-cache */ 216);
+	
+	var _subscriptionCache2 = _interopRequireDefault(_subscriptionCache);
+	
+	var _fingerprintSub = __webpack_require__(/*! ../common/fingerprint-sub */ 217);
+	
+	var _fingerprintSub2 = _interopRequireDefault(_fingerprintSub);
+	
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	/*
+	*   Private methods: they are invoked with the asteroid instance as context, but
+	*   they are not exported so they don't clutter the Asteroid class prototype.
+	*/
+	
+	/*
+	*   The subscriptions mixin:
+	*   - defines the `subscribe` and `unsubscribe` methods, used to send ddp `sub`
+	*     and `unsub` messages to the server. In order to do so - due to the
+	*     asynchronicity of the ddp sub and unsub calls - it must maintain a cache
+	*     (under the `subscriptions.cache` property of the Asteroid instance) of ddp
+	*     subscriptions. The cache is then used to match ddp `ready` and `nosub`
+	*     messages received from the server, and to restart active subscriptions in
+	*     the event of a reconnection (since Meteor does not support resuming ddp
+	*     sessions, as of version 1.2.0.2)
+	*/
+	
+	function restartSubscription(sub) {
+	    // Only restart the subscription if it isn't still in ddp's queue.
+	    if (!sub.stillInQueue) {
+	        // Handlers to ddp's connected event are invoked asynchronously (see
+	        // https://github.com/mondora/ddp.js/blob/master/src/ddp.js#L20).
+	        // Therefore there is a (very very small) chance that between the time
+	        // when the connected message is received and the time when the
+	        // connected handler is invoked, the ddp instance disconnected.
+	        // Therefore we update the stillInQueue status fo the subscription
+	        this.ddp.sub(sub.name, sub.params, sub.id);
+	        sub.stillInQueue = this.ddp.status !== "connected";
+	    } else {
+	        // Since we're restarting subscriptions after a connection, we know
+	        // that now the subscriptions which were in ddp's queue will be sent,
+	        // therefore we need to remove the stillInQueue flag from them
+	        sub.stillInQueue = false;
+	    }
+	}
+	
+	/*
+	*   Public methods
+	*/
+	
+	function subscribe(name) {
+	    for (var _len = arguments.length, params = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	        params[_key - 1] = arguments[_key];
+	    }
+	
+	    var fingerprint = (0, _fingerprintSub2.default)(name, params);
+	    var sub = this.subscriptions.cache.get(fingerprint);
+	    if (!sub) {
+	        // If there is no cached subscription, subscribe
+	        var id = this.ddp.sub(name, params);
+	        // ddp.js enqueues messages to send if a connection has not yet been
+	        // established. Upon connection, when subscriptions are restarted, we
+	        // don't want to restart those subscriptions which had been made when
+	        // the connection had not yet been established, and therefore are still
+	        // in the queue. For this reason, we save ddp's connection status onto
+	        // the subscription object and we check it later to decide wether to
+	        // restart the subscription or not.
+	        var stillInQueue = this.ddp.status !== "connected";
+	        // Build the subscription object and save it in the cache
+	        sub = (0, _lodash2.default)(new _wolfy87Eventemitter2.default(), { fingerprint: fingerprint, id: id, name: name, params: params, stillInQueue: stillInQueue });
+	        this.subscriptions.cache.add(sub);
+	    }
+	    // Return the subscription object
+	    return sub;
+	}
+	
+	function unsubscribe(id) {
+	    this.ddp.unsub(id);
+	}
+	
+	/*
+	*   Init method
+	*/
+	
+	function init() {
+	    var _this = this;
+	
+	    this.subscriptions = {
+	        cache: new _subscriptionCache2.default()
+	    };
+	    this.ddp.on("ready", function (_ref) {
+	        var subs = _ref.subs;
+	
+	        subs.forEach(function (id) {
+	            _this.subscriptions.cache.get(id).emit("ready");
+	        });
+	    }).on("nosub", function (_ref2) {
+	        var error = _ref2.error;
+	        var id = _ref2.id;
+	
+	        if (error) {
+	            _this.subscriptions.cache.get(id).emit("error", error);
+	        }
+	        _this.subscriptions.cache.del(id);
+	    }).on("connected", function () {
+	        _this.subscriptions.cache.forEach(restartSubscription.bind(_this));
+	    });
+	}
+
+/***/ },
+/* 216 */
+/*!*****************************************************!*\
+  !*** ./~/asteroid/lib/common/subscription-cache.js ***!
+  \*****************************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () {
+	    function defineProperties(target, props) {
+	        for (var i = 0; i < props.length; i++) {
+	            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+	        }
+	    }return function (Constructor, protoProps, staticProps) {
+	        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+	    };
+	}();
+	
+	function _classCallCheck(instance, Constructor) {
+	    if (!(instance instanceof Constructor)) {
+	        throw new TypeError("Cannot call a class as a function");
+	    }
+	}
+	
+	var SubscriptionCache = function () {
+	    function SubscriptionCache() {
+	        _classCallCheck(this, SubscriptionCache);
+	
+	        this.byFingerprint = {};
+	        this.byId = {};
+	    }
+	
+	    _createClass(SubscriptionCache, [{
+	        key: "add",
+	        value: function add(sub) {
+	            this.byFingerprint[sub.fingerprint] = sub;
+	            this.byId[sub.id] = sub;
+	        }
+	    }, {
+	        key: "get",
+	        value: function get(idOrFingerprint) {
+	            return this.byId[idOrFingerprint] || this.byFingerprint[idOrFingerprint] || null;
+	        }
+	    }, {
+	        key: "del",
+	        value: function del(idOrFingerprint) {
+	            var sub = this.get(idOrFingerprint) || {};
+	            delete this.byFingerprint[sub.fingerprint];
+	            delete this.byId[sub.id];
+	        }
+	    }, {
+	        key: "forEach",
+	        value: function forEach(iterator) {
+	            var _this = this;
+	
+	            Object.keys(this.byId).forEach(function (id) {
+	                iterator(_this.byId[id]);
+	            });
+	        }
+	    }]);
+	
+	    return SubscriptionCache;
+	}();
+	
+	exports.default = SubscriptionCache;
+
+/***/ },
+/* 217 */
+/*!**************************************************!*\
+  !*** ./~/asteroid/lib/common/fingerprint-sub.js ***!
+  \**************************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = fingerprintSub;
+	function fingerprintSub(name, params) {
+	    return JSON.stringify({ name: name, params: params });
+	}
+
+/***/ },
+/* 218 */
+/*!************************************!*\
+  !*** ./wwwroot/helpers/extends.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// extend 3rd party libs here:
+	_underscore2.default && (_underscore2.default.isEmail = function validateEmail(email) {
+	  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	  return re.test(email);
+	}); /**
+	     * Created by arutu_000 on 1/15/2017.
+	     */
+=======
 	
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
@@ -41004,6 +57571,7 @@
 
 	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 14)();
 	exports.push([module.id, "/*this file contains rules that override template/bootstrap etc.*/\nbody.sh-body #topNav button.btn-mobile {\n    color: #f7fafb;\n}\n", ""]);
+>>>>>>> master
 
 /***/ }
 /******/ ]);
