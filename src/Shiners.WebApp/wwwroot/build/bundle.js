@@ -53,8 +53,11 @@
 	
 	__webpack_require__(/*! jquery.cookie */ 5);
 	
+<<<<<<< HEAD
 	__webpack_require__(/*! ./helpers/extends */ 218);
 	
+=======
+>>>>>>> master
 	__webpack_require__(/*! ./helpers/helpers */ 6);
 	
 	__webpack_require__(/*! ./helpers/ui */ 8);
@@ -15865,9 +15868,15 @@
 
 	"use strict";
 	
+<<<<<<< HEAD
 	/*
 		MIT License http://www.opensource.org/licenses/mit-license.php
 		Author Tobias Koppers @sokra
+=======
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+>>>>>>> master
 	*/
 	// css base code, injected by the css-loader
 	module.exports = function () {
@@ -15945,6 +15954,7 @@
 	
 	__webpack_require__(/*! ../lib/detectmobile.js */ 33);
 	
+<<<<<<< HEAD
 	var _mainLayoutView = __webpack_require__(/*! ./mainLayoutView.js */ 34);
 	
 	var _mainLayoutView2 = _interopRequireDefault(_mainLayoutView);
@@ -15954,6 +15964,21 @@
 	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
 	
 	var _router = __webpack_require__(/*! ./router.js */ 91);
+=======
+	var _asteroidBrowser = __webpack_require__(/*! ../lib/asteroid.browser.js */ 34);
+	
+	var _asteroidBrowser2 = _interopRequireDefault(_asteroidBrowser);
+	
+	var _mainLayoutView = __webpack_require__(/*! ./mainLayoutView.js */ 40);
+	
+	var _mainLayoutView2 = _interopRequireDefault(_mainLayoutView);
+	
+	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 90);
+	
+	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
+	
+	var _router = __webpack_require__(/*! ./router.js */ 97);
+>>>>>>> master
 	
 	var _router2 = _interopRequireDefault(_router);
 	
@@ -15961,6 +15986,7 @@
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
+<<<<<<< HEAD
 	var _ModalContainerView = __webpack_require__(/*! ../sharedViews/ModalContainerView.js */ 124);
 	
 	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
@@ -15978,6 +16004,25 @@
 	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
 	
 	__webpack_require__(/*! ../css/shiners-override.css */ 199);
+=======
+	var _ModalContainerView = __webpack_require__(/*! ../sharedViews/ModalContainerView.js */ 132);
+	
+	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
+	
+	var _SuggestionsModalView = __webpack_require__(/*! ./selectLocation/suggestionsModal/SuggestionsModalView.js */ 206);
+	
+	var _SuggestionsModalView2 = _interopRequireDefault(_SuggestionsModalView);
+	
+	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 91);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 122);
+	
+	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
+	
+	__webpack_require__(/*! ../css/shiners-override.css */ 209);
+>>>>>>> master
 	
 	var _jquery = __webpack_require__(/*! jquery */ 3);
 	
@@ -15985,11 +16030,14 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+<<<<<<< HEAD
 	//import "ddp.js";
 	//import Asteroid from '../lib/asteroid.browser.js';
 	var AsteroidModule = __webpack_require__(/*! asteroid */ 201);
 	
 	
+=======
+>>>>>>> master
 	var App = _backbone2.default.Application.extend({
 	    region: 'body',
 	    layout: null,
@@ -16012,6 +16060,7 @@
 	    },
 	    initialize: function initialize() {
 	        /* web server */
+<<<<<<< HEAD
 	        console.log(AsteroidModule);
 	        var Asteroid = AsteroidModule.createClass();
 	        this.asteroid = new Asteroid({
@@ -16022,6 +16071,12 @@
 	
 	        ///* local server */
 	        ////this.asteroid = new Asteroid("192.168.1.38:3000", false);
+=======
+	        this.asteroid = new _asteroidBrowser2.default("www.shiners.mobi", true);
+	
+	        /* local server */
+	        //this.asteroid = new Asteroid("192.168.1.34:3000", false);
+>>>>>>> master
 	
 	        //window.asteroid = this.asteroid; // debug        
 	        this.user = new _AsteroidModel2.default(null, { asteroid: this.asteroid });
@@ -16035,16 +16090,26 @@
 	    },
 	    onStart: function onStart() {
 	        this.showView(new _PreloaderView2.default());
+<<<<<<< HEAD
 	        var app = this;
 	        this.asteroid.on('connected', function () {
 	            return app._startApp();
 	        });
+=======
+	        if (this.asteroid.resumeLoginPromise) this._startApp();else {
+	            var app = this;
+	            this.asteroid.on('connected', function () {
+	                return app._startApp();
+	            });
+	        }
+>>>>>>> master
 	        this.listenMessages();
 	    },
 	    _startApp: function _startApp() {
 	        var _this = this;
 	
 	        this.asteroid.off('connected');
+<<<<<<< HEAD
 	        this.asteroid.on('loggedIn', function () {
 	            debugger;
 	        });
@@ -16066,6 +16131,27 @@
 	        if (this.asteroid.loggedIn) {
 	            this.initUser(this.asteroid.userId);
 	        }
+=======
+	        this.asteroid.resumeLoginPromise.finally(_underscore2.default.bind(function () {
+	            _this.isMobile = _jquery2.default.browser.mobile;
+	            _this.postAdTypes.loadByMethod('getPostAdTypes');
+	            _this.showView(_this.layout);
+	            _this.initVkApi();
+	            _this.initFbApi();
+	            _this.getPosition();
+	            _this.asteroid.on('login', _underscore2.default.bind(_this.initUser, _this));
+	            _this.asteroid.on('loginError', _underscore2.default.bind(function () {
+	                return _this.user.trigger('error:login');
+	            }, _this));
+	            _this.asteroid.on('createUserError', _underscore2.default.bind(function () {
+	                return _this.user.trigger('error:create');
+	            }, _this));
+	            _this.asteroid.on('logout', _underscore2.default.bind(_this.destroyUser, _this));
+	            if (_this.asteroid.loggedIn) {
+	                _this.initUser(_this.asteroid.userId);
+	            }
+	        }, this));
+>>>>>>> master
 	    },
 	
 	    /*
@@ -16126,6 +16212,7 @@
 	        });
 	    },
 	    authorize: function authorize(email, password) {
+<<<<<<< HEAD
 	        var asteroidInstance = this.asteroid;
 	        var options = {
 	            password: password
@@ -16147,6 +16234,12 @@
 	            debugger;
 	            asteroidInstance.trigger('bz:onRegisterError', error);
 	        });
+=======
+	        this.asteroid.loginWithPassword(email, password);
+	    },
+	    registerUser: function registerUser(accountData) {
+	        this.asteroid.createUser(accountData);
+>>>>>>> master
 	    },
 	    initUser: function initUser(userId) {
 	        var _this2 = this;
@@ -16159,6 +16252,37 @@
 	    logout: function logout() {
 	        this.asteroid.logout();
 	    },
+<<<<<<< HEAD
+=======
+	    setCookie: function setCookie(name, value, options) {
+	        options = options || {};
+	
+	        var expires = options.expires;
+	
+	        if (typeof expires == "number" && expires) {
+	            var d = new Date();
+	            d.setTime(d.getTime() + expires * 1000);
+	            expires = options.expires = d;
+	        }
+	        if (expires && expires.toUTCString) {
+	            options.expires = expires.toUTCString();
+	        }
+	
+	        value = encodeURIComponent(value);
+	
+	        var updatedCookie = name + "=" + value;
+	
+	        for (var propName in options) {
+	            updatedCookie += "; " + propName;
+	            var propValue = options[propName];
+	            if (propValue !== true) {
+	                updatedCookie += "=" + propValue;
+	            }
+	        }
+	
+	        document.cookie = updatedCookie;
+	    },
+>>>>>>> master
 	    destroyUser: function destroyUser() {
 	        this.user.unset('_id');
 	        this.user.unset('id', { silent: true });
@@ -16186,6 +16310,11 @@
 	        app.layout.showChildView('modal', new _ModalContainerView2.default({ view: new _SuggestionsModalView2.default({ model: options.model }), title: options.title }));
 	    }
 	});
+<<<<<<< HEAD
+=======
+	//import "ddp.js";
+	
+>>>>>>> master
 	
 	var app = new App();
 	global.app = app;
@@ -21659,9 +21788,23 @@
 	 * Created by arutu_000 on 12/9/2016.
 	 */
 	Object.assign = Object.assign || __webpack_require__(/*! object.assign */ 20);
+<<<<<<< HEAD
 	var DEFAULT_LANGUAGE = 'ru';
 	var dataGlobal = {},
 	    currentLanguage = DEFAULT_LANGUAGE;
+=======
+	
+	var DEFAULT_LANGUAGE = getCookie('language') || 'ru';
+	
+	function getCookie(name) {
+	    var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+	    return matches ? decodeURIComponent(matches[1]) : undefined;
+	}
+	
+	var dataGlobal = {},
+	    currentLanguage = DEFAULT_LANGUAGE;
+	
+>>>>>>> master
 	var i18n = function i18n(name) {
 	    var ret,
 	        lang = i18n.getLanguage(),
@@ -21676,6 +21819,10 @@
 	
 	    return ret;
 	};
+<<<<<<< HEAD
+=======
+	
+>>>>>>> master
 	Object.assign(i18n, {
 	    init: function init() {
 	        $.fn.translate = function (lang) {
@@ -21711,8 +21858,23 @@
 	        } else {
 	            return false;
 	        }
+<<<<<<< HEAD
 	    }
 	});
+=======
+	    },
+	    getI18nString: function getI18nString(name) {
+	        var ret,
+	            lang = i18n.getLanguage();
+	        var dataLang = dataGlobal[lang];
+	        if (name && dataLang) {
+	            ret = dataLang[name];
+	        }
+	        return ret;
+	    }
+	});
+	
+>>>>>>> master
 	function emitEvent(lang) {
 	    $(window).trigger('sh:language:changed', lang);
 	}
@@ -22323,6 +22485,15 @@
 	    DIRECT_PROFILE_LINK: 'direct profile link',
 	    CREATE_SHINER: 'Create a shiner',
 	    SEARCH_PLACEHOLDER: 'Search',
+<<<<<<< HEAD
+=======
+	    READ_MORE: 'Read more',
+	    COMMENTS: 'Comment(s)',
+	    BTN_DONE: 'Done',
+	    DELETE_POST: 'Delete post',
+	    TITLE_YES: 'Yes',
+	    TITLE_NO: 'NO',
+>>>>>>> master
 	
 	    // banner
 	    shiners_are: 'SHINERS - ARE',
@@ -22356,8 +22527,13 @@
 	    footer_menu_post_publishing_rules: 'Post publishing rules',
 	
 	    //MASS MEDIA
+<<<<<<< HEAD
 	    h_information_for_smi: 'Информация для СМИ'
 	}, _defineProperty(_json, 'massMedia', 'Пресса о нас'), _defineProperty(_json, 'press_release', 'Пресс-релизы'), _defineProperty(_json, 'press_contacts', 'Контакты для прессы'), _defineProperty(_json, 'h_meet_us', 'Знакомство с нами'), _defineProperty(_json, 'h_mass_media', 'Пресса о нас'), _defineProperty(_json, 'm_about_us', 'О нас'), _defineProperty(_json, 'm_help', 'Помощь'), _defineProperty(_json, 'm_confidentiality', 'Конфиденциальность'), _defineProperty(_json, 'm_terms_of_use', 'Правила пользования'), _defineProperty(_json, 'site_published', 'Сайт публикации'), _defineProperty(_json, 'download_press_release', 'Скачать пресс-релиз'), _defineProperty(_json, 'ashot_a', 'Ашот Арутюнян'), _defineProperty(_json, 'tatyana_u', 'Татьяна Урусова'), _defineProperty(_json, 'home_accordion_section1', 'If you already have an advertisement on another website, just use that Url to create a Shiner!'), _defineProperty(_json, 'home_accordion_section2', 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone'), _defineProperty(_json, 'home_accordion_section3', 'Use Shiners for finding new live connections everywhere'), _defineProperty(_json, 'home_shiners_are_around', 'Shiners are everywhere'), _defineProperty(_json, 'home_lot_of_opportunities', 'A lot of opportunities for business around'), _defineProperty(_json, 'home_participate', 'Participate '), _defineProperty(_json, 'home_free', 'for free'), _defineProperty(_json, 'home_in_project', ' in the project!'), _defineProperty(_json, 'home_contact_with_people', 'Let others know about your ad instantly'), _defineProperty(_json, 'home_set_your_shiner', 'Create your Shiner'), _defineProperty(_json, 'search_free_search', 'Free search by words'), _defineProperty(_json, 'search_choose_radius', 'Search Radius (km):'), _defineProperty(_json, 'search_parameters', 'Search Parameters'), _defineProperty(_json, 'search_found', 'Found Shiners'), _defineProperty(_json, 'search_not_found', 'No posts found around'), _defineProperty(_json, 'about_intro_text', 'Мы считаем, это замечательно - иметь инструмент, который помогает людям вокруг сотрудничать друг с другом, находить людей и занятия прямо здесь, и прямо сейчас. SHINERS показывает людям объявления вокруг с привязкой к человеку и его локации.'), _defineProperty(_json, 'about_intro_duration', 'Продолжительность'), _defineProperty(_json, 'about_intro_duration_minute', 'мин.'), _defineProperty(_json, 'about_menu_how_it_works', 'КАК ЭТО РАБОТАЕТ?'), _defineProperty(_json, 'about_menu_what_are_we_useful', 'ЧЕМ МЫ ПОЛЕЗНЫ?'), _defineProperty(_json, 'about_menu_our_team', 'НАША КОМАНДА'), _defineProperty(_json, 'about_menu_connect_with_us', 'СВЯЗАТЬСЯ С НАМИ'), _defineProperty(_json, 'about_title_section_1', 'Единственный сервис, предлагающий живое присутствие!'), _defineProperty(_json, 'about_title_section_1_p1', 'Светлячки позволяют привязать объявление или любой адрес в интернете к текущему местоположению пользователя, и, как результат, осуществлять мгновенный поиск информации среди людей вокруг. Это позволяет искать информацию здесь и сейчас с целью мгновенной встречи с ее владельцем. Ненужное промежуточное звено (поиск по интернету, договор о встрече, дорогу к месту) можно исключить, если потенциально интересующий нас человек находится поблизости.'), _defineProperty(_json, 'about_title_section_1_p2', 'Мы расширяем возможности Веба, посредством привязки информации к реальным людям и координатам, что дает веб-ресурсам новое,- пространство-временное, качество, то есть путь напрямик к цели! Нас также видно в Google и соцсетях, и поэтому твое объявление превращается в собственную интернет-страницу, которую при желании увидит весь интернет.'), _defineProperty(_json, 'about_title_section_2', 'Как это работает?'), _defineProperty(_json, 'about_title_section_2_intro', 'Представь себе виртуальную визитку, только носишь ты ее не в кошельке, а в мобильном телефоне, и видят ее не избранные, а все, кто рядом!'), _defineProperty(_json, 'about_title_create_post', 'Создай свой пост'), _defineProperty(_json, 'about_title_you_are_find', 'Ты находишь / Тебя находят'), _defineProperty(_json, 'about_title_contract_meeting', 'Договаривайся / Встречайся'), _defineProperty(_json, 'about_title_section_3', 'Чем мы полезны?'), _defineProperty(_json, 'about_title_section_3_intro', 'Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.'), _defineProperty(_json, 'about_block_ads', 'ОБЪЯВЛЕНИЕ'), _defineProperty(_json, 'about_block_ads_text', 'Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".'), _defineProperty(_json, 'about_block_link', 'ССЫЛКА'), _defineProperty(_json, 'about_block_link_text', 'Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!'), _defineProperty(_json, 'about_block_dynamic', 'ДИНАМИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_dynamic_text', 'Движется вместе с тобой. Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!'), _defineProperty(_json, 'about_block_static', 'СТАТИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_static_text', 'Привязан к заданной тобой местности. Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!'), _defineProperty(_json, 'about_btn_set_your_shiners', 'Станови свой Светлячок'), _defineProperty(_json, 'about_who_we_are_title', 'КТО МЫ'), _defineProperty(_json, 'about_who_we_are_text', 'Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости.'), _defineProperty(_json, 'about_security_title', 'БЕЗОПАСНОСТЬ'), _defineProperty(_json, 'about_security_text', 'Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!'), _defineProperty(_json, 'about_rules_title', 'ПРАВИЛА'), _defineProperty(_json, 'about_rules_text', 'При регистрации на «Cветлячках» Пользователь соглашается с'), _defineProperty(_json, 'about_rules_text_link1', 'настоящими правилами'), _defineProperty(_json, 'about_title_section_4', 'Связаться с нами'), _defineProperty(_json, 'about_title_section_4_intro', 'Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!'), _defineProperty(_json, 'about_your_name', 'Ваше имя'), _defineProperty(_json, 'about_your_email', 'Ваш email'), _defineProperty(_json, 'about_your_message', 'Ваше сообщение'), _defineProperty(_json, 'about_btn_send_msg', 'Отправить'), _defineProperty(_json, 'post_d_summary_information', ''), _defineProperty(_json, 'post_d_views', 'Просмотров'), _defineProperty(_json, 'post_d_status', 'Статус'), _defineProperty(_json, 'post_d_type', 'Тип'), _defineProperty(_json, 'post_d_distance', 'Дистанция'), _defineProperty(_json, 'post_d_report_this_post', 'Сообщите об этом объявлении'), _defineProperty(_json, 'post_description_t', 'Описание'), _defineProperty(_json, 'post_location_place_t', 'Местоположение'), _defineProperty(_json, 'post_comments_t', 'Комментарии'), _defineProperty(_json, 'post_connect_to_user', 'Связаться с пользователем'), _defineProperty(_json, 'post_about_post', 'Об этом посте'), _defineProperty(_json, 'post_comment', 'Комментарий'), _defineProperty(_json, 'post_comments', 'Комментарии'), _defineProperty(_json, 'messages_send', 'Отправить'), _defineProperty(_json, 'messages_for_user', 'Сообщение для'), _json);
+=======
+	    h_information_for_smi: 'Information for the media'
+	}, _defineProperty(_json, 'massMedia', 'Media about us'), _defineProperty(_json, 'press_release', 'Press Releases'), _defineProperty(_json, 'press_contacts', 'Press Contacts'), _defineProperty(_json, 'h_meet_us', 'About us'), _defineProperty(_json, 'h_mass_media', 'Media about us'), _defineProperty(_json, 'm_about_us', 'About us'), _defineProperty(_json, 'm_help', 'Help'), _defineProperty(_json, 'm_confidentiality', 'Confidentiality'), _defineProperty(_json, 'm_terms_of_use', 'Terms of use'), _defineProperty(_json, 'site_published', 'Site published'), _defineProperty(_json, 'download_press_release', 'Download press release'), _defineProperty(_json, 'ashot_a', 'Ashot Arutyunyan'), _defineProperty(_json, 'tatyana_u', 'Tatyana Urusova'), _defineProperty(_json, 'home_accordion_section1', 'If you already have an advertisement on another website, just use that Url to create a Shiner!'), _defineProperty(_json, 'home_accordion_section2', 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone'), _defineProperty(_json, 'home_accordion_section3', 'Use Shiners for finding new live connections everywhere'), _defineProperty(_json, 'home_shiners_are_around', 'Shiners are everywhere'), _defineProperty(_json, 'home_lot_of_opportunities', 'A lot of opportunities for business around'), _defineProperty(_json, 'home_participate', 'Participate '), _defineProperty(_json, 'home_free', 'for free'), _defineProperty(_json, 'home_in_project', ' in the project!'), _defineProperty(_json, 'home_contact_with_people', 'Let others know about your ad instantly'), _defineProperty(_json, 'home_set_your_shiner', 'Create your Shiner'), _defineProperty(_json, 'search_free_search', 'Free search by words'), _defineProperty(_json, 'search_choose_radius', 'Search Radius (km):'), _defineProperty(_json, 'search_parameters', 'Search Parameters'), _defineProperty(_json, 'search_found', 'Found Shiners'), _defineProperty(_json, 'search_not_found', 'No posts found around'), _defineProperty(_json, 'about_intro_text', 'Shiners is a tool that helps people around to cooperate with each other. We will show you people ads around with a link to the person and his location.  Yor new friends, Clients, partners are nearby and ready to meet you'), _defineProperty(_json, 'about_intro_duration', 'Duration'), _defineProperty(_json, 'about_intro_duration_minute', 'min.'), _defineProperty(_json, 'about_menu_how_it_works', 'How does it work?'), _defineProperty(_json, 'about_menu_what_are_we_useful', 'What are we useful for?'), _defineProperty(_json, 'about_menu_our_team', 'Our Team'), _defineProperty(_json, 'about_menu_connect_with_us', 'Connect with us'), _defineProperty(_json, 'about_title_section_1', 'The only one service offering Live presence'), _defineProperty(_json, 'about_title_section_1_p1', 'Shiners allow you to connect an advertisement or any other address on the internet to the current location of a user and as a result you can implement an instant search of information among the people who surround you. It enables you to look for information here and now in order to meet its owner immediately. Unnecessary intermediate link (search on the internet, arranging of the meeting, a road to the particular place) can be excluded if a potentially interesting person is near you. '), _defineProperty(_json, 'about_title_section_1_p2', 'We are expending the abilities of web by connecting an information to real people and to the coordinates that gives web-resources something new – specious and timeless quality in other words a road directly to the aim. You can also see us in Google and social networks and that is why your advertisement will transform into your own internet-page, which can be open to the whole internet.'), _defineProperty(_json, 'about_title_section_2_intro', 'Just imagine a virtual visit-card that you can carry around with you not in the wallet but in your mobile phone and all people who surround you can see it, and not the only chosen ones!'), _defineProperty(_json, 'about_title_create_post', 'Create your post'), _defineProperty(_json, 'about_title_you_are_find', 'You find - You can be found'), _defineProperty(_json, 'about_title_contract_meeting', 'Arrange a meeting – meet people'), _defineProperty(_json, 'about_title_section_3', 'Why we so useful?'), _defineProperty(_json, 'about_title_section_3_intro', 'Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.'), _defineProperty(_json, 'about_block_ads', 'ОБЪЯВЛЕНИЕ'), _defineProperty(_json, 'about_block_ads_text', 'Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".'), _defineProperty(_json, 'about_block_link', 'LINK'), _defineProperty(_json, 'about_block_link_text', 'Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!'), _defineProperty(_json, 'about_block_dynamic', 'ДИНАМИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_dynamic_text', 'Движется вместе с тобой. Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!'), _defineProperty(_json, 'about_block_static', 'СТАТИЧЕСКИЙ ПОСТ'), _defineProperty(_json, 'about_block_static_text', 'Привязан к заданной тобой местности. Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!'), _defineProperty(_json, 'about_btn_set_your_shiners', 'Установи свой Светлячок'), _defineProperty(_json, 'about_who_we_are_title', 'Who are we?'), _defineProperty(_json, 'about_who_we_are_text', 'Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости.'), _defineProperty(_json, 'about_security_title', 'БЕЗОПАСНОСТЬ'), _defineProperty(_json, 'about_security_text', 'Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!'), _defineProperty(_json, 'about_rules_title', 'ПРАВИЛА'), _defineProperty(_json, 'about_rules_text', 'При регистрации на «Cветлячках» Пользователь соглашается с'), _defineProperty(_json, 'about_rules_text_link1', 'настоящими правилами'), _defineProperty(_json, 'about_title_section_4', 'Связаться с нами'), _defineProperty(_json, 'about_title_section_4_intro', 'Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!'), _defineProperty(_json, 'about_your_name', 'Your name'), _defineProperty(_json, 'about_your_email', 'Your email'), _defineProperty(_json, 'about_your_message', 'Your message'), _defineProperty(_json, 'about_btn_send_msg', 'Send'), _defineProperty(_json, 'post_d_summary_information', 'Summary information'), _defineProperty(_json, 'post_d_views', 'Views'), _defineProperty(_json, 'post_d_status', 'Status'), _defineProperty(_json, 'post_d_type', 'Type'), _defineProperty(_json, 'post_d_distance', 'Distance'), _defineProperty(_json, 'post_d_report_this_post', 'Tell about this post'), _defineProperty(_json, 'post_description_t', 'Description'), _defineProperty(_json, 'post_location_place_t', 'Location'), _defineProperty(_json, 'post_comments_t', 'comments'), _defineProperty(_json, 'post_connect_to_user', 'Connect to user'), _defineProperty(_json, 'post_about_post', 'About this post'), _defineProperty(_json, 'post_comment', 'Comment'), _defineProperty(_json, 'post_comments', 'Comments'), _defineProperty(_json, 'messages_send', 'Send'), _defineProperty(_json, 'messages_for_user', 'Messages for user'), _defineProperty(_json, 'RELOAD_POST_TIME', 'Reload'), _defineProperty(_json, 'EDIT_POST', 'Edit'), _defineProperty(_json, 'TRASH_POST', 'Delete'), _defineProperty(_json, 'EMAIL_LABEL', 'E-mail'), _defineProperty(_json, 'USERNAME_LABEL', 'login'), _defineProperty(_json, 'USERNAME_EMAIL_LABEL', 'login or E-mail'), _defineProperty(_json, 'PASSWORD_LABEL', 'password'), _defineProperty(_json, 'CONFIRM_PASSWORD_LABEL', 'confirm password'), _defineProperty(_json, 'validation_message_required', '{0} required'), _defineProperty(_json, 'validation_message_oneOfProperty', 'you must enter {0}, or {1}'), _defineProperty(_json, 'validation_message_acceptance', '{0} must be accepted'), _defineProperty(_json, 'validation_message_min', 'value of {0} must be greater or equal {1}'), _defineProperty(_json, 'validation_message_max', 'value of {0} must be lesser or equal {1}'), _defineProperty(_json, 'validation_message_range', '{0} must be between {1} and {2}'), _defineProperty(_json, 'validation_message_length', '{0} must be {1} characters'), _defineProperty(_json, 'validation_message_minLength', '{0} must be at least {1} characters'), _defineProperty(_json, 'validation_message_maxLength', '{0} must be at most {1} characters'), _defineProperty(_json, 'validation_message_rangeLength', '{0} must be between {1} and {2} characters'), _defineProperty(_json, 'validation_message_oneOf', '{0} must be one of: {1}'), _defineProperty(_json, 'validation_message_equalTo', '{0} must be the same as {1}'), _defineProperty(_json, 'validation_message_digits', '{0} должно состоять из цифр'), _defineProperty(_json, 'validation_message_number', '{0} required'), _defineProperty(_json, 'validation_message_email', 'Enter correct value in {0}'), _defineProperty(_json, 'validation_message_url', 'Field {0} must be correct url'), _defineProperty(_json, 'validation_message_inlinePattern', 'Enter proper value of {0}'), _defineProperty(_json, 'PUBLISHED_BY', 'Published by'), _defineProperty(_json, 'blog_empty_title', 'Мы извиняемся, но сейчас нам нечего вам показать'), _defineProperty(_json, 'blog_empty_subTitle', 'Пожалуйста, зайдите позже'), _json);
+>>>>>>> master
 	i18n.add('en', json);
 
 /***/ },
@@ -22391,6 +22567,15 @@
 	    POST_STATUS: 'Объявление закрыто',
 	    POST_LEFT: 'Осталось',
 	    SEARCH_PLACEHOLDER: 'Поиск',
+<<<<<<< HEAD
+=======
+	    READ_MORE: 'Читать дальше',
+	    COMMENTS: 'Комментариев',
+	    BTN_DONE: 'Готово',
+	    DELETE_POST: 'Удалить пост',
+	    TITLE_YES: 'Да',
+	    TITLE_NO: 'Нет',
+>>>>>>> master
 	
 	    // BANNER
 	    shiners_are: 'СВЕТЛЯЧКИ - ЭТО',
@@ -22497,7 +22682,11 @@
 	    about_btn_send_msg: 'Отправить',
 	
 	    // POST DETAILS
+<<<<<<< HEAD
 	    post_d_summary_information: '',
+=======
+	    post_d_summary_information: 'Сводная информация',
+>>>>>>> master
 	    post_d_views: 'Просмотров',
 	    post_d_status: 'Статус',
 	    post_d_type: 'Тип',
@@ -22513,7 +22702,49 @@
 	
 	    // MESSAGES
 	    messages_send: 'Отправить',
+<<<<<<< HEAD
 	    messages_for_user: 'Сообщение для'
+=======
+	    messages_for_user: 'Сообщение для',
+	
+	    //MY POSTS
+	    RELOAD_POST_TIME: 'Перезапустить',
+	    EDIT_POST: 'Редактировать',
+	    TRASH_POST: 'Удалить',
+	
+	    //LOGIN/REGISTER
+	    EMAIL_LABEL: 'E-mail',
+	    USERNAME_LABEL: 'имя пользователя',
+	    USERNAME_EMAIL_LABEL: 'имя пользователя или E-mail',
+	    PASSWORD_LABEL: 'пароль',
+	    CONFIRM_PASSWORD_LABEL: 'пароль повторно',
+	
+	    //VALIDATION MESSAGES
+	    validation_message_required: 'Укажите {0}',
+	    validation_message_oneOfProperty: 'Вы должны указать либо {0}, либо {1}',
+	    validation_message_acceptance: '{0} должно быть принято',
+	    validation_message_min: 'значение {0} должно быть больше или равно {1}',
+	    validation_message_max: 'значение {0} должно быть меньше или равно {1}',
+	    validation_message_range: '{0} must be between {1} and {2}',
+	    validation_message_length: '{0} must be {1} characters',
+	    validation_message_minLength: '{0} must be at least {1} characters',
+	    validation_message_maxLength: '{0} must be at most {1} characters',
+	    validation_message_rangeLength: '{0} must be between {1} and {2} characters',
+	    validation_message_oneOf: '{0} must be one of: {1}',
+	    validation_message_equalTo: '{0} must be the same as {1}',
+	    validation_message_digits: '{0} должно состоять из цифр',
+	    validation_message_number: 'Укажите {0} обязательно',
+	    validation_message_email: 'Введите корректно значение {0}',
+	    validation_message_url: 'поле {0} должно быть корректным url-ом',
+	    validation_message_inlinePattern: 'введите корректное значение {0}',
+	
+	    PUBLISHED_BY: 'Опубликовано',
+	
+	    //BLOG
+	    blog_empty_title: 'Мы извиняемся, но сейчас нам нечего вам показать',
+	    blog_empty_subTitle: 'Пожалуйста, зайдите позже'
+	
+>>>>>>> master
 	};
 	i18n.add('ru', json);
 
@@ -22539,6 +22770,7 @@
 
 /***/ },
 /* 34 */
+<<<<<<< HEAD
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/mainLayoutView.js ***!
   \*******************************************/
@@ -24771,6 +25003,5995 @@
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/search/CategoriesItemView.js ***!
   \******************************************************/
+=======
+/*!*****************************************!*\
+  !*** ./wwwroot/lib/asteroid.browser.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	(function (root, factory) {
+		if (true) {
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! ddp.js */ 35), __webpack_require__(/*! q */ 36)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === "object") {
+			var DDP = require('ddp.js');
+			var Q = require('q');
+	
+			module.exports = factory(DDP, Q);
+		} else {
+			root.Asteroid = factory(root.DDP, root.Q);
+		}
+	})(undefined, function (DDP, Q) {
+	
+		"use strict";
+	
+		//////////////////////////
+		// Asteroid constructor //
+		//////////////////////////
+	
+		var Asteroid = function Asteroid(host, ssl, socketInterceptFunction, instanceId) {
+			// Assert arguments type
+			Asteroid.utils.must.beString(host);
+			// An id may be assigned to the instance. This is to support
+			// resuming login of multiple connections to the same host.
+			this._instanceId = instanceId || "0";
+			// Configure the instance
+			this._host = (ssl ? "https://" : "http://") + host;
+			// Reference containers
+			this.collections = {};
+			this.subscriptions = {};
+			this._subscriptionsCache = {};
+			// Set __ddpOptions
+			this._setDdpOptions(host, ssl, socketInterceptFunction);
+			// Init the instance
+			this._init();
+		};
+	
+		/*
+	  *	Aftermarket implementation of the btoa function, since IE9 does not
+	  *	support it.
+	  *
+	  *	Code partly taken from:
+	  *	https://github.com/meteor/meteor/blob/devel/packages/base64/base64.js
+	  *	Copyright (C) 2011--2014 Meteor Development Group
+	  */
+	
+		if (!Asteroid.utils) {
+			Asteroid.utils = {};
+		}
+		Asteroid.utils.btoa = function () {
+	
+			var BASE_64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+	
+			var getChar = function getChar(val) {
+				return BASE_64_CHARS.charAt(val);
+			};
+	
+			var newBinary = function newBinary(len) {
+				var ret = [];
+				for (var i = 0; i < len; i++) {
+					ret.push(0);
+				}
+				return ret;
+			};
+	
+			return function (array) {
+	
+				if (typeof array === "string") {
+					var str = array;
+					array = newBinary(str.length);
+					for (var j = 0; j < str.length; j++) {
+						var ch = str.charCodeAt(j);
+						if (ch > 0xFF) {
+							throw new Error("Not ascii. Base64.encode can only take ascii strings");
+						}
+						array[j] = ch;
+					}
+				}
+	
+				var answer = [];
+				var a = null;
+				var b = null;
+				var c = null;
+				var d = null;
+				for (var i = 0; i < array.length; i++) {
+					switch (i % 3) {
+						case 0:
+							a = array[i] >> 2 & 0x3F;
+							b = (array[i] & 0x03) << 4;
+							break;
+						case 1:
+							b = b | array[i] >> 4 & 0xF;
+							c = (array[i] & 0xF) << 2;
+							break;
+						case 2:
+							c = c | array[i] >> 6 & 0x03;
+							d = array[i] & 0x3F;
+							answer.push(getChar(a));
+							answer.push(getChar(b));
+							answer.push(getChar(c));
+							answer.push(getChar(d));
+							a = null;
+							b = null;
+							c = null;
+							d = null;
+							break;
+					}
+				}
+				if (a !== null) {
+					answer.push(getChar(a));
+					answer.push(getChar(b));
+					if (c === null) {
+						answer.push("=");
+					} else {
+						answer.push(getChar(c));
+					}
+					if (d === null) {
+						answer.push("=");
+					}
+				}
+				return answer.join("");
+			};
+		}();
+	
+		if (!Asteroid.utils) {
+			Asteroid.utils = {};
+		}
+		Asteroid.utils.clone = function (obj) {
+			if (typeof EJSON !== "undefined") {
+				return EJSON.clone(obj);
+			}
+			var type = typeof obj === 'undefined' ? 'undefined' : _typeof(obj);
+			switch (type) {
+				case "undefined":
+				case "function":
+					return undefined;
+				case "string":
+				case "number":
+				case "boolean":
+					return obj;
+				case "object":
+					if (obj === null) {
+						return null;
+					}
+					return JSON.parse(JSON.stringify(obj));
+				default:
+					return;
+			}
+		};
+	
+		if (!Asteroid.utils) {
+			Asteroid.utils = {};
+		}
+		Asteroid.utils.EventEmitter = function () {};
+	
+		Asteroid.utils.EventEmitter.prototype = {
+	
+			constructor: Asteroid.utils.EventEmitter,
+	
+			on: function on(name, handler) {
+				if (!this._events) this._events = {};
+				this._events[name] = this._events[name] || [];
+				this._events[name].push(handler);
+			},
+	
+			off: function off(name, handler) {
+				if (!this._events) this._events = {};
+				if (!this._events[name]) return;
+				this._events[name].splice(this._events[name].indexOf(handler), 1);
+			},
+	
+			_emit: function _emit(name /* , arguments */) {
+				if (!this._events) this._events = {};
+				if (!this._events[name]) return;
+				var args = arguments;
+				var self = this;
+				this._events[name].forEach(function (handler) {
+					handler.apply(self, Array.prototype.slice.call(args, 1));
+				});
+			}
+	
+		};
+	
+		if (!Asteroid.utils) {
+			Asteroid.utils = {};
+		}
+		Asteroid.utils.getFilterFromSelector = function (selector) {
+	
+			// Get the value of the object from a compund key
+			// (e.g. "profile.name.first")
+			var getItemVal = function getItemVal(item, key) {
+				return key.split(".").reduce(function (prev, curr) {
+					if (!prev) {
+						return prev;
+					}
+					prev = prev[curr];
+					return prev;
+				}, item);
+			};
+	
+			var keys = Object.keys(selector);
+	
+			var filters = keys.map(function (key) {
+	
+				var subFilters;
+				if (key === "$and") {
+					subFilters = selector[key].map(Asteroid.utils.getFilterFromSelector);
+					return function (item) {
+						return subFilters.reduce(function (acc, subFilter) {
+							if (!acc) {
+								return acc;
+							}
+							return subFilter(item);
+						}, true);
+					};
+				}
+	
+				if (key === "$or") {
+					subFilters = selector[key].map(Asteroid.utils.getFilterFromSelector);
+					return function (item) {
+						return subFilters.reduce(function (acc, subFilter) {
+							if (acc) {
+								return acc;
+							}
+							return subFilter(item);
+						}, false);
+					};
+				}
+	
+				if (key === "$nor") {
+					subFilters = selector[key].map(Asteroid.utils.getFilterFromSelector);
+					return function (item) {
+						return subFilters.reduce(function (acc, subFilter) {
+							if (!acc) {
+								return acc;
+							}
+							return !subFilter(item);
+						}, true);
+					};
+				}
+	
+				return function (item) {
+					var itemVal = getItemVal(item, key);
+					return itemVal === selector[key];
+				};
+			});
+	
+			// Return the filter function
+			return function (item) {
+	
+				// Filter out backups
+				if (item._id && is_backup(item._id)) {
+					return false;
+				}
+	
+				return filters.reduce(function (acc, filter) {
+					if (!acc) {
+						return acc;
+					}
+					return filter(item);
+				}, true);
+			};
+		};
+	
+		if (!Asteroid.utils) {
+			Asteroid.utils = {};
+		}
+		Asteroid.utils.formQs = function (obj) {
+			var qs = "";
+			for (var key in obj) {
+				if (obj.hasOwnProperty(key)) {
+					qs += encodeURIComponent(key) + "=" + encodeURIComponent(obj[key]) + "&";
+				}
+			}
+			qs = qs.slice(0, -1);
+			return qs;
+		};
+	
+		if (!Asteroid.utils) {
+			Asteroid.utils = {};
+		}
+		Asteroid.utils.getOauthState = function (credentialToken) {
+			var state = {
+				loginStyle: "popup",
+				credentialToken: credentialToken,
+				isCordova: false
+			};
+			// Encode base64 as not all login services URI-encode the state
+			// parameter when they pass it back to us.
+			return Asteroid.utils.btoa(JSON.stringify(state));
+		};
+	
+		if (!Asteroid.utils) {
+			Asteroid.utils = {};
+		}
+		Asteroid.utils.guid = function () {
+			var ret = "";
+			for (var i = 0; i < 8; i++) {
+				ret += Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+			}
+			return ret;
+		};
+	
+		if (!Asteroid.utils) {
+			Asteroid.utils = {};
+		}
+		Asteroid.utils.isEmail = function (string) {
+			return string.indexOf("@") !== -1;
+		};
+	
+		if (!Asteroid.utils) {
+			Asteroid.utils = {};
+		}
+		Asteroid.utils.isEqual = function (obj1, obj2) {
+			var str1 = JSON.stringify(obj1);
+			var str2 = JSON.stringify(obj2);
+			return str1 === str2;
+		};
+	
+		if (!Asteroid.utils) {
+			Asteroid.utils = {};
+		}
+		Asteroid.utils.multiStorage = {};
+	
+		if (!Asteroid.utils) {
+			Asteroid.utils = {};
+		}
+		Asteroid.utils.must = {
+	
+			_toString: function _toString(thing) {
+				return Object.prototype.toString.call(thing).slice(8, -1);
+			},
+	
+			beString: function beString(s) {
+				var type = this._toString(s);
+				if (type !== "String") {
+					throw new Error("Assertion failed: expected String, instead got " + type);
+				}
+			},
+	
+			beArray: function beArray(o) {
+				var type = this._toString(o);
+				if (type !== "Array") {
+					throw new Error("Assertion failed: expected Array, instead got " + type);
+				}
+			},
+	
+			beObject: function beObject(o) {
+				var type = this._toString(o);
+				if (type !== "Object") {
+					throw new Error("Assertion failed: expected Object, instead got " + type);
+				}
+			}
+	
+		};
+	
+		// Asteroid instances are EventEmitter-s
+		Asteroid.prototype = Object.create(Asteroid.utils.EventEmitter.prototype);
+		Asteroid.prototype.constructor = Asteroid;
+	
+		////////////////////////////////
+		// Establishes the connection //
+		////////////////////////////////
+	
+		Asteroid.prototype._init = function () {
+			var self = this;
+			// Creates the DDP instance, that will automatically
+			// connect to the DDP server.
+			self.ddp = new DDP(this._ddpOptions);
+			// Register handlers
+			self.ddp.on("connected", function () {
+				// Upon connection try resuming login
+				// Save the pormise it returns
+				self.resumeLoginPromise = self._tryResumeLogin();
+				// Subscribe to the meteor.loginServiceConfiguration
+				// collection, which holds the configuration options
+				// to login via third party services (oauth).
+				self.subscribe("meteor.loginServiceConfiguration");
+				// Emit the connected event
+				self._emit("connected");
+			});
+			self.ddp.on("reconnected", function () {
+				// Upon reconnection try resuming login
+				// Save the pormise it returns
+				self.resumeLoginPromise = self._tryResumeLogin();
+				// Re-establish all previously established (and still active) subscriptions
+				self._reEstablishSubscriptions();
+				// Emit the reconnected event
+				self._emit("reconnected");
+			});
+			self.ddp.on("added", function (data) {
+				self._onAdded(data);
+			});
+			self.ddp.on("changed", function (data) {
+				self._onChanged(data);
+			});
+			self.ddp.on("removed", function (data) {
+				self._onRemoved(data);
+			});
+		};
+	
+		//////////////////////////////////////////////////////////////////
+		// Handlers for the ddp "added", "removed" and "changed" events //
+		//////////////////////////////////////////////////////////////////
+	
+		Asteroid.prototype._onAdded = function (data) {
+			// Get the name of the collection
+			var cName = data.collection;
+			// If the collection does not exist yet, create it
+			if (!this.collections[cName]) {
+				this.collections[cName] = new Asteroid._Collection(cName, this);
+			}
+			// data.fields can be undefined if the item added has only
+			// the _id field . To avoid errors down the line, ensure item
+			// is an object.
+			var item = data.fields || {};
+			item._id = data.id;
+			// Perform the remote insert
+			this.collections[cName]._remoteToLocalInsert(item);
+		};
+	
+		Asteroid.prototype._onRemoved = function (data) {
+			// Check the collection exists to avoid exceptions
+			if (!this.collections[data.collection]) {
+				return;
+			}
+			// Perform the reomte remove
+			this.collections[data.collection]._remoteToLocalRemove(data.id);
+		};
+	
+		Asteroid.prototype._onChanged = function (data) {
+			// Check the collection exists to avoid exceptions
+			if (!this.collections[data.collection]) {
+				return;
+			}
+			// data.fields can be undefined if the update only
+			// removed some properties in the item. Make sure
+			// it's an object
+			if (!data.fields) {
+				data.fields = {};
+			}
+			// If there were cleared fields, explicitly set them
+			// to undefined in the data.fields object. This will
+			// cause those fields to be present in the for ... in
+			// loop the remote update method of the collection
+			// performs, causing then the fields to be actually
+			// cleared from the item
+			if (data.cleared) {
+				data.cleared.forEach(function (key) {
+					data.fields[key] = undefined;
+				});
+			}
+			// Perform the remote update
+			this.collections[data.collection]._remoteToLocalUpdate(data.id, data.fields);
+		};
+	
+		////////////////////////////
+		// Call and apply methods //
+		////////////////////////////
+	
+		Asteroid.prototype.call = function (method /* , param1, param2, ... */) {
+			// Assert arguments type
+			Asteroid.utils.must.beString(method);
+			// Get the parameters for apply
+			var params = Array.prototype.slice.call(arguments, 1);
+			// Call apply
+			return this.apply(method, params);
+		};
+	
+		Asteroid.prototype.apply = function (method, params) {
+			// Assert arguments type
+			Asteroid.utils.must.beString(method);
+			// If no parameters are given, use an empty array
+			if (!Array.isArray(params)) {
+				params = [];
+			}
+			// Create the result and updated promises
+			var resultDeferred = Q.defer();
+			var updatedDeferred = Q.defer();
+			var onResult = function onResult(err, res) {
+				// The onResult handler takes care of errors
+				if (err) {
+					// If errors ccur, reject both promises
+					resultDeferred.reject(err);
+					updatedDeferred.reject();
+				} else {
+					// Otherwise resolve the result one
+					resultDeferred.resolve(res);
+				}
+			};
+			var onUpdated = function onUpdated() {
+				// Just resolve the updated promise
+				updatedDeferred.resolve();
+			};
+			// Perform the method call
+			this.ddp.method(method, params, onResult, onUpdated);
+			// Return an object containing both promises
+			return {
+				result: resultDeferred.promise,
+				updated: updatedDeferred.promise
+			};
+		};
+	
+		/////////////////////
+		// Syntactic sugar //
+		/////////////////////
+	
+		Asteroid.prototype.getCollection = function (name) {
+			// Assert arguments type
+			Asteroid.utils.must.beString(name);
+			// Only create the collection if it doesn't exist
+			if (!this.collections[name]) {
+				this.collections[name] = new Asteroid._Collection(name, this);
+			}
+			return this.collections[name];
+		};
+	
+		///////////////////////////////////////////
+		// Removal and update suffix for backups //
+		///////////////////////////////////////////
+	
+		var mf_removal_suffix = "__del__";
+		var mf_update_suffix = "__upd__";
+		var is_backup = function is_backup(id) {
+			var l1 = mf_removal_suffix.length;
+			var l2 = mf_update_suffix.length;
+			var s1 = id.slice(-1 * l1);
+			var s2 = id.slice(-1 * l2);
+			return s1 === mf_removal_suffix || s2 === mf_update_suffix;
+		};
+	
+		/////////////////////////////////////////////
+		// Collection class constructor definition //
+		/////////////////////////////////////////////
+	
+		var Collection = function Collection(name, asteroidRef) {
+			this.name = name;
+			this.asteroid = asteroidRef;
+			this._set = new Set();
+		};
+		Collection.prototype.constructor = Collection;
+	
+		///////////////////////////////////////////////
+		// Insert-related private and public methods //
+		///////////////////////////////////////////////
+	
+		Collection.prototype._localToLocalInsert = function (item) {
+			// If an item by that id already exists, raise an exception
+			if (this._set.contains(item._id)) {
+				throw new Error("Item " + item._id + " already exists");
+			}
+			this._set.put(item._id, item);
+			// Return a promise, just for api consistency
+			return Q(item._id);
+		};
+		Collection.prototype._remoteToLocalInsert = function (item) {
+			// The server is the SSOT, add directly
+			this._set.put(item._id, item);
+		};
+		Collection.prototype._localToRemoteInsert = function (item) {
+			var self = this;
+			var deferred = Q.defer();
+			// Construct the name of the method we need to call
+			var methodName = "/" + self.name + "/insert";
+			self.asteroid.ddp.method(methodName, [item], function (err, res) {
+				if (err) {
+					// On error restore the database and reject the promise
+					self._set.del(item._id);
+					deferred.reject(err);
+				} else {
+					// Else resolve the promise
+					deferred.resolve(item._id);
+				}
+			});
+			return deferred.promise;
+		};
+		Collection.prototype.insert = function (item) {
+			// If the time has no id, generate one for it
+			if (!item._id) {
+				item._id = Asteroid.utils.guid();
+			}
+			return {
+				// Perform the local insert
+				local: this._localToLocalInsert(item),
+				// Send the insert request
+				remote: this._localToRemoteInsert(item)
+			};
+		};
+	
+		///////////////////////////////////////////////
+		// Remove-related private and public methods //
+		///////////////////////////////////////////////
+	
+		Collection.prototype._localToLocalRemove = function (id) {
+			// Check if the item exists in the database
+			var existing = this._set.get(id);
+			if (existing) {
+				// Create a backup of the object to delete
+				this._set.put(id + mf_removal_suffix, existing);
+				// Delete the object
+				this._set.del(id);
+			}
+			// Return a promise, just for api consistency
+			return Q(id);
+		};
+		Collection.prototype._remoteToLocalRemove = function (id) {
+			// The server is the SSOT, remove directly (item and backup)
+			this._set.del(id);
+		};
+		Collection.prototype._localToRemoteRemove = function (id) {
+			var self = this;
+			var deferred = Q.defer();
+			// Construct the name of the method we need to call
+			var methodName = "/" + self.name + "/remove";
+			self.asteroid.ddp.method(methodName, [{ _id: id }], function (err, res) {
+				if (err) {
+					// On error restore the database and reject the promise
+					var backup = self._set.get(id + mf_removal_suffix);
+					// Ensure there is a backup
+					if (backup) {
+						self._set.put(id, backup);
+						self._set.del(id + mf_removal_suffix);
+					}
+					deferred.reject(err);
+				} else {
+					// Else, delete the (possible) backup and resolve the promise
+					self._set.del(id + mf_removal_suffix);
+					deferred.resolve(id);
+				}
+			});
+			return deferred.promise;
+		};
+		Collection.prototype.remove = function (id) {
+			return {
+				// Perform the local remove
+				local: this._localToLocalRemove(id),
+				// Send the remove request
+				remote: this._localToRemoteRemove(id)
+			};
+		};
+	
+		///////////////////////////////////////////////
+		// Update-related private and public methods //
+		///////////////////////////////////////////////
+	
+		Collection.prototype._localToLocalUpdate = function (id, fields) {
+			// Ensure the item actually exists
+			var existing = this._set.get(id);
+			if (!existing) {
+				throw new Error("Item " + id + " doesn't exist");
+			}
+			// Ensure the _id property won't get modified
+			if (fields._id && fields._id !== id) {
+				throw new Error("Modifying the _id of a document is not allowed");
+			}
+			// Create a backup
+			this._set.put(id + mf_update_suffix, existing);
+			// Perform the update
+			for (var field in fields) {
+				if (fields.hasOwnProperty(field)) {
+					existing[field] = fields[field];
+				}
+			}
+			this._set.put(id, existing);
+			// Return a promise, just for api consistency
+			return Q(id);
+		};
+		Collection.prototype._remoteToLocalUpdate = function (id, fields) {
+			// Ensure the item exixts in the database
+			var existing = this._set.get(id);
+			if (!existing) {
+				console.warn("Server misbehaviour: item " + id + " doesn't exist");
+				return;
+			}
+			for (var field in fields) {
+				// Ensure the server is not trying to moify the item _id
+				if (field === "_id" && fields._id !== id) {
+					console.warn("Server misbehaviour: modifying the _id of a document is not allowed");
+					return;
+				}
+				existing[field] = fields[field];
+			}
+			// Perform the update
+			this._set.put(id, existing);
+		};
+		Collection.prototype._localToRemoteUpdate = function (id, fields) {
+			var self = this;
+			var deferred = Q.defer();
+			// Construct the name of the method we need to call
+			var methodName = "/" + self.name + "/update";
+			// Construct the selector
+			var sel = {
+				_id: id
+			};
+			// Construct the modifier
+			var mod = {
+				$set: fields
+			};
+			self.asteroid.ddp.method(methodName, [sel, mod], function (err, res) {
+				if (err) {
+					// On error restore the database and reject the promise
+					var backup = self._set.get(id + mf_update_suffix);
+					self._set.put(id, backup);
+					self._set.del(id + mf_update_suffix);
+					deferred.reject(err);
+				} else {
+					// Else, delete the (possible) backup and resolve the promise
+					self._set.del(id + mf_update_suffix);
+					deferred.resolve(id);
+				}
+			});
+			return deferred.promise;
+		};
+		Collection.prototype.update = function (id, fields) {
+			return {
+				// Perform the local update
+				local: this._localToLocalUpdate(id, fields),
+				// Send the update request
+				remote: this._localToRemoteUpdate(id, fields)
+			};
+		};
+	
+		//////////////////////////////
+		// Reactive queries methods //
+		//////////////////////////////
+	
+		var ReactiveQuery = function ReactiveQuery(set) {
+			var self = this;
+			self.result = [];
+	
+			self._set = set;
+			self._getResult();
+	
+			self._set.on("put", function (id) {
+				self._getResult();
+				self._emit("change", id);
+			});
+			self._set.on("del", function (id) {
+				self._getResult();
+				self._emit("change", id);
+			});
+		};
+		ReactiveQuery.prototype = Object.create(Asteroid.utils.EventEmitter.prototype);
+		ReactiveQuery.constructor = ReactiveQuery;
+	
+		ReactiveQuery.prototype._getResult = function () {
+			this.result = this._set.toArray();
+		};
+	
+		Collection.prototype.reactiveQuery = function (selectorOrFilter) {
+			var filter;
+			if (typeof selectorOrFilter === "function") {
+				filter = selectorOrFilter;
+			} else {
+				filter = Asteroid.utils.getFilterFromSelector(selectorOrFilter);
+			}
+			var subset = this._set.filter(filter);
+			return new ReactiveQuery(subset);
+		};
+	
+		Asteroid._Collection = Collection;
+	
+		Asteroid.prototype._getOauthClientId = function (serviceName) {
+			var loginConfigCollectionName = "meteor_accounts_loginServiceConfiguration";
+			var loginConfigCollection = this.collections[loginConfigCollectionName];
+			var service = loginConfigCollection.reactiveQuery({ service: serviceName }).result[0];
+			return service.clientId || service.consumerKey || service.appId;
+		};
+	
+		Asteroid.prototype._loginAfterCredentialSecretReceived = function (credentials) {
+			var self = this;
+			var deferred = Q.defer();
+			var loginParameters = {
+				oauth: credentials
+			};
+			self.ddp.method("login", [loginParameters], function (err, res) {
+				if (err) {
+					delete self.userId;
+					delete self.loggedIn;
+					Asteroid.utils.multiStorage.del(self._host + "__" + self._instanceId + "__login_token__");
+					deferred.reject(err);
+					self._emit("loginError", err);
+				} else {
+					self.userId = res.id;
+					self.loggedIn = true;
+					Asteroid.utils.multiStorage.set(self._host + "__" + self._instanceId + "__login_token__", res.token);
+					self._emit("login", res.id);
+					deferred.resolve(res.id);
+				}
+			});
+			return deferred.promise;
+		};
+	
+		Asteroid.prototype._connectAfterCredentialSecretReceived = function (credentials) {
+			var deferred = Q.defer();
+			var loginParameters = {
+				oauth: credentials
+			};
+			this.ddp.method("addLoginService", [loginParameters], function (err, res) {
+				if (err) {
+					deferred.reject(err);
+				} else {
+					deferred.resolve();
+				}
+			});
+			return deferred.promise;
+		};
+	
+		Asteroid.prototype._tryResumeLogin = function () {
+			var self = this;
+			return Q().then(function () {
+				return Asteroid.utils.multiStorage.get(self._host + "__" + self._instanceId + "__login_token__");
+			}).then(function (token) {
+				if (!token) {
+					throw new Error("No login token");
+				}
+				return token;
+			}).then(function (token) {
+				var deferred = Q.defer();
+				var loginParameters = {
+					resume: token
+				};
+				self.ddp.method("login", [loginParameters], function (err, res) {
+					if (err) {
+						delete self.userId;
+						delete self.loggedIn;
+						Asteroid.utils.multiStorage.del(self._host + "__" + self._instanceId + "__login_token__");
+						self._emit("loginError", err);
+						deferred.reject(err);
+					} else {
+						self.userId = res.id;
+						self.loggedIn = true;
+						Asteroid.utils.multiStorage.set(self._host + "__" + self._instanceId + "__login_token__", res.token);
+						self._emit("login", res.id);
+						deferred.resolve(res.id);
+					}
+				});
+				return deferred.promise;
+			});
+		};
+	
+		Asteroid.prototype.createUser = function (usernameOrEmail, password, profile) {
+			var self = this;
+			var deferred = Q.defer();
+			var options;
+			if (typeof usernameOrEmail === "string") {
+				options = {
+					username: Asteroid.utils.isEmail(usernameOrEmail) ? undefined : usernameOrEmail,
+					email: Asteroid.utils.isEmail(usernameOrEmail) ? usernameOrEmail : undefined,
+					password: password,
+					profile: profile
+				};
+			} else if ((typeof usernameOrEmail === 'undefined' ? 'undefined' : _typeof(usernameOrEmail)) === "object") {
+				options = usernameOrEmail;
+			}
+			self.ddp.method("createUser", [options], function (err, res) {
+				if (err) {
+					self._emit("createUserError", err);
+					deferred.reject(err);
+				} else {
+					self.userId = res.id;
+					self.loggedIn = true;
+					Asteroid.utils.multiStorage.set(self._host + "__" + self._instanceId + "__login_token__", res.token);
+					self._emit("createUser", res.id);
+					self._emit("login", res.id);
+					deferred.resolve(res.id);
+				}
+			});
+			return deferred.promise;
+		};
+	
+		Asteroid.prototype.loginWithPassword = function (usernameOrEmail, password) {
+			var self = this;
+			var deferred = Q.defer();
+			var loginParameters = {
+				password: password,
+				user: {
+					username: Asteroid.utils.isEmail(usernameOrEmail) ? undefined : usernameOrEmail,
+					email: Asteroid.utils.isEmail(usernameOrEmail) ? usernameOrEmail : undefined
+				}
+			};
+			self.ddp.method("login", [loginParameters], function (err, res) {
+				if (err) {
+					delete self.userId;
+					delete self.loggedIn;
+					Asteroid.utils.multiStorage.del(self._host + "__" + self._instanceId + "__login_token__");
+					deferred.reject(err);
+					self._emit("loginError", err);
+				} else {
+					self.userId = res.id;
+					self.loggedIn = true;
+					Asteroid.utils.multiStorage.set(self._host + "__" + self._instanceId + "__login_token__", res.token);
+					self._emit("login", res.id);
+					deferred.resolve(res.id);
+				}
+			});
+			return deferred.promise;
+		};
+	
+		Asteroid.prototype.logout = function () {
+			var self = this;
+			var deferred = Q.defer();
+			self.ddp.method("logout", [], function (err) {
+				if (err) {
+					self._emit("logoutError", err);
+					deferred.reject(err);
+				} else {
+					delete self.userId;
+					delete self.loggedIn;
+					Asteroid.utils.multiStorage.del(self._host + "__" + self._instanceId + "__login_token__");
+					self._emit("logout");
+					deferred.resolve();
+				}
+			});
+			return deferred.promise;
+		};
+	
+		var Set = function Set(readonly) {
+			// Allow readonly sets
+			if (readonly) {
+				// Make the put and del methods private
+				this._put = this.put;
+				this._del = this.del;
+				// Replace them with a throwy function
+				this.put = this.del = function () {
+					throw new Error("Attempt to modify readonly set");
+				};
+			}
+			this._items = {};
+		};
+		// Inherit from EventEmitter
+		Set.prototype = Object.create(Asteroid.utils.EventEmitter.prototype);
+		Set.constructor = Set;
+	
+		Set.prototype.put = function (id, item) {
+			// Assert arguments type
+			Asteroid.utils.must.beString(id);
+			Asteroid.utils.must.beObject(item);
+			// Save a clone to avoid collateral damage
+			this._items[id] = Asteroid.utils.clone(item);
+			this._emit("put", id);
+			// Return the set instance to allow method chainging
+			return this;
+		};
+	
+		Set.prototype.del = function (id) {
+			// Assert arguments type
+			Asteroid.utils.must.beString(id);
+			delete this._items[id];
+			this._emit("del", id);
+			// Return the set instance to allow method chainging
+			return this;
+		};
+	
+		Set.prototype.get = function (id) {
+			// Assert arguments type
+			Asteroid.utils.must.beString(id);
+			// Return a clone to avoid collateral damage
+			return Asteroid.utils.clone(this._items[id]);
+		};
+	
+		Set.prototype.contains = function (id) {
+			// Assert arguments type
+			Asteroid.utils.must.beString(id);
+			return !!this._items[id];
+		};
+	
+		Set.prototype.filter = function (belongFn) {
+	
+			// Creates the subset
+			var sub = new Set(true);
+	
+			// Keep a reference to the _items hash
+			var items = this._items;
+	
+			// Performs the initial puts
+			var ids = Object.keys(items);
+			ids.forEach(function (id) {
+				// Clone the element to avoid
+				// collateral damage
+				var itemClone = Asteroid.utils.clone(items[id]);
+				var belongs = belongFn(itemClone);
+				if (belongs) {
+					sub._items[id] = items[id];
+				}
+			});
+	
+			// Listens to the put and del events
+			// to automatically update the subset
+			this.on("put", function (id) {
+				// Clone the element to avoid
+				// collateral damage
+				var itemClone = Asteroid.utils.clone(items[id]);
+				var belongs = belongFn(itemClone);
+				if (belongs) {
+					sub._put(id, items[id]);
+				}
+			});
+			this.on("del", function (id) {
+				sub._del(id);
+			});
+	
+			// Returns the subset
+			return sub;
+		};
+	
+		Set.prototype.toArray = function () {
+			var array = [];
+			var items = this._items;
+			var ids = Object.keys(this._items);
+			ids.forEach(function (id) {
+				array.push(items[id]);
+			});
+			// Return a clone to avoid collateral damage
+			return Asteroid.utils.clone(array);
+		};
+	
+		Set.prototype.toHash = function () {
+			// Return a clone to avoid collateral damage
+			return Asteroid.utils.clone(this._items);
+		};
+	
+		Asteroid.Set = Set;
+	
+		////////////////////////
+		// Subscription class //
+		////////////////////////
+	
+		var Subscription = function Subscription(name, params, fingerprint, asteroid) {
+			this._name = name;
+			this._params = params;
+			this._fingerprint = fingerprint;
+			this._asteroid = asteroid;
+			// Subscription promises
+			this._ready = Q.defer();
+			this.ready = this._ready.promise;
+			// Subscribe via DDP
+			var or = this._onReady.bind(this);
+			var os = this._onStop.bind(this);
+			var oe = this._onError.bind(this);
+			this.id = asteroid.ddp.sub(name, params, or, os, oe);
+		};
+		Subscription.constructor = Subscription;
+	
+		Subscription.prototype.stop = function () {
+			this._asteroid.ddp.unsub(this.id);
+			delete this._asteroid._subscriptionsCache[this._fingerprint];
+		};
+	
+		Subscription.prototype._onReady = function () {
+			this._ready.resolve(this.id);
+		};
+	
+		Subscription.prototype._onStop = function () {
+			delete this._asteroid.subscriptions[this.id];
+			delete this._asteroid._subscriptionsCache[this._fingerprint];
+		};
+	
+		Subscription.prototype._onError = function (err) {
+			if (this.ready.isPending()) {
+				this._ready.reject(err);
+			}
+			delete this._asteroid.subscriptions[this.id];
+			delete this._asteroid._subscriptionsCache[this._fingerprint];
+		};
+	
+		//////////////////////
+		// Subscribe method //
+		//////////////////////
+	
+		Asteroid.prototype.subscribe = function (name /* , param1, param2, ... */) {
+			// Assert arguments type
+			Asteroid.utils.must.beString(name);
+			// Collect arguments into array
+			var args = Array.prototype.slice.call(arguments);
+			// Hash the arguments to get a key for _subscriptionsCache
+			var fingerprint = JSON.stringify(args);
+			// Only subscribe if there is no cached subscription
+			if (!this._subscriptionsCache[fingerprint]) {
+				// Get the parameters of the subscription
+				var params = args.slice(1);
+				// Subscribe
+				var sub = new Subscription(name, params, fingerprint, this);
+				this._subscriptionsCache[sub._fingerprint] = sub;
+				this.subscriptions[sub.id] = sub;
+			}
+			return this._subscriptionsCache[fingerprint];
+		};
+	
+		Asteroid.prototype._reEstablishSubscriptions = function () {
+			var subs = this.subscriptions;
+			var oldSub;
+			var newSub;
+			for (var id in subs) {
+				if (subs.hasOwnProperty(id)) {
+					oldSub = subs[id];
+					newSub = new Subscription(oldSub._name, oldSub._params, oldSub._fingerprint, this);
+					delete this.subscriptions[oldSub.id];
+					delete this._subscriptionsCache[oldSub._fingerprint];
+					this.subscriptions[newSub.id] = newSub;
+					this._subscriptionsCache[newSub._fingerprint] = newSub;
+				}
+			}
+		};
+	
+		Asteroid.prototype._openOauthPopup = function (credentialToken, loginUrl, afterCredentialSecretReceived) {
+			var self = this;
+			// Open the oauth popup
+			var popup = window.open(loginUrl, "_blank", "location=no,toolbar=no");
+			// If the focus property exists, it's a function and it needs to be
+			// called in order to focus the popup
+			if (popup.focus) {
+				popup.focus();
+			}
+			var deferred = Q.defer();
+			var request = JSON.stringify({
+				credentialToken: credentialToken
+			});
+			var intervalId = setInterval(function () {
+				popup.postMessage(request, self._host);
+			}, 100);
+			window.addEventListener("message", function (e) {
+				var message;
+				try {
+					message = JSON.parse(e.data);
+				} catch (err) {
+					return;
+				}
+				if (e.origin === self._host) {
+					if (message.credentialToken === credentialToken) {
+						clearInterval(intervalId);
+						deferred.resolve({
+							credentialToken: message.credentialToken,
+							credentialSecret: message.credentialSecret
+						});
+					}
+					if (message.error) {
+						clearInterval(intervalId);
+						deferred.reject(message.error);
+					}
+				}
+			});
+			return deferred.promise.then(afterCredentialSecretReceived.bind(self));
+		};
+	
+		Asteroid.utils.multiStorage.get = function (key) {
+			var deferred = Q.defer();
+			deferred.resolve(localStorage[key]);
+			return deferred.promise;
+		};
+	
+		Asteroid.utils.multiStorage.set = function (key, value) {
+			var deferred = Q.defer();
+			localStorage[key] = value;
+			deferred.resolve();
+			return deferred.promise;
+		};
+	
+		Asteroid.utils.multiStorage.del = function (key) {
+			var deferred = Q.defer();
+			delete localStorage[key];
+			deferred.resolve();
+			return deferred.promise;
+		};
+	
+		Asteroid.prototype._setDdpOptions = function (host, ssl, socketInterceptFunction) {
+			// If SockJS is available, use it, otherwise, use WebSocket
+			// Note: SockJS is required for IE9 support
+			if (typeof SockJS === "function") {
+				this._ddpOptions = {
+					endpoint: (ssl ? "https://" : "http://") + host + "/sockjs",
+					SocketConstructor: SockJS,
+					socketInterceptFunction: socketInterceptFunction
+				};
+			} else {
+				this._ddpOptions = {
+					endpoint: (ssl ? "wss://" : "ws://") + host + "/websocket",
+					SocketConstructor: WebSocket,
+					socketInterceptFunction: socketInterceptFunction
+				};
+			}
+		};
+	
+		return Asteroid;
+	});
+
+/***/ },
+/* 35 */
+/*!*****************************!*\
+  !*** ./~/ddp.js/src/ddp.js ***!
+  \*****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	(function (root, factory) {
+		if (true) {
+			!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === "object") {
+			module.exports = factory();
+		} else {
+			root.DDP = factory();
+		}
+	})(undefined, function () {
+	
+		"use strict";
+	
+		var uniqueId = function () {
+			var i = 0;
+			return function () {
+				return (i++).toString();
+			};
+		}();
+	
+		var INIT_DDP_MESSAGE = "{\"server_id\":\"0\"}";
+		// After hitting the plateau, it'll try to reconnect
+		// every 16.5 seconds
+		var RECONNECT_ATTEMPTS_BEFORE_PLATEAU = 10;
+		var TIMER_INCREMENT = 300;
+		var DEFAULT_PING_INTERVAL = 10000;
+		var DDP_SERVER_MESSAGES = ["added", "changed", "connected", "error", "failed", "nosub", "ready", "removed", "result", "updated", "ping", "pong"];
+	
+		var DDP = function DDP(options) {
+			// Configuration
+			this._endpoint = options.endpoint;
+			this._SocketConstructor = options.SocketConstructor;
+			this._autoreconnect = !options.do_not_autoreconnect;
+			this._ping_interval = options._ping_interval || DEFAULT_PING_INTERVAL;
+			this._socketInterceptFunction = options.socketInterceptFunction;
+			// Subscriptions callbacks
+			this._onReadyCallbacks = {};
+			this._onStopCallbacks = {};
+			this._onErrorCallbacks = {};
+			// Methods callbacks
+			this._onResultCallbacks = {};
+			this._onUpdatedCallbacks = {};
+			this._events = {};
+			this._queue = [];
+			// Setup
+			this.readyState = -1;
+			this._reconnect_count = 0;
+			this._reconnect_incremental_timer = 0;
+			// Init
+			if (!options.do_not_autoconnect) {
+				this.connect();
+			}
+		};
+		DDP.prototype.constructor = DDP;
+	
+		DDP.prototype.connect = function () {
+			this.readyState = 0;
+			this._socket = new this._SocketConstructor(this._endpoint);
+			this._socket.onopen = this._on_socket_open.bind(this);
+			this._socket.onmessage = this._on_socket_message.bind(this);
+			this._socket.onerror = this._on_socket_error.bind(this);
+			this._socket.onclose = this._on_socket_close.bind(this);
+		};
+	
+		DDP.prototype.method = function (name, params, onResult, onUpdated) {
+			var id = uniqueId();
+			this._onResultCallbacks[id] = onResult;
+			this._onUpdatedCallbacks[id] = onUpdated;
+			this._send({
+				msg: "method",
+				id: id,
+				method: name,
+				params: params
+			});
+			return id;
+		};
+	
+		DDP.prototype.sub = function (name, params, onReady, onStop, onError) {
+			var id = uniqueId();
+			this._onReadyCallbacks[id] = onReady;
+			this._onStopCallbacks[id] = onStop;
+			this._onErrorCallbacks[id] = onError;
+			this._send({
+				msg: "sub",
+				id: id,
+				name: name,
+				params: params
+			});
+			return id;
+		};
+	
+		DDP.prototype.unsub = function (id) {
+			this._send({
+				msg: "unsub",
+				id: id
+			});
+			return id;
+		};
+	
+		DDP.prototype.on = function (name, handler) {
+			this._events[name] = this._events[name] || [];
+			this._events[name].push(handler);
+		};
+	
+		DDP.prototype.off = function (name, handler) {
+			if (!this._events[name]) {
+				return;
+			}
+			var index = this._events[name].indexOf(handler);
+			if (index !== -1) {
+				this._events[name].splice(index, 1);
+			}
+		};
+	
+		DDP.prototype._emit = function (name /* , arguments */) {
+			if (!this._events[name]) {
+				return;
+			}
+			var args = arguments;
+			var self = this;
+			this._events[name].forEach(function (handler) {
+				handler.apply(self, Array.prototype.slice.call(args, 1));
+			});
+		};
+	
+		DDP.prototype._send = function (object) {
+			if (this.readyState !== 1 && object.msg !== "connect") {
+				this._queue.push(object);
+				return;
+			}
+			var message;
+			if (typeof EJSON === "undefined") {
+				message = JSON.stringify(object);
+			} else {
+				message = EJSON.stringify(object);
+			}
+			if (this._socketInterceptFunction) {
+				this._socketInterceptFunction({
+					type: "socket_message_sent",
+					message: message,
+					timestamp: Date.now()
+				});
+			}
+			this._socket.send(message);
+		};
+	
+		DDP.prototype._try_reconnect = function () {
+			if (this._reconnect_count < RECONNECT_ATTEMPTS_BEFORE_PLATEAU) {
+				setTimeout(this.connect.bind(this), this._reconnect_incremental_timer);
+				this._reconnect_count += 1;
+				this._reconnect_incremental_timer += TIMER_INCREMENT * this._reconnect_count;
+			} else {
+				setTimeout(this.connect.bind(this), this._reconnect_incremental_timer);
+			}
+		};
+	
+		DDP.prototype._on_result = function (data) {
+			if (this._onResultCallbacks[data.id]) {
+				this._onResultCallbacks[data.id](data.error, data.result);
+				delete this._onResultCallbacks[data.id];
+				if (data.error) {
+					delete this._onUpdatedCallbacks[data.id];
+				}
+			} else {
+				if (data.error) {
+					delete this._onUpdatedCallbacks[data.id];
+					throw data.error;
+				}
+			}
+		};
+		DDP.prototype._on_updated = function (data) {
+			var self = this;
+			data.methods.forEach(function (id) {
+				if (self._onUpdatedCallbacks[id]) {
+					self._onUpdatedCallbacks[id]();
+					delete self._onUpdatedCallbacks[id];
+				}
+			});
+		};
+		DDP.prototype._on_nosub = function (data) {
+			if (data.error) {
+				if (!this._onErrorCallbacks[data.id]) {
+					delete this._onReadyCallbacks[data.id];
+					delete this._onStopCallbacks[data.id];
+					throw new Error(data.error);
+				}
+				this._onErrorCallbacks[data.id](data.error);
+				delete this._onReadyCallbacks[data.id];
+				delete this._onStopCallbacks[data.id];
+				delete this._onErrorCallbacks[data.id];
+				return;
+			}
+			if (this._onStopCallbacks[data.id]) {
+				this._onStopCallbacks[data.id]();
+			}
+			delete this._onReadyCallbacks[data.id];
+			delete this._onStopCallbacks[data.id];
+			delete this._onErrorCallbacks[data.id];
+		};
+		DDP.prototype._on_ready = function (data) {
+			var self = this;
+			data.subs.forEach(function (id) {
+				if (self._onReadyCallbacks[id]) {
+					self._onReadyCallbacks[id]();
+					delete self._onReadyCallbacks[id];
+				}
+			});
+		};
+	
+		DDP.prototype._on_error = function (data) {
+			this._emit("error", data);
+		};
+		DDP.prototype._on_connected = function (data) {
+			var self = this;
+			var firstCon = self._reconnect_count === 0;
+			var eventName = firstCon ? "connected" : "reconnected";
+			self.readyState = 1;
+			self._reconnect_count = 0;
+			self._reconnect_incremental_timer = 0;
+			var length = self._queue.length;
+			for (var i = 0; i < length; i++) {
+				self._send(self._queue.shift());
+			}
+			self._emit(eventName, data);
+			// Set up keepalive ping-s
+			self._ping_interval_handle = setInterval(function () {
+				var id = uniqueId();
+				self._send({
+					msg: "ping",
+					id: id
+				});
+			}, self._ping_interval);
+		};
+		DDP.prototype._on_failed = function (data) {
+			this.readyState = 4;
+			this._emit("failed", data);
+		};
+		DDP.prototype._on_added = function (data) {
+			this._emit("added", data);
+		};
+		DDP.prototype._on_removed = function (data) {
+			this._emit("removed", data);
+		};
+		DDP.prototype._on_changed = function (data) {
+			this._emit("changed", data);
+		};
+		DDP.prototype._on_ping = function (data) {
+			this._send({
+				msg: "pong",
+				id: data.id
+			});
+		};
+		DDP.prototype._on_pong = function (data) {
+			// For now, do nothing.
+			// In the future we might want to log latency or so.
+		};
+	
+		DDP.prototype._on_socket_close = function () {
+			if (this._socketInterceptFunction) {
+				this._socketInterceptFunction({
+					type: "socket_close",
+					timestamp: Date.now()
+				});
+			}
+			clearInterval(this._ping_interval_handle);
+			this.readyState = 4;
+			this._emit("socket_close");
+			if (this._autoreconnect) {
+				this._try_reconnect();
+			}
+		};
+		DDP.prototype._on_socket_error = function (e) {
+			if (this._socketInterceptFunction) {
+				this._socketInterceptFunction({
+					type: "socket_error",
+					error: JSON.stringify(e),
+					timestamp: Date.now()
+				});
+			}
+			clearInterval(this._ping_interval_handle);
+			this.readyState = 4;
+			this._emit("socket_error", e);
+		};
+		DDP.prototype._on_socket_open = function () {
+			if (this._socketInterceptFunction) {
+				this._socketInterceptFunction({
+					type: "socket_open",
+					timestamp: Date.now()
+				});
+			}
+			this._send({
+				msg: "connect",
+				version: "pre2",
+				support: ["pre2"]
+			});
+		};
+		DDP.prototype._on_socket_message = function (message) {
+			if (this._socketInterceptFunction) {
+				this._socketInterceptFunction({
+					type: "socket_message_received",
+					message: message.data,
+					timestamp: Date.now()
+				});
+			}
+			var data;
+			if (message.data === INIT_DDP_MESSAGE) {
+				return;
+			}
+			try {
+				if (typeof EJSON === "undefined") {
+					data = JSON.parse(message.data);
+				} else {
+					data = EJSON.parse(message.data);
+				}
+				if (DDP_SERVER_MESSAGES.indexOf(data.msg) === -1) {
+					throw new Error();
+				}
+			} catch (e) {
+				console.warn("Non DDP message received:");
+				console.warn(message.data);
+				return;
+			}
+			this["_on_" + data.msg](data);
+		};
+	
+		return DDP;
+	});
+
+/***/ },
+/* 36 */
+/*!******************!*\
+  !*** ./~/q/q.js ***!
+  \******************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(process, setImmediate, module) {"use strict";
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	// vim:ts=4:sts=4:sw=4:
+	/*!
+	 *
+	 * Copyright 2009-2012 Kris Kowal under the terms of the MIT
+	 * license found at http://github.com/kriskowal/q/raw/master/LICENSE
+	 *
+	 * With parts by Tyler Close
+	 * Copyright 2007-2009 Tyler Close under the terms of the MIT X license found
+	 * at http://www.opensource.org/licenses/mit-license.html
+	 * Forked at ref_send.js version: 2009-05-11
+	 *
+	 * With parts by Mark Miller
+	 * Copyright (C) 2011 Google Inc.
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 * http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 *
+	 */
+	
+	(function (definition) {
+	    "use strict";
+	
+	    // This file will function properly as a <script> tag, or a module
+	    // using CommonJS and NodeJS or RequireJS module formats.  In
+	    // Common/Node/RequireJS, the module exports the Q API and when
+	    // executed as a simple <script>, it creates a Q global instead.
+	
+	    // Montage Require
+	
+	    if (typeof bootstrap === "function") {
+	        bootstrap("promise", definition);
+	
+	        // CommonJS
+	    } else if (( false ? "undefined" : _typeof(exports)) === "object" && ( false ? "undefined" : _typeof(module)) === "object") {
+	        module.exports = definition();
+	
+	        // RequireJS
+	    } else if (true) {
+	        !(__WEBPACK_AMD_DEFINE_FACTORY__ = (definition), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	
+	        // SES (Secure EcmaScript)
+	    } else if (typeof ses !== "undefined") {
+	        if (!ses.ok()) {
+	            return;
+	        } else {
+	            ses.makeQ = definition;
+	        }
+	
+	        // <script>
+	    } else if (typeof window !== "undefined" || typeof self !== "undefined") {
+	        // Prefer window over self for add-on scripts. Use self for
+	        // non-windowed contexts.
+	        var global = typeof window !== "undefined" ? window : self;
+	
+	        // Get the `window` object, save the previous Q global
+	        // and initialize Q as a global.
+	        var previousQ = global.Q;
+	        global.Q = definition();
+	
+	        // Add a noConflict function so Q can be removed from the
+	        // global namespace.
+	        global.Q.noConflict = function () {
+	            global.Q = previousQ;
+	            return this;
+	        };
+	    } else {
+	        throw new Error("This environment was not anticipated by Q. Please file a bug.");
+	    }
+	})(function () {
+	    "use strict";
+	
+	    var hasStacks = false;
+	    try {
+	        throw new Error();
+	    } catch (e) {
+	        hasStacks = !!e.stack;
+	    }
+	
+	    // All code after this point will be filtered from stack traces reported
+	    // by Q.
+	    var qStartingLine = captureLine();
+	    var qFileName;
+	
+	    // shims
+	
+	    // used for fallback in "allResolved"
+	    var noop = function noop() {};
+	
+	    // Use the fastest possible means to execute a task in a future turn
+	    // of the event loop.
+	    var nextTick = function () {
+	        // linked list of tasks (single, with head node)
+	        var head = { task: void 0, next: null };
+	        var tail = head;
+	        var flushing = false;
+	        var requestTick = void 0;
+	        var isNodeJS = false;
+	        // queue for late tasks, used by unhandled rejection tracking
+	        var laterQueue = [];
+	
+	        function flush() {
+	            /* jshint loopfunc: true */
+	            var task, domain;
+	
+	            while (head.next) {
+	                head = head.next;
+	                task = head.task;
+	                head.task = void 0;
+	                domain = head.domain;
+	
+	                if (domain) {
+	                    head.domain = void 0;
+	                    domain.enter();
+	                }
+	                runSingle(task, domain);
+	            }
+	            while (laterQueue.length) {
+	                task = laterQueue.pop();
+	                runSingle(task);
+	            }
+	            flushing = false;
+	        }
+	        // runs a single function in the async queue
+	        function runSingle(task, domain) {
+	            try {
+	                task();
+	            } catch (e) {
+	                if (isNodeJS) {
+	                    // In node, uncaught exceptions are considered fatal errors.
+	                    // Re-throw them synchronously to interrupt flushing!
+	
+	                    // Ensure continuation if the uncaught exception is suppressed
+	                    // listening "uncaughtException" events (as domains does).
+	                    // Continue in next event to avoid tick recursion.
+	                    if (domain) {
+	                        domain.exit();
+	                    }
+	                    setTimeout(flush, 0);
+	                    if (domain) {
+	                        domain.enter();
+	                    }
+	
+	                    throw e;
+	                } else {
+	                    // In browsers, uncaught exceptions are not fatal.
+	                    // Re-throw them asynchronously to avoid slow-downs.
+	                    setTimeout(function () {
+	                        throw e;
+	                    }, 0);
+	                }
+	            }
+	
+	            if (domain) {
+	                domain.exit();
+	            }
+	        }
+	
+	        nextTick = function nextTick(task) {
+	            tail = tail.next = {
+	                task: task,
+	                domain: isNodeJS && process.domain,
+	                next: null
+	            };
+	
+	            if (!flushing) {
+	                flushing = true;
+	                requestTick();
+	            }
+	        };
+	
+	        if ((typeof process === "undefined" ? "undefined" : _typeof(process)) === "object" && process.toString() === "[object process]" && process.nextTick) {
+	            // Ensure Q is in a real Node environment, with a `process.nextTick`.
+	            // To see through fake Node environments:
+	            // * Mocha test runner - exposes a `process` global without a `nextTick`
+	            // * Browserify - exposes a `process.nexTick` function that uses
+	            //   `setTimeout`. In this case `setImmediate` is preferred because
+	            //    it is faster. Browserify's `process.toString()` yields
+	            //   "[object Object]", while in a real Node environment
+	            //   `process.nextTick()` yields "[object process]".
+	            isNodeJS = true;
+	
+	            requestTick = function requestTick() {
+	                process.nextTick(flush);
+	            };
+	        } else if (typeof setImmediate === "function") {
+	            // In IE10, Node.js 0.9+, or https://github.com/NobleJS/setImmediate
+	            if (typeof window !== "undefined") {
+	                requestTick = setImmediate.bind(window, flush);
+	            } else {
+	                requestTick = function requestTick() {
+	                    setImmediate(flush);
+	                };
+	            }
+	        } else if (typeof MessageChannel !== "undefined") {
+	            // modern browsers
+	            // http://www.nonblocking.io/2011/06/windownexttick.html
+	            var channel = new MessageChannel();
+	            // At least Safari Version 6.0.5 (8536.30.1) intermittently cannot create
+	            // working message ports the first time a page loads.
+	            channel.port1.onmessage = function () {
+	                requestTick = requestPortTick;
+	                channel.port1.onmessage = flush;
+	                flush();
+	            };
+	            var requestPortTick = function requestPortTick() {
+	                // Opera requires us to provide a message payload, regardless of
+	                // whether we use it.
+	                channel.port2.postMessage(0);
+	            };
+	            requestTick = function requestTick() {
+	                setTimeout(flush, 0);
+	                requestPortTick();
+	            };
+	        } else {
+	            // old browsers
+	            requestTick = function requestTick() {
+	                setTimeout(flush, 0);
+	            };
+	        }
+	        // runs a task after all other tasks have been run
+	        // this is useful for unhandled rejection tracking that needs to happen
+	        // after all `then`d tasks have been run.
+	        nextTick.runAfter = function (task) {
+	            laterQueue.push(task);
+	            if (!flushing) {
+	                flushing = true;
+	                requestTick();
+	            }
+	        };
+	        return nextTick;
+	    }();
+	
+	    // Attempt to make generics safe in the face of downstream
+	    // modifications.
+	    // There is no situation where this is necessary.
+	    // If you need a security guarantee, these primordials need to be
+	    // deeply frozen anyway, and if you don’t need a security guarantee,
+	    // this is just plain paranoid.
+	    // However, this **might** have the nice side-effect of reducing the size of
+	    // the minified code by reducing x.call() to merely x()
+	    // See Mark Miller’s explanation of what this does.
+	    // http://wiki.ecmascript.org/doku.php?id=conventions:safe_meta_programming
+	    var call = Function.call;
+	    function uncurryThis(f) {
+	        return function () {
+	            return call.apply(f, arguments);
+	        };
+	    }
+	    // This is equivalent, but slower:
+	    // uncurryThis = Function_bind.bind(Function_bind.call);
+	    // http://jsperf.com/uncurrythis
+	
+	    var array_slice = uncurryThis(Array.prototype.slice);
+	
+	    var array_reduce = uncurryThis(Array.prototype.reduce || function (callback, basis) {
+	        var index = 0,
+	            length = this.length;
+	        // concerning the initial value, if one is not provided
+	        if (arguments.length === 1) {
+	            // seek to the first value in the array, accounting
+	            // for the possibility that is is a sparse array
+	            do {
+	                if (index in this) {
+	                    basis = this[index++];
+	                    break;
+	                }
+	                if (++index >= length) {
+	                    throw new TypeError();
+	                }
+	            } while (1);
+	        }
+	        // reduce
+	        for (; index < length; index++) {
+	            // account for the possibility that the array is sparse
+	            if (index in this) {
+	                basis = callback(basis, this[index], index);
+	            }
+	        }
+	        return basis;
+	    });
+	
+	    var array_indexOf = uncurryThis(Array.prototype.indexOf || function (value) {
+	        // not a very good shim, but good enough for our one use of it
+	        for (var i = 0; i < this.length; i++) {
+	            if (this[i] === value) {
+	                return i;
+	            }
+	        }
+	        return -1;
+	    });
+	
+	    var array_map = uncurryThis(Array.prototype.map || function (callback, thisp) {
+	        var self = this;
+	        var collect = [];
+	        array_reduce(self, function (undefined, value, index) {
+	            collect.push(callback.call(thisp, value, index, self));
+	        }, void 0);
+	        return collect;
+	    });
+	
+	    var object_create = Object.create || function (prototype) {
+	        function Type() {}
+	        Type.prototype = prototype;
+	        return new Type();
+	    };
+	
+	    var object_hasOwnProperty = uncurryThis(Object.prototype.hasOwnProperty);
+	
+	    var object_keys = Object.keys || function (object) {
+	        var keys = [];
+	        for (var key in object) {
+	            if (object_hasOwnProperty(object, key)) {
+	                keys.push(key);
+	            }
+	        }
+	        return keys;
+	    };
+	
+	    var object_toString = uncurryThis(Object.prototype.toString);
+	
+	    function isObject(value) {
+	        return value === Object(value);
+	    }
+	
+	    // generator related shims
+	
+	    // FIXME: Remove this function once ES6 generators are in SpiderMonkey.
+	    function isStopIteration(exception) {
+	        return object_toString(exception) === "[object StopIteration]" || exception instanceof QReturnValue;
+	    }
+	
+	    // FIXME: Remove this helper and Q.return once ES6 generators are in
+	    // SpiderMonkey.
+	    var QReturnValue;
+	    if (typeof ReturnValue !== "undefined") {
+	        QReturnValue = ReturnValue;
+	    } else {
+	        QReturnValue = function QReturnValue(value) {
+	            this.value = value;
+	        };
+	    }
+	
+	    // long stack traces
+	
+	    var STACK_JUMP_SEPARATOR = "From previous event:";
+	
+	    function makeStackTraceLong(error, promise) {
+	        // If possible, transform the error stack trace by removing Node and Q
+	        // cruft, then concatenating with the stack trace of `promise`. See #57.
+	        if (hasStacks && promise.stack && (typeof error === "undefined" ? "undefined" : _typeof(error)) === "object" && error !== null && error.stack && error.stack.indexOf(STACK_JUMP_SEPARATOR) === -1) {
+	            var stacks = [];
+	            for (var p = promise; !!p; p = p.source) {
+	                if (p.stack) {
+	                    stacks.unshift(p.stack);
+	                }
+	            }
+	            stacks.unshift(error.stack);
+	
+	            var concatedStacks = stacks.join("\n" + STACK_JUMP_SEPARATOR + "\n");
+	            error.stack = filterStackString(concatedStacks);
+	        }
+	    }
+	
+	    function filterStackString(stackString) {
+	        var lines = stackString.split("\n");
+	        var desiredLines = [];
+	        for (var i = 0; i < lines.length; ++i) {
+	            var line = lines[i];
+	
+	            if (!isInternalFrame(line) && !isNodeFrame(line) && line) {
+	                desiredLines.push(line);
+	            }
+	        }
+	        return desiredLines.join("\n");
+	    }
+	
+	    function isNodeFrame(stackLine) {
+	        return stackLine.indexOf("(module.js:") !== -1 || stackLine.indexOf("(node.js:") !== -1;
+	    }
+	
+	    function getFileNameAndLineNumber(stackLine) {
+	        // Named functions: "at functionName (filename:lineNumber:columnNumber)"
+	        // In IE10 function name can have spaces ("Anonymous function") O_o
+	        var attempt1 = /at .+ \((.+):(\d+):(?:\d+)\)$/.exec(stackLine);
+	        if (attempt1) {
+	            return [attempt1[1], Number(attempt1[2])];
+	        }
+	
+	        // Anonymous functions: "at filename:lineNumber:columnNumber"
+	        var attempt2 = /at ([^ ]+):(\d+):(?:\d+)$/.exec(stackLine);
+	        if (attempt2) {
+	            return [attempt2[1], Number(attempt2[2])];
+	        }
+	
+	        // Firefox style: "function@filename:lineNumber or @filename:lineNumber"
+	        var attempt3 = /.*@(.+):(\d+)$/.exec(stackLine);
+	        if (attempt3) {
+	            return [attempt3[1], Number(attempt3[2])];
+	        }
+	    }
+	
+	    function isInternalFrame(stackLine) {
+	        var fileNameAndLineNumber = getFileNameAndLineNumber(stackLine);
+	
+	        if (!fileNameAndLineNumber) {
+	            return false;
+	        }
+	
+	        var fileName = fileNameAndLineNumber[0];
+	        var lineNumber = fileNameAndLineNumber[1];
+	
+	        return fileName === qFileName && lineNumber >= qStartingLine && lineNumber <= qEndingLine;
+	    }
+	
+	    // discover own file name and line number range for filtering stack
+	    // traces
+	    function captureLine() {
+	        if (!hasStacks) {
+	            return;
+	        }
+	
+	        try {
+	            throw new Error();
+	        } catch (e) {
+	            var lines = e.stack.split("\n");
+	            var firstLine = lines[0].indexOf("@") > 0 ? lines[1] : lines[2];
+	            var fileNameAndLineNumber = getFileNameAndLineNumber(firstLine);
+	            if (!fileNameAndLineNumber) {
+	                return;
+	            }
+	
+	            qFileName = fileNameAndLineNumber[0];
+	            return fileNameAndLineNumber[1];
+	        }
+	    }
+	
+	    function deprecate(callback, name, alternative) {
+	        return function () {
+	            if (typeof console !== "undefined" && typeof console.warn === "function") {
+	                console.warn(name + " is deprecated, use " + alternative + " instead.", new Error("").stack);
+	            }
+	            return callback.apply(callback, arguments);
+	        };
+	    }
+	
+	    // end of shims
+	    // beginning of real work
+	
+	    /**
+	     * Constructs a promise for an immediate reference, passes promises through, or
+	     * coerces promises from different systems.
+	     * @param value immediate reference or promise
+	     */
+	    function Q(value) {
+	        // If the object is already a Promise, return it directly.  This enables
+	        // the resolve function to both be used to created references from objects,
+	        // but to tolerably coerce non-promises to promises.
+	        if (value instanceof Promise) {
+	            return value;
+	        }
+	
+	        // assimilate thenables
+	        if (isPromiseAlike(value)) {
+	            return coerce(value);
+	        } else {
+	            return fulfill(value);
+	        }
+	    }
+	    Q.resolve = Q;
+	
+	    /**
+	     * Performs a task in a future turn of the event loop.
+	     * @param {Function} task
+	     */
+	    Q.nextTick = nextTick;
+	
+	    /**
+	     * Controls whether or not long stack traces will be on
+	     */
+	    Q.longStackSupport = false;
+	
+	    // enable long stacks if Q_DEBUG is set
+	    if ((typeof process === "undefined" ? "undefined" : _typeof(process)) === "object" && process && process.env && process.env.Q_DEBUG) {
+	        Q.longStackSupport = true;
+	    }
+	
+	    /**
+	     * Constructs a {promise, resolve, reject} object.
+	     *
+	     * `resolve` is a callback to invoke with a more resolved value for the
+	     * promise. To fulfill the promise, invoke `resolve` with any value that is
+	     * not a thenable. To reject the promise, invoke `resolve` with a rejected
+	     * thenable, or invoke `reject` with the reason directly. To resolve the
+	     * promise to another thenable, thus putting it in the same state, invoke
+	     * `resolve` with that other thenable.
+	     */
+	    Q.defer = defer;
+	    function defer() {
+	        // if "messages" is an "Array", that indicates that the promise has not yet
+	        // been resolved.  If it is "undefined", it has been resolved.  Each
+	        // element of the messages array is itself an array of complete arguments to
+	        // forward to the resolved promise.  We coerce the resolution value to a
+	        // promise using the `resolve` function because it handles both fully
+	        // non-thenable values and other thenables gracefully.
+	        var messages = [],
+	            progressListeners = [],
+	            resolvedPromise;
+	
+	        var deferred = object_create(defer.prototype);
+	        var promise = object_create(Promise.prototype);
+	
+	        promise.promiseDispatch = function (resolve, op, operands) {
+	            var args = array_slice(arguments);
+	            if (messages) {
+	                messages.push(args);
+	                if (op === "when" && operands[1]) {
+	                    // progress operand
+	                    progressListeners.push(operands[1]);
+	                }
+	            } else {
+	                Q.nextTick(function () {
+	                    resolvedPromise.promiseDispatch.apply(resolvedPromise, args);
+	                });
+	            }
+	        };
+	
+	        // XXX deprecated
+	        promise.valueOf = function () {
+	            if (messages) {
+	                return promise;
+	            }
+	            var nearerValue = nearer(resolvedPromise);
+	            if (isPromise(nearerValue)) {
+	                resolvedPromise = nearerValue; // shorten chain
+	            }
+	            return nearerValue;
+	        };
+	
+	        promise.inspect = function () {
+	            if (!resolvedPromise) {
+	                return { state: "pending" };
+	            }
+	            return resolvedPromise.inspect();
+	        };
+	
+	        if (Q.longStackSupport && hasStacks) {
+	            try {
+	                throw new Error();
+	            } catch (e) {
+	                // NOTE: don't try to use `Error.captureStackTrace` or transfer the
+	                // accessor around; that causes memory leaks as per GH-111. Just
+	                // reify the stack trace as a string ASAP.
+	                //
+	                // At the same time, cut off the first line; it's always just
+	                // "[object Promise]\n", as per the `toString`.
+	                promise.stack = e.stack.substring(e.stack.indexOf("\n") + 1);
+	            }
+	        }
+	
+	        // NOTE: we do the checks for `resolvedPromise` in each method, instead of
+	        // consolidating them into `become`, since otherwise we'd create new
+	        // promises with the lines `become(whatever(value))`. See e.g. GH-252.
+	
+	        function become(newPromise) {
+	            resolvedPromise = newPromise;
+	            promise.source = newPromise;
+	
+	            array_reduce(messages, function (undefined, message) {
+	                Q.nextTick(function () {
+	                    newPromise.promiseDispatch.apply(newPromise, message);
+	                });
+	            }, void 0);
+	
+	            messages = void 0;
+	            progressListeners = void 0;
+	        }
+	
+	        deferred.promise = promise;
+	        deferred.resolve = function (value) {
+	            if (resolvedPromise) {
+	                return;
+	            }
+	
+	            become(Q(value));
+	        };
+	
+	        deferred.fulfill = function (value) {
+	            if (resolvedPromise) {
+	                return;
+	            }
+	
+	            become(fulfill(value));
+	        };
+	        deferred.reject = function (reason) {
+	            if (resolvedPromise) {
+	                return;
+	            }
+	
+	            become(reject(reason));
+	        };
+	        deferred.notify = function (progress) {
+	            if (resolvedPromise) {
+	                return;
+	            }
+	
+	            array_reduce(progressListeners, function (undefined, progressListener) {
+	                Q.nextTick(function () {
+	                    progressListener(progress);
+	                });
+	            }, void 0);
+	        };
+	
+	        return deferred;
+	    }
+	
+	    /**
+	     * Creates a Node-style callback that will resolve or reject the deferred
+	     * promise.
+	     * @returns a nodeback
+	     */
+	    defer.prototype.makeNodeResolver = function () {
+	        var self = this;
+	        return function (error, value) {
+	            if (error) {
+	                self.reject(error);
+	            } else if (arguments.length > 2) {
+	                self.resolve(array_slice(arguments, 1));
+	            } else {
+	                self.resolve(value);
+	            }
+	        };
+	    };
+	
+	    /**
+	     * @param resolver {Function} a function that returns nothing and accepts
+	     * the resolve, reject, and notify functions for a deferred.
+	     * @returns a promise that may be resolved with the given resolve and reject
+	     * functions, or rejected by a thrown exception in resolver
+	     */
+	    Q.Promise = promise; // ES6
+	    Q.promise = promise;
+	    function promise(resolver) {
+	        if (typeof resolver !== "function") {
+	            throw new TypeError("resolver must be a function.");
+	        }
+	        var deferred = defer();
+	        try {
+	            resolver(deferred.resolve, deferred.reject, deferred.notify);
+	        } catch (reason) {
+	            deferred.reject(reason);
+	        }
+	        return deferred.promise;
+	    }
+	
+	    promise.race = race; // ES6
+	    promise.all = all; // ES6
+	    promise.reject = reject; // ES6
+	    promise.resolve = Q; // ES6
+	
+	    // XXX experimental.  This method is a way to denote that a local value is
+	    // serializable and should be immediately dispatched to a remote upon request,
+	    // instead of passing a reference.
+	    Q.passByCopy = function (object) {
+	        //freeze(object);
+	        //passByCopies.set(object, true);
+	        return object;
+	    };
+	
+	    Promise.prototype.passByCopy = function () {
+	        //freeze(object);
+	        //passByCopies.set(object, true);
+	        return this;
+	    };
+	
+	    /**
+	     * If two promises eventually fulfill to the same value, promises that value,
+	     * but otherwise rejects.
+	     * @param x {Any*}
+	     * @param y {Any*}
+	     * @returns {Any*} a promise for x and y if they are the same, but a rejection
+	     * otherwise.
+	     *
+	     */
+	    Q.join = function (x, y) {
+	        return Q(x).join(y);
+	    };
+	
+	    Promise.prototype.join = function (that) {
+	        return Q([this, that]).spread(function (x, y) {
+	            if (x === y) {
+	                // TODO: "===" should be Object.is or equiv
+	                return x;
+	            } else {
+	                throw new Error("Can't join: not the same: " + x + " " + y);
+	            }
+	        });
+	    };
+	
+	    /**
+	     * Returns a promise for the first of an array of promises to become settled.
+	     * @param answers {Array[Any*]} promises to race
+	     * @returns {Any*} the first promise to be settled
+	     */
+	    Q.race = race;
+	    function race(answerPs) {
+	        return promise(function (resolve, reject) {
+	            // Switch to this once we can assume at least ES5
+	            // answerPs.forEach(function (answerP) {
+	            //     Q(answerP).then(resolve, reject);
+	            // });
+	            // Use this in the meantime
+	            for (var i = 0, len = answerPs.length; i < len; i++) {
+	                Q(answerPs[i]).then(resolve, reject);
+	            }
+	        });
+	    }
+	
+	    Promise.prototype.race = function () {
+	        return this.then(Q.race);
+	    };
+	
+	    /**
+	     * Constructs a Promise with a promise descriptor object and optional fallback
+	     * function.  The descriptor contains methods like when(rejected), get(name),
+	     * set(name, value), post(name, args), and delete(name), which all
+	     * return either a value, a promise for a value, or a rejection.  The fallback
+	     * accepts the operation name, a resolver, and any further arguments that would
+	     * have been forwarded to the appropriate method above had a method been
+	     * provided with the proper name.  The API makes no guarantees about the nature
+	     * of the returned object, apart from that it is usable whereever promises are
+	     * bought and sold.
+	     */
+	    Q.makePromise = Promise;
+	    function Promise(descriptor, fallback, inspect) {
+	        if (fallback === void 0) {
+	            fallback = function fallback(op) {
+	                return reject(new Error("Promise does not support operation: " + op));
+	            };
+	        }
+	        if (inspect === void 0) {
+	            inspect = function inspect() {
+	                return { state: "unknown" };
+	            };
+	        }
+	
+	        var promise = object_create(Promise.prototype);
+	
+	        promise.promiseDispatch = function (resolve, op, args) {
+	            var result;
+	            try {
+	                if (descriptor[op]) {
+	                    result = descriptor[op].apply(promise, args);
+	                } else {
+	                    result = fallback.call(promise, op, args);
+	                }
+	            } catch (exception) {
+	                result = reject(exception);
+	            }
+	            if (resolve) {
+	                resolve(result);
+	            }
+	        };
+	
+	        promise.inspect = inspect;
+	
+	        // XXX deprecated `valueOf` and `exception` support
+	        if (inspect) {
+	            var inspected = inspect();
+	            if (inspected.state === "rejected") {
+	                promise.exception = inspected.reason;
+	            }
+	
+	            promise.valueOf = function () {
+	                var inspected = inspect();
+	                if (inspected.state === "pending" || inspected.state === "rejected") {
+	                    return promise;
+	                }
+	                return inspected.value;
+	            };
+	        }
+	
+	        return promise;
+	    }
+	
+	    Promise.prototype.toString = function () {
+	        return "[object Promise]";
+	    };
+	
+	    Promise.prototype.then = function (fulfilled, rejected, progressed) {
+	        var self = this;
+	        var deferred = defer();
+	        var done = false; // ensure the untrusted promise makes at most a
+	        // single call to one of the callbacks
+	
+	        function _fulfilled(value) {
+	            try {
+	                return typeof fulfilled === "function" ? fulfilled(value) : value;
+	            } catch (exception) {
+	                return reject(exception);
+	            }
+	        }
+	
+	        function _rejected(exception) {
+	            if (typeof rejected === "function") {
+	                makeStackTraceLong(exception, self);
+	                try {
+	                    return rejected(exception);
+	                } catch (newException) {
+	                    return reject(newException);
+	                }
+	            }
+	            return reject(exception);
+	        }
+	
+	        function _progressed(value) {
+	            return typeof progressed === "function" ? progressed(value) : value;
+	        }
+	
+	        Q.nextTick(function () {
+	            self.promiseDispatch(function (value) {
+	                if (done) {
+	                    return;
+	                }
+	                done = true;
+	
+	                deferred.resolve(_fulfilled(value));
+	            }, "when", [function (exception) {
+	                if (done) {
+	                    return;
+	                }
+	                done = true;
+	
+	                deferred.resolve(_rejected(exception));
+	            }]);
+	        });
+	
+	        // Progress propagator need to be attached in the current tick.
+	        self.promiseDispatch(void 0, "when", [void 0, function (value) {
+	            var newValue;
+	            var threw = false;
+	            try {
+	                newValue = _progressed(value);
+	            } catch (e) {
+	                threw = true;
+	                if (Q.onerror) {
+	                    Q.onerror(e);
+	                } else {
+	                    throw e;
+	                }
+	            }
+	
+	            if (!threw) {
+	                deferred.notify(newValue);
+	            }
+	        }]);
+	
+	        return deferred.promise;
+	    };
+	
+	    Q.tap = function (promise, callback) {
+	        return Q(promise).tap(callback);
+	    };
+	
+	    /**
+	     * Works almost like "finally", but not called for rejections.
+	     * Original resolution value is passed through callback unaffected.
+	     * Callback may return a promise that will be awaited for.
+	     * @param {Function} callback
+	     * @returns {Q.Promise}
+	     * @example
+	     * doSomething()
+	     *   .then(...)
+	     *   .tap(console.log)
+	     *   .then(...);
+	     */
+	    Promise.prototype.tap = function (callback) {
+	        callback = Q(callback);
+	
+	        return this.then(function (value) {
+	            return callback.fcall(value).thenResolve(value);
+	        });
+	    };
+	
+	    /**
+	     * Registers an observer on a promise.
+	     *
+	     * Guarantees:
+	     *
+	     * 1. that fulfilled and rejected will be called only once.
+	     * 2. that either the fulfilled callback or the rejected callback will be
+	     *    called, but not both.
+	     * 3. that fulfilled and rejected will not be called in this turn.
+	     *
+	     * @param value      promise or immediate reference to observe
+	     * @param fulfilled  function to be called with the fulfilled value
+	     * @param rejected   function to be called with the rejection exception
+	     * @param progressed function to be called on any progress notifications
+	     * @return promise for the return value from the invoked callback
+	     */
+	    Q.when = when;
+	    function when(value, fulfilled, rejected, progressed) {
+	        return Q(value).then(fulfilled, rejected, progressed);
+	    }
+	
+	    Promise.prototype.thenResolve = function (value) {
+	        return this.then(function () {
+	            return value;
+	        });
+	    };
+	
+	    Q.thenResolve = function (promise, value) {
+	        return Q(promise).thenResolve(value);
+	    };
+	
+	    Promise.prototype.thenReject = function (reason) {
+	        return this.then(function () {
+	            throw reason;
+	        });
+	    };
+	
+	    Q.thenReject = function (promise, reason) {
+	        return Q(promise).thenReject(reason);
+	    };
+	
+	    /**
+	     * If an object is not a promise, it is as "near" as possible.
+	     * If a promise is rejected, it is as "near" as possible too.
+	     * If it’s a fulfilled promise, the fulfillment value is nearer.
+	     * If it’s a deferred promise and the deferred has been resolved, the
+	     * resolution is "nearer".
+	     * @param object
+	     * @returns most resolved (nearest) form of the object
+	     */
+	
+	    // XXX should we re-do this?
+	    Q.nearer = nearer;
+	    function nearer(value) {
+	        if (isPromise(value)) {
+	            var inspected = value.inspect();
+	            if (inspected.state === "fulfilled") {
+	                return inspected.value;
+	            }
+	        }
+	        return value;
+	    }
+	
+	    /**
+	     * @returns whether the given object is a promise.
+	     * Otherwise it is a fulfilled value.
+	     */
+	    Q.isPromise = isPromise;
+	    function isPromise(object) {
+	        return object instanceof Promise;
+	    }
+	
+	    Q.isPromiseAlike = isPromiseAlike;
+	    function isPromiseAlike(object) {
+	        return isObject(object) && typeof object.then === "function";
+	    }
+	
+	    /**
+	     * @returns whether the given object is a pending promise, meaning not
+	     * fulfilled or rejected.
+	     */
+	    Q.isPending = isPending;
+	    function isPending(object) {
+	        return isPromise(object) && object.inspect().state === "pending";
+	    }
+	
+	    Promise.prototype.isPending = function () {
+	        return this.inspect().state === "pending";
+	    };
+	
+	    /**
+	     * @returns whether the given object is a value or fulfilled
+	     * promise.
+	     */
+	    Q.isFulfilled = isFulfilled;
+	    function isFulfilled(object) {
+	        return !isPromise(object) || object.inspect().state === "fulfilled";
+	    }
+	
+	    Promise.prototype.isFulfilled = function () {
+	        return this.inspect().state === "fulfilled";
+	    };
+	
+	    /**
+	     * @returns whether the given object is a rejected promise.
+	     */
+	    Q.isRejected = isRejected;
+	    function isRejected(object) {
+	        return isPromise(object) && object.inspect().state === "rejected";
+	    }
+	
+	    Promise.prototype.isRejected = function () {
+	        return this.inspect().state === "rejected";
+	    };
+	
+	    //// BEGIN UNHANDLED REJECTION TRACKING
+	
+	    // This promise library consumes exceptions thrown in handlers so they can be
+	    // handled by a subsequent promise.  The exceptions get added to this array when
+	    // they are created, and removed when they are handled.  Note that in ES6 or
+	    // shimmed environments, this would naturally be a `Set`.
+	    var unhandledReasons = [];
+	    var unhandledRejections = [];
+	    var reportedUnhandledRejections = [];
+	    var trackUnhandledRejections = true;
+	
+	    function resetUnhandledRejections() {
+	        unhandledReasons.length = 0;
+	        unhandledRejections.length = 0;
+	
+	        if (!trackUnhandledRejections) {
+	            trackUnhandledRejections = true;
+	        }
+	    }
+	
+	    function trackRejection(promise, reason) {
+	        if (!trackUnhandledRejections) {
+	            return;
+	        }
+	        if ((typeof process === "undefined" ? "undefined" : _typeof(process)) === "object" && typeof process.emit === "function") {
+	            Q.nextTick.runAfter(function () {
+	                if (array_indexOf(unhandledRejections, promise) !== -1) {
+	                    process.emit("unhandledRejection", reason, promise);
+	                    reportedUnhandledRejections.push(promise);
+	                }
+	            });
+	        }
+	
+	        unhandledRejections.push(promise);
+	        if (reason && typeof reason.stack !== "undefined") {
+	            unhandledReasons.push(reason.stack);
+	        } else {
+	            unhandledReasons.push("(no stack) " + reason);
+	        }
+	    }
+	
+	    function untrackRejection(promise) {
+	        if (!trackUnhandledRejections) {
+	            return;
+	        }
+	
+	        var at = array_indexOf(unhandledRejections, promise);
+	        if (at !== -1) {
+	            if ((typeof process === "undefined" ? "undefined" : _typeof(process)) === "object" && typeof process.emit === "function") {
+	                Q.nextTick.runAfter(function () {
+	                    var atReport = array_indexOf(reportedUnhandledRejections, promise);
+	                    if (atReport !== -1) {
+	                        process.emit("rejectionHandled", unhandledReasons[at], promise);
+	                        reportedUnhandledRejections.splice(atReport, 1);
+	                    }
+	                });
+	            }
+	            unhandledRejections.splice(at, 1);
+	            unhandledReasons.splice(at, 1);
+	        }
+	    }
+	
+	    Q.resetUnhandledRejections = resetUnhandledRejections;
+	
+	    Q.getUnhandledReasons = function () {
+	        // Make a copy so that consumers can't interfere with our internal state.
+	        return unhandledReasons.slice();
+	    };
+	
+	    Q.stopUnhandledRejectionTracking = function () {
+	        resetUnhandledRejections();
+	        trackUnhandledRejections = false;
+	    };
+	
+	    resetUnhandledRejections();
+	
+	    //// END UNHANDLED REJECTION TRACKING
+	
+	    /**
+	     * Constructs a rejected promise.
+	     * @param reason value describing the failure
+	     */
+	    Q.reject = reject;
+	    function reject(reason) {
+	        var rejection = Promise({
+	            "when": function when(rejected) {
+	                // note that the error has been handled
+	                if (rejected) {
+	                    untrackRejection(this);
+	                }
+	                return rejected ? rejected(reason) : this;
+	            }
+	        }, function fallback() {
+	            return this;
+	        }, function inspect() {
+	            return { state: "rejected", reason: reason };
+	        });
+	
+	        // Note that the reason has not been handled.
+	        trackRejection(rejection, reason);
+	
+	        return rejection;
+	    }
+	
+	    /**
+	     * Constructs a fulfilled promise for an immediate reference.
+	     * @param value immediate reference
+	     */
+	    Q.fulfill = fulfill;
+	    function fulfill(value) {
+	        return Promise({
+	            "when": function when() {
+	                return value;
+	            },
+	            "get": function get(name) {
+	                return value[name];
+	            },
+	            "set": function set(name, rhs) {
+	                value[name] = rhs;
+	            },
+	            "delete": function _delete(name) {
+	                delete value[name];
+	            },
+	            "post": function post(name, args) {
+	                // Mark Miller proposes that post with no name should apply a
+	                // promised function.
+	                if (name === null || name === void 0) {
+	                    return value.apply(void 0, args);
+	                } else {
+	                    return value[name].apply(value, args);
+	                }
+	            },
+	            "apply": function apply(thisp, args) {
+	                return value.apply(thisp, args);
+	            },
+	            "keys": function keys() {
+	                return object_keys(value);
+	            }
+	        }, void 0, function inspect() {
+	            return { state: "fulfilled", value: value };
+	        });
+	    }
+	
+	    /**
+	     * Converts thenables to Q promises.
+	     * @param promise thenable promise
+	     * @returns a Q promise
+	     */
+	    function coerce(promise) {
+	        var deferred = defer();
+	        Q.nextTick(function () {
+	            try {
+	                promise.then(deferred.resolve, deferred.reject, deferred.notify);
+	            } catch (exception) {
+	                deferred.reject(exception);
+	            }
+	        });
+	        return deferred.promise;
+	    }
+	
+	    /**
+	     * Annotates an object such that it will never be
+	     * transferred away from this process over any promise
+	     * communication channel.
+	     * @param object
+	     * @returns promise a wrapping of that object that
+	     * additionally responds to the "isDef" message
+	     * without a rejection.
+	     */
+	    Q.master = master;
+	    function master(object) {
+	        return Promise({
+	            "isDef": function isDef() {}
+	        }, function fallback(op, args) {
+	            return dispatch(object, op, args);
+	        }, function () {
+	            return Q(object).inspect();
+	        });
+	    }
+	
+	    /**
+	     * Spreads the values of a promised array of arguments into the
+	     * fulfillment callback.
+	     * @param fulfilled callback that receives variadic arguments from the
+	     * promised array
+	     * @param rejected callback that receives the exception if the promise
+	     * is rejected.
+	     * @returns a promise for the return value or thrown exception of
+	     * either callback.
+	     */
+	    Q.spread = spread;
+	    function spread(value, fulfilled, rejected) {
+	        return Q(value).spread(fulfilled, rejected);
+	    }
+	
+	    Promise.prototype.spread = function (fulfilled, rejected) {
+	        return this.all().then(function (array) {
+	            return fulfilled.apply(void 0, array);
+	        }, rejected);
+	    };
+	
+	    /**
+	     * The async function is a decorator for generator functions, turning
+	     * them into asynchronous generators.  Although generators are only part
+	     * of the newest ECMAScript 6 drafts, this code does not cause syntax
+	     * errors in older engines.  This code should continue to work and will
+	     * in fact improve over time as the language improves.
+	     *
+	     * ES6 generators are currently part of V8 version 3.19 with the
+	     * --harmony-generators runtime flag enabled.  SpiderMonkey has had them
+	     * for longer, but under an older Python-inspired form.  This function
+	     * works on both kinds of generators.
+	     *
+	     * Decorates a generator function such that:
+	     *  - it may yield promises
+	     *  - execution will continue when that promise is fulfilled
+	     *  - the value of the yield expression will be the fulfilled value
+	     *  - it returns a promise for the return value (when the generator
+	     *    stops iterating)
+	     *  - the decorated function returns a promise for the return value
+	     *    of the generator or the first rejected promise among those
+	     *    yielded.
+	     *  - if an error is thrown in the generator, it propagates through
+	     *    every following yield until it is caught, or until it escapes
+	     *    the generator function altogether, and is translated into a
+	     *    rejection for the promise returned by the decorated generator.
+	     */
+	    Q.async = async;
+	    function async(makeGenerator) {
+	        return function () {
+	            // when verb is "send", arg is a value
+	            // when verb is "throw", arg is an exception
+	            function continuer(verb, arg) {
+	                var result;
+	
+	                // Until V8 3.19 / Chromium 29 is released, SpiderMonkey is the only
+	                // engine that has a deployed base of browsers that support generators.
+	                // However, SM's generators use the Python-inspired semantics of
+	                // outdated ES6 drafts.  We would like to support ES6, but we'd also
+	                // like to make it possible to use generators in deployed browsers, so
+	                // we also support Python-style generators.  At some point we can remove
+	                // this block.
+	
+	                if (typeof StopIteration === "undefined") {
+	                    // ES6 Generators
+	                    try {
+	                        result = generator[verb](arg);
+	                    } catch (exception) {
+	                        return reject(exception);
+	                    }
+	                    if (result.done) {
+	                        return Q(result.value);
+	                    } else {
+	                        return when(result.value, callback, errback);
+	                    }
+	                } else {
+	                    // SpiderMonkey Generators
+	                    // FIXME: Remove this case when SM does ES6 generators.
+	                    try {
+	                        result = generator[verb](arg);
+	                    } catch (exception) {
+	                        if (isStopIteration(exception)) {
+	                            return Q(exception.value);
+	                        } else {
+	                            return reject(exception);
+	                        }
+	                    }
+	                    return when(result, callback, errback);
+	                }
+	            }
+	            var generator = makeGenerator.apply(this, arguments);
+	            var callback = continuer.bind(continuer, "next");
+	            var errback = continuer.bind(continuer, "throw");
+	            return callback();
+	        };
+	    }
+	
+	    /**
+	     * The spawn function is a small wrapper around async that immediately
+	     * calls the generator and also ends the promise chain, so that any
+	     * unhandled errors are thrown instead of forwarded to the error
+	     * handler. This is useful because it's extremely common to run
+	     * generators at the top-level to work with libraries.
+	     */
+	    Q.spawn = spawn;
+	    function spawn(makeGenerator) {
+	        Q.done(Q.async(makeGenerator)());
+	    }
+	
+	    // FIXME: Remove this interface once ES6 generators are in SpiderMonkey.
+	    /**
+	     * Throws a ReturnValue exception to stop an asynchronous generator.
+	     *
+	     * This interface is a stop-gap measure to support generator return
+	     * values in older Firefox/SpiderMonkey.  In browsers that support ES6
+	     * generators like Chromium 29, just use "return" in your generator
+	     * functions.
+	     *
+	     * @param value the return value for the surrounding generator
+	     * @throws ReturnValue exception with the value.
+	     * @example
+	     * // ES6 style
+	     * Q.async(function* () {
+	     *      var foo = yield getFooPromise();
+	     *      var bar = yield getBarPromise();
+	     *      return foo + bar;
+	     * })
+	     * // Older SpiderMonkey style
+	     * Q.async(function () {
+	     *      var foo = yield getFooPromise();
+	     *      var bar = yield getBarPromise();
+	     *      Q.return(foo + bar);
+	     * })
+	     */
+	    Q["return"] = _return;
+	    function _return(value) {
+	        throw new QReturnValue(value);
+	    }
+	
+	    /**
+	     * The promised function decorator ensures that any promise arguments
+	     * are settled and passed as values (`this` is also settled and passed
+	     * as a value).  It will also ensure that the result of a function is
+	     * always a promise.
+	     *
+	     * @example
+	     * var add = Q.promised(function (a, b) {
+	     *     return a + b;
+	     * });
+	     * add(Q(a), Q(B));
+	     *
+	     * @param {function} callback The function to decorate
+	     * @returns {function} a function that has been decorated.
+	     */
+	    Q.promised = promised;
+	    function promised(callback) {
+	        return function () {
+	            return spread([this, all(arguments)], function (self, args) {
+	                return callback.apply(self, args);
+	            });
+	        };
+	    }
+	
+	    /**
+	     * sends a message to a value in a future turn
+	     * @param object* the recipient
+	     * @param op the name of the message operation, e.g., "when",
+	     * @param args further arguments to be forwarded to the operation
+	     * @returns result {Promise} a promise for the result of the operation
+	     */
+	    Q.dispatch = dispatch;
+	    function dispatch(object, op, args) {
+	        return Q(object).dispatch(op, args);
+	    }
+	
+	    Promise.prototype.dispatch = function (op, args) {
+	        var self = this;
+	        var deferred = defer();
+	        Q.nextTick(function () {
+	            self.promiseDispatch(deferred.resolve, op, args);
+	        });
+	        return deferred.promise;
+	    };
+	
+	    /**
+	     * Gets the value of a property in a future turn.
+	     * @param object    promise or immediate reference for target object
+	     * @param name      name of property to get
+	     * @return promise for the property value
+	     */
+	    Q.get = function (object, key) {
+	        return Q(object).dispatch("get", [key]);
+	    };
+	
+	    Promise.prototype.get = function (key) {
+	        return this.dispatch("get", [key]);
+	    };
+	
+	    /**
+	     * Sets the value of a property in a future turn.
+	     * @param object    promise or immediate reference for object object
+	     * @param name      name of property to set
+	     * @param value     new value of property
+	     * @return promise for the return value
+	     */
+	    Q.set = function (object, key, value) {
+	        return Q(object).dispatch("set", [key, value]);
+	    };
+	
+	    Promise.prototype.set = function (key, value) {
+	        return this.dispatch("set", [key, value]);
+	    };
+	
+	    /**
+	     * Deletes a property in a future turn.
+	     * @param object    promise or immediate reference for target object
+	     * @param name      name of property to delete
+	     * @return promise for the return value
+	     */
+	    Q.del = // XXX legacy
+	    Q["delete"] = function (object, key) {
+	        return Q(object).dispatch("delete", [key]);
+	    };
+	
+	    Promise.prototype.del = // XXX legacy
+	    Promise.prototype["delete"] = function (key) {
+	        return this.dispatch("delete", [key]);
+	    };
+	
+	    /**
+	     * Invokes a method in a future turn.
+	     * @param object    promise or immediate reference for target object
+	     * @param name      name of method to invoke
+	     * @param value     a value to post, typically an array of
+	     *                  invocation arguments for promises that
+	     *                  are ultimately backed with `resolve` values,
+	     *                  as opposed to those backed with URLs
+	     *                  wherein the posted value can be any
+	     *                  JSON serializable object.
+	     * @return promise for the return value
+	     */
+	    // bound locally because it is used by other methods
+	    Q.mapply = // XXX As proposed by "Redsandro"
+	    Q.post = function (object, name, args) {
+	        return Q(object).dispatch("post", [name, args]);
+	    };
+	
+	    Promise.prototype.mapply = // XXX As proposed by "Redsandro"
+	    Promise.prototype.post = function (name, args) {
+	        return this.dispatch("post", [name, args]);
+	    };
+	
+	    /**
+	     * Invokes a method in a future turn.
+	     * @param object    promise or immediate reference for target object
+	     * @param name      name of method to invoke
+	     * @param ...args   array of invocation arguments
+	     * @return promise for the return value
+	     */
+	    Q.send = // XXX Mark Miller's proposed parlance
+	    Q.mcall = // XXX As proposed by "Redsandro"
+	    Q.invoke = function (object, name /*...args*/) {
+	        return Q(object).dispatch("post", [name, array_slice(arguments, 2)]);
+	    };
+	
+	    Promise.prototype.send = // XXX Mark Miller's proposed parlance
+	    Promise.prototype.mcall = // XXX As proposed by "Redsandro"
+	    Promise.prototype.invoke = function (name /*...args*/) {
+	        return this.dispatch("post", [name, array_slice(arguments, 1)]);
+	    };
+	
+	    /**
+	     * Applies the promised function in a future turn.
+	     * @param object    promise or immediate reference for target function
+	     * @param args      array of application arguments
+	     */
+	    Q.fapply = function (object, args) {
+	        return Q(object).dispatch("apply", [void 0, args]);
+	    };
+	
+	    Promise.prototype.fapply = function (args) {
+	        return this.dispatch("apply", [void 0, args]);
+	    };
+	
+	    /**
+	     * Calls the promised function in a future turn.
+	     * @param object    promise or immediate reference for target function
+	     * @param ...args   array of application arguments
+	     */
+	    Q["try"] = Q.fcall = function (object /* ...args*/) {
+	        return Q(object).dispatch("apply", [void 0, array_slice(arguments, 1)]);
+	    };
+	
+	    Promise.prototype.fcall = function () /*...args*/{
+	        return this.dispatch("apply", [void 0, array_slice(arguments)]);
+	    };
+	
+	    /**
+	     * Binds the promised function, transforming return values into a fulfilled
+	     * promise and thrown errors into a rejected one.
+	     * @param object    promise or immediate reference for target function
+	     * @param ...args   array of application arguments
+	     */
+	    Q.fbind = function (object /*...args*/) {
+	        var promise = Q(object);
+	        var args = array_slice(arguments, 1);
+	        return function fbound() {
+	            return promise.dispatch("apply", [this, args.concat(array_slice(arguments))]);
+	        };
+	    };
+	    Promise.prototype.fbind = function () /*...args*/{
+	        var promise = this;
+	        var args = array_slice(arguments);
+	        return function fbound() {
+	            return promise.dispatch("apply", [this, args.concat(array_slice(arguments))]);
+	        };
+	    };
+	
+	    /**
+	     * Requests the names of the owned properties of a promised
+	     * object in a future turn.
+	     * @param object    promise or immediate reference for target object
+	     * @return promise for the keys of the eventually settled object
+	     */
+	    Q.keys = function (object) {
+	        return Q(object).dispatch("keys", []);
+	    };
+	
+	    Promise.prototype.keys = function () {
+	        return this.dispatch("keys", []);
+	    };
+	
+	    /**
+	     * Turns an array of promises into a promise for an array.  If any of
+	     * the promises gets rejected, the whole array is rejected immediately.
+	     * @param {Array*} an array (or promise for an array) of values (or
+	     * promises for values)
+	     * @returns a promise for an array of the corresponding values
+	     */
+	    // By Mark Miller
+	    // http://wiki.ecmascript.org/doku.php?id=strawman:concurrency&rev=1308776521#allfulfilled
+	    Q.all = all;
+	    function all(promises) {
+	        return when(promises, function (promises) {
+	            var pendingCount = 0;
+	            var deferred = defer();
+	            array_reduce(promises, function (undefined, promise, index) {
+	                var snapshot;
+	                if (isPromise(promise) && (snapshot = promise.inspect()).state === "fulfilled") {
+	                    promises[index] = snapshot.value;
+	                } else {
+	                    ++pendingCount;
+	                    when(promise, function (value) {
+	                        promises[index] = value;
+	                        if (--pendingCount === 0) {
+	                            deferred.resolve(promises);
+	                        }
+	                    }, deferred.reject, function (progress) {
+	                        deferred.notify({ index: index, value: progress });
+	                    });
+	                }
+	            }, void 0);
+	            if (pendingCount === 0) {
+	                deferred.resolve(promises);
+	            }
+	            return deferred.promise;
+	        });
+	    }
+	
+	    Promise.prototype.all = function () {
+	        return all(this);
+	    };
+	
+	    /**
+	     * Returns the first resolved promise of an array. Prior rejected promises are
+	     * ignored.  Rejects only if all promises are rejected.
+	     * @param {Array*} an array containing values or promises for values
+	     * @returns a promise fulfilled with the value of the first resolved promise,
+	     * or a rejected promise if all promises are rejected.
+	     */
+	    Q.any = any;
+	
+	    function any(promises) {
+	        if (promises.length === 0) {
+	            return Q.resolve();
+	        }
+	
+	        var deferred = Q.defer();
+	        var pendingCount = 0;
+	        array_reduce(promises, function (prev, current, index) {
+	            var promise = promises[index];
+	
+	            pendingCount++;
+	
+	            when(promise, onFulfilled, onRejected, onProgress);
+	            function onFulfilled(result) {
+	                deferred.resolve(result);
+	            }
+	            function onRejected() {
+	                pendingCount--;
+	                if (pendingCount === 0) {
+	                    deferred.reject(new Error("Can't get fulfillment value from any promise, all " + "promises were rejected."));
+	                }
+	            }
+	            function onProgress(progress) {
+	                deferred.notify({
+	                    index: index,
+	                    value: progress
+	                });
+	            }
+	        }, undefined);
+	
+	        return deferred.promise;
+	    }
+	
+	    Promise.prototype.any = function () {
+	        return any(this);
+	    };
+	
+	    /**
+	     * Waits for all promises to be settled, either fulfilled or
+	     * rejected.  This is distinct from `all` since that would stop
+	     * waiting at the first rejection.  The promise returned by
+	     * `allResolved` will never be rejected.
+	     * @param promises a promise for an array (or an array) of promises
+	     * (or values)
+	     * @return a promise for an array of promises
+	     */
+	    Q.allResolved = deprecate(allResolved, "allResolved", "allSettled");
+	    function allResolved(promises) {
+	        return when(promises, function (promises) {
+	            promises = array_map(promises, Q);
+	            return when(all(array_map(promises, function (promise) {
+	                return when(promise, noop, noop);
+	            })), function () {
+	                return promises;
+	            });
+	        });
+	    }
+	
+	    Promise.prototype.allResolved = function () {
+	        return allResolved(this);
+	    };
+	
+	    /**
+	     * @see Promise#allSettled
+	     */
+	    Q.allSettled = allSettled;
+	    function allSettled(promises) {
+	        return Q(promises).allSettled();
+	    }
+	
+	    /**
+	     * Turns an array of promises into a promise for an array of their states (as
+	     * returned by `inspect`) when they have all settled.
+	     * @param {Array[Any*]} values an array (or promise for an array) of values (or
+	     * promises for values)
+	     * @returns {Array[State]} an array of states for the respective values.
+	     */
+	    Promise.prototype.allSettled = function () {
+	        return this.then(function (promises) {
+	            return all(array_map(promises, function (promise) {
+	                promise = Q(promise);
+	                function regardless() {
+	                    return promise.inspect();
+	                }
+	                return promise.then(regardless, regardless);
+	            }));
+	        });
+	    };
+	
+	    /**
+	     * Captures the failure of a promise, giving an oportunity to recover
+	     * with a callback.  If the given promise is fulfilled, the returned
+	     * promise is fulfilled.
+	     * @param {Any*} promise for something
+	     * @param {Function} callback to fulfill the returned promise if the
+	     * given promise is rejected
+	     * @returns a promise for the return value of the callback
+	     */
+	    Q.fail = // XXX legacy
+	    Q["catch"] = function (object, rejected) {
+	        return Q(object).then(void 0, rejected);
+	    };
+	
+	    Promise.prototype.fail = // XXX legacy
+	    Promise.prototype["catch"] = function (rejected) {
+	        return this.then(void 0, rejected);
+	    };
+	
+	    /**
+	     * Attaches a listener that can respond to progress notifications from a
+	     * promise's originating deferred. This listener receives the exact arguments
+	     * passed to ``deferred.notify``.
+	     * @param {Any*} promise for something
+	     * @param {Function} callback to receive any progress notifications
+	     * @returns the given promise, unchanged
+	     */
+	    Q.progress = progress;
+	    function progress(object, progressed) {
+	        return Q(object).then(void 0, void 0, progressed);
+	    }
+	
+	    Promise.prototype.progress = function (progressed) {
+	        return this.then(void 0, void 0, progressed);
+	    };
+	
+	    /**
+	     * Provides an opportunity to observe the settling of a promise,
+	     * regardless of whether the promise is fulfilled or rejected.  Forwards
+	     * the resolution to the returned promise when the callback is done.
+	     * The callback can return a promise to defer completion.
+	     * @param {Any*} promise
+	     * @param {Function} callback to observe the resolution of the given
+	     * promise, takes no arguments.
+	     * @returns a promise for the resolution of the given promise when
+	     * ``fin`` is done.
+	     */
+	    Q.fin = // XXX legacy
+	    Q["finally"] = function (object, callback) {
+	        return Q(object)["finally"](callback);
+	    };
+	
+	    Promise.prototype.fin = // XXX legacy
+	    Promise.prototype["finally"] = function (callback) {
+	        callback = Q(callback);
+	        return this.then(function (value) {
+	            return callback.fcall().then(function () {
+	                return value;
+	            });
+	        }, function (reason) {
+	            // TODO attempt to recycle the rejection with "this".
+	            return callback.fcall().then(function () {
+	                throw reason;
+	            });
+	        });
+	    };
+	
+	    /**
+	     * Terminates a chain of promises, forcing rejections to be
+	     * thrown as exceptions.
+	     * @param {Any*} promise at the end of a chain of promises
+	     * @returns nothing
+	     */
+	    Q.done = function (object, fulfilled, rejected, progress) {
+	        return Q(object).done(fulfilled, rejected, progress);
+	    };
+	
+	    Promise.prototype.done = function (fulfilled, rejected, progress) {
+	        var onUnhandledError = function onUnhandledError(error) {
+	            // forward to a future turn so that ``when``
+	            // does not catch it and turn it into a rejection.
+	            Q.nextTick(function () {
+	                makeStackTraceLong(error, promise);
+	                if (Q.onerror) {
+	                    Q.onerror(error);
+	                } else {
+	                    throw error;
+	                }
+	            });
+	        };
+	
+	        // Avoid unnecessary `nextTick`ing via an unnecessary `when`.
+	        var promise = fulfilled || rejected || progress ? this.then(fulfilled, rejected, progress) : this;
+	
+	        if ((typeof process === "undefined" ? "undefined" : _typeof(process)) === "object" && process && process.domain) {
+	            onUnhandledError = process.domain.bind(onUnhandledError);
+	        }
+	
+	        promise.then(void 0, onUnhandledError);
+	    };
+	
+	    /**
+	     * Causes a promise to be rejected if it does not get fulfilled before
+	     * some milliseconds time out.
+	     * @param {Any*} promise
+	     * @param {Number} milliseconds timeout
+	     * @param {Any*} custom error message or Error object (optional)
+	     * @returns a promise for the resolution of the given promise if it is
+	     * fulfilled before the timeout, otherwise rejected.
+	     */
+	    Q.timeout = function (object, ms, error) {
+	        return Q(object).timeout(ms, error);
+	    };
+	
+	    Promise.prototype.timeout = function (ms, error) {
+	        var deferred = defer();
+	        var timeoutId = setTimeout(function () {
+	            if (!error || "string" === typeof error) {
+	                error = new Error(error || "Timed out after " + ms + " ms");
+	                error.code = "ETIMEDOUT";
+	            }
+	            deferred.reject(error);
+	        }, ms);
+	
+	        this.then(function (value) {
+	            clearTimeout(timeoutId);
+	            deferred.resolve(value);
+	        }, function (exception) {
+	            clearTimeout(timeoutId);
+	            deferred.reject(exception);
+	        }, deferred.notify);
+	
+	        return deferred.promise;
+	    };
+	
+	    /**
+	     * Returns a promise for the given value (or promised value), some
+	     * milliseconds after it resolved. Passes rejections immediately.
+	     * @param {Any*} promise
+	     * @param {Number} milliseconds
+	     * @returns a promise for the resolution of the given promise after milliseconds
+	     * time has elapsed since the resolution of the given promise.
+	     * If the given promise rejects, that is passed immediately.
+	     */
+	    Q.delay = function (object, timeout) {
+	        if (timeout === void 0) {
+	            timeout = object;
+	            object = void 0;
+	        }
+	        return Q(object).delay(timeout);
+	    };
+	
+	    Promise.prototype.delay = function (timeout) {
+	        return this.then(function (value) {
+	            var deferred = defer();
+	            setTimeout(function () {
+	                deferred.resolve(value);
+	            }, timeout);
+	            return deferred.promise;
+	        });
+	    };
+	
+	    /**
+	     * Passes a continuation to a Node function, which is called with the given
+	     * arguments provided as an array, and returns a promise.
+	     *
+	     *      Q.nfapply(FS.readFile, [__filename])
+	     *      .then(function (content) {
+	     *      })
+	     *
+	     */
+	    Q.nfapply = function (callback, args) {
+	        return Q(callback).nfapply(args);
+	    };
+	
+	    Promise.prototype.nfapply = function (args) {
+	        var deferred = defer();
+	        var nodeArgs = array_slice(args);
+	        nodeArgs.push(deferred.makeNodeResolver());
+	        this.fapply(nodeArgs).fail(deferred.reject);
+	        return deferred.promise;
+	    };
+	
+	    /**
+	     * Passes a continuation to a Node function, which is called with the given
+	     * arguments provided individually, and returns a promise.
+	     * @example
+	     * Q.nfcall(FS.readFile, __filename)
+	     * .then(function (content) {
+	     * })
+	     *
+	     */
+	    Q.nfcall = function (callback /*...args*/) {
+	        var args = array_slice(arguments, 1);
+	        return Q(callback).nfapply(args);
+	    };
+	
+	    Promise.prototype.nfcall = function () /*...args*/{
+	        var nodeArgs = array_slice(arguments);
+	        var deferred = defer();
+	        nodeArgs.push(deferred.makeNodeResolver());
+	        this.fapply(nodeArgs).fail(deferred.reject);
+	        return deferred.promise;
+	    };
+	
+	    /**
+	     * Wraps a NodeJS continuation passing function and returns an equivalent
+	     * version that returns a promise.
+	     * @example
+	     * Q.nfbind(FS.readFile, __filename)("utf-8")
+	     * .then(console.log)
+	     * .done()
+	     */
+	    Q.nfbind = Q.denodeify = function (callback /*...args*/) {
+	        var baseArgs = array_slice(arguments, 1);
+	        return function () {
+	            var nodeArgs = baseArgs.concat(array_slice(arguments));
+	            var deferred = defer();
+	            nodeArgs.push(deferred.makeNodeResolver());
+	            Q(callback).fapply(nodeArgs).fail(deferred.reject);
+	            return deferred.promise;
+	        };
+	    };
+	
+	    Promise.prototype.nfbind = Promise.prototype.denodeify = function () /*...args*/{
+	        var args = array_slice(arguments);
+	        args.unshift(this);
+	        return Q.denodeify.apply(void 0, args);
+	    };
+	
+	    Q.nbind = function (callback, thisp /*...args*/) {
+	        var baseArgs = array_slice(arguments, 2);
+	        return function () {
+	            var nodeArgs = baseArgs.concat(array_slice(arguments));
+	            var deferred = defer();
+	            nodeArgs.push(deferred.makeNodeResolver());
+	            function bound() {
+	                return callback.apply(thisp, arguments);
+	            }
+	            Q(bound).fapply(nodeArgs).fail(deferred.reject);
+	            return deferred.promise;
+	        };
+	    };
+	
+	    Promise.prototype.nbind = function () /*thisp, ...args*/{
+	        var args = array_slice(arguments, 0);
+	        args.unshift(this);
+	        return Q.nbind.apply(void 0, args);
+	    };
+	
+	    /**
+	     * Calls a method of a Node-style object that accepts a Node-style
+	     * callback with a given array of arguments, plus a provided callback.
+	     * @param object an object that has the named method
+	     * @param {String} name name of the method of object
+	     * @param {Array} args arguments to pass to the method; the callback
+	     * will be provided by Q and appended to these arguments.
+	     * @returns a promise for the value or error
+	     */
+	    Q.nmapply = // XXX As proposed by "Redsandro"
+	    Q.npost = function (object, name, args) {
+	        return Q(object).npost(name, args);
+	    };
+	
+	    Promise.prototype.nmapply = // XXX As proposed by "Redsandro"
+	    Promise.prototype.npost = function (name, args) {
+	        var nodeArgs = array_slice(args || []);
+	        var deferred = defer();
+	        nodeArgs.push(deferred.makeNodeResolver());
+	        this.dispatch("post", [name, nodeArgs]).fail(deferred.reject);
+	        return deferred.promise;
+	    };
+	
+	    /**
+	     * Calls a method of a Node-style object that accepts a Node-style
+	     * callback, forwarding the given variadic arguments, plus a provided
+	     * callback argument.
+	     * @param object an object that has the named method
+	     * @param {String} name name of the method of object
+	     * @param ...args arguments to pass to the method; the callback will
+	     * be provided by Q and appended to these arguments.
+	     * @returns a promise for the value or error
+	     */
+	    Q.nsend = // XXX Based on Mark Miller's proposed "send"
+	    Q.nmcall = // XXX Based on "Redsandro's" proposal
+	    Q.ninvoke = function (object, name /*...args*/) {
+	        var nodeArgs = array_slice(arguments, 2);
+	        var deferred = defer();
+	        nodeArgs.push(deferred.makeNodeResolver());
+	        Q(object).dispatch("post", [name, nodeArgs]).fail(deferred.reject);
+	        return deferred.promise;
+	    };
+	
+	    Promise.prototype.nsend = // XXX Based on Mark Miller's proposed "send"
+	    Promise.prototype.nmcall = // XXX Based on "Redsandro's" proposal
+	    Promise.prototype.ninvoke = function (name /*...args*/) {
+	        var nodeArgs = array_slice(arguments, 1);
+	        var deferred = defer();
+	        nodeArgs.push(deferred.makeNodeResolver());
+	        this.dispatch("post", [name, nodeArgs]).fail(deferred.reject);
+	        return deferred.promise;
+	    };
+	
+	    /**
+	     * If a function would like to support both Node continuation-passing-style and
+	     * promise-returning-style, it can end its internal promise chain with
+	     * `nodeify(nodeback)`, forwarding the optional nodeback argument.  If the user
+	     * elects to use a nodeback, the result will be sent there.  If they do not
+	     * pass a nodeback, they will receive the result promise.
+	     * @param object a result (or a promise for a result)
+	     * @param {Function} nodeback a Node.js-style callback
+	     * @returns either the promise or nothing
+	     */
+	    Q.nodeify = nodeify;
+	    function nodeify(object, nodeback) {
+	        return Q(object).nodeify(nodeback);
+	    }
+	
+	    Promise.prototype.nodeify = function (nodeback) {
+	        if (nodeback) {
+	            this.then(function (value) {
+	                Q.nextTick(function () {
+	                    nodeback(null, value);
+	                });
+	            }, function (error) {
+	                Q.nextTick(function () {
+	                    nodeback(error);
+	                });
+	            });
+	        } else {
+	            return this;
+	        }
+	    };
+	
+	    Q.noConflict = function () {
+	        throw new Error("Q.noConflict only works when Q is used as a global");
+	    };
+	
+	    // All code before this point will be filtered from stack traces.
+	    var qEndingLine = captureLine();
+	
+	    return Q;
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 37), __webpack_require__(/*! ./../timers-browserify/main.js */ 38).setImmediate, __webpack_require__(/*! ./../webpack/buildin/module.js */ 4)(module)))
+
+/***/ },
+/* 37 */
+/*!******************************!*\
+  !*** ./~/process/browser.js ***!
+  \******************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	// shim for using process in browser
+	var process = module.exports = {};
+	
+	// cached from whatever global is present so that test runners that stub it
+	// don't break things.  But we need to wrap it in a try catch in case it is
+	// wrapped in strict mode code which doesn't define any globals.  It's inside a
+	// function because try/catches deoptimize in certain engines.
+	
+	var cachedSetTimeout;
+	var cachedClearTimeout;
+	
+	function defaultSetTimout() {
+	    throw new Error('setTimeout has not been defined');
+	}
+	function defaultClearTimeout() {
+	    throw new Error('clearTimeout has not been defined');
+	}
+	(function () {
+	    try {
+	        if (typeof setTimeout === 'function') {
+	            cachedSetTimeout = setTimeout;
+	        } else {
+	            cachedSetTimeout = defaultSetTimout;
+	        }
+	    } catch (e) {
+	        cachedSetTimeout = defaultSetTimout;
+	    }
+	    try {
+	        if (typeof clearTimeout === 'function') {
+	            cachedClearTimeout = clearTimeout;
+	        } else {
+	            cachedClearTimeout = defaultClearTimeout;
+	        }
+	    } catch (e) {
+	        cachedClearTimeout = defaultClearTimeout;
+	    }
+	})();
+	function runTimeout(fun) {
+	    if (cachedSetTimeout === setTimeout) {
+	        //normal enviroments in sane situations
+	        return setTimeout(fun, 0);
+	    }
+	    // if setTimeout wasn't available but was latter defined
+	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+	        cachedSetTimeout = setTimeout;
+	        return setTimeout(fun, 0);
+	    }
+	    try {
+	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        return cachedSetTimeout(fun, 0);
+	    } catch (e) {
+	        try {
+	            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+	            return cachedSetTimeout.call(null, fun, 0);
+	        } catch (e) {
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+	            return cachedSetTimeout.call(this, fun, 0);
+	        }
+	    }
+	}
+	function runClearTimeout(marker) {
+	    if (cachedClearTimeout === clearTimeout) {
+	        //normal enviroments in sane situations
+	        return clearTimeout(marker);
+	    }
+	    // if clearTimeout wasn't available but was latter defined
+	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+	        cachedClearTimeout = clearTimeout;
+	        return clearTimeout(marker);
+	    }
+	    try {
+	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        return cachedClearTimeout(marker);
+	    } catch (e) {
+	        try {
+	            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+	            return cachedClearTimeout.call(null, marker);
+	        } catch (e) {
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+	            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+	            return cachedClearTimeout.call(this, marker);
+	        }
+	    }
+	}
+	var queue = [];
+	var draining = false;
+	var currentQueue;
+	var queueIndex = -1;
+	
+	function cleanUpNextTick() {
+	    if (!draining || !currentQueue) {
+	        return;
+	    }
+	    draining = false;
+	    if (currentQueue.length) {
+	        queue = currentQueue.concat(queue);
+	    } else {
+	        queueIndex = -1;
+	    }
+	    if (queue.length) {
+	        drainQueue();
+	    }
+	}
+	
+	function drainQueue() {
+	    if (draining) {
+	        return;
+	    }
+	    var timeout = runTimeout(cleanUpNextTick);
+	    draining = true;
+	
+	    var len = queue.length;
+	    while (len) {
+	        currentQueue = queue;
+	        queue = [];
+	        while (++queueIndex < len) {
+	            if (currentQueue) {
+	                currentQueue[queueIndex].run();
+	            }
+	        }
+	        queueIndex = -1;
+	        len = queue.length;
+	    }
+	    currentQueue = null;
+	    draining = false;
+	    runClearTimeout(timeout);
+	}
+	
+	process.nextTick = function (fun) {
+	    var args = new Array(arguments.length - 1);
+	    if (arguments.length > 1) {
+	        for (var i = 1; i < arguments.length; i++) {
+	            args[i - 1] = arguments[i];
+	        }
+	    }
+	    queue.push(new Item(fun, args));
+	    if (queue.length === 1 && !draining) {
+	        runTimeout(drainQueue);
+	    }
+	};
+	
+	// v8 likes predictible objects
+	function Item(fun, array) {
+	    this.fun = fun;
+	    this.array = array;
+	}
+	Item.prototype.run = function () {
+	    this.fun.apply(null, this.array);
+	};
+	process.title = 'browser';
+	process.browser = true;
+	process.env = {};
+	process.argv = [];
+	process.version = ''; // empty string to avoid regexp issues
+	process.versions = {};
+	
+	function noop() {}
+	
+	process.on = noop;
+	process.addListener = noop;
+	process.once = noop;
+	process.off = noop;
+	process.removeListener = noop;
+	process.removeAllListeners = noop;
+	process.emit = noop;
+	
+	process.binding = function (name) {
+	    throw new Error('process.binding is not supported');
+	};
+	
+	process.cwd = function () {
+	    return '/';
+	};
+	process.chdir = function (dir) {
+	    throw new Error('process.chdir is not supported');
+	};
+	process.umask = function () {
+	    return 0;
+	};
+
+/***/ },
+/* 38 */
+/*!*************************************!*\
+  !*** ./~/timers-browserify/main.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var apply = Function.prototype.apply;
+	
+	// DOM APIs, for completeness
+	
+	exports.setTimeout = function () {
+	  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
+	};
+	exports.setInterval = function () {
+	  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
+	};
+	exports.clearTimeout = exports.clearInterval = function (timeout) {
+	  if (timeout) {
+	    timeout.close();
+	  }
+	};
+	
+	function Timeout(id, clearFn) {
+	  this._id = id;
+	  this._clearFn = clearFn;
+	}
+	Timeout.prototype.unref = Timeout.prototype.ref = function () {};
+	Timeout.prototype.close = function () {
+	  this._clearFn.call(window, this._id);
+	};
+	
+	// Does not start the time, just sets up the members needed.
+	exports.enroll = function (item, msecs) {
+	  clearTimeout(item._idleTimeoutId);
+	  item._idleTimeout = msecs;
+	};
+	
+	exports.unenroll = function (item) {
+	  clearTimeout(item._idleTimeoutId);
+	  item._idleTimeout = -1;
+	};
+	
+	exports._unrefActive = exports.active = function (item) {
+	  clearTimeout(item._idleTimeoutId);
+	
+	  var msecs = item._idleTimeout;
+	  if (msecs >= 0) {
+	    item._idleTimeoutId = setTimeout(function onTimeout() {
+	      if (item._onTimeout) item._onTimeout();
+	    }, msecs);
+	  }
+	};
+	
+	// setimmediate attaches itself to the global object
+	__webpack_require__(/*! setimmediate */ 39);
+	exports.setImmediate = setImmediate;
+	exports.clearImmediate = clearImmediate;
+
+/***/ },
+/* 39 */
+/*!****************************************!*\
+  !*** ./~/setimmediate/setImmediate.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global, process) {"use strict";
+	
+	(function (global, undefined) {
+	    "use strict";
+	
+	    if (global.setImmediate) {
+	        return;
+	    }
+	
+	    var nextHandle = 1; // Spec says greater than zero
+	    var tasksByHandle = {};
+	    var currentlyRunningATask = false;
+	    var doc = global.document;
+	    var registerImmediate;
+	
+	    function setImmediate(callback) {
+	        // Callback can either be a function or a string
+	        if (typeof callback !== "function") {
+	            callback = new Function("" + callback);
+	        }
+	        // Copy function arguments
+	        var args = new Array(arguments.length - 1);
+	        for (var i = 0; i < args.length; i++) {
+	            args[i] = arguments[i + 1];
+	        }
+	        // Store and register the task
+	        var task = { callback: callback, args: args };
+	        tasksByHandle[nextHandle] = task;
+	        registerImmediate(nextHandle);
+	        return nextHandle++;
+	    }
+	
+	    function clearImmediate(handle) {
+	        delete tasksByHandle[handle];
+	    }
+	
+	    function run(task) {
+	        var callback = task.callback;
+	        var args = task.args;
+	        switch (args.length) {
+	            case 0:
+	                callback();
+	                break;
+	            case 1:
+	                callback(args[0]);
+	                break;
+	            case 2:
+	                callback(args[0], args[1]);
+	                break;
+	            case 3:
+	                callback(args[0], args[1], args[2]);
+	                break;
+	            default:
+	                callback.apply(undefined, args);
+	                break;
+	        }
+	    }
+	
+	    function runIfPresent(handle) {
+	        // From the spec: "Wait until any invocations of this algorithm started before this one have completed."
+	        // So if we're currently running a task, we'll need to delay this invocation.
+	        if (currentlyRunningATask) {
+	            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
+	            // "too much recursion" error.
+	            setTimeout(runIfPresent, 0, handle);
+	        } else {
+	            var task = tasksByHandle[handle];
+	            if (task) {
+	                currentlyRunningATask = true;
+	                try {
+	                    run(task);
+	                } finally {
+	                    clearImmediate(handle);
+	                    currentlyRunningATask = false;
+	                }
+	            }
+	        }
+	    }
+	
+	    function installNextTickImplementation() {
+	        registerImmediate = function registerImmediate(handle) {
+	            process.nextTick(function () {
+	                runIfPresent(handle);
+	            });
+	        };
+	    }
+	
+	    function canUsePostMessage() {
+	        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
+	        // where `global.postMessage` means something completely different and can't be used for this purpose.
+	        if (global.postMessage && !global.importScripts) {
+	            var postMessageIsAsynchronous = true;
+	            var oldOnMessage = global.onmessage;
+	            global.onmessage = function () {
+	                postMessageIsAsynchronous = false;
+	            };
+	            global.postMessage("", "*");
+	            global.onmessage = oldOnMessage;
+	            return postMessageIsAsynchronous;
+	        }
+	    }
+	
+	    function installPostMessageImplementation() {
+	        // Installs an event handler on `global` for the `message` event: see
+	        // * https://developer.mozilla.org/en/DOM/window.postMessage
+	        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
+	
+	        var messagePrefix = "setImmediate$" + Math.random() + "$";
+	        var onGlobalMessage = function onGlobalMessage(event) {
+	            if (event.source === global && typeof event.data === "string" && event.data.indexOf(messagePrefix) === 0) {
+	                runIfPresent(+event.data.slice(messagePrefix.length));
+	            }
+	        };
+	
+	        if (global.addEventListener) {
+	            global.addEventListener("message", onGlobalMessage, false);
+	        } else {
+	            global.attachEvent("onmessage", onGlobalMessage);
+	        }
+	
+	        registerImmediate = function registerImmediate(handle) {
+	            global.postMessage(messagePrefix + handle, "*");
+	        };
+	    }
+	
+	    function installMessageChannelImplementation() {
+	        var channel = new MessageChannel();
+	        channel.port1.onmessage = function (event) {
+	            var handle = event.data;
+	            runIfPresent(handle);
+	        };
+	
+	        registerImmediate = function registerImmediate(handle) {
+	            channel.port2.postMessage(handle);
+	        };
+	    }
+	
+	    function installReadyStateChangeImplementation() {
+	        var html = doc.documentElement;
+	        registerImmediate = function registerImmediate(handle) {
+	            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
+	            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
+	            var script = doc.createElement("script");
+	            script.onreadystatechange = function () {
+	                runIfPresent(handle);
+	                script.onreadystatechange = null;
+	                html.removeChild(script);
+	                script = null;
+	            };
+	            html.appendChild(script);
+	        };
+	    }
+	
+	    function installSetTimeoutImplementation() {
+	        registerImmediate = function registerImmediate(handle) {
+	            setTimeout(runIfPresent, 0, handle);
+	        };
+	    }
+	
+	    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
+	    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
+	    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
+	
+	    // Don't get fooled by e.g. browserify environments.
+	    if ({}.toString.call(global.process) === "[object process]") {
+	        // For Node.js before 0.9
+	        installNextTickImplementation();
+	    } else if (canUsePostMessage()) {
+	        // For non-IE10 modern browsers
+	        installPostMessageImplementation();
+	    } else if (global.MessageChannel) {
+	        // For web workers, where supported
+	        installMessageChannelImplementation();
+	    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
+	        // For IE 6–8
+	        installReadyStateChangeImplementation();
+	    } else {
+	        // For older browsers
+	        installSetTimeoutImplementation();
+	    }
+	
+	    attachTo.setImmediate = setImmediate;
+	    attachTo.clearImmediate = clearImmediate;
+	})(typeof self === "undefined" ? typeof global === "undefined" ? undefined : global : self);
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(/*! ./../process/browser.js */ 37)))
+
+/***/ },
+/* 40 */
+/*!*******************************************!*\
+  !*** ./wwwroot/homeApp/mainLayoutView.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _backbone3 = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone4 = _interopRequireDefault(_backbone3);
+	
+	var _mainLayoutViewHbs = __webpack_require__(/*! ./mainLayoutView.hbs.html */ 41);
+	
+	var _mainLayoutViewHbs2 = _interopRequireDefault(_mainLayoutViewHbs);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _MapView = __webpack_require__(/*! ./MapView.js */ 42);
+	
+	var _MapView2 = _interopRequireDefault(_MapView);
+	
+	var _BannerView = __webpack_require__(/*! ./BannerView.js */ 68);
+	
+	var _BannerView2 = _interopRequireDefault(_BannerView);
+	
+	var _UserBarView = __webpack_require__(/*! ./UserBarView.js */ 77);
+	
+	var _UserBarView2 = _interopRequireDefault(_UserBarView);
+	
+	var _NavLocationView = __webpack_require__(/*! ./NavLocationView.js */ 79);
+	
+	var _NavLocationView2 = _interopRequireDefault(_NavLocationView);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _iframeView = __webpack_require__(/*! ./shared/iframeView.js */ 81);
+	
+	var _iframeView2 = _interopRequireDefault(_iframeView);
+	
+	var _userMenuView = __webpack_require__(/*! ./layout/userMenuView */ 85);
+	
+	var _userMenuView2 = _interopRequireDefault(_userMenuView);
+	
+	var _mainMenuView = __webpack_require__(/*! ./mainMenuView */ 87);
+	
+	var _mainMenuView2 = _interopRequireDefault(_mainMenuView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone4.default.View.extend({
+	
+	    template: _mainLayoutViewHbs2.default,
+	    id: "wrapper",
+	    mapView: null,
+	
+	    events: {
+	        'change #chooseLanguage': 'chooseLanguage',
+	        'click [data-lang]': 'chooseTopMenuLanguage'
+	    },
+	
+	    regions: {
+	        'content': '#appContent',
+	        'map': '#appMap',
+	        'banner': '#appBanner',
+	        'userBar': '#userBar',
+	        'navLocation': '#navLocation',
+	        'mainMenu': '#bzMainMenu',
+	        'modal': '#showModalContainer'
+	    },
+	
+	    initialize: function initialize() {},
+	    onClickLink: function onClickLink() {
+	        _backbone2.default.$(document).on('click', 'a:not([data-direct-link])a:not([href^=http])', function (e) {
+	            //not data-direct-link class AND not having http in beginning of href
+	            var href = _backbone2.default.$(this).attr('href');
+	            var protocol = this.protocol + '//';
+	            if (href && !_underscore2.default.isEmpty(href) && href.slice(protocol.length) !== protocol) {
+	                e.preventDefault();
+	                _app2.default.router.navigate(href, true);
+	            }
+	        });
+	    },
+	    onRender: function onRender() {
+	        this.renderMapAndBanner();
+	        this.renderMainMenu();
+	        this.listenTo(_app2.default.router, 'route', this.toggleMapAndBanner);
+	        //this._adaptUiIfIsIframe();
+	        //this.listenTo(app.user, 'receivedMeteorUser', this._toggleUserInfo);
+	        //this._loadIframeView();
+	    },
+	    onAttach: function onAttach() {
+	        this.onClickLink();
+	        this.changeSelectlanguage();
+	    },
+	    changeSelectlanguage: function changeSelectlanguage() {
+	        var language = i18n.getLanguage();
+	        this.setSelectBoxByValue('chooseLanguage', language);
+	
+	        var elements = $('.sh-top-choose-language-list').children().find('a');
+	        if (elements) {
+	            elements.each(function () {
+	                $(this).removeClass('active');
+	                if ($(this).data('lang') === language) {
+	                    $(this).addClass('active');
+	                }
+	            });
+	        }
+	    },
+	    chooseTopMenuLanguage: function chooseTopMenuLanguage(e) {
+	        e.preventDefault();
+	        e.stopPropagation();
+	        this.chooseLanguage(e);
+	        this.changeSelectlanguage();
+	    },
+	    setSelectBoxByValue: function setSelectBoxByValue(eid, val) {
+	        document.querySelector('#chooseLanguage [value="' + val + '"]').selected = 'selected';
+	    },
+	    renderMapAndBanner: function renderMapAndBanner() {
+	        var searchModel = new _backbone2.default.Model({ radius: 1 });
+	        this.showChildView('map', new _MapView2.default({ collection: _app2.default.nearbyPosts, model: searchModel }));
+	        this.showChildView('banner', new _BannerView2.default({ model: searchModel }));
+	        this.showChildView('navLocation', new _NavLocationView2.default({ model: searchModel }));
+	        this.showChildView('userBar', new _UserBarView2.default({ model: _app2.default.user }));
+	    },
+	    renderMainMenu: function renderMainMenu() {
+	        this.showChildView('mainMenu', new _mainMenuView2.default());
+	    },
+	    showChangeLocation: function showChangeLocation() {
+	        this.getChildView('banner').showSuggestionsModalView();
+	        //this.getChildView('banner').renderLocationsSelection();
+	    },
+	    toggleBannerView: function toggleBannerView() {
+	        if (this.getRegion('banner').$el.is(':hidden')) {
+	            this.getRegion('banner').$el.show();
+	        } else {
+	            this.getRegion('banner').$el.hide();
+	        }
+	    },
+	    toggleMapAndBanner: function toggleMapAndBanner(routeName) {
+	        if (routeName === "index") {
+	            this.getRegion('map').$el.show();
+	
+	            this.getRegion('banner').$el.show();
+	            /*if (!app.isMobile)
+	                this.getRegion('banner').$el.show();
+	            else
+	                this.hideFooter();
+	            */
+	
+	            if (window.google) window.google.maps.event.trigger(_app2.default.map, 'resize');
+	        } else {
+	            this.showFooter();
+	            this.getRegion('map').$el.hide();
+	            this.getRegion('banner').$el.hide();
+	        }
+	    },
+	    hideFooter: function hideFooter() {
+	        this.$('#footer').hide();
+	    },
+	    showFooter: function showFooter() {
+	        this.$('#footer').show();
+	    },
+	    chooseLanguage: function chooseLanguage(e) {
+	        var lang = e.target.value ? e.target.value : e.target.getAttribute('data-lang');
+	        _app2.default.setCookie('language', lang, { expires: 31536000, path: '/' });
+	        _app2.default.i18n.setLanguage(lang);
+	        _app2.default.trigger('change:language', lang);
+	    },
+	    _toggleUserInfo: function _toggleUserInfo(user) {
+	        var view = new _userMenuView2.default({
+	            model: new _backbone2.default.Model(user)
+	        });
+	        view.render();
+	        this.$('#userBar .quick-cart').hide();
+	        this.$('#userBar ul').append(view.$el);
+	        this.$('#userBar').show();
+	
+	        // other menu items:
+	        this.$('.js-need-auth').show();
+	    },
+	    _adaptUiIfIsIframe: function _adaptUiIfIsIframe() {
+	        var isIframe = $h.help.getUrlParams().isiframe;
+	        if (isIframe === 'true') {
+	            this.$('#header').hide();
+	            this.hideFooter();
+	            // hide all post-beginning links (we don't want user to go somewhere)
+	            setTimeout(function () {
+	                $('a[href^="/posts/"]').each(function (i, a) {
+	                    $(a).hide();
+	                });
+	            }, 1000);
+	        }
+	    },
+	    _loadIframeView: function _loadIframeView() {
+	        setTimeout(function () {
+	            if (!_app2.default.views.iframeView) {
+	                var iView = new _iframeView2.default({
+	                    //pagePath: 'posts/new'
+	                });
+	                iView.render();
+	                _app2.default.views.iframeView = iView;
+	            }
+	        }, 2000); // let's assume main page is loaded by this time
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 41 */
+/*!*************************************************!*\
+  !*** ./wwwroot/homeApp/mainLayoutView.hbs.html ***!
+  \*************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\n<div id="showModalContainer"></div>\n\n<div id="header" class="sticky clearfix header-md">\n	<header id="topNav">\n		\n		<div class="sh-header-topline">\n			<div class="container">\n				<div class="sh-header-topline-main">\n					<div class="sh-header-topline-item">\n                        <div class="sh-header-navbar-logo">\r\n                            <a class="sh-logo-header" href="/">\r\n                                <img src="/images/sh-logo.png" alt="logotype Shiners" height="35" width="35" /> <span>'+
+	((__t=(i18n('SITE_NAME')))==null?'':__t)+
+	'</span>\r\n                            </a>\r\n                        </div>\n						<div class="sh-show-modal-city"> \n							<span class="text-weight bold">\n								<span id="navLocation"></span>\n							</span>\n						</div>\n					</div>\n\n					<div class="sh-header-topline-item sh-header-buttons-tools sh-flex-center-items">\n\n						<div id="bzMainMenu"></div>\n\n                        <div class="sh-top-choose-language hidden-xs">\n                            <ul class="sh-top-choose-language-list">\r\n                                <li><a class="en" data-lang="en" href="#">EN</a></li>\r\n                                <li><a class="ru" data-lang="ru" href="#">RU</a></li>\r\n                            </ul>\n                        </div>\n\n						<div class="sh-header-dropdown-user">                        \n							<div id="userBar"></div>\n						</div>\n\n						<button class="sh-btn-mobile-menu btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">\n							<i class="fa fa-bars"></i>\n						</button>\n\n					</div>\n				</div>\n			</div>\n		</div>\n		\n		<div class="sh-header-navbar-wrapper sh-blurred-bg hidden-xs">\n			<div class="container">\n\n				<div class="sh-header-navbar-items">\n					<!--<div class="sh-header-navbar-logo">\n						<a class="sh-logo-header" href="/">\n							<img src="/images/sh-logo.png" alt="logotype Shiners" height="50" width="50" />\n							'+
+	((__t=(i18n('SITE_NAME')))==null?'':__t)+
+	'\n						</a>\n					</div>-->\n\n					<div class="sh-header-navbar-submenu">\n                        <div class="sh-download-buttons-top">\n\n                            <a target="_blank" data-direct-link href="https://itunes.apple.com/ru/app/shiners/id1136502367?mt=8">\n                                <img src="/images/buttons/app_store_RU_135x40@2x.png" width="135" height="40" alt="Загрузите в App Store">\n                            </a>\n\n                            <a target="_blank" data-direct-link href=\'https://play.google.com/store/apps/details?id=org.buzzar.app&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1\'>\n                                <img src="/images/buttons/google_play_RU_135x40@2x.png" width="135" height="40" alt=\'Доступно в Google Play\' />\n                            </a>\n                        </div>\n                    </div>\n\n					<div class="sh-header-navbar-create">\n						<a class="ui sh-button standard create big hidden-sm" href="/posts/new">'+
+	((__t=(i18n('CREATE_SHINER')))==null?'':__t)+
+	'</a>\n					</div>\n				</div>\n\n				<div class="header-hr-line"></div>\n				<div id="appBanner" style="display: none;">\n					<!--=serverRender(\'~/homeApp/BannerView.hbs.html\',{},\'section\',\'class="page-header page-header-xs"\')-->\n					'+
+	((__t=(serverRender('~/homeApp/BannerView.hbs.html',{},'div','class="sh-header-navbar-info visible-md-block visible-lg-block"')))==null?'':__t)+
+	'\n				</div>\n			</div>\n\n		</div>\n\n		<div class="sh-header-navbar">\n			<div class="sh-header-map">\n				<div id="appMap" style="display: none;"></div>\n			</div>\n		</div>\n\n	</header>\n</div>\n\n<div id="appContent">\n	'+
+	((__t=(serverRender(obj.routeViewPath,obj.routeViewData,obj.routeViewTag,obj.routeViewHtmlAttrs)))==null?'':__t)+
+	'\n</div>\n<div id="iframeHolder" style="display: none;"></div>\n\n<footer id="footer" class="sh-footer">\n	<div class="container">\n		<!--1-->\n		<div class="row footer-section footer-section-download">\n			<div class="col-xs-12">\n				<div class="sh-download-buttons-bottom">\n                    <h3>'+
+	((__t=(i18n('footer_load_free')))==null?'':__t)+
+	'</h3>\n                    <div class="sh-download-buttons-bottom-wrapper">\n                        <a target="_blank" data-direct-link href="https://itunes.apple.com/ru/app/shiners/id1136502367?mt=8">\n                            <img src="/images/buttons/app_store_RU_135x40@2x.png" width="135" height="40" alt="Загрузите в App Store">\n                        </a>\n\n                        <a target="_blank" data-direct-link href=\'https://play.google.com/store/apps/details?id=org.buzzar.app&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1\'>\n                            <img src="/images/buttons/google_play_RU_135x40@2x.png" width="135" height="40" alt=\'Доступно в Google Play\' />\n                        </a>\n                    </div>\n                </div>\n\n				<!--<div class="sh-footer-images">\n					<div class="sh-footer-images-browser"></div>\n				</div>-->\n			</div>\n		</div>\n\n		<!--2-->\n		<div class="row footer-section footer-section-nav">\n			<div class="sh-footer-section-wrapper">\n				<div class="sh-f-col col-sm-3 col-md-3 col-lg-3">\n					<div class="sh-logo-footer">'+
+	((__t=(i18n('SITE_NAME')))==null?'':__t)+
+	'</div>\n				</div>\n\n				<div class="sh-f-col col-sm-1 col-md-3 col-lg-3">\n					<!--https://www.facebook.com/shinersapp-->\n					<!--https://vk.com/shinersnews-->\n				</div>\n\n				<div class="sh-f-col col-sm-4 col-md-3 col-lg-3">\n					<dl class="sh-footer-list">\n						<dt class="sh-footer-list-title middle">'+
+	((__t=(i18n('footer_menu_navigation')))==null?'':__t)+
+	'</dt>\n						<dd class="sh-footer-list-item"><a class="" href="/about-us">'+
+	((__t=(i18n('aboutSite')))==null?'':__t)+
+	'</a></dd>\n                        <dd class="sh-footer-list-item"><a class="" href="/mass-media">'+
+	((__t=(i18n('massMedia')))==null?'':__t)+
+	'</a></dd>\n						<dd class="sh-footer-list-item">\n							<a href="#" class="sh-store-link">\n								<!--<img src="images/download_app_store_RU_135x40@2x.png" width="135" height="40" alt="Download Shiners">-->\n							</a>\n						</dd>\n					</dl>\n				</div>\n\n				<div class="sh-f-col col-sm-4 col-md-3 col-lg-3">\n					<dl class="sh-footer-list">\n						<dt class="sh-footer-list-title middle">'+
+	((__t=(i18n('footer_menu_contacts')))==null?'':__t)+
+	'</dt>\n						<dd class="sh-footer-list-item"><a class="sh-social-link" href="mailto:support@shiners.ru" title="support@shiners.ru"><span class="sh-social-link-text">support@shiners.ru</span></a></dd>\n						<!--<dd class="sh-footer-list-item"><a class="" href="#">Посетите наш Справочный центр</a></dd>-->\n						<dd class="sh-footer-list-item"><a class="" href="/legal/user-agreement">'+
+	((__t=(i18n('footer_menu_terms_of_use')))==null?'':__t)+
+	'</a></dd>\n						<dd class="sh-footer-list-item"><a class="" href="/legal/confidential">'+
+	((__t=(i18n('footer_menu_privacy_policy')))==null?'':__t)+
+	'</a></dd>\n						<dd class="sh-footer-list-item"><a class="" href="/legal/post-publishing-rules">'+
+	((__t=(i18n('footer_menu_post_publishing_rules')))==null?'':__t)+
+	'</a></dd>\n					</dl>\n				</div>\n			</div>\n		</div>\n\n		<!--3-->\n		<div class="row">\n            <div class="sh-footer-bottom">\n                <div class="sh-choose-language">\n                    <select id="chooseLanguage">\n                        <option value="ru">Русский</option>\n                        <option value="en">English</option>\n                    </select>\n                </div>\n                <div class="col-xs-12 sh-copyright">\n                    <p class="sh-usage-text">'+
+	((__t=(i18n('footer_disclaimer_text')))==null?'':__t)+
+	'<a href="/legal/user-agreement">'+
+	((__t=(i18n('footer_disclaimer_text2')))==null?'':__t)+
+	'</a>.</p>\n                    <p class="margin-bottom-0">&#169; '+
+	((__t=(i18n('footer_all_rights_reserved')))==null?'':__t)+
+	' </p>\n                </div>\n            </div>\n		</div>\n	</div>\n</footer>\n\n<a href="#" id="toTop"></a>\n<div id="fb-root"></div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 42 */
+/*!************************************!*\
+  !*** ./wwwroot/homeApp/MapView.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone4 = _interopRequireDefault(_backbone3);
+	
+	var _MapViewHbs = __webpack_require__(/*! ./MapView.hbs.html */ 43);
+	
+	var _MapViewHbs2 = _interopRequireDefault(_MapViewHbs);
+	
+	var _CreateButtonHbs = __webpack_require__(/*! ./CreateButton.hbs.html */ 44);
+	
+	var _CreateButtonHbs2 = _interopRequireDefault(_CreateButtonHbs);
+	
+	var _SetPositionMapButtonHbs = __webpack_require__(/*! ./SetPositionMapButton.hbs.html */ 45);
+	
+	var _SetPositionMapButtonHbs2 = _interopRequireDefault(_SetPositionMapButtonHbs);
+	
+	var _MobileShowInfoButtonHbs = __webpack_require__(/*! ./MobileShowInfoButton.hbs.html */ 46);
+	
+	var _MobileShowInfoButtonHbs2 = _interopRequireDefault(_MobileShowInfoButtonHbs);
+	
+	var _SearchView = __webpack_require__(/*! ./search/SearchView.js */ 47);
+	
+	var _SearchView2 = _interopRequireDefault(_SearchView);
+	
+	var _ShinerInfoView = __webpack_require__(/*! ./ShinerInfoView.js */ 64);
+	
+	var _ShinerInfoView2 = _interopRequireDefault(_ShinerInfoView);
+	
+	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 67);
+	
+	var _loadGoogleMapsApi2 = _interopRequireDefault(_loadGoogleMapsApi);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    tagName: 'section',
+	    className: 'map-section',
+	    template: _MapViewHbs2.default,
+	    map: null,
+	    model: null,
+	    shiners: [],
+	    mapInfoWindow: null,
+	    userMarker: null,
+	    fetchTimeOut: null,
+	    geocodeTimeout: null,
+	    geocoder: null,
+	    regions: {
+	        search: '#searchView',
+	        info: '#shinerInfoView'
+	    },
+	
+	    events: {
+	        'click #closeInfo': 'hideInfoContainer'
+	    },
+	
+	    modelEvents: {
+	        'change': 'fetchPosts'
+	    },
+	
+	    collectionEvents: {
+	        'reset': 'showShiners'
+	    },
+	
+	    onRender: function onRender() {
+	        var _this = this;
+	
+	        var that = this;
+	        this.showChildView('search', new _SearchView2.default({ collection: this.collection, model: this.model }));
+	        $(window).on('sh:language:changed', function () {
+	            that.showChildView('search', new _SearchView2.default({ collection: _this.collection, model: _this.model }));
+	        });
+	    },
+	    onAttach: function onAttach() {
+	        this.initMap();
+	    },
+	    getShinerUrlPin: function getShinerUrlPin(model) {
+	        var details = model.get('details');
+	        var postType = details.locations && _underscore2.default.find(details.locations, function (l) {
+	            return l.placeType === 'dynamic';
+	        }) ? 'dynamic' : 'static';
+	        var category = model.get('type');
+	        var userStatus = model.get('user').online ? 'live' : 'offline';
+	        return category ? '../images/shiners/pins/' + postType + '-' + userStatus + '-flag-' + category + '.png' : '../images/shiners/shiner_marker.png';
+	    },
+	    showShiners: function showShiners() {
+	        var _this2 = this;
+	
+	        this.collection.each(function (model) {
+	            var url = _this2.getShinerUrlPin(model);
+	            var image = {
+	                url: url || '../images/shiners/shiner_marker.png',
+	                scaledSize: new window.google.maps.Size(25, 33),
+	                origin: new window.google.maps.Point(0, 0),
+	                anchor: new window.google.maps.Point(12, 33)
+	            };
+	            if (!_underscore2.default.find(_this2.shiners, function (sh) {
+	                return sh.modelId === model.id;
+	            })) {
+	                var details = model.get('details');
+	                _underscore2.default.each(details.locations, function (location) {
+	                    var shiner = new window.google.maps.Marker({
+	                        position: { lat: location.coords.lat, lng: location.coords.lng },
+	                        map: _this2.map,
+	                        icon: image,
+	                        title: details.title
+	                    });
+	                    shiner.modelId = model.id;
+	                    shiner.addListener('click', _underscore2.default.bind(_this2.shinerInfo, _this2, shiner, model));
+	                    _this2.shiners.push(shiner);
+	                }, _this2);
+	            }
+	        }, this);
+	        for (var i = this.shiners.length; i--;) {
+	            if (!this.collection.get(this.shiners[i].modelId)) {
+	                this.shiners[i].setMap(null);
+	                this.shiners.splice(i, 1);
+	            }
+	        }
+	    },
+	    shinerInfo: function shinerInfo(shiner, model, event) {
+	        if (_app2.default.isMobile) {
+	            _app2.default.router.navigate('posts/' + model.id, { trigger: true });
+	        } else {
+	            if (this.getRegion('info').hasView() && this.getChildView('info').model.id === model.id) {
+	                this.hideInfoContainer();
+	            } else {
+	                this.showChildView('info', new _ShinerInfoView2.default({ model: model }));
+	                this.showInfoContainer();
+	            }
+	        }
+	        //if (this.infoView) {
+	        //    this.infoView.remove();
+	        //    this.infoView = null;
+	        //}
+	        //if (this.googleWindow) {
+	        //    this.googleWindow.close();
+	        //    this.googleWindow = null;
+	        //}
+	        //this.infoView = new ShinerInfoView({model:model});
+	        //var infoView = this.infoView;
+	        //this.googleWindow = new window.google.maps.InfoWindow({
+	        //    content: infoView.render().$el[0]
+	        //});
+	        //this.googleWindow.addListener('closeclick',() => infoView.remove());
+	        //window.google.maps.event.addListener(this.googleWindow,'domready',() => infoView.delegateMapEvent());
+	        //this.googleWindow.open(this.map, shiner);
+	        //this.once('before:destroy',this.infoView.remove,this.infoView);
+	    },
+	    hideInfoContainer: function hideInfoContainer() {
+	        this.getRegion('info').empty();
+	        this.$('#info-container').hide();
+	    },
+	    showInfoContainer: function showInfoContainer() {
+	        this.$('#info-container').show();
+	    },
+	    initMap: function initMap() {
+	        var _this3 = this;
+	
+	        var defaultCoords = { lat: 55.75396, lng: 37.620393 };
+	        (0, _loadGoogleMapsApi2.default)({ key: 'AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY', libraries: ['places'] }).then(_underscore2.default.bind(function (maps) {
+	            var center = _app2.default.user.get('position') || defaultCoords;
+	
+	            _this3.map = new maps.Map(document.getElementById('map2'), {
+	                center: center,
+	                zoom: 14,
+	                scrollwheel: false,
+	                disableDefaultUI: true
+	            });
+	
+	            _this3.geocoder = new maps.Geocoder();
+	            _app2.default.map = _this3.map;
+	            window.myMap = _app2.default.map; // debug
+	            _app2.default.geocoder = _this3.geocoder;
+	            //this.map.addListener('bounds_changed',_.bind(this.onBoundsChange,this));
+	            _this3.map.addListener('bounds_changed', _underscore2.default.bind(_this3.findLocationName, _this3));
+	            if (_app2.default.isMobile) {
+	                //this.mobile_CreateInfoButton();
+	                _this3.mobile_mapResize();
+	                _this3.mobile_listenToResize();
+	                $('body').addClass('isMobile');
+	            } else {
+	                $('body').removeClass('isMobile');
+	            }
+	
+	            var zoomControlDiv = document.createElement('div');
+	            var zoomControl = new _this3.ZoomControl(zoomControlDiv, _this3.map);
+	
+	            zoomControlDiv.index = 1;
+	            _this3.map.controls[window.google.maps.ControlPosition.RIGHT_BOTTOM].push(zoomControlDiv);
+	
+	            _this3.mapAddPostButton();
+	            _this3.mapSetPositionButton();
+	
+	            _this3.showUser();
+	            _this3.listenTo(_app2.default.user, 'change:position', _this3.showUser);
+	        }, this));
+	    },
+	    ZoomControl: function ZoomControl(controlDiv, map) {
+	        controlDiv.style.padding = '10px';
+	
+	        // Set CSS for the control wrapper
+	        var controlWrapper = document.createElement('div');
+	        controlWrapper.style.backgroundColor = 'white';
+	        controlWrapper.style.cursor = 'pointer';
+	        controlWrapper.style.textAlign = 'center';
+	        controlWrapper.style.width = '40px';
+	        controlWrapper.style.height = '80px';
+	        controlWrapper.style.borderRadius = '2px';
+	        controlWrapper.style.position = 'relative';
+	        controlDiv.appendChild(controlWrapper);
+	
+	        // Set CSS for the zoomIn
+	        var zoomInButton = document.createElement('div');
+	        zoomInButton.style.width = '40px';
+	        zoomInButton.style.height = '40px';
+	        zoomInButton.className = 'sh-zoom-in-button';
+	        controlWrapper.appendChild(zoomInButton);
+	
+	        // Set CSS for the zoomOut
+	        var zoomOutButton = document.createElement('div');
+	        zoomOutButton.style.width = '40px';
+	        zoomOutButton.style.height = '40px';
+	        zoomOutButton.className = 'sh-zoom-out-button';
+	        controlWrapper.appendChild(zoomOutButton);
+	
+	        // Setup the click event listener - zoomIn
+	        google.maps.event.addDomListener(zoomInButton, 'click', function () {
+	            map.setZoom(map.getZoom() + 1);
+	        });
+	
+	        // Setup the click event listener - zoomOut
+	        google.maps.event.addDomListener(zoomOutButton, 'click', function () {
+	            map.setZoom(map.getZoom() - 1);
+	        });
+	    },
+	    mapAddPostButton: function mapAddPostButton() {
+	        var el = $((0, _CreateButtonHbs2.default)()).get(0);
+	        el.addEventListener('click', function () {
+	            _app2.default.router.navigate('posts/new', { trigger: true });
+	        });
+	        this.map.controls[window.google.maps.ControlPosition.BOTTOM_CENTER].push(el);
+	    },
+	    mapSetPositionButton: function mapSetPositionButton() {
+	        var el = $((0, _SetPositionMapButtonHbs2.default)()).get(0),
+	            self = this;
+	        el.addEventListener('click', function () {
+	            if (navigator.geolocation) {
+	                navigator.geolocation.getCurrentPosition(function (position) {
+	                    _app2.default.user.set('position', { type: 'navigator', lat: position.coords.latitude, lng: position.coords.longitude });
+	                    self.setMapPosition(position);
+	                }, function () {});
+	            }
+	        });
+	        this.map.controls[_app2.default.isMobile ? window.google.maps.ControlPosition.BOTTOM_CENTER : window.google.maps.ControlPosition.RIGHT_BOTTOM].push(el);
+	    },
+	    mobile_CreateInfoButton: function mobile_CreateInfoButton() {
+	        var el = $((0, _MobileShowInfoButtonHbs2.default)()).get(0);
+	        el.addEventListener('click', function () {
+	            _app2.default.router.navigate('mobileIndex', { trigger: true });
+	        });
+	        this.map.controls[window.google.maps.ControlPosition.BOTTOM_CENTER].push(el);
+	    },
+	    mobile_mapResize: function mobile_mapResize() {
+	        //this.$('#map2').height( $(window).height() - $('#header').height() );
+	
+	        this.$('#map2').height($(window).height() - ($('.sh-header-topline').height() + $('.sh-header-navbar-wrapper').height()));
+	        window.google.maps.event.trigger(_app2.default.map, 'resize');
+	    },
+	    mobile_listenToResize: function mobile_listenToResize() {
+	        $(window).resize(_underscore2.default.bind(this.mobile_mapResize, this));
+	    },
+	    showUser: function showUser() {
+	        if (_app2.default.user.has('position')) {
+	            var image = {
+	                url: '../images/shiners/user.png',
+	                scaledSize: new window.google.maps.Size(35, 35),
+	                origin: new window.google.maps.Point(0, 0),
+	                anchor: new window.google.maps.Point(17, 17)
+	            };
+	            var marker = this.userMarker || new window.google.maps.Marker({
+	                map: this.map,
+	                icon: image,
+	                title: 'Вы (' + (_app2.default.user.get('username') || 'анонимный пользователь') + ')'
+	            });
+	            marker.setPosition(_app2.default.user.get('position'));
+	            if (!this.userMarker) this.userMarker = marker;
+	        }
+	    },
+	    setMapPosition: function setMapPosition(position) {
+	        var pos = {
+	            lat: position.coords.latitude,
+	            lng: position.coords.longitude
+	        };
+	        this.map.setCenter(pos);
+	    },
+	
+	
+	    //onBoundsChange() {
+	    //    if (this.fetchTimeOut)
+	    //        clearTimeout(this.fetchTimeOut);
+	    //    this.fetchTimeOut = setTimeout(_.bind( ()=> {            
+	    //        var center = this.map.getCenter();
+	    //        this.model.set({
+	    //            position: {
+	    //                lat:center.lat(),
+	    //                lng:center.lng()
+	    //            }
+	    //        });
+	    //    }, this), 500);
+	    //},
+	
+	    findLocationName: function findLocationName() {
+	        var _this4 = this;
+	
+	        if (this.geocodeTimeout) clearTimeout(this.geocodeTimeout);
+	        this.geocodeTimeout = setTimeout(_underscore2.default.bind(function () {
+	            var center = _this4.map.getCenter();
+	            var latLng = {
+	                lat: center.lat(),
+	                lng: center.lng()
+	            };
+	            var measureUnit,
+	                radius,
+	                bounds = _this4.map.getBounds();
+	            if (bounds) {
+	                measureUnit = i18n.getLanguage() === 'ru' ? 'km' : 'mi';
+	                radius = $h.help.getDistance(bounds.getNorthEast().lat(), bounds.getNorthEast().lng(), bounds.getSouthWest().lat(), bounds.getSouthWest().lng(), measureUnit) / 2;
+	            }
+	
+	            _this4.geocoder.geocode({ 'location': latLng, 'language': _app2.default.i18n.getLanguage() }, _underscore2.default.bind(function (results, status) {
+	                if (status === window.google.maps.GeocoderStatus.OK) {
+	                    var locationName = _underscore2.default.find(results[0].address_components, function (res) {
+	                        return _underscore2.default.find(res.types, function (type) {
+	                            return type === 'locality' || type === 'administrative_area_level_2' || type === 'political';
+	                        });
+	                    }, _this4);
+	                    _this4.model.set({
+	                        position: latLng,
+	                        address: locationName.long_name,
+	                        radius: radius
+	                    });
+	                } else {
+	                    _this4.model.set({
+	                        position: latLng
+	                    });
+	                    console.error('Geocoder failed due to: ' + status);
+	                }
+	            }, _this4));
+	        }, this), 500);
+	    },
+	    fetchPosts: function fetchPosts() {
+	        var query = this.model.get('query'),
+	            method = 'getNearbyPostsTest',
+	            activeCats = this.model.get('activeCats'),
+	            args,
+	            radius = this.model.get('radius');
+	        //radius = this.model.get('radius') * 0.6215;
+	        if (query && !_underscore2.default.isEmpty(query.trim()) || activeCats && !_underscore2.default.isEmpty(activeCats)) {
+	            method = 'searchPosts';
+	            args = {
+	                query: query || "",
+	                lat: this.model.get('position').lat,
+	                lng: this.model.get('position').lng,
+	                radius: radius,
+	                activeCats: activeCats || []
+	            };
+	        } else {
+	            args = {
+	                lat: this.model.get('position').lat,
+	                lng: this.model.get('position').lng,
+	                radius: radius,
+	                take: 200
+	                //limit: 200
+	            };
+	        }
+	
+	        //console.log('Arguments:', args);
+	        //console.log('Method of search:', method);
+	
+	        this.collection.loadByMethod(method, args);
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 43 */
+/*!******************************************!*\
+  !*** ./wwwroot/homeApp/MapView.hbs.html ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div id="googleMapContainer">\r\n    <div id="map2" class="contact-over-map"></div>    \r\n</div>\n\n\n<div class="container-fluid">\n    <div class="row">\n        <div id="searchView" class="col-sm-4 col-md-4 map-frame"></div>\n        <div id="info-container" class="col-md-offset-5 col-sm-offset-4 col-md-3 col-sm-4 map-frame-right" style="display: none">\n            <a class="sh-map-item-button-close" id="closeInfo"><i class="fa fa-close"></i></a>\n            <div id="shinerInfoView" class="sh-map-item-view"></div>\n        </div>\n    </div>\n</div>\n';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 44 */
+/*!***********************************************!*\
+  !*** ./wwwroot/homeApp/CreateButton.hbs.html ***!
+  \***********************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<button class="ui sh-button standard create margin-bottom-20">'+
+	((__t=(i18n('CREATE_SHINER')))==null?'':__t)+
+	'</button>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 45 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/SetPositionMapButton.hbs.html ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<button class="sh-set-position-map margin-bottom-20" title="Уточнить моё местоположение"><i class="fa fa-crosshairs"></i></button>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 46 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/MobileShowInfoButton.hbs.html ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<button class="sh-mobile-show-info margin-bottom-20" title="Главная">\r\n    <i class="fa fa-home"></i>\r\n</button>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 47 */
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/search/SearchView.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, $) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _SearchViewHbs = __webpack_require__(/*! ./SearchView.hbs.html */ 48);
+	
+	var _SearchViewHbs2 = _interopRequireDefault(_SearchViewHbs);
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css */ 49);
+	
+	__webpack_require__(/*! ../../lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js */ 52);
+	
+	__webpack_require__(/*! ../../lib/jquery-slimscroll/jquery.slimscroll.min.js */ 53);
+	
+	var _ShinersListView = __webpack_require__(/*! ./ShinersListView.js */ 54);
+	
+	var _ShinersListView2 = _interopRequireDefault(_ShinersListView);
+	
+	var _CategoriesListView = __webpack_require__(/*! ./CategoriesListView.js */ 59);
+	
+	var _CategoriesListView2 = _interopRequireDefault(_CategoriesListView);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./i18n/en */ 62);
+	
+	__webpack_require__(/*! ./i18n/ru */ 63);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.Marionette.View.extend({
+	    fetchTimeOut: null,
+	    template: _SearchViewHbs2.default,
+	    $radiusSlider: null,
+	    sliderCases: null,
+	    initialize: function initialize() {
+	        this.listenTo(this.collection, 'reset', this.checkIfEmpty);
+	    },
+	    checkIfEmpty: function checkIfEmpty() {
+	        if (this.collection.size() > 0) this.stopListening(this.collection, 'reset');else this._incrementSliderRadius();
+	    },
+	    _incrementSliderRadius: function _incrementSliderRadius() {
+	        var currentVal = this.$radiusSlider.slider('value');
+	        if (currentVal < this.$radiusSlider.slider('option', 'max')) {
+	            this.$radiusSlider.slider('value', currentVal + 1);
+	        } else {
+	            this.stopListening(this.collection, 'reset');
+	        }
+	    },
+	
+	
+	    events: {
+	        'click #searchParametersButton': 'toggleSearchParameters',
+	        'keyup #query': 'onTextSearch',
+	        'click div.toggle > label': 'toggleResults',
+	        'click #userLocation': 'toggleBannerView'
+	    },
+	    regions: {
+	        shiners: '#shinersList',
+	        categories: '#selectCategories'
+	    },
+	
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            isMobile: _app2.default.isMobile
+	        };
+	    },
+	    onRender: function onRender() {
+	        this.showShiners();
+	    },
+	    onAttach: function onAttach() {
+	        this.initRadiusSlider();
+	        this.showCategories();
+	        if (!_app2.default.isMobile) {
+	            this.toggleSearchParameters();
+	        }
+	    },
+	    showShiners: function showShiners() {
+	        this.showChildView('shiners', new _ShinersListView2.default({ collection: this.collection }));
+	    },
+	    showCategories: function showCategories() {
+	        this.showChildView('categories', new _CategoriesListView2.default({ model: this.model, collection: _app2.default.postAdTypes }));
+	    },
+	    setQuery: function setQuery(val) {
+	        this.model.set('query', val);
+	    },
+	    onTextSearch: function onTextSearch(e) {
+	        var val = e.target.value;
+	        if (e.keyCode > 31 || e.keyCode === 13 || e.keyCode === 8) {
+	            if (this.fetchTimeOut) clearTimeout(this.fetchTimeOut);
+	            this.fetchTimeOut = setTimeout(_.bind(this.setQuery, this, val), 400);
+	        }
+	    },
+	    initRadiusSlider: function initRadiusSlider() {
+	        if (i18n.getLanguage() === 'ru') {
+	            this.sliderCases = [{ name: '200м', value: 0.2, zoom: 16 }, { name: '1км', value: 1, zoom: 14 }, { name: '5км', value: 5, zoom: 12 }, { name: '20км', value: 20, zoom: 10 }, { name: 'везде', value: 20000, zoom: 3 }];
+	        } else if (i18n.getLanguage() === 'en') {
+	            this.sliderCases = [{ name: '200m', value: 0.2, zoom: 16 }, { name: '1km', value: 1, zoom: 14 }, { name: '5km', value: 5, zoom: 12 }, { name: '20km', value: 20, zoom: 10 }, { name: 'everywhere', value: 20000, zoom: 3 }];
+	        }
+	        this.$radiusSlider = this.$("#slider3").slider({
+	            range: "min",
+	            animate: true,
+	            min: 0,
+	            max: 4,
+	            value: this.model.get('radius')
+	        });
+	        this.$radiusSlider.slider("pips", { rest: "label", labels: _.map(this.sliderCases, function (c) {
+	                return c.name;
+	            }) });
+	        this.$radiusSlider.on("slidechange", _.bind(this.onRadiusChange, this));
+	    },
+	    onRadiusChange: function onRadiusChange(e, ui) {
+	        this.model.set('radius', this.sliderCases[ui.value].value);
+	        _app2.default.map.setZoom(this.sliderCases[ui.value].zoom);
+	    },
+	    toggleSearchParameters: function toggleSearchParameters() {
+	        this.$('#searchParameters').slideToggle(300);
+	    },
+	    toggleResults: function toggleResults(e) {
+	        var previewParClosedHeight = 25;
+	        var parentSection = $(e.target).parent(),
+	            parentWrapper = $(e.target).parents("div.toggle"),
+	            previewPar = false,
+	            isAccordion = parentWrapper.hasClass("toggle-accordion");
+	        if (isAccordion && typeof e.originalEvent !== "undefined") {
+	            parentWrapper.find("div.toggle.active > label").trigger("click");
+	        }
+	        parentSection.toggleClass("active");
+	        if (parentSection.find("> p").get(0)) {
+	            previewPar = parentSection.find("> p");
+	            var previewParCurrentHeight = previewPar.css("height");
+	            var previewParAnimateHeight = previewPar.css("height");
+	            previewPar.css("height", "auto");
+	            previewPar.css("height", previewParCurrentHeight);
+	        }
+	        var toggleContent = parentSection.find("> div.toggle-content");
+	        if (parentSection.hasClass("active")) {
+	            $(previewPar).animate({ height: previewParAnimateHeight }, 350, function () {
+	                return $(e.target).addClass("preview-active");
+	            });
+	            toggleContent.slideDown(350);
+	        } else {
+	            $(previewPar).animate({ height: previewParClosedHeight }, 350, function () {
+	                return $(e.target).removeClass("preview-active");
+	            });
+	            toggleContent.slideUp(350);
+	        }
+	    },
+	    toggleBannerView: function toggleBannerView() {
+	        _app2.default.layout.toggleBannerView();
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 48 */
+/*!****************************************************!*\
+  !*** ./wwwroot/homeApp/search/SearchView.hbs.html ***!
+  \****************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="sh-map-search-form fancy-form">\n    <div class="input-group">\n        <span class="input-group-btn">\n            <button title="Фильтр поиска" id="searchParametersButton" class="btn btn-default" type="button">\n                <i class="fa fa-cog"></i>\n            </button>\n        </span>\n        <input type="text" placeholder="Поиск..." class="form-control" name="query" id="query">\n        <span class="input-group-btn hidden-lg hidden-md">\n            <a id="userLocation" title="Местоположение" class="sh-user-location btn btn-default btn-block size-14">\n                <i class="fa fa-map-marker text-success"></i>\n            </a>\n        </span>\n        <span class="fancy-tooltip top-left">\n            <em>'+
+	((__t=(i18n('search_free_search')))==null?'':__t)+
+	'</em>\n        </span>\n    </div>\n</div>\n<div class="sh-map-distance">\n    <div class="margin-bottom-10">\n        <label for="radius">'+
+	((__t=(i18n('search_choose_radius')))==null?'':__t)+
+	'</label>\n        <input type="hidden" name="radius" id="radius" class="form-control">\n    </div>\n    <div class="slider-wrapper info-slider">\n        <div id="slider3"></div>\n    </div>\n</div>\n<div id="searchParameters" style="display: none">\n    <div class="ui sh-accordion toggle">\n        <div class="toggle">\n            <label>'+
+	((__t=(i18n('search_parameters')))==null?'':__t)+
+	'</label>\n            <div class="toggle-content">                \n                <div id="selectCategories"></div>\n            </div>\n        </div>\n        <div class="toggle '+
+	((__t=(isMobile?'':'active'))==null?'':__t)+
+	'">\n            <label>'+
+	((__t=(i18n('search_found')))==null?'':__t)+
+	'</label>\n            <div class="toggle-content" id="searchResults" style="'+
+	((__t=(isMobile?'':'display: block'))==null?'':__t)+
+	'">\n                <div id="shinersList" class="sh-shiners-list-items"></div>               \n            </div>\n        </div>\n    </div>\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 49 */
+/*!******************************************************************************!*\
+  !*** ./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css ***!
+  \******************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./jquery-ui-slider-pips.min.css */ 50);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 51)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./jquery-ui-slider-pips.min.css", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./jquery-ui-slider-pips.min.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 50 */
+/*!*********************************************************************************************!*\
+  !*** ./~/css-loader!./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.min.css ***!
+  \*********************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 14)();
+	exports.push([module.id, "/*! jQuery-ui-Slider-Pips - v1.11.4 - 2016-09-04\n* Copyright (c) 2016 Simon Goellner <simey.me@gmail.com>; Licensed MIT */\n\n.ui-slider-horizontal.ui-slider-pips{margin-bottom:1.4em}.ui-slider-pips .ui-slider-label,.ui-slider-pips .ui-slider-pip-hide{display:none}.ui-slider-pips .ui-slider-pip-label .ui-slider-label{display:block}.ui-slider-pips .ui-slider-pip{width:2em;height:1em;line-height:1em;position:absolute;font-size:0.8em;color:#999;overflow:visible;text-align:center;top:20px;left:20px;margin-left:-1em;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.ui-state-disabled.ui-slider-pips .ui-slider-pip{cursor:default}.ui-slider-pips .ui-slider-line{background:#999;width:1px;height:3px;position:absolute;left:50%}.ui-slider-pips .ui-slider-label{position:absolute;top:5px;left:50%;margin-left:-1em;width:2em}.ui-slider-pips:not(.ui-slider-disabled) .ui-slider-pip:hover .ui-slider-label{color:black;font-weight:bold}.ui-slider-vertical.ui-slider-pips{margin-bottom:1em;margin-right:2em}.ui-slider-vertical.ui-slider-pips .ui-slider-pip{text-align:left;top:auto;left:20px;margin-left:0;margin-bottom:-0.5em}.ui-slider-vertical.ui-slider-pips .ui-slider-line{width:3px;height:1px;position:absolute;top:50%;left:0}.ui-slider-vertical.ui-slider-pips .ui-slider-label{top:50%;left:0.5em;margin-left:0;margin-top:-0.5em;width:2em}.ui-slider-float .ui-slider-handle:focus,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip-label .ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip-label{outline:none}.ui-slider-float .ui-slider-tip,.ui-slider-float .ui-slider-tip-label{position:absolute;visibility:hidden;top:-40px;display:block;width:34px;margin-left:-18px;left:50%;height:20px;line-height:20px;background:white;border-radius:3px;border:1px solid #888;text-align:center;font-size:12px;opacity:0;color:#333;-webkit-transition-property:opacity, top, visibility;transition-property:opacity, top, visibility;-webkit-transition-timing-function:ease-in;transition-timing-function:ease-in;-webkit-transition-duration:200ms, 200ms, 0ms;transition-duration:200ms, 200ms, 0ms;-webkit-transition-delay:0ms, 0ms, 200ms;transition-delay:0ms, 0ms, 200ms}.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{opacity:1;top:-30px;visibility:visible;-webkit-transition-timing-function:ease-out;transition-timing-function:ease-out;-webkit-transition-delay:200ms, 200ms, 0ms;transition-delay:200ms, 200ms, 0ms}.ui-slider-float .ui-slider-pip .ui-slider-tip-label{top:42px}.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:32px;font-weight:normal}.ui-slider-float .ui-slider-tip:after,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#fff;position:absolute;bottom:-10px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-tip:before,.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{content:\" \";width:0;height:0;border:5px solid rgba(255,255,255,0);border-top-color:#888;position:absolute;bottom:-11px;left:50%;margin-left:-5px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-bottom-color:#fff;top:-10px}.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-bottom-color:#888;top:-11px}.ui-slider-vertical.ui-slider-float .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-tip-label{top:50%;margin-top:-11px;width:34px;margin-left:0px;left:-60px;color:#333;-webkit-transition-duration:200ms, 200ms, 0;transition-duration:200ms, 200ms, 0;-webkit-transition-property:opacity, left, visibility;transition-property:opacity, left, visibility;-webkit-transition-delay:0, 0, 200ms;transition-delay:0, 0, 200ms}.ui-slider-vertical.ui-slider-float .ui-slider-handle:hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-hover .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle:focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-focus .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-handle.ui-state-active .ui-slider-tip,.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{top:50%;margin-top:-11px;left:-50px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label{left:47px}.ui-slider-vertical.ui-slider-float .ui-slider-pip:hover .ui-slider-tip-label{left:37px}.ui-slider-vertical.ui-slider-float .ui-slider-tip:after,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-left-color:#fff;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-10px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-tip:before,.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-left-color:#888;border-top-color:transparent;position:absolute;bottom:50%;margin-bottom:-5px;right:-11px;margin-left:0;top:auto;left:auto}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:after{border:5px solid rgba(255,255,255,0);border-right-color:#fff;right:auto;left:-10px}.ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label:before{border:5px solid rgba(255,255,255,0);border-right-color:#888;right:auto;left:-11px}.ui-slider-pips [class*=ui-slider-pip-initial]{font-weight:bold;color:#14CA82}.ui-slider-pips .ui-slider-pip-initial-2{color:#1897C9}.ui-slider-pips [class*=ui-slider-pip-selected]{font-weight:bold;color:#FF7A00}.ui-slider-pips .ui-slider-pip-inrange{color:black}.ui-slider-pips .ui-slider-pip-selected-2{color:#E70081}.ui-slider-pips [class*=ui-slider-pip-selected] .ui-slider-line,.ui-slider-pips .ui-slider-pip-inrange .ui-slider-line{background:black}\n", ""]);
+
+/***/ },
+/* 51 */
+/*!*************************************!*\
+  !*** ./~/style-loader/addStyles.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0,
+		styleElementsInsertedAtTop = [];
+	
+	module.exports = function(list, options) {
+		if(true) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+	
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+	
+		// By default, add <style> tags to the bottom of <head>.
+		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+	
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+	
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
+	}
+	
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+	
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+	
+	function insertStyleElement(options, styleElement) {
+		var head = getHeadElement();
+		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+		if (options.insertAt === "top") {
+			if(!lastStyleElementInsertedAtTop) {
+				head.insertBefore(styleElement, head.firstChild);
+			} else if(lastStyleElementInsertedAtTop.nextSibling) {
+				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+			} else {
+				head.appendChild(styleElement);
+			}
+			styleElementsInsertedAtTop.push(styleElement);
+		} else if (options.insertAt === "bottom") {
+			head.appendChild(styleElement);
+		} else {
+			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+		}
+	}
+	
+	function removeStyleElement(styleElement) {
+		styleElement.parentNode.removeChild(styleElement);
+		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+		if(idx >= 0) {
+			styleElementsInsertedAtTop.splice(idx, 1);
+		}
+	}
+	
+	function createStyleElement(options) {
+		var styleElement = document.createElement("style");
+		styleElement.type = "text/css";
+		insertStyleElement(options, styleElement);
+		return styleElement;
+	}
+	
+	function createLinkElement(options) {
+		var linkElement = document.createElement("link");
+		linkElement.rel = "stylesheet";
+		insertStyleElement(options, linkElement);
+		return linkElement;
+	}
+	
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+	
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement(options));
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else if(obj.sourceMap &&
+			typeof URL === "function" &&
+			typeof URL.createObjectURL === "function" &&
+			typeof URL.revokeObjectURL === "function" &&
+			typeof Blob === "function" &&
+			typeof btoa === "function") {
+			styleElement = createLinkElement(options);
+			update = updateLink.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+				if(styleElement.href)
+					URL.revokeObjectURL(styleElement.href);
+			};
+		} else {
+			styleElement = createStyleElement(options);
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+			};
+		}
+	
+		update(obj);
+	
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+	
+	var replaceText = (function () {
+		var textStore = [];
+	
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
+	
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+	
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+	
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+	
+		if(media) {
+			styleElement.setAttribute("media", media)
+		}
+	
+		if(styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
+	
+	function updateLink(linkElement, obj) {
+		var css = obj.css;
+		var sourceMap = obj.sourceMap;
+	
+		if(sourceMap) {
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+	
+		var blob = new Blob([css], { type: "text/css" });
+	
+		var oldSrc = linkElement.href;
+	
+		linkElement.href = URL.createObjectURL(blob);
+	
+		if(oldSrc)
+			URL.revokeObjectURL(oldSrc);
+	}
+
+
+/***/ },
+/* 52 */
+/*!*************************************************************************!*\
+  !*** ./wwwroot/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js ***!
+  \*************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(jQuery) {"use strict";
+	
+	/*! jQuery-ui-Slider-Pips - v1.11.4 - 2016-09-04
+	* Copyright (c) 2016 Simon Goellner <simey.me@gmail.com>; Licensed MIT */
+	
+	(function ($) {
+	
+	    "use strict";
+	
+	    var extensionMethods = {
+	
+	        // pips
+	
+	        pips: function pips(settings) {
+	
+	            var slider = this,
+	                i,
+	                j,
+	                p,
+	                collection = "",
+	                mousedownHandlers,
+	                min = slider._valueMin(),
+	                max = slider._valueMax(),
+	                pips = (max - min) / slider.options.step,
+	                $handles = slider.element.find(".ui-slider-handle"),
+	                $pips;
+	
+	            var options = {
+	
+	                first: "label",
+	                /* "label", "pip", false */
+	
+	                last: "label",
+	                /* "label", "pip", false */
+	
+	                rest: "pip",
+	                /* "label", "pip", false */
+	
+	                labels: false,
+	                /* [array], { first: "string", rest: [array], last: "string" }, false */
+	
+	                prefix: "",
+	                /* "", string */
+	
+	                suffix: "",
+	                /* "", string */
+	
+	                step: pips > 100 ? Math.floor(pips * 0.05) : 1,
+	                /* number */
+	
+	                formatLabel: function formatLabel(value) {
+	                    return this.prefix + value + this.suffix;
+	                }
+	                /* function
+	                    must return a value to display in the pip labels */
+	
+	            };
+	
+	            if ($.type(settings) === "object" || $.type(settings) === "undefined") {
+	
+	                $.extend(options, settings);
+	                slider.element.data("pips-options", options);
+	            } else {
+	
+	                if (settings === "destroy") {
+	
+	                    destroy();
+	                } else if (settings === "refresh") {
+	
+	                    slider.element.slider("pips", slider.element.data("pips-options"));
+	                }
+	
+	                return;
+	            }
+	
+	            // we don't want the step ever to be a floating point or negative
+	            // (or 0 actually, so we'll set it to 1 in that case).
+	            slider.options.pipStep = Math.abs(Math.round(options.step)) || 1;
+	
+	            // get rid of all pips that might already exist.
+	            slider.element.off(".selectPip").addClass("ui-slider-pips").find(".ui-slider-pip").remove();
+	
+	            // small object with functions for marking pips as selected.
+	
+	            var selectPip = {
+	
+	                single: function single(value) {
+	
+	                    this.resetClasses();
+	
+	                    $pips.filter(".ui-slider-pip-" + this.classLabel(value)).addClass("ui-slider-pip-selected");
+	
+	                    if (slider.options.range) {
+	
+	                        $pips.each(function (k, v) {
+	
+	                            var pipVal = $(v).children(".ui-slider-label").data("value");
+	
+	                            if (slider.options.range === "min" && pipVal < value || slider.options.range === "max" && pipVal > value) {
+	
+	                                $(v).addClass("ui-slider-pip-inrange");
+	                            }
+	                        });
+	                    }
+	                },
+	
+	                range: function range(values) {
+	
+	                    this.resetClasses();
+	
+	                    for (i = 0; i < values.length; i++) {
+	
+	                        $pips.filter(".ui-slider-pip-" + this.classLabel(values[i])).addClass("ui-slider-pip-selected-" + (i + 1));
+	                    }
+	
+	                    if (slider.options.range) {
+	
+	                        $pips.each(function (k, v) {
+	
+	                            var pipVal = $(v).children(".ui-slider-label").data("value");
+	
+	                            if (pipVal > values[0] && pipVal < values[1]) {
+	
+	                                $(v).addClass("ui-slider-pip-inrange");
+	                            }
+	                        });
+	                    }
+	                },
+	
+	                classLabel: function classLabel(value) {
+	
+	                    return value.toString().replace(".", "-");
+	                },
+	
+	                resetClasses: function resetClasses() {
+	
+	                    var regex = /(^|\s*)(ui-slider-pip-selected|ui-slider-pip-inrange)(-{1,2}\d+|\s|$)/gi;
+	
+	                    $pips.removeClass(function (index, css) {
+	                        return (css.match(regex) || []).join(" ");
+	                    });
+	                }
+	
+	            };
+	
+	            function getClosestHandle(val) {
+	
+	                var h,
+	                    k,
+	                    sliderVals,
+	                    comparedVals,
+	                    closestVal,
+	                    tempHandles = [],
+	                    closestHandle = 0;
+	
+	                if (slider.values() && slider.values().length) {
+	
+	                    // get the current values of the slider handles
+	                    sliderVals = slider.values();
+	
+	                    // find the offset value from the `val` for each
+	                    // handle, and store it in a new array
+	                    comparedVals = $.map(sliderVals, function (v) {
+	                        return Math.abs(v - val);
+	                    });
+	
+	                    // figure out the closest handles to the value
+	                    closestVal = Math.min.apply(Math, comparedVals);
+	
+	                    // if a comparedVal is the closestVal, then
+	                    // set the value accordingly, and set the closest handle.
+	                    for (h = 0; h < comparedVals.length; h++) {
+	                        if (comparedVals[h] === closestVal) {
+	                            tempHandles.push(h);
+	                        }
+	                    }
+	
+	                    // set the closest handle to the first handle in array,
+	                    // just incase we have no _lastChangedValue to compare to.
+	                    closestHandle = tempHandles[0];
+	
+	                    // now we want to find out if any of the closest handles were
+	                    // the last changed handle, if so we specify that handle to change
+	                    for (k = 0; k < tempHandles.length; k++) {
+	                        if (slider._lastChangedValue === tempHandles[k]) {
+	                            closestHandle = tempHandles[k];
+	                        }
+	                    }
+	
+	                    if (slider.options.range && tempHandles.length === 2) {
+	
+	                        if (val > sliderVals[1]) {
+	
+	                            closestHandle = tempHandles[1];
+	                        } else if (val < sliderVals[0]) {
+	
+	                            closestHandle = tempHandles[0];
+	                        }
+	                    }
+	                }
+	
+	                return closestHandle;
+	            }
+	
+	            function destroy() {
+	
+	                slider.element.off(".selectPip").on("mousedown.slider", slider.element.data("mousedown-original")).removeClass("ui-slider-pips").find(".ui-slider-pip").remove();
+	            }
+	
+	            // when we click on a label, we want to make sure the
+	            // slider's handle actually goes to that label!
+	            // so we check all the handles and see which one is closest
+	            // to the label we clicked. If 2 handles are equidistant then
+	            // we move both of them. We also want to trigger focus on the
+	            // handle.
+	
+	            // without this method the label is just treated like a part
+	            // of the slider and there's no accuracy in the selected value
+	
+	            function labelClick(label, e) {
+	
+	                if (slider.option("disabled")) {
+	                    return;
+	                }
+	
+	                var val = $(label).data("value"),
+	                    indexToChange = getClosestHandle(val);
+	
+	                if (slider.values() && slider.values().length) {
+	
+	                    slider.options.values[indexToChange] = slider._trimAlignValue(val);
+	                } else {
+	
+	                    slider.options.value = slider._trimAlignValue(val);
+	                }
+	
+	                slider._refreshValue();
+	                slider._change(e, indexToChange);
+	            }
+	
+	            // method for creating a pip. We loop this for creating all
+	            // the pips.
+	
+	            function createPip(which) {
+	
+	                var label,
+	                    percent,
+	                    number = which,
+	                    classes = "ui-slider-pip",
+	                    css = "",
+	                    value = slider.value(),
+	                    values = slider.values(),
+	                    labelValue,
+	                    classLabel,
+	                    labelIndex;
+	
+	                if (which === "first") {
+	
+	                    number = 0;
+	                } else if (which === "last") {
+	
+	                    number = pips;
+	                }
+	
+	                // labelValue is the actual value of the pip based on the min/step
+	                labelValue = min + slider.options.step * number;
+	
+	                // classLabel replaces any decimals with hyphens
+	                classLabel = labelValue.toString().replace(".", "-");
+	
+	                // get the index needed for selecting labels out of the array
+	                labelIndex = number + min - min;
+	
+	                // we need to set the human-readable label to either the
+	                // corresponding element in the array, or the appropriate
+	                // item in the object... or an empty string.
+	
+	                if ($.type(options.labels) === "array") {
+	
+	                    label = options.labels[labelIndex] || "";
+	                } else if ($.type(options.labels) === "object") {
+	
+	                    if (which === "first") {
+	
+	                        // set first label
+	                        label = options.labels.first || "";
+	                    } else if (which === "last") {
+	
+	                        // set last label
+	                        label = options.labels.last || "";
+	                    } else if ($.type(options.labels.rest) === "array") {
+	
+	                        // set other labels, but our index should start at -1
+	                        // because of the first pip.
+	                        label = options.labels.rest[labelIndex - 1] || "";
+	                    } else {
+	
+	                        // urrggh, the options must be f**ked, just show nothing.
+	                        label = labelValue;
+	                    }
+	                } else {
+	
+	                    label = labelValue;
+	                }
+	
+	                if (which === "first") {
+	
+	                    // first Pip on the Slider
+	                    percent = "0%";
+	
+	                    classes += " ui-slider-pip-first";
+	                    classes += options.first === "label" ? " ui-slider-pip-label" : "";
+	                    classes += options.first === false ? " ui-slider-pip-hide" : "";
+	                } else if (which === "last") {
+	
+	                    // last Pip on the Slider
+	                    percent = "100%";
+	
+	                    classes += " ui-slider-pip-last";
+	                    classes += options.last === "label" ? " ui-slider-pip-label" : "";
+	                    classes += options.last === false ? " ui-slider-pip-hide" : "";
+	                } else {
+	
+	                    // all other Pips
+	                    percent = (100 / pips * which).toFixed(4) + "%";
+	
+	                    classes += options.rest === "label" ? " ui-slider-pip-label" : "";
+	                    classes += options.rest === false ? " ui-slider-pip-hide" : "";
+	                }
+	
+	                classes += " ui-slider-pip-" + classLabel;
+	
+	                // add classes for the initial-selected values.
+	                if (values && values.length) {
+	
+	                    for (i = 0; i < values.length; i++) {
+	
+	                        if (labelValue === values[i]) {
+	
+	                            classes += " ui-slider-pip-initial-" + (i + 1);
+	                            classes += " ui-slider-pip-selected-" + (i + 1);
+	                        }
+	                    }
+	
+	                    if (slider.options.range) {
+	
+	                        if (labelValue > values[0] && labelValue < values[1]) {
+	
+	                            classes += " ui-slider-pip-inrange";
+	                        }
+	                    }
+	                } else {
+	
+	                    if (labelValue === value) {
+	
+	                        classes += " ui-slider-pip-initial";
+	                        classes += " ui-slider-pip-selected";
+	                    }
+	
+	                    if (slider.options.range) {
+	
+	                        if (slider.options.range === "min" && labelValue < value || slider.options.range === "max" && labelValue > value) {
+	
+	                            classes += " ui-slider-pip-inrange";
+	                        }
+	                    }
+	                }
+	
+	                css = slider.options.orientation === "horizontal" ? "left: " + percent : "bottom: " + percent;
+	
+	                // add this current pip to the collection
+	                return "<span class=\"" + classes + "\" style=\"" + css + "\">" + "<span class=\"ui-slider-line\"></span>" + "<span class=\"ui-slider-label\" data-value=\"" + labelValue + "\">" + options.formatLabel(label) + "</span>" + "</span>";
+	            }
+	
+	            // create our first pip
+	            collection += createPip("first");
+	
+	            // for every stop in the slider where we need a pip; create one.
+	            for (p = slider.options.pipStep; p < pips; p += slider.options.pipStep) {
+	                collection += createPip(p);
+	            }
+	
+	            // create our last pip
+	            collection += createPip("last");
+	
+	            // append the collection of pips.
+	            slider.element.append(collection);
+	
+	            // store the pips for setting classes later.
+	            $pips = slider.element.find(".ui-slider-pip");
+	
+	            // store the mousedown handlers for later, just in case we reset
+	            // the slider, the handler would be lost!
+	
+	            if ($._data(slider.element.get(0), "events").mousedown && $._data(slider.element.get(0), "events").mousedown.length) {
+	
+	                mousedownHandlers = $._data(slider.element.get(0), "events").mousedown;
+	            } else {
+	
+	                mousedownHandlers = slider.element.data("mousedown-handlers");
+	            }
+	
+	            slider.element.data("mousedown-handlers", mousedownHandlers.slice());
+	
+	            // loop through all the mousedown handlers on the slider,
+	            // and store the original namespaced (.slider) event handler so
+	            // we can trigger it later.
+	            for (j = 0; j < mousedownHandlers.length; j++) {
+	                if (mousedownHandlers[j].namespace === "slider") {
+	                    slider.element.data("mousedown-original", mousedownHandlers[j].handler);
+	                }
+	            }
+	
+	            // unbind the mousedown.slider event, because it interferes with
+	            // the labelClick() method (stops smooth animation), and decide
+	            // if we want to trigger the original event based on which element
+	            // was clicked.
+	            slider.element.off("mousedown.slider").on("mousedown.selectPip", function (e) {
+	
+	                var $target = $(e.target),
+	                    closest = getClosestHandle($target.data("value")),
+	                    $handle = $handles.eq(closest);
+	
+	                $handle.addClass("ui-state-active");
+	
+	                if ($target.is(".ui-slider-label")) {
+	
+	                    labelClick($target, e);
+	
+	                    slider.element.one("mouseup.selectPip", function () {
+	
+	                        $handle.removeClass("ui-state-active").focus();
+	                    });
+	                } else {
+	
+	                    var originalMousedown = slider.element.data("mousedown-original");
+	                    originalMousedown(e);
+	                }
+	            });
+	
+	            slider.element.on("slide.selectPip slidechange.selectPip", function (e, ui) {
+	
+	                var $slider = $(this),
+	                    value = $slider.slider("value"),
+	                    values = $slider.slider("values");
+	
+	                if (ui) {
+	
+	                    value = ui.value;
+	                    values = ui.values;
+	                }
+	
+	                if (slider.values() && slider.values().length) {
+	
+	                    selectPip.range(values);
+	                } else {
+	
+	                    selectPip.single(value);
+	                }
+	            });
+	        },
+	
+	        // floats
+	
+	        float: function float(settings) {
+	
+	            var i,
+	                slider = this,
+	                min = slider._valueMin(),
+	                max = slider._valueMax(),
+	                value = slider._value(),
+	                values = slider._values(),
+	                tipValues = [],
+	                $handles = slider.element.find(".ui-slider-handle");
+	
+	            var options = {
+	
+	                handle: true,
+	                /* false */
+	
+	                pips: false,
+	                /* true */
+	
+	                labels: false,
+	                /* [array], { first: "string", rest: [array], last: "string" }, false */
+	
+	                prefix: "",
+	                /* "", string */
+	
+	                suffix: "",
+	                /* "", string */
+	
+	                event: "slidechange slide",
+	                /* "slidechange", "slide", "slidechange slide" */
+	
+	                formatLabel: function formatLabel(value) {
+	                    return this.prefix + value + this.suffix;
+	                }
+	                /* function
+	                    must return a value to display in the floats */
+	
+	            };
+	
+	            if ($.type(settings) === "object" || $.type(settings) === "undefined") {
+	
+	                $.extend(options, settings);
+	                slider.element.data("float-options", options);
+	            } else {
+	
+	                if (settings === "destroy") {
+	
+	                    destroy();
+	                } else if (settings === "refresh") {
+	
+	                    slider.element.slider("float", slider.element.data("float-options"));
+	                }
+	
+	                return;
+	            }
+	
+	            if (value < min) {
+	                value = min;
+	            }
+	
+	            if (value > max) {
+	                value = max;
+	            }
+	
+	            if (values && values.length) {
+	
+	                for (i = 0; i < values.length; i++) {
+	
+	                    if (values[i] < min) {
+	                        values[i] = min;
+	                    }
+	
+	                    if (values[i] > max) {
+	                        values[i] = max;
+	                    }
+	                }
+	            }
+	
+	            // add a class for the CSS
+	            slider.element.addClass("ui-slider-float").find(".ui-slider-tip, .ui-slider-tip-label").remove();
+	
+	            function destroy() {
+	
+	                slider.element.off(".sliderFloat").removeClass("ui-slider-float").find(".ui-slider-tip, .ui-slider-tip-label").remove();
+	            }
+	
+	            function getPipLabels(values) {
+	
+	                // when checking the array we need to divide
+	                // by the step option, so we store those values here.
+	
+	                var vals = [],
+	                    steppedVals = $.map(values, function (v) {
+	                    return Math.ceil((v - min) / slider.options.step);
+	                });
+	
+	                // now we just get the values we need to return
+	                // by looping through the values array and assigning the
+	                // label if it exists.
+	
+	                if ($.type(options.labels) === "array") {
+	
+	                    for (i = 0; i < values.length; i++) {
+	
+	                        vals[i] = options.labels[steppedVals[i]] || values[i];
+	                    }
+	                } else if ($.type(options.labels) === "object") {
+	
+	                    for (i = 0; i < values.length; i++) {
+	
+	                        if (values[i] === min) {
+	
+	                            vals[i] = options.labels.first || min;
+	                        } else if (values[i] === max) {
+	
+	                            vals[i] = options.labels.last || max;
+	                        } else if ($.type(options.labels.rest) === "array") {
+	
+	                            vals[i] = options.labels.rest[steppedVals[i] - 1] || values[i];
+	                        } else {
+	
+	                            vals[i] = values[i];
+	                        }
+	                    }
+	                } else {
+	
+	                    for (i = 0; i < values.length; i++) {
+	
+	                        vals[i] = values[i];
+	                    }
+	                }
+	
+	                return vals;
+	            }
+	
+	            // apply handle tip if settings allows.
+	            if (options.handle) {
+	
+	                // we need to set the human-readable label to either the
+	                // corresponding element in the array, or the appropriate
+	                // item in the object... or an empty string.
+	
+	                tipValues = slider.values() && slider.values().length ? getPipLabels(values) : getPipLabels([value]);
+	
+	                for (i = 0; i < tipValues.length; i++) {
+	
+	                    $handles.eq(i).append($("<span class=\"ui-slider-tip\">" + options.formatLabel(tipValues[i]) + "</span>"));
+	                }
+	            }
+	
+	            if (options.pips) {
+	
+	                // if this slider also has pip-labels, we make those into tips, too.
+	                slider.element.find(".ui-slider-label").each(function (k, v) {
+	
+	                    var $this = $(v),
+	                        val = [$this.data("value")],
+	                        label,
+	                        $tip;
+	
+	                    label = options.formatLabel(getPipLabels(val)[0]);
+	
+	                    // create a tip element
+	                    $tip = $("<span class=\"ui-slider-tip-label\">" + label + "</span>").insertAfter($this);
+	                });
+	            }
+	
+	            // check that the event option is actually valid against our
+	            // own list of the slider's events.
+	            if (options.event !== "slide" && options.event !== "slidechange" && options.event !== "slide slidechange" && options.event !== "slidechange slide") {
+	
+	                options.event = "slidechange slide";
+	            }
+	
+	            // when slider changes, update handle tip label.
+	            slider.element.off(".sliderFloat").on(options.event + ".sliderFloat", function (e, ui) {
+	
+	                var uiValue = $.type(ui.value) === "array" ? ui.value : [ui.value],
+	                    val = options.formatLabel(getPipLabels(uiValue)[0]);
+	
+	                $(ui.handle).find(".ui-slider-tip").html(val);
+	            });
+	        }
+	
+	    };
+	
+	    $.extend(true, $.ui.slider.prototype, extensionMethods);
+	})(jQuery);
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 53 */
+/*!****************************************************************!*\
+  !*** ./wwwroot/lib/jquery-slimscroll/jquery.slimscroll.min.js ***!
+  \****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(jQuery) {"use strict";
+	
+	/*! Copyright (c) 2011 Piotr Rochala (http://rocha.la)
+	 * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
+	 * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
+	 *
+	 * Version: 1.3.6
+	 *
+	 */
+	(function (e) {
+	  e.fn.extend({ slimScroll: function slimScroll(g) {
+	      var a = e.extend({ width: "auto", height: "250px", size: "7px", color: "#000", position: "right", distance: "1px", start: "top", opacity: .4, alwaysVisible: !1, disableFadeOut: !1, railVisible: !1, railColor: "#333", railOpacity: .2, railDraggable: !0, railClass: "slimScrollRail", barClass: "slimScrollBar", wrapperClass: "slimScrollDiv", allowPageScroll: !1, wheelStep: 20, touchScrollStep: 200, borderRadius: "7px", railBorderRadius: "7px" }, g);this.each(function () {
+	        function v(d) {
+	          if (r) {
+	            d = d || window.event;
+	            var c = 0;d.wheelDelta && (c = -d.wheelDelta / 120);d.detail && (c = d.detail / 3);e(d.target || d.srcTarget || d.srcElement).closest("." + a.wrapperClass).is(b.parent()) && m(c, !0);d.preventDefault && !k && d.preventDefault();k || (d.returnValue = !1);
+	          }
+	        }function m(d, e, g) {
+	          k = !1;var f = d,
+	              h = b.outerHeight() - c.outerHeight();e && (f = parseInt(c.css("top")) + d * parseInt(a.wheelStep) / 100 * c.outerHeight(), f = Math.min(Math.max(f, 0), h), f = 0 < d ? Math.ceil(f) : Math.floor(f), c.css({ top: f + "px" }));l = parseInt(c.css("top")) / (b.outerHeight() - c.outerHeight());
+	          f = l * (b[0].scrollHeight - b.outerHeight());g && (f = d, d = f / b[0].scrollHeight * b.outerHeight(), d = Math.min(Math.max(d, 0), h), c.css({ top: d + "px" }));b.scrollTop(f);b.trigger("slimscrolling", ~~f);w();p();
+	        }function x() {
+	          u = Math.max(b.outerHeight() / b[0].scrollHeight * b.outerHeight(), 30);c.css({ height: u + "px" });var a = u == b.outerHeight() ? "none" : "block";c.css({ display: a });
+	        }function w() {
+	          x();clearTimeout(B);l == ~~l ? (k = a.allowPageScroll, C != l && b.trigger("slimscroll", 0 == ~~l ? "top" : "bottom")) : k = !1;C = l;u >= b.outerHeight() ? k = !0 : (c.stop(!0, !0).fadeIn("fast"), a.railVisible && h.stop(!0, !0).fadeIn("fast"));
+	        }function p() {
+	          a.alwaysVisible || (B = setTimeout(function () {
+	            a.disableFadeOut && r || y || z || (c.fadeOut("slow"), h.fadeOut("slow"));
+	          }, 1E3));
+	        }var r,
+	            y,
+	            z,
+	            B,
+	            A,
+	            u,
+	            l,
+	            C,
+	            k = !1,
+	            b = e(this);if (b.parent().hasClass(a.wrapperClass)) {
+	          var n = b.scrollTop(),
+	              c = b.closest("." + a.barClass),
+	              h = b.closest("." + a.railClass);x();if (e.isPlainObject(g)) {
+	            if ("height" in g && "auto" == g.height) {
+	              b.parent().css("height", "auto");b.css("height", "auto");var q = b.parent().parent().height();b.parent().css("height", q);b.css("height", q);
+	            }if ("scrollTo" in g) n = parseInt(a.scrollTo);else if ("scrollBy" in g) n += parseInt(a.scrollBy);else if ("destroy" in g) {
+	              c.remove();h.remove();b.unwrap();return;
+	            }m(n, !1, !0);
+	          }
+	        } else if (!(e.isPlainObject(g) && "destroy" in g)) {
+	          a.height = "auto" == a.height ? b.parent().height() : a.height;n = e("<div></div>").addClass(a.wrapperClass).css({ position: "relative", overflow: "hidden", width: a.width, height: a.height });b.css({ overflow: "hidden", width: a.width, height: a.height });var h = e("<div></div>").addClass(a.railClass).css({ width: a.size,
+	            height: "100%", position: "absolute", top: 0, display: a.alwaysVisible && a.railVisible ? "block" : "none", "border-radius": a.railBorderRadius, background: a.railColor, opacity: a.railOpacity, zIndex: 90 }),
+	              c = e("<div></div>").addClass(a.barClass).css({ background: a.color, width: a.size, position: "absolute", top: 0, opacity: a.opacity, display: a.alwaysVisible ? "block" : "none", "border-radius": a.borderRadius, BorderRadius: a.borderRadius, MozBorderRadius: a.borderRadius, WebkitBorderRadius: a.borderRadius, zIndex: 99 }),
+	              q = "right" == a.position ? { right: a.distance } : { left: a.distance };h.css(q);c.css(q);b.wrap(n);b.parent().append(c);b.parent().append(h);a.railDraggable && c.bind("mousedown", function (a) {
+	            var b = e(document);z = !0;t = parseFloat(c.css("top"));pageY = a.pageY;b.bind("mousemove.slimscroll", function (a) {
+	              currTop = t + a.pageY - pageY;c.css("top", currTop);m(0, c.position().top, !1);
+	            });b.bind("mouseup.slimscroll", function (a) {
+	              z = !1;p();b.unbind(".slimscroll");
+	            });return !1;
+	          }).bind("selectstart.slimscroll", function (a) {
+	            a.stopPropagation();a.preventDefault();return !1;
+	          });
+	          h.hover(function () {
+	            w();
+	          }, function () {
+	            p();
+	          });c.hover(function () {
+	            y = !0;
+	          }, function () {
+	            y = !1;
+	          });b.hover(function () {
+	            r = !0;w();p();
+	          }, function () {
+	            r = !1;p();
+	          });b.bind("touchstart", function (a, b) {
+	            a.originalEvent.touches.length && (A = a.originalEvent.touches[0].pageY);
+	          });b.bind("touchmove", function (b) {
+	            k || b.originalEvent.preventDefault();b.originalEvent.touches.length && (m((A - b.originalEvent.touches[0].pageY) / a.touchScrollStep, !0), A = b.originalEvent.touches[0].pageY);
+	          });x();"bottom" === a.start ? (c.css({ top: b.outerHeight() - c.outerHeight() }), m(0, !0)) : "top" !== a.start && (m(e(a.start).position().top, null, !0), a.alwaysVisible || c.hide());window.addEventListener ? (this.addEventListener("DOMMouseScroll", v, !1), this.addEventListener("mousewheel", v, !1)) : document.attachEvent("onmousewheel", v);
+	        }
+	      });return this;
+	    } });e.fn.extend({ slimscroll: e.fn.slimScroll });
+	})(jQuery);
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 54 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/search/ShinersListView.js ***!
+  \***************************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24783,6 +31004,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
 	var _CategoriesItemViewHbs = __webpack_require__(/*! ./CategoriesItemView.hbs.html */ 55);
 	
 	var _CategoriesItemViewHbs2 = _interopRequireDefault(_CategoriesItemViewHbs);
@@ -24807,12 +31029,66 @@
 	        console.info('isChecked: ' + this.templateContext.isChecked);
 	        this.render();
 	        this.trigger('check:category', this.model, this.templateContext.isChecked);
+=======
+	var _ShinersListItemView = __webpack_require__(/*! ./ShinersListItemView.js */ 55);
+	
+	var _ShinersListItemView2 = _interopRequireDefault(_ShinersListItemView);
+	
+	var _ShinersEmptyView = __webpack_require__(/*! ./ShinersEmptyView.js */ 57);
+	
+	var _ShinersEmptyView2 = _interopRequireDefault(_ShinersEmptyView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	    className: 'sh-shiners-list-height slimscroll',
+	    tagName: 'div',
+	    emptyView: _ShinersEmptyView2.default,
+	    childView: _ShinersListItemView2.default,
+	
+	    onAttach: function onAttach() {
+	        this.initSlimscroll();
+	    },
+	    initSlimscroll: function initSlimscroll() {
+	        var $el = this.$el;
+	        var height = $el.height();
+	        $el.slimScroll({
+	            size: '5px',
+	            opacity: 0.4,
+	            position: 'right',
+	            allowPageScroll: false,
+	            disableFadeOut: false,
+	            railOpacity: 0.05,
+	            alwaysVisible: true,
+	            railVisible: true,
+	            color: '#333',
+	            wrapperClass: 'slimScrollDiv',
+	            railColor: '#eaeaea',
+	            height: height
+	        });
+	
+	        if ($el.attr('disable-body-scroll') == 'true') {
+	            $el.bind('mousewheel DOMMouseScroll', function (e) {
+	                var scrollTo = null;
+	                if (e.type == 'mousewheel') {
+	                    scrollTo = e.originalEvent.wheelDelta * -1;
+	                } else if (e.type == 'DOMMouseScroll') {
+	                    scrollTo = 40 * e.originalEvent.detail;
+	                }
+	                if (scrollTo) {
+	                    e.preventDefault();
+	                    $el.scrollTop(scrollTo + $el.scrollTop());
+	                }
+	            });
+	        }
+>>>>>>> master
 	    }
 	});
 	exports.default = View;
 
 /***/ },
 /* 55 */
+<<<<<<< HEAD
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/search/CategoriesItemView.hbs.html ***!
   \************************************************************/
@@ -24830,10 +31106,67 @@
 	return __p;
 	};
 	
+=======
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/search/ShinersListItemView.js ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ShinersListItemViewHbs = __webpack_require__(/*! ./ShinersListItemView.hbs.html */ 56);
+	
+	var _ShinersListItemViewHbs2 = _interopRequireDefault(_ShinersListItemViewHbs);
+	
+	var _app = __webpack_require__(/*! ../app */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _locationHelper = __webpack_require__(/*! ../../helpers/locationHelper.js */ 9);
+	
+	var _locationHelper2 = _interopRequireDefault(_locationHelper);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    className: 'sh-shiners-list-item clearfix',
+	    tagName: 'div',
+	    template: _ShinersListItemViewHbs2.default,
+	
+	    initialize: function initialize() {},
+	    onBeforeRender: function onBeforeRender() {
+	        this.setModelDistance();
+	    },
+	    setModelDistance: function setModelDistance() {
+	        var locations = this.model.get('details').locations;
+	        if (locations && _.size(locations) > 0 && _app2.default.user.has('position')) {
+	            var location = _.find(locations, function (l) {
+	                return l.placeType === 'dynamic';
+	            });
+	            if (!location) location = locations[0];
+	            var dist = _locationHelper2.default.getDistance(location.coords.lat, location.coords.lng, _app2.default.user.get('position').lat, _app2.default.user.get('position').lng);
+	            this.model.set('distance', dist);
+	            this.model.set('distanceType', 'km');
+	        } else {
+	            this.model.set('distance', -1);
+	        }
+	    }
+	});
+	exports.default = View;
+>>>>>>> master
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
 /* 56 */
+<<<<<<< HEAD
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/search/i18n/en.js ***!
   \*******************************************/
@@ -25037,10 +31370,153 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(_, global) {'use strict';
+=======
+/*!*************************************************************!*\
+  !*** ./wwwroot/homeApp/search/ShinersListItemView.hbs.html ***!
+  \*************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<a href="/posts/'+
+	((__t=(_id))==null?'':_.escape(__t))+
+	'">\r\n    <img class="thumbnail pull-left" src="'+
+	((__t=(details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/no_image.png'))==null?'':__t)+
+	'" width="60" height="60" alt="" />\r\n    <h4 class="noborder nopadding">'+
+	((__t=(details.title))==null?'':__t)+
+	'</h4>\r\n    <div class="sh-shiners-list-footer">\r\n        ';
+	if(obj.type) { 
+	__p+='\r\n            <span class="label bg-type-category-'+
+	((__t=(type))==null?'':__t)+
+	'">'+
+	((__t=(type))==null?'':__t)+
+	'</span>\r\n        ';
+	 } 
+	__p+=' \r\n        <span class="sh-shiners-list-time">\r\n            '+
+	((__t=(moment(timestamp).fromNow()))==null?'':__t)+
+	'          \r\n        </span>\r\n        <span>\r\n            ';
+	if(obj.distance && obj.distanceType){ 
+	__p+='\r\n                <i class="fa fa-location-arrow"></i> '+
+	((__t=(distance>=0?distance.toFixed(1):'Не определена'))==null?'':__t)+
+	' '+
+	((__t=(distanceType==='km'?'км':'miles'))==null?'':__t)+
+	'\r\n            ';
+	 } 
+	__p+='\r\n        </span>\r\n    </div>\r\n</a>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 57 */
+/*!****************************************************!*\
+  !*** ./wwwroot/homeApp/search/ShinersEmptyView.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ShinersEmptyViewHbs = __webpack_require__(/*! ./ShinersEmptyView.hbs.html */ 58);
+	
+	var _ShinersEmptyViewHbs2 = _interopRequireDefault(_ShinersEmptyViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    className: 'sh-shiners-noitem',
+	    tagName: 'div',
+	    template: _ShinersEmptyViewHbs2.default
+	});
+	exports.default = View;
+
+/***/ },
+/* 58 */
+/*!**********************************************************!*\
+  !*** ./wwwroot/homeApp/search/ShinersEmptyView.hbs.html ***!
+  \**********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<i class="fa fa-search" aria-hidden="true"></i>\n<h4 class="sh-shiners-noitem-text text-center">'+
+	((__t=(i18n('search_not_found')))==null?'':__t)+
+	'</h4>\n';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 59 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/search/CategoriesListView.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _CategoriesItemView = __webpack_require__(/*! ./CategoriesItemView.js */ 60);
+	
+	var _CategoriesItemView2 = _interopRequireDefault(_CategoriesItemView);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	    childView: _CategoriesItemView2.default,
+	    className: 'sh-list-unstyled margin-zero list-unstyled uppercase',
+	    tagName: 'ul',
+	    childViewEvents: {
+	        'check:category': 'onCheckCategory'
+	    },
+	
+	    onCheckCategory: function onCheckCategory(model, isChecked) {
+	        if (isChecked) {
+	            this.model.set('activeCats', _underscore2.default.union(this.model.get('activeCats') || [], [model.get('name')]));
+	        } else {
+	            this.model.set('activeCats', _underscore2.default.without(this.model.get('activeCats') || [], model.get('name')));
+	        }
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 60 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/search/CategoriesItemView.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+>>>>>>> master
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+<<<<<<< HEAD
 	var helper = {
 	    getPostDuration: function getPostDuration(model) {
 	
@@ -25428,10 +31904,258 @@
 	__p+='<div class="container text-center">\r\n    <div class="input-group">   \r\n        <input placeholder="'+
 	((__t=(obj.address||'Поиск по городам и регионам'))==null?'':_.escape(__t))+
 	'" class="form-control" id="locationQuery" type="text">\r\n        <span class="input-group-btn">\r\n            <button title="Отмена" id="cancelSelection" class="btn btn-default" type="button"><i class="fa fa-remove"></i></button>\r\n        </span>\r\n        <div class="suggestion-box" id="suggestionsBox">\r\n            <h5>Поиск городов, регионов</h5>\r\n            <div id="suggestionsListBox"></div>\r\n        </div>\r\n    </div>\r\n</div>';
+=======
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _CategoriesItemViewHbs = __webpack_require__(/*! ./CategoriesItemView.hbs.html */ 61);
+	
+	var _CategoriesItemViewHbs2 = _interopRequireDefault(_CategoriesItemViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CompositeView.extend({
+	    template: _CategoriesItemViewHbs2.default,
+	    tagName: 'li',
+	    events: {
+	        'click a': 'toggleCheck'
+	    },
+	
+	    initialize: function initialize() {
+	        this.templateContext = {
+	            isChecked: false
+	        };
+	    },
+	    toggleCheck: function toggleCheck(e) {
+	        e.preventDefault();
+	        this.templateContext.isChecked = !this.templateContext.isChecked;
+	        console.info('isChecked: ' + this.templateContext.isChecked);
+	        this.render();
+	        this.trigger('check:category', this.model, this.templateContext.isChecked);
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 61 */
+/*!************************************************************!*\
+  !*** ./wwwroot/homeApp/search/CategoriesItemView.hbs.html ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<a class="">\n    <span class="pull-right"><i class="fa '+
+	((__t=(isChecked?'fa-check-square text-success':'fa-square-o'))==null?'':_.escape(__t))+
+	'"></i></span> '+
+	((__t=(i18n.ru.name))==null?'':__t)+
+	'\n</a> ';
 	}
 	return __p;
 	};
 	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 62 */
+/*!*******************************************!*\
+  !*** ./wwwroot/homeApp/search/i18n/en.js ***!
+  \*******************************************/
+/***/ function(module, exports) {
+
+	/**
+	 * Created by arutu_000 on 12/9/2016.
+	 */
+	
+	/*
+	var json = {
+	    home_accordion_section1: 'If you already have an advertisement on another website, just use that Url to create a Shiner!',
+	    home_accordion_section2: 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone',
+	    home_accordion_section3: 'Use Shiners for finding new live connections everywhere',
+	    home_shiners_are_around: 'Shiners are everywhere',
+	    home_lot_of_opportunities: 'A lot of opportunities for business around',
+	    home_participate: 'Participate ',
+	    home_free: 'for free',
+	    home_in_project: ' in the project!',
+	    home_contact_with_people: 'Let others know about your ad instantly',
+	    home_set_your_shiner: 'Create your Shiner',
+	    search_free_search: 'Free search by words',
+	    search_choose_radius: 'Search Radius (km):',
+	    search_parameters: 'Search Parameters',
+	    search_found: 'Found Shiners',
+	    search_not_found: 'No posts found around'
+	};
+
+	i18n.add('en', json);
+	*/
+	"use strict";
+
+/***/ },
+/* 63 */
+/*!*******************************************!*\
+  !*** ./wwwroot/homeApp/search/i18n/ru.js ***!
+  \*******************************************/
+/***/ function(module, exports) {
+
+	/**
+	 * Created by arutu_000 on 12/9/2016.
+	 */
+	
+	/*
+	var json = {
+	    home_accordion_section1: 'Если у тебя уже есть пост на другом ресурсе–просто размести ссылку на него-и получи готовый Светлячок!',
+	    home_accordion_section2: 'Светлячки — это живые объявления от людей поблизости. Представь себе виртуальную визитку, только носят её не в кошельке, а в мобильном телефоне, и видят её не избранные, а все те, кто рядом',
+	    home_accordion_section3: 'Используй Светлячки для установки быстрых живых контактов- встреч, в нужное время, в нужном месте.',
+	    home_shiners_are_around: 'Светлячки повсюду',
+	    home_lot_of_opportunities: 'Множество возможностей для бизнеса вместе с Shiners',
+	    home_participate: 'Участвуй ',
+	    home_free: 'бесплатно',
+	    home_in_project: ' в проекте!',
+	    home_contact_with_people: 'Контактируй с людьми, предложи свои услуги на сайте',
+	    home_set_your_shiner: 'Создай свой пост',
+
+	    search_free_search: 'Свободный поиск по словам',
+	    search_choose_radius: 'Радиус поиска (км):',
+	    search_parameters: 'Параметры поиска',
+	    search_found: 'Найденные светлячки',
+	    search_not_found: 'Поблизости не найдено светлячков'
+	};
+
+	i18n.add('ru', json);
+	*/
+	"use strict";
+
+/***/ },
+/* 64 */
+/*!*******************************************!*\
+  !*** ./wwwroot/homeApp/ShinerInfoView.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ShinerInfoViewHbs = __webpack_require__(/*! ./ShinerInfoView.hbs.html */ 65);
+	
+	var _ShinerInfoViewHbs2 = _interopRequireDefault(_ShinerInfoViewHbs);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _locationHelper = __webpack_require__(/*! ../helpers/locationHelper.js */ 9);
+	
+	var _locationHelper2 = _interopRequireDefault(_locationHelper);
+	
+	var _postDuration = __webpack_require__(/*! ../helpers/postDuration.js */ 66);
+	
+	var _postDuration2 = _interopRequireDefault(_postDuration);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _ShinerInfoViewHbs2.default,
+	
+	    initialize: function initialize() {
+	        window.postInCollection = this.model.attributes; // debug
+	    },
+	
+	
+	    events: {
+	        'click a': 'redirectToDetails'
+	    },
+	
+	    onBeforeRender: function onBeforeRender() {
+	        this.getDistance();
+	    },
+	    getDistance: function getDistance() {
+	        var locations = this.model.get('details').locations;
+	        if (locations && _.size(locations) > 0 && _app2.default.user.has('position')) {
+	            var location = _.find(locations, function (l) {
+	                return l.placeType === 'dynamic';
+	            });
+	            if (!location) location = locations[0];
+	            var dist = _locationHelper2.default.getDistance(location.coords.lat, location.coords.lng, _app2.default.user.get('position').lat, _app2.default.user.get('position').lng);
+	            this.model.set('distance', dist);
+	            this.model.set('distanceType', 'km');
+	            var obj = _postDuration2.default.getPostDuration(this.model);
+	            this.model.set('progress', obj.percent);
+	        } else {
+	            this.model.set('distance', -1);
+	            this.model.set('progress', 0);
+	        }
+	    },
+	    redirectToDetails: function redirectToDetails() {
+	        _app2.default.router.navigate('posts/' + this.model.id, { trigger: true });
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 65 */
+/*!*************************************************!*\
+  !*** ./wwwroot/homeApp/ShinerInfoView.hbs.html ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="sh-map-item-view-wrapper">\n    ';
+	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
+	__p+='\n\n    <a title="'+
+	((__t=(details.title))==null?'':__t)+
+	'" class="block height-250 text-right" style="background-image: url('+
+	((__t=(details.photos && details.photos.length>0?details.photos[0].thumbnail||details.photos[0].data:'/images/demo/300x250.png'))==null?'':_.escape(__t))+
+	'); background-position: center; background-repeat: no-repeat; background-size: 120%"></a>\n\n    <div class="sh-map-item-view-info-panel">\n        <div class="sh-map-item-view-info-panel-first">\n            <span class="sh-label-box transparent-dark">\n                <i class="fa fa-calendar"></i> '+
+	((__t=(moment(timestamp).fromNow()))==null?'':__t)+
+	'\n            </span>\n        </div>\n        <div class="sh-map-item-view-info-panel-second">\n            <span class="sh-label-box transparent-dark">\n                <i class="fa fa-eye"></i> '+
+	((__t=(obj.stats?stats.seenAll:0))==null?'':__t)+
+	'\n            </span>\n            <span title="'+
+	((__t=(isDynamic?'Динамическое объявление':'Статическое'))==null?'':__t)+
+	'" class="sh-label-box transparent-dark margin-left-3">\n                <i class="fa fa-'+
+	((__t=(isDynamic?'man':'flag' ))==null?'':__t)+
+	' '+
+	((__t=(isDynamic?'success':''))==null?'':__t)+
+	'"></i>\n            </span>\n            <span class="sh-label-box transparent-dark margin-left-3">\n                <i class="fa fa-location-arrow"></i> '+
+	((__t=(distance>-1?distance.toFixed(1) + ' '+distanceType:''))==null?'':__t)+
+	'\n            </span>\n        </div>\n    </div>\n\n    <h3 class="sh-item-title elipsis" style="border: none">\n        <a>'+
+	((__t=(details.title))==null?'':__t)+
+	'</a>\n    </h3>\n    \n    <p class="sh-item-text">        \n        ';
+	var loc = _.find(details.locations,function(l) { return l.placeType==='dynamic' })||details.locations[0]; 
+	__p+='\n        ';
+	 if (loc) { 
+	__p+='\n        '+
+	((__t=(loc.name))==null?'':__t)+
+	'\n        ';
+	 } 
+	__p+='\n    </p>\n    \n    <div class="sh-progress-bar progress">\r\n        <div class="progress-bar '+
+	((__t=( progress >= 50 ? 'progress-bar-success' : (progress >=20 && progress < 50 ? 'progress-bar-warning' : 'progress-bar-danger')))==null?'':__t)+
+	'" role="progressbar" style="width: '+
+	((__t=( progress))==null?'':__t)+
+	'%; min-width: 1em; ">\r\n            <span class="sr-only"></span>\r\n        </div>\r\n    </div>\n\n    <div class="sh-map-item-view-info-panel-bottom">\n        <div class="sh-map-item-view-info-panel-bottom-wrapper">\n            <div>\n                <span class="label bg-type-category-'+
+	((__t=(type))==null?'':__t)+
+	' pull-left">'+
+	((__t=(type))==null?'':__t)+
+	'</span>\n            </div>\n            <div>\n                <a class="sh-info-panel-send-message">Написать сообщение</a>\n            </div>\n        </div>\n    </div>\n\n</div>';
+>>>>>>> master
+	}
+	return __p;
+	};
+	
+<<<<<<< HEAD
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
 
 /***/ },
@@ -25582,10 +32306,130 @@
   !*** ./wwwroot/homeApp/selectLocation/SuggestionListView.js ***!
   \**************************************************************/
 /***/ function(module, exports, __webpack_require__) {
+=======
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 66 */
+/*!*****************************************!*\
+  !*** ./wwwroot/helpers/postDuration.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, global) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var helper = {
+	    getPostDuration: function getPostDuration(model) {
+	
+	        var modelJSON = model.toJSON(),
+	            status = true,
+	            now = new Date(),
+	            start,
+	            finish,
+	            duration,
+	            days,
+	            hours,
+	            min,
+	            percent,
+	            barClass,
+	            language,
+	            titleDays,
+	            titleHours,
+	            titleMinutes,
+	            unit;
+	
+	        if (!modelJSON.timestamp.$date && !modelJSON.endDatePost.$date) return;
+	        start = modelJSON.timestamp.$date;
+	        finish = modelJSON.endDatePost.$date;
+	
+	        /* ALL ms or 100% */
+	        duration = finish - start;
+	
+	        /* left time */
+	        var ms = modelJSON.status.visible ? finish - now : ms = modelJSON.timePause.$date;
+	
+	        days = Math.floor(ms / 86400000);
+	        hours = Math.floor((ms - days * 86400000) / 3600000);
+	        min = Math.floor((ms - days * 86400000 - hours * 3600000) / 60000);
+	
+	        percent = ms / duration * 100;
+	
+	        if (percent > 100) percent = 100;
+	
+	        /* get barClass */
+	        if (percent < 20) {
+	            barClass = 'red';
+	        } else if (percent < 50) {
+	            barClass = 'yellow';
+	        } else if (percent >= 50) {
+	            barClass = 'green';
+	        }
+	
+	        /* will close the post */
+	        if (percent <= 0) {
+	            percent = 0;
+	            status = false;
+	
+	            // update the status on visible, null
+	            var object = { 'status': { visible: null }, timePause: 0 };
+	            model.loadByMethod('timePostUpdate', [modelJSON._id, object]);
+	        }
+	
+	        language = app.i18n.getLanguage();
+	
+	        function endingOfTheWord(lang, number, title, titleEng) {
+	            if (lang === 'en') {
+	                var eng = [0, 1];
+	                return titleEng[number > 1 ? 1 : 0];
+	            } else if (lang === 'ru') {
+	                var rus = [2, 0, 1, 1, 1, 2];
+	                return title[number % 100 > 4 && number % 100 < 20 ? 2 : rus[number % 10 < 5 ? number % 10 : 5]];
+	            }
+	        }
+	
+	        if (days > 1) {
+	            titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
+	            unit = days + ' ' + titleDays;
+	        } else if (days == 1) {
+	            titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
+	            titleHours = endingOfTheWord(language, hours, ['час', 'часа', 'часов'], ['hour', 'hours']);
+	            titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
+	            unit = hours == 0 ? days + ' ' + titleDays + '   ' + min + ' ' + titleMinutes : days + ' ' + titleDays + '   ' + hours + ' ' + titleHours;
+	        } else if (days == 0) {
+	            titleHours = endingOfTheWord(language, hours, ['час', 'часа', 'часов'], ['hour', 'hours']);
+	            titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
+	            unit = days == 0 && hours == 0 ? min + ' ' + titleMinutes : hours + ' ' + titleHours + '   ' + min + ' ' + titleMinutes;
+	        }
+	
+	        return {
+	            'percent': percent,
+	            'leftDays': days,
+	            'unit': unit,
+	            'barClass': barClass,
+	            'status': status
+	        };
+	    }
+	};
+	
+	_.extend(global.$h.help, helper);
+	exports.default = helper;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), (function() { return this; }())))
+
+/***/ },
+/* 67 */
+/*!*********************************************!*\
+  !*** ./~/load-google-maps-api/lib/index.js ***!
+  \*********************************************/
+/***/ function(module, exports) {
+>>>>>>> master
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
+<<<<<<< HEAD
 	    value: true
 	});
 	
@@ -25629,6 +32473,74 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+=======
+	  value: true
+	});
+	
+	exports.default = function () {
+	  var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	
+	  var client = _ref.client;
+	  var key = _ref.key;
+	  var language = _ref.language;
+	  var _ref$libraries = _ref.libraries;
+	  var libraries = _ref$libraries === undefined ? [] : _ref$libraries;
+	  var _ref$timeout = _ref.timeout;
+	  var timeout = _ref$timeout === undefined ? 10000 : _ref$timeout;
+	  var v = _ref.v;
+	
+	  var callbackName = '__googleMapsApiOnLoadCallback';
+	
+	  return new Promise(function (resolve, reject) {
+	
+	    // Exit if not running inside a browser.
+	    if (typeof window === 'undefined') {
+	      return reject(new Error('Can only load the Google Maps API in the browser'));
+	    }
+	
+	    // Prepare the `script` tag to be inserted into the page.
+	    var scriptElement = document.createElement('script');
+	    var params = ['callback=' + callbackName];
+	    if (client) params.push('client=' + client);
+	    if (key) params.push('key=' + key);
+	    if (language) params.push('language=' + language);
+	    libraries = [].concat(libraries); // Ensure that `libraries` is an array
+	    if (libraries.length) params.push('libraries=' + libraries.join(','));
+	    if (v) params.push('v=' + v);
+	    scriptElement.src = 'https://maps.googleapis.com/maps/api/js?' + params.join('&');
+	
+	    // Timeout if necessary.
+	    var timeoutId = null;
+	    if (timeout) {
+	      timeoutId = setTimeout(function () {
+	        window[callbackName] = function () {}; // Set the on load callback to a no-op.
+	        reject(new Error('Could not load the Google Maps API'));
+	      }, timeout);
+	    }
+	
+	    // Hook up the on load callback.
+	    window[callbackName] = function () {
+	      if (timeoutId !== null) {
+	        clearTimeout(timeoutId);
+	      }
+	      resolve(window.google.maps);
+	      delete window[callbackName];
+	    };
+	
+	    // Insert the `script` tag.
+	    document.body.appendChild(scriptElement);
+	  });
+	};
+
+/***/ },
+/* 68 */
+/*!***************************************!*\
+  !*** ./wwwroot/homeApp/BannerView.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -25638,13 +32550,40 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
 	var _SuggestionItemViewHbs = __webpack_require__(/*! ./SuggestionItemView.hbs.html */ 69);
 	
 	var _SuggestionItemViewHbs2 = _interopRequireDefault(_SuggestionItemViewHbs);
+=======
+	var _OsmSearchCollection = __webpack_require__(/*! ../data/OsmSearchCollection.js */ 69);
+	
+	var _OsmSearchCollection2 = _interopRequireDefault(_OsmSearchCollection);
+	
+	var _BannerViewHbs = __webpack_require__(/*! ./BannerView.hbs.html */ 70);
+	
+	var _BannerViewHbs2 = _interopRequireDefault(_BannerViewHbs);
+	
+	var _BannerViewLocationSelectHbs = __webpack_require__(/*! ./selectLocation/BannerViewLocationSelect.hbs.html */ 71);
+	
+	var _BannerViewLocationSelectHbs2 = _interopRequireDefault(_BannerViewLocationSelectHbs);
+	
+	__webpack_require__(/*! ../lib/jquery.countTo.js */ 72);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _SuggestionListView = __webpack_require__(/*! ./selectLocation/SuggestionListView.js */ 73);
+	
+	var _SuggestionListView2 = _interopRequireDefault(_SuggestionListView);
+	
+	__webpack_require__(/*! ./BannerView.less */ 76);
+>>>>>>> master
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.View.extend({
+<<<<<<< HEAD
 	    template: _SuggestionItemViewHbs2.default,
 	    tagName: 'a',
 	    className: 'suggestion-item',
@@ -25778,6 +32717,341 @@
 /*!********************************************!*\
   !*** ./wwwroot/homeApp/NavLocationView.js ***!
   \********************************************/
+=======
+	    tagName: 'div',
+	    className: 'sh-header-navbar-info visible-md-block visible-lg-block',
+	    template: _BannerViewHbs2.default,
+	    searchTimeOut: null,
+	    osmCollection: null,
+	
+	    modelEvents: {
+	        'change:address': 'render'
+	    },
+	
+	    initialize: function initialize() {
+	        this.osmCollection = new _OsmSearchCollection2.default();
+	    },
+	
+	
+	    regions: {
+	        'suggestions': '#suggestionsListBox'
+	    },
+	
+	    events: {
+	        //'click #selectLocation': 'renderLocationsSelection',
+	        'click #cancelSelection': 'render',
+	        'keyup #locationQuery': 'onLocationsSearch',
+	        'click #locationQuery': 'showSuggestions',
+	        'click #hideView': 'hideView'
+	    },
+	
+	    onDomRefresh: function onDomRefresh() {
+	        if (!_app2.default.isMobile) this.initCounters();
+	    },
+	    renderLocationsSelection: function renderLocationsSelection() {
+	        this.template = _BannerViewLocationSelectHbs2.default;
+	        this.render();
+	        this.showChildView('suggestions', new _SuggestionListView2.default({ collection: this.osmCollection, model: this.model }));
+	        this.template = _BannerViewHbs2.default;
+	    },
+	    showSuggestionsModalView: function showSuggestionsModalView() {
+	        var options = {
+	            model: this.model,
+	            title: 'Выберите местоположение'
+	        };
+	
+	        _app2.default.showModalApp(options);
+	    },
+	    onLocationsSearch: function onLocationsSearch(e) {
+	        if (e && (e.keyCode > 31 || e.keyCode === 13 || e.keyCode === 8)) {
+	            if (this.searchTimeOut) clearTimeout(this.searchTimeOut);
+	            this.searchTimeOut = setTimeout(_.bind(function () {
+	                this.osmCollection.fetch({
+	                    data: {
+	                        q: e.target.value,
+	                        format: 'json',
+	                        'accept-language': 'ru',
+	                        limit: 20,
+	                        polygon_geojson: 0
+	                        //city:e.target.value,
+	                        //county:e.target.value,
+	                        //state:e.target.value,
+	                        //country:e.target.value
+	                    }
+	                });
+	            }, this), 400);
+	        }
+	    },
+	    showSuggestions: function showSuggestions(e) {
+	        var quickCartBox = this.$('#suggestionsBox');
+	        if (!quickCartBox.is(":visible")) {
+	            quickCartBox.fadeIn(300);
+	        }
+	    },
+	    initCounters: function initCounters() {
+	        var self = this;
+	        var $countTo = self.$(".countTo");
+	        var _from = $countTo.attr('data-from') || 0,
+	            _speed = $countTo.attr('data-speed') || 1300,
+	            _refreshInterval = $countTo.attr('data-refreshInterval') || 60;
+	        $countTo.countTo({
+	            from: parseInt(_from),
+	            to: $countTo.html(),
+	            speed: parseInt(_speed),
+	            refreshInterval: parseInt(_refreshInterval)
+	        });
+	        var $wordRotator = this.$('.word-rotator');
+	        var _items = $wordRotator.find(".items");
+	        var items = _items.find("> span");
+	        var firstItem = items.eq(0);
+	        var firstItemClone = firstItem.clone();
+	        var _iHeight = $wordRotator.height();
+	        var _cItem = 1;
+	        var _cTop = 0;
+	        var _delay = $wordRotator.attr('data-delay') || 2000;
+	        _items.append(firstItemClone);
+	        $wordRotator.height(_iHeight).addClass("active");
+	        setInterval(function () {
+	            _cTop = _cItem * _iHeight;
+	            _items.animate({ top: -_cTop + "px" }, 300, "easeOutQuad", function () {
+	                _cItem++;
+	                if (_cItem > items.length) {
+	                    _items.css("top", 0);
+	                    _cItem = 1;
+	                }
+	            });
+	        }, _delay);
+	    },
+	    hideView: function hideView() {
+	        _app2.default.layout.toggleBannerView();
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 69 */
+/*!*********************************************!*\
+  !*** ./wwwroot/data/OsmSearchCollection.js ***!
+  \*********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.Collection.extend({
+	    url: 'https://nominatim.openstreetmap.org/search',
+	    parse: function parse(resp) {
+	        return resp;
+	    }
+	});
+
+/***/ },
+/* 70 */
+/*!*********************************************!*\
+  !*** ./wwwroot/homeApp/BannerView.hbs.html ***!
+  \*********************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\n<h1 class="sh-text-rotate hidden-xs hidden-sm sh-view--banner">\n    <span class="sh-red-bg">'+
+	((__t=(i18n('shiners_are')))==null?'':__t)+
+	'</span>\n    <span class="word-rotator" data-delay="4000">\n        <span class="items">\n            <span>'+
+	((__t=(i18n('live_meetings')))==null?'':__t)+
+	'</span>\n            <span>'+
+	((__t=(i18n('nearby_business')))==null?'':__t)+
+	'</span>\n            <span>'+
+	((__t=(i18n('LIVE_ADS')))==null?'':__t)+
+	'</span>\n            <span>'+
+	((__t=(i18n('NEARBY_SERVICES')))==null?'':__t)+
+	'</span>\n        </span>\n    </span>\n</h1>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 71 */
+/*!**************************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/BannerViewLocationSelect.hbs.html ***!
+  \**************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="container text-center">\n    <div class="input-group">   \n        <input placeholder="'+
+	((__t=(obj.address||'Поиск по городам и регионам'))==null?'':_.escape(__t))+
+	'" class="form-control" id="locationQuery" type="text">\n        <span class="input-group-btn">\n            <button title="Отмена" id="cancelSelection" class="btn btn-default" type="button"><i class="fa fa-remove"></i></button>\n        </span>\n        <div class="suggestion-box" id="suggestionsBox">\n            <h5>Поиск городов, регионов</h5>\n            <div id="suggestionsListBox"></div>\n        </div>\n    </div>\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 72 */
+/*!***************************************!*\
+  !*** ./wwwroot/lib/jquery.countTo.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	(function (factory) {
+	  if (true) {
+	    // AMD
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ 3)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
+	    // CommonJS
+	    factory(require('jquery'));
+	  } else {
+	    // Browser globals
+	    factory(jQuery);
+	  }
+	})(function ($) {
+	  var CountTo = function CountTo(element, options) {
+	    this.$element = $(element);
+	    this.options = $.extend({}, CountTo.DEFAULTS, this.dataOptions(), options);
+	    this.init();
+	  };
+	
+	  CountTo.DEFAULTS = {
+	    from: 0, // the number the element should start at
+	    to: 0, // the number the element should end at
+	    speed: 1000, // how long it should take to count between the target numbers
+	    refreshInterval: 100, // how often the element should be updated
+	    decimals: 0, // the number of decimal places to show
+	    formatter: formatter, // handler for formatting the value before rendering
+	    onUpdate: null, // callback method for every time the element is updated
+	    onComplete: null // callback method for when the element finishes updating
+	  };
+	
+	  CountTo.prototype.init = function () {
+	    this.value = this.options.from;
+	    this.loops = Math.ceil(this.options.speed / this.options.refreshInterval);
+	    this.loopCount = 0;
+	    this.increment = (this.options.to - this.options.from) / this.loops;
+	  };
+	
+	  CountTo.prototype.dataOptions = function () {
+	    var options = {
+	      from: this.$element.data('from'),
+	      to: this.$element.data('to'),
+	      speed: this.$element.data('speed'),
+	      refreshInterval: this.$element.data('refresh-interval'),
+	      decimals: this.$element.data('decimals')
+	    };
+	
+	    var keys = Object.keys(options);
+	
+	    for (var i in keys) {
+	      var key = keys[i];
+	
+	      if (typeof options[key] === 'undefined') {
+	        delete options[key];
+	      }
+	    }
+	
+	    return options;
+	  };
+	
+	  CountTo.prototype.update = function () {
+	    this.value += this.increment;
+	    this.loopCount++;
+	
+	    this.render();
+	
+	    if (typeof this.options.onUpdate == 'function') {
+	      this.options.onUpdate.call(this.$element, this.value);
+	    }
+	
+	    if (this.loopCount >= this.loops) {
+	      clearInterval(this.interval);
+	      this.value = this.options.to;
+	
+	      if (typeof this.options.onComplete == 'function') {
+	        this.options.onComplete.call(this.$element, this.value);
+	      }
+	    }
+	  };
+	
+	  CountTo.prototype.render = function () {
+	    var formattedValue = this.options.formatter.call(this.$element, this.value, this.options);
+	    this.$element.text(formattedValue);
+	  };
+	
+	  CountTo.prototype.restart = function () {
+	    this.stop();
+	    this.init();
+	    this.start();
+	  };
+	
+	  CountTo.prototype.start = function () {
+	    this.stop();
+	    this.render();
+	    this.interval = setInterval(this.update.bind(this), this.options.refreshInterval);
+	  };
+	
+	  CountTo.prototype.stop = function () {
+	    if (this.interval) {
+	      clearInterval(this.interval);
+	    }
+	  };
+	
+	  CountTo.prototype.toggle = function () {
+	    if (this.interval) {
+	      this.stop();
+	    } else {
+	      this.start();
+	    }
+	  };
+	
+	  function formatter(value, options) {
+	    return value.toFixed(options.decimals);
+	  }
+	
+	  $.fn.countTo = function (option) {
+	    return this.each(function () {
+	      var $this = $(this);
+	      var data = $this.data('countTo');
+	      var init = !data || (typeof option === 'undefined' ? 'undefined' : _typeof(option)) === 'object';
+	      var options = (typeof option === 'undefined' ? 'undefined' : _typeof(option)) === 'object' ? option : {};
+	      var method = typeof option === 'string' ? option : 'start';
+	
+	      if (init) {
+	        if (data) data.stop();
+	        $this.data('countTo', data = new CountTo(this, options));
+	      }
+	
+	      data[method].call(data);
+	    });
+	  };
+	});
+
+/***/ },
+/* 73 */
+/*!**************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/SuggestionListView.js ***!
+  \**************************************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25790,16 +33064,25 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
 	var _NavLocationViewHbs = __webpack_require__(/*! ./NavLocationView.hbs.html */ 74);
 	
 	var _NavLocationViewHbs2 = _interopRequireDefault(_NavLocationViewHbs);
 	
 	var _app = __webpack_require__(/*! ./app.js */ 15);
+=======
+	var _SuggestionItemView = __webpack_require__(/*! ./SuggestionItemView.js */ 74);
+	
+	var _SuggestionItemView2 = _interopRequireDefault(_SuggestionItemView);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+>>>>>>> master
 	
 	var _app2 = _interopRequireDefault(_app);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+<<<<<<< HEAD
 	var View = _backbone2.default.View.extend({
 	    template: _NavLocationViewHbs2.default,
 	    tagName: 'a',
@@ -25815,12 +33098,29 @@
 	
 	    showChangeLocation: function showChangeLocation() {
 	        _app2.default.layout.showChangeLocation();
+=======
+	var View = _backbone2.default.CollectionView.extend({
+	    childView: _SuggestionItemView2.default,
+	    tagName: 'div',
+	    className: 'suggestion-box-wrapper',
+	    childViewEvents: {
+	        'location:selected': 'setAddress'
+	    },
+	
+	    setAddress: function setAddress(model) {
+	        _app2.default.user.set('position', { type: 'manual', lat: parseFloat(model.get('lat')), lng: parseFloat(model.get('lon')) });
+	        _app2.default.map.setCenter({
+	            lat: parseFloat(model.get('lat')),
+	            lng: parseFloat(model.get('lon'))
+	        });
+>>>>>>> master
 	    }
 	});
 	exports.default = View;
 
 /***/ },
 /* 74 */
+<<<<<<< HEAD
 /*!**************************************************!*\
   !*** ./wwwroot/homeApp/NavLocationView.hbs.html ***!
   \**************************************************/
@@ -26083,62 +33383,13 @@
 /*!************************************************!*\
   !*** ./wwwroot/homeApp/layout/userMenuView.js ***!
   \************************************************/
+=======
+/*!**************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/SuggestionItemView.js ***!
+  \**************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _backbone = __webpack_require__(/*! backbone */ 17);
-	
-	var _backbone2 = _interopRequireDefault(_backbone);
-	
-	var _userMenuViewHbs = __webpack_require__(/*! ./userMenuView.hbs.html */ 80);
-	
-	var _userMenuViewHbs2 = _interopRequireDefault(_userMenuViewHbs);
-	
-	var _app = __webpack_require__(/*! ../app.js */ 15);
-	
-	var _app2 = _interopRequireDefault(_app);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var View = _backbone2.default.Marionette.View.extend({
-	    template: _userMenuViewHbs2.default,
-	    tagName: 'li',
-	    events: {}
-	
-	});
-	exports.default = View;
-
-/***/ },
-/* 80 */
-/*!******************************************************!*\
-  !*** ./wwwroot/homeApp/layout/userMenuView.hbs.html ***!
-  \******************************************************/
-/***/ function(module, exports) {
-
-	module.exports = function(obj){
-	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
-	with(obj||{}){
-	__p+='<a href="/profile" style="color:#fff">\r\n    Welcome,\r\n    '+
-	((__t=( username ))==null?'':__t)+
-	'\r\n</a>\r\n';
-	}
-	return __p;
-	};
-
-
-/***/ },
-/* 81 */
-/*!*****************************************!*\
-  !*** ./wwwroot/homeApp/mainMenuView.js ***!
-  \*****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -26148,11 +33399,83 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _mainMenuViewHbs = __webpack_require__(/*! ./mainMenuView.hbs.html */ 82);
+	var _SuggestionItemViewHbs = __webpack_require__(/*! ./SuggestionItemView.hbs.html */ 75);
 	
-	var _mainMenuViewHbs2 = _interopRequireDefault(_mainMenuViewHbs);
+	var _SuggestionItemViewHbs2 = _interopRequireDefault(_SuggestionItemViewHbs);
 	
-	__webpack_require__(/*! ./mainMenuView.less */ 83);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _SuggestionItemViewHbs2.default,
+	    tagName: 'a',
+	    className: 'suggestion-item',
+	    initialize: function initialize() {
+	        var nameParts = this.model.get('display_name').split(', ');
+	        this.model.set('name', nameParts[0] + ', ' + nameParts[1]);
+	        this.model.set('country', nameParts[nameParts.length - 1]);
+	    },
+	
+	
+	    events: {
+	        'click': 'onClick'
+	    },
+	    onClick: function onClick() {
+	        this.trigger('location:selected', this.model);
+	        this.$el.closest('.modal-content').find('.modal-header .close').trigger('click');
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 75 */
+/*!********************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/SuggestionItemView.hbs.html ***!
+  \********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<h6>'+
+	((__t=(name))==null?'':__t)+
+	'</h6>\n<small>'+
+	((__t=(country))==null?'':_.escape(__t))+
+	'</small>\n';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 76 */
+/*!*****************************************!*\
+  !*** ./wwwroot/homeApp/BannerView.less ***!
+  \*****************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 77 */
+/*!****************************************!*\
+  !*** ./wwwroot/homeApp/UserBarView.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _UserBarViewHbs = __webpack_require__(/*! ./UserBarView.hbs.html */ 78);
+	
+	var _UserBarViewHbs2 = _interopRequireDefault(_UserBarViewHbs);
 	
 	var _app = __webpack_require__(/*! ./app.js */ 15);
 	
@@ -26160,6 +33483,217 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	var View = _backbone2.default.View.extend({
+	    template: _UserBarViewHbs2.default,
+	    tagName: 'div',
+	    events: {
+	        'click #logout': 'logout',
+	        'click #userBarLink': 'toggleView'
+	    },
+	    logout: function logout() {
+	        _app2.default.logout();
+	    },
+	    toggleView: function toggleView() {
+	        if (this.$('.quick-cart-box').is(':visible')) {
+	            this.$('.quick-cart-box').fadeOut(300);
+	        } else {
+	            this.$('.quick-cart-box').fadeIn(300);
+	        }
+	    },
+	
+	
+	    modelEvents: {
+	        'logout': 'render',
+	        'login': 'render'
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 78 */
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/UserBarView.hbs.html ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='';
+	if (obj._id) { 
+	__p+='\n<div class="sh-registers-buttons">\r\n    <a href="/profile" class="ui standard sign-up sh-button" id="userBarLink">'+
+	((__t=(username))==null?'':_.escape(__t))+
+	'</a>\r\n    <button id="logout" class="ui sh-white basic sh-button"><i class="fa fa-sign-out"></i></button>\r\n</div>\n\n';
+	 } else { 
+	__p+='\n<!-- IF ACCOUNT USER IS FALSE -->\r\n<div class="sh-registers-buttons">\r\n    <a href="/Account/Login" class="ui standard sign-up sh-button">Вход</a>\r\n    <!--<button class="ui sh-white basic sh-button">Регистрация</button>-->\r\n</div>\n';
+	 } 
+	__p+='';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 79 */
+/*!********************************************!*\
+  !*** ./wwwroot/homeApp/NavLocationView.js ***!
+  \********************************************/
+>>>>>>> master
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+<<<<<<< HEAD
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _userMenuViewHbs = __webpack_require__(/*! ./userMenuView.hbs.html */ 80);
+	
+	var _userMenuViewHbs2 = _interopRequireDefault(_userMenuViewHbs);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+=======
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _NavLocationViewHbs = __webpack_require__(/*! ./NavLocationView.hbs.html */ 80);
+	
+	var _NavLocationViewHbs2 = _interopRequireDefault(_NavLocationViewHbs);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+>>>>>>> master
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+<<<<<<< HEAD
+	var View = _backbone2.default.Marionette.View.extend({
+	    template: _userMenuViewHbs2.default,
+	    tagName: 'li',
+	    events: {}
+	
+=======
+	var View = _backbone2.default.View.extend({
+	    template: _NavLocationViewHbs2.default,
+	    tagName: 'a',
+	    className: 'sh-nav-h white-link',
+	
+	    modelEvents: {
+	        'change:address': 'render'
+	    },
+	
+	    events: {
+	        'click': 'showChangeLocation'
+	    },
+	
+	    showChangeLocation: function showChangeLocation() {
+	        _app2.default.layout.showChangeLocation();
+	    }
+>>>>>>> master
+	});
+	exports.default = View;
+
+/***/ },
+/* 80 */
+<<<<<<< HEAD
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/layout/userMenuView.hbs.html ***!
+  \******************************************************/
+=======
+/*!**************************************************!*\
+  !*** ./wwwroot/homeApp/NavLocationView.hbs.html ***!
+  \**************************************************/
+>>>>>>> master
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+<<<<<<< HEAD
+	__p+='<a href="/profile" style="color:#fff">\r\n    Welcome,\r\n    '+
+	((__t=( username ))==null?'':__t)+
+	'\r\n</a>\r\n';
+=======
+	__p+='<i class="icon-map-marker"></i>&nbsp;\n<span class="sh-nav-location-value">\n    ';
+	if (obj.address) { 
+	__p+='\n        '+
+	((__t=(address))==null?'':__t)+
+	'\n    ';
+	 } else { 
+	__p+='\n        '+
+	((__t=(i18n('undefined_place')))==null?'':__t)+
+	'\n    ';
+	 } 
+	__p+='\n</span>\n<i class="fa fa-angle-down icon"></i>';
+>>>>>>> master
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 81 */
+<<<<<<< HEAD
+/*!*****************************************!*\
+  !*** ./wwwroot/homeApp/mainMenuView.js ***!
+  \*****************************************/
+=======
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/shared/iframeView.js ***!
+  \**********************************************/
+>>>>>>> master
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+<<<<<<< HEAD
+=======
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+>>>>>>> master
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+<<<<<<< HEAD
+	var _mainMenuViewHbs = __webpack_require__(/*! ./mainMenuView.hbs.html */ 82);
+	
+	var _mainMenuViewHbs2 = _interopRequireDefault(_mainMenuViewHbs);
+	
+	__webpack_require__(/*! ./mainMenuView.less */ 83);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+=======
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone4 = _interopRequireDefault(_backbone3);
+	
+	var _iframeViewHbs = __webpack_require__(/*! ./iframeView.hbs.html */ 82);
+	
+	var _iframeViewHbs2 = _interopRequireDefault(_iframeViewHbs);
+	
+	__webpack_require__(/*! ./iframeView.css */ 83);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+>>>>>>> master
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+<<<<<<< HEAD
 	/**
 	 * Created by arutu_000 on 1/15/2017.
 	 */
@@ -26214,19 +33748,162 @@
 	
 	    }
 	});
+=======
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var FRAME_DOMAIN = 'https://shiners.mobi';
+	//const FRAME_DOMAIN = 'http://localhost:3000';
+	
+	var View = function (_Marionette$View$exte) {
+	    _inherits(View, _Marionette$View$exte);
+	
+	    function View(options) {
+	        _classCallCheck(this, View);
+	
+	        options = Object.assign({
+	            width: '100%',
+	            pagePath: '/home'
+	            //pathName: 'posts/new'
+	        }, options);
+	
+	        var _this = _possibleConstructorReturn(this, (View.__proto__ || Object.getPrototypeOf(View)).call(this, options));
+	
+	        _this.options = options;
+	        return _this;
+	    }
+	
+	    _createClass(View, [{
+	        key: 'setPage',
+	        value: function setPage(newPath) {
+	            this._updatePath(newPath);
+	        }
+	    }, {
+	        key: '_updatePath',
+	        value: function _updatePath(newPath) {
+	            // trigger new path command to iFrame:
+	            this.sendMessage(this._addQsParamsToPath(newPath));
+	        }
+	    }, {
+	        key: '_addQsParamsToPath',
+	        value: function _addQsParamsToPath(url) {
+	            var ret = url;
+	            var latLngStr = '',
+	                position = _app2.default.user.get('position');
+	            if (position) {
+	                latLngStr = '&lat=' + position.lat + '&lng=' + position.lng;
+	            }
+	            if (url.indexOf('isiframe') === -1) {
+	                if (url.indexOf('?') === -1) {
+	                    ret += '?isiframe=true' + latLngStr;
+	                } else {
+	                    ret += '&isiframe=true' + latLngStr;
+	                }
+	            }
+	            return ret;
+	        }
+	    }, {
+	        key: 'serializeData',
+	        value: function serializeData() {
+	            var attr = this.options,
+	                that = this,
+	                src = function (a) {
+	                var url = '' + FRAME_DOMAIN + attr.pagePath;
+	                url = that._addQsParamsToPath(url);
+	
+	                console.log('iframeview:serializeData:url: ', url);
+	                return url;
+	            }(),
+	                height = $(window).height() - ($('#header').height() + $('#footer').height());
+	            return {
+	                height: height,
+	                width: attr.width,
+	                src: src
+	            };
+	        }
+	    }, {
+	        key: 'onRender',
+	        value: function onRender() {
+	            this._setMessageEvents();
+	            $('#iframeHolder').append(this.$el);
+	        }
+	        // inter-iframe communication:
+	
+	    }, {
+	        key: 'sendMessage',
+	        value: function sendMessage(newPath) {
+	            window.iframeView.postMessage({
+	                pagePath: newPath
+	            }, "*");
+	        }
+	    }, {
+	        key: '_setMessageEvents',
+	        value: function _setMessageEvents() {
+	            var that = this;
+	            this.$('#iframeView').load(function () {
+	                console.log('iframeView:load');
+	            });
+	            this.listenTo(window, 'message', function (e) {
+	                //var origin = e.origin || e.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+	            });
+	            window.addEventListener("message", receiveMessage, false);
+	
+	            function receiveMessage(event) {
+	                if (event.data && event.data.user) {
+	                    // user-logged in event!
+	                    if (!_app2.default.userMeteorObj) {
+	                        _app2.default.userMeteorObj = event.data.user;
+	                        _app2.default.user.trigger('receivedMeteorUser', event.data.user);
+	                    }
+	                }
+	                event.data && event.data.height && that.$el.height(event.data.height);
+	                // some staff
+	                //var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+	                //if (origin !== "http://example.org:8080")
+	                //  return;
+	
+	                // ...
+	            }
+	        }
+	    }]);
+	
+	    return View;
+	}(_backbone2.default.View.extend({
+	    template: _iframeViewHbs2.default,
+	
+	    removeHeader: function removeHeader(e) {
+	        window.myIframe = e.target;
+	    },
+	    onAttach: function onAttach() {
+	        //this.$el.height(window.innerHeight-$('#header').height());
+	    }
+	}));
+	
+	;
+>>>>>>> master
 	exports.default = View;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
 
 /***/ },
 /* 82 */
+<<<<<<< HEAD
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/mainMenuView.hbs.html ***!
   \***********************************************/
+=======
+/*!****************************************************!*\
+  !*** ./wwwroot/homeApp/shared/iframeView.hbs.html ***!
+  \****************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
 	__p+='<!-- Menu -->\n<div class="navbar-collapse pull-right nav-main-collapse collapse submenu-dark">\n    <nav class="sh-nav-menu nav-main">\n        <ul id="topMain" class="nav nav-pills nav-main">\n            <li class="main-menu-item active" data-route-name="index">\n                <a href="/">'+
 	((__t=(i18n('mainPage')))==null?'':__t)+
 	'</a>\n            </li>\n            <li class="main-menu-item hidden-lg hidden-md" data-route-name="createPost">\n                <a href="/posts/new">\n                    '+
@@ -26240,6 +33917,15 @@
 	'\n                </a>\n            </li>\n            <li class="main-menu-item" data-route-name="blog">\n                <a href="/blog">\n                    '+
 	((__t=(i18n('mainMenuBlog')))==null?'':__t)+
 	'\n                </a>\n            </li>\n        </ul>\n    </nav>\n</div>';
+=======
+	__p+='<section style ="height:100%;" class="sh-iframe-view">\n    <div class="container"; style ="height:100%;">\n        <iframe name="iframeView" width="'+
+	((__t=( width ))==null?'':__t)+
+	'"  height="'+
+	((__t=( height ))==null?'':__t)+
+	'" src="'+
+	((__t=( src ))==null?'':__t)+
+	'"></iframe>\n    </div>\n</section>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -26247,6 +33933,7 @@
 
 /***/ },
 /* 83 */
+<<<<<<< HEAD
 /*!*******************************************!*\
   !*** ./wwwroot/homeApp/mainMenuView.less ***!
   \*******************************************/
@@ -26350,6 +34037,50 @@
 /*!***************************************!*\
   !*** ./wwwroot/data/AsteroidModel.js ***!
   \***************************************/
+=======
+/*!***********************************************!*\
+  !*** ./wwwroot/homeApp/shared/iframeView.css ***!
+  \***********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./iframeView.css */ 84);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 51)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./iframeView.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./iframeView.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 84 */
+/*!**************************************************************!*\
+  !*** ./~/css-loader!./wwwroot/homeApp/shared/iframeView.css ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 14)();
+	exports.push([module.id, ".sh-iframe-view {\n    padding: 0 !important;\n}\n\n.sh-iframe-view .container {\n    width: auto !important;\n}\n\nbody.sh-hidden-overflow {\n    overflow: hidden !important;\n}\nbody.sh-hidden-overflow #wrapper {\n    background-color: #eaeaea;\n}\nbody.sh-hidden-overflow #iframeHolder section {\n    padding: 0 !important;\n    margin: 0 !important;\n}\nbody.sh-hidden-overflow #iframeHolder .container {\n    padding: 0 !important;\n    margin: 0 !important;\n}", ""]);
+
+/***/ },
+/* 85 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/layout/userMenuView.js ***!
+  \************************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26358,6 +34089,7 @@
 	    value: true
 	});
 	
+<<<<<<< HEAD
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
@@ -27218,10 +34950,166 @@
 	  }(_);
 	  return Backbone.Validation;
 	});
+=======
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _userMenuViewHbs = __webpack_require__(/*! ./userMenuView.hbs.html */ 86);
+	
+	var _userMenuViewHbs2 = _interopRequireDefault(_userMenuViewHbs);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.Marionette.View.extend({
+	    template: _userMenuViewHbs2.default,
+	    tagName: 'li',
+	    events: {}
+	
+	});
+	exports.default = View;
+
+/***/ },
+/* 86 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/layout/userMenuView.hbs.html ***!
+  \******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<a href="/profile" style="color:#fff">\n    Welcome,\n    '+
+	((__t=( username ))==null?'':__t)+
+	'\n</a>\n';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 87 */
+/*!*****************************************!*\
+  !*** ./wwwroot/homeApp/mainMenuView.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _mainMenuViewHbs = __webpack_require__(/*! ./mainMenuView.hbs.html */ 88);
+	
+	var _mainMenuViewHbs2 = _interopRequireDefault(_mainMenuViewHbs);
+	
+	__webpack_require__(/*! ./mainMenuView.less */ 89);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Created by arutu_000 on 1/15/2017.
+	 */
+	var View = _backbone2.default.View.extend({
+	    template: _mainMenuViewHbs2.default,
+	    onRender: function onRender() {
+	        var that = this;
+	        this.listenTo(_app2.default.user, 'login', this.toggleMenuItems);
+	        this.listenTo(_app2.default.user, 'logout', this.toggleMenuItems);
+	        this.listenTo(_app2.default.router, 'route', this.setActiveItemForCurrentRoute);
+	        this.$('.navbar-collapse').on('shown.bs.collapse', function () {
+	            // do something…
+	            $(window).on('click', that.hideMobileCollapsableMenu);
+	        });
+	        this.$('.navbar-collapse').on('hidden.bs.collapse', function () {
+	            // do something…
+	            $(window).off('click', that.hideMobileCollapsableMenu);
+	        });
+	    },
+	    onAttach: function onAttach() {
+	        //this.onClickLink();
+	        this.toggleMenuItems();
+	    },
+	
+	    // custom:
+	    toggleMenuItems: function toggleMenuItems() {
+	        if (_app2.default.user.has('_id')) this.$('.js-need-auth').show();else {
+	            this.$('.js-need-auth').hide();
+	        }
+	    },
+	    hideMobileCollapsableMenu: function hideMobileCollapsableMenu(e) {
+	        if (e.target !== $('.sh-btn-mobile-menu').get(0)) {
+	            this.$('.navbar-collapse').collapse('hide');
+	        }
+	    },
+	    setActiveItemForCurrentRoute: function setActiveItemForCurrentRoute() {
+	        var _this = this;
+	
+	        this.$('.main-menu-item').each(function (i, el) {
+	            if (el.dataset.routeName === _app2.default.router.currentRoute) {
+	                _this.$('.main-menu-item').removeClass('active');
+	                $(el).addClass('active');
+	            }
+	        });
+	    },
+	
+	    events: {
+	        'click .main-menu-item': function clickMainMenuItem(e) {
+	
+	            $(e.target).find('>a').click();
+	        }
+	
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 88 */
+/*!***********************************************!*\
+  !*** ./wwwroot/homeApp/mainMenuView.hbs.html ***!
+  \***********************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<!-- Menu -->\n<div class="navbar-collapse pull-right nav-main-collapse collapse submenu-dark">\n    <nav class="sh-nav-menu nav-main">\n        <ul id="topMain" class="nav nav-pills nav-main">\n            <li class="main-menu-item active" data-route-name="index">\n                <a href="/">'+
+	((__t=(i18n('mainPage')))==null?'':__t)+
+	'</a>\n            </li>\n            <li class="main-menu-item hidden-lg hidden-md" data-route-name="createPost">\n                <a href="/posts/new">\n                    '+
+	((__t=(i18n('create')))==null?'':__t)+
+	'\n                </a>\n            </li>\n            <li class="main-menu-item" data-route-name="about">\n                <a href="/about-us" >\n                    '+
+	((__t=(i18n('aboutSite')))==null?'':__t)+
+	'\n                </a>\n            </li>\n            <li class="main-menu-item js-need-auth" style="display: none;" data-route-name="chatsMy">\n                <a href="/chats/my">\n                    '+
+	((__t=(i18n('messages')))==null?'':__t)+
+	'\n                </a>\n            </li>\n            <li class="main-menu-item js-need-auth" style="display: none;" data-route-name="postsMy">\n                <a href="/posts/my">\n                    '+
+	((__t=(i18n('myPosts')))==null?'':__t)+
+	'\n                </a>\n            </li>\n            <li class="main-menu-item" data-route-name="blog">\n                <a href="/blog">\n                    '+
+	((__t=(i18n('mainMenuBlog')))==null?'':__t)+
+	'\n                </a>\n            </li>\n        </ul>\n    </nav>\n</div>';
+	}
+	return __p;
+	};
+
+>>>>>>> master
 
 /***/ },
 /* 89 */
 /*!*******************************************!*\
+<<<<<<< HEAD
   !*** ./wwwroot/data/backbone-deffered.js ***!
   \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
@@ -27565,11 +35453,32 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+=======
+  !*** ./wwwroot/homeApp/mainMenuView.less ***!
+  \*******************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 90 */
+/*!********************************************!*\
+  !*** ./wwwroot/data/AsteroidCollection.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+>>>>>>> master
 	
 	var _backbone = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
 	__webpack_require__(/*! backbone-validation */ 88);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -27642,11 +35551,96 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(_, $) {'use strict';
+=======
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _AsteroidModel = __webpack_require__(/*! ./AsteroidModel.js */ 91);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.Collection.extend({
+	    model: _AsteroidModel2.default,
+	
+	    asteroid: null,
+	    subscriptions: null,
+	    initialize: function initialize(models, options) {
+	        this.subscriptions = [];
+	        this.asteroid = (options || {}).asteroid || null;
+	        _backbone2.default.Collection.prototype.initialize.apply(this, arguments);
+	    },
+	    loadByMethod: function loadByMethod(method, args, callbk, options) {
+	        var _arguments = arguments;
+	
+	        if (!this.asteroid) throw new Error("Asteroid instanse of this collection is not exists!");
+	        var opts = options || {};
+	        var context = opts.context || this,
+	            callback = callbk || null,
+	            self = this;
+	        this.trigger('before:load', this);
+	        this.asteroid.call(method, args).result.then(function (result) {
+	            var res = _underscore2.default.isArray(result) ? result : result.result;
+	            if (_underscore2.default.isArray(res) || result.success) {
+	                self.reset(res && !_underscore2.default.isEmpty(res) ? res : null, _underscore2.default.omit(opts, "context", "callback"));
+	                if (callback) callback.apply(context, _arguments);
+	                self.trigger('after:load', self, result);
+	            } else {
+	                throw new Error(result.error ? result.error.errorId : "error fetch asteroid collection by method " + method);
+	            }
+	        }).catch(function (error) {
+	            throw new Error(error);
+	        });
+	    },
+	    sub: function sub() {
+	        var _arguments2 = arguments;
+	
+	        var subscription = this.asteroid.subscribe.apply(this.asteroid, arguments);
+	        if (!_underscore2.default.find(function (sub) {
+	            return sub.id === subscription.id;
+	        })) {
+	            this.subscriptions.push(subscription);
+	            var self = this;
+	            window.messagesSubscription = subscription; // debug
+	            subscription.ready.done(function (resp) {
+	                alert('publication' + resp);
+	                window.publicationResp = resp; // debug
+	                if (_underscore2.default.isArray(resp)) self.add(resp);else {
+	                    if (resp.success) {
+	                        self.add(resp.result);
+	                    } else {
+	                        throw new Error(resp.error ? resp.error.errorId : "error publication asteroid collection by " + _arguments2[0]);
+	                    }
+	                }
+	            });
+	        }
+	        return subscription;
+	    },
+	    unsub: function unsub() {
+	        _underscore2.default.each(this.subscriptions, function (sub) {
+	            return sub.stop();
+	        });
+	        this.subscriptions.length = 0;
+	    }
+	});
+
+/***/ },
+/* 91 */
+/*!***************************************!*\
+  !*** ./wwwroot/data/AsteroidModel.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	
+<<<<<<< HEAD
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
@@ -27733,6 +35727,98 @@
 /*!***************************************!*\
   !*** ./wwwroot/homeApp/controller.js ***!
   \***************************************/
+=======
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _MongoModel = __webpack_require__(/*! ./MongoModel.js */ 92);
+	
+	var _MongoModel2 = _interopRequireDefault(_MongoModel);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _MongoModel2.default.extend({
+	
+	    asteroid: null,
+	
+	    initialize: function initialize(attrs, options) {
+	        this.asteroid = options && options.asteroid ? options.asteroid : this.collection && this.collection.asteroid ? this.collection.asteroid : null;
+	        _MongoModel2.default.prototype.initialize.apply(this, arguments);
+	    },
+	    loadByMethod: function loadByMethod(method, args, callbk, options) {
+	        var _arguments = arguments;
+	
+	        if (!this.asteroid) throw new Error("Asteroid instanse of model with id=" + this.id + " is not exists!");
+	        var opts = options || (callbk && !_underscore2.default.isFunction(callbk) ? callbk : {});
+	        var context = opts.context || this,
+	            callback = callbk || (_underscore2.default.isFunction(args) ? args : null),
+	            self = this,
+	            argums = !args || _underscore2.default.isFunction(args) ? [this.id] : _underscore2.default.isArray(args) ? args : [args];
+	        this.trigger('before:load');
+	        return this.asteroid.apply(method, argums).result.then(function (result) {
+	            if (result && result.success) {
+	                self.set(result.result, _underscore2.default.omit(opts, "context", "callback"));
+	                if (callback) callback.apply(context, _arguments);
+	                self.trigger('after:load', result);
+	            } else if (result.error) {
+	
+	                throw new Error("Fetch fail from meteor! Error Id: " + result.error.errorId);
+	            }
+	        }).catch(function (err) {
+	            throw new Error("Fetch fail from meteor! Custom access error: " + err);
+	        });
+	    },
+	    save: function save(method, args, callbk, options) {
+	        var _arguments2 = arguments;
+	
+	        if (!this.asteroid) throw new Error("Asteroid instanse of model with id=" + this.id + " is not exists!");
+	        var opts = options || (callbk && !_underscore2.default.isFunction(callbk) ? callbk : {});
+	        var context = opts.context || this,
+	            callback = callbk || (_underscore2.default.isFunction(args) ? args : null),
+	            self = this,
+	            argums = !args || _underscore2.default.isFunction(args) ? [this.attributes] : _underscore2.default.isArray(args) ? args : [args];
+	        this.trigger('before:save');
+	        return this.asteroid.apply(method, argums).result.then(function (id) {
+	            self.set('_id', id, _underscore2.default.omit(opts, "context", "callback"));
+	            if (callback) callback.apply(context, _arguments2);
+	            self.trigger('save', id);
+	        }).catch(function (err) {
+	            self.trigger('error:save', id);
+	            throw new Error("Save fail from meteor! Custom error: " + err);
+	        });
+	    },
+	    remove: function remove(method, args, callbk, options) {
+	        var _arguments3 = arguments;
+	
+	        if (!this.asteroid) throw new Error("Asteroid instanse of model with id=" + this.id + " is not exists!");
+	        var opts = options || (callbk && !_underscore2.default.isFunction(callbk) ? callbk : {});
+	        var context = opts.context || this,
+	            callback = callbk || (_underscore2.default.isFunction(args) ? args : null),
+	            self = this,
+	            argums = !args || _underscore2.default.isFunction(args) ? [this.attributes] : _underscore2.default.isArray(args) ? args : [args];
+	        this.trigger('before:destroy');
+	        return this.asteroid.apply(method, argums).result.then(function (result) {
+	            if (result.success) {
+	                self.unset('_id', _underscore2.default.omit(opts, "context", "callback"));
+	                if (callback) callback.apply(context, _arguments3);
+	                self.trigger('destroy', result);
+	            } else {
+	                self.trigger('error:destroy', result);
+	            }
+	        }).catch(function (err) {
+	            self.trigger('error:destroy', result);
+	            throw new Error("Destroy fail from meteor! Custom error: " + err);
+	        });
+	    }
+	});
+
+/***/ },
+/* 92 */
+/*!************************************!*\
+  !*** ./wwwroot/data/MongoModel.js ***!
+  \************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27741,6 +35827,7 @@
 	    value: true
 	});
 	
+<<<<<<< HEAD
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
@@ -28271,6 +36358,1202 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+=======
+	var _BaseModel = __webpack_require__(/*! ./BaseModel.js */ 93);
+	
+	var _BaseModel2 = _interopRequireDefault(_BaseModel);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _BaseModel2.default.extend({
+	    idAttribute: "_id",
+	    parse: function parse(resp) {
+	        return resp;
+	    }
+	});
+
+/***/ },
+/* 93 */
+/*!***********************************!*\
+  !*** ./wwwroot/data/BaseModel.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _backboneValidation = __webpack_require__(/*! backbone-validation */ 94);
+	
+	var _backboneValidation2 = _interopRequireDefault(_backboneValidation);
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	__webpack_require__(/*! ./backbone-deffered.js */ 95);
+	
+	__webpack_require__(/*! ../helpers/ConfigureBackboneValidation.js */ 96);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.Model.extend(_backboneValidation2.default.mixin);
+
+/***/ },
+/* 94 */
+/*!***************************************************************!*\
+  !*** ./~/backbone-validation/dist/backbone-validation-amd.js ***!
+  \***************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	// Backbone.Validation v0.11.5
+	//
+	// Copyright (c) 2011-2015 Thomas Pedersen
+	// Distributed under MIT License
+	//
+	// Documentation and full license available at:
+	// http://thedersen.com/projects/backbone-validation
+	(function (factory) {
+	  if (( false ? 'undefined' : _typeof(exports)) === 'object') {
+	    module.exports = factory(__webpack_require__(/*! backbone */ 17), __webpack_require__(/*! underscore */ 7));
+	  } else if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! backbone */ 17), __webpack_require__(/*! underscore */ 7)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  }
+	})(function (Backbone, _) {
+	  Backbone.Validation = function (_) {
+	    'use strict';
+	
+	    // Default options
+	    // ---------------
+	
+	    var defaultOptions = {
+	      forceUpdate: false,
+	      selector: 'name',
+	      labelFormatter: 'sentenceCase',
+	      valid: Function.prototype,
+	      invalid: Function.prototype
+	    };
+	
+	    // Helper functions
+	    // ----------------
+	
+	    // Formatting functions used for formatting error messages
+	    var formatFunctions = {
+	      // Uses the configured label formatter to format the attribute name
+	      // to make it more readable for the user
+	      formatLabel: function formatLabel(attrName, model) {
+	        return defaultLabelFormatters[defaultOptions.labelFormatter](attrName, model);
+	      },
+	
+	      // Replaces nummeric placeholders like {0} in a string with arguments
+	      // passed to the function
+	      format: function format() {
+	        var args = Array.prototype.slice.call(arguments),
+	            text = args.shift();
+	        return text.replace(/\{(\d+)\}/g, function (match, number) {
+	          return typeof args[number] !== 'undefined' ? args[number] : match;
+	        });
+	      }
+	    };
+	
+	    // Flattens an object
+	    // eg:
+	    //
+	    //     var o = {
+	    //       owner: {
+	    //         name: 'Backbone',
+	    //         address: {
+	    //           street: 'Street',
+	    //           zip: 1234
+	    //         }
+	    //       }
+	    //     };
+	    //
+	    // becomes:
+	    //
+	    //     var o = {
+	    //       'owner': {
+	    //         name: 'Backbone',
+	    //         address: {
+	    //           street: 'Street',
+	    //           zip: 1234
+	    //         }
+	    //       },
+	    //       'owner.name': 'Backbone',
+	    //       'owner.address': {
+	    //         street: 'Street',
+	    //         zip: 1234
+	    //       },
+	    //       'owner.address.street': 'Street',
+	    //       'owner.address.zip': 1234
+	    //     };
+	    // This may seem redundant, but it allows for maximum flexibility
+	    // in validation rules.
+	    var flatten = function flatten(obj, into, prefix) {
+	      into = into || {};
+	      prefix = prefix || '';
+	
+	      _.each(obj, function (val, key) {
+	        if (obj.hasOwnProperty(key)) {
+	          if (!!val && _.isArray(val)) {
+	            _.forEach(val, function (v, k) {
+	              flatten(v, into, prefix + key + '.' + k + '.');
+	              into[prefix + key + '.' + k] = v;
+	            });
+	          } else if (!!val && (typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object' && val.constructor === Object) {
+	            flatten(val, into, prefix + key + '.');
+	          }
+	
+	          // Register the current level object as well
+	          into[prefix + key] = val;
+	        }
+	      });
+	
+	      return into;
+	    };
+	
+	    // Validation
+	    // ----------
+	
+	    var Validation = function () {
+	
+	      // Returns an object with undefined properties for all
+	      // attributes on the model that has defined one or more
+	      // validation rules.
+	      var getValidatedAttrs = function getValidatedAttrs(model, attrs) {
+	        attrs = attrs || _.keys(_.result(model, 'validation') || {});
+	        return _.reduce(attrs, function (memo, key) {
+	          memo[key] = void 0;
+	          return memo;
+	        }, {});
+	      };
+	
+	      // Returns an array with attributes passed through options
+	      var getOptionsAttrs = function getOptionsAttrs(options, view) {
+	        var attrs = options.attributes;
+	        if (_.isFunction(attrs)) {
+	          attrs = attrs(view);
+	        } else if (_.isString(attrs) && _.isFunction(defaultAttributeLoaders[attrs])) {
+	          attrs = defaultAttributeLoaders[attrs](view);
+	        }
+	        if (_.isArray(attrs)) {
+	          return attrs;
+	        }
+	      };
+	
+	      // Looks on the model for validations for a specified
+	      // attribute. Returns an array of any validators defined,
+	      // or an empty array if none is defined.
+	      var getValidators = function getValidators(model, attr) {
+	        var attrValidationSet = model.validation ? _.result(model, 'validation')[attr] || {} : {};
+	
+	        // If the validator is a function or a string, wrap it in a function validator
+	        if (_.isFunction(attrValidationSet) || _.isString(attrValidationSet)) {
+	          attrValidationSet = {
+	            fn: attrValidationSet
+	          };
+	        }
+	
+	        // Stick the validator object into an array
+	        if (!_.isArray(attrValidationSet)) {
+	          attrValidationSet = [attrValidationSet];
+	        }
+	
+	        // Reduces the array of validators into a new array with objects
+	        // with a validation method to call, the value to validate against
+	        // and the specified error message, if any
+	        return _.reduce(attrValidationSet, function (memo, attrValidation) {
+	          _.each(_.without(_.keys(attrValidation), 'msg'), function (validator) {
+	            memo.push({
+	              fn: defaultValidators[validator],
+	              val: attrValidation[validator],
+	              msg: attrValidation.msg
+	            });
+	          });
+	          return memo;
+	        }, []);
+	      };
+	
+	      // Validates an attribute against all validators defined
+	      // for that attribute. If one or more errors are found,
+	      // the first error message is returned.
+	      // If the attribute is valid, an empty string is returned.
+	      var validateAttr = function validateAttr(model, attr, value, computed) {
+	        // Reduces the array of validators to an error message by
+	        // applying all the validators and returning the first error
+	        // message, if any.
+	        return _.reduce(getValidators(model, attr), function (memo, validator) {
+	          // Pass the format functions plus the default
+	          // validators as the context to the validator
+	          var ctx = _.extend({}, formatFunctions, defaultValidators),
+	              result = validator.fn.call(ctx, value, attr, validator.val, model, computed);
+	
+	          if (result === false || memo === false) {
+	            return false;
+	          }
+	          if (result && !memo) {
+	            return _.result(validator, 'msg') || result;
+	          }
+	          return memo;
+	        }, '');
+	      };
+	
+	      // Loops through the model's attributes and validates the specified attrs.
+	      // Returns and object containing names of invalid attributes
+	      // as well as error messages.
+	      var validateModel = function validateModel(model, attrs, validatedAttrs) {
+	        var error,
+	            invalidAttrs = {},
+	            isValid = true,
+	            computed = _.clone(attrs);
+	
+	        _.each(validatedAttrs, function (val, attr) {
+	          error = validateAttr(model, attr, val, computed);
+	          if (error) {
+	            invalidAttrs[attr] = error;
+	            isValid = false;
+	          }
+	        });
+	
+	        return {
+	          invalidAttrs: invalidAttrs,
+	          isValid: isValid
+	        };
+	      };
+	
+	      // Contains the methods that are mixed in on the model when binding
+	      var mixin = function mixin(view, options) {
+	        return {
+	
+	          // Check whether or not a value, or a hash of values
+	          // passes validation without updating the model
+	          preValidate: function preValidate(attr, value) {
+	            var self = this,
+	                result = {},
+	                error;
+	
+	            if (_.isObject(attr)) {
+	              _.each(attr, function (value, key) {
+	                error = self.preValidate(key, value);
+	                if (error) {
+	                  result[key] = error;
+	                }
+	              });
+	
+	              return _.isEmpty(result) ? undefined : result;
+	            } else {
+	              return validateAttr(this, attr, value, _.extend({}, this.attributes));
+	            }
+	          },
+	
+	          // Check to see if an attribute, an array of attributes or the
+	          // entire model is valid. Passing true will force a validation
+	          // of the model.
+	          isValid: function isValid(option) {
+	            var flattened, attrs, error, invalidAttrs;
+	
+	            option = option || getOptionsAttrs(options, view);
+	
+	            if (_.isString(option)) {
+	              attrs = [option];
+	            } else if (_.isArray(option)) {
+	              attrs = option;
+	            }
+	            if (attrs) {
+	              flattened = flatten(this.attributes);
+	              //Loop through all associated views
+	              _.each(this.associatedViews, function (view) {
+	                _.each(attrs, function (attr) {
+	                  error = validateAttr(this, attr, flattened[attr], _.extend({}, this.attributes));
+	                  if (error) {
+	                    options.invalid(view, attr, error, options.selector);
+	                    invalidAttrs = invalidAttrs || {};
+	                    invalidAttrs[attr] = error;
+	                  } else {
+	                    options.valid(view, attr, options.selector);
+	                  }
+	                }, this);
+	              }, this);
+	            }
+	
+	            if (option === true) {
+	              invalidAttrs = this.validate();
+	            }
+	            if (invalidAttrs) {
+	              this.trigger('invalid', this, invalidAttrs, { validationError: invalidAttrs });
+	            }
+	            return attrs ? !invalidAttrs : this.validation ? this._isValid : true;
+	          },
+	
+	          // This is called by Backbone when it needs to perform validation.
+	          // You can call it manually without any parameters to validate the
+	          // entire model.
+	          validate: function validate(attrs, setOptions) {
+	            var model = this,
+	                validateAll = !attrs,
+	                opt = _.extend({}, options, setOptions),
+	                validatedAttrs = getValidatedAttrs(model, getOptionsAttrs(options, view)),
+	                allAttrs = _.extend({}, validatedAttrs, model.attributes, attrs),
+	                flattened = flatten(allAttrs),
+	                changedAttrs = attrs ? flatten(attrs) : flattened,
+	                result = validateModel(model, allAttrs, _.pick(flattened, _.keys(validatedAttrs)));
+	
+	            model._isValid = result.isValid;
+	
+	            //After validation is performed, loop through all associated views
+	            _.each(model.associatedViews, function (view) {
+	
+	              // After validation is performed, loop through all validated and changed attributes
+	              // and call the valid and invalid callbacks so the view is updated.
+	              _.each(validatedAttrs, function (val, attr) {
+	                var invalid = result.invalidAttrs.hasOwnProperty(attr),
+	                    changed = changedAttrs.hasOwnProperty(attr);
+	
+	                if (!invalid) {
+	                  opt.valid(view, attr, opt.selector);
+	                }
+	                if (invalid && (changed || validateAll)) {
+	                  opt.invalid(view, attr, result.invalidAttrs[attr], opt.selector);
+	                }
+	              });
+	            });
+	
+	            // Trigger validated events.
+	            // Need to defer this so the model is actually updated before
+	            // the event is triggered.
+	            _.defer(function () {
+	              model.trigger('validated', model._isValid, model, result.invalidAttrs);
+	              model.trigger('validated:' + (model._isValid ? 'valid' : 'invalid'), model, result.invalidAttrs);
+	            });
+	
+	            // Return any error messages to Backbone, unless the forceUpdate flag is set.
+	            // Then we do not return anything and fools Backbone to believe the validation was
+	            // a success. That way Backbone will update the model regardless.
+	            if (!opt.forceUpdate && _.intersection(_.keys(result.invalidAttrs), _.keys(changedAttrs)).length > 0) {
+	              return result.invalidAttrs;
+	            }
+	          }
+	        };
+	      };
+	
+	      // Helper to mix in validation on a model. Stores the view in the associated views array.
+	      var bindModel = function bindModel(view, model, options) {
+	        if (model.associatedViews) {
+	          model.associatedViews.push(view);
+	        } else {
+	          model.associatedViews = [view];
+	        }
+	        _.extend(model, mixin(view, options));
+	      };
+	
+	      // Removes view from associated views of the model or the methods
+	      // added to a model if no view or single view provided
+	      var unbindModel = function unbindModel(model, view) {
+	        if (view && model.associatedViews && model.associatedViews.length > 1) {
+	          model.associatedViews = _.without(model.associatedViews, view);
+	        } else {
+	          delete model.validate;
+	          delete model.preValidate;
+	          delete model.isValid;
+	          delete model.associatedViews;
+	        }
+	      };
+	
+	      // Mix in validation on a model whenever a model is
+	      // added to a collection
+	      var collectionAdd = function collectionAdd(model) {
+	        bindModel(this.view, model, this.options);
+	      };
+	
+	      // Remove validation from a model whenever a model is
+	      // removed from a collection
+	      var collectionRemove = function collectionRemove(model) {
+	        unbindModel(model);
+	      };
+	
+	      // Returns the public methods on Backbone.Validation
+	      return {
+	
+	        // Current version of the library
+	        version: '0.11.3',
+	
+	        // Called to configure the default options
+	        configure: function configure(options) {
+	          _.extend(defaultOptions, options);
+	        },
+	
+	        // Hooks up validation on a view with a model
+	        // or collection
+	        bind: function bind(view, options) {
+	          options = _.extend({}, defaultOptions, defaultCallbacks, options);
+	
+	          var model = options.model || view.model,
+	              collection = options.collection || view.collection;
+	
+	          if (typeof model === 'undefined' && typeof collection === 'undefined') {
+	            throw 'Before you execute the binding your view must have a model or a collection.\n' + 'See http://thedersen.com/projects/backbone-validation/#using-form-model-validation for more information.';
+	          }
+	
+	          if (model) {
+	            bindModel(view, model, options);
+	          } else if (collection) {
+	            collection.each(function (model) {
+	              bindModel(view, model, options);
+	            });
+	            collection.bind('add', collectionAdd, { view: view, options: options });
+	            collection.bind('remove', collectionRemove);
+	          }
+	        },
+	
+	        // Removes validation from a view with a model
+	        // or collection
+	        unbind: function unbind(view, options) {
+	          options = _.extend({}, options);
+	          var model = options.model || view.model,
+	              collection = options.collection || view.collection;
+	
+	          if (model) {
+	            unbindModel(model, view);
+	          } else if (collection) {
+	            collection.each(function (model) {
+	              unbindModel(model, view);
+	            });
+	            collection.unbind('add', collectionAdd);
+	            collection.unbind('remove', collectionRemove);
+	          }
+	        },
+	
+	        // Used to extend the Backbone.Model.prototype
+	        // with validation
+	        mixin: mixin(null, defaultOptions)
+	      };
+	    }();
+	
+	    // Callbacks
+	    // ---------
+	
+	    var defaultCallbacks = Validation.callbacks = {
+	
+	      // Gets called when a previously invalid field in the
+	      // view becomes valid. Removes any error message.
+	      // Should be overridden with custom functionality.
+	      valid: function valid(view, attr, selector) {
+	        view.$('[' + selector + '~="' + attr + '"]').removeClass('invalid').removeAttr('data-error');
+	      },
+	
+	      // Gets called when a field in the view becomes invalid.
+	      // Adds a error message.
+	      // Should be overridden with custom functionality.
+	      invalid: function invalid(view, attr, error, selector) {
+	        view.$('[' + selector + '~="' + attr + '"]').addClass('invalid').attr('data-error', error);
+	      }
+	    };
+	
+	    // Patterns
+	    // --------
+	
+	    var defaultPatterns = Validation.patterns = {
+	      // Matches any digit(s) (i.e. 0-9)
+	      digits: /^\d+$/,
+	
+	      // Matches any number (e.g. 100.000)
+	      number: /^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/,
+	
+	      // Matches a valid email address (e.g. mail@example.com)
+	      email: /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i,
+	
+	      // Mathes any valid url (e.g. http://www.xample.com)
+	      url: /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i
+	    };
+	
+	    // Error messages
+	    // --------------
+	
+	    // Error message for the build in validators.
+	    // {x} gets swapped out with arguments form the validator.
+	    var defaultMessages = Validation.messages = {
+	      required: '{0} is required',
+	      acceptance: '{0} must be accepted',
+	      min: '{0} must be greater than or equal to {1}',
+	      max: '{0} must be less than or equal to {1}',
+	      range: '{0} must be between {1} and {2}',
+	      length: '{0} must be {1} characters',
+	      minLength: '{0} must be at least {1} characters',
+	      maxLength: '{0} must be at most {1} characters',
+	      rangeLength: '{0} must be between {1} and {2} characters',
+	      oneOf: '{0} must be one of: {1}',
+	      equalTo: '{0} must be the same as {1}',
+	      digits: '{0} must only contain digits',
+	      number: '{0} must be a number',
+	      email: '{0} must be a valid email',
+	      url: '{0} must be a valid url',
+	      inlinePattern: '{0} is invalid'
+	    };
+	
+	    // Label formatters
+	    // ----------------
+	
+	    // Label formatters are used to convert the attribute name
+	    // to a more human friendly label when using the built in
+	    // error messages.
+	    // Configure which one to use with a call to
+	    //
+	    //     Backbone.Validation.configure({
+	    //       labelFormatter: 'label'
+	    //     });
+	    var defaultLabelFormatters = Validation.labelFormatters = {
+	
+	      // Returns the attribute name with applying any formatting
+	      none: function none(attrName) {
+	        return attrName;
+	      },
+	
+	      // Converts attributeName or attribute_name to Attribute name
+	      sentenceCase: function sentenceCase(attrName) {
+	        return attrName.replace(/(?:^\w|[A-Z]|\b\w)/g, function (match, index) {
+	          return index === 0 ? match.toUpperCase() : ' ' + match.toLowerCase();
+	        }).replace(/_/g, ' ');
+	      },
+	
+	      // Looks for a label configured on the model and returns it
+	      //
+	      //      var Model = Backbone.Model.extend({
+	      //        validation: {
+	      //          someAttribute: {
+	      //            required: true
+	      //          }
+	      //        },
+	      //
+	      //        labels: {
+	      //          someAttribute: 'Custom label'
+	      //        }
+	      //      });
+	      label: function label(attrName, model) {
+	        return model.labels && model.labels[attrName] || defaultLabelFormatters.sentenceCase(attrName, model);
+	      }
+	    };
+	
+	    // AttributeLoaders
+	
+	    var defaultAttributeLoaders = Validation.attributeLoaders = {
+	      inputNames: function inputNames(view) {
+	        var attrs = [];
+	        if (view) {
+	          view.$('form [name]').each(function () {
+	            if (/^(?:input|select|textarea)$/i.test(this.nodeName) && this.name && this.type !== 'submit' && attrs.indexOf(this.name) === -1) {
+	              attrs.push(this.name);
+	            }
+	          });
+	        }
+	        return attrs;
+	      }
+	    };
+	
+	    // Built in validators
+	    // -------------------
+	
+	    var defaultValidators = Validation.validators = function () {
+	      // Use native trim when defined
+	      var trim = String.prototype.trim ? function (text) {
+	        return text === null ? '' : String.prototype.trim.call(text);
+	      } : function (text) {
+	        var trimLeft = /^\s+/,
+	            trimRight = /\s+$/;
+	
+	        return text === null ? '' : text.toString().replace(trimLeft, '').replace(trimRight, '');
+	      };
+	
+	      // Determines whether or not a value is a number
+	      var isNumber = function isNumber(value) {
+	        return _.isNumber(value) || _.isString(value) && value.match(defaultPatterns.number);
+	      };
+	
+	      // Determines whether or not a value is empty
+	      var hasValue = function hasValue(value) {
+	        return !(_.isNull(value) || _.isUndefined(value) || _.isString(value) && trim(value) === '' || _.isArray(value) && _.isEmpty(value));
+	      };
+	
+	      return {
+	        // Function validator
+	        // Lets you implement a custom function used for validation
+	        fn: function fn(value, attr, _fn, model, computed) {
+	          if (_.isString(_fn)) {
+	            _fn = model[_fn];
+	          }
+	          return _fn.call(model, value, attr, computed);
+	        },
+	
+	        // Required validator
+	        // Validates if the attribute is required or not
+	        // This can be specified as either a boolean value or a function that returns a boolean value
+	        required: function required(value, attr, _required, model, computed) {
+	          var isRequired = _.isFunction(_required) ? _required.call(model, value, attr, computed) : _required;
+	          if (!isRequired && !hasValue(value)) {
+	            return false; // overrides all other validators
+	          }
+	          if (isRequired && !hasValue(value)) {
+	            return this.format(defaultMessages.required, this.formatLabel(attr, model));
+	          }
+	        },
+	
+	        // Acceptance validator
+	        // Validates that something has to be accepted, e.g. terms of use
+	        // `true` or 'true' are valid
+	        acceptance: function acceptance(value, attr, accept, model) {
+	          if (value !== 'true' && (!_.isBoolean(value) || value === false)) {
+	            return this.format(defaultMessages.acceptance, this.formatLabel(attr, model));
+	          }
+	        },
+	
+	        // Min validator
+	        // Validates that the value has to be a number and equal to or greater than
+	        // the min value specified
+	        min: function min(value, attr, minValue, model) {
+	          if (!isNumber(value) || value < minValue) {
+	            return this.format(defaultMessages.min, this.formatLabel(attr, model), minValue);
+	          }
+	        },
+	
+	        // Max validator
+	        // Validates that the value has to be a number and equal to or less than
+	        // the max value specified
+	        max: function max(value, attr, maxValue, model) {
+	          if (!isNumber(value) || value > maxValue) {
+	            return this.format(defaultMessages.max, this.formatLabel(attr, model), maxValue);
+	          }
+	        },
+	
+	        // Range validator
+	        // Validates that the value has to be a number and equal to or between
+	        // the two numbers specified
+	        range: function range(value, attr, _range, model) {
+	          if (!isNumber(value) || value < _range[0] || value > _range[1]) {
+	            return this.format(defaultMessages.range, this.formatLabel(attr, model), _range[0], _range[1]);
+	          }
+	        },
+	
+	        // Length validator
+	        // Validates that the value has to be a string with length equal to
+	        // the length value specified
+	        length: function length(value, attr, _length, model) {
+	          if (!_.isString(value) || value.length !== _length) {
+	            return this.format(defaultMessages.length, this.formatLabel(attr, model), _length);
+	          }
+	        },
+	
+	        // Min length validator
+	        // Validates that the value has to be a string with length equal to or greater than
+	        // the min length value specified
+	        minLength: function minLength(value, attr, _minLength, model) {
+	          if (!_.isString(value) || value.length < _minLength) {
+	            return this.format(defaultMessages.minLength, this.formatLabel(attr, model), _minLength);
+	          }
+	        },
+	
+	        // Max length validator
+	        // Validates that the value has to be a string with length equal to or less than
+	        // the max length value specified
+	        maxLength: function maxLength(value, attr, _maxLength, model) {
+	          if (!_.isString(value) || value.length > _maxLength) {
+	            return this.format(defaultMessages.maxLength, this.formatLabel(attr, model), _maxLength);
+	          }
+	        },
+	
+	        // Range length validator
+	        // Validates that the value has to be a string and equal to or between
+	        // the two numbers specified
+	        rangeLength: function rangeLength(value, attr, range, model) {
+	          if (!_.isString(value) || value.length < range[0] || value.length > range[1]) {
+	            return this.format(defaultMessages.rangeLength, this.formatLabel(attr, model), range[0], range[1]);
+	          }
+	        },
+	
+	        // One of validator
+	        // Validates that the value has to be equal to one of the elements in
+	        // the specified array. Case sensitive matching
+	        oneOf: function oneOf(value, attr, values, model) {
+	          if (!_.include(values, value)) {
+	            return this.format(defaultMessages.oneOf, this.formatLabel(attr, model), values.join(', '));
+	          }
+	        },
+	
+	        // Equal to validator
+	        // Validates that the value has to be equal to the value of the attribute
+	        // with the name specified
+	        equalTo: function equalTo(value, attr, _equalTo, model, computed) {
+	          if (value !== computed[_equalTo]) {
+	            return this.format(defaultMessages.equalTo, this.formatLabel(attr, model), this.formatLabel(_equalTo, model));
+	          }
+	        },
+	
+	        // Pattern validator
+	        // Validates that the value has to match the pattern specified.
+	        // Can be a regular expression or the name of one of the built in patterns
+	        pattern: function pattern(value, attr, _pattern, model) {
+	          if (!hasValue(value) || !value.toString().match(defaultPatterns[_pattern] || _pattern)) {
+	            return this.format(defaultMessages[_pattern] || defaultMessages.inlinePattern, this.formatLabel(attr, model), _pattern);
+	          }
+	        }
+	      };
+	    }();
+	
+	    // Set the correct context for all validators
+	    // when used from within a method validator
+	    _.each(defaultValidators, function (validator, key) {
+	      defaultValidators[key] = _.bind(defaultValidators[key], _.extend({}, formatFunctions, defaultValidators));
+	    });
+	
+	    return Validation;
+	  }(_);
+	  return Backbone.Validation;
+	});
+
+/***/ },
+/* 95 */
+/*!*******************************************!*\
+  !*** ./wwwroot/data/backbone-deffered.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _jquery = __webpack_require__(/*! jquery */ 3);
+	
+	var _jquery2 = _interopRequireDefault(_jquery);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//backbone-deferred-jquery переделанная version: '0.4.0'
+	_backbone2.default.Deferred = {};
+	(function () {
+	    var __hasProp = {}.hasOwnProperty,
+	        __extends = function __extends(child, parent) {
+	        for (var key in parent) {
+	            if (__hasProp.call(parent, key)) child[key] = parent[key];
+	        }function ctor() {
+	            this.constructor = child;
+	        }ctor.prototype = parent.prototype;child.prototype = new ctor();child.__super__ = parent.prototype;return child;
+	    };
+	
+	    _backbone2.default.Deferred.Reject = function () {
+	        function Reject(xhr, options) {
+	            this.xhr = xhr;
+	            this.options = options;
+	        }
+	
+	        Reject.prototype.getXhr = function () {
+	            return this.xhr;
+	        };
+	
+	        Reject.prototype.getOptions = function () {
+	            return this.options;
+	        };
+	
+	        return Reject;
+	    }();
+	
+	    _backbone2.default.Deferred.RejectModel = function (_super) {
+	        __extends(RejectModel, _super);
+	
+	        function RejectModel(model, response, options) {
+	            this.model = model;
+	            this.response = response;
+	            this.options = options;
+	            RejectModel.__super__.constructor.call(this, this.response, this.options);
+	        }
+	
+	        RejectModel.prototype.getModel = function () {
+	            return this.model;
+	        };
+	
+	        return RejectModel;
+	    }(_backbone2.default.Deferred.Reject);
+	
+	    _backbone2.default.Deferred.RejectCollection = function (_super) {
+	        __extends(RejectCollection, _super);
+	
+	        function RejectCollection(collection, response, options) {
+	            this.collection = collection;
+	            this.response = response;
+	            this.options = options;
+	            RejectCollection.__super__.constructor.call(this, this.response, this.options);
+	        }
+	
+	        RejectCollection.prototype.getCollection = function () {
+	            return this.collection;
+	        };
+	
+	        return RejectCollection;
+	    }(_backbone2.default.Deferred.Reject);
+	}).call(undefined);
+	
+	(function () {
+	    var __hasProp = {}.hasOwnProperty,
+	        __extends = function __extends(child, parent) {
+	        for (var key in parent) {
+	            if (__hasProp.call(parent, key)) child[key] = parent[key];
+	        }function ctor() {
+	            this.constructor = child;
+	        }ctor.prototype = parent.prototype;child.prototype = new ctor();child.__super__ = parent.prototype;return child;
+	    };
+	
+	    _backbone2.default.Deferred.Resolve = function () {
+	        function Resolve(response, options) {
+	            this.response = response;
+	            this.options = options;
+	        }
+	
+	        Resolve.prototype.getResponse = function () {
+	            return this.response;
+	        };
+	
+	        Resolve.prototype.getOptions = function () {
+	            return this.options;
+	        };
+	
+	        return Resolve;
+	    }();
+	
+	    _backbone2.default.Deferred.ResolveModel = function (_super) {
+	        __extends(ResolveModel, _super);
+	
+	        function ResolveModel(model, response, options) {
+	            this.model = model;
+	            this.response = response;
+	            this.options = options;
+	            ResolveModel.__super__.constructor.call(this, this.response, this.options);
+	        }
+	
+	        ResolveModel.prototype.getModel = function () {
+	            return this.model;
+	        };
+	
+	        return ResolveModel;
+	    }(_backbone2.default.Deferred.Resolve);
+	
+	    _backbone2.default.Deferred.ResolveCollection = function (_super) {
+	        __extends(ResolveCollection, _super);
+	
+	        function ResolveCollection(collection, response, options) {
+	            this.collection = collection;
+	            this.response = response;
+	            this.options = options;
+	            ResolveCollection.__super__.constructor.call(this, this.response, this.options);
+	        }
+	
+	        ResolveCollection.prototype.getCollection = function () {
+	            return this.collection;
+	        };
+	
+	        return ResolveCollection;
+	    }(_backbone2.default.Deferred.Resolve);
+	}).call(undefined);
+	
+	(function () {
+	    _backbone2.default.Deferred.Promise = function () {
+	        function Promise() {
+	            this.deferred = _jquery2.default.Deferred();
+	        }
+	
+	        Promise.prototype.get = function () {
+	            return this.deferred;
+	        };
+	
+	        Promise.prototype.resolve = function (result) {
+	            this.deferred.resolve(result);
+	            return this;
+	        };
+	
+	        Promise.prototype.reject = function (result) {
+	            this.deferred.reject(result);
+	            return this;
+	        };
+	
+	        Promise.prototype.promise = function () {
+	            return this.deferred.promise();
+	        };
+	
+	        return Promise;
+	    }();
+	})();
+	
+	(function () {
+	    var _ref,
+	        __hasProp = {}.hasOwnProperty,
+	        __extends = function __extends(child, parent) {
+	        for (var key in parent) {
+	            if (__hasProp.call(parent, key)) child[key] = parent[key];
+	        }function ctor() {
+	            this.constructor = child;
+	        }ctor.prototype = parent.prototype;child.prototype = new ctor();child.__super__ = parent.prototype;return child;
+	    };
+	
+	    _backbone2.default.Deferred.Model = function (_super) {
+	        __extends(Model, _super);
+	
+	        function Model() {
+	            _ref = Model.__super__.constructor.apply(this, arguments);
+	            return _ref;
+	        }
+	
+	        Model.prototype.fetch = function (options) {
+	            var defer, params, _error, _success;
+	            if (options == null) {
+	                options = {};
+	            }
+	            defer = new _backbone2.default.Deferred.Promise();
+	            _success = _.isFunction(options.success) ? options.success : null;
+	            _error = _.isFunction(options.error) ? options.error : null;
+	            params = {
+	                success: function success(model, response, options) {
+	                    if (_success != null) {
+	                        _success.call(this, model, response, options);
+	                    }
+	                    return defer.resolve(new _backbone2.default.Deferred.ResolveModel(model, response, options));
+	                },
+	                error: function error(model, xhr, options) {
+	                    if (_error != null) {
+	                        _error.call(this, model, xhr, options);
+	                    }
+	                    return defer.reject(new _backbone2.default.Deferred.RejectModel(model, xhr, options));
+	                }
+	            };
+	            _.extend(options, params);
+	            Model.__super__.fetch.call(this, options);
+	            return defer.promise();
+	        };
+	
+	        Model.prototype.save = function (key, value, options) {
+	            var data, defer, params, _error, _success;
+	            if (options == null) {
+	                options = {};
+	            }
+	            defer = new _backbone2.default.Deferred.Promise();
+	            data = {};
+	            if (key != null && _.isObject(key)) {
+	                data = key;
+	                options = _.extend({}, value);
+	            } else if (_.isString(key)) {
+	                data[key] = value;
+	            } else {
+	                key = null;
+	                value = null;
+	            }
+	            _success = _.isFunction(options.success) ? options.success : null;
+	            _error = _.isFunction(options.error) ? options.error : null;
+	            params = {
+	                success: function success(model, response, options) {
+	                    if (_success != null) {
+	                        _success.call(this, model, response, options);
+	                    }
+	                    return defer.resolve(new _backbone2.default.Deferred.ResolveModel(model, response, options));
+	                },
+	                error: function error(model, xhr, options) {
+	                    if (_error != null) {
+	                        _error.call(this, model, xhr, options);
+	                    }
+	                    return defer.reject(new _backbone2.default.Deferred.RejectModel(model, xhr, options));
+	                }
+	            };
+	            _.extend(options, params);
+	            Model.__super__.save.call(this, data, options);
+	            return defer.promise();
+	        };
+	
+	        Model.prototype.destroy = function (options) {
+	            var defer, params, _error, _success;
+	            if (options == null) {
+	                options = {};
+	            }
+	            defer = new _backbone2.default.Deferred.Promise();
+	            _success = _.isFunction(options.success) ? options.success : null;
+	            _error = _.isFunction(options.error) ? options.error : null;
+	            params = {
+	                success: function success(model, response, options) {
+	                    if (_success != null) {
+	                        _success.call(this, model, response, options);
+	                    }
+	                    return defer.resolve(new _backbone2.default.Deferred.ResolveModel(model, response, options));
+	                },
+	                error: function error(model, xhr, options) {
+	                    if (_error != null) {
+	                        _error.call(this, model, xhr, options);
+	                    }
+	                    return defer.reject(new _backbone2.default.Deferred.RejectModel(model, xhr, options));
+	                }
+	            };
+	            _.extend(options, params);
+	            Model.__super__.destroy.call(this, options);
+	            return defer.promise();
+	        };
+	
+	        return Model;
+	    }(_backbone2.default.Model);
+	})();
+	
+	(function () {
+	    var _ref,
+	        __hasProp = {}.hasOwnProperty,
+	        __extends = function __extends(child, parent) {
+	        for (var key in parent) {
+	            if (__hasProp.call(parent, key)) child[key] = parent[key];
+	        }function ctor() {
+	            this.constructor = child;
+	        }ctor.prototype = parent.prototype;child.prototype = new ctor();child.__super__ = parent.prototype;return child;
+	    };
+	
+	    _backbone2.default.Deferred.Collection = function (_super) {
+	        __extends(Collection, _super);
+	
+	        function Collection() {
+	            _ref = Collection.__super__.constructor.apply(this, arguments);
+	            return _ref;
+	        }
+	
+	        Collection.prototype.fetch = function (options) {
+	            var defer, params, _error, _success;
+	            if (options == null) {
+	                options = {};
+	            }
+	            defer = new _backbone2.default.Deferred.Promise();
+	            _success = _.isFunction(options.success) ? options.success : null;
+	            _error = _.isFunction(options.error) ? options.error : null;
+	            params = {
+	                success: function success(model, response, options) {
+	                    if (_success != null) {
+	                        _success.call(this, model, response, options);
+	                    }
+	                    return defer.resolve(new _backbone2.default.Deferred.ResolveCollection(model, response, options));
+	                },
+	                error: function error(model, xhr, options) {
+	                    if (_error != null) {
+	                        _error.call(this, model, xhr, options);
+	                    }
+	                    return defer.reject(new _backbone2.default.Deferred.RejectCollection(model, xhr, options));
+	                }
+	            };
+	            _.extend(options, params);
+	            Collection.__super__.fetch.call(this, options);
+	            return defer.promise();
+	        };
+	
+	        return Collection;
+	    }(_backbone2.default.Collection);
+	})();
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 96 */
+/*!********************************************************!*\
+  !*** ./wwwroot/helpers/ConfigureBackboneValidation.js ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, $) {'use strict';
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	__webpack_require__(/*! backbone-validation */ 94);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	_backbone2.default.Validation.configure({
+	    labelFormatter: 'label'
+	});
+	
+	_.extend(_backbone2.default.Validation.callbacks, {
+	    valid: function valid(view, attr, selector) {
+	        if (!_.isEmpty(attr)) {
+	            var elt = view.$('[' + selector + '~="' + attr + '"]').parent();
+	            elt.removeClass('has-error').find('.error').remove();
+	        } else {
+	            view.$('.summary-errors').empty();
+	        }
+	    },
+	
+	    invalid: function invalid(view, attr, error, selector) {
+	        _backbone2.default.Validation.callbacks.valid(view, attr, selector);
+	        if (!_.isEmpty(attr)) {
+	            var elt = view.$('[' + selector + '~="' + attr + '"]').parent();
+	            if (!elt.hasClass('has-error')) {
+	                elt.addClass('has-error');
+	                elt.append('<small class="error">' + error + '</small>');
+	            }
+	        } else {
+	            var elt = view.$('.summary-errors');
+	            elt.empty();
+	            for (var i = 0; i < error.length; i += 1) {
+	                if (error[i]) {
+	                    elt.append('<small class="error">' + error[i] + '</small>');
+	                    elt.append('<br/>');
+	                }
+	            }
+	        }
+	    }
+	});
+	
+	function setDefaultValidationMessages() {
+	    // дефолтные сообщения об ошибках
+	    _.extend(_backbone2.default.Validation.messages, {
+	        required: i18n.getI18nString('validation_message_required'),
+	        oneOfProperty: i18n.getI18nString('validation_message_oneOfProperty'),
+	        acceptance: i18n.getI18nString('validation_message_acceptance'),
+	        min: i18n.getI18nString('validation_message_min'),
+	        max: i18n.getI18nString('validation_message_max'),
+	        range: i18n.getI18nString('validation_message_range'),
+	        length: i18n.getI18nString('validation_message_length'),
+	        minLength: i18n.getI18nString('validation_message_minLength'),
+	        maxLength: i18n.getI18nString('validation_message_maxLength'),
+	        rangeLength: i18n.getI18nString('validation_message_rangeLength'),
+	        oneOf: i18n.getI18nString('validation_message_oneOf'),
+	        equalTo: i18n.getI18nString('validation_message_equalTo'),
+	        digits: i18n.getI18nString('validation_message_digits'),
+	        number: i18n.getI18nString('validation_message_number'),
+	        email: i18n.getI18nString('validation_message_email'),
+	        url: i18n.getI18nString('validation_message_url'),
+	        inlinePattern: i18n.getI18nString('validation_message_inlinePattern')
+	    });
+	}
+	
+	setDefaultValidationMessages();
+	$(window).on('sh:language:changed', function () {
+	    setDefaultValidationMessages();
+	});
+	
+	_.extend(_backbone2.default.Validation.patterns, {
+	    phone: /^(\+\d{1,3})*\s*(\(\d{3}\)\s*)*\d{3}(-{0,1}|\s{0,1})\d{2}(-{0,1}|\s{0,1})\d{2}$/
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 97 */
+/*!***********************************!*\
+  !*** ./wwwroot/homeApp/router.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, $) {'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -28280,16 +37563,25 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
 	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.html */ 98);
 	
 	var _PostTypeItemView2 = _interopRequireDefault(_PostTypeItemView);
 	
 	var _app = __webpack_require__(/*! ../app */ 15);
+=======
+	var _controller = __webpack_require__(/*! ./controller */ 98);
+	
+	var _controller2 = _interopRequireDefault(_controller);
+	
+	var _app = __webpack_require__(/*! ./app */ 15);
+>>>>>>> master
 	
 	var _app2 = _interopRequireDefault(_app);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+<<<<<<< HEAD
 	var View = _backbone2.default.View.extend({
 	    tagName: 'span',
 	    template: _PostTypeItemView2.default,
@@ -28449,6 +37741,84 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+=======
+	exports.default = _backbone2.default.AppRouter.extend({
+	    initialize: function initialize(setts) {
+	        this.app = setts.app;
+	        this.controller = new _controller2.default({ app: this });
+	        this.listenTo(this.app.user, 'logout', this.redirectIfLogout);
+	    },
+	
+	    currentRoute: null,
+	    appRoutes: {
+	        '': 'index',
+	        'mobileIndex': 'mobileIndex',
+	        'posts/new': 'createPost',
+	        //'Posts/new':'createPost',
+	        //'Posts/New':'createPost',
+	        'posts/my': 'postsMy',
+	        //'chats/my':'myMessagesPage',
+	        'chats/my': 'chatsMy',
+	        'chats/:id?remoteUserId=:remoteUserId': 'chatId',
+	        'posts/:id': 'postDetails',
+	        'user/:id': 'userDetails',
+	        'Account/Login': 'login',
+	        'Account/Login/:url': 'login',
+	        'Account/FogotPassword': 'fogotPassword',
+	        'account/register?returnUrl=:url': 'registerUser',
+	        'account/register': 'registerUser',
+	        'Home/HowItWorks': 'howItWorks',
+	        'about-us': 'about',
+	        'mass-media': 'massMedia',
+	        'profile': 'myProfile',
+	        'messages/to/:remoteUserId?postId=:postId': 'messagesTo',
+	        'messages/to/:remoteUserId': 'messagesTo',
+	        'legal/confidential': 'legalConfidential', // same as Privacy Policy
+	        'legal/user-agreement': 'legalUserAgreement', // Terms of Use?
+	        'legal/post-publishing-rules': 'legalPostPublishingRules',
+	
+	        //blog:
+	        'blog': 'blogHome',
+	        'blog/post/:id': 'blogPostId'
+	    },
+	
+	    policy: {
+	        authorized: ['createPost', 'postsMy', 'chatId', 'myProfile', 'messagesTo']
+	    },
+	
+	    onRoute: function onRoute(name, path, args) {
+	        this.currentRoute = name;
+	
+	        if (_.contains(this.policy.authorized, name)) {
+	            if (!_app2.default.user.id) {
+	                this.navigate('Account/Login/' + encodeURIComponent(path), { trigger: true });
+	            }
+	        }
+	
+	        $('body').removeClass(function (index, className) {
+	            return (className.match(/(^|\s)page--\S+/g) || []).join(' ');
+	        });
+	
+	        $('body').addClass('page--' + name);
+	
+	        window.scrollTo(0, 0); //scroll to top on route change
+	    },
+	    redirectIfLogout: function redirectIfLogout() {
+	        if (_.contains(this.policy.authorized, this.currentRoute)) {
+	            this.navigate('', { trigger: true });
+	        }
+	    }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 98 */
+/*!***************************************!*\
+  !*** ./wwwroot/homeApp/controller.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -28458,6 +37828,541 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+	var _indexView = __webpack_require__(/*! ./index/indexView.js */ 99);
+	
+	var _indexView2 = _interopRequireDefault(_indexView);
+	
+	var _MobileIndexView = __webpack_require__(/*! ./index/MobileIndexView.js */ 107);
+	
+	var _MobileIndexView2 = _interopRequireDefault(_MobileIndexView);
+	
+	var _DetailsView = __webpack_require__(/*! ./posts/DetailsView.js */ 109);
+	
+	var _DetailsView2 = _interopRequireDefault(_DetailsView);
+	
+	var _AsteroidModel = __webpack_require__(/*! ../data/AsteroidModel.js */ 91);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	var _AsteroidCollection = __webpack_require__(/*! ../data/AsteroidCollection.js */ 90);
+	
+	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
+	
+	var _User = __webpack_require__(/*! ../data/Domain/User.js */ 120);
+	
+	var _User2 = _interopRequireDefault(_User);
+	
+	var _PostModel = __webpack_require__(/*! ../data/Post/PostModel.js */ 121);
+	
+	var _PostModel2 = _interopRequireDefault(_PostModel);
+	
+	var _PreloaderView = __webpack_require__(/*! ../sharedViews/PreloaderView.js */ 122);
+	
+	var _PreloaderView2 = _interopRequireDefault(_PreloaderView);
+	
+	var _CreatePostView = __webpack_require__(/*! ./posts/create/CreatePostView.js */ 124);
+	
+	var _CreatePostView2 = _interopRequireDefault(_CreatePostView);
+	
+	var _PostsMyView = __webpack_require__(/*! ./posts/postsMy/PostsMyView.js */ 141);
+	
+	var _PostsMyView2 = _interopRequireDefault(_PostsMyView);
+	
+	var _chatsMyView = __webpack_require__(/*! ./chats/chatsMy/chatsMyView.js */ 146);
+	
+	var _chatsMyView2 = _interopRequireDefault(_chatsMyView);
+	
+	var _ChatIdView = __webpack_require__(/*! ./chats/ChatIdView.js */ 153);
+	
+	var _ChatIdView2 = _interopRequireDefault(_ChatIdView);
+	
+	var _DetailsView3 = __webpack_require__(/*! ./user/DetailsView.js */ 155);
+	
+	var _DetailsView4 = _interopRequireDefault(_DetailsView3);
+	
+	var _MessagesToUserView = __webpack_require__(/*! ./chats/native/MessagesToUserView.js */ 162);
+	
+	var _MessagesToUserView2 = _interopRequireDefault(_MessagesToUserView);
+	
+	var _LoginView = __webpack_require__(/*! ./account/LoginView.js */ 171);
+	
+	var _LoginView2 = _interopRequireDefault(_LoginView);
+	
+	var _RegisterUserView = __webpack_require__(/*! ./account/RegisterUserView */ 175);
+	
+	var _RegisterUserView2 = _interopRequireDefault(_RegisterUserView);
+	
+	var _AboutView = __webpack_require__(/*! ./about/AboutView.js */ 178);
+	
+	var _AboutView2 = _interopRequireDefault(_AboutView);
+	
+	var _MassMediaView = __webpack_require__(/*! ./massMedia/MassMediaView.js */ 181);
+	
+	var _MassMediaView2 = _interopRequireDefault(_MassMediaView);
+	
+	var _HowItWorksView = __webpack_require__(/*! ./howItWorks/HowItWorksView.js */ 184);
+	
+	var _HowItWorksView2 = _interopRequireDefault(_HowItWorksView);
+	
+	var _FogotPasswordView = __webpack_require__(/*! ./account/FogotPasswordView.js */ 186);
+	
+	var _FogotPasswordView2 = _interopRequireDefault(_FogotPasswordView);
+	
+	var _legalUserAgreementView = __webpack_require__(/*! ./legal/legalUserAgreementView */ 188);
+	
+	var _legalUserAgreementView2 = _interopRequireDefault(_legalUserAgreementView);
+	
+	var _legalConfidentialView = __webpack_require__(/*! ./legal/legalConfidentialView */ 190);
+	
+	var _legalConfidentialView2 = _interopRequireDefault(_legalConfidentialView);
+	
+	var _legalPostPublishingView = __webpack_require__(/*! ./legal/legalPostPublishingView */ 192);
+	
+	var _legalPostPublishingView2 = _interopRequireDefault(_legalPostPublishingView);
+	
+	var _emptyBlogHomeView = __webpack_require__(/*! ./blog/emptyBlogHomeView */ 194);
+	
+	var _emptyBlogHomeView2 = _interopRequireDefault(_emptyBlogHomeView);
+	
+	var _blogHomeView = __webpack_require__(/*! ./blog/blogHomeView */ 196);
+	
+	var _blogHomeView2 = _interopRequireDefault(_blogHomeView);
+	
+	var _blogPostIdView = __webpack_require__(/*! ./blog/blogPostIdView */ 202);
+	
+	var _blogPostIdView2 = _interopRequireDefault(_blogPostIdView);
+	
+	var _app = __webpack_require__(/*! ./app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//import Collection from '../data/AsteroidCollection.js';
+	exports.default = _backbone2.default.Object.extend({
+	    index: function index() {
+	        _app2.default.layout.showChildView('content', new _indexView2.default());
+	    },
+	    mobileIndex: function mobileIndex() {
+	        _app2.default.layout.showChildView('content', new _MobileIndexView2.default({ IndexView: _indexView2.default }));
+	    },
+	    postsMy: function postsMy() {
+	        _app2.default.myPosts.loadByMethod('getMyPosts', { skip: 0, take: 100, type: 'all' }, function () {
+	            _app2.default.layout.showChildView('content', new _PostsMyView2.default({ collection: _app2.default.myPosts }));
+	        });
+	    },
+	    postDetails: function postDetails(id) {
+	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
+	        var post = new _AsteroidModel2.default({ _id: id }, { asteroid: _app2.default.asteroid });
+	        post.loadByMethod('getPost', null, function () {
+	            //window.detailsPost = post; // debug
+	            _app2.default.layout.showChildView('content', new _DetailsView2.default({ model: post }));
+	        });
+	    },
+	    createPost: function createPost() {
+	        var model = new _PostModel2.default({ details: {}, stats: { seenToday: 0, seenTotal: 0, seenAll: 0 } }, { asteroid: _app2.default.asteroid });
+	        _app2.default.layout.showChildView('content', new _CreatePostView2.default({ model: model }));
+	    },
+	    editPost: function editPost(id) {
+	        var post = new _PostModel2.default({ _id: id });
+	        post.isOwnerAsync(_app2.default.user.id).done(function (resp) {
+	            if (resp) {
+	                alert(resp);
+	            }
+	        });
+	    },
+	    login: function login(url) {
+	        _app2.default.layout.showChildView('content', new _LoginView2.default({ returnUrl: url || null }));
+	    },
+	    registerUser: function registerUser(url) {
+	        _app2.default.layout.showChildView('content', new _RegisterUserView2.default({ returnUrl: url || null }));
+	    },
+	    fogotPassword: function fogotPassword() {
+	        _app2.default.layout.showChildView('content', new _FogotPasswordView2.default());
+	    },
+	    about: function about() {
+	        _app2.default.layout.showChildView('content', new _AboutView2.default());
+	    },
+	    massMedia: function massMedia() {
+	        _app2.default.layout.showChildView('content', new _MassMediaView2.default());
+	    },
+	    howItWorks: function howItWorks() {
+	        _app2.default.layout.showChildView('content', new _HowItWorksView2.default());
+	    },
+	    chatsMy: function chatsMy() {
+	        _app2.default.myChats.loadByMethod('getChats', { skip: 0, take: 100 }, function (res) {
+	            _app2.default.layout.showChildView('content', new _chatsMyView2.default({ collection: _app2.default.myChats }));
+	        });
+	    },
+	    chatId: function chatId(_chatId, remoteUserId) {
+	        //app.layout.showChildView('content', new PreloaderView());
+	        //var chatModel = new Backbone.Model({ _id:id });
+	        //app.layout.showChildView('content', new ChatIdView( {model: chatModel } ));
+	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
+	        var messages = new _AsteroidCollection2.default(null, { asteroid: _app2.default.asteroid, comparator: 'timestamp' });
+	        var remoteUser = new _AsteroidModel2.default({ _id: remoteUserId }, { asteroid: _app2.default.asteroid });
+	        messages.loadByMethod('getMessages', { chatId: _chatId, skip: 0, take: 20 }, function () {
+	            remoteUser.loadByMethod('getUser', function () {
+	                var chat = new _AsteroidModel2.default({
+	                    _id: _chatId,
+	                    remoteUser: remoteUser.toJSON(),
+	                    user: _app2.default.user.toJSON() /*,postId:postId*/
+	                }, { asteroid: _app2.default.asteroid });
+	                _app2.default.layout.showChildView('content', new _MessagesToUserView2.default({ model: chat, collection: messages }));
+	            });
+	        });
+	    },
+	    messagesTo: function messagesTo(remoteUserId, postId) {
+	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
+	        if (_app2.default.asteroid.loggedIn) {
+	            var remoteUser = new _AsteroidModel2.default({ _id: remoteUserId }, { asteroid: _app2.default.asteroid });
+	            _app2.default.asteroid.call('bz.chats.createChatIfFirstMessage', _app2.default.user.id, remoteUserId).result.then(function (chatId) {
+	                _app2.default.router.navigate('/chats/' + chatId + '?remoteUserId=' + remoteUserId, { trigger: true, replace: true });
+	            });
+	        } else {
+	            _app2.default.router.navigate('', { trigger: true });
+	        }
+	    },
+	    myProfile: function myProfile() {
+	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
+	
+	        var userModel = new _User2.default({ _id: _app2.default.user.get('_id') });
+	        // window.currentUser = userModel;
+	        userModel.fetch().done(function () {
+	            return _app2.default.layout.showChildView('content', new _DetailsView4.default({ model: userModel }));
+	        });
+	    },
+	    userDetails: function userDetails(id) {
+	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
+	        var userModel = new _User2.default({ _id: id });
+	        window.currentUser = userModel;
+	        userModel.fetch().done(function () {
+	            return _app2.default.layout.showChildView('content', new _DetailsView4.default({ model: userModel }));
+	        });
+	    },
+	
+	
+	    // LEGAL:
+	    legalConfidential: function legalConfidential() {
+	        _app2.default.layout.showChildView('content', new _legalConfidentialView2.default());
+	    },
+	    legalUserAgreement: function legalUserAgreement() {
+	        _app2.default.layout.showChildView('content', new _legalUserAgreementView2.default());
+	    },
+	    legalPostPublishingRules: function legalPostPublishingRules() {
+	        _app2.default.layout.showChildView('content', new _legalPostPublishingView2.default());
+	    },
+	
+	
+	    // BLOG:
+	    blogHome: function blogHome() {
+	        var posts = new _AsteroidCollection2.default(null, { asteroid: _app2.default.asteroid, comparator: 'createdAt' });
+	        //app.layout.showChildView('content', new BlogHomeView({ collection: [] }));
+	        posts.loadByMethod('bz.blog.getPosts', {}, function () {
+	            posts.length === 0 ? _app2.default.layout.showChildView('content', new _emptyBlogHomeView2.default({})) : _app2.default.layout.showChildView('content', new _blogHomeView2.default({ collection: posts }));
+	        });
+	    },
+	    blogPostId: function blogPostId(id) {
+	        _app2.default.layout.showChildView('content', new _PreloaderView2.default());
+	        if (id) {
+	            _app2.default.asteroid.call('bz.blog.getPostById', id).result.then(function (post) {
+	                _app2.default.layout.showChildView('content', new _blogPostIdView2.default({ model: post }));
+	            });
+	        }
+	    }
+	});
+	//import ProfilePageView from './user/ProfilePageView';
+	//import MyMessagesPageView from './user/MyMessagesPageView';
+	//import UserDetailsPageView from './user/UserDetailsPageView';
+
+/***/ },
+/* 99 */
+/*!********************************************!*\
+  !*** ./wwwroot/homeApp/index/indexView.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _IndexViewHbs = __webpack_require__(/*! ./IndexView.hbs.html */ 100);
+	
+	var _IndexViewHbs2 = _interopRequireDefault(_IndexViewHbs);
+	
+	__webpack_require__(/*! ../../lib/jquery-parallax/scripts/jquery.parallax-1.1.3.js */ 101);
+	
+	var _PostTypesView = __webpack_require__(/*! ./PostTypesView.js */ 102);
+	
+	var _PostTypesView2 = _interopRequireDefault(_PostTypesView);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./i18n/ru */ 105);
+	
+	__webpack_require__(/*! ./i18n/en */ 106);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	
+	    template: _IndexViewHbs2.default,
+	
+	    events: {
+	        'click div.toggle > label': "toggleSlide"
+	    },
+	
+	    regions: {
+	        'postTypes': '#postAdTypes'
+	    },
+	
+	    onRender: function onRender() {
+	        this.showChildView('postTypes', new _PostTypesView2.default({ collection: _app2.default.postAdTypes }));
+	    },
+	    onAttach: function onAttach() {},
+	    toggleSlide: function toggleSlide(e) {
+	        var previewParClosedHeight = 25;
+	
+	        var parentSection = $(e.target).parent(),
+	            parentWrapper = $(e.target).parents("div.toggle"),
+	            previewPar = false,
+	            isAccordion = parentWrapper.hasClass("toggle-accordion");
+	
+	        if (isAccordion && typeof e.originalEvent != "undefined") {
+	            parentWrapper.find("div.toggle.active > label").trigger("click");
+	        }
+	
+	        parentSection.toggleClass("active");
+	
+	        if (parentSection.find("> p").get(0)) {
+	
+	            previewPar = parentSection.find("> p");
+	            var previewParCurrentHeight = previewPar.css("height");
+	            var previewParAnimateHeight = previewPar.css("height");
+	            previewPar.css("height", "auto");
+	            previewPar.css("height", previewParCurrentHeight);
+	        }
+	
+	        var toggleContent = parentSection.find("> div.toggle-content");
+	
+	        if (parentSection.hasClass("active")) {
+	            $(previewPar).animate({ height: previewParAnimateHeight }, 350, function () {
+	                $(e.target).addClass("preview-active");
+	            });
+	            toggleContent.slideDown(350);
+	        } else {
+	            $(previewPar).animate({ height: previewParClosedHeight }, 350, function () {
+	                $(e.target).removeClass("preview-active");
+	            });
+	            toggleContent.slideUp(350);
+	        }
+	    }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 100 */
+/*!**************************************************!*\
+  !*** ./wwwroot/homeApp/index/IndexView.hbs.html ***!
+  \**************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\n<!-- How its work -->\n<section id="sh-works">\n    <div class="container">\n        <div class="sh-work-wrapper">\n            <h1 class="sh-section-hero-headline sh-text-center">'+
+	((__t=(i18n('how_it_works')))==null?'':__t)+
+	'</h1>\n            <p class="sh-section-intro sh-text-center">'+
+	((__t=(i18n('SITE_SUBTITLE')))==null?'':__t)+
+	'</p>\n\n            <div class="sh-work-tabs">\n                <ul class="sh-progress-steps process-steps nav nav-justified">\n                    <li class="active">\n                        <a data-toggle="tab" href="#step1" data-direct-link><i class="icon-plus"></i></a>\n                        <h5>'+
+	((__t=(i18n('create_your_post')))==null?'':__t)+
+	'</h5>\n                    </li>\n                    <li>\n                        <a data-toggle="tab" href="#step2" data-direct-link><i class="icon-map-marker"></i></a>\n                        <h5>'+
+	((__t=(i18n('you_found')))==null?'':__t)+
+	'</h5>\n                    </li>\n                    <li>\n                        <a data-toggle="tab" href="#step3" data-direct-link><i class="icon-ok"></i></a>\n                        <h5>'+
+	((__t=(i18n('connect_and_meet')))==null?'':__t)+
+	'</h5>\n                    </li>\n                </ul>\n\n                <div class="tab-content margin-top-60">\n                    <div role="tabpanel" class="tab-pane active" id="step1">\n                        <h4>'+
+	((__t=(i18n('create_your_post')))==null?'':__t)+
+	'</h4>\n                        <div class="text-content">\n                            '+
+	((__t=(i18n('create_your_post_descr')))==null?'':__t)+
+	'\n                        </div>\n                    </div>\n\n                    <div role="tabpanel" class="tab-pane" id="step2">\n                        <h4>'+
+	((__t=(i18n('you_found')))==null?'':__t)+
+	'</h4>\n                        <div class="text-content">\n                            '+
+	((__t=(i18n('you_found_descr')))==null?'':__t)+
+	'\n                        </div>\n                    </div>\n\n                    <div role="tabpanel" class="tab-pane" id="step3">\n                        <h4>'+
+	((__t=(i18n('connect_and_meet')))==null?'':__t)+
+	'</h4>\n                        <div class="text-content">\n                            '+
+	((__t=(i18n('connect_and_meet_descr')))==null?'':__t)+
+	'\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n\n\n<section id="sh-service">\n    <div class="container">\n        <div class="sh-service-wrapper">\n            <div class="sh-service-item col-xs-12 col-sm-5 col-md-6">\n\n\n                <!--\n                <div class="ui sh-styled styled accordion sh-accordion">\n                    <div class="active title"><i class="dropdown icon"></i> Один сервис для всех ресурсов </div>\n                    <div class="active content">\n                        <p class="transition">Если у тебя уже есть пост на другом ресурсе–просто размести ссылку на него-и получи готовый Светлячок!</p>\n                    </div>\n                    <div class="title"><i class="dropdown icon"></i> Живые объявления поблизости </div>\n                    <div class="content">\n                        <p class="transition hidden">There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\n                    </div>\n                    <div class="title"><i class="dropdown icon"></i> Быстрые встречи и контакты </div>\n                    <div class="content">\n                        <p class="transition hidden">Three common ways for a prospective owner to acquire a dog is from pet shops, private owners, or shelters.</p>\n                        <p class="transition hidden">A pet shop may be the most convenient way to buy a dog. Buying a dog from a private owner allows you to assess the pedigree and upbringing of your dog before choosing to take it home. Lastly, finding your dog from a shelter, helps give a good home to a dog who may not find one so readily.</p>\n                    </div>\n                </div>\n                -->\n\n\n                <div class="ui sh-accordion toggle toggle-accordion toggle-transparent">\n                    <div class="toggle active">\n                        <label>'+
+	((__t=(i18n('one_service_for_all')))==null?'':__t)+
+	'</label>\n                        <div class="toggle-content" style="display:block">\n                            <p>\n                                '+
+	((__t=(i18n('home_accordion_section1')))==null?'':__t)+
+	'\n                            </p>\n                        </div>\n                    </div>\n                    <div class="toggle">\n                        <label>'+
+	((__t=(i18n('life_ads_nearby')))==null?'':__t)+
+	'</label>\n                        <div class="toggle-content">\n                            <p>\n                                '+
+	((__t=(i18n('home_accordion_section2')))==null?'':__t)+
+	'\n                            </p>\n                        </div>\n                    </div>\n                    <div class="toggle">\n                        <label>'+
+	((__t=(i18n('quick_connects')))==null?'':__t)+
+	'</label>\n                        <div class="toggle-content">\n                            <p>'+
+	((__t=(i18n('home_accordion_section3')))==null?'':__t)+
+	'</p>\n                        </div>\n                    </div>\n                </div>\n\n            </div>\n            <div class="sh-service-item col-xs-12 col-sm-7 col-md-6">\n                <dl class="sh-post-type">\n                    <dt class="sh-section-headline">'+
+	((__t=(i18n('post_types')))==null?'':__t)+
+	'</dt>\n                    <span id="postAdTypes"></span>                    \n                </dl>               \n            </div>\n        </div>\n    </div>\n</section>\n\n<!-- Shiners anywhere -->\n<section id="sh-anywhere">\n    <div class="container-fluid">\n        <div class="sh-anywhere-wrapper">\n            <h1 class="sh-section-hero-headline sh-text-center">'+
+	((__t=(i18n('home_shiners_are_around')))==null?'':__t)+
+	'</h1>\n            <p class="sh-section-intro sh-text-center">'+
+	((__t=(i18n('home_lot_of_opportunities')))==null?'':__t)+
+	'</p>\n        </div>\n\n        <div class="sh-anywhere-bg">\n            <div class="sh-anywhere-bg-clouds">\n                <div class="cloud x1"></div>\n                <div class="cloud x2"></div>\n                <div class="cloud x3"></div>\n                <div class="cloud x4"></div>\n                <div class="cloud x5"></div>\n            </div>\n            <div class="sh-anywhere-bg-city">\n                <div class="sh-anywhere-bg-shs">\n                    <div class="shs-1"></div>\n                    <div class="shs-2"></div>\n                    <div class="shs-3"></div>\n                    <div class="shs-4"></div>\n                </div>\n            </div>\n        </div>\n\n    </div>\n</section>\n\n<!-- Set shiners -->\n<section id="sh-set-shiners">\n    <div class="container">\n        <div class="sh-set-shiners-wrapper">\n            <div class="sh-text-group col-xs-12 col-md-8 col-lg-9">\n                <h3 class="sh-section-headline">'+
+	((__t=(i18n('home_participate')))==null?'':__t)+
+	' <a class="link">'+
+	((__t=(i18n('home_free')))==null?'':__t)+
+	'</a>'+
+	((__t=(i18n('home_in_project')))==null?'':__t)+
+	'</h3>\n                <h4 class="sh-section-subline">'+
+	((__t=(i18n('home_contact_with_people')))==null?'':__t)+
+	'</h4>\n            </div>\n            <div class="sh-set-shiners-item col-xs-12 col-md-4 col-lg-3">\n                <a class="ui sh-button standard create big" href="/posts/new">'+
+	((__t=(i18n('home_set_your_shiner')))==null?'':__t)+
+	'</a>\n\n            </div>\n        </div>\n    </div>\n</section>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 101 */
+/*!**********************************************************************!*\
+  !*** ./wwwroot/lib/jquery-parallax/scripts/jquery.parallax-1.1.3.js ***!
+  \**********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(jQuery) {"use strict";
+	
+	/*
+	Plugin: jQuery Parallax
+	Version 1.1.3
+	Author: Ian Lunn
+	Twitter: @IanLunn
+	Author URL: http://www.ianlunn.co.uk/
+	Plugin URL: http://www.ianlunn.co.uk/plugins/jquery-parallax/
+	
+	Dual licensed under the MIT and GPL licenses:
+	http://www.opensource.org/licenses/mit-license.php
+	http://www.gnu.org/licenses/gpl.html
+	*/
+	
+	(function ($) {
+		var $window = $(window);
+		var windowHeight = $window.height();
+	
+		$window.resize(function () {
+			windowHeight = $window.height();
+		});
+	
+		$.fn.parallax = function (xpos, speedFactor, outerHeight) {
+			var $this = $(this);
+			var getHeight;
+			var firstTop;
+			var paddingTop = 0;
+	
+			//get the starting position of each element to have parallax applied to it		
+			$this.each(function () {
+				firstTop = $this.offset().top;
+			});
+	
+			if (outerHeight) {
+				getHeight = function getHeight(jqo) {
+					return jqo.outerHeight(true);
+				};
+			} else {
+				getHeight = function getHeight(jqo) {
+					return jqo.height();
+				};
+			}
+	
+			// setup defaults if arguments aren't specified
+			if (arguments.length < 1 || xpos === null) xpos = "50%";
+			if (arguments.length < 2 || speedFactor === null) speedFactor = 0.1;
+			if (arguments.length < 3 || outerHeight === null) outerHeight = true;
+	
+			// function to be called whenever the window is scrolled or resized
+			function update() {
+				var pos = $window.scrollTop();
+	
+				$this.each(function () {
+					var $element = $(this);
+					var top = $element.offset().top;
+					var height = getHeight($element);
+	
+					// Check if totally above or totally below viewport
+					if (top + height < pos || top > pos + windowHeight) {
+						return;
+					}
+	
+					$this.css('backgroundPosition', xpos + " " + Math.round((firstTop - pos) * speedFactor) + "px");
+				});
+			}
+	
+			$window.bind('scroll', update).resize(update);
+			update();
+		};
+	})(jQuery);
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 102 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/index/PostTypesView.js ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.js */ 103);
+	
+	var _PostTypeItemView2 = _interopRequireDefault(_PostTypeItemView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	    childView: _PostTypeItemView2.default,
+	    className: 'sh-post-type',
+	    tagName: 'dl'
+	});
+	exports.default = View;
+
+/***/ },
+/* 103 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/index/PostTypeItemView.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+>>>>>>> master
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+<<<<<<< HEAD
 	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 104);
 	
 	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
@@ -29793,6 +39698,117 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+=======
+	var _PostTypeItemView = __webpack_require__(/*! ./PostTypeItemView.html */ 104);
+	
+	var _PostTypeItemView2 = _interopRequireDefault(_PostTypeItemView);
+	
+	var _app = __webpack_require__(/*! ../app */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    tagName: 'span',
+	    template: _PostTypeItemView2.default,
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            currentLang: _app2.default.i18n.getLanguage()
+	        };
+	    },
+	    initialize: function initialize() {
+	        this.listenTo(_app2.default, 'change:language', this.render);
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 104 */
+/*!*****************************************************!*\
+  !*** ./wwwroot/homeApp/index/PostTypeItemView.html ***!
+  \*****************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<dd class="'+
+	((__t=(name))==null?'':__t)+
+	'">'+
+	((__t=(obj.i18n[currentLang]? obj.i18n[currentLang].fullName:obj.fullName))==null?'':__t)+
+	'</dd>\n<br>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 105 */
+/*!******************************************!*\
+  !*** ./wwwroot/homeApp/index/i18n/ru.js ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	/**
+	 * Created by arutu_000 on 12/9/2016.
+	 */
+	/*
+	var json = {
+	    home_accordion_section1: 'Если у тебя уже есть пост на другом ресурсе–просто размести ссылку на него-и получи готовый Светлячок!',
+	    home_accordion_section2: 'Светлячки — это живые объявления от людей поблизости. Представь себе виртуальную визитку, только носят её не в кошельке, а в мобильном телефоне, и видят её не избранные, а все те, кто рядом',
+	    home_accordion_section3: 'Используй Светлячки для установки быстрых живых контактов- встреч, в нужное время, в нужном месте.',
+	    home_shiners_are_around: 'Светлячки повсюду',
+	    home_lot_of_opportunities: 'Множество возможностей для бизнеса вместе с Shiners',
+	    home_participate: 'Участвуй ',
+	    home_free: 'бесплатно',
+	    home_in_project: ' в проекте!',
+	    home_contact_with_people: 'Контактируй с людьми, предложи свои услуги на сайте',
+	    home_set_your_shiner: 'Создай свой пост'
+	};
+
+	i18n.add('ru', json);
+	*/
+	"use strict";
+
+/***/ },
+/* 106 */
+/*!******************************************!*\
+  !*** ./wwwroot/homeApp/index/i18n/en.js ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	/**
+	 * Created by arutu_000 on 12/9/2016.
+	 */
+	
+	/*
+	var json = {
+	    home_accordion_section1: 'If you already have an advertisement on another website, just use that Url to create a Shiner!',
+	    home_accordion_section2: 'Shiners are live personal ads around. Imagine that post is a business card that you cary with you, but visible to everyone',
+	    home_accordion_section3: 'Use Shiners for finding new live connections everywhere',
+	    home_shiners_are_around: 'Shiners are everywhere',
+	    home_lot_of_opportunities: 'A lot of opportunities for business around',
+	    home_participate: 'Participate ',
+	    home_free: 'for free',
+	    home_in_project: ' in the project!',
+	    home_contact_with_people: 'Let others know about your ad instantly',
+	    home_set_your_shiner: 'Create your Shiner'
+	    
+	};
+
+	i18n.add('en', json);
+	*/
+	"use strict";
+
+/***/ },
+/* 107 */
+/*!**************************************************!*\
+  !*** ./wwwroot/homeApp/index/MobileIndexView.js ***!
+  \**************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -29802,14 +39818,121 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+	var _MobileIndexViewHbs = __webpack_require__(/*! ./MobileIndexView.hbs.html */ 108);
+	
+	var _MobileIndexViewHbs2 = _interopRequireDefault(_MobileIndexViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    regions: {
+	        'index': '#indexContainer'
+	    },
+	    template: _MobileIndexViewHbs2.default,
+	    IndexView: null,
+	    initialize: function initialize(opts) {
+	        this.IndexView = opts.IndexView;
+	    },
+	    onRender: function onRender() {
+	        this.showIndex();
+	    },
+	    showIndex: function showIndex() {
+	        this.showChildView('index', new this.IndexView());
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 108 */
+/*!********************************************************!*\
+  !*** ./wwwroot/homeApp/index/MobileIndexView.hbs.html ***!
+  \********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<a href="/" class="btn btn-block"><i class="fa fa-map-marker"></i> '+
+	((__t=(i18n('map')))==null?'':__t)+
+	'</a>\n<div id="indexContainer"></div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 109 */
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/posts/DetailsView.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+>>>>>>> master
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+<<<<<<< HEAD
 	var _CommentsItemViewHbs = __webpack_require__(/*! ./CommentsItemView.hbs.html */ 110);
 	
 	var _CommentsItemViewHbs2 = _interopRequireDefault(_CommentsItemViewHbs);
+=======
+	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 110);
+	
+	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
+	
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 111);
+	
+	var _AsteroidCollection = __webpack_require__(/*! ../../data/AsteroidCollection.js */ 90);
+	
+	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
+	
+	var _RelatedPostsView = __webpack_require__(/*! ./RelatedPostsView.js */ 112);
+	
+	var _RelatedPostsView2 = _interopRequireDefault(_RelatedPostsView);
+	
+	var _CommentsListView = __webpack_require__(/*! ./CommentsListView.js */ 114);
+	
+	var _CommentsListView2 = _interopRequireDefault(_CommentsListView);
+	
+	var _ConfirmView = __webpack_require__(/*! ../../sharedViews/ConfirmView.js */ 117);
+	
+	var _ConfirmView2 = _interopRequireDefault(_ConfirmView);
+	
+	var _loadGoogleMapsApi = __webpack_require__(/*! load-google-maps-api */ 67);
+	
+	var _loadGoogleMapsApi2 = _interopRequireDefault(_loadGoogleMapsApi);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./DetailsView.less */ 119);
+	
+	var _locationHelper = __webpack_require__(/*! ../../helpers/locationHelper.js */ 9);
+	
+	var _locationHelper2 = _interopRequireDefault(_locationHelper);
+	
+	var _postDuration = __webpack_require__(/*! ../../helpers/postDuration.js */ 66);
+	
+	var _postDuration2 = _interopRequireDefault(_postDuration);
+>>>>>>> master
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.View.extend({
 	
+<<<<<<< HEAD
 	    className: 'sh-reviews-item',
 	    template: _CommentsItemViewHbs2.default
 	
@@ -29846,10 +39969,518 @@
 	'</a>\r\n        <span>·</span>\r\n        <span class="sh-reviews-content-meta">'+
 	((__t=(moment(dateTime).fromNow()))==null?'':__t)+
 	'</span>\r\n    </div>\r\n</div>\r\n';
+=======
+	    map: null,
+	    postLocation: {},
+	    pinn: null,
+	    geocoder: null,
+	    template: _DetailsViewHbs2.default,
+	    collection: null,
+	    comments: null,
+	
+	    events: {
+	        'click .js-edit-post': 'editPost',
+	        'click .js-delete-post': 'clickDeleteBtn'
+	    },
+	
+	    regions: {
+	        'related': '#relatedPostsContainer',
+	        'comments': '#sh-comments'
+	    },
+	
+	    initialize: function initialize() {
+	        window.postDetails = this.model.toJSON(); //debug
+	        this.collection = new _AsteroidCollection2.default(null, { asteroid: this.model.asteroid });
+	        this.comments = new _AsteroidCollection2.default(null, { asteroid: this.model.asteroid });
+	        this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
+	        this.listenTo(_app2.default.user, 'login', this.render);
+	        this.listenTo(_app2.default.user, 'logout', this.render);
+	        this.listenTo(this.comments, 'after:load', this.initCommentsCount);
+	
+	        this.confirmAnswer = new Backbone.Model({ questions: null });
+	        this.listenTo(this.confirmAnswer, 'change', this.deletePost);
+	    },
+	    editPost: function editPost(e) {},
+	    clickDeleteBtn: function clickDeleteBtn(e) {
+	        e.stopPropagation();
+	        e.preventDefault();
+	
+	        var that = this,
+	            model = this.model.toJSON(),
+	            message = model.details.title || '';
+	
+	        //show modal window
+	        var title = i18n.getLanguage() === 'ru' ? 'Удаление поста' : 'Delete post';
+	        _app2.default.layout.showChildView('modal', new _ConfirmView2.default({ answer: this.confirmAnswer, title: title, message: message }));
+	    },
+	    deletePost: function deletePost(e) {
+	        var questions = this.confirmAnswer.get('questions');
+	
+	        var that = this,
+	            model = this.model.toJSON(),
+	            postId = model._id;
+	
+	        setTimeout(function () {
+	            if (questions) {
+	                that.model.loadByMethod('deletePost', postId, function () {
+	                    _app2.default.router.navigate('/posts/my', { trigger: true });
+	                });
+	            }
+	        }, 1500);
+	
+	        this.confirmAnswer.set('questions', null);
+	    },
+	    initCommentsCount: function initCommentsCount() {
+	        if (this.comments.size() > 0) {
+	            this.showChildView('comments', new _CommentsListView2.default({ collection: this.comments }));
+	        } else {
+	            $('#sh-review').remove();
+	        }
+	    },
+	    onBeforeRender: function onBeforeRender() {
+	        this.setModelDistance();
+	        this.getPostDuration();
+	        if (_app2.default.asteroid.loggedIn) {
+	            this.templateContext = {
+	                currentUser: _app2.default.user.toJSON()
+	            };
+	        }
+	    },
+	    onRender: function onRender() {
+	        var center = _app2.default.map.getCenter();
+	        this.collection.loadByMethod('getPopularPosts', [center.lat(), center.lng(), 200, 0, 10]);
+	        //this.initVkSocialButton(); 
+	        this.initCarousel();
+	        this.comments.loadByMethod('getComments', { postId: this.model.get('_id'), take: 100, skip: 0 });
+	
+	        //this.showChildView('comments', new CommentsListView({collection: this.comments}));        
+	    },
+	    onAttach: function onAttach() {
+	        this.initStickMenu();
+	        this.initMapPost();
+	    },
+	    initVkSocialButton: function initVkSocialButton() {
+	        var details = this.model.get('details');
+	        var options = {
+	            pageTitle: details.title,
+	            pageDescription: details.description,
+	            pageImage: details.photos && details.photos.length > 0 ? details.photos[0].data : null,
+	            type: 'button'
+	        };
+	        VK.Widgets.Like("vk_like", options, this.model.id);
+	        _app2.default.FbButton(this.$('#fb_like').get(0));
+	    },
+	    getPostDuration: function getPostDuration() {
+	        var obj = _postDuration2.default.getPostDuration(this.model);
+	        this.model.set('duration', obj);
+	    },
+	    initMapPost: function initMapPost() {
+	        var defaultCoords = { lat: 55.75396, lng: 37.620393 };
+	        var postLocation = this.postLocation;
+	        var center = postLocation || defaultCoords;
+	
+	        this.map = new google.maps.Map(this.$('#sh-map')[0], {
+	            center: center,
+	            zoom: 14
+	        });
+	
+	        this.showPostPin();
+	
+	        //this.geocoder = new maps.Geocoder();
+	        _app2.default.map = this.map;
+	        //window.myMap = app.map; // debug
+	        //app.geocoder = this.geocoder;
+	    },
+	    getPostlocation: function getPostlocation(locations) {
+	        var postCoordinate = {};
+	        if (locations && _underscore2.default.size(locations) > 0) {
+	            var isDynamic = locations && _underscore2.default.find(locations, function (l) {
+	                return l.placeType === 'dynamic';
+	            });
+	            if (isDynamic) {
+	                postCoordinate = {
+	                    lat: isDynamic.coords.lat,
+	                    lng: isDynamic.coords.lng
+	                };
+	                return postCoordinate;
+	            } else {
+	                postCoordinate = {
+	                    lat: locations[0].coords.lat,
+	                    lng: locations[0].coords.lng
+	                };
+	                return postCoordinate;
+	            }
+	        }
+	    },
+	    showPostPin: function showPostPin() {
+	        var image = {
+	            url: '/images/shiners/shiner_marker.png',
+	            scaledSize: new window.google.maps.Size(25, 33),
+	            origin: new window.google.maps.Point(0, 0),
+	            anchor: new window.google.maps.Point(12, 33)
+	        };
+	
+	        this.pinn = new window.google.maps.Marker({
+	            position: this.map.getCenter(),
+	            map: this.map,
+	            icon: image,
+	            title: 'Ваш пост тут'
+	        });
+	
+	        //window.pinn = this.pinn; // debug
+	    },
+	    setModelDistance: function setModelDistance() {
+	        var locations = this.model.get('details').locations;
+	        //console.log(locations);
+	        this.postLocation = this.getPostlocation(locations);
+	        if (locations && _underscore2.default.size(locations) > 0 && _app2.default.user.has('position')) {
+	            var location = _underscore2.default.find(locations, function (l) {
+	                return l.placeType === 'dynamic';
+	            });
+	            if (!location) location = locations[0];
+	            var dist = _locationHelper2.default.getDistance(location.coords.lat, location.coords.lng, _app2.default.user.get('position').lat, _app2.default.user.get('position').lng);
+	            this.model.set('distance', dist);
+	            this.model.set('distanceType', 'km');
+	        } else {
+	            this.model.set('distance', -1);
+	        }
+	    },
+	    initCarousel: function initCarousel() {
+	        var slider = this.$('#sh-carousel');
+	        //var slider 		= this.$('#postImages');
+	        var options = slider.attr('data-plugin-options');
+	        var defaults = {
+	            //items: 5,
+	            itemsCustom: false,
+	            //itemsDesktop: [1199, 4],
+	            //itemsDesktopSmall: [980, 3],
+	            //itemsTablet: [768, 2],
+	            //itemsTabletSmall: false,
+	            //itemsMobile: [479, 1],
+	            singleItem: true,
+	            itemsScaleUp: false,
+	
+	            slideSpeed: 200,
+	            paginationSpeed: 800,
+	            rewindSpeed: 1000,
+	
+	            autoPlay: false,
+	            stopOnHover: false,
+	
+	            navigation: false,
+	            navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+	            rewindNav: true,
+	            scrollPerPage: false,
+	
+	            pagination: true,
+	            paginationNumbers: false,
+	
+	            responsive: true,
+	            responsiveRefreshRate: 200,
+	            responsiveBaseWidth: window,
+	
+	            baseClass: "owl-carousel",
+	            theme: "owl-theme",
+	
+	            lazyLoad: false,
+	            lazyFollow: true,
+	            lazyEffect: "fade",
+	
+	            autoHeight: false,
+	
+	            jsonPath: false,
+	            jsonSuccess: false,
+	
+	            dragBeforeAnimFinish: true,
+	            mouseDrag: true,
+	            touchDrag: true,
+	
+	            transitionStyle: false,
+	
+	            addClassActive: false,
+	
+	            beforeUpdate: false,
+	            afterUpdate: false,
+	            beforeInit: false,
+	            afterInit: false,
+	            beforeMove: false,
+	            afterMove: false,
+	            afterAction: false,
+	            startDragging: false,
+	            afterLazyLoad: false
+	        };
+	        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+	        slider.owlCarousel(config).addClass("owl-carousel-init");
+	    },
+	    initStickMenu: function initStickMenu() {
+	
+	        setTimeout(function () {
+	            var navTabMenu = $('.sh-post-tab-menu-wrapper');
+	
+	            if (navTabMenu.length > 0) {
+	                var navTabMenuTopPosition, postTabMenuTopPosition, contentSections;
+	
+	                (function () {
+	                    var updateNavigation = function updateNavigation() {
+	                        contentSections.each(function () {
+	                            var actual = $(this),
+	                                actualHeight = actual.height() + parseInt(actual.css('paddingTop').replace('px', '')) + parseInt(actual.css('paddingBottom').replace('px', '')),
+	                                actualAnchor = navTabMenu.find('a[href="#' + actual.attr('id') + '"]');
+	
+	                            if (actual.offset().top - navTabMenu.height() - 12 <= $(window).scrollTop() && actual.offset().top + actualHeight - navTabMenu.height() - 12 > $(window).scrollTop()) {
+	                                actualAnchor.addClass('active');
+	                            } else {
+	                                actualAnchor.removeClass('active');
+	                            }
+	                        });
+	                    };
+	
+	                    navTabMenuTopPosition = navTabMenu.offset().top;
+	                    postTabMenuTopPosition = $('.sh-post-tab-menu').offset().top;
+	                    contentSections = $('.sh-section');
+	
+	
+	                    $(window).scroll(function () {
+	
+	                        if ($(window).scrollTop() > postTabMenuTopPosition + 12) {
+	                            $('.sh-post-tab-menu-wrapper').addClass('stick-menu');
+	                            $('.sh-post-tab-menu-sticky').removeClass('hidden');
+	                            $('.sh-content').addClass('has-top-margin');
+	                        } else {
+	                            $('.sh-post-tab-menu-wrapper').removeClass('stick-menu');
+	                            $('.sh-post-tab-menu-sticky').addClass('hidden');
+	                            $('.sh-content').removeClass('has-top-margin');
+	                        }
+	
+	                        updateNavigation();
+	                    });
+	
+	                    //smooth scroll when clicking navTabMenu
+	                    navTabMenu.find('ul a').on('click', function (event) {
+	                        event.preventDefault();
+	                        event.stopPropagation();
+	
+	                        var target = $(this.hash);
+	                        $('body, html').animate({
+	                            'scrollTop': target.offset().top - navTabMenu.height() + 1
+	                        }, 400);
+	                    });
+	                })();
+	            }
+	        }, 500);
+	    },
+	    showRelatedPosts: function showRelatedPosts() {
+	        this.showChildView('related', new _RelatedPostsView2.default({ collection: this.collection }));
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 110 */
+/*!****************************************************!*\
+  !*** ./wwwroot/homeApp/posts/DetailsView.hbs.html ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(moment, _) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div id="confirmModal"></div>\r\n<main class="sh-content">\r\n    <div class="sh-post-details">\r\n        <div class="container">\r\n            <div class="sh-page-block">\r\n                <div class="sh-post-details-wrapper">\r\n                    \r\n                    <div class="sh-side-left">\r\n                        <h1>'+
+	((__t=(details.title))==null?'':__t)+
+	'</h1>\r\n                        <div class="sh-post-published">\r\n                            <div class="sh-post-written">\r\n                                <span><i class="fa fa-clock-o"></i> '+
+	((__t=(i18n('PUBLISHED_BY')))==null?'':__t)+
+	', '+
+	((__t=(moment(obj.timestamp.$date).fromNow()))==null?'':__t)+
+	', - до '+
+	((__t=(moment(obj.endDatePost.$date).format("ll")))==null?'':__t)+
+	'</span>\r\n                            </div>\r\n                            <!-- sh-color-red, sh-color-yellow, sh-color-green -->\r\n                            ';
+	if(obj.duration) { 
+	__p+='\r\n                            <div class="sh-post-item-left sh-color-'+
+	((__t=( obj.duration.barClass))==null?'':__t)+
+	'">\r\n                                <span class="sh-item-left-text">';
+	 if(obj.duration.status) { 
+	__p+='  '+
+	((__t=(i18n('POST_LEFT')))==null?'':__t)+
+	' '+
+	((__t=( obj.duration.unit))==null?'':__t)+
+	' ';
+	 } else { 
+	__p+=' '+
+	((__t=(i18n('POST_STATUS')))==null?'':__t)+
+	' ';
+	 } 
+	__p+='</span>\r\n                                <span class="sh-item-left-track">\r\n                                    <span class="sh-item-left-fill" style="width: '+
+	((__t=( obj.duration.percent))==null?'':__t)+
+	'%"></span>\r\n                                </span>\r\n                            </div>\r\n                            ';
+	 } 
+	__p+='\r\n                        </div>\r\n\r\n                        ';
+	if (obj.currentUser._id === user._id) { 
+	__p+='\r\n                            <div class="sh-post-toolbar">\r\n                                <div class="sh-post-toolbar-item">\r\n                                    <a class="ui sh-button small js-edit-post disabled">'+
+	((__t=(i18n('EDIT_POST')))==null?'':__t)+
+	'</a>\r\n                                </div>\r\n                                <div class="sh-post-toolbar-item">\r\n                                    <a class="ui sh-button standard create small js-delete-post">'+
+	((__t=(i18n('TRASH_POST')))==null?'':__t)+
+	'</a>\r\n                                </div>\r\n                            </div>\r\n                        ';
+	 } 
+	__p+='\r\n\r\n                        <div class="sh-photos">\r\n                            <div class="single-photo">\r\n                                <div id="sh-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"singleItem": true, "autoPlay": false, "navigation": true, "pagination": true, "transitionStyle":"fade"}\'>\r\n                                    ';
+	 if (_.size(details.photos)>0){ 
+	__p+='\r\n                                    ';
+	_.each(details.photos,function(photo){ 
+	__p+='\r\n                                    <div>\r\n                                        <img class="img-responsive" src="'+
+	((__t=(photo.data))==null?'':__t)+
+	'" alt="">\r\n                                    </div>\r\n                                    ';
+	});
+	__p+='\r\n                                    ';
+	 } else { 
+	__p+='\r\n                                    <div>\r\n                                        <div class="sh-responsive-no-image"><span></span></div>\r\n                                    </div>\r\n                                    ';
+	 } 
+	__p+='\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                                               \r\n                        <div class="sh-post-widget-composed hidden-md hidden-lg">\r\n                                                        \r\n                            <div class="sh-post-summary-information sh-info-header">\r\n                                <div class="sh-info-header-within">\r\n                                    <span>Сводная информация</span>\r\n                                </div>\r\n\r\n                                <ul class="sh-post-info sh-with-dotted">\r\n                                    ';
+	if(obj.stats.seenTotal) { 
+	__p+='\r\n                                    <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_views')))==null?'':__t)+
+	'</span><span class="sh-item-right">'+
+	((__t=(stats.seenTotal))==null?'':__t)+
+	'</span></div></li>\r\n                                    ';
+	 } 
+	__p+='\r\n                                    <!--';
+	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
+	__p+='-->\r\n                                    <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_status')))==null?'':__t)+
+	'</span><span class="sh-item-right">'+
+	((__t=(user.online ? 'online' : 'offline'))==null?'':__t)+
+	'</span></div></li>\r\n                                    ';
+	if (obj.type) { 
+	__p+='\r\n                                    <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_type')))==null?'':__t)+
+	'</span><span class="sh-item-right"><span class="label bg-type-category-'+
+	((__t=(obj.type))==null?'':__t)+
+	'">'+
+	((__t=(obj.type))==null?'':__t)+
+	'</span></span></div></li>\r\n                                    ';
+	 } 
+	__p+='\r\n                                    <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_distance')))==null?'':__t)+
+	'</span><span class="sh-item-right">';
+	if(obj.distance && obj.distanceType){ 
+	__p+=' '+
+	((__t=(distance>=0?distance.toFixed(1):'Не определена'))==null?'':__t)+
+	' '+
+	((__t=(distanceType==='km'?'км':'miles'))==null?'':__t)+
+	' ';
+	 } 
+	__p+='</span></div></li>\r\n                                </ul>\r\n                            </div>\r\n\r\n                            ';
+	if (details.price) { 
+	__p+='\r\n\r\n                            <div class="sh-post-widget">\r\n                                <div class="sh-post-top-price">\r\n                                    <div class="sh-price-wrapper sh-rub">\r\n                                        <div class="sh-price-number">'+
+	((__t=(details.price))==null?'':__t)+
+	'</div>\r\n                                        <div class="sh-price-prefix"></div>\r\n                                    </div>\r\n                                    <div class="sh-price-footer">за месяц</div>\r\n                                </div>\r\n                            </div>\r\n                            ';
+	 } 
+	__p+='\r\n\r\n                        </div>\r\n\r\n                        <div class="sh-post-tab-menu">\r\n                            <div class="sh-post-tab-menu-wrapper">\r\n                                <ul class="sh-post-tab-items">\r\n                                    <li class="sh-tab-item"><a class="active" href="#sh-description">'+
+	((__t=(i18n('post_description_t')))==null?'':__t)+
+	'</a></li>\r\n                                    <li class="sh-tab-item"><a href="#sh-location">'+
+	((__t=(i18n('post_location_place_t')))==null?'':__t)+
+	'</a></li>\r\n                                    <li class="sh-tab-item"><a href="#sh-review">'+
+	((__t=(i18n('post_comments_t')))==null?'':__t)+
+	'</a></li>\r\n                                </ul>\r\n                            </div>\r\n                           \r\n                            <div class="sh-post-tab-menu-sticky hidden"></div>\r\n                        </div>\r\n\r\n                        <div class="sh-post-creator">\r\n                            <div class="sh-post-creator-wrapper row">\r\n                                <div class="sh-post-creator-avatar col-md-3">\r\n                                    <a class="sh-creator-photo" href="/user/'+
+	((__t=(user._id))==null?'':__t)+
+	'">\r\n                                        <img class="sh-post-creator-username-avatar" src="'+
+	((__t=(user.image && user.image.imageUrl?'/Img/Index?url='+encodeURIComponent(user.image.imageUrl)+'&w=90&h=90':'/images/avatar.png'))==null?'':__t)+
+	'" alt="Фотография в профиле">\r\n                                    </a>\r\n                                </div>\r\n\r\n                                <div class="sh-post-creator-info col-md-9">\r\n                                    <div class="sh-post-creator-username"><a href="/user/'+
+	((__t=(user._id))==null?'':__t)+
+	'">'+
+	((__t=(user.username))==null?'':__t)+
+	'</a></div>                                   \r\n                                    <div class="sh-post-creator-display-loc-rew">\r\n                                        <a href="/user/'+
+	((__t=(user._id))==null?'':__t)+
+	'">'+
+	((__t=(user.online?'online':'offline'))==null?'':__t)+
+	'</a>\r\n                                    </div>\r\n\r\n                                    ';
+	if (obj.currentUser) { 
+	__p+='\r\n                                    <div class="sh-post-creator-actions">\r\n                                        <div class="sh-actions-btn-group">\r\n                                            <a href="/messages/to/'+
+	((__t=(user._id))==null?'':__t)+
+	'?postId='+
+	((__t=(_id))==null?'':__t)+
+	'" class="ui sh-button standard action action-link">'+
+	((__t=(i18n('post_connect_to_user')))==null?'':__t)+
+	'</a>\r\n                                        </div>\r\n                                    </div>\r\n                                    ';
+	 } 
+	__p+='\r\n\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div id="sh-description" class="sh-post-description sh-section">\r\n                            <div class="sh-post-description-wrapper">\r\n                                <h4>'+
+	((__t=(i18n('post_about_post')))==null?'':__t)+
+	'</h4>\r\n                                <p>'+
+	((__t=(details.description))==null?'':__t)+
+	'</p>\r\n                            </div>\r\n                        </div>\r\n\r\n\r\n                        <div id="sh-location" class="sh-post-location sh-section">\r\n                            <div class="sh-post-location-wrapper">\r\n                                <h4>'+
+	((__t=(i18n('post_location_place_t')))==null?'':__t)+
+	'</h4>\r\n                                <div class="sh-post-location-info">\r\n                                    <div class="sh-post-location-distance">\r\n                                        <i class="fa fa-location-arrow" aria-hidden="true"></i> От вас <span>';
+	if(obj.distance && obj.distanceType){ 
+	__p+=' '+
+	((__t=(distance>=0?distance.toFixed(1):'Дистанция не определена'))==null?'':__t)+
+	' '+
+	((__t=(distanceType==='km'?'км':'miles'))==null?'':__t)+
+	' ';
+	 } 
+	__p+='</span>\r\n                                    </div>\r\n                                    <div class="sh-post-location-address '+
+	((__t=(isDynamic?'dynamic':'static'))==null?'':__t)+
+	'">\r\n                                        ';
+	 if (_.size(details.locations) > 0) { 
+	__p+='\r\n                                        ';
+	_.each(details.locations, function(location){ 
+	__p+='\r\n                                        <span><i class="fa fa-map-marker" aria-hidden="true"></i> '+
+	((__t=(location.name))==null?'':__t)+
+	'</span>\r\n                                        ';
+	});
+	__p+='\r\n                                        ';
+	 } else { 
+	__p+='\r\n                                        <span>Местоположение не определено</span>\r\n                                        ';
+	 } 
+	__p+='\r\n                                    </div>\r\n                                </div>\r\n\r\n                                <div id="sh-map"></div>\r\n                            </div>\r\n                        </div>\r\n                                                                       \r\n                        <div id="sh-review" class="sh-post-review sh-section">\r\n                            <div class="sh-post-reviews-wrapper">\r\n                                <h4>'+
+	((__t=(i18n('post_comments_t')))==null?'':__t)+
+	' <span></span></h4>\r\n                                <div class="sh-post-form-review">\r\n                                    <div id="sh-comments" class="sh-post-reviews"></div>\r\n                                </div>\r\n                            </div>\r\n                        </div>                       \r\n\r\n                    </div>\r\n                    \r\n                    <div class="sh-side-right">\r\n                        <div class="sh-post-widget sh-visible-md-flex sh-visible-lg-flex">\r\n                            ';
+	if (details.price) { 
+	__p+='                            \r\n                            <div class="sh-post-top-price">\r\n                                <div class="sh-price-wrapper sh-rub">\r\n                                    <div class="sh-price-number">'+
+	((__t=(details.price))==null?'':__t)+
+	'</div>\r\n                                    <div class="sh-price-prefix"></div>\r\n                                </div>\r\n                                <div class="sh-price-footer">за месяц</div>\r\n                            </div>\r\n                            ';
+	 } 
+	__p+='\r\n                        </div>\r\n\r\n                        <div class="sh-post-summary-information sh-info-header visible-md visible-lg">\r\n                            <div class="sh-info-header-within">\r\n                                <span>'+
+	((__t=(i18n('post_d_summary_information')))==null?'':__t)+
+	'</span>\r\n                            </div>\r\n                            <ul class="sh-post-info sh-with-dotted">\r\n                                ';
+	if(obj.stats.seenTotal) { 
+	__p+='\r\n                                <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_views')))==null?'':__t)+
+	'</span><span class="sh-item-right">'+
+	((__t=(stats.seenTotal))==null?'':__t)+
+	'</span></div></li>\r\n                                ';
+	 } 
+	__p+='\r\n                                <!--';
+	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
+	__p+='-->\r\n                                <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_status')))==null?'':__t)+
+	'</span><span class="sh-item-right">'+
+	((__t=(user.online ? 'online' : 'offline'))==null?'':__t)+
+	'</span></div></li>\r\n                                ';
+	if (obj.type) { 
+	__p+='\r\n                                <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_type')))==null?'':__t)+
+	'</span><span class="sh-item-right"><span class="label bg-type-category-'+
+	((__t=(obj.type))==null?'':__t)+
+	'">'+
+	((__t=(obj.type))==null?'':__t)+
+	'</span></span></div></li>\r\n                                ';
+	 } 
+	__p+='\r\n                                <li><div><span class="sh-item">'+
+	((__t=(i18n('post_d_distance')))==null?'':__t)+
+	'</span><span class="sh-item-right">';
+	if(obj.distance && obj.distanceType){ 
+	__p+=' '+
+	((__t=(distance>=0?distance.toFixed(1):'Не определена'))==null?'':__t)+
+	' '+
+	((__t=(distanceType==='km'?'км':'miles'))==null?'':__t)+
+	' ';
+	 } 
+	__p+='</span></div></li>\r\n                            </ul>\r\n                        </div>\r\n\r\n                        <div class="sh-post-wish-and-more" style="display: none;">\r\n                            <div class="sh-post-wish hidden"></div>\r\n                            <div class="sh-post-more">\r\n                                <div class="sh-post-more-wrapper">\r\n                                    <a href="#" class="sh-share-btn sh-text-center">\r\n                                        <span>E-mail</span>\r\n                                    </a>\r\n                                    <a href="#" class="sh-share-btn sh-text-center">\r\n                                        <span>Вконтакте</span>\r\n                                    </a>\r\n                                    <span class="sh-more-btn sh-text-center">\r\n                                        ··· <span>Ещё</span>\r\n                                    </span>\r\n                                </div>\r\n\r\n                                <div class="sh-report-message">\r\n                                    <i class="fa fa-exclamation" aria-hidden="true"></i>\r\n                                    <a href="#">Сообщите об этом объявлении</a>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="sh-same-posts hidden">\r\n                    <div class="container">\r\n                        <div class="sh-same-posts-wrapper">\r\n                            <h4>Похожие посты</h4>\r\n\r\n                            <div class="sh-text-center">Скоро на всех устройствах мира</div>\r\n                            <br>\r\n\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</main>';
+>>>>>>> master
 	}
 	return __p;
 	};
 	
+<<<<<<< HEAD
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
 
 /***/ },
@@ -29869,14 +40500,725 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+=======
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12), __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 111 */
+/*!******************************************************!*\
+  !*** ./wwwroot/lib/owl-carousel/owl.carousel.min.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(jQuery) {"use strict";
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	if (typeof Object.create !== "function") {
+	  Object.create = function (e) {
+	    function t() {}t.prototype = e;return new t();
+	  };
+	}(function (e, t, n) {
+	  var r = { init: function init(t, n) {
+	      var r = this;r.$elem = e(n);r.options = e.extend({}, e.fn.owlCarousel.options, r.$elem.data(), t);r.userOptions = t;r.loadContent();
+	    }, loadContent: function loadContent() {
+	      function r(e) {
+	        var n,
+	            r = "";if (typeof t.options.jsonSuccess === "function") {
+	          t.options.jsonSuccess.apply(this, [e]);
+	        } else {
+	          for (n in e.owl) {
+	            if (e.owl.hasOwnProperty(n)) {
+	              r += e.owl[n].item;
+	            }
+	          }t.$elem.html(r);
+	        }t.logIn();
+	      }var t = this,
+	          n;if (typeof t.options.beforeInit === "function") {
+	        t.options.beforeInit.apply(this, [t.$elem]);
+	      }if (typeof t.options.jsonPath === "string") {
+	        n = t.options.jsonPath;e.getJSON(n, r);
+	      } else {
+	        t.logIn();
+	      }
+	    }, logIn: function logIn() {
+	      var e = this;e.$elem.data("owl-originalStyles", e.$elem.attr("style"));e.$elem.data("owl-originalClasses", e.$elem.attr("class"));e.$elem.css({ opacity: 0 });e.orignalItems = e.options.items;e.checkBrowser();e.wrapperWidth = 0;e.checkVisible = null;e.setVars();
+	    }, setVars: function setVars() {
+	      var e = this;if (e.$elem.children().length === 0) {
+	        return false;
+	      }e.baseClass();e.eventTypes();e.$userItems = e.$elem.children();e.itemsAmount = e.$userItems.length;e.wrapItems();e.$owlItems = e.$elem.find(".owl-item");e.$owlWrapper = e.$elem.find(".owl-wrapper");e.playDirection = "next";e.prevItem = 0;e.prevArr = [0];e.currentItem = 0;e.customEvents();e.onStartup();
+	    }, onStartup: function onStartup() {
+	      var e = this;e.updateItems();e.calculateAll();e.buildControls();e.updateControls();e.response();e.moveEvents();e.stopOnHover();e.owlStatus();if (e.options.transitionStyle !== false) {
+	        e.transitionTypes(e.options.transitionStyle);
+	      }if (e.options.autoPlay === true) {
+	        e.options.autoPlay = 5e3;
+	      }e.play();e.$elem.find(".owl-wrapper").css("display", "block");if (!e.$elem.is(":visible")) {
+	        e.watchVisibility();
+	      } else {
+	        e.$elem.css("opacity", 1);
+	      }e.onstartup = false;e.eachMoveUpdate();if (typeof e.options.afterInit === "function") {
+	        e.options.afterInit.apply(this, [e.$elem]);
+	      }
+	    }, eachMoveUpdate: function eachMoveUpdate() {
+	      var e = this;if (e.options.lazyLoad === true) {
+	        e.lazyLoad();
+	      }if (e.options.autoHeight === true) {
+	        e.autoHeight();
+	      }e.onVisibleItems();if (typeof e.options.afterAction === "function") {
+	        e.options.afterAction.apply(this, [e.$elem]);
+	      }
+	    }, updateVars: function updateVars() {
+	      var e = this;if (typeof e.options.beforeUpdate === "function") {
+	        e.options.beforeUpdate.apply(this, [e.$elem]);
+	      }e.watchVisibility();e.updateItems();e.calculateAll();e.updatePosition();e.updateControls();e.eachMoveUpdate();if (typeof e.options.afterUpdate === "function") {
+	        e.options.afterUpdate.apply(this, [e.$elem]);
+	      }
+	    }, reload: function reload() {
+	      var e = this;t.setTimeout(function () {
+	        e.updateVars();
+	      }, 0);
+	    }, watchVisibility: function watchVisibility() {
+	      var e = this;if (e.$elem.is(":visible") === false) {
+	        e.$elem.css({ opacity: 0 });t.clearInterval(e.autoPlayInterval);t.clearInterval(e.checkVisible);
+	      } else {
+	        return false;
+	      }e.checkVisible = t.setInterval(function () {
+	        if (e.$elem.is(":visible")) {
+	          e.reload();e.$elem.animate({ opacity: 1 }, 200);t.clearInterval(e.checkVisible);
+	        }
+	      }, 500);
+	    }, wrapItems: function wrapItems() {
+	      var e = this;e.$userItems.wrapAll('<div class="owl-wrapper">').wrap('<div class="owl-item"></div>');e.$elem.find(".owl-wrapper").wrap('<div class="owl-wrapper-outer">');e.wrapperOuter = e.$elem.find(".owl-wrapper-outer");e.$elem.css("display", "block");
+	    }, baseClass: function baseClass() {
+	      var e = this,
+	          t = e.$elem.hasClass(e.options.baseClass),
+	          n = e.$elem.hasClass(e.options.theme);if (!t) {
+	        e.$elem.addClass(e.options.baseClass);
+	      }if (!n) {
+	        e.$elem.addClass(e.options.theme);
+	      }
+	    }, updateItems: function updateItems() {
+	      var t = this,
+	          n,
+	          r;if (t.options.responsive === false) {
+	        return false;
+	      }if (t.options.singleItem === true) {
+	        t.options.items = t.orignalItems = 1;t.options.itemsCustom = false;t.options.itemsDesktop = false;t.options.itemsDesktopSmall = false;t.options.itemsTablet = false;t.options.itemsTabletSmall = false;t.options.itemsMobile = false;return false;
+	      }n = e(t.options.responsiveBaseWidth).width();if (n > (t.options.itemsDesktop[0] || t.orignalItems)) {
+	        t.options.items = t.orignalItems;
+	      }if (t.options.itemsCustom !== false) {
+	        t.options.itemsCustom.sort(function (e, t) {
+	          return e[0] - t[0];
+	        });for (r = 0; r < t.options.itemsCustom.length; r += 1) {
+	          if (t.options.itemsCustom[r][0] <= n) {
+	            t.options.items = t.options.itemsCustom[r][1];
+	          }
+	        }
+	      } else {
+	        if (n <= t.options.itemsDesktop[0] && t.options.itemsDesktop !== false) {
+	          t.options.items = t.options.itemsDesktop[1];
+	        }if (n <= t.options.itemsDesktopSmall[0] && t.options.itemsDesktopSmall !== false) {
+	          t.options.items = t.options.itemsDesktopSmall[1];
+	        }if (n <= t.options.itemsTablet[0] && t.options.itemsTablet !== false) {
+	          t.options.items = t.options.itemsTablet[1];
+	        }if (n <= t.options.itemsTabletSmall[0] && t.options.itemsTabletSmall !== false) {
+	          t.options.items = t.options.itemsTabletSmall[1];
+	        }if (n <= t.options.itemsMobile[0] && t.options.itemsMobile !== false) {
+	          t.options.items = t.options.itemsMobile[1];
+	        }
+	      }if (t.options.items > t.itemsAmount && t.options.itemsScaleUp === true) {
+	        t.options.items = t.itemsAmount;
+	      }
+	    }, response: function response() {
+	      var n = this,
+	          r,
+	          i;if (n.options.responsive !== true) {
+	        return false;
+	      }i = e(t).width();n.resizer = function () {
+	        if (e(t).width() !== i) {
+	          if (n.options.autoPlay !== false) {
+	            t.clearInterval(n.autoPlayInterval);
+	          }t.clearTimeout(r);r = t.setTimeout(function () {
+	            i = e(t).width();n.updateVars();
+	          }, n.options.responsiveRefreshRate);
+	        }
+	      };e(t).resize(n.resizer);
+	    }, updatePosition: function updatePosition() {
+	      var e = this;e.jumpTo(e.currentItem);if (e.options.autoPlay !== false) {
+	        e.checkAp();
+	      }
+	    }, appendItemsSizes: function appendItemsSizes() {
+	      var t = this,
+	          n = 0,
+	          r = t.itemsAmount - t.options.items;t.$owlItems.each(function (i) {
+	        var s = e(this);s.css({ width: t.itemWidth }).data("owl-item", Number(i));if (i % t.options.items === 0 || i === r) {
+	          if (!(i > r)) {
+	            n += 1;
+	          }
+	        }s.data("owl-roundPages", n);
+	      });
+	    }, appendWrapperSizes: function appendWrapperSizes() {
+	      var e = this,
+	          t = e.$owlItems.length * e.itemWidth;e.$owlWrapper.css({ width: t * 2, left: 0 });e.appendItemsSizes();
+	    }, calculateAll: function calculateAll() {
+	      var e = this;e.calculateWidth();e.appendWrapperSizes();e.loops();e.max();
+	    }, calculateWidth: function calculateWidth() {
+	      var e = this;e.itemWidth = Math.round(e.$elem.width() / e.options.items);
+	    }, max: function max() {
+	      var e = this,
+	          t = (e.itemsAmount * e.itemWidth - e.options.items * e.itemWidth) * -1;if (e.options.items > e.itemsAmount) {
+	        e.maximumItem = 0;t = 0;e.maximumPixels = 0;
+	      } else {
+	        e.maximumItem = e.itemsAmount - e.options.items;e.maximumPixels = t;
+	      }return t;
+	    }, min: function min() {
+	      return 0;
+	    }, loops: function loops() {
+	      var t = this,
+	          n = 0,
+	          r = 0,
+	          i,
+	          s,
+	          o;t.positionsInArray = [0];t.pagesInArray = [];for (i = 0; i < t.itemsAmount; i += 1) {
+	        r += t.itemWidth;t.positionsInArray.push(-r);if (t.options.scrollPerPage === true) {
+	          s = e(t.$owlItems[i]);o = s.data("owl-roundPages");if (o !== n) {
+	            t.pagesInArray[n] = t.positionsInArray[i];n = o;
+	          }
+	        }
+	      }
+	    }, buildControls: function buildControls() {
+	      var t = this;if (t.options.navigation === true || t.options.pagination === true) {
+	        t.owlControls = e('<div class="owl-controls"/>').toggleClass("clickable", !t.browser.isTouch).appendTo(t.$elem);
+	      }if (t.options.pagination === true) {
+	        t.buildPagination();
+	      }if (t.options.navigation === true) {
+	        t.buildButtons();
+	      }
+	    }, buildButtons: function buildButtons() {
+	      var t = this,
+	          n = e('<div class="owl-buttons"/>');t.owlControls.append(n);t.buttonPrev = e("<div/>", { "class": "owl-prev", html: t.options.navigationText[0] || "" });t.buttonNext = e("<div/>", { "class": "owl-next", html: t.options.navigationText[1] || "" });n.append(t.buttonPrev).append(t.buttonNext);n.on("touchstart.owlControls mousedown.owlControls", 'div[class^="owl"]', function (e) {
+	        e.preventDefault();
+	      });n.on("touchend.owlControls mouseup.owlControls", 'div[class^="owl"]', function (n) {
+	        n.preventDefault();if (e(this).hasClass("owl-next")) {
+	          t.next();
+	        } else {
+	          t.prev();
+	        }
+	      });
+	    }, buildPagination: function buildPagination() {
+	      var t = this;t.paginationWrapper = e('<div class="owl-pagination"/>');t.owlControls.append(t.paginationWrapper);t.paginationWrapper.on("touchend.owlControls mouseup.owlControls", ".owl-page", function (n) {
+	        n.preventDefault();if (Number(e(this).data("owl-page")) !== t.currentItem) {
+	          t.goTo(Number(e(this).data("owl-page")), true);
+	        }
+	      });
+	    }, updatePagination: function updatePagination() {
+	      var t = this,
+	          n,
+	          r,
+	          i,
+	          s,
+	          o,
+	          u;if (t.options.pagination === false) {
+	        return false;
+	      }t.paginationWrapper.html("");n = 0;r = t.itemsAmount - t.itemsAmount % t.options.items;for (s = 0; s < t.itemsAmount; s += 1) {
+	        if (s % t.options.items === 0) {
+	          n += 1;if (r === s) {
+	            i = t.itemsAmount - t.options.items;
+	          }o = e("<div/>", { "class": "owl-page" });u = e("<span></span>", { text: t.options.paginationNumbers === true ? n : "", "class": t.options.paginationNumbers === true ? "owl-numbers" : "" });o.append(u);o.data("owl-page", r === s ? i : s);o.data("owl-roundPages", n);t.paginationWrapper.append(o);
+	        }
+	      }t.checkPagination();
+	    }, checkPagination: function checkPagination() {
+	      var t = this;if (t.options.pagination === false) {
+	        return false;
+	      }t.paginationWrapper.find(".owl-page").each(function () {
+	        if (e(this).data("owl-roundPages") === e(t.$owlItems[t.currentItem]).data("owl-roundPages")) {
+	          t.paginationWrapper.find(".owl-page").removeClass("active");e(this).addClass("active");
+	        }
+	      });
+	    }, checkNavigation: function checkNavigation() {
+	      var e = this;if (e.options.navigation === false) {
+	        return false;
+	      }if (e.options.rewindNav === false) {
+	        if (e.currentItem === 0 && e.maximumItem === 0) {
+	          e.buttonPrev.addClass("disabled");e.buttonNext.addClass("disabled");
+	        } else if (e.currentItem === 0 && e.maximumItem !== 0) {
+	          e.buttonPrev.addClass("disabled");e.buttonNext.removeClass("disabled");
+	        } else if (e.currentItem === e.maximumItem) {
+	          e.buttonPrev.removeClass("disabled");e.buttonNext.addClass("disabled");
+	        } else if (e.currentItem !== 0 && e.currentItem !== e.maximumItem) {
+	          e.buttonPrev.removeClass("disabled");e.buttonNext.removeClass("disabled");
+	        }
+	      }
+	    }, updateControls: function updateControls() {
+	      var e = this;e.updatePagination();e.checkNavigation();if (e.owlControls) {
+	        if (e.options.items >= e.itemsAmount) {
+	          e.owlControls.hide();
+	        } else {
+	          e.owlControls.show();
+	        }
+	      }
+	    }, destroyControls: function destroyControls() {
+	      var e = this;if (e.owlControls) {
+	        e.owlControls.remove();
+	      }
+	    }, next: function next(e) {
+	      var t = this;if (t.isTransition) {
+	        return false;
+	      }t.currentItem += t.options.scrollPerPage === true ? t.options.items : 1;if (t.currentItem > t.maximumItem + (t.options.scrollPerPage === true ? t.options.items - 1 : 0)) {
+	        if (t.options.rewindNav === true) {
+	          t.currentItem = 0;e = "rewind";
+	        } else {
+	          t.currentItem = t.maximumItem;return false;
+	        }
+	      }t.goTo(t.currentItem, e);
+	    }, prev: function prev(e) {
+	      var t = this;if (t.isTransition) {
+	        return false;
+	      }if (t.options.scrollPerPage === true && t.currentItem > 0 && t.currentItem < t.options.items) {
+	        t.currentItem = 0;
+	      } else {
+	        t.currentItem -= t.options.scrollPerPage === true ? t.options.items : 1;
+	      }if (t.currentItem < 0) {
+	        if (t.options.rewindNav === true) {
+	          t.currentItem = t.maximumItem;e = "rewind";
+	        } else {
+	          t.currentItem = 0;return false;
+	        }
+	      }t.goTo(t.currentItem, e);
+	    }, goTo: function goTo(e, n, r) {
+	      var i = this,
+	          s;if (i.isTransition) {
+	        return false;
+	      }if (typeof i.options.beforeMove === "function") {
+	        i.options.beforeMove.apply(this, [i.$elem]);
+	      }if (e >= i.maximumItem) {
+	        e = i.maximumItem;
+	      } else if (e <= 0) {
+	        e = 0;
+	      }i.currentItem = i.owl.currentItem = e;if (i.options.transitionStyle !== false && r !== "drag" && i.options.items === 1 && i.browser.support3d === true) {
+	        i.swapSpeed(0);if (i.browser.support3d === true) {
+	          i.transition3d(i.positionsInArray[e]);
+	        } else {
+	          i.css2slide(i.positionsInArray[e], 1);
+	        }i.afterGo();i.singleItemTransition();return false;
+	      }s = i.positionsInArray[e];if (i.browser.support3d === true) {
+	        i.isCss3Finish = false;if (n === true) {
+	          i.swapSpeed("paginationSpeed");t.setTimeout(function () {
+	            i.isCss3Finish = true;
+	          }, i.options.paginationSpeed);
+	        } else if (n === "rewind") {
+	          i.swapSpeed(i.options.rewindSpeed);t.setTimeout(function () {
+	            i.isCss3Finish = true;
+	          }, i.options.rewindSpeed);
+	        } else {
+	          i.swapSpeed("slideSpeed");t.setTimeout(function () {
+	            i.isCss3Finish = true;
+	          }, i.options.slideSpeed);
+	        }i.transition3d(s);
+	      } else {
+	        if (n === true) {
+	          i.css2slide(s, i.options.paginationSpeed);
+	        } else if (n === "rewind") {
+	          i.css2slide(s, i.options.rewindSpeed);
+	        } else {
+	          i.css2slide(s, i.options.slideSpeed);
+	        }
+	      }i.afterGo();
+	    }, jumpTo: function jumpTo(e) {
+	      var t = this;if (typeof t.options.beforeMove === "function") {
+	        t.options.beforeMove.apply(this, [t.$elem]);
+	      }if (e >= t.maximumItem || e === -1) {
+	        e = t.maximumItem;
+	      } else if (e <= 0) {
+	        e = 0;
+	      }t.swapSpeed(0);if (t.browser.support3d === true) {
+	        t.transition3d(t.positionsInArray[e]);
+	      } else {
+	        t.css2slide(t.positionsInArray[e], 1);
+	      }t.currentItem = t.owl.currentItem = e;t.afterGo();
+	    }, afterGo: function afterGo() {
+	      var e = this;console.log(this.currentItem);e.prevArr.push(e.currentItem);e.prevItem = e.owl.prevItem = e.prevArr[e.prevArr.length - 2];e.prevArr.shift(0);if (e.prevItem !== e.currentItem) {
+	        e.checkPagination();e.checkNavigation();e.eachMoveUpdate();if (e.options.autoPlay !== false) {
+	          e.checkAp();
+	        }
+	      }if (typeof e.options.afterMove === "function" && e.prevItem !== e.currentItem) {
+	        e.options.afterMove.apply(this, [e.$elem]);
+	      }
+	    }, stop: function stop() {
+	      var e = this;e.apStatus = "stop";t.clearInterval(e.autoPlayInterval);
+	    }, checkAp: function checkAp() {
+	      var e = this;if (e.apStatus !== "stop") {
+	        e.play();
+	      }
+	    }, play: function play() {
+	      var e = this;e.apStatus = "play";if (e.options.autoPlay === false) {
+	        return false;
+	      }t.clearInterval(e.autoPlayInterval);e.autoPlayInterval = t.setInterval(function () {
+	        e.next(true);
+	      }, e.options.autoPlay);
+	    }, swapSpeed: function swapSpeed(e) {
+	      var t = this;if (e === "slideSpeed") {
+	        t.$owlWrapper.css(t.addCssSpeed(t.options.slideSpeed));
+	      } else if (e === "paginationSpeed") {
+	        t.$owlWrapper.css(t.addCssSpeed(t.options.paginationSpeed));
+	      } else if (typeof e !== "string") {
+	        t.$owlWrapper.css(t.addCssSpeed(e));
+	      }
+	    }, addCssSpeed: function addCssSpeed(e) {
+	      return { "-webkit-transition": "all " + e + "ms ease", "-moz-transition": "all " + e + "ms ease", "-o-transition": "all " + e + "ms ease", transition: "all " + e + "ms ease" };
+	    }, removeTransition: function removeTransition() {
+	      return { "-webkit-transition": "", "-moz-transition": "", "-o-transition": "", transition: "" };
+	    }, doTranslate: function doTranslate(e) {
+	      return { "-webkit-transform": "translate3d(" + e + "px, 0px, 0px)", "-moz-transform": "translate3d(" + e + "px, 0px, 0px)", "-o-transform": "translate3d(" + e + "px, 0px, 0px)", "-ms-transform": "translate3d(" + e + "px, 0px, 0px)", transform: "translate3d(" + e + "px, 0px,0px)" };
+	    }, transition3d: function transition3d(e) {
+	      var t = this;t.$owlWrapper.css(t.doTranslate(e));
+	    }, css2move: function css2move(e) {
+	      var t = this;t.$owlWrapper.css({ left: e });
+	    }, css2slide: function css2slide(e, t) {
+	      var n = this;n.isCssFinish = false;n.$owlWrapper.stop(true, true).animate({ left: e }, { duration: t || n.options.slideSpeed, complete: function complete() {
+	          n.isCssFinish = true;
+	        } });
+	    }, checkBrowser: function checkBrowser() {
+	      var e = this,
+	          r = "translate3d(0px, 0px, 0px)",
+	          i = n.createElement("div"),
+	          s,
+	          o,
+	          u,
+	          a,
+	          f = n.documentElement.style;i.style.cssText = "  -moz-transform:" + r + "; -ms-transform:" + r + "; -o-transform:" + r + "; -webkit-transform:" + r + "; transform:" + r;s = /translate3d\(0px, 0px, 0px\)/g;o = i.style.cssText.match(s);u = f.webkitTransition !== undefined || f.MozTransition !== undefined || f.OTransition !== undefined || f.transition !== undefined;a = "ontouchstart" in t || t.navigator.msMaxTouchPoints;e.browser = { support3d: u, isTouch: a };
+	    }, moveEvents: function moveEvents() {
+	      var e = this;if (e.options.mouseDrag !== false || e.options.touchDrag !== false) {
+	        e.gestures();e.disabledEvents();
+	      }
+	    }, eventTypes: function eventTypes() {
+	      var e = this,
+	          t = ["s", "e", "x"];e.ev_types = {};if (e.options.mouseDrag === true && e.options.touchDrag === true) {
+	        t = ["touchstart.owl mousedown.owl", "touchmove.owl mousemove.owl", "touchend.owl touchcancel.owl mouseup.owl"];
+	      } else if (e.options.mouseDrag === false && e.options.touchDrag === true) {
+	        t = ["touchstart.owl", "touchmove.owl", "touchend.owl touchcancel.owl"];
+	      } else if (e.options.mouseDrag === true && e.options.touchDrag === false) {
+	        t = ["mousedown.owl", "mousemove.owl", "mouseup.owl"];
+	      }e.ev_types.start = t[0];e.ev_types.move = t[1];e.ev_types.end = t[2];
+	    }, disabledEvents: function disabledEvents() {
+	      var t = this;t.$elem.on("dragstart.owl", function (e) {
+	        e.preventDefault();
+	      });t.$elem.on("mousedown.disableTextSelect", function (t) {
+	        return e(t.target).is("input, textarea, select, option");
+	      });
+	    }, gestures: function gestures() {
+	      function s(e) {
+	        if (e.touches !== undefined) {
+	          return { x: e.touches[0].pageX, y: e.touches[0].pageY };
+	        }if (e.touches === undefined) {
+	          if (e.pageX !== undefined) {
+	            return { x: e.pageX, y: e.pageY };
+	          }if (e.pageX === undefined) {
+	            return { x: e.clientX, y: e.clientY };
+	          }
+	        }
+	      }function o(t) {
+	        if (t === "on") {
+	          e(n).on(r.ev_types.move, a);e(n).on(r.ev_types.end, f);
+	        } else if (t === "off") {
+	          e(n).off(r.ev_types.move);e(n).off(r.ev_types.end);
+	        }
+	      }function u(n) {
+	        var u = n.originalEvent || n || t.event,
+	            a;if (u.which === 3) {
+	          return false;
+	        }if (r.itemsAmount <= r.options.items) {
+	          return;
+	        }if (r.isCssFinish === false && !r.options.dragBeforeAnimFinish) {
+	          return false;
+	        }if (r.isCss3Finish === false && !r.options.dragBeforeAnimFinish) {
+	          return false;
+	        }if (r.options.autoPlay !== false) {
+	          t.clearInterval(r.autoPlayInterval);
+	        }if (r.browser.isTouch !== true && !r.$owlWrapper.hasClass("grabbing")) {
+	          r.$owlWrapper.addClass("grabbing");
+	        }r.newPosX = 0;r.newRelativeX = 0;e(this).css(r.removeTransition());a = e(this).position();i.relativePos = a.left;i.offsetX = s(u).x - a.left;i.offsetY = s(u).y - a.top;o("on");i.sliding = false;i.targetElement = u.target || u.srcElement;
+	      }function a(o) {
+	        var u = o.originalEvent || o || t.event,
+	            a,
+	            f;r.newPosX = s(u).x - i.offsetX;r.newPosY = s(u).y - i.offsetY;r.newRelativeX = r.newPosX - i.relativePos;if (typeof r.options.startDragging === "function" && i.dragging !== true && r.newRelativeX !== 0) {
+	          i.dragging = true;r.options.startDragging.apply(r, [r.$elem]);
+	        }if ((r.newRelativeX > 8 || r.newRelativeX < -8) && r.browser.isTouch === true) {
+	          if (u.preventDefault !== undefined) {
+	            u.preventDefault();
+	          } else {
+	            u.returnValue = false;
+	          }i.sliding = true;
+	        }if ((r.newPosY > 10 || r.newPosY < -10) && i.sliding === false) {
+	          e(n).off("touchmove.owl");
+	        }a = function a() {
+	          return r.newRelativeX / 5;
+	        };f = function f() {
+	          return r.maximumPixels + r.newRelativeX / 5;
+	        };r.newPosX = Math.max(Math.min(r.newPosX, a()), f());if (r.browser.support3d === true) {
+	          r.transition3d(r.newPosX);
+	        } else {
+	          r.css2move(r.newPosX);
+	        }
+	      }function f(n) {
+	        var s = n.originalEvent || n || t.event,
+	            u,
+	            a,
+	            f;s.target = s.target || s.srcElement;i.dragging = false;if (r.browser.isTouch !== true) {
+	          r.$owlWrapper.removeClass("grabbing");
+	        }if (r.newRelativeX < 0) {
+	          r.dragDirection = r.owl.dragDirection = "left";
+	        } else {
+	          r.dragDirection = r.owl.dragDirection = "right";
+	        }if (r.newRelativeX !== 0) {
+	          u = r.getNewPosition();r.goTo(u, false, "drag");if (i.targetElement === s.target && r.browser.isTouch !== true) {
+	            e(s.target).on("click.disable", function (t) {
+	              t.stopImmediatePropagation();t.stopPropagation();t.preventDefault();e(t.target).off("click.disable");
+	            });a = e._data(s.target, "events").click;f = a.pop();a.splice(0, 0, f);
+	          }
+	        }o("off");
+	      }var r = this,
+	          i = { offsetX: 0, offsetY: 0, baseElWidth: 0, relativePos: 0, position: null, minSwipe: null, maxSwipe: null, sliding: null, dargging: null, targetElement: null };r.isCssFinish = true;r.$elem.on(r.ev_types.start, ".owl-wrapper", u);
+	    }, getNewPosition: function getNewPosition() {
+	      var e = this,
+	          t = e.closestItem();if (t > e.maximumItem) {
+	        e.currentItem = e.maximumItem;t = e.maximumItem;
+	      } else if (e.newPosX >= 0) {
+	        t = 0;e.currentItem = 0;
+	      }return t;
+	    }, closestItem: function closestItem() {
+	      var t = this,
+	          n = t.options.scrollPerPage === true ? t.pagesInArray : t.positionsInArray,
+	          r = t.newPosX,
+	          i = null;e.each(n, function (s, o) {
+	        if (r - t.itemWidth / 20 > n[s + 1] && r - t.itemWidth / 20 < o && t.moveDirection() === "left") {
+	          i = o;if (t.options.scrollPerPage === true) {
+	            t.currentItem = e.inArray(i, t.positionsInArray);
+	          } else {
+	            t.currentItem = s;
+	          }
+	        } else if (r + t.itemWidth / 20 < o && r + t.itemWidth / 20 > (n[s + 1] || n[s] - t.itemWidth) && t.moveDirection() === "right") {
+	          if (t.options.scrollPerPage === true) {
+	            i = n[s + 1] || n[n.length - 1];t.currentItem = e.inArray(i, t.positionsInArray);
+	          } else {
+	            i = n[s + 1];t.currentItem = s + 1;
+	          }
+	        }
+	      });return t.currentItem;
+	    }, moveDirection: function moveDirection() {
+	      var e = this,
+	          t;if (e.newRelativeX < 0) {
+	        t = "right";e.playDirection = "next";
+	      } else {
+	        t = "left";e.playDirection = "prev";
+	      }return t;
+	    }, customEvents: function customEvents() {
+	      var e = this;e.$elem.on("owl.next", function () {
+	        e.next();
+	      });e.$elem.on("owl.prev", function () {
+	        e.prev();
+	      });e.$elem.on("owl.play", function (t, n) {
+	        e.options.autoPlay = n;e.play();e.hoverStatus = "play";
+	      });e.$elem.on("owl.stop", function () {
+	        e.stop();e.hoverStatus = "stop";
+	      });e.$elem.on("owl.goTo", function (t, n) {
+	        e.goTo(n);
+	      });e.$elem.on("owl.jumpTo", function (t, n) {
+	        e.jumpTo(n);
+	      });
+	    }, stopOnHover: function stopOnHover() {
+	      var e = this;if (e.options.stopOnHover === true && e.browser.isTouch !== true && e.options.autoPlay !== false) {
+	        e.$elem.on("mouseover", function () {
+	          e.stop();
+	        });e.$elem.on("mouseout", function () {
+	          if (e.hoverStatus !== "stop") {
+	            e.play();
+	          }
+	        });
+	      }
+	    }, lazyLoad: function lazyLoad() {
+	      var t = this,
+	          n,
+	          r,
+	          i,
+	          s,
+	          o;if (t.options.lazyLoad === false) {
+	        return false;
+	      }for (n = 0; n < t.itemsAmount; n += 1) {
+	        r = e(t.$owlItems[n]);if (r.data("owl-loaded") === "loaded") {
+	          continue;
+	        }i = r.data("owl-item");s = r.find(".lazyOwl");if (typeof s.data("src") !== "string") {
+	          r.data("owl-loaded", "loaded");continue;
+	        }if (r.data("owl-loaded") === undefined) {
+	          s.hide();r.addClass("loading").data("owl-loaded", "checked");
+	        }if (t.options.lazyFollow === true) {
+	          o = i >= t.currentItem;
+	        } else {
+	          o = true;
+	        }if (o && i < t.currentItem + t.options.items && s.length) {
+	          t.lazyPreload(r, s);
+	        }
+	      }
+	    }, lazyPreload: function lazyPreload(e, n) {
+	      function o() {
+	        e.data("owl-loaded", "loaded").removeClass("loading");n.removeAttr("data-src");if (r.options.lazyEffect === "fade") {
+	          n.fadeIn(400);
+	        } else {
+	          n.show();
+	        }if (typeof r.options.afterLazyLoad === "function") {
+	          r.options.afterLazyLoad.apply(this, [r.$elem]);
+	        }
+	      }function u() {
+	        i += 1;if (r.completeImg(n.get(0)) || s === true) {
+	          o();
+	        } else if (i <= 100) {
+	          t.setTimeout(u, 100);
+	        } else {
+	          o();
+	        }
+	      }var r = this,
+	          i = 0,
+	          s;if (n.prop("tagName") === "DIV") {
+	        n.css("background-image", "url(" + n.data("src") + ")");s = true;
+	      } else {
+	        n[0].src = n.data("src");
+	      }u();
+	    }, autoHeight: function autoHeight() {
+	      function s() {
+	        var r = e(n.$owlItems[n.currentItem]).height();n.wrapperOuter.css("height", r + "px");if (!n.wrapperOuter.hasClass("autoHeight")) {
+	          t.setTimeout(function () {
+	            n.wrapperOuter.addClass("autoHeight");
+	          }, 0);
+	        }
+	      }function o() {
+	        i += 1;if (n.completeImg(r.get(0))) {
+	          s();
+	        } else if (i <= 100) {
+	          t.setTimeout(o, 100);
+	        } else {
+	          n.wrapperOuter.css("height", "");
+	        }
+	      }var n = this,
+	          r = e(n.$owlItems[n.currentItem]).find("img"),
+	          i;if (r.get(0) !== undefined) {
+	        i = 0;o();
+	      } else {
+	        s();
+	      }
+	    }, completeImg: function completeImg(e) {
+	      var t;if (!e.complete) {
+	        return false;
+	      }t = _typeof(e.naturalWidth);if (t !== "undefined" && e.naturalWidth === 0) {
+	        return false;
+	      }return true;
+	    }, onVisibleItems: function onVisibleItems() {
+	      var t = this,
+	          n;if (t.options.addClassActive === true) {
+	        t.$owlItems.removeClass("active");
+	      }t.visibleItems = [];for (n = t.currentItem; n < t.currentItem + t.options.items; n += 1) {
+	        t.visibleItems.push(n);if (t.options.addClassActive === true) {
+	          e(t.$owlItems[n]).addClass("active");
+	        }
+	      }t.owl.visibleItems = t.visibleItems;
+	    }, transitionTypes: function transitionTypes(e) {
+	      var t = this;t.outClass = "owl-" + e + "-out";t.inClass = "owl-" + e + "-in";
+	    }, singleItemTransition: function singleItemTransition() {
+	      function a(e) {
+	        return { position: "relative", left: e + "px" };
+	      }var e = this,
+	          t = e.outClass,
+	          n = e.inClass,
+	          r = e.$owlItems.eq(e.currentItem),
+	          i = e.$owlItems.eq(e.prevItem),
+	          s = Math.abs(e.positionsInArray[e.currentItem]) + e.positionsInArray[e.prevItem],
+	          o = Math.abs(e.positionsInArray[e.currentItem]) + e.itemWidth / 2,
+	          u = "webkitAnimationEnd oAnimationEnd MSAnimationEnd animationend";e.isTransition = true;e.$owlWrapper.addClass("owl-origin").css({ "-webkit-transform-origin": o + "px", "-moz-perspective-origin": o + "px", "perspective-origin": o + "px" });i.css(a(s, 10)).addClass(t).on(u, function () {
+	        e.endPrev = true;i.off(u);e.clearTransStyle(i, t);
+	      });r.addClass(n).on(u, function () {
+	        e.endCurrent = true;r.off(u);e.clearTransStyle(r, n);
+	      });
+	    }, clearTransStyle: function clearTransStyle(e, t) {
+	      var n = this;e.css({ position: "", left: "" }).removeClass(t);if (n.endPrev && n.endCurrent) {
+	        n.$owlWrapper.removeClass("owl-origin");n.endPrev = false;n.endCurrent = false;n.isTransition = false;
+	      }
+	    }, owlStatus: function owlStatus() {
+	      var e = this;e.owl = { userOptions: e.userOptions, baseElement: e.$elem, userItems: e.$userItems, owlItems: e.$owlItems, currentItem: e.currentItem, prevItem: e.prevItem, visibleItems: e.visibleItems, isTouch: e.browser.isTouch, browser: e.browser, dragDirection: e.dragDirection };
+	    }, clearEvents: function clearEvents() {
+	      var r = this;r.$elem.off(".owl owl mousedown.disableTextSelect");e(n).off(".owl owl");e(t).off("resize", r.resizer);
+	    }, unWrap: function unWrap() {
+	      var e = this;if (e.$elem.children().length !== 0) {
+	        e.$owlWrapper.unwrap();e.$userItems.unwrap().unwrap();if (e.owlControls) {
+	          e.owlControls.remove();
+	        }
+	      }e.clearEvents();e.$elem.attr("style", e.$elem.data("owl-originalStyles") || "").attr("class", e.$elem.data("owl-originalClasses"));
+	    }, destroy: function destroy() {
+	      var e = this;e.stop();t.clearInterval(e.checkVisible);e.unWrap();e.$elem.removeData();
+	    }, reinit: function reinit(t) {
+	      var n = this,
+	          r = e.extend({}, n.userOptions, t);n.unWrap();n.init(r, n.$elem);
+	    }, addItem: function addItem(e, t) {
+	      var n = this,
+	          r;if (!e) {
+	        return false;
+	      }if (n.$elem.children().length === 0) {
+	        n.$elem.append(e);n.setVars();return false;
+	      }n.unWrap();if (t === undefined || t === -1) {
+	        r = -1;
+	      } else {
+	        r = t;
+	      }if (r >= n.$userItems.length || r === -1) {
+	        n.$userItems.eq(-1).after(e);
+	      } else {
+	        n.$userItems.eq(r).before(e);
+	      }n.setVars();
+	    }, removeItem: function removeItem(e) {
+	      var t = this,
+	          n;if (t.$elem.children().length === 0) {
+	        return false;
+	      }if (e === undefined || e === -1) {
+	        n = -1;
+	      } else {
+	        n = e;
+	      }t.unWrap();t.$userItems.eq(n).remove();t.setVars();
+	    } };e.fn.owlCarousel = function (t) {
+	    return this.each(function () {
+	      if (e(this).data("owl-init") === true) {
+	        return false;
+	      }e(this).data("owl-init", true);var n = Object.create(r);n.init(t, this);e.data(this, "owlCarousel", n);
+	    });
+	  };e.fn.owlCarousel.options = { items: 5, itemsCustom: false, itemsDesktop: [1199, 4], itemsDesktopSmall: [979, 3], itemsTablet: [768, 2], itemsTabletSmall: false, itemsMobile: [479, 1], singleItem: false, itemsScaleUp: false, slideSpeed: 200, paginationSpeed: 800, rewindSpeed: 1e3, autoPlay: false, stopOnHover: false, navigation: false, navigationText: ["prev", "next"], rewindNav: true, scrollPerPage: false, pagination: true, paginationNumbers: false, responsive: true, responsiveRefreshRate: 200, responsiveBaseWidth: t, baseClass: "owl-carousel", theme: "owl-theme", lazyLoad: false, lazyFollow: true, lazyEffect: "fade", autoHeight: false, jsonPath: false, jsonSuccess: false, dragBeforeAnimFinish: true, mouseDrag: true, touchDrag: true, addClassActive: false, transitionStyle: false, beforeUpdate: false, afterUpdate: false, beforeInit: false, afterInit: false, beforeMove: false, afterMove: false, afterAction: false, startDragging: false, afterLazyLoad: false };
+	})(jQuery, window, document);
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 112 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/posts/RelatedPostsView.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	
+<<<<<<< HEAD
 	var _MongoModel = __webpack_require__(/*! ../MongoModel.js */ 86);
 	
 	var _MongoModel2 = _interopRequireDefault(_MongoModel);
+=======
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _RelatedPostsViewHbs = __webpack_require__(/*! ./RelatedPostsView.hbs.html */ 113);
+	
+	var _RelatedPostsViewHbs2 = _interopRequireDefault(_RelatedPostsViewHbs);
+	
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 111);
+>>>>>>> master
 	
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
@@ -29884,6 +41226,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+<<<<<<< HEAD
 	exports.default = _MongoModel2.default.extend({
 	    urlRoot: '/api/Users'
 	});
@@ -30029,6 +41372,124 @@
 /*!**********************************************!*\
   !*** ./wwwroot/sharedViews/PreloaderView.js ***!
   \**********************************************/
+=======
+	var View = _backbone2.default.View.extend({
+	    collection: null,
+	    template: _RelatedPostsViewHbs2.default,
+	
+	    onAttach: function onAttach() {
+	
+	        this.initCarousel();
+	    },
+	    initCarousel: function initCarousel() {
+	        var slider = this.$('#relatedPosts');
+	        var options = slider.attr('data-plugin-options');
+	        var defaults = {
+	            items: 5,
+	            itemsCustom: false,
+	            itemsDesktop: [1199, 4],
+	            itemsDesktopSmall: [980, 3],
+	            itemsTablet: [768, 2],
+	            itemsTabletSmall: false,
+	            itemsMobile: [479, 1],
+	            singleItem: true,
+	            itemsScaleUp: false,
+	
+	            slideSpeed: 200,
+	            paginationSpeed: 800,
+	            rewindSpeed: 1000,
+	
+	            autoPlay: false,
+	            stopOnHover: false,
+	
+	            navigation: false,
+	            navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+	            rewindNav: true,
+	            scrollPerPage: false,
+	
+	            pagination: true,
+	            paginationNumbers: false,
+	
+	            responsive: true,
+	            responsiveRefreshRate: 200,
+	            responsiveBaseWidth: window,
+	
+	            baseClass: "owl-carousel",
+	            theme: "owl-theme",
+	
+	            lazyLoad: false,
+	            lazyFollow: true,
+	            lazyEffect: "fade",
+	
+	            autoHeight: false,
+	
+	            jsonPath: false,
+	            jsonSuccess: false,
+	
+	            dragBeforeAnimFinish: true,
+	            mouseDrag: true,
+	            touchDrag: true,
+	
+	            transitionStyle: false,
+	
+	            addClassActive: false,
+	
+	            beforeUpdate: false,
+	            afterUpdate: false,
+	            beforeInit: false,
+	            afterInit: false,
+	            beforeMove: false,
+	            afterMove: false,
+	            afterAction: false,
+	            startDragging: false,
+	            afterLazyLoad: false
+	        };
+	        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+	        slider.owlCarousel(config).addClass("owl-carousel-init");
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 113 */
+/*!*********************************************************!*\
+  !*** ./wwwroot/homeApp/posts/RelatedPostsView.hbs.html ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="heading-title heading-border">\n    <h3 class="weight-300">Похожие <span>объявления</span></h3>\n</div>\n<div class="text-center">\n    \n    <div class="owl-carousel owl-padding-1 nomargin buttons-autohide controlls-over" id="relatedPosts" data-plugin-options=\'{"singleItem": false, "items": "4", "autoPlay": 3500, "navigation": true, "pagination": false}\'>\n        ';
+	_.each(items,function(item) { 
+	__p+='\n        <div class="item-box">\n            <figure class="height-150" style="background-image: url('+
+	((__t=(encodeURI((item.details.photosUrls?item.details.photosUrls[0]:null)||'/images/noimage.jpg')))==null?'':_.escape(__t))+
+	'); background-position: center; background-repeat: no-repeat; background-size: 115%">\n                <span class="item-hover">\n                    <span class="overlay dark-5"></span>\n                    <span class="inner">\n                        <a title="'+
+	((__t=(item.details.title))==null?'':__t)+
+	'" class="ico-rounded" href="/posts/'+
+	((__t=(item._id))==null?'':__t)+
+	'">\n                            <span class="glyphicon glyphicon-option-horizontal size-20"></span>\n                        </a>\n                    </span>\n                </span>\n            </figure>\n            <div class="item-box-desc">\n                <h3 title="'+
+	((__t=(item.details.title))==null?'':__t)+
+	'">'+
+	((__t=(item.details.title.length <= 21? item.details.title:item.details.title.substring(0,18)+'...'))==null?'':__t)+
+	'</h3>\n                <ul class="list-inline categories nomargin">\n                    <li><a >'+
+	((__t=(item.type))==null?'':__t)+
+	'</a></li>\n                </ul>\n            </div>\n        </div>\n        ';
+	});
+	__p+='\n    </div>\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 114 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/posts/CommentsListView.js ***!
+  \***************************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30041,6 +41502,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
 	var _PreloaderViewHbs = __webpack_require__(/*! ./PreloaderView.hbs.html */ 115);
 	
 	var _PreloaderViewHbs2 = _interopRequireDefault(_PreloaderViewHbs);
@@ -30052,10 +41514,27 @@
 	    template: _PreloaderViewHbs2.default,
 	    id: 'preloader'
 	});
+=======
+	var _CommentsItemView = __webpack_require__(/*! ./CommentsItemView.js */ 115);
+	
+	var _CommentsItemView2 = _interopRequireDefault(_CommentsItemView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	
+	    childView: _CommentsItemView2.default,
+	    className: 'sh-reviews-items',
+	    tagName: 'div'
+	
+	});
+	
+>>>>>>> master
 	exports.default = View;
 
 /***/ },
 /* 115 */
+<<<<<<< HEAD
 /*!****************************************************!*\
   !*** ./wwwroot/sharedViews/PreloaderView.hbs.html ***!
   \****************************************************/
@@ -30569,6 +42048,10 @@
 /*!***************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/ImageView.js ***!
   \***************************************************/
+=======
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/posts/CommentsItemView.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30577,6 +42060,184 @@
 	    value: true
 	});
 	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _CommentsItemViewHbs = __webpack_require__(/*! ./CommentsItemView.hbs.html */ 116);
+	
+	var _CommentsItemViewHbs2 = _interopRequireDefault(_CommentsItemViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    className: 'sh-reviews-item',
+	    template: _CommentsItemViewHbs2.default
+	
+	});
+	
+	exports.default = View;
+
+/***/ },
+/* 116 */
+/*!*********************************************************!*\
+  !*** ./wwwroot/homeApp/posts/CommentsItemView.hbs.html ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n<div class="sh-reviews-avatar">\r\n    <a class="sh-creator-photo" href="/user/'+
+	((__t=(user._id))==null?'':__t)+
+	'">\r\n        ';
+	if(user.image.imageUrl != null) { 
+	__p+='\r\n            <img src="'+
+	((__t=(user.image.imageUrl))==null?'':__t)+
+	'" alt="Фотография в профиле"> \r\n        ';
+	 } else { 
+	__p+=' \r\n            <img src="/images/avatar2.jpg" alt="Фотография отсутствует"> \r\n        ';
+	 } 
+	__p+='\r\n    </a>\r\n</div>\r\n<div class="sh-reviews-content">\r\n    <div class="sh-reviews-content-inner">\r\n        <p class="sh-reviews-content-message">'+
+	((__t=(text))==null?'':__t)+
+	'</p>\r\n    </div>\r\n    <div class="sh-reviews-content-footer">\r\n        <a class="sh-reviews-content-user" href="/user/'+
+	((__t=(user._id))==null?'':__t)+
+	'">'+
+	((__t=(user.username))==null?'':__t)+
+	'</a>\r\n        <span>·</span>\r\n        <span class="sh-reviews-content-meta">'+
+	((__t=(moment(dateTime).fromNow()))==null?'':__t)+
+	'</span>\r\n    </div>\r\n</div>\r\n';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 117 */
+/*!********************************************!*\
+  !*** ./wwwroot/sharedViews/ConfirmView.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ConfirmViewHbs = __webpack_require__(/*! ./ConfirmView.hbs.html */ 118);
+	
+	var _ConfirmViewHbs2 = _interopRequireDefault(_ConfirmViewHbs);
+	
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone4 = _interopRequireDefault(_backbone3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _ConfirmViewHbs2.default,
+	    className: 'modal fade',
+	
+	    attributes: {
+	        'tabindex': '-1',
+	        'role': 'dialog',
+	        'aria-hidden': 'true'
+	    },
+	
+	    events: {
+	        'hidden.bs.modal': 'hide',
+	        'click .js-btn-not': 'btnNot',
+	        'click .js-btn-yes': 'btnYes'
+	    },
+	
+	    btnNot: function btnNot(e) {
+	        var modelAnswer = this.model.get('answer');
+	        //Can i use try/catch here?
+	        if (modelAnswer) {
+	            modelAnswer.set('questions', false);
+	        }
+	    },
+	    hide: function hide(e) {
+	        this.$el.trigger('click', '[data-dismiss="modal"]');
+	    },
+	    btnYes: function btnYes(e) {
+	        var modelAnswer = this.model.get('answer');
+	        //Can i use try/catch here?
+	        if (modelAnswer) {
+	            modelAnswer.set('questions', true);
+	        }
+	        this.$el.triggerHandler('hidden.bs.modal');
+	    },
+	    initialize: function initialize(options) {
+	        var opts = options || {};
+	        this.model = new _backbone4.default.Model({ answer: opts.answer, title: opts.title, message: opts.message || false });
+	    },
+	    onAttach: function onAttach() {
+	        this.$el.modal();
+	    }
+	});
+	
+	exports.default = View;
+
+/***/ },
+/* 118 */
+/*!**************************************************!*\
+  !*** ./wwwroot/sharedViews/ConfirmView.hbs.html ***!
+  \**************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="modal-dialog modal-lg">\r\n    <div class="modal-content">\r\n        <div class="modal-header">\r\n            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\r\n            <h4 class="modal-title" id="myLargeModalLabel">'+
+	((__t=( obj.title || ''))==null?'':__t)+
+	'</h4>\r\n        </div>\r\n\r\n        <div class="modal-body">\r\n            ';
+	if(obj.message) { 
+	__p+='<div class="sh-text-center" style="font-size: 28px;line-height: 1.2;font-weight: 400;color: #3a4751">'+
+	((__t=( obj.message))==null?'':__t)+
+	'</div>';
+	 } 
+	__p+='\r\n            <hr />\r\n            <div class="sh-text-center">\r\n                <button type="button" class="ui sh-button standard create big js-btn-yes">'+
+	((__t=(i18n('TITLE_YES')))==null?'':__t)+
+	'</button>\r\n                <button type="button" class="ui sh-button standard action big js-btn-not" data-dismiss="modal">'+
+	((__t=(i18n('TITLE_NO')))==null?'':__t)+
+	'</button>\r\n            </div>\r\n        </div>        \r\n    </div>\r\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 119 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/posts/DetailsView.less ***!
+  \************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 120 */
+/*!*************************************!*\
+  !*** ./wwwroot/data/Domain/User.js ***!
+  \*************************************/
+>>>>>>> master
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+<<<<<<< HEAD
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
@@ -30599,10 +42260,25 @@
 	    onRemoveImage: function onRemoveImage() {
 	        this.model.collection.remove(this.model);
 	    }
+=======
+	var _MongoModel = __webpack_require__(/*! ../MongoModel.js */ 92);
+	
+	var _MongoModel2 = _interopRequireDefault(_MongoModel);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _MongoModel2.default.extend({
+	    urlRoot: '/api/Users'
+>>>>>>> master
 	});
 
 /***/ },
 /* 121 */
+<<<<<<< HEAD
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/ImageView.hbs.html ***!
   \*********************************************************/
@@ -30632,6 +42308,168 @@
 /*!**************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.js ***!
   \**************************************************************/
+=======
+/*!****************************************!*\
+  !*** ./wwwroot/data/Post/PostModel.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, $) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _AsteroidModel = __webpack_require__(/*! ../AsteroidModel.js */ 91);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _AsteroidModel2.default.extend({
+	    create: function create(options) {
+	        var self = this;
+	        if (!options || !options.silent) this.trigger('before:save');
+	        var photos = this.get('details').photos;
+	        if (photos && !_.isEmpty(photos)) {
+	            $.ajax({
+	                type: "POST",
+	                url: "/Img/CommitUploadImage",
+	                contentType: "application/json",
+	                dataType: "json",
+	                data: JSON.stringify(photos)
+	            }).done(function (resp) {
+	                var details = self.get('details');
+	                details.photos = resp;
+	                self.set('details', details, { silent: true });
+	                self._create(options);
+	            });
+	        } else {
+	            this._create(options);
+	        }
+	    },
+	    isOwnerAsync: function isOwnerAsync(userId) {
+	        return $.ajax({
+	            url: '/api/posts/hasPost',
+	            data: { userId: userId, postId: this.get('_id') },
+	            method: 'GET',
+	            type: 'json'
+	        });
+	    },
+	    _create: function _create(options) {
+	        var self = this;
+	
+	        var postPosition = {};
+	        var navigatorPosition = app.user.get('position'),
+	            postCurrentPosition = this.get('details').locations;
+	
+	        if (postCurrentPosition) {
+	            postCurrentPosition.map(function (location) {
+	                if (location.placeType === 'dynamic') {
+	                    postPosition = {
+	                        lat: location.coords.lat(),
+	                        lng: location.coords.lng()
+	                    };
+	                } else {
+	                    postPosition = {
+	                        lat: navigatorPosition.lat,
+	                        lng: navigatorPosition.lng
+	                    };
+	                }
+	            });
+	        }
+	
+	        return this.asteroid.call('addPost', this.attributes, postPosition).result.then(function (resp) {
+	            if (resp.success) {
+	                self.set('_id', resp.result, options);
+	                if (!options || !options.silent) self.trigger('save', resp);
+	            } else {
+	                if (!options || !options.silent) self.trigger('error:save', resp.error);
+	                throw new Error("Creating post error: " + resp.error);
+	            }
+	        }).catch(function (err) {
+	            if (!options || !options.silent) self.trigger('error:save', err);
+	            console.error(err);
+	            throw new Error("Save fail from meteor! Custom error: " + err);
+	        });
+	    },
+	
+	
+	    validation: {
+	
+	        type: {
+	            required: true,
+	            msg: 'Введите категорию объявления'
+	        },
+	
+	        endDatePost: {
+	            required: true,
+	            msg: 'Введите длительность объявления'
+	        },
+	        'details.title': {
+	            required: true,
+	            msg: 'Введите название объявления'
+	        },
+	
+	        'details.locations': function detailsLocations(value, attr, computedState) {
+	            if (!value || _.isEmpty(value)) return "Укажите местоположение";
+	        }
+	    }
+	});
+	
+	//addPost(request, currentLocation)
+	
+	//curentLocation={lat, lng}
+	
+	//request={details, type, tags, jobsDetails, trainingDetails}
+	
+	
+	//details={anonymousPost,
+	//    url,
+	//    title,
+	//    description,
+	//    price,
+	//    photos,
+	//    locations,
+	//    other}
+	//locations=userId,
+	//              name,
+	//              accurateAddress="asfasf",
+	//              coords = {lat,lng,timestamp},
+	//              placeType=dynamic | static,
+	//              public=false,
+	//              _id,
+	//              obscuredCoords
+	//};
+	
+	//photo = {
+	//    data,
+	//    thumbnail
+	//};
+	
+	
+	//jobsDetails={seniority,
+	//    gender,
+	//    contacts,
+	//    attachment,
+	//    typeCategory,
+	//    jobsType,
+	//    payMethod}
+	
+	//trainingsDetails = {
+	//    sectionLearning,
+	//    typeCategory
+	//}
+	
+	//return {success: true, result: post}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 122 */
+/*!**********************************************!*\
+  !*** ./wwwroot/sharedViews/PreloaderView.js ***!
+  \**********************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30644,6 +42482,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
 	var _SelectedLocationViewHbs = __webpack_require__(/*! ./SelectedLocationView.hbs.html */ 123);
 	
 	var _SelectedLocationViewHbs2 = _interopRequireDefault(_SelectedLocationViewHbs);
@@ -30671,11 +42510,32 @@
 /*!********************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.hbs.html ***!
   \********************************************************************/
+=======
+	var _PreloaderViewHbs = __webpack_require__(/*! ./PreloaderView.hbs.html */ 123);
+	
+	var _PreloaderViewHbs2 = _interopRequireDefault(_PreloaderViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _PreloaderViewHbs2.default,
+	    id: 'preloader'
+	});
+	exports.default = View;
+
+/***/ },
+/* 123 */
+/*!****************************************************!*\
+  !*** ./wwwroot/sharedViews/PreloaderView.hbs.html ***!
+  \****************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
 	__p+='<i class="fa fa-map-marker"></i> '+
 	((__t=(obj.accurateAddress||obj.name||'Местоположение не выбрано'))==null?'':__t)+
 	'\r\n';
@@ -30687,6 +42547,9 @@
 	__p+='\r\n';
 	 } 
 	__p+='\r\n\r\n';
+=======
+	__p+='<div class="inner">\n    <span class="loader"></span>\n</div>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -30694,12 +42557,21 @@
 
 /***/ },
 /* 124 */
+<<<<<<< HEAD
 /*!***************************************************!*\
   !*** ./wwwroot/sharedViews/ModalContainerView.js ***!
   \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+=======
+/*!********************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/CreatePostView.js ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment, $) {'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -30709,6 +42581,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
 	var _ModalContainerViewHbs = __webpack_require__(/*! ./ModalContainerView.hbs.html */ 125);
 	
 	var _ModalContainerViewHbs2 = _interopRequireDefault(_ModalContainerViewHbs);
@@ -30845,6 +42718,467 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(_, $) {'use strict';
+=======
+	var _CreatePostViewHbs = __webpack_require__(/*! ./CreatePostView.hbs.html */ 125);
+	
+	var _CreatePostViewHbs2 = _interopRequireDefault(_CreatePostViewHbs);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _scriptjs = __webpack_require__(/*! scriptjs */ 126);
+	
+	var _scriptjs2 = _interopRequireDefault(_scriptjs);
+	
+	var _UploadedImagesView = __webpack_require__(/*! ./UploadedImagesView.js */ 127);
+	
+	var _UploadedImagesView2 = _interopRequireDefault(_UploadedImagesView);
+	
+	var _SelectedLocationView = __webpack_require__(/*! ./SelectedLocationView.js */ 130);
+	
+	var _SelectedLocationView2 = _interopRequireDefault(_SelectedLocationView);
+	
+	var _ModalContainerView = __webpack_require__(/*! ../../../sharedViews/ModalContainerView.js */ 132);
+	
+	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
+	
+	var _SuccessView = __webpack_require__(/*! ../../../sharedViews/SuccessView.js */ 134);
+	
+	var _SuccessView2 = _interopRequireDefault(_SuccessView);
+	
+	var _LocationMapView = __webpack_require__(/*! ./LocationMapView.js */ 136);
+	
+	var _LocationMapView2 = _interopRequireDefault(_LocationMapView);
+	
+	__webpack_require__(/*! bootstrap-datepicker */ 140);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _CreatePostViewHbs2.default,
+	    tagName: 'section',
+	    className: 'sh-create-post',
+	    changeTimeOut: null,
+	    images: null,
+	    events: {
+	        'click #back': 'back',
+	        "change #detailsTitle": 'setTitle',
+	        // "change #detailsUrl":'setUrl',
+	        //"change #detailsPrice":'setPrice',
+	        "change #postType": 'setPostType',
+	        "change #detailsDescription": 'setDescription',
+	        "click #saveShiner": 'save',
+	        'click #addImgButton': 'showImageDialog',
+	        'change #addImgInput': 'uploadImage',
+	        'click #selectLocation': 'onSelectLocation',
+	        'change #dateDurationSelect': 'setFixedDuration',
+	        'change #dateDuration': 'setDate',
+	        'change #anonymous-post': 'setAnonimous'
+	    },
+	
+	    regions: {
+	        'images': '#uploadedImages',
+	        'location': '#locationName',
+	        'modal': '#modalContainer'
+	    },
+	
+	    modelEvents: {
+	        'change': 'toggleCreateButton',
+	        'save': 'showSuccess',
+	        'error:save': 'showError'
+	    },
+	
+	    initialize: function initialize() {
+	        this.images = new Backbone.Collection();
+	        this.selectedLocation = new Backbone.Model({
+	            coords: _app2.default.user.get('position')
+	        });
+	        this.listenTo(this.selectedLocation, 'change', this.showLocation);
+	        this.listenTo(this.selectedLocation, 'change', this.setLocation);
+	        this.listenTo(this.images, 'change', this.setImages);
+	        //window.uploadedImages = this.images; // debug
+	    },
+	    setAnonimous: function setAnonimous(e) {
+	        this.model.set('anonymousPost', e.target.checked);
+	    },
+	    setLocation: function setLocation() {
+	        var details = this.model.get('details');
+	        var location = this.selectedLocation.toJSON() || {};
+	
+	        if (location["name"]) {
+	            location["userId"] = _app2.default.user.id;
+	            location["public"] = false;
+	            details.locations = [location];
+	            this.model.set('details', details, { validate: true });
+	            this.model.trigger('change');
+	        }
+	    },
+	    setImages: function setImages() {
+	        var details = this.model.get('details');
+	        var images = [];
+	        this.images.each(function (img) {
+	            if (img.has('data')) {
+	                images.push(img.toJSON());
+	            }
+	        }, this);
+	        details.photos = images;
+	        this.model.set('details', details);
+	    },
+	    setTitle: function setTitle(e) {
+	        var details = this.model.get('details') || {};
+	        if (e.target.value && !_.isEmpty(e.target.value.trim())) {
+	            details.title = e.target.value.trim();
+	        } else {
+	            delete details.title;
+	        }
+	        this.model.set('details', details, { validate: true });
+	    },
+	    setUrl: function setUrl(e) {
+	        var details = this.model.get('details') || {};
+	        if (e.target.value && !_.isEmpty(e.target.value.trim())) {
+	            details.url = e.target.value.trim();
+	        } else {
+	            delete details.url;
+	        }
+	        this.model.set('details', details);
+	    },
+	    setPrice: function setPrice(e) {
+	        var details = this.model.get('details') || {};
+	        if (e.target.value && !_.isEmpty(e.target.value.trim())) {
+	            details.price = e.target.value.trim();
+	        } else {
+	            delete details.price;
+	        }
+	        this.model.set('details', details);
+	    },
+	    setPostType: function setPostType(e) {
+	        var id = e.target.value;
+	        var postType = _app2.default.postAdTypes.get(id);
+	        this.model.set('type', postType ? postType.get('name') : void 0, { validate: true });
+	    },
+	    setDescription: function setDescription(e) {
+	        var _this = this;
+	
+	        if (this.changeTimeOut) clearTimeout(this.changeTimeOut);
+	        this.changeTimeOut = setTimeout(_.bind(function () {
+	            var val = e.editor.getData();
+	            val = val && !_.isEmpty(val) ? val.trim() : void 0;
+	            var details = _this.model.get('details') || {};
+	            if (val && !_.isEmpty(val.trim())) {
+	                details.description = val.trim();
+	            } else {
+	                delete details.description;
+	            }
+	            _this.model.set('details', details);
+	        }, this), 400);
+	    },
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            postTypes: _app2.default.postAdTypes.toJSON()
+	        };
+	    },
+	    onRender: function onRender() {
+	        this.showChildView('images', new _UploadedImagesView2.default({ collection: this.images }));
+	        this.showChildView('location', new _SelectedLocationView2.default({ model: this.selectedLocation }));
+	    },
+	    onAttach: function onAttach() {
+	        this.initHtmlEditor();
+	        this.initDatepicker();
+	        Backbone.Validation.bind(this);
+	    },
+	    initHtmlEditor: function initHtmlEditor() {
+	        //ru-RU
+	        var self = this;
+	        (0, _scriptjs2.default)('/lib/ckeditor/ckeditor.js', function () {
+	            CKEDITOR.config.language = 'ru';
+	            if (CKEDITOR.status == 'loaded') {
+	                CKEDITOR.replace("detailsDescription");
+	                CKEDITOR.instances["detailsDescription"].on('change', _.bind(self.setDescription, self));
+	            } else {
+	                CKEDITOR.on('loaded', function () {
+	                    CKEDITOR.replace("detailsDescription");
+	                    CKEDITOR.instances["detailsDescription"].on('change', _.bind(self.setDescription, self));
+	                });
+	            }
+	        });
+	    },
+	    initDatepicker: function initDatepicker() {
+	        this.$('#dateDuration').datepicker({
+	            language: 'ru',
+	            format: 'dd/mm/yyyy'
+	        });
+	    },
+	    setFixedDuration: function setFixedDuration(e) {
+	        var hours = parseInt(e.target.value);
+	        var ms = hours * 3600000;
+	        var dateMoment = moment();
+	        dateMoment = dateMoment.add(ms);
+	        this.$('#dateDuration').datepicker('setDate', dateMoment.toDate());
+	    },
+	    setDate: function setDate(e) {
+	        if (e.target.value && !_.isEmpty(e.target.value)) {
+	            var val = moment(e.target.value, "DD/MM/YYYY");
+	            this.model.set('endDatePost', val.valueOf(), { validate: true });
+	        }
+	    },
+	    onBeforeRemove: function onBeforeRemove() {
+	        if (CKEDITOR) CKEDITOR.instances["detailsDescription"].destroy();
+	        Backbone.Validation.unbind(this);
+	    },
+	    showImageDialog: function showImageDialog() {
+	        this.$('#addImgInput').trigger('click');
+	    },
+	
+	
+	    uploadImage: function uploadImage(e) {
+	        var _this2 = this;
+	
+	        var re_text = /\.bmp|\.jpeg|\.jpg|\.png/i;
+	        if (e.target.value.search(re_text) == -1) {
+	            console.error("Некорректное расширение картинки\n Должно быть  bmp, jpeg, jpg, png ");
+	            alert("Некорректное расширение картинки\n Должно быть  bmp, jpeg, jpg, png ");
+	        } else {
+	            var data = new FormData();
+	            var files = $(e.target).get(0).files;
+	            _.each(files, function (f) {
+	                data.append(f.name, f);
+	                var model = new Backbone.Model({
+	                    type: f.type,
+	                    name: f.name,
+	                    id: f.name
+	                });
+	                _this2.images.add(model);
+	            }, this);
+	
+	            var self = this;
+	            $.ajax({
+	                type: "POST",
+	                url: "/Img/UploadTempImage",
+	                contentType: false,
+	                processData: false,
+	                data: data
+	            }).done(function (resp, textStatus, xhr) {
+	                if (textStatus === 'success') {
+	                    _.each(resp, function (item) {
+	                        var m = self.images.get(item.id);
+	                        m.set('data', item.data);
+	                    });
+	                }
+	            });
+	        }
+	        e.target.value = null;
+	    },
+	
+	    onSelectLocation: function onSelectLocation(e) {
+	        this.showChildView('modal', new _ModalContainerView2.default({ view: new _LocationMapView2.default({ model: this.selectedLocation }), title: 'Выбор местоположения' }));
+	    },
+	    toggleCreateButton: function toggleCreateButton() {
+	        var errors = this.model.validate();
+	        var $btn = this.$('#saveShiner');
+	        if (!errors) {
+	            $btn.removeClass('disabled');
+	        } else {
+	            if (!$btn.hasClass('disabled')) $btn.addClass('disabled');
+	        }
+	    },
+	    save: function save() {
+	        if (!this.model.validate()) {
+	            this.$('#saveShiner').addClass('disabled');
+	            this.model.create();
+	        }
+	    },
+	    showSuccess: function showSuccess() {
+	        this.$('#saveShiner').removeClass('disabled');
+	        this.showChildView('modal', new _ModalContainerView2.default({
+	            view: new _SuccessView2.default({
+	                resultUrl: '/posts/' + this.model.id,
+	                title: 'Новый светлячок успешно установлен и доступен для пользователей.',
+	                message: 'Перейдите на персональную страницу Вашего объявления для просмотра визитов, комментариев и другой информации.'
+	            }),
+	            title: 'Поздравляем, Вы добавили новый светлячок!'
+	        }));
+	    },
+	    showError: function showError(er) {
+	        this.$('#saveShiner').removeClass('disabled');
+	        alert("Ошибка создания поста. " + er);
+	    },
+	    back: function back() {
+	        history.back();
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12), __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 125 */
+/*!**************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/CreatePostView.hbs.html ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div id="modalContainer"></div>\r\n<div class="container">\r\n    <div class="sh-form">\r\n        <!--1-->\r\n        <div class="sh-form-step">\r\n            <div class="sh-form-row sh-caption">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Что\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text sh-padding-title">\r\n                        Информация из этой секции будет использоваться при поиске вашего объявления. Пожалуйста, указывайте точные сведения, чтобы найти подходящий вариант.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!--\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title"></div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text"></div>\r\n                </div>\r\n            </div>\r\n            -->\r\n\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Анонимный пост\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-checkbox">\r\n                            <input id="anonymous-post" type="checkbox" class="js-toggle-checked"> <span>Включить анонимный пост</span>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Заголовок\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-input">\r\n                            <input type="text" name="details.title" class="sh-input-control form-control" placeholder="Название должно быть конкретным" id="detailsTitle">\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Описание\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-textarea">\r\n                            <textarea class="sh-textarea-control" id="detailsDescription" placeholder="Подробное описание – это обязательный параметр объявления"></textarea>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Категория\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-select">\r\n                            <select class="js-ad-type-select" required="" id="postType" name="type">\r\n                                <option value=""> -- Выберите тип -- </option>\r\n                                ';
+	_.each(postTypes,function(type) { 
+	__p+='\r\n                                <option value="'+
+	((__t=(type._id))==null?'':__t)+
+	'">'+
+	((__t=(type.i18n.ru.fullName))==null?'':__t)+
+	'</option>\r\n                                ';
+	 }); 
+	__p+='\r\n                            </select>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Фотографии\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-photos-upload">\r\n                            <div class="sh-photos-upload-wrapper">\r\n                                <div class="sh-photos-upload-image">\r\n                                    <i class="fa fa-camera"></i>\r\n                                </div>\r\n                                <div class="sh-photos-upload-description">\r\n                                    <span>Добавьте фотографии для объявления.<br />Вы всегда можете вернуться к сохраненному объявлению и добавить новые фотографии.</span>\r\n                                </div>\r\n                                <div class="sh-photos-upload-button">\r\n                                    <a class="ui sh-button" id="addImgButton"> Добавить фото</a>\r\n                                    <input id="addImgInput" type="file" style="display: none" />\r\n                                </div>\r\n                            </div>\r\n                            <div id="uploadedImages">\r\n\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n        <!--2-->\r\n        <div class="sh-form-step">\r\n            <div class="sh-form-row sh-caption">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Где\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text sh-padding-title">\r\n                        Выберите надстройку для вашего объявления. С помощью этих данных пользователи найдут объявления в подходящем для них месте.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title"></div>\r\n                </div>\r\n                \r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text text-center">\r\n                        <a id="selectLocation">Выбрать Местонахождение объявления</a>\r\n                        <div id="locationName" class="sh-location-name" name="details.locations"></div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <!--3-->\r\n        <div class="sh-form-step">\r\n            <div class="sh-form-row sh-caption">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Когда\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text sh-padding-title">\r\n                        Установите время, в течении которого ваше объявление будет активным.\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="sh-form-row">\r\n                <div class="sh-form-label">\r\n                    <div class="sh-form-label-title">\r\n                        Продолжительность\r\n                    </div>\r\n                </div>\r\n                <div class="sh-form-content">\r\n                    <div class="sh-form-content-text">\r\n                        <div class="sh-datepicker" name="endDatePost">\r\n                            <div class="sh-datepicker-wrapper">\r\n                                <div class="sh-textfield-picker action l input">\r\n                                    <input id="dateDuration" type="text" class="sh-input-control form-control sh-datepicker" placeholder="Нажмите, чтобы выбрать дату" data-format="yyyy-mm-dd" data-lang="en" data-RTL="false">\r\n                                </div>\r\n                                <div class="sh-select sh-select-duration-picker">\r\n                                    <select class="form-control select2" id="dateDurationSelect">\r\n                                        <option value="24">Один день</option>\r\n                                        <option value="48">Два дня</option>\r\n                                        <option value="168">Неделя</option>\r\n                                        <option value="336">Две недели</option>\r\n                                        <option value="720">Месяц</option>\r\n                                        <option value="8760">Год</option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class="sh-create-post-btn pull-right">\r\n            <button class="ui sh-button standard create big disabled" id="saveShiner">Установить Светлячок</button>\r\n        </div>\r\n\r\n\r\n    </div>\r\n\r\n\r\n    <!--\r\n    <div class="sh-work-wrapper">\r\n        <h1 class="sh-section-hero-headline sh-text-center">Как это работает</h1>\r\n        <p class="sh-section-intro sh-text-center">Сайт для поиска услуг, мероприятий и других объявлений от людей вокруг Вас</p>\r\n\r\n        <div class="sh-work-tabs"></div>\r\n    </div>\r\n    -->\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 126 */
+/*!***********************************!*\
+  !*** ./~/scriptjs/dist/script.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+	
+	/*!
+	  * $script.js JS loader & dependency manager
+	  * https://github.com/ded/script.js
+	  * (c) Dustin Diaz 2014 | License MIT
+	  */
+	
+	(function (name, definition) {
+	  if (typeof module != 'undefined' && module.exports) module.exports = definition();else if (true) !(__WEBPACK_AMD_DEFINE_FACTORY__ = (definition), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else this[name] = definition();
+	})('$script', function () {
+	  var doc = document,
+	      head = doc.getElementsByTagName('head')[0],
+	      s = 'string',
+	      f = false,
+	      push = 'push',
+	      readyState = 'readyState',
+	      onreadystatechange = 'onreadystatechange',
+	      list = {},
+	      ids = {},
+	      delay = {},
+	      scripts = {},
+	      scriptpath,
+	      urlArgs;
+	
+	  function every(ar, fn) {
+	    for (var i = 0, j = ar.length; i < j; ++i) {
+	      if (!fn(ar[i])) return f;
+	    }return 1;
+	  }
+	  function each(ar, fn) {
+	    every(ar, function (el) {
+	      return !fn(el);
+	    });
+	  }
+	
+	  function $script(paths, idOrDone, optDone) {
+	    paths = paths[push] ? paths : [paths];
+	    var idOrDoneIsDone = idOrDone && idOrDone.call,
+	        done = idOrDoneIsDone ? idOrDone : optDone,
+	        id = idOrDoneIsDone ? paths.join('') : idOrDone,
+	        queue = paths.length;
+	    function loopFn(item) {
+	      return item.call ? item() : list[item];
+	    }
+	    function callback() {
+	      if (! --queue) {
+	        list[id] = 1;
+	        done && done();
+	        for (var dset in delay) {
+	          every(dset.split('|'), loopFn) && !each(delay[dset], loopFn) && (delay[dset] = []);
+	        }
+	      }
+	    }
+	    setTimeout(function () {
+	      each(paths, function loading(path, force) {
+	        if (path === null) return callback();
+	
+	        if (!force && !/^https?:\/\//.test(path) && scriptpath) {
+	          path = path.indexOf('.js') === -1 ? scriptpath + path + '.js' : scriptpath + path;
+	        }
+	
+	        if (scripts[path]) {
+	          if (id) ids[id] = 1;
+	          return scripts[path] == 2 ? callback() : setTimeout(function () {
+	            loading(path, true);
+	          }, 0);
+	        }
+	
+	        scripts[path] = 1;
+	        if (id) ids[id] = 1;
+	        create(path, callback);
+	      });
+	    }, 0);
+	    return $script;
+	  }
+	
+	  function create(path, fn) {
+	    var el = doc.createElement('script'),
+	        loaded;
+	    el.onload = el.onerror = el[onreadystatechange] = function () {
+	      if (el[readyState] && !/^c|loade/.test(el[readyState]) || loaded) return;
+	      el.onload = el[onreadystatechange] = null;
+	      loaded = 1;
+	      scripts[path] = 2;
+	      fn();
+	    };
+	    el.async = 1;
+	    el.src = urlArgs ? path + (path.indexOf('?') === -1 ? '?' : '&') + urlArgs : path;
+	    head.insertBefore(el, head.lastChild);
+	  }
+	
+	  $script.get = create;
+	
+	  $script.order = function (scripts, id, done) {
+	    (function callback(s) {
+	      s = scripts.shift();
+	      !scripts.length ? $script(s, id, done) : $script(s, callback);
+	    })();
+	  };
+	
+	  $script.path = function (p) {
+	    scriptpath = p;
+	  };
+	  $script.urlArgs = function (str) {
+	    urlArgs = str;
+	  };
+	  $script.ready = function (deps, ready, req) {
+	    deps = deps[push] ? deps : [deps];
+	    var missing = [];
+	    !each(deps, function (dep) {
+	      list[dep] || missing[push](dep);
+	    }) && every(deps, function (dep) {
+	      return list[dep];
+	    }) ? ready() : !function (key) {
+	      delay[key] = delay[key] || [];
+	      delay[key][push](ready);
+	      req && req(missing);
+	    }(deps.join('|'));
+	    return $script;
+	  };
+	
+	  $script.done = function (idOrDone) {
+	    $script([null], idOrDone);
+	  };
+	
+	  return $script;
+	});
+
+/***/ },
+/* 127 */
+/*!************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/UploadedImagesView.js ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -30854,6 +43188,37 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+	var _ImageView = __webpack_require__(/*! ./ImageView.js */ 128);
+	
+	var _ImageView2 = _interopRequireDefault(_ImageView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.CollectionView.extend({
+	    childView: _ImageView2.default,
+	    tagName: 'div',
+	    className: 'sh-photos-upload-thumbs'
+	});
+
+/***/ },
+/* 128 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/ImageView.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+>>>>>>> master
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+<<<<<<< HEAD
 	var _LocationMapViewHbs = __webpack_require__(/*! ./LocationMapView.hbs.html */ 129);
 	
 	var _LocationMapViewHbs2 = _interopRequireDefault(_LocationMapViewHbs);
@@ -30869,10 +43234,16 @@
 	var _LocationSetButtonHbs = __webpack_require__(/*! ./LocationSetButton.hbs.html */ 131);
 	
 	var _LocationSetButtonHbs2 = _interopRequireDefault(_LocationSetButtonHbs);
+=======
+	var _ImageViewHbs = __webpack_require__(/*! ./ImageView.hbs.html */ 129);
+	
+	var _ImageViewHbs2 = _interopRequireDefault(_ImageViewHbs);
+>>>>>>> master
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _backbone2.default.View.extend({
+<<<<<<< HEAD
 	    template: _LocationMapViewHbs2.default,
 	    map: null,
 	    shiner: null,
@@ -31030,12 +43401,46 @@
 /*!***************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationMapView.hbs.html ***!
   \***************************************************************/
+=======
+	    template: _ImageViewHbs2.default,
+	    className: 'img-item',
+	    modelEvents: {
+	        'change:data': 'render'
+	    },
+	    events: {
+	        'click .removeImage': 'onRemoveImage'
+	    },
+	    onRemoveImage: function onRemoveImage() {
+	        this.model.collection.remove(this.model);
+	    }
+	});
+
+/***/ },
+/* 129 */
+/*!*********************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/ImageView.hbs.html ***!
+  \*********************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
 	__p+='<div id="selectLocation_map" style="height: 400px">\r\n   \r\n</div>\r\n<div>\r\n      <div class="input-group">\r\n            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>\r\n            <input id="locationMap_locationName" type="text" class="form-control"aria-describedby="sizing-addon1">\r\n      </div>\r\n</div>';
+=======
+	__p+='';
+	if(obj.data) { 
+	__p+='\n<img width="120" src="data:'+
+	((__t=(type))==null?'':__t)+
+	';base64,'+
+	((__t=(data))==null?'':__t)+
+	'"/>\n';
+	 } else { 
+	__p+='\n<img width="120" class="img-responsive" src="/images/working.gif" />\n';
+	 } 
+	__p+='\n<a title="Удалить" class="removeImage"><i class="fa fa-remove text-danger"></i></a>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -31043,6 +43448,7 @@
 
 /***/ },
 /* 130 */
+<<<<<<< HEAD
 /*!**************************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationBindToUserPosition.hbs.html ***!
   \**************************************************************************/
@@ -31062,12 +43468,70 @@
 /*!*****************************************************************!*\
   !*** ./wwwroot/homeApp/posts/create/LocationSetButton.hbs.html ***!
   \*****************************************************************/
+=======
+/*!**************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.js ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _SelectedLocationViewHbs = __webpack_require__(/*! ./SelectedLocationView.hbs.html */ 131);
+	
+	var _SelectedLocationViewHbs2 = _interopRequireDefault(_SelectedLocationViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	    template: _SelectedLocationViewHbs2.default,
+	    modelEvents: {
+	        'change': 'render'
+	    }
+	});
+	
+	//locations=userId,
+	//              name,
+	//              accurateAddress="asfasf",
+	//              coords = {lat,lng,timestamp},
+	//              placeType=dynamic | static,
+	//              public=false,
+	//              _id,
+	//              obscuredCoords
+
+/***/ },
+/* 131 */
+/*!********************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/SelectedLocationView.hbs.html ***!
+  \********************************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
 	__p+='<button class="ui sh-button standard create margin-bottom-10">Готово</button>';
+=======
+	__p+='<i class="fa fa-map-marker"></i> '+
+	((__t=(obj.accurateAddress||obj.name||'Местоположение не выбрано'))==null?'':__t)+
+	'\n';
+	if (obj.placeType) { 
+	__p+='\n    ';
+	if (obj.placeType=='dynamic') { 
+	__p+='\n        <span class="label label-info">Привязано к местоположению пользователя</span>\n    ';
+	 } 
+	__p+='\n';
+	 } 
+	__p+='\n\n';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -31075,6 +43539,7 @@
 
 /***/ },
 /* 132 */
+<<<<<<< HEAD
 /*!****************************************************************!*\
   !*** ./~/bootstrap-datepicker/dist/js/bootstrap-datepicker.js ***!
   \****************************************************************/
@@ -33171,14 +45636,395 @@
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.hbs.html ***!
   \************************************************************/
+=======
+/*!***************************************************!*\
+  !*** ./wwwroot/sharedViews/ModalContainerView.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ModalContainerViewHbs = __webpack_require__(/*! ./ModalContainerView.hbs.html */ 133);
+	
+	var _ModalContainerViewHbs2 = _interopRequireDefault(_ModalContainerViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	    template: _ModalContainerViewHbs2.default,
+	    className: 'modal fade',
+	
+	    containerView: null,
+	
+	    attributes: {
+	        'tabindex': '-1',
+	        'role': 'dialog',
+	        'aria-hidden': 'true'
+	    },
+	
+	    events: {
+	        'hidden.bs.modal': 'hide',
+	        'shown.bs.modal': 'onShow'
+	    },
+	
+	    regions: {
+	        'childView': '.modal-body'
+	    },
+	
+	    initialize: function initialize(options) {
+	        this.model = new Backbone.Model({ title: options.title || '' });
+	        this.containerView = options.view;
+	    },
+	    hide: function hide() {
+	        this.$el.modal('hide');
+	        $('body').removeClass('modal-open');
+	        $('.modal-backdrop').remove();
+	    },
+	    onShow: function onShow() {
+	        this.showChildView('childView', this.containerView);
+	        this.listenToOnce(this.containerView, 'destroy', this.hide);
+	        //detach
+	    },
+	    onAttach: function onAttach() {
+	        this.$el.modal();
+	    }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 133 */
+/*!*********************************************************!*\
+  !*** ./wwwroot/sharedViews/ModalContainerView.hbs.html ***!
+  \*********************************************************/
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+	__p+='<div class="modal-dialog modal-lg">\n    <div class="modal-content">\n        <div class="modal-header">\n            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\n            <h4 class="modal-title" id="myLargeModalLabel">'+
+	((__t=(obj.title||''))==null?'':__t)+
+	'</h4>\n        </div>\n        <div class="modal-body"></div>\n    </div>\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 134 */
+/*!********************************************!*\
+  !*** ./wwwroot/sharedViews/SuccessView.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _SuccessView = __webpack_require__(/*! ./SuccessView.html */ 135);
+	
+	var _SuccessView2 = _interopRequireDefault(_SuccessView);
+	
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone4 = _interopRequireDefault(_backbone3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _SuccessView2.default,
+	
+	    initialize: function initialize(options) {
+	        var opts = options || {};
+	        this.model = new _backbone4.default.Model({
+	            resultUrl: opts.resultUrl,
+	            title: opts.title,
+	            message: opts.message
+	        });
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 135 */
+/*!**********************************************!*\
+  !*** ./wwwroot/sharedViews/SuccessView.html ***!
+  \**********************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div>\n    \n    <strong>'+
+	((__t=(obj.title))==null?'':__t)+
+	'</strong>\n\n    <p>\n        '+
+	((__t=(obj.message))==null?'':__t)+
+	'\n    </p>\n\n    ';
+	if(obj.resultUrl) { 
+	__p+='\n        <hr />\n        <div class="sh-text-center">\r\n            <a href="'+
+	((__t=(resultUrl))==null?'':__t)+
+	'" onclick="window.scrollTo(0, 0);" class="ui sh-button standard action big"><span>Перейти</span></a>\r\n        </div>\n    ';
+	 } 
+	__p+='\n\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 136 */
+/*!*********************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/LocationMapView.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, $) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _LocationMapViewHbs = __webpack_require__(/*! ./LocationMapView.hbs.html */ 137);
+	
+	var _LocationMapViewHbs2 = _interopRequireDefault(_LocationMapViewHbs);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _LocationBindToUserPositionHbs = __webpack_require__(/*! ./LocationBindToUserPosition.hbs.html */ 138);
+	
+	var _LocationBindToUserPositionHbs2 = _interopRequireDefault(_LocationBindToUserPositionHbs);
+	
+	var _LocationSetButtonHbs = __webpack_require__(/*! ./LocationSetButton.hbs.html */ 139);
+	
+	var _LocationSetButtonHbs2 = _interopRequireDefault(_LocationSetButtonHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	    template: _LocationMapViewHbs2.default,
+	    map: null,
+	    shiner: null,
+	    userMarker: null,
+	    infoWindow: null,
+	    geocodeTimeout: null,
+	    searchInput: null,
+	
+	    modelEvents: {
+	        'change:name': 'renderName',
+	        'change:placeType': 'bindOrUnbindToUser'
+	    },
+	
+	    onAttach: function onAttach() {
+	        this.initMap();
+	        this.showShiner();
+	        this.showUser();
+	        this.showDoneButton();
+	        this.showDynamicOrStaticSelection();
+	        this.showSearchBox;
+	    },
+	    renderName: function renderName() {
+	        this.$('#locationMap_locationName').val(this.model.get('accurateAddress'));
+	    },
+	    initMap: function initMap() {
+	        var defaultCoords = { lat: 55.75396, lng: 37.620393 };
+	        var center = _app2.default.user.get('position') || defaultCoords;
+	        this.map = new google.maps.Map(this.$('#selectLocation_map')[0], {
+	            center: center,
+	            zoom: 14
+	        });
+	    },
+	    showShiner: function showShiner() {
+	        var image = {
+	            url: '/images/shiners/shiner_marker.png',
+	            scaledSize: new window.google.maps.Size(25, 33),
+	            origin: new window.google.maps.Point(0, 0),
+	            anchor: new window.google.maps.Point(12, 33)
+	        };
+	        this.shiner = new window.google.maps.Marker({
+	            position: this.map.getCenter(),
+	            map: this.map,
+	            icon: image,
+	            title: 'перетащите светлячок',
+	            draggable: true
+	        });
+	        window.shiner = this.shiner; // debug
+	        this.infoWindow = new google.maps.InfoWindow({
+	            content: "Перетащите светлячок"
+	        });
+	        this.shiner.addListener('position_changed', _.bind(this.setLocation, this));
+	        this.infoWindow.open(this.map, this.shiner);
+	        this.setLocation();
+	    },
+	    showUser: function showUser() {
+	        var image = {
+	            url: '/images/shiners/user.png',
+	            scaledSize: new window.google.maps.Size(35, 35),
+	            origin: new window.google.maps.Point(0, 0),
+	            anchor: new window.google.maps.Point(17, 17)
+	        };
+	        this.userMarker = new window.google.maps.Marker({
+	            position: _app2.default.user.get('position'),
+	            map: this.map,
+	            icon: image,
+	            title: 'Вы (' + _app2.default.user.get('username') + ')'
+	        });
+	    },
+	    showDoneButton: function showDoneButton() {
+	        var el = $((0, _LocationSetButtonHbs2.default)()).get(0);
+	        var self = this;
+	        el.addEventListener('click', function () {
+	            //self.setLocation();
+	            self.remove();
+	            self.trigger('destroy');
+	        });
+	
+	        this.map.controls[window.google.maps.ControlPosition.BOTTOM_CENTER].push(el);
+	    },
+	    showDynamicOrStaticSelection: function showDynamicOrStaticSelection() {
+	        var $container = $((0, _LocationBindToUserPositionHbs2.default)()),
+	            self = this;
+	        this.changePlaceTypeEl = $container.find('input')[0];
+	
+	        this.changePlaceTypeEl.addEventListener('change', function () {
+	            if (self.changePlaceTypeEl.checked) {
+	                self.model.set('placeType', 'dynamic');
+	                self.shiner.setDraggable(false);
+	            } else {
+	                self.model.set('placeType', 'static');
+	            }
+	        });
+	        this.map.controls[window.google.maps.ControlPosition.TOP_CENTER].push($container[0]);
+	        $container.tooltip();
+	    },
+	    bindOrUnbindToUser: function bindOrUnbindToUser() {
+	        if (this.model.get('placeType') === 'dynamic') {
+	            this.infoWindow.close();
+	            this.shiner.setPosition(_app2.default.user.get('position'));
+	            this.shiner.setDraggable(false);
+	            this.$(this.searchInput).prop('readonly', true);
+	
+	            var bounds = new google.maps.LatLngBounds();
+	            this.map.setCenter(this.shiner.getPosition());
+	        } else {
+	            this.shiner.setDraggable(true);
+	            this.infoWindow.open(this.map, this.shiner);
+	            this.$(this.searchInput).prop('readonly', false);
+	        }
+	    },
+	    setLocation: function setLocation() {
+	        var model = this.model,
+	            self = this;
+	        if (this.geocodeTimeout) clearTimeout(this.geocodeTimeout);
+	        this.geocodeTimeout = setTimeout(function () {
+	
+	            _app2.default.geocoder.geocode({ 'location': self.shiner.getPosition() }, function (results, status) {
+	                if (status === window.google.maps.GeocoderStatus.OK) {
+	                    var parts = results[0].formatted_address.split(', ');
+	                    parts.length = parts.length > 3 ? 3 : parts.length;
+	                    model.set({
+	                        coords: self.shiner.getPosition(),
+	                        name: results[0].formatted_address,
+	                        accurateAddress: parts.join(', '),
+	                        placeType: self.shiner.getDraggable() ? 'static' : 'dynamic'
+	                    });
+	                }
+	            });
+	        }, 300);
+	    },
+	    onBeforeRemove: function onBeforeRemove() {
+	        this.map.unbindAll();
+	        delete this.map;
+	    },
+	    showSearchBox: function showSearchBox() {
+	        this.searchInput = document.getElementById('locationMap_locationName');
+	        var searchBox = new google.maps.places.SearchBox(this.searchInput);
+	        //this.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(input);
+	        var model = this.model,
+	            self = this;
+	        searchBox.addListener('places_changed', function () {
+	            var places = searchBox.getPlaces();
+	            if (places.length == 0) {
+	                return;
+	            }
+	            var place = places[0];
+	            self.shiner.setPosition(place.geometry.location);
+	            self.map.setCenter(self.shiner.getPosition());
+	        });
+	    }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 137 */
+/*!***************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/LocationMapView.hbs.html ***!
+  \***************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div>\r\n    <div class="input-group margin-bottom-10">\r\n        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>\r\n        <input id="locationMap_locationName" type="text" class="form-control" aria-describedby="sizing-addon1">\r\n    </div>\r\n</div>\r\n\r\n<div id="selectLocation_map" style="height: 400px"></div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 138 */
+/*!**************************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/LocationBindToUserPosition.hbs.html ***!
+  \**************************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<label style="background-color: white;" class="switch switch-primary margin-top-10" data-toggle="tooltip" data-placement="bottom" title="Объявление будет менять свое местоположение с Вами">\n    <input type="checkbox">\n    <span class="switch-label" data-on="Да" data-off="Нет"></span>\n    <span> Привязать к Вашему местоположению?</span>\n    <small class="text-muted"></small>\n</label>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 139 */
+/*!*****************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/create/LocationSetButton.hbs.html ***!
+  \*****************************************************************/
+>>>>>>> master
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+<<<<<<< HEAD
 	__p+='<main class="sh-content">\r\n    <div class="sh-page-chats">\r\n        <div class="container">\r\n            <!--<h1 class="sh-section-hero-headline">'+
 	((__t=(i18n('h_messages')))==null?'':__t)+
 	'</h1>-->\r\n            <div id="myChatsContaner" class="sh-page-block sh-pages-chats-wrapper"></div>\r\n        </div>\r\n    </div>    \r\n</main>';
+=======
+	__p+='<button class="ui sh-button standard create big margin-bottom-20">'+
+	((__t=(i18n('BTN_DONE')))==null?'':__t)+
+	'</button>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -33186,6 +46032,7 @@
 
 /***/ },
 /* 140 */
+<<<<<<< HEAD
 /*!*******************************************************!*\
   !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.js ***!
   \*******************************************************/
@@ -34179,6 +47026,1858 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+=======
+/*!****************************************************************!*\
+  !*** ./~/bootstrap-datepicker/dist/js/bootstrap-datepicker.js ***!
+  \****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	/*!
+	 * Datepicker for Bootstrap v1.6.4 (https://github.com/eternicode/bootstrap-datepicker)
+	 *
+	 * Copyright 2012 Stefan Petre
+	 * Improvements by Andrew Rowls
+	 * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+	 */(function (factory) {
+		if (true) {
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ 3)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object') {
+			factory(require('jquery'));
+		} else {
+			factory(jQuery);
+		}
+	})(function ($, undefined) {
+	
+		function UTCDate() {
+			return new Date(Date.UTC.apply(Date, arguments));
+		}
+		function UTCToday() {
+			var today = new Date();
+			return UTCDate(today.getFullYear(), today.getMonth(), today.getDate());
+		}
+		function isUTCEquals(date1, date2) {
+			return date1.getUTCFullYear() === date2.getUTCFullYear() && date1.getUTCMonth() === date2.getUTCMonth() && date1.getUTCDate() === date2.getUTCDate();
+		}
+		function alias(method) {
+			return function () {
+				return this[method].apply(this, arguments);
+			};
+		}
+		function isValidDate(d) {
+			return d && !isNaN(d.getTime());
+		}
+	
+		var DateArray = function () {
+			var extras = {
+				get: function get(i) {
+					return this.slice(i)[0];
+				},
+				contains: function contains(d) {
+					// Array.indexOf is not cross-browser;
+					// $.inArray doesn't work with Dates
+					var val = d && d.valueOf();
+					for (var i = 0, l = this.length; i < l; i++) {
+						if (this[i].valueOf() === val) return i;
+					}return -1;
+				},
+				remove: function remove(i) {
+					this.splice(i, 1);
+				},
+				replace: function replace(new_array) {
+					if (!new_array) return;
+					if (!$.isArray(new_array)) new_array = [new_array];
+					this.clear();
+					this.push.apply(this, new_array);
+				},
+				clear: function clear() {
+					this.length = 0;
+				},
+				copy: function copy() {
+					var a = new DateArray();
+					a.replace(this);
+					return a;
+				}
+			};
+	
+			return function () {
+				var a = [];
+				a.push.apply(a, arguments);
+				$.extend(a, extras);
+				return a;
+			};
+		}();
+	
+		// Picker object
+	
+		var Datepicker = function Datepicker(element, options) {
+			$(element).data('datepicker', this);
+			this._process_options(options);
+	
+			this.dates = new DateArray();
+			this.viewDate = this.o.defaultViewDate;
+			this.focusDate = null;
+	
+			this.element = $(element);
+			this.isInput = this.element.is('input');
+			this.inputField = this.isInput ? this.element : this.element.find('input');
+			this.component = this.element.hasClass('date') ? this.element.find('.add-on, .input-group-addon, .btn') : false;
+			this.hasInput = this.component && this.inputField.length;
+			if (this.component && this.component.length === 0) this.component = false;
+			this.isInline = !this.component && this.element.is('div');
+	
+			this.picker = $(DPGlobal.template);
+	
+			// Checking templates and inserting
+			if (this._check_template(this.o.templates.leftArrow)) {
+				this.picker.find('.prev').html(this.o.templates.leftArrow);
+			}
+			if (this._check_template(this.o.templates.rightArrow)) {
+				this.picker.find('.next').html(this.o.templates.rightArrow);
+			}
+	
+			this._buildEvents();
+			this._attachEvents();
+	
+			if (this.isInline) {
+				this.picker.addClass('datepicker-inline').appendTo(this.element);
+			} else {
+				this.picker.addClass('datepicker-dropdown dropdown-menu');
+			}
+	
+			if (this.o.rtl) {
+				this.picker.addClass('datepicker-rtl');
+			}
+	
+			this.viewMode = this.o.startView;
+	
+			if (this.o.calendarWeeks) this.picker.find('thead .datepicker-title, tfoot .today, tfoot .clear').attr('colspan', function (i, val) {
+				return parseInt(val) + 1;
+			});
+	
+			this._allow_update = false;
+	
+			this.setStartDate(this._o.startDate);
+			this.setEndDate(this._o.endDate);
+			this.setDaysOfWeekDisabled(this.o.daysOfWeekDisabled);
+			this.setDaysOfWeekHighlighted(this.o.daysOfWeekHighlighted);
+			this.setDatesDisabled(this.o.datesDisabled);
+	
+			this.fillDow();
+			this.fillMonths();
+	
+			this._allow_update = true;
+	
+			this.update();
+			this.showMode();
+	
+			if (this.isInline) {
+				this.show();
+			}
+		};
+	
+		Datepicker.prototype = {
+			constructor: Datepicker,
+	
+			_resolveViewName: function _resolveViewName(view, default_value) {
+				if (view === 0 || view === 'days' || view === 'month') {
+					return 0;
+				}
+				if (view === 1 || view === 'months' || view === 'year') {
+					return 1;
+				}
+				if (view === 2 || view === 'years' || view === 'decade') {
+					return 2;
+				}
+				if (view === 3 || view === 'decades' || view === 'century') {
+					return 3;
+				}
+				if (view === 4 || view === 'centuries' || view === 'millennium') {
+					return 4;
+				}
+				return default_value === undefined ? false : default_value;
+			},
+	
+			_check_template: function _check_template(tmp) {
+				try {
+					// If empty
+					if (tmp === undefined || tmp === "") {
+						return false;
+					}
+					// If no html, everything ok
+					if ((tmp.match(/[<>]/g) || []).length <= 0) {
+						return true;
+					}
+					// Checking if html is fine
+					var jDom = $(tmp);
+					return jDom.length > 0;
+				} catch (ex) {
+					return false;
+				}
+			},
+	
+			_process_options: function _process_options(opts) {
+				// Store raw options for reference
+				this._o = $.extend({}, this._o, opts);
+				// Processed options
+				var o = this.o = $.extend({}, this._o);
+	
+				// Check if "de-DE" style date is available, if not language should
+				// fallback to 2 letter code eg "de"
+				var lang = o.language;
+				if (!dates[lang]) {
+					lang = lang.split('-')[0];
+					if (!dates[lang]) lang = defaults.language;
+				}
+				o.language = lang;
+	
+				// Retrieve view index from any aliases
+				o.startView = this._resolveViewName(o.startView, 0);
+				o.minViewMode = this._resolveViewName(o.minViewMode, 0);
+				o.maxViewMode = this._resolveViewName(o.maxViewMode, 4);
+	
+				// Check that the start view is between min and max
+				o.startView = Math.min(o.startView, o.maxViewMode);
+				o.startView = Math.max(o.startView, o.minViewMode);
+	
+				// true, false, or Number > 0
+				if (o.multidate !== true) {
+					o.multidate = Number(o.multidate) || false;
+					if (o.multidate !== false) o.multidate = Math.max(0, o.multidate);
+				}
+				o.multidateSeparator = String(o.multidateSeparator);
+	
+				o.weekStart %= 7;
+				o.weekEnd = (o.weekStart + 6) % 7;
+	
+				var format = DPGlobal.parseFormat(o.format);
+				if (o.startDate !== -Infinity) {
+					if (!!o.startDate) {
+						if (o.startDate instanceof Date) o.startDate = this._local_to_utc(this._zero_time(o.startDate));else o.startDate = DPGlobal.parseDate(o.startDate, format, o.language, o.assumeNearbyYear);
+					} else {
+						o.startDate = -Infinity;
+					}
+				}
+				if (o.endDate !== Infinity) {
+					if (!!o.endDate) {
+						if (o.endDate instanceof Date) o.endDate = this._local_to_utc(this._zero_time(o.endDate));else o.endDate = DPGlobal.parseDate(o.endDate, format, o.language, o.assumeNearbyYear);
+					} else {
+						o.endDate = Infinity;
+					}
+				}
+	
+				o.daysOfWeekDisabled = o.daysOfWeekDisabled || [];
+				if (!$.isArray(o.daysOfWeekDisabled)) o.daysOfWeekDisabled = o.daysOfWeekDisabled.split(/[,\s]*/);
+				o.daysOfWeekDisabled = $.map(o.daysOfWeekDisabled, function (d) {
+					return parseInt(d, 10);
+				});
+	
+				o.daysOfWeekHighlighted = o.daysOfWeekHighlighted || [];
+				if (!$.isArray(o.daysOfWeekHighlighted)) o.daysOfWeekHighlighted = o.daysOfWeekHighlighted.split(/[,\s]*/);
+				o.daysOfWeekHighlighted = $.map(o.daysOfWeekHighlighted, function (d) {
+					return parseInt(d, 10);
+				});
+	
+				o.datesDisabled = o.datesDisabled || [];
+				if (!$.isArray(o.datesDisabled)) {
+					o.datesDisabled = [o.datesDisabled];
+				}
+				o.datesDisabled = $.map(o.datesDisabled, function (d) {
+					return DPGlobal.parseDate(d, format, o.language, o.assumeNearbyYear);
+				});
+	
+				var plc = String(o.orientation).toLowerCase().split(/\s+/g),
+				    _plc = o.orientation.toLowerCase();
+				plc = $.grep(plc, function (word) {
+					return (/^auto|left|right|top|bottom$/.test(word)
+					);
+				});
+				o.orientation = { x: 'auto', y: 'auto' };
+				if (!_plc || _plc === 'auto') ; // no action
+				else if (plc.length === 1) {
+						switch (plc[0]) {
+							case 'top':
+							case 'bottom':
+								o.orientation.y = plc[0];
+								break;
+							case 'left':
+							case 'right':
+								o.orientation.x = plc[0];
+								break;
+						}
+					} else {
+						_plc = $.grep(plc, function (word) {
+							return (/^left|right$/.test(word)
+							);
+						});
+						o.orientation.x = _plc[0] || 'auto';
+	
+						_plc = $.grep(plc, function (word) {
+							return (/^top|bottom$/.test(word)
+							);
+						});
+						o.orientation.y = _plc[0] || 'auto';
+					}
+				if (o.defaultViewDate) {
+					var year = o.defaultViewDate.year || new Date().getFullYear();
+					var month = o.defaultViewDate.month || 0;
+					var day = o.defaultViewDate.day || 1;
+					o.defaultViewDate = UTCDate(year, month, day);
+				} else {
+					o.defaultViewDate = UTCToday();
+				}
+			},
+			_events: [],
+			_secondaryEvents: [],
+			_applyEvents: function _applyEvents(evs) {
+				for (var i = 0, el, ch, ev; i < evs.length; i++) {
+					el = evs[i][0];
+					if (evs[i].length === 2) {
+						ch = undefined;
+						ev = evs[i][1];
+					} else if (evs[i].length === 3) {
+						ch = evs[i][1];
+						ev = evs[i][2];
+					}
+					el.on(ev, ch);
+				}
+			},
+			_unapplyEvents: function _unapplyEvents(evs) {
+				for (var i = 0, el, ev, ch; i < evs.length; i++) {
+					el = evs[i][0];
+					if (evs[i].length === 2) {
+						ch = undefined;
+						ev = evs[i][1];
+					} else if (evs[i].length === 3) {
+						ch = evs[i][1];
+						ev = evs[i][2];
+					}
+					el.off(ev, ch);
+				}
+			},
+			_buildEvents: function _buildEvents() {
+				var events = {
+					keyup: $.proxy(function (e) {
+						if ($.inArray(e.keyCode, [27, 37, 39, 38, 40, 32, 13, 9]) === -1) this.update();
+					}, this),
+					keydown: $.proxy(this.keydown, this),
+					paste: $.proxy(this.paste, this)
+				};
+	
+				if (this.o.showOnFocus === true) {
+					events.focus = $.proxy(this.show, this);
+				}
+	
+				if (this.isInput) {
+					// single input
+					this._events = [[this.element, events]];
+				} else if (this.component && this.hasInput) {
+					// component: input + button
+					this._events = [
+					// For components that are not readonly, allow keyboard nav
+					[this.inputField, events], [this.component, {
+						click: $.proxy(this.show, this)
+					}]];
+				} else {
+					this._events = [[this.element, {
+						click: $.proxy(this.show, this),
+						keydown: $.proxy(this.keydown, this)
+					}]];
+				}
+				this._events.push(
+				// Component: listen for blur on element descendants
+				[this.element, '*', {
+					blur: $.proxy(function (e) {
+						this._focused_from = e.target;
+					}, this)
+				}],
+				// Input: listen for blur on element
+				[this.element, {
+					blur: $.proxy(function (e) {
+						this._focused_from = e.target;
+					}, this)
+				}]);
+	
+				if (this.o.immediateUpdates) {
+					// Trigger input updates immediately on changed year/month
+					this._events.push([this.element, {
+						'changeYear changeMonth': $.proxy(function (e) {
+							this.update(e.date);
+						}, this)
+					}]);
+				}
+	
+				this._secondaryEvents = [[this.picker, {
+					click: $.proxy(this.click, this)
+				}], [$(window), {
+					resize: $.proxy(this.place, this)
+				}], [$(document), {
+					mousedown: $.proxy(function (e) {
+						// Clicked outside the datepicker, hide it
+						if (!(this.element.is(e.target) || this.element.find(e.target).length || this.picker.is(e.target) || this.picker.find(e.target).length || this.isInline)) {
+							this.hide();
+						}
+					}, this)
+				}]];
+			},
+			_attachEvents: function _attachEvents() {
+				this._detachEvents();
+				this._applyEvents(this._events);
+			},
+			_detachEvents: function _detachEvents() {
+				this._unapplyEvents(this._events);
+			},
+			_attachSecondaryEvents: function _attachSecondaryEvents() {
+				this._detachSecondaryEvents();
+				this._applyEvents(this._secondaryEvents);
+			},
+			_detachSecondaryEvents: function _detachSecondaryEvents() {
+				this._unapplyEvents(this._secondaryEvents);
+			},
+			_trigger: function _trigger(event, altdate) {
+				var date = altdate || this.dates.get(-1),
+				    local_date = this._utc_to_local(date);
+	
+				this.element.trigger({
+					type: event,
+					date: local_date,
+					dates: $.map(this.dates, this._utc_to_local),
+					format: $.proxy(function (ix, format) {
+						if (arguments.length === 0) {
+							ix = this.dates.length - 1;
+							format = this.o.format;
+						} else if (typeof ix === 'string') {
+							format = ix;
+							ix = this.dates.length - 1;
+						}
+						format = format || this.o.format;
+						var date = this.dates.get(ix);
+						return DPGlobal.formatDate(date, format, this.o.language);
+					}, this)
+				});
+			},
+	
+			show: function show() {
+				if (this.inputField.prop('disabled') || this.inputField.prop('readonly') && this.o.enableOnReadonly === false) return;
+				if (!this.isInline) this.picker.appendTo(this.o.container);
+				this.place();
+				this.picker.show();
+				this._attachSecondaryEvents();
+				this._trigger('show');
+				if ((window.navigator.msMaxTouchPoints || 'ontouchstart' in document) && this.o.disableTouchKeyboard) {
+					$(this.element).blur();
+				}
+				return this;
+			},
+	
+			hide: function hide() {
+				if (this.isInline || !this.picker.is(':visible')) return this;
+				this.focusDate = null;
+				this.picker.hide().detach();
+				this._detachSecondaryEvents();
+				this.viewMode = this.o.startView;
+				this.showMode();
+	
+				if (this.o.forceParse && this.inputField.val()) this.setValue();
+				this._trigger('hide');
+				return this;
+			},
+	
+			destroy: function destroy() {
+				this.hide();
+				this._detachEvents();
+				this._detachSecondaryEvents();
+				this.picker.remove();
+				delete this.element.data().datepicker;
+				if (!this.isInput) {
+					delete this.element.data().date;
+				}
+				return this;
+			},
+	
+			paste: function paste(evt) {
+				var dateString;
+				if (evt.originalEvent.clipboardData && evt.originalEvent.clipboardData.types && $.inArray('text/plain', evt.originalEvent.clipboardData.types) !== -1) {
+					dateString = evt.originalEvent.clipboardData.getData('text/plain');
+				} else if (window.clipboardData) {
+					dateString = window.clipboardData.getData('Text');
+				} else {
+					return;
+				}
+				this.setDate(dateString);
+				this.update();
+				evt.preventDefault();
+			},
+	
+			_utc_to_local: function _utc_to_local(utc) {
+				return utc && new Date(utc.getTime() + utc.getTimezoneOffset() * 60000);
+			},
+			_local_to_utc: function _local_to_utc(local) {
+				return local && new Date(local.getTime() - local.getTimezoneOffset() * 60000);
+			},
+			_zero_time: function _zero_time(local) {
+				return local && new Date(local.getFullYear(), local.getMonth(), local.getDate());
+			},
+			_zero_utc_time: function _zero_utc_time(utc) {
+				return utc && new Date(Date.UTC(utc.getUTCFullYear(), utc.getUTCMonth(), utc.getUTCDate()));
+			},
+	
+			getDates: function getDates() {
+				return $.map(this.dates, this._utc_to_local);
+			},
+	
+			getUTCDates: function getUTCDates() {
+				return $.map(this.dates, function (d) {
+					return new Date(d);
+				});
+			},
+	
+			getDate: function getDate() {
+				return this._utc_to_local(this.getUTCDate());
+			},
+	
+			getUTCDate: function getUTCDate() {
+				var selected_date = this.dates.get(-1);
+				if (typeof selected_date !== 'undefined') {
+					return new Date(selected_date);
+				} else {
+					return null;
+				}
+			},
+	
+			clearDates: function clearDates() {
+				if (this.inputField) {
+					this.inputField.val('');
+				}
+	
+				this.update();
+				this._trigger('changeDate');
+	
+				if (this.o.autoclose) {
+					this.hide();
+				}
+			},
+			setDates: function setDates() {
+				var args = $.isArray(arguments[0]) ? arguments[0] : arguments;
+				this.update.apply(this, args);
+				this._trigger('changeDate');
+				this.setValue();
+				return this;
+			},
+	
+			setUTCDates: function setUTCDates() {
+				var args = $.isArray(arguments[0]) ? arguments[0] : arguments;
+				this.update.apply(this, $.map(args, this._utc_to_local));
+				this._trigger('changeDate');
+				this.setValue();
+				return this;
+			},
+	
+			setDate: alias('setDates'),
+			setUTCDate: alias('setUTCDates'),
+			remove: alias('destroy'),
+	
+			setValue: function setValue() {
+				var formatted = this.getFormattedDate();
+				this.inputField.val(formatted);
+				return this;
+			},
+	
+			getFormattedDate: function getFormattedDate(format) {
+				if (format === undefined) format = this.o.format;
+	
+				var lang = this.o.language;
+				return $.map(this.dates, function (d) {
+					return DPGlobal.formatDate(d, format, lang);
+				}).join(this.o.multidateSeparator);
+			},
+	
+			getStartDate: function getStartDate() {
+				return this.o.startDate;
+			},
+	
+			setStartDate: function setStartDate(startDate) {
+				this._process_options({ startDate: startDate });
+				this.update();
+				this.updateNavArrows();
+				return this;
+			},
+	
+			getEndDate: function getEndDate() {
+				return this.o.endDate;
+			},
+	
+			setEndDate: function setEndDate(endDate) {
+				this._process_options({ endDate: endDate });
+				this.update();
+				this.updateNavArrows();
+				return this;
+			},
+	
+			setDaysOfWeekDisabled: function setDaysOfWeekDisabled(daysOfWeekDisabled) {
+				this._process_options({ daysOfWeekDisabled: daysOfWeekDisabled });
+				this.update();
+				this.updateNavArrows();
+				return this;
+			},
+	
+			setDaysOfWeekHighlighted: function setDaysOfWeekHighlighted(daysOfWeekHighlighted) {
+				this._process_options({ daysOfWeekHighlighted: daysOfWeekHighlighted });
+				this.update();
+				return this;
+			},
+	
+			setDatesDisabled: function setDatesDisabled(datesDisabled) {
+				this._process_options({ datesDisabled: datesDisabled });
+				this.update();
+				this.updateNavArrows();
+			},
+	
+			place: function place() {
+				if (this.isInline) return this;
+				var calendarWidth = this.picker.outerWidth(),
+				    calendarHeight = this.picker.outerHeight(),
+				    visualPadding = 10,
+				    container = $(this.o.container),
+				    windowWidth = container.width(),
+				    scrollTop = this.o.container === 'body' ? $(document).scrollTop() : container.scrollTop(),
+				    appendOffset = container.offset();
+	
+				var parentsZindex = [];
+				this.element.parents().each(function () {
+					var itemZIndex = $(this).css('z-index');
+					if (itemZIndex !== 'auto' && itemZIndex !== 0) parentsZindex.push(parseInt(itemZIndex));
+				});
+				var zIndex = Math.max.apply(Math, parentsZindex) + this.o.zIndexOffset;
+				var offset = this.component ? this.component.parent().offset() : this.element.offset();
+				var height = this.component ? this.component.outerHeight(true) : this.element.outerHeight(false);
+				var width = this.component ? this.component.outerWidth(true) : this.element.outerWidth(false);
+				var left = offset.left - appendOffset.left,
+				    top = offset.top - appendOffset.top;
+	
+				if (this.o.container !== 'body') {
+					top += scrollTop;
+				}
+	
+				this.picker.removeClass('datepicker-orient-top datepicker-orient-bottom ' + 'datepicker-orient-right datepicker-orient-left');
+	
+				if (this.o.orientation.x !== 'auto') {
+					this.picker.addClass('datepicker-orient-' + this.o.orientation.x);
+					if (this.o.orientation.x === 'right') left -= calendarWidth - width;
+				}
+				// auto x orientation is best-placement: if it crosses a window
+				// edge, fudge it sideways
+				else {
+						if (offset.left < 0) {
+							// component is outside the window on the left side. Move it into visible range
+							this.picker.addClass('datepicker-orient-left');
+							left -= offset.left - visualPadding;
+						} else if (left + calendarWidth > windowWidth) {
+							// the calendar passes the widow right edge. Align it to component right side
+							this.picker.addClass('datepicker-orient-right');
+							left += width - calendarWidth;
+						} else {
+							// Default to left
+							this.picker.addClass('datepicker-orient-left');
+						}
+					}
+	
+				// auto y orientation is best-situation: top or bottom, no fudging,
+				// decision based on which shows more of the calendar
+				var yorient = this.o.orientation.y,
+				    top_overflow;
+				if (yorient === 'auto') {
+					top_overflow = -scrollTop + top - calendarHeight;
+					yorient = top_overflow < 0 ? 'bottom' : 'top';
+				}
+	
+				this.picker.addClass('datepicker-orient-' + yorient);
+				if (yorient === 'top') top -= calendarHeight + parseInt(this.picker.css('padding-top'));else top += height;
+	
+				if (this.o.rtl) {
+					var right = windowWidth - (left + width);
+					this.picker.css({
+						top: top,
+						right: right,
+						zIndex: zIndex
+					});
+				} else {
+					this.picker.css({
+						top: top,
+						left: left,
+						zIndex: zIndex
+					});
+				}
+				return this;
+			},
+	
+			_allow_update: true,
+			update: function update() {
+				if (!this._allow_update) return this;
+	
+				var oldDates = this.dates.copy(),
+				    dates = [],
+				    fromArgs = false;
+				if (arguments.length) {
+					$.each(arguments, $.proxy(function (i, date) {
+						if (date instanceof Date) date = this._local_to_utc(date);
+						dates.push(date);
+					}, this));
+					fromArgs = true;
+				} else {
+					dates = this.isInput ? this.element.val() : this.element.data('date') || this.inputField.val();
+					if (dates && this.o.multidate) dates = dates.split(this.o.multidateSeparator);else dates = [dates];
+					delete this.element.data().date;
+				}
+	
+				dates = $.map(dates, $.proxy(function (date) {
+					return DPGlobal.parseDate(date, this.o.format, this.o.language, this.o.assumeNearbyYear);
+				}, this));
+				dates = $.grep(dates, $.proxy(function (date) {
+					return !this.dateWithinRange(date) || !date;
+				}, this), true);
+				this.dates.replace(dates);
+	
+				if (this.dates.length) this.viewDate = new Date(this.dates.get(-1));else if (this.viewDate < this.o.startDate) this.viewDate = new Date(this.o.startDate);else if (this.viewDate > this.o.endDate) this.viewDate = new Date(this.o.endDate);else this.viewDate = this.o.defaultViewDate;
+	
+				if (fromArgs) {
+					// setting date by clicking
+					this.setValue();
+				} else if (dates.length) {
+					// setting date by typing
+					if (String(oldDates) !== String(this.dates)) this._trigger('changeDate');
+				}
+				if (!this.dates.length && oldDates.length) this._trigger('clearDate');
+	
+				this.fill();
+				this.element.change();
+				return this;
+			},
+	
+			fillDow: function fillDow() {
+				var dowCnt = this.o.weekStart,
+				    html = '<tr>';
+				if (this.o.calendarWeeks) {
+					this.picker.find('.datepicker-days .datepicker-switch').attr('colspan', function (i, val) {
+						return parseInt(val) + 1;
+					});
+					html += '<th class="cw">&#160;</th>';
+				}
+				while (dowCnt < this.o.weekStart + 7) {
+					html += '<th class="dow';
+					if ($.inArray(dowCnt, this.o.daysOfWeekDisabled) > -1) html += ' disabled';
+					html += '">' + dates[this.o.language].daysMin[dowCnt++ % 7] + '</th>';
+				}
+				html += '</tr>';
+				this.picker.find('.datepicker-days thead').append(html);
+			},
+	
+			fillMonths: function fillMonths() {
+				var localDate = this._utc_to_local(this.viewDate);
+				var html = '',
+				    i = 0;
+				while (i < 12) {
+					var focused = localDate && localDate.getMonth() === i ? ' focused' : '';
+					html += '<span class="month' + focused + '">' + dates[this.o.language].monthsShort[i++] + '</span>';
+				}
+				this.picker.find('.datepicker-months td').html(html);
+			},
+	
+			setRange: function setRange(range) {
+				if (!range || !range.length) delete this.range;else this.range = $.map(range, function (d) {
+					return d.valueOf();
+				});
+				this.fill();
+			},
+	
+			getClassNames: function getClassNames(date) {
+				var cls = [],
+				    year = this.viewDate.getUTCFullYear(),
+				    month = this.viewDate.getUTCMonth(),
+				    today = new Date();
+				if (date.getUTCFullYear() < year || date.getUTCFullYear() === year && date.getUTCMonth() < month) {
+					cls.push('old');
+				} else if (date.getUTCFullYear() > year || date.getUTCFullYear() === year && date.getUTCMonth() > month) {
+					cls.push('new');
+				}
+				if (this.focusDate && date.valueOf() === this.focusDate.valueOf()) cls.push('focused');
+				// Compare internal UTC date with local today, not UTC today
+				if (this.o.todayHighlight && date.getUTCFullYear() === today.getFullYear() && date.getUTCMonth() === today.getMonth() && date.getUTCDate() === today.getDate()) {
+					cls.push('today');
+				}
+				if (this.dates.contains(date) !== -1) cls.push('active');
+				if (!this.dateWithinRange(date)) {
+					cls.push('disabled');
+				}
+				if (this.dateIsDisabled(date)) {
+					cls.push('disabled', 'disabled-date');
+				}
+				if ($.inArray(date.getUTCDay(), this.o.daysOfWeekHighlighted) !== -1) {
+					cls.push('highlighted');
+				}
+	
+				if (this.range) {
+					if (date > this.range[0] && date < this.range[this.range.length - 1]) {
+						cls.push('range');
+					}
+					if ($.inArray(date.valueOf(), this.range) !== -1) {
+						cls.push('selected');
+					}
+					if (date.valueOf() === this.range[0]) {
+						cls.push('range-start');
+					}
+					if (date.valueOf() === this.range[this.range.length - 1]) {
+						cls.push('range-end');
+					}
+				}
+				return cls;
+			},
+	
+			_fill_yearsView: function _fill_yearsView(selector, cssClass, factor, step, currentYear, startYear, endYear, callback) {
+				var html, view, year, steps, startStep, endStep, thisYear, i, classes, tooltip, before;
+	
+				html = '';
+				view = this.picker.find(selector);
+				year = parseInt(currentYear / factor, 10) * factor;
+				startStep = parseInt(startYear / step, 10) * step;
+				endStep = parseInt(endYear / step, 10) * step;
+				steps = $.map(this.dates, function (d) {
+					return parseInt(d.getUTCFullYear() / step, 10) * step;
+				});
+	
+				view.find('.datepicker-switch').text(year + '-' + (year + step * 9));
+	
+				thisYear = year - step;
+				for (i = -1; i < 11; i += 1) {
+					classes = [cssClass];
+					tooltip = null;
+	
+					if (i === -1) {
+						classes.push('old');
+					} else if (i === 10) {
+						classes.push('new');
+					}
+					if ($.inArray(thisYear, steps) !== -1) {
+						classes.push('active');
+					}
+					if (thisYear < startStep || thisYear > endStep) {
+						classes.push('disabled');
+					}
+					if (thisYear === this.viewDate.getFullYear()) {
+						classes.push('focused');
+					}
+	
+					if (callback !== $.noop) {
+						before = callback(new Date(thisYear, 0, 1));
+						if (before === undefined) {
+							before = {};
+						} else if (typeof before === 'boolean') {
+							before = { enabled: before };
+						} else if (typeof before === 'string') {
+							before = { classes: before };
+						}
+						if (before.enabled === false) {
+							classes.push('disabled');
+						}
+						if (before.classes) {
+							classes = classes.concat(before.classes.split(/\s+/));
+						}
+						if (before.tooltip) {
+							tooltip = before.tooltip;
+						}
+					}
+	
+					html += '<span class="' + classes.join(' ') + '"' + (tooltip ? ' title="' + tooltip + '"' : '') + '>' + thisYear + '</span>';
+					thisYear += step;
+				}
+				view.find('td').html(html);
+			},
+	
+			fill: function fill() {
+				var d = new Date(this.viewDate),
+				    year = d.getUTCFullYear(),
+				    month = d.getUTCMonth(),
+				    startYear = this.o.startDate !== -Infinity ? this.o.startDate.getUTCFullYear() : -Infinity,
+				    startMonth = this.o.startDate !== -Infinity ? this.o.startDate.getUTCMonth() : -Infinity,
+				    endYear = this.o.endDate !== Infinity ? this.o.endDate.getUTCFullYear() : Infinity,
+				    endMonth = this.o.endDate !== Infinity ? this.o.endDate.getUTCMonth() : Infinity,
+				    todaytxt = dates[this.o.language].today || dates['en'].today || '',
+				    cleartxt = dates[this.o.language].clear || dates['en'].clear || '',
+				    titleFormat = dates[this.o.language].titleFormat || dates['en'].titleFormat,
+				    tooltip,
+				    before;
+				if (isNaN(year) || isNaN(month)) return;
+				this.picker.find('.datepicker-days .datepicker-switch').text(DPGlobal.formatDate(d, titleFormat, this.o.language));
+				this.picker.find('tfoot .today').text(todaytxt).toggle(this.o.todayBtn !== false);
+				this.picker.find('tfoot .clear').text(cleartxt).toggle(this.o.clearBtn !== false);
+				this.picker.find('thead .datepicker-title').text(this.o.title).toggle(this.o.title !== '');
+				this.updateNavArrows();
+				this.fillMonths();
+				var prevMonth = UTCDate(year, month - 1, 28),
+				    day = DPGlobal.getDaysInMonth(prevMonth.getUTCFullYear(), prevMonth.getUTCMonth());
+				prevMonth.setUTCDate(day);
+				prevMonth.setUTCDate(day - (prevMonth.getUTCDay() - this.o.weekStart + 7) % 7);
+				var nextMonth = new Date(prevMonth);
+				if (prevMonth.getUTCFullYear() < 100) {
+					nextMonth.setUTCFullYear(prevMonth.getUTCFullYear());
+				}
+				nextMonth.setUTCDate(nextMonth.getUTCDate() + 42);
+				nextMonth = nextMonth.valueOf();
+				var html = [];
+				var clsName;
+				while (prevMonth.valueOf() < nextMonth) {
+					if (prevMonth.getUTCDay() === this.o.weekStart) {
+						html.push('<tr>');
+						if (this.o.calendarWeeks) {
+							// ISO 8601: First week contains first thursday.
+							// ISO also states week starts on Monday, but we can be more abstract here.
+							var
+							// Start of current week: based on weekstart/current date
+							ws = new Date(+prevMonth + (this.o.weekStart - prevMonth.getUTCDay() - 7) % 7 * 864e5),
+	
+							// Thursday of this week
+							th = new Date(Number(ws) + (7 + 4 - ws.getUTCDay()) % 7 * 864e5),
+	
+							// First Thursday of year, year from thursday
+							yth = new Date(Number(yth = UTCDate(th.getUTCFullYear(), 0, 1)) + (7 + 4 - yth.getUTCDay()) % 7 * 864e5),
+	
+							// Calendar week: ms between thursdays, div ms per day, div 7 days
+							calWeek = (th - yth) / 864e5 / 7 + 1;
+							html.push('<td class="cw">' + calWeek + '</td>');
+						}
+					}
+					clsName = this.getClassNames(prevMonth);
+					clsName.push('day');
+	
+					if (this.o.beforeShowDay !== $.noop) {
+						before = this.o.beforeShowDay(this._utc_to_local(prevMonth));
+						if (before === undefined) before = {};else if (typeof before === 'boolean') before = { enabled: before };else if (typeof before === 'string') before = { classes: before };
+						if (before.enabled === false) clsName.push('disabled');
+						if (before.classes) clsName = clsName.concat(before.classes.split(/\s+/));
+						if (before.tooltip) tooltip = before.tooltip;
+					}
+	
+					//Check if uniqueSort exists (supported by jquery >=1.12 and >=2.2)
+					//Fallback to unique function for older jquery versions
+					if ($.isFunction($.uniqueSort)) {
+						clsName = $.uniqueSort(clsName);
+					} else {
+						clsName = $.unique(clsName);
+					}
+	
+					html.push('<td class="' + clsName.join(' ') + '"' + (tooltip ? ' title="' + tooltip + '"' : '') + '>' + prevMonth.getUTCDate() + '</td>');
+					tooltip = null;
+					if (prevMonth.getUTCDay() === this.o.weekEnd) {
+						html.push('</tr>');
+					}
+					prevMonth.setUTCDate(prevMonth.getUTCDate() + 1);
+				}
+				this.picker.find('.datepicker-days tbody').empty().append(html.join(''));
+	
+				var monthsTitle = dates[this.o.language].monthsTitle || dates['en'].monthsTitle || 'Months';
+				var months = this.picker.find('.datepicker-months').find('.datepicker-switch').text(this.o.maxViewMode < 2 ? monthsTitle : year).end().find('span').removeClass('active');
+	
+				$.each(this.dates, function (i, d) {
+					if (d.getUTCFullYear() === year) months.eq(d.getUTCMonth()).addClass('active');
+				});
+	
+				if (year < startYear || year > endYear) {
+					months.addClass('disabled');
+				}
+				if (year === startYear) {
+					months.slice(0, startMonth).addClass('disabled');
+				}
+				if (year === endYear) {
+					months.slice(endMonth + 1).addClass('disabled');
+				}
+	
+				if (this.o.beforeShowMonth !== $.noop) {
+					var that = this;
+					$.each(months, function (i, month) {
+						var moDate = new Date(year, i, 1);
+						var before = that.o.beforeShowMonth(moDate);
+						if (before === undefined) before = {};else if (typeof before === 'boolean') before = { enabled: before };else if (typeof before === 'string') before = { classes: before };
+						if (before.enabled === false && !$(month).hasClass('disabled')) $(month).addClass('disabled');
+						if (before.classes) $(month).addClass(before.classes);
+						if (before.tooltip) $(month).prop('title', before.tooltip);
+					});
+				}
+	
+				// Generating decade/years picker
+				this._fill_yearsView('.datepicker-years', 'year', 10, 1, year, startYear, endYear, this.o.beforeShowYear);
+	
+				// Generating century/decades picker
+				this._fill_yearsView('.datepicker-decades', 'decade', 100, 10, year, startYear, endYear, this.o.beforeShowDecade);
+	
+				// Generating millennium/centuries picker
+				this._fill_yearsView('.datepicker-centuries', 'century', 1000, 100, year, startYear, endYear, this.o.beforeShowCentury);
+			},
+	
+			updateNavArrows: function updateNavArrows() {
+				if (!this._allow_update) return;
+	
+				var d = new Date(this.viewDate),
+				    year = d.getUTCFullYear(),
+				    month = d.getUTCMonth();
+				switch (this.viewMode) {
+					case 0:
+						if (this.o.startDate !== -Infinity && year <= this.o.startDate.getUTCFullYear() && month <= this.o.startDate.getUTCMonth()) {
+							this.picker.find('.prev').css({ visibility: 'hidden' });
+						} else {
+							this.picker.find('.prev').css({ visibility: 'visible' });
+						}
+						if (this.o.endDate !== Infinity && year >= this.o.endDate.getUTCFullYear() && month >= this.o.endDate.getUTCMonth()) {
+							this.picker.find('.next').css({ visibility: 'hidden' });
+						} else {
+							this.picker.find('.next').css({ visibility: 'visible' });
+						}
+						break;
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+						if (this.o.startDate !== -Infinity && year <= this.o.startDate.getUTCFullYear() || this.o.maxViewMode < 2) {
+							this.picker.find('.prev').css({ visibility: 'hidden' });
+						} else {
+							this.picker.find('.prev').css({ visibility: 'visible' });
+						}
+						if (this.o.endDate !== Infinity && year >= this.o.endDate.getUTCFullYear() || this.o.maxViewMode < 2) {
+							this.picker.find('.next').css({ visibility: 'hidden' });
+						} else {
+							this.picker.find('.next').css({ visibility: 'visible' });
+						}
+						break;
+				}
+			},
+	
+			click: function click(e) {
+				e.preventDefault();
+				e.stopPropagation();
+	
+				var target, dir, day, year, month, monthChanged, yearChanged;
+				target = $(e.target);
+	
+				// Clicked on the switch
+				if (target.hasClass('datepicker-switch')) {
+					this.showMode(1);
+				}
+	
+				// Clicked on prev or next
+				var navArrow = target.closest('.prev, .next');
+				if (navArrow.length > 0) {
+					dir = DPGlobal.modes[this.viewMode].navStep * (navArrow.hasClass('prev') ? -1 : 1);
+					if (this.viewMode === 0) {
+						this.viewDate = this.moveMonth(this.viewDate, dir);
+						this._trigger('changeMonth', this.viewDate);
+					} else {
+						this.viewDate = this.moveYear(this.viewDate, dir);
+						if (this.viewMode === 1) {
+							this._trigger('changeYear', this.viewDate);
+						}
+					}
+					this.fill();
+				}
+	
+				// Clicked on today button
+				if (target.hasClass('today') && !target.hasClass('day')) {
+					this.showMode(-2);
+					this._setDate(UTCToday(), this.o.todayBtn === 'linked' ? null : 'view');
+				}
+	
+				// Clicked on clear button
+				if (target.hasClass('clear')) {
+					this.clearDates();
+				}
+	
+				if (!target.hasClass('disabled')) {
+					// Clicked on a day
+					if (target.hasClass('day')) {
+						day = parseInt(target.text(), 10) || 1;
+						year = this.viewDate.getUTCFullYear();
+						month = this.viewDate.getUTCMonth();
+	
+						// From last month
+						if (target.hasClass('old')) {
+							if (month === 0) {
+								month = 11;
+								year = year - 1;
+								monthChanged = true;
+								yearChanged = true;
+							} else {
+								month = month - 1;
+								monthChanged = true;
+							}
+						}
+	
+						// From next month
+						if (target.hasClass('new')) {
+							if (month === 11) {
+								month = 0;
+								year = year + 1;
+								monthChanged = true;
+								yearChanged = true;
+							} else {
+								month = month + 1;
+								monthChanged = true;
+							}
+						}
+						this._setDate(UTCDate(year, month, day));
+						if (yearChanged) {
+							this._trigger('changeYear', this.viewDate);
+						}
+						if (monthChanged) {
+							this._trigger('changeMonth', this.viewDate);
+						}
+					}
+	
+					// Clicked on a month
+					if (target.hasClass('month')) {
+						this.viewDate.setUTCDate(1);
+						day = 1;
+						month = target.parent().find('span').index(target);
+						year = this.viewDate.getUTCFullYear();
+						this.viewDate.setUTCMonth(month);
+						this._trigger('changeMonth', this.viewDate);
+						if (this.o.minViewMode === 1) {
+							this._setDate(UTCDate(year, month, day));
+							this.showMode();
+						} else {
+							this.showMode(-1);
+						}
+						this.fill();
+					}
+	
+					// Clicked on a year
+					if (target.hasClass('year') || target.hasClass('decade') || target.hasClass('century')) {
+						this.viewDate.setUTCDate(1);
+	
+						day = 1;
+						month = 0;
+						year = parseInt(target.text(), 10) || 0;
+						this.viewDate.setUTCFullYear(year);
+	
+						if (target.hasClass('year')) {
+							this._trigger('changeYear', this.viewDate);
+							if (this.o.minViewMode === 2) {
+								this._setDate(UTCDate(year, month, day));
+							}
+						}
+						if (target.hasClass('decade')) {
+							this._trigger('changeDecade', this.viewDate);
+							if (this.o.minViewMode === 3) {
+								this._setDate(UTCDate(year, month, day));
+							}
+						}
+						if (target.hasClass('century')) {
+							this._trigger('changeCentury', this.viewDate);
+							if (this.o.minViewMode === 4) {
+								this._setDate(UTCDate(year, month, day));
+							}
+						}
+	
+						this.showMode(-1);
+						this.fill();
+					}
+				}
+	
+				if (this.picker.is(':visible') && this._focused_from) {
+					$(this._focused_from).focus();
+				}
+				delete this._focused_from;
+			},
+	
+			_toggle_multidate: function _toggle_multidate(date) {
+				var ix = this.dates.contains(date);
+				if (!date) {
+					this.dates.clear();
+				}
+	
+				if (ix !== -1) {
+					if (this.o.multidate === true || this.o.multidate > 1 || this.o.toggleActive) {
+						this.dates.remove(ix);
+					}
+				} else if (this.o.multidate === false) {
+					this.dates.clear();
+					this.dates.push(date);
+				} else {
+					this.dates.push(date);
+				}
+	
+				if (typeof this.o.multidate === 'number') while (this.dates.length > this.o.multidate) {
+					this.dates.remove(0);
+				}
+			},
+	
+			_setDate: function _setDate(date, which) {
+				if (!which || which === 'date') this._toggle_multidate(date && new Date(date));
+				if (!which || which === 'view') this.viewDate = date && new Date(date);
+	
+				this.fill();
+				this.setValue();
+				if (!which || which !== 'view') {
+					this._trigger('changeDate');
+				}
+				if (this.inputField) {
+					this.inputField.change();
+				}
+				if (this.o.autoclose && (!which || which === 'date')) {
+					this.hide();
+				}
+			},
+	
+			moveDay: function moveDay(date, dir) {
+				var newDate = new Date(date);
+				newDate.setUTCDate(date.getUTCDate() + dir);
+	
+				return newDate;
+			},
+	
+			moveWeek: function moveWeek(date, dir) {
+				return this.moveDay(date, dir * 7);
+			},
+	
+			moveMonth: function moveMonth(date, dir) {
+				if (!isValidDate(date)) return this.o.defaultViewDate;
+				if (!dir) return date;
+				var new_date = new Date(date.valueOf()),
+				    day = new_date.getUTCDate(),
+				    month = new_date.getUTCMonth(),
+				    mag = Math.abs(dir),
+				    new_month,
+				    test;
+				dir = dir > 0 ? 1 : -1;
+				if (mag === 1) {
+					test = dir === -1
+					// If going back one month, make sure month is not current month
+					// (eg, Mar 31 -> Feb 31 == Feb 28, not Mar 02)
+					? function () {
+						return new_date.getUTCMonth() === month;
+					}
+					// If going forward one month, make sure month is as expected
+					// (eg, Jan 31 -> Feb 31 == Feb 28, not Mar 02)
+					: function () {
+						return new_date.getUTCMonth() !== new_month;
+					};
+					new_month = month + dir;
+					new_date.setUTCMonth(new_month);
+					// Dec -> Jan (12) or Jan -> Dec (-1) -- limit expected date to 0-11
+					if (new_month < 0 || new_month > 11) new_month = (new_month + 12) % 12;
+				} else {
+					// For magnitudes >1, move one month at a time...
+					for (var i = 0; i < mag; i++) {
+						// ...which might decrease the day (eg, Jan 31 to Feb 28, etc)...
+						new_date = this.moveMonth(new_date, dir);
+					} // ...then reset the day, keeping it in the new month
+					new_month = new_date.getUTCMonth();
+					new_date.setUTCDate(day);
+					test = function test() {
+						return new_month !== new_date.getUTCMonth();
+					};
+				}
+				// Common date-resetting loop -- if date is beyond end of month, make it
+				// end of month
+				while (test()) {
+					new_date.setUTCDate(--day);
+					new_date.setUTCMonth(new_month);
+				}
+				return new_date;
+			},
+	
+			moveYear: function moveYear(date, dir) {
+				return this.moveMonth(date, dir * 12);
+			},
+	
+			moveAvailableDate: function moveAvailableDate(date, dir, fn) {
+				do {
+					date = this[fn](date, dir);
+	
+					if (!this.dateWithinRange(date)) return false;
+	
+					fn = 'moveDay';
+				} while (this.dateIsDisabled(date));
+	
+				return date;
+			},
+	
+			weekOfDateIsDisabled: function weekOfDateIsDisabled(date) {
+				return $.inArray(date.getUTCDay(), this.o.daysOfWeekDisabled) !== -1;
+			},
+	
+			dateIsDisabled: function dateIsDisabled(date) {
+				return this.weekOfDateIsDisabled(date) || $.grep(this.o.datesDisabled, function (d) {
+					return isUTCEquals(date, d);
+				}).length > 0;
+			},
+	
+			dateWithinRange: function dateWithinRange(date) {
+				return date >= this.o.startDate && date <= this.o.endDate;
+			},
+	
+			keydown: function keydown(e) {
+				if (!this.picker.is(':visible')) {
+					if (e.keyCode === 40 || e.keyCode === 27) {
+						// allow down to re-show picker
+						this.show();
+						e.stopPropagation();
+					}
+					return;
+				}
+				var dateChanged = false,
+				    dir,
+				    newViewDate,
+				    focusDate = this.focusDate || this.viewDate;
+				switch (e.keyCode) {
+					case 27:
+						// escape
+						if (this.focusDate) {
+							this.focusDate = null;
+							this.viewDate = this.dates.get(-1) || this.viewDate;
+							this.fill();
+						} else this.hide();
+						e.preventDefault();
+						e.stopPropagation();
+						break;
+					case 37: // left
+					case 38: // up
+					case 39: // right
+					case 40:
+						// down
+						if (!this.o.keyboardNavigation || this.o.daysOfWeekDisabled.length === 7) break;
+						dir = e.keyCode === 37 || e.keyCode === 38 ? -1 : 1;
+						if (this.viewMode === 0) {
+							if (e.ctrlKey) {
+								newViewDate = this.moveAvailableDate(focusDate, dir, 'moveYear');
+	
+								if (newViewDate) this._trigger('changeYear', this.viewDate);
+							} else if (e.shiftKey) {
+								newViewDate = this.moveAvailableDate(focusDate, dir, 'moveMonth');
+	
+								if (newViewDate) this._trigger('changeMonth', this.viewDate);
+							} else if (e.keyCode === 37 || e.keyCode === 39) {
+								newViewDate = this.moveAvailableDate(focusDate, dir, 'moveDay');
+							} else if (!this.weekOfDateIsDisabled(focusDate)) {
+								newViewDate = this.moveAvailableDate(focusDate, dir, 'moveWeek');
+							}
+						} else if (this.viewMode === 1) {
+							if (e.keyCode === 38 || e.keyCode === 40) {
+								dir = dir * 4;
+							}
+							newViewDate = this.moveAvailableDate(focusDate, dir, 'moveMonth');
+						} else if (this.viewMode === 2) {
+							if (e.keyCode === 38 || e.keyCode === 40) {
+								dir = dir * 4;
+							}
+							newViewDate = this.moveAvailableDate(focusDate, dir, 'moveYear');
+						}
+						if (newViewDate) {
+							this.focusDate = this.viewDate = newViewDate;
+							this.setValue();
+							this.fill();
+							e.preventDefault();
+						}
+						break;
+					case 13:
+						// enter
+						if (!this.o.forceParse) break;
+						focusDate = this.focusDate || this.dates.get(-1) || this.viewDate;
+						if (this.o.keyboardNavigation) {
+							this._toggle_multidate(focusDate);
+							dateChanged = true;
+						}
+						this.focusDate = null;
+						this.viewDate = this.dates.get(-1) || this.viewDate;
+						this.setValue();
+						this.fill();
+						if (this.picker.is(':visible')) {
+							e.preventDefault();
+							e.stopPropagation();
+							if (this.o.autoclose) this.hide();
+						}
+						break;
+					case 9:
+						// tab
+						this.focusDate = null;
+						this.viewDate = this.dates.get(-1) || this.viewDate;
+						this.fill();
+						this.hide();
+						break;
+				}
+				if (dateChanged) {
+					if (this.dates.length) this._trigger('changeDate');else this._trigger('clearDate');
+					if (this.inputField) {
+						this.inputField.change();
+					}
+				}
+			},
+	
+			showMode: function showMode(dir) {
+				if (dir) {
+					this.viewMode = Math.max(this.o.minViewMode, Math.min(this.o.maxViewMode, this.viewMode + dir));
+				}
+				this.picker.children('div').hide().filter('.datepicker-' + DPGlobal.modes[this.viewMode].clsName).show();
+				this.updateNavArrows();
+			}
+		};
+	
+		var DateRangePicker = function DateRangePicker(element, options) {
+			$(element).data('datepicker', this);
+			this.element = $(element);
+			this.inputs = $.map(options.inputs, function (i) {
+				return i.jquery ? i[0] : i;
+			});
+			delete options.inputs;
+	
+			datepickerPlugin.call($(this.inputs), options).on('changeDate', $.proxy(this.dateUpdated, this));
+	
+			this.pickers = $.map(this.inputs, function (i) {
+				return $(i).data('datepicker');
+			});
+			this.updateDates();
+		};
+		DateRangePicker.prototype = {
+			updateDates: function updateDates() {
+				this.dates = $.map(this.pickers, function (i) {
+					return i.getUTCDate();
+				});
+				this.updateRanges();
+			},
+			updateRanges: function updateRanges() {
+				var range = $.map(this.dates, function (d) {
+					return d.valueOf();
+				});
+				$.each(this.pickers, function (i, p) {
+					p.setRange(range);
+				});
+			},
+			dateUpdated: function dateUpdated(e) {
+				// `this.updating` is a workaround for preventing infinite recursion
+				// between `changeDate` triggering and `setUTCDate` calling.  Until
+				// there is a better mechanism.
+				if (this.updating) return;
+				this.updating = true;
+	
+				var dp = $(e.target).data('datepicker');
+	
+				if (typeof dp === "undefined") {
+					return;
+				}
+	
+				var new_date = dp.getUTCDate(),
+				    i = $.inArray(e.target, this.inputs),
+				    j = i - 1,
+				    k = i + 1,
+				    l = this.inputs.length;
+				if (i === -1) return;
+	
+				$.each(this.pickers, function (i, p) {
+					if (!p.getUTCDate()) p.setUTCDate(new_date);
+				});
+	
+				if (new_date < this.dates[j]) {
+					// Date being moved earlier/left
+					while (j >= 0 && new_date < this.dates[j]) {
+						this.pickers[j--].setUTCDate(new_date);
+					}
+				} else if (new_date > this.dates[k]) {
+					// Date being moved later/right
+					while (k < l && new_date > this.dates[k]) {
+						this.pickers[k++].setUTCDate(new_date);
+					}
+				}
+				this.updateDates();
+	
+				delete this.updating;
+			},
+			remove: function remove() {
+				$.map(this.pickers, function (p) {
+					p.remove();
+				});
+				delete this.element.data().datepicker;
+			}
+		};
+	
+		function opts_from_el(el, prefix) {
+			// Derive options from element data-attrs
+			var data = $(el).data(),
+			    out = {},
+			    inkey,
+			    replace = new RegExp('^' + prefix.toLowerCase() + '([A-Z])');
+			prefix = new RegExp('^' + prefix.toLowerCase());
+			function re_lower(_, a) {
+				return a.toLowerCase();
+			}
+			for (var key in data) {
+				if (prefix.test(key)) {
+					inkey = key.replace(replace, re_lower);
+					out[inkey] = data[key];
+				}
+			}return out;
+		}
+	
+		function opts_from_locale(lang) {
+			// Derive options from locale plugins
+			var out = {};
+			// Check if "de-DE" style date is available, if not language should
+			// fallback to 2 letter code eg "de"
+			if (!dates[lang]) {
+				lang = lang.split('-')[0];
+				if (!dates[lang]) return;
+			}
+			var d = dates[lang];
+			$.each(locale_opts, function (i, k) {
+				if (k in d) out[k] = d[k];
+			});
+			return out;
+		}
+	
+		var old = $.fn.datepicker;
+		var datepickerPlugin = function datepickerPlugin(option) {
+			var args = Array.apply(null, arguments);
+			args.shift();
+			var internal_return;
+			this.each(function () {
+				var $this = $(this),
+				    data = $this.data('datepicker'),
+				    options = (typeof option === "undefined" ? "undefined" : _typeof(option)) === 'object' && option;
+				if (!data) {
+					var elopts = opts_from_el(this, 'date'),
+	
+					// Preliminary otions
+					xopts = $.extend({}, defaults, elopts, options),
+					    locopts = opts_from_locale(xopts.language),
+	
+					// Options priority: js args, data-attrs, locales, defaults
+					opts = $.extend({}, defaults, locopts, elopts, options);
+					if ($this.hasClass('input-daterange') || opts.inputs) {
+						$.extend(opts, {
+							inputs: opts.inputs || $this.find('input').toArray()
+						});
+						data = new DateRangePicker(this, opts);
+					} else {
+						data = new Datepicker(this, opts);
+					}
+					$this.data('datepicker', data);
+				}
+				if (typeof option === 'string' && typeof data[option] === 'function') {
+					internal_return = data[option].apply(data, args);
+				}
+			});
+	
+			if (internal_return === undefined || internal_return instanceof Datepicker || internal_return instanceof DateRangePicker) return this;
+	
+			if (this.length > 1) throw new Error('Using only allowed for the collection of a single element (' + option + ' function)');else return internal_return;
+		};
+		$.fn.datepicker = datepickerPlugin;
+	
+		var defaults = $.fn.datepicker.defaults = {
+			assumeNearbyYear: false,
+			autoclose: false,
+			beforeShowDay: $.noop,
+			beforeShowMonth: $.noop,
+			beforeShowYear: $.noop,
+			beforeShowDecade: $.noop,
+			beforeShowCentury: $.noop,
+			calendarWeeks: false,
+			clearBtn: false,
+			toggleActive: false,
+			daysOfWeekDisabled: [],
+			daysOfWeekHighlighted: [],
+			datesDisabled: [],
+			endDate: Infinity,
+			forceParse: true,
+			format: 'mm/dd/yyyy',
+			keyboardNavigation: true,
+			language: 'en',
+			minViewMode: 0,
+			maxViewMode: 4,
+			multidate: false,
+			multidateSeparator: ',',
+			orientation: "auto",
+			rtl: false,
+			startDate: -Infinity,
+			startView: 0,
+			todayBtn: false,
+			todayHighlight: false,
+			weekStart: 0,
+			disableTouchKeyboard: false,
+			enableOnReadonly: true,
+			showOnFocus: true,
+			zIndexOffset: 10,
+			container: 'body',
+			immediateUpdates: false,
+			title: '',
+			templates: {
+				leftArrow: '&laquo;',
+				rightArrow: '&raquo;'
+			}
+		};
+		var locale_opts = $.fn.datepicker.locale_opts = ['format', 'rtl', 'weekStart'];
+		$.fn.datepicker.Constructor = Datepicker;
+		var dates = $.fn.datepicker.dates = {
+			en: {
+				days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+				daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+				daysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+				months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+				monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+				today: "Today",
+				clear: "Clear",
+				titleFormat: "MM yyyy"
+			}
+		};
+	
+		var DPGlobal = {
+			modes: [{
+				clsName: 'days',
+				navFnc: 'Month',
+				navStep: 1
+			}, {
+				clsName: 'months',
+				navFnc: 'FullYear',
+				navStep: 1
+			}, {
+				clsName: 'years',
+				navFnc: 'FullYear',
+				navStep: 10
+			}, {
+				clsName: 'decades',
+				navFnc: 'FullDecade',
+				navStep: 100
+			}, {
+				clsName: 'centuries',
+				navFnc: 'FullCentury',
+				navStep: 1000
+			}],
+			isLeapYear: function isLeapYear(year) {
+				return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
+			},
+			getDaysInMonth: function getDaysInMonth(year, month) {
+				return [31, DPGlobal.isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
+			},
+			validParts: /dd?|DD?|mm?|MM?|yy(?:yy)?/g,
+			nonpunctuation: /[^ -\/:-@\u5e74\u6708\u65e5\[-`{-~\t\n\r]+/g,
+			parseFormat: function parseFormat(format) {
+				if (typeof format.toValue === 'function' && typeof format.toDisplay === 'function') return format;
+				// IE treats \0 as a string end in inputs (truncating the value),
+				// so it's a bad format delimiter, anyway
+				var separators = format.replace(this.validParts, '\0').split('\0'),
+				    parts = format.match(this.validParts);
+				if (!separators || !separators.length || !parts || parts.length === 0) {
+					throw new Error("Invalid date format.");
+				}
+				return { separators: separators, parts: parts };
+			},
+			parseDate: function parseDate(date, format, language, assumeNearby) {
+				if (!date) return undefined;
+				if (date instanceof Date) return date;
+				if (typeof format === 'string') format = DPGlobal.parseFormat(format);
+				if (format.toValue) return format.toValue(date, format, language);
+				var part_re = /([\-+]\d+)([dmwy])/,
+				    parts = date.match(/([\-+]\d+)([dmwy])/g),
+				    fn_map = {
+					d: 'moveDay',
+					m: 'moveMonth',
+					w: 'moveWeek',
+					y: 'moveYear'
+				},
+				    dateAliases = {
+					yesterday: '-1d',
+					today: '+0d',
+					tomorrow: '+1d'
+				},
+				    part,
+				    dir,
+				    i,
+				    fn;
+				if (/^[\-+]\d+[dmwy]([\s,]+[\-+]\d+[dmwy])*$/.test(date)) {
+					date = new Date();
+					for (i = 0; i < parts.length; i++) {
+						part = part_re.exec(parts[i]);
+						dir = parseInt(part[1]);
+						fn = fn_map[part[2]];
+						date = Datepicker.prototype[fn](date, dir);
+					}
+					return UTCDate(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+				}
+	
+				if (typeof dateAliases[date] !== 'undefined') {
+					date = dateAliases[date];
+					parts = date.match(/([\-+]\d+)([dmwy])/g);
+	
+					if (/^[\-+]\d+[dmwy]([\s,]+[\-+]\d+[dmwy])*$/.test(date)) {
+						date = new Date();
+						for (i = 0; i < parts.length; i++) {
+							part = part_re.exec(parts[i]);
+							dir = parseInt(part[1]);
+							fn = fn_map[part[2]];
+							date = Datepicker.prototype[fn](date, dir);
+						}
+	
+						return UTCDate(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+					}
+				}
+	
+				parts = date && date.match(this.nonpunctuation) || [];
+				date = new Date();
+	
+				function applyNearbyYear(year, threshold) {
+					if (threshold === true) threshold = 10;
+	
+					// if year is 2 digits or less, than the user most likely is trying to get a recent century
+					if (year < 100) {
+						year += 2000;
+						// if the new year is more than threshold years in advance, use last century
+						if (year > new Date().getFullYear() + threshold) {
+							year -= 100;
+						}
+					}
+	
+					return year;
+				}
+	
+				var parsed = {},
+				    setters_order = ['yyyy', 'yy', 'M', 'MM', 'm', 'mm', 'd', 'dd'],
+				    setters_map = {
+					yyyy: function yyyy(d, v) {
+						return d.setUTCFullYear(assumeNearby ? applyNearbyYear(v, assumeNearby) : v);
+					},
+					yy: function yy(d, v) {
+						return d.setUTCFullYear(assumeNearby ? applyNearbyYear(v, assumeNearby) : v);
+					},
+					m: function m(d, v) {
+						if (isNaN(d)) return d;
+						v -= 1;
+						while (v < 0) {
+							v += 12;
+						}v %= 12;
+						d.setUTCMonth(v);
+						while (d.getUTCMonth() !== v) {
+							d.setUTCDate(d.getUTCDate() - 1);
+						}return d;
+					},
+					d: function d(_d, v) {
+						return _d.setUTCDate(v);
+					}
+				},
+				    val,
+				    filtered;
+				setters_map['M'] = setters_map['MM'] = setters_map['mm'] = setters_map['m'];
+				setters_map['dd'] = setters_map['d'];
+				date = UTCToday();
+				var fparts = format.parts.slice();
+				// Remove noop parts
+				if (parts.length !== fparts.length) {
+					fparts = $(fparts).filter(function (i, p) {
+						return $.inArray(p, setters_order) !== -1;
+					}).toArray();
+				}
+				// Process remainder
+				function match_part() {
+					var m = this.slice(0, parts[i].length),
+					    p = parts[i].slice(0, m.length);
+					return m.toLowerCase() === p.toLowerCase();
+				}
+				if (parts.length === fparts.length) {
+					var cnt;
+					for (i = 0, cnt = fparts.length; i < cnt; i++) {
+						val = parseInt(parts[i], 10);
+						part = fparts[i];
+						if (isNaN(val)) {
+							switch (part) {
+								case 'MM':
+									filtered = $(dates[language].months).filter(match_part);
+									val = $.inArray(filtered[0], dates[language].months) + 1;
+									break;
+								case 'M':
+									filtered = $(dates[language].monthsShort).filter(match_part);
+									val = $.inArray(filtered[0], dates[language].monthsShort) + 1;
+									break;
+							}
+						}
+						parsed[part] = val;
+					}
+					var _date, s;
+					for (i = 0; i < setters_order.length; i++) {
+						s = setters_order[i];
+						if (s in parsed && !isNaN(parsed[s])) {
+							_date = new Date(date);
+							setters_map[s](_date, parsed[s]);
+							if (!isNaN(_date)) date = _date;
+						}
+					}
+				}
+				return date;
+			},
+			formatDate: function formatDate(date, format, language) {
+				if (!date) return '';
+				if (typeof format === 'string') format = DPGlobal.parseFormat(format);
+				if (format.toDisplay) return format.toDisplay(date, format, language);
+				var val = {
+					d: date.getUTCDate(),
+					D: dates[language].daysShort[date.getUTCDay()],
+					DD: dates[language].days[date.getUTCDay()],
+					m: date.getUTCMonth() + 1,
+					M: dates[language].monthsShort[date.getUTCMonth()],
+					MM: dates[language].months[date.getUTCMonth()],
+					yy: date.getUTCFullYear().toString().substring(2),
+					yyyy: date.getUTCFullYear()
+				};
+				val.dd = (val.d < 10 ? '0' : '') + val.d;
+				val.mm = (val.m < 10 ? '0' : '') + val.m;
+				date = [];
+				var seps = $.extend([], format.separators);
+				for (var i = 0, cnt = format.parts.length; i <= cnt; i++) {
+					if (seps.length) date.push(seps.shift());
+					date.push(val[format.parts[i]]);
+				}
+				return date.join('');
+			},
+			headTemplate: '<thead>' + '<tr>' + '<th colspan="7" class="datepicker-title"></th>' + '</tr>' + '<tr>' + '<th class="prev">&laquo;</th>' + '<th colspan="5" class="datepicker-switch"></th>' + '<th class="next">&raquo;</th>' + '</tr>' + '</thead>',
+			contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
+			footTemplate: '<tfoot>' + '<tr>' + '<th colspan="7" class="today"></th>' + '</tr>' + '<tr>' + '<th colspan="7" class="clear"></th>' + '</tr>' + '</tfoot>'
+		};
+		DPGlobal.template = '<div class="datepicker">' + '<div class="datepicker-days">' + '<table class="table-condensed">' + DPGlobal.headTemplate + '<tbody></tbody>' + DPGlobal.footTemplate + '</table>' + '</div>' + '<div class="datepicker-months">' + '<table class="table-condensed">' + DPGlobal.headTemplate + DPGlobal.contTemplate + DPGlobal.footTemplate + '</table>' + '</div>' + '<div class="datepicker-years">' + '<table class="table-condensed">' + DPGlobal.headTemplate + DPGlobal.contTemplate + DPGlobal.footTemplate + '</table>' + '</div>' + '<div class="datepicker-decades">' + '<table class="table-condensed">' + DPGlobal.headTemplate + DPGlobal.contTemplate + DPGlobal.footTemplate + '</table>' + '</div>' + '<div class="datepicker-centuries">' + '<table class="table-condensed">' + DPGlobal.headTemplate + DPGlobal.contTemplate + DPGlobal.footTemplate + '</table>' + '</div>' + '</div>';
+	
+		$.fn.datepicker.DPGlobal = DPGlobal;
+	
+		/* DATEPICKER NO CONFLICT
+	 * =================== */
+	
+		$.fn.datepicker.noConflict = function () {
+			$.fn.datepicker = old;
+			return this;
+		};
+	
+		/* DATEPICKER VERSION
+	  * =================== */
+		$.fn.datepicker.version = '1.6.4';
+	
+		/* DATEPICKER DATA-API
+	 * ================== */
+	
+		$(document).on('focus.datepicker.data-api click.datepicker.data-api', '[data-provide="datepicker"]', function (e) {
+			var $this = $(this);
+			if ($this.data('datepicker')) return;
+			e.preventDefault();
+			// component click requires us to explicitly show it
+			datepickerPlugin.call($this, 'show');
+		});
+		$(function () {
+			datepickerPlugin.call($('[data-provide="datepicker-inline"]'));
+		});
+	});
+
+/***/ },
+/* 141 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/posts/postsMy/PostsMyView.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -34188,6 +48887,746 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+	var _PostsMyViewHbs = __webpack_require__(/*! ./PostsMyView.hbs.html */ 142);
+	
+	var _PostsMyViewHbs2 = _interopRequireDefault(_PostsMyViewHbs);
+	
+	var _PostItemView = __webpack_require__(/*! ./PostItemView */ 143);
+	
+	var _PostItemView2 = _interopRequireDefault(_PostItemView);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./PostMyView.less */ 145);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CompositeView.extend({
+	    template: _PostsMyViewHbs2.default,
+	    childView: _PostItemView2.default,
+	    childViewContainer: '#myPostsContaner'
+	
+	});
+	exports.default = View;
+
+/***/ },
+/* 142 */
+/*!************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/postsMy/PostsMyView.hbs.html ***!
+  \************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="sh-content">\n    <div class="sh-my-posts">\n        <div class="container">\n            <div id="myPostsContaner" class="sh-my-posts-wrapper"></div>\n        </div>\n    </div>\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 143 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/posts/postsMy/PostItemView.js ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _PostItemViewHbs = __webpack_require__(/*! ./PostItemView.hbs.html */ 144);
+	
+	var _PostItemViewHbs2 = _interopRequireDefault(_PostItemViewHbs);
+	
+	var _ConfirmView = __webpack_require__(/*! ../../../sharedViews/ConfirmView.js */ 117);
+	
+	var _ConfirmView2 = _interopRequireDefault(_ConfirmView);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _locationHelper = __webpack_require__(/*! ../../../helpers/locationHelper.js */ 9);
+	
+	var _locationHelper2 = _interopRequireDefault(_locationHelper);
+	
+	var _postDuration = __webpack_require__(/*! ../../../helpers/postDuration.js */ 66);
+	
+	var _postDuration2 = _interopRequireDefault(_postDuration);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _PostItemViewHbs2.default,
+	    className: 'sh-my-posts-item sh-page-block',
+	
+	    onBeforeRender: function onBeforeRender() {
+	        this.getDistance();
+	        this.getPostState();
+	    },
+	    initialize: function initialize() {
+	        this.confirmAnswer = new Backbone.Model({ questions: null });
+	        this.listenTo(this.confirmAnswer, 'change', this.deletePost);
+	    },
+	    onRender: function onRender() {},
+	    getDistance: function getDistance() {
+	        var locations = this.model.get('details').locations;
+	        if (locations && _.size(locations) > 0 && _app2.default.user.has('position')) {
+	            var location = _.find(locations, function (l) {
+	                return l.placeType === 'dynamic';
+	            });
+	            if (!location) location = locations[0];
+	            var dist = _locationHelper2.default.getDistance(location.coords.lat, location.coords.lng, _app2.default.user.get('position').lat, _app2.default.user.get('position').lng);
+	            this.model.set('distance', dist);
+	            this.model.set('distanceType', 'km');
+	            var obj = _postDuration2.default.getPostDuration(this.model);
+	            this.model.set('progress', obj.percent);
+	        } else {
+	            this.model.set('distance', -1);
+	            this.model.set('progress', 0);
+	        }
+	    },
+	    getPostState: function getPostState() {
+	        var state = this.model.get('status').visible;
+	        this.model.set('postState', state === 'visible' ? 'on' : 'off');
+	    },
+	
+	
+	    events: {
+	        'click .js-delete-post': 'clickDeleteBtn',
+	        '.js-edit-my-post click': function jsEditMyPostClick() {
+	            debugger;
+	        }
+	    },
+	
+	    clickDeleteBtn: function clickDeleteBtn(e) {
+	        e.stopPropagation();
+	        e.preventDefault();
+	
+	        var that = this,
+	            model = this.model.toJSON(),
+	            message = model.details.title || '';
+	
+	        //show modal window
+	        var title = i18n.getLanguage() === 'ru' ? 'Удаление поста' : 'Delete post';
+	        _app2.default.layout.showChildView('modal', new _ConfirmView2.default({ answer: this.confirmAnswer, title: title, message: message }));
+	    },
+	    deletePost: function deletePost(e) {
+	        var questions = this.confirmAnswer.get('questions');
+	
+	        var that = this,
+	            model = this.model.toJSON(),
+	            postId = model._id;
+	
+	        setTimeout(function () {
+	            if (questions) {
+	                that.model.loadByMethod('deletePost', postId, function () {
+	                    that.model.collection.remove(that.model);
+	                });
+	            }
+	        }, 1500);
+	
+	        this.confirmAnswer.set('questions', null);
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 144 */
+/*!*************************************************************!*\
+  !*** ./wwwroot/homeApp/posts/postsMy/PostItemView.hbs.html ***!
+  \*************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<!-- class .sh-my-posts-item-wrapper include .sh-post-live or .sh-post-away -->\n<div class="sh-my-posts-item-wrapper sh-post-'+
+	((__t=( postState))==null?'':__t)+
+	' sh-type-category-'+
+	((__t=(type))==null?'':__t)+
+	'">\n    ';
+	var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );
+	__p+='\n    <div class="sh-my-posts-item-photo">        \n        <div class="sh-my-posts-item-photo-wrapper">\n            <a href="/posts/'+
+	((__t=(_id))==null?'':_.escape(__t))+
+	'">\r\n                <div class="img img-responsive" style="background-image:url(\''+
+	((__t=( details.photos && details.photos.length > 0 ? details.photos[0].thumbnail||details.photos[0].data : '/images/no_image.jpg'))==null?'':__t)+
+	'\')" alt="Photo of the post"></div>\r\n            </a>\n        </div> \n        ';
+	 if (_.size(details.photos) > 0){ 
+	__p+='\n            <div class="sh-my-posts-item-photo-count">\n                <span>\n                    '+
+	((__t=(details.photos.length))==null?'':__t)+
+	'\n                </span>\n            </div>\n        ';
+	 } 
+	__p+='       \n    </div>\n\n    <div class="sh-my-posts-item-content">\n        <div class="sh-my-posts-item-content-header">\n            <div class="sh-my-posts-item-content-header-wrapper">\n                <span class="label bg-type-category-'+
+	((__t=(type))==null?'':__t)+
+	' pull-right">'+
+	((__t=(type))==null?'':__t)+
+	'</span>\r\n                <div class="sh-my-posts-item-content-title">\r\n                    <h2><a href="/posts/'+
+	((__t=(_id))==null?'':_.escape(__t))+
+	'">'+
+	((__t=(details.title))==null?'':__t)+
+	'</a></h2>\r\n                </div>\n            </div>\n            <div class="sh-my-posts-item-content-header-stat">\n                <ul class="sh-my-posts-item-stat">\r\n                    <li><a href="#"><i class="fa fa-clock-o"></i> <span class="">'+
+	((__t=(moment(obj.timestamp.$date).fromNow()))==null?'':__t)+
+	'</span></a></li>\r\n                    <li><a href="#"><i class="fa fa-eye"></i> <span class="">'+
+	((__t=(obj.stats?stats.seenAll:0))==null?'':__t)+
+	'</span></a></li>\r\n                    <li><a title="'+
+	((__t=(isDynamic ? 'Динамическое объявление' : 'Статическое'))==null?'':__t)+
+	'" href="#"><i class="fa fa-'+
+	((__t=(isDynamic?'man':'flag' ))==null?'':__t)+
+	'"></i> <span class="">'+
+	((__t=(isDynamic ? 'success' : ''))==null?'':__t)+
+	'</span></a></li>\r\n                    <li><a href="#"><i class="fa fa-location-arrow"></i> <span class="">'+
+	((__t=(distance>-1?distance.toFixed(1) + ' '+distanceType:''))==null?'':__t)+
+	'</span></a></li>\r\n                </ul>\n            </div>            \n        </div>\n\n        <div class="sh-my-posts-item-content-body"></div>\n\n        <div class="sh-my-posts-item-content-footer">\n            <div class="sh-my-posts-item-content-footer-wrapper">\n                <div class="sh-my-posts-item-content-footer-location">\r\n                    <div class="sh-my-posts-item-content-footer-location-wrapper">\r\n                        <i class="fa fa-map-marker" aria-hidden="true"></i> \r\n                        ';
+	var loc = _.find(details.locations,function(l) { return l.placeType==='dynamic' })||details.locations[0]; 
+	__p+='\r\n                        ';
+	 if (loc) { 
+	__p+='\r\n                            <span>'+
+	((__t=(loc.name))==null?'':__t)+
+	'</span>\r\n                        ';
+	 } 
+	__p+='\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="sh-my-posts-item-content-footer-progress">\r\n                    <div class="sh-progress-bar progress">\r\n                        <div class="progress-bar '+
+	((__t=( progress >= 50 ? 'progress-bar-success' : (progress >=20 && progress < 50 ? 'progress-bar-warning' : 'progress-bar-danger')))==null?'':__t)+
+	'" role="progressbar" style="width: '+
+	((__t=( progress))==null?'':__t)+
+	'%; min-width: 1em; ">\r\n                            <span class="sr-only"></span>\r\n                        </div>\r\n                    </div>\r\n                </div>\n\n                <div class="sh-my-posts-item-content-footer-actions">\r\n                    <div class="sh-my-posts-item-content-footer-actions-wrapper">\r\n                        <a style="display:none" class="sh-post-action-link js-reset-post" href="#" title="Reload"><span><i class="fa fa-refresh"></i></span></a>\r\n                        <a style="display:none" class="sh-post-action-link" href="/posts/';
+	 _id 
+	__p+='/edit" title="Edit"><span><i class="fa fa-pencil-square-o"></i></span></a>\r\n                        <a class="sh-post-action-link js-delete-post" href="#" title="Delete"><span><i class="fa fa-trash-o"></i></span></a>\r\n                    </div>\r\n                </div>\n            </div>            \n        </div>\n        \n        <!--\n\n        <p>'+
+	((__t=(details.description))==null?'':__t)+
+	'</p>\n\n        -->\n\n\n        <!--<a href="#" class="btn btn-reveal btn-default js-edit-my-chat">\n            <i class="fa fa-edit"></i>\n            <span>Редактировать</span>\n        </a>\n        <a href="#" class="btn btn-reveal btn-danger js-remove-my-post">\n            <i class="fa fa-remove"></i>\n            <span>Удалить</span>\n        </a>-->\n    </div>\n\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 145 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/posts/postsMy/PostMyView.less ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 146 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _chatsMyViewHbs = __webpack_require__(/*! ./chatsMyView.hbs.html */ 147);
+	
+	var _chatsMyViewHbs2 = _interopRequireDefault(_chatsMyViewHbs);
+	
+	var _chatItemView = __webpack_require__(/*! ./chatItemView */ 148);
+	
+	var _chatItemView2 = _interopRequireDefault(_chatItemView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CompositeView.extend({
+	    template: _chatsMyViewHbs2.default,
+	    childView: _chatItemView2.default,
+	    childViewContainer: '#myChatsContaner',
+	    onRender: function onRender() {}
+	});
+	exports.default = View;
+
+/***/ },
+/* 147 */
+/*!************************************************************!*\
+  !*** ./wwwroot/homeApp/chats/chatsMy/chatsMyView.hbs.html ***!
+  \************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<main class="sh-content">\n    <div class="sh-page-chats">\n        <div class="container">\n            <!--<h1 class="sh-section-hero-headline">'+
+	((__t=(i18n('h_messages')))==null?'':__t)+
+	'</h1>-->\n            <div id="myChatsContaner" class="sh-page-block sh-pages-chats-wrapper"></div>\n        </div>\n    </div>    \n</main>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 148 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.js ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _chatItemViewHbs = __webpack_require__(/*! ./chatItemView.hbs.html */ 149);
+	
+	var _chatItemViewHbs2 = _interopRequireDefault(_chatItemViewHbs);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./chatItemView.css */ 150);
+	
+	__webpack_require__(/*! ./myChatItemView.less */ 152);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _chatItemViewHbs2.default,
+	    onBeforeRender: function onBeforeRender() {
+	        //this.getDistance();
+	    },
+	    getDistance: function getDistance() {
+	        // todo
+	    },
+	
+	    events: {
+	        '.js-remove-my-post click': function jsRemoveMyPostClick() {
+	            //debugger;
+	        },
+	        '.js-edit-my-post click': function jsEditMyPostClick() {
+	            //debugger;
+	        }
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 149 */
+/*!*************************************************************!*\
+  !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.hbs.html ***!
+  \*************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="sh-chat-item-container">\n    ';
+	 obj.__otherParty = {} 
+	__p+='\n    ';
+	 if(obj.otherParty && obj.otherParty[0]) { obj.__otherParty = obj.otherParty[0]; } 
+	__p+='\n    ';
+	 obj.__lastMessage = obj.lastMessage || {} 
+	__p+='\n    <div class="sh-chat-item">\n        <a href="/messages/to/'+
+	((__t=( obj.__otherParty._id ))==null?'':__t)+
+	'">\n        <!--<a href="/messages/to/'+
+	((__t=(_id ))==null?'':_.escape(__t))+
+	'?remoteUserId='+
+	((__t=( obj.__otherParty.remoteUserId ))==null?'':__t)+
+	'">-->\n            <div class="sh-meta-info">                \n                <div class="sh-chat-user">\r\n                    <div class="sh-avatar">\r\n                        <img src="'+
+	((__t=( obj.__otherParty.image ? obj.__otherParty.image.thumbnail || obj.__otherParty.image.imageUrl || '/images/no_avatar.png' : '/images/no_avatar.png' ))==null?'':__t)+
+	'"\r\n                                alt="null" />\r\n                    </div>                   \r\n                </div>               \n                \n                <div class="sh-chat-content">\n                    <span class="sh-last-timestamp">'+
+	((__t=( moment(obj.lastMessageTs).fromNow() ))==null?'':__t)+
+	'</span>\n                    <div class="sh-username">'+
+	((__t=( obj.__otherParty.username ))==null?'':__t)+
+	'</div>\n                    <div class="sh-users-messages">\r\n                        <div class="sh-last-message">'+
+	((__t=( obj.__lastMessage.text ))==null?'':__t)+
+	'</div>\r\n                    </div>\n                </div>        \n            </div>\n        </a>\n    </div>\n\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 150 */
+/*!********************************************************!*\
+  !*** ./wwwroot/homeApp/chats/chatsMy/chatItemView.css ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./chatItemView.css */ 151);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 51)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./chatItemView.css", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./chatItemView.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 151 */
+/*!***********************************************************************!*\
+  !*** ./~/css-loader!./wwwroot/homeApp/chats/chatsMy/chatItemView.css ***!
+  \***********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 14)();
+	exports.push([module.id, ".bz-chat-item .bz-user-avatar {\n  float: left;\n  top: 0;\n  left: 0;\n  padding-right: 10px;\n}\n\n.bz-chat-item .bz-avatar {\n\n  background-size: cover;\n  background-position: center;\n  -webkit-border-radius: 2px;\n  -moz-border-radius: 2px;\n  border-radius: 2px;\n}\n.bz-chat-item .bz-avatar img {\n  width: 50px;\n  height: 50px;\n}\n.bz-chat-item .bz-last-timestamp {\n  font-style: italic;\n  font-size: 12px;\n  padding-top: 12px;\n}\n.bz-chat-item .bz-last-message {\n  font-weight: bold;\n}\n/* temp, not good solution: */\ndiv.blog-post-item {\n  margin-bottom: 10px;\n  padding-bottom: 30px;\n}", ""]);
+
+/***/ },
+/* 152 */
+/*!***********************************************************!*\
+  !*** ./wwwroot/homeApp/chats/chatsMy/myChatItemView.less ***!
+  \***********************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 153 */
+/*!*********************************************!*\
+  !*** ./wwwroot/homeApp/chats/ChatIdView.js ***!
+  \*********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _ChatIdViewHbs = __webpack_require__(/*! ./ChatIdView.hbs.html */ 154);
+	
+	var _ChatIdViewHbs2 = _interopRequireDefault(_ChatIdViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _ChatIdViewHbs2.default,
+	    initialize: function initialize() {},
+	
+	    /*  tagName:'iframe',
+	       attributes: {
+	          width:'100%',
+	          src:'https://shiners.mobi/chat/'+chatId._id+'?isiframe=true'
+	      },
+	      */
+	    events: {
+	        'load iframe': 'removeHeader'
+	    },
+	
+	    removeHeader: function removeHeader(e) {
+	        console.info('remove header');
+	        window.myIframe = e.target;
+	        console.info(src);
+	    },
+	    onAttach: function onAttach() {
+	        this.$el.height(window.innerHeight - $('#header').height());
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 154 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/chats/ChatIdView.hbs.html ***!
+  \***************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<section style ="height:100%;">\n    <div class="container">\n    </div>\n</section>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 155 */
+/*!*********************************************!*\
+  !*** ./wwwroot/homeApp/user/DetailsView.js ***!
+  \*********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _AsteroidModel = __webpack_require__(/*! ../../data/AsteroidModel.js */ 91);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	var _DetailsViewHbs = __webpack_require__(/*! ./DetailsView.hbs.html */ 156);
+	
+	var _DetailsViewHbs2 = _interopRequireDefault(_DetailsViewHbs);
+	
+	var _SendMessageView = __webpack_require__(/*! ./SendMessageView.js */ 157);
+	
+	var _SendMessageView2 = _interopRequireDefault(_SendMessageView);
+	
+	var _ProfileEditView = __webpack_require__(/*! ./ProfileEditView.js */ 160);
+	
+	var _ProfileEditView2 = _interopRequireDefault(_ProfileEditView);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _ModalContainerView = __webpack_require__(/*! ../../sharedViews/ModalContainerView.js */ 132);
+	
+	var _ModalContainerView2 = _interopRequireDefault(_ModalContainerView);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _DetailsViewHbs2.default,
+	    tagName: 'div',
+	    className: 'sh-user-profile',
+	    r_user: null,
+	
+	    events: {
+	        'click #logout': 'logout',
+	        'click #profile-send': 'profileSend',
+	        'click #profile-edit': 'profileEdit',
+	        'click #checkPosts': 'checkPosts',
+	        'click #profile-link': 'directProfileLink'
+	    },
+	
+	    regions: {
+	        'modal': '#modalContainer'
+	    },
+	
+	    modelEvents: {
+	        "sync": "render"
+	    },
+	
+	    initialize: function initialize() {
+	        this.r_user = this.model.toJSON();
+	
+	        this.sendMessageModel = new _AsteroidModel2.default({
+	            name: this.r_user.username,
+	            user_id: _app2.default.user.get('_id'),
+	            remoteUser_id: this.r_user._id
+	        }, { asteroid: _app2.default.asteroid });
+	
+	        this.profileEditModel = new _AsteroidModel2.default(this.model.toJSON(), { asteroid: _app2.default.asteroid });
+	        this.listenTo(this.profileEditModel, 'save', this.render);
+	    },
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            user: _app2.default.user.toJSON()
+	        };
+	    },
+	    onRender: function onRender() {},
+	    logout: function logout() {
+	        _app2.default.logout();
+	    },
+	    profileSend: function profileSend(e) {
+	        //Необходима проверка -> залогинен или нет, иначе отправлять на регистрацию
+	        this.showChildView('modal', new _ModalContainerView2.default({ view: new _SendMessageView2.default({ model: this.sendMessageModel }), title: 'Сообщение для пользователя' }));
+	    },
+	    profileEdit: function profileEdit(e) {
+	        this.showChildView('modal', new _ModalContainerView2.default({ view: new _ProfileEditView2.default({ model: this.profileEditModel }), title: 'Настройки профиля' }));
+	    },
+	    checkPosts: function checkPosts(e) {
+	        var checkbox = $(e.target),
+	            toggle;
+	
+	        toggle = checkbox.prop('checked');
+	        // -> method to update profile field
+	    },
+	    directProfileLink: function directProfileLink(e) {
+	        var t = e.target.closest('#profile-link'),
+	            c = t.dataset.copytarget,
+	            inp = c ? document.querySelector(c) : null;
+	
+	        if (inp && inp.select) {
+	            inp.select();
+	
+	            try {
+	                document.execCommand('copy');
+	                setTimeout(function () {
+	                    inp.blur();
+	                }, 250);
+	            } catch (err) {
+	                console.warn('please press Ctrl/Cmd+C to copy');
+	            }
+	        }
+	    }
+	});
+	
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 156 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/user/DetailsView.hbs.html ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\n';
+	var isCurrentUser = (_id === user._id); 
+	__p+='\r\n';
+	var someUser = obj; 
+	__p+='\n\n';
+	var firstName = (_.find(someUser.profileDetails,{key:'firstName'})||{}).value;
+	__p+='\n';
+	var lastName = (_.findWhere(someUser.profileDetails,{key:'lastName'})||{}).value; 
+	__p+='\n';
+	var city = (_.find(someUser.profileDetails,{key:'city'})||{}).value;
+	__p+='\n';
+	var phone = (_.findWhere(someUser.profileDetails,{key:'phone'})||{}).value; 
+	__p+='\n';
+	var skype = (_.find(someUser.profileDetails,{key:'skype'})||{}).value;
+	__p+='\n';
+	var vk = (_.findWhere(someUser.profileDetails,{key:'vk'})||{}).value; 
+	__p+='\n';
+	var twitter = (_.find(someUser.profileDetails,{key:'twitter'})||{}).value;
+	__p+='\n';
+	var facebook = (_.findWhere(someUser.profileDetails,{key:'facebook'})||{}).value; 
+	__p+='\n\n<div id="modalContainer"></div>\n\n<div class="container">\n    <div class="sh-user-profile-wrapper">\n        <div class="sh-side-left">\n            <div class="sh-page-block sh-user-box">\n                <div class="sh-user-avatar">\n                    <div class="sh-user-avatar-wrap">\n                        <a class="sh-user-profile-photo-link" href="#">\n                            <img src="'+
+	((__t=(profile.image && profile.image.data?profile.image.data:'/images/no_image.jpg'))==null?'':__t)+
+	'" alt="#">\n                        </a>\n                        <div class="sh-avatar-user-status">\n                            <div class="sh-avatar-user-status-wrapper '+
+	((__t=(someUser.online ? 'sh-online' : 'sh-offline' ))==null?'':__t)+
+	'"></div>\n                        </div>\n                    </div>\n                </div>\n                <div class="sh-profile-action">\n                    ';
+	if(!isCurrentUser) { 
+	__p+='\n                    <a id="profile-send" class="ui sh-button sh-profile-send"> '+
+	((__t=(i18n('addMessage')))==null?'':__t)+
+	'</a>\n                    ';
+	 } else { 
+	__p+='\n                    <a id="profile-edit" class="ui sh-button sh-profile-edit">Редактировать</a>\n                    ';
+	 } 
+	__p+='\n                </div>\n            </div>\n            <div class="sh-page-block">\n                <ul class="sh-user-action">\n                    <!--<li><a href="#">'+
+	((__t=(i18n('complain')))==null?'':__t)+
+	'</a></li>-->\n                    ';
+	if(isCurrentUser) { 
+	__p+='\n                    <li class="sh-user-action-exit"><a id="logout">'+
+	((__t=(i18n('exit')))==null?'':__t)+
+	'</a></li>\n                    ';
+	 } 
+	__p+='\n                </ul>\n            </div>\n        </div>\n        <div class="sh-side-right">\n            <div class="sh-page-block sh-user-info">\n                <div class="sh-user-info-top">\n                    <small class="sh-user-was">'+
+	((__t=(i18n('WAS_ONLINE')))==null?'':__t)+
+	' '+
+	((__t=(moment(status.lastlogin.date).calendar()))==null?'':__t)+
+	'</small>\n                    <h2 class="sh-user-name">'+
+	((__t=( firstName))==null?'':__t)+
+	' '+
+	((__t=(lastName))==null?'':__t)+
+	' '+
+	((__t=((!firstName && !lastName) ? someUser.username : ''))==null?'':__t)+
+	'</h2>\n                </div>\n                <div class="sh-user-profile-info">\n                    <div class="sh-user-profile-info-wrapper">\n                        <!--Direct link to my profile-->\n                        <div class="sh-user-profile-info-row sh-col">\n                            <div class="sh-info-title">'+
+	((__t=(i18n('DIRECT_PROFILE_LINK')))==null?'':__t)+
+	'</div>\n                            <div class="sh-info-text">\n                                <div class="sh-direct-link-block">\n                                    <div class="sh-direct-link-wrapper">\n                                        <div class="sh-icon-direct-link">\n                                            <i class="fa fa-link" aria-hidden="true"></i>\n                                        </div>\n                                        <a href="https://shiners.ru/user/'+
+	((__t=(_id))==null?'':__t)+
+	'" style="width:100%"><input type="text" readonly id="directProfileLink" value="https://www.shiners.ru/user/'+
+	((__t=(_id))==null?'':__t)+
+	'" /></a>\n                                    </div>\n                                    <div class="sh-direct-link-btn-copy"><a id="profile-link" data-copytarget="#directProfileLink" title="Копировать" class="ui sh-button"><i class="fa fa-clipboard" aria-hidden="true"></i></a></div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--The publication available to all users-->\n                        ';
+	if(isCurrentUser) { 
+	__p+='\n                        <div class="sh-user-profile-info-row sh-col">\n                            <div class="sh-info-title">Настройка для постов</div>\n                            <div class="sh-info-text">\n                                <div class="sh-direct-link-block">\n                                    <div class="sh-direct-link-wrapper">\n                                        <label class="sh-checkbox">\n                                            <input id="checkPosts" type="checkbox" '+
+	((__t=(isCurrentUser && someUser.profile.checkOwnPosts ? 'checked' : ''))==null?'':__t)+
+	' value="1">\n                                            <label>Сделать мои публикации доступными для всех пользователей</label>\n                                        </label>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        ';
+	 } 
+	__p+='\n\n                        <!--Public info-->\n                        ';
+	 if (city || skype || vk || facebook) { 
+	__p+='\n\n                            <div class="sh-user-profile-info-row sh-profile-info-header">\n                                <div class="sh-profile-info-header-within">\n                                    <span>Публичная информация</span>\n                                </div>\n                            </div>\n\n                            <!--City-->\n                            ';
+	 if (city) { 
+	__p+='\n                            <div class="sh-user-profile-info-row">\n                                <div class="sh-info-title">Город</div>\n                                <div class="sh-info-text">'+
+	((__t=(city))==null?'':__t)+
+	'</div>\n                            </div>\n                            ';
+	 } 
+	__p+='\n\n                            <!--Social links-->\n                            ';
+	 if (skype) { 
+	__p+='\n                            <div class="sh-user-profile-info-row">\n                                <div class="sh-info-title">Логин Skype</div>\n                                <div class="sh-info-text">'+
+	((__t=(skype))==null?'':__t)+
+	'</div>\n                            </div>\n                            ';
+	 } 
+	__p+='\n\n                            ';
+	 if (vk) { 
+	__p+='\n                            <div class="sh-user-profile-info-row sh-social-links sh-vk">\n                                <div class="sh-info-title">Вконтакте</div>\n                                <div class="sh-info-text">'+
+	((__t=(vk))==null?'':__t)+
+	'</div>\n                            </div>\n                            ';
+	 } 
+	__p+='\n\n                            ';
+	 if (facebook) { 
+	__p+='\n                            <div class="sh-user-profile-info-row sh-social-links sh-facebook">\n                                <div class="sh-info-title">Facebook</div>\n                                <div class="sh-info-text">'+
+	((__t=(facebook))==null?'':__t)+
+	'</div>\n                            </div>\n                            ';
+	 } 
+	__p+='\n\n                        ';
+	 } 
+	__p+='\n\n                        <!--<div class="sh-user-profile-info-row">-->\n                        <!--<div class="sh-info-title"></div>-->\n                        <!--<div class="sh-info-text"></div>-->\n                        <!--</div>-->\n                    </div>\n                </div>\n                <div class="sh-user-profile-links">\n                    <div class="sh-user-profile-links-wrapper">\n                        <div class="sh-user-profile-links-item">Постов <span>0</span></div>\n                        <div class="sh-user-profile-links-item">Комментариев <span>0</span></div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 157 */
+/*!*************************************************!*\
+  !*** ./wwwroot/homeApp/user/SendMessageView.js ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
+>>>>>>> master
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+<<<<<<< HEAD
 	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 158);
 	
 	var _MessagesItemViewHbs2 = _interopRequireDefault(_MessagesItemViewHbs);
@@ -34309,18 +49748,121 @@
 /*!***********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/messageItemView.less ***!
   \***********************************************************/
+=======
+	var _SendMessageViewHbs = __webpack_require__(/*! ./SendMessageView.hbs.html */ 158);
+	
+	var _SendMessageViewHbs2 = _interopRequireDefault(_SendMessageViewHbs);
+	
+	var _AsteroidModel = __webpack_require__(/*! ../../data/AsteroidModel.js */ 91);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	__webpack_require__(/*! ./SendMessageView.less */ 159);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	    template: _SendMessageViewHbs2.default,
+	
+	    events: {
+	        'submit form': 'sendMessage'
+	    },
+	
+	    sendMessage: function sendMessage(e) {
+	        var _this = this;
+	
+	        e.preventDefault();
+	        var self = this;
+	        var $textEl = this.$('#message-to-user'),
+	            value = ($textEl.val() || "").trim(),
+	            remoteUserId = this.model.get('remoteUser_id');
+	
+	        if (!_.isEmpty(value)) {
+	            if (_app2.default.asteroid.loggedIn) {
+	                //var remoteUser = new Model({_id: remoteUserId}, {asteroid: app.asteroid});
+	                _app2.default.asteroid.call('bz.chats.createChatIfFirstMessage', _app2.default.user.id, remoteUserId).result.then(function (chatId) {
+	
+	                    var model = new _AsteroidModel2.default({
+	                        text: value,
+	                        timestamp: new Date(),
+	                        userId: _this.model.get('user_id'),
+	                        toUserId: remoteUserId,
+	                        chatId: chatId
+	                    }, { asteroid: _app2.default.asteroid });
+	
+	                    model.save('addMessage', {
+	                        destinationUserId: remoteUserId,
+	                        message: value,
+	                        type: 'text'
+	                    });
+	
+	                    $textEl.val('');
+	                    $textEl.focus();
+	
+	                    self.remove();
+	                    self.trigger('destroy');
+	
+	                    setTimeout(function () {
+	                        _app2.default.router.navigate('/chats/' + chatId + '?remoteUserId=' + remoteUserId, { trigger: true, replace: true });
+	                    }, 1000);
+	                });
+	            } else {
+	                _app2.default.router.navigate('', { trigger: true });
+	            }
+	        }
+	    }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 158 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/user/SendMessageView.hbs.html ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div id="messageToUser" class="sh-message-to-user">\r\n  \r\n    <form id="sendMessageForm" action="/" method="post">\r\n        <div class="row">\r\n            <div class="col-12">\r\n                <div class="panel-body sh-panel-body">\r\n                    <textarea required rows="4" class="sh-message-to-user" id="message-to-user" name="sendToUser[message]" placeholder="Начните сообщение..."></textarea>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class="row">\r\n            <div class="sh-send-message-actions">\r\n                <div class="sh-send-message-actions-wrapper">\r\n                    <div class="col-4">\r\n                        <div class="sh-msg-info-title">Сообщение для:</div>\r\n                        <div class="sh-msg-user-name">'+
+	((__t=(name))==null?'':__t)+
+	'</div>\r\n                    </div>\r\n                    <div class="col-7">\r\n                        <button type="submit" class="ui sh-button standard action big"><i class="fa fa-check"></i> <span>Отправить сообщение</span></button>\r\n                    </div>\r\n                </div>\r\n            </div>            \r\n        </div>\r\n        <input type="hidden" name="message-save" value="1">\r\n    </form>\r\n\r\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 159 */
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/user/SendMessageView.less ***!
+  \***************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 /* 160 */
+<<<<<<< HEAD
 /*!********************************************************!*\
   !*** ./wwwroot/homeApp/chats/native/NoMessagesView.js ***!
   \********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+=======
+/*!*************************************************!*\
+  !*** ./wwwroot/homeApp/user/ProfileEditView.js ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -34330,6 +49872,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
 	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 161);
 	
 	var _NoMessagesViewHbs2 = _interopRequireDefault(_NoMessagesViewHbs);
@@ -35145,6 +50688,196 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+=======
+	var _ProfileEditViewHbs = __webpack_require__(/*! ./ProfileEditView.hbs.html */ 161);
+	
+	var _ProfileEditViewHbs2 = _interopRequireDefault(_ProfileEditViewHbs);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	    template: _ProfileEditViewHbs2.default,
+	    items: null,
+	
+	    regions: {},
+	
+	    events: {
+	        'blur #sh-profile-first-name, #sh-profile-last-name, #sh-profile-city, #sh-profile-phone, #sh-profile-skype, #sh-profile-vk, #sh-profile-facebook': 'profileAttributesChange',
+	        'click #sh-policy-1': 'openedPrivacy',
+	        'click #sh-policy-0': 'lockedPrivacy',
+	        'click #sh-profile-edit-action-save': 'profileEditSave'
+	    },
+	
+	    modelEvents: {
+	        'save': 'showSuccess'
+	    },
+	
+	    initialize: function initialize() {
+	        this.items = this.model.get('profileDetails') || {};
+	    },
+	    onAttach: function onAttach() {
+	        Backbone.Validation.bind(this);
+	    },
+	    profileAttributesChange: function profileAttributesChange(e) {
+	        var target = e.target;
+	
+	        if (target && target.id == 'sh-profile-first-name') {
+	            this.fieldIteration('firstName', target);
+	        } else if (target && target.id == 'sh-profile-last-name') {
+	            this.fieldIteration('lastName', target);
+	        } else if (target && target.id == 'sh-profile-city') {
+	            this.fieldIteration('city', target);
+	        } else if (target && target.id == 'sh-profile-phone') {
+	            this.fieldIteration('phone', target);
+	        } else if (target && target.id == 'sh-profile-skype') {
+	            this.fieldIteration('skype', target);
+	        } else if (target && target.id == 'sh-profile-vk') {
+	            this.fieldIteration('vk', target);
+	        } else if (target && target.id == 'sh-profile-facebook') {
+	            this.fieldIteration('facebook', target);
+	        }
+	
+	        this.model.set('profileDetails', this.items, { validate: true });
+	    },
+	    fieldIteration: function fieldIteration(name, el) {
+	        _underscore2.default.each(this.items, function (item) {
+	            if (item.key == name) {
+	                if (el.value && !_underscore2.default.isEmpty(el.value.trim())) {
+	                    item.value = el.value.trim();
+	                } else {
+	                    item.value = '';
+	                }
+	            }
+	        });
+	    },
+	    openedPrivacy: function openedPrivacy(e) {
+	        var target = $(e.target),
+	            button = target.closest('.sh-profile-edit-privacy-control').find('.sh-privacy-dropdown');
+	
+	        if (button) {
+	            var child = button.children();
+	
+	            if (child.hasClass('fa-lock')) {
+	                child.removeClass('fa-lock');
+	                child.addClass('fa-unlock-alt');
+	            }
+	        }
+	
+	        _underscore2.default.each(this.items, function (item) {
+	            if (item.key == 'phone') {
+	                item.policy = '1';
+	            }
+	        });
+	
+	        this.model.set('profileDetails', this.items);
+	    },
+	    lockedPrivacy: function lockedPrivacy(e) {
+	        var target = $(e.target),
+	            button = target.closest('.sh-profile-edit-privacy-control').find('.sh-privacy-dropdown');
+	
+	        if (button) {
+	            var child = button.children();
+	
+	            if (child.hasClass('fa-unlock-alt')) {
+	                child.removeClass('fa-unlock-alt');
+	                child.addClass('fa-lock');
+	            }
+	        }
+	
+	        _underscore2.default.each(this.items, function (item) {
+	            if (item.key == 'phone') {
+	                item.policy = '0';
+	            }
+	        });
+	
+	        this.model.set('profileDetails', this.items);
+	    },
+	    profileEditSave: function profileEditSave(e) {
+	        this.model.save('editUser', { profileDetails: this.items } /*, {
+	                                                                   success: function() {
+	                                                                   console.log('Model saved')
+	                                                                   },
+	                                                                   error: function() {
+	                                                                   console.log('ERROR Model saved')}
+	                                                                   }*/);
+	    },
+	    showSuccess: function showSuccess() {
+	        //-> Нужно сделать рендер для detailsView
+	
+	        this.remove();
+	        this.trigger('destroy');
+	        //this.$el.closest('.modal-content').find('.modal-header .close').trigger('click');
+	    }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 161 */
+/*!*******************************************************!*\
+  !*** ./wwwroot/homeApp/user/ProfileEditView.hbs.html ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n';
+	var firstName = (_.find(obj.profileDetails, {key:'firstName'}) || {}).value;
+	__p+='\r\n';
+	var lastName = (_.findWhere(obj.profileDetails, {key:'lastName'}) || {}).value;
+	__p+='\r\n';
+	var city = (_.find(obj.profileDetails, {key:'city'}) || {}).value;
+	__p+='\r\n';
+	var phone = (_.findWhere(obj.profileDetails, {key:'phone'}) || {}).value; 
+	__p+='\r\n';
+	var policyPhone = (_.find(obj.profileDetails, {key:'phone'}) || {}).policy; 
+	__p+='\r\n';
+	var skype = (_.find(obj.profileDetails, {key:'skype'}) || {}).value;
+	__p+='\r\n';
+	var vk = (_.findWhere(obj.profileDetails, {key:'vk'}) || {}).value; 
+	__p+='\r\n';
+	var twitter = (_.find(obj.profileDetails, {key:'twitter'}) || {}).value;
+	__p+='\r\n';
+	var facebook = (_.findWhere(obj.profileDetails, {key:'facebook'}) || {}).value; 
+	__p+='\r\n\r\n<div id="profileEdit" class="sh-profile-edit">    \r\n    <div class="sh-profile-edit-wrapper">\r\n        <div id="sh-profile-edit-result" class="sh-profile-edit-result"></div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Имя:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( firstName))==null?'':__t)+
+	'" placeholder="Не указано" id="sh-profile-first-name" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Фамилия:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( lastName))==null?'':__t)+
+	'" placeholder="Не указано" id="sh-profile-last-name" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        \r\n        <div class="sh-profile-edit-row sh-profile-info-header">\r\n            <div class="sh-profile-info-header-within">\r\n                <span>Контакты</span>\r\n            </div>\r\n        </div>\r\n\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Город:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( city))==null?'':__t)+
+	'" placeholder="Не указано" id="sh-profile-city" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Телефон:</div>\r\n            <div class="sh-profile-edit-labeled sh-inner-icon">\r\n                <input type="text" value="'+
+	((__t=( phone))==null?'':__t)+
+	'" placeholder="Не указано" id="sh-profile-phone" class="sh-profile-input" autocomplete="off">\r\n                <div class="sh-profile-edit-privacy-control sh-profile-locked">                    \r\n                    <button type="button" class="sh-privacy-dropdown dropdown-toggle" data-toggle="dropdown"><i class="fa '+
+	((__t=( (policyPhone === '1') ? 'fa-unlock-alt' : 'fa-lock'))==null?'':__t)+
+	'" aria-hidden="true"></i></button>\r\n                    <ul class="dropdown-menu" role="menu">\r\n                        <li><a id="sh-policy-1" data-target="opened">Всем пользователям</a></li>\r\n                        <li><a id="sh-policy-0" data-target="locked">Скрыто для всех</a></li>                            \r\n                    </ul>                    \r\n                </div>\r\n            </div>            \r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Логин Skype:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( skype))==null?'':__t)+
+	'" placeholder="Не указано" id="sh-profile-skype" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Вконтакте:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( vk))==null?'':__t)+
+	'" placeholder="Ссылка на профиль" id="sh-profile-vk" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n        <div class="sh-profile-edit-row">\r\n            <div class="sh-profile-edit-label">Facebook:</div>\r\n            <div class="sh-profile-edit-labeled"><input type="text" value="'+
+	((__t=( facebook))==null?'':__t)+
+	'" placeholder="Ссылка на профиль" id="sh-profile-facebook" class="sh-profile-input" autocomplete="off"></div>\r\n        </div>\r\n\r\n        <hr>\r\n\r\n        <div class="sh-profile-edit-action sh-text-center">\r\n            <a id="sh-profile-edit-action-save" class="ui sh-button standard action big"><i class="fa fa-check"></i> <span>Сохранить</span></a>\r\n        </div>\r\n\r\n    </div>\r\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 162 */
+/*!************************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.js ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($, _) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -35154,13 +50887,871 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
-	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 179);
+	var _MessagesToUserViewHbs = __webpack_require__(/*! ./MessagesToUserView.hbs.html */ 163);
 	
-	var _FogotPasswordViewHbs2 = _interopRequireDefault(_FogotPasswordViewHbs);
+	var _MessagesToUserViewHbs2 = _interopRequireDefault(_MessagesToUserViewHbs);
+	
+	var _MessagesListView = __webpack_require__(/*! ./MessagesListView.js */ 164);
+	
+	var _MessagesListView2 = _interopRequireDefault(_MessagesListView);
+	
+	var _AsteroidModel = __webpack_require__(/*! ../../../data/AsteroidModel.js */ 91);
+	
+	var _AsteroidModel2 = _interopRequireDefault(_AsteroidModel);
+	
+	__webpack_require__(/*! ./messagesToUserView.less */ 170);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.View.extend({
+	
+	    template: _MessagesToUserViewHbs2.default,
+	    className: 'sh-content',
+	    tagName: 'div',
+	
+	    regions: {
+	        'messages': '#messagesList'
+	    },
+	
+	    onRender: function onRender() {
+	        this.showChildView('messages', new _MessagesListView2.default({ collection: this.collection, model: this.model, childViewOptions: { chat: this.model } }));
+	    },
+	
+	
+	    events: {
+	        'submit form': 'sendMessage',
+	        'keyup #messageText': function keyupMessageText(e) {
+	
+	            var messText = $.trim($('#messageText').val());
+	
+	            if (messText.length > 0) {
+	                var btn = $('.sh-messages-input-action').find('button');
+	                if (btn.hasClass('disabled')) {
+	                    $('.sh-messages-input-action').find('button').removeClass('disabled');
+	                }
+	            } else {
+	                $('.sh-messages-input-action').find('button').addClass('disabled');
+	                return;
+	            }
+	
+	            if (e.charCode === 13 || e.keyCode === 13) {
+	                this.sendMessage(e);
+	            }
+	        }
+	    },
+	
+	    onAttach: function onAttach() {
+	        this.messagesList_listenToResize();
+	        this.keyupInput();
+	        this.scrollMessages();
+	    },
+	    onDomRefresh: function onDomRefresh() {
+	        this.messagesList();
+	    },
+	    sendMessage: function sendMessage(e) {
+	        e.preventDefault();
+	        var $textEl = this.$('#messageText');
+	        var value = ($textEl.val() || "").trim();
+	        if (!_.isEmpty(value)) {
+	            var model = new _AsteroidModel2.default({
+	                text: value,
+	                timestamp: new Date(),
+	                userId: this.model.get('user')._id,
+	                toUserId: this.model.get('remoteUser')._id,
+	                chatId: this.model.id
+	            }, { asteroid: _app2.default.asteroid });
+	            //this.collection.add(model);
+	
+	            model.save('addMessage', { destinationUserId: this.model.get('remoteUser')._id, message: value, type: 'text', associatedPostId: this.model.get('postId') });
+	            $textEl.val('');
+	            $textEl.focus();
+	
+	            this.scrollMessages();
+	        }
+	    },
+	    messagesList: function messagesList() {
+	        var windowH = $(window).height(),
+	            content = $('.sh-messages-to-user-content'),
+	            header = $('#header').outerHeight(),
+	            messagesHeader = $('.sh-messages-to-user-header').outerHeight(),
+	            messagesFooter = $('.sh-messages-to-user-input').outerHeight(),
+	            footer = 0,
+	            padding = parseInt($('.sh-messages-to-user').css('paddingTop').replace('px', '')) + parseInt($('.sh-messages-to-user').css('paddingBottom').replace('px', ''));
+	
+	        if (_app2.default.isMobile) {
+	            //footer hide here
+	            console.log('mobile foorter'); //debug
+	            footer = 0;
+	        } else {
+	            footer = $('#footer').outerHeight();
+	        }
+	
+	        content.css('height', windowH - header - footer - messagesHeader - messagesFooter - padding);
+	    },
+	    messagesList_listenToResize: function messagesList_listenToResize() {
+	        $(window).resize(_.bind(this.messagesList, this));
+	    },
+	    keyupInput: function keyupInput() {
+	        var that = this;
+	        $.each($('textarea[data-autoresize]'), function () {
+	            var offset = this.offsetHeight - this.clientHeight;
+	            var resizeTextarea = function resizeTextarea(el) {
+	                $(el).css('height', 'auto').css('height', el.scrollHeight + offset);
+	            };
+	
+	            $(this).on('keyup input', function () {
+	                if (this.scrollHeight > 44) {
+	                    resizeTextarea(this);
+	                    that.messagesList();
+	                }
+	            }).removeAttr('data-autoresize');
+	        });
+	    },
+	    scrollMessages: function scrollMessages() {
+	        var element = $('.sh-messages-to-user-content').find('ul'),
+	            container = element.closest('div');
+	        if (element.length && container.length > 0) {
+	            container.stop().animate({ scrollTop: element[0].scrollHeight }, 250, 'swing');
+	        }
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3), __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 163 */
+/*!******************************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/MessagesToUserView.hbs.html ***!
+  \******************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\n<div class="sh-messages-to-user">\n    <div class="container">\n        <!-- Вынести в отдельный VIEW #sh-messages-empty -->\n        <div id="sh-messages-empty"></div>\n        <div class="sh-messages-to-user-wrapper sh-page-block">\n            <div class="sh-messages-to-user-header">\n                <div class="sh-messages-to-user-header-wrapper">\n                    <div class="sh-messages-to-user-avatar">\n                        <img class="rounded" src="'+
+	((__t=(remoteUser.image && remoteUser.image.imageUrl ? remoteUser.image.imageUrl : '/images/no_avatar.png'))==null?'':__t)+
+	'" alt="" width="50" height="50">\n                    </div>\n                    <div class="sh-messages-to-user-info">\n                        <div class="sh-messages-to-user-username">\n                            <span>'+
+	((__t=(remoteUser.username))==null?'':__t)+
+	'</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div id="messagesList" class="sh-messages-to-user-content"></div>\n            <div class="sh-messages-to-user-input">\n                <form method="post" action="#" class="">\r\n                    <div class="sh-messages-to-user-input-wrapper">\r\n                        <div class="sh-messages-input-textarea">\r\n                            <textarea id="messageText" required="" data-autoresize class="form-control" data-maxlength="100" rows="1" placeholder="Сообщение для '+
+	((__t=(remoteUser.username))==null?'':__t)+
+	'"></textarea>\r\n                        </div>\r\n                        <div class="sh-messages-input-action">\r\n                            <button type="submit" class="ui sh-button standard action disabled">Отправить</button>\r\n                        </div>\r\n                    </div>\r\n                </form>\r\n            </div>\n        </div>\n    </div>\n</div>\n\n\n\n\n\n<!--\n<img class="rounded" src="'+
+	((__t=(remoteUser.image && remoteUser.image.imageUrl?'/Img?url='+encodeURIComponent(remoteUser.image.imageUrl)+'&w=70&h=70':'/images/avatar.png'))==null?'':__t)+
+	'" alt="" width="70" height="70"> '+
+	((__t=(remoteUser.username))==null?'':__t)+
+	'\n-->';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 164 */
+/*!**********************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/MessagesListView.js ***!
+  \**********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _messagesItemView = __webpack_require__(/*! ./messagesItemView.js */ 165);
+	
+	var _messagesItemView2 = _interopRequireDefault(_messagesItemView);
+	
+	var _NoMessagesView = __webpack_require__(/*! ./NoMessagesView.js */ 168);
+	
+	var _NoMessagesView2 = _interopRequireDefault(_NoMessagesView);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	    childView: _messagesItemView2.default,
+	    emptyView: _NoMessagesView2.default,
+	    tagName: 'ul',
+	    className: 'sh-messages-container list-unstyled',
+	
+	    initialize: function initialize() {
+	        var _this = this;
+	
+	        this.listenTo(_app2.default, 'add:message', function (fields) {
+	            return _this.collection.add(fields);
+	        });
+	    },
+	    onRender: function onRender() {
+	        // this.collection.sub('messages-new');
+	    },
+	    onBeforeDestroy: function onBeforeDestroy() {
+	        //this.collection.unsub();
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 165 */
+/*!**********************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/messagesItemView.js ***!
+  \**********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _MessagesItemViewHbs = __webpack_require__(/*! ./MessagesItemView.hbs.html */ 166);
+	
+	var _MessagesItemViewHbs2 = _interopRequireDefault(_MessagesItemViewHbs);
+	
+	__webpack_require__(/*! ./messageItemView.less */ 167);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _MessagesItemViewHbs2.default,
+	    tagName: 'li',
+	    className: function className() {
+	        return 'sh-message ' + (this.model.get('userId') === this.options.chat.get('user')._id ? 'sh-message-my' : 'sh-message-remote');
+	    },
+	    status: null,
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            user: this.options.chat.get('user'),
+	            remoteUser: this.options.chat.get('remoteUser'),
+	            status: this.status ? this.status : this.model.id ? this.model.id === this.options.chat.get('user').id ? 'old' : 'remote' : 'sending'
+	        };
+	    },
+	    onRender: function onRender() {
+	        this.status = null;
+	    },
+	
+	
+	    events: {
+	        'click .removeMessage': 'removeMessage',
+	        'click .editMessage': 'debugCHeck'
+	    },
+	
+	    modelEvents: {
+	        'save': 'onSuccessSave',
+	        'error:save': 'onErrorSave',
+	        'before:save': 'onBeforeSave'
+	    },
+	
+	    onSuccessSave: function onSuccessSave() {
+	        this.status = 'success';
+	        this.render();
+	    },
+	    onErrorSave: function onErrorSave() {
+	        this.status = 'error';
+	        this.render();
+	    },
+	    onBeforeSave: function onBeforeSave() {
+	        this.status = 'sending';
+	        this.render();
+	    },
+	    removeMessage: function removeMessage() {
+	        this.model.remove('deleteMessages', [[this.model.id]]);
+	        this.model.collection.remove(this.model);
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 166 */
+/*!****************************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/MessagesItemView.hbs.html ***!
+  \****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n\r\n<div class="sh-message-wrapper">\r\n    <div class="sh-message-photo">\r\n        <div class="sh-message-photo-wrapper">\r\n            <!--<a href="/profile/'+
+	((__t=(userId))==null?'':__t)+
+	'">555555</a>-->\r\n            <!--'+
+	((__t=( user.image && user.image.imageUrl ? '/Img/Index?url='+encodeURIComponent(user.image.imageUrl) +'&w=50&h=50' : '/images/no_avatar.png'))==null?'':__t)+
+	'-->\r\n            ';
+	if (userId===user._id) { 
+	__p+='\r\n            <img class="avatar" src="'+
+	((__t=( user.image && user.image.imageUrl ? user.image.imageUrl : '/images/no_avatar.png'))==null?'':__t)+
+	'" alt="'+
+	((__t=(user.username))==null?'':__t)+
+	'" width="50" height="50">\r\n            ';
+	 } else { 
+	__p+='\r\n            <img class="avatar" src="'+
+	((__t=( remoteUser.image && remoteUser.image.imageUrl ? remoteUser.image.imageUrl : '/images/no_avatar.png'))==null?'':__t)+
+	'" alt="'+
+	((__t=(remoteUser.username))==null?'':__t)+
+	'" width="50" height="50">\r\n            ';
+	 } 
+	__p+='\r\n        </div>\r\n    </div>\r\n\r\n    <div class="sh-message-content">\r\n        <div class="sh-message-content-wrapper">\r\n            <div class="sh-message-content-info">\r\n                <div class="sh-message-content-username"><a href="/user/'+
+	((__t=(userId))==null?'':__t)+
+	'">'+
+	((__t=( userId==user._id?user.username:remoteUser.username))==null?'':__t)+
+	'</a></div>\r\n                <span class="sh-message-content-dot"> · </span>\r\n                <span class="sh-message-content-tools">'+
+	((__t=(moment(timestamp).calendar()))==null?'':__t)+
+	'</span>\r\n            </div>\r\n            <div class="sh-message-content-messages">'+
+	((__t=(text))==null?'':__t)+
+	'</div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n<ul class="sh-messages-tools">\r\n    <li>\r\n        ';
+	 switch (status) { case 'sending': 
+	__p+='\r\n\r\n                <a class="text-muted"><i class="fa fa-time"></i> отправка</a>\r\n\r\n        ';
+	 break; case 'success': 
+	__p+='\r\n\r\n                <a class="text-success"><i class="fa fa-check"></i> отправлено</a>\r\n\r\n        ';
+	 break; case 'error': 
+	__p+='\r\n\r\n                <a class="text-danger"><i class="fa fa-remove"></i> не отправлено</a>\r\n\r\n        ';
+	 break; case 'remote': 
+	__p+='\r\n\r\n                <span class="text-muted">&nbsp;</span>\r\n        ';
+	 break; case 'old': 
+	__p+='\r\n\r\n            <span class="text-muted">&nbsp;</span>\r\n\r\n        ';
+	 break; default: throw new Error("Unknown status"); } 
+	__p+='\r\n    </li>\r\n    ';
+	 if (obj.userId === user._id) { 
+	__p+='\r\n    <li>\r\n        <a class="removeMessage" title="Удалить сообщение"><i class="fa fa-times" aria-hidden="true"></i></a>\r\n    </li>\r\n    ';
+	 } 
+	__p+='\r\n</ul>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 167 */
+/*!***********************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/messageItemView.less ***!
+  \***********************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 168 */
+/*!********************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/NoMessagesView.js ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _NoMessagesViewHbs = __webpack_require__(/*! ./NoMessagesView.hbs.html */ 169);
+	
+	var _NoMessagesViewHbs2 = _interopRequireDefault(_NoMessagesViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _NoMessagesViewHbs2.default,
+	    tagName: 'li'
+	
+	});
+	exports.default = View;
+
+/***/ },
+/* 169 */
+/*!**************************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/NoMessagesView.hbs.html ***!
+  \**************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<p class="text-center">\n    Нет сообщений\n</p>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 170 */
+/*!**************************************************************!*\
+  !*** ./wwwroot/homeApp/chats/native/messagesToUserView.less ***!
+  \**************************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 171 */
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/account/LoginView.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _LoginViewHbs = __webpack_require__(/*! ./LoginView.hbs.html */ 172);
+	
+	var _LoginViewHbs2 = _interopRequireDefault(_LoginViewHbs);
+	
+	__webpack_require__(/*! ./loginView.less */ 173);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _LoginModel = __webpack_require__(/*! ../../data/viewModels/LoginModel */ 174);
+	
+	var _LoginModel2 = _interopRequireDefault(_LoginModel);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _LoginViewHbs2.default,
+	    className: 'sh-auth-page',
+	    model: new _LoginModel2.default(),
+	
+	    initialize: function initialize() {
+	        var _this = this;
+	
+	        this.listenTo(_app2.default.user, 'login', this.redirect);
+	        this.listenTo(_app2.default.user, 'error:login', this.showError);
+	
+	        this.model.setLabels();
+	        $(window).on('sh:language:changed', function () {
+	            _this.model.setLabels();
+	        });
+	    },
+	    onAttach: function onAttach() {
+	        Backbone.Validation.bind(this);
+	        // add returnUrl for navigating from register page:
+	        if (this.options.returnUrl) {
+	            this.$('.js-login-register-link').attr('href', this.$('.js-login-register-link').attr('href') + this.options.returnUrl);
+	        }
+	    },
+	
+	
+	    events: {
+	        'submit form': 'onSubmit',
+	        'change input': 'onChange'
+	    },
+	
+	    authVk: function authVk(e) {
+	        e.preventDefault();
+	
+	        //Вызов окна авторизации пользователя
+	        VK.Auth.login(function (response) {
+	            if (response.session && response.status == 'connected') {
+	                /* Пользователь успешно авторизовался */
+	
+	                var data = {};
+	                data = response.session;
+	
+	                var user = {};
+	                user = response.session.user;
+	
+	                VK.Api.call('users.get', { fields: 'sex,photo_50' }, function (res) {
+	                    if (res.response) {
+	                        user.photo = res.response[0].photo_50;
+	                        user.gender = res.response[0].sex;
+	
+	                        data.user = user;
+	
+	                        $.ajax({
+	                            url: '/auth/vk',
+	                            method: 'POST',
+	                            data: data,
+	                            dataType: 'JSON',
+	                            success: function success(res) {
+	                                console.log(res);
+	                            }
+	                        });
+	                    }
+	                });
+	
+	                console.log('Пользователь успешно авторизовался ', response);
+	                window.vkUser = response; //debug
+	
+	                if (response.settings) {
+	
+	                    /* Выбранные настройки доступа пользователя, если они были запрошены */
+	
+	                }
+	            } else {
+	
+	                /* Пользователь нажал кнопку Отмена в окне авторизации */
+	                console.log('Пользователь нажал кнопку Отмена в окне авторизации ', response);
+	            }
+	        }, 4194304);
+	
+	        //VK.Auth.login(function(res) {}, 4194304);
+	        console.log('CLICK VK', e.currentTarget);
+	    },
+	    authFacebook: function authFacebook(e) {
+	        e.preventDefault();
+	        //-> //developers.facebook.com/docs/javascript/reference/v2.8
+	
+	        FB.login(function (response) {
+	
+	            console.log(response);
+	
+	            if (response.status === 'connected') {
+	                // Logged into your app and Facebook.
+	                var uid = response.authResponse.userID,
+	                    accessToken = response.authResponse.accessToken,
+	                    fields = ['id', 'first_name', 'last_name', 'link', 'gender', 'picture', 'email'];
+	
+	                // Получили token и можно сделать запрос на сервер
+	                // Формируем url запроса -> url: 'https://graph.facebook.com/me?access_token=' + accessToken + '&fields=' + profileFields.join(',')
+	
+	                FB.api('/me?fields=' + fields.join(','), function (response) {
+	                    console.log(response);
+	                });
+	            } else if (response.status === 'not_authorized') {
+	                // The person is logged into Facebook, but not your app.
+	                console.log('Please log ' + 'into this app.');
+	            } else {
+	                // The person is not logged into Facebook, so we're not sure if
+	                // they are logged into this app or not.
+	                console.log('Please log ' + 'into Facebook.');
+	            }
+	        }, { scope: 'public_profile,email' });
+	
+	        /*        
+	        FB.getLoginStatus(function(response) {
+	            console.log(response);
+	        }, true);        
+	        */
+	    },
+	    authGooglePlus: function authGooglePlus(e) {},
+	    onSubmit: function onSubmit(e) {
+	        e.preventDefault();
+	        if (!this.model.validate()) {
+	            // turn on spinner:
+	            $h.ui.spinnerShowOn$element(this.$('button i.fa'));
+	            _app2.default.authorize(this.model.get('email'), this.model.get('password'));
+	        }
+	    },
+	    onChange: function onChange(e) {
+	        var val = e.target.value,
+	            name = e.target.name;
+	        this.model.set(name, val, { validate: true });
+	    },
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            returnUrl: this.options.returnUrl ? decodeURIComponent(this.options.returnUrl) : null
+	        };
+	    },
+	    redirect: function redirect() {
+	        if (this.options.returnUrl) {
+	            _app2.default.router.navigate(decodeURIComponent(this.options.returnUrl), { trigger: true, replace: true });
+	        } else {
+	            history.back();
+	        }
+	    },
+	    showError: function showError(error) {
+	        $h.ui.spinnerHideOn$element(this.$('button i.fa'));
+	        $h.ui.alert("Ошибка! Неверно указаны имя пользователя или пароль");
+	    },
+	    onBeforeRemove: function onBeforeRemove() {
+	        Backbone.Validation.unbind(this);
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 172 */
+/*!****************************************************!*\
+  !*** ./wwwroot/homeApp/account/LoginView.hbs.html ***!
+  \****************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\n<div class="sh-login-page">\n    <div class="container">\n        <div class="sh-login-page-wrapper">\n            <div class="sh-wrap2">                \n                <div class="sh-side-right">\n                    <!-- ALERT -->\n                    <!--\n                    <div class="alert alert-mini alert-danger margin-bottom-30">\n                        <strong>Oh snap!</strong> Login Incorrect!\n                    </div>\n                    -->\n                    <!-- /ALERT -->\n                    <!-- login form -->\n                    <form method="post" class="sky-form sh-auth-form">\n                        <div class="sh-page-block padding-20">\r\n                            <fieldset class="nomargin">\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-envelope"></i>\r\n                                    <input type="text" name="email" id="userLogin" placeholder="E-mail /  Имя пользователя">\r\n                                    <span class="tooltip tooltip-top-right">Email адрес / Имя пользователя</span>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-lock"></i>\r\n                                    <input type="password" id="userPassword" name="password" placeholder="Пароль">\r\n                                    <b class="tooltip tooltip-top-right">Укажите Ваш пароль</b>\r\n                                </label>\r\n                                <label class="checkbox">\r\n                                    <input type="checkbox" name="checkbox-inline" id="rememberMe">\r\n                                    <i></i> Запомнить меня\r\n                                </label>\r\n                            </fieldset>\r\n                            <footer class="celarfix">\r\n                                <button type="submit" class="ui sh-button standard action pull-right">\r\n                                    <i class="fa fa-check"></i>\r\n                                    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                    ВОЙТИ\r\n                                </button>\r\n                                <div class="login-forgot-password pull-left" style="display:none">\r\n                                    <a href="/Account/FogotPassword">Забыли пароль?</a>\r\n                                </div>\r\n                            </footer>\r\n                        </div>\n\n                        <div class="sh-page-block padding-20 celarfix"> \r\n                            <header>Впервые на сайте?<small>Регистрация быстро и бесплатно</small></header>                               \r\n                            <a type="submit" class="js-login-register-link sh-login-register ui sh-button standard create " href="/account/register?returnUrl=/">\r\n                                <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                Регистрация\r\n                            </a>\r\n                            <!--<div class="sh-login-additional">\r\n                                <span>или</span>\r\n                                <div class="sh-login-social">\r\n                                    <ul>\r\n                                        <li><a class="sh-facebook" id="sh-auth-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>\r\n                                        <li><a class="sh-vk" id="sh-auth-vk"><i class="fa fa-vk" aria-hidden="true"></i></a></li>\r\n                                        <li><a class="sh-google-plus" id="sh-auth-google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>-->                              \r\n                        </div>\n                    </form>\n                </div>\n                <div class="sh-side-left">\n                    <h2 class="text-center-xs">Преимущества авторизованных пользователей</h2>\n                    <ul class="list-unstyled sh-login-features">\n                        <li>\n                            <i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий\n                        </li>\n                        <li>\n                            <i class="glyphicon glyphicon-user"></i> Ещё не регистрировались? <a href="/account/register?returnUrl=somedata'+
+	((__t=( returnUrl ? '?returnUrl='+returnUrl:''))==null?'':__t)+
+	'">Регистрация</a>\n                        </li>\n                    </ul>\n                </div>    \n            </div>\n        </div>\n    </div>\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 173 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/account/loginView.less ***!
+  \************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 174 */
+/*!***********************************************!*\
+  !*** ./wwwroot/data/viewModels/LoginModel.js ***!
+  \***********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.Model.extend({
+	
+	    labels: {},
+	
+	    setLabels: function setLabels() {
+	        this.labels = {
+	            email: i18n.getI18nString('EMAIL_LABEL'),
+	            password: i18n.getI18nString('PASSWORD_LABEL')
+	        };
+	    },
+	
+	    validation: {
+	        email: {
+	            required: true
+	        },
+	
+	        password: {
+	            required: true
+	        }
+	    }
+	
+	});
+
+/***/ },
+/* 175 */
+/*!*****************************************************!*\
+  !*** ./wwwroot/homeApp/account/RegisterUserView.js ***!
+  \*****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _RegisterUserViewHbs = __webpack_require__(/*! ./RegisterUserView.hbs.html */ 176);
+	
+	var _RegisterUserViewHbs2 = _interopRequireDefault(_RegisterUserViewHbs);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _RegisterModel = __webpack_require__(/*! ../../data/viewModels/RegisterModel */ 177);
+	
+	var _RegisterModel2 = _interopRequireDefault(_RegisterModel);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _RegisterUserViewHbs2.default,
+	    className: 'sh-auth-page',
+	    model: new _RegisterModel2.default(),
+	
+	    initialize: function initialize() {
+	        var _this = this;
+	
+	        this.listenTo(_app2.default.user, 'login', this.redirect);
+	        this.listenTo(_app2.default.user, 'error:create', this.showError);
+	        this.model.setLabels();
+	        $(window).on('sh:language:changed', function () {
+	            _this.model.setLabels();
+	        });
+	    },
+	    onAttach: function onAttach() {
+	        Backbone.Validation.bind(this);
+	    },
+	
+	
+	    events: {
+	        'submit form': 'onSubmit',
+	        'change input': 'onChange'
+	    },
+	
+	    onChange: function onChange(e) {
+	        var val = e.target.value,
+	            name = e.target.name;
+	        this.model.set(name, val, { validate: true });
+	    },
+	    onSubmit: function onSubmit(e) {
+	        e.preventDefault();
+	        if (!this.model.validate()) {
+	            $h.ui.spinnerShowOn$element(this.$('button i.fa'));
+	
+	            _app2.default.registerUser(this.model.attributes);
+	        }
+	    },
+	    redirect: function redirect() {
+	        if (this.options.returnUrl) {
+	            var returnUrl = decodeURIComponent($h.help.getUrlParams()['returnUrl']);
+	            _app2.default.router.navigate(returnUrl, { trigger: true, replace: true });
+	        } else {
+	            history.back();
+	        }
+	    },
+	    showError: function showError(error) {
+	        $h.ui.spinnerHideOn$element(this.$('button i.fa'));
+	        $h.ui.alert("Ошибка! Имя пользователя уже существует");
+	    },
+	    onBeforeRemove: function onBeforeRemove() {
+	        Backbone.Validation.unbind(this);
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 176 */
+/*!***********************************************************!*\
+  !*** ./wwwroot/homeApp/account/RegisterUserView.hbs.html ***!
+  \***********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\n<div class="sh-login-page">\r\n    <div class="container">\r\n        <div class="sh-login-page-wrapper">\r\n            <div class="sh-wrap2">\r\n                <div class="sh-side-right">\r\n                    <form method="post" class="sky-form sh-auth-form">\r\n                        <div class="sh-page-block padding-20">\r\n                            <fieldset class="nomargin">\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-envelope"></i>\r\n                                    <input type="text" placeholder="Имя пользователя" id="userLogin" name="username">\r\n                                    <b class="tooltip tooltip-bottom-right">Уникальное имя пользователя</b>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-envelope"></i>\r\n                                    <input type="text" placeholder="Email адрес" id="userEmail" name="email">\r\n                                    <b class="tooltip tooltip-bottom-right">email адрес</b>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-lock"></i>\r\n                                    <input type="password" placeholder="Пароль" id="userPassword" name="password">\r\n                                    <b class="tooltip tooltip-bottom-right">Пароль</b>\r\n                                </label>\r\n                                <label class="input">\r\n                                    <i class="ico-append fa fa-lock"></i>\r\n                                    <input type="password" placeholder="Подтвердите пароль" id="confirmPassword" name="confirmPassword">\r\n                                    <b class="tooltip tooltip-bottom-right">Подтверждение пароля</b>\r\n                                </label>\r\n                            </fieldset>\r\n                            <footer class="celarfix">                                \r\n                                <button type="submit" class="ui sh-button standard action pull-right">\r\n                                <i class="fa fa-check"></i>\r\n                                <span class="spinner"><i class="icon-spin icon-refresh"></i></span> \r\n                                РЕГИСТРИРОВАТЬСЯ</button>                                \r\n                            </footer>                            \r\n                        </div>\r\n\r\n                        <div class="sh-page-block padding-20 celarfix">\r\n                            <header>Уже есть аккаунт?</header>                            \r\n                            <a type="submit" class="sh-login-register ui sh-button standard create" href="/Account/Login?returnUrl=/">\r\n                                <span class="spinner"><i class="icon-spin icon-refresh"></i></span>\r\n                                Вход\r\n                            </a>                                                       \r\n                        </div>\r\n                    </form>\r\n                </div>\r\n                <div class="sh-side-left">\r\n                    <h2 class="text-center-xs">Преимущества авторизованных пользователей</h2>\r\n                    <ul class="list-unstyled sh-login-features">\r\n                        <li><i class="glyphicon glyphicon-plus"></i> Возможность создавать объявления</li>\r\n                        <li><i class="glyphicon glyphicon-comment"></i> Комментирование существующих постов (объявлений)</li>\r\n                        <li><i class="glyphicon glyphicon-pencil"></i> Общение с другими светлячками</li>\r\n                        <li><i class="glyphicon glyphicon-eye-open"></i> Возможность сделать свой бизнес заметным</li>\r\n                        <li><i class="glyphicon glyphicon-glass"></i> Находить друзей по интересам, посещение мероприятий</li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\n\n';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 177 */
+/*!**************************************************!*\
+  !*** ./wwwroot/data/viewModels/RegisterModel.js ***!
+  \**************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.Model.extend({
+	
+	    labels: {},
+	
+	    setLabels: function setLabels() {
+	        this.labels = {
+	            email: i18n.getI18nString('EMAIL_LABEL'),
+	            password: i18n.getI18nString('PASSWORD_LABEL'),
+	            confirmPassword: i18n.getI18nString('CONFIRM_PASSWORD_LABEL'),
+	            username: i18n.getI18nString('USERNAME_LABEL')
+	        };
+	    },
+	
+	    validation: {
+	        username: {
+	            required: true
+	        },
+	
+	        password: {
+	            required: true
+	        },
+	
+	        confirmPassword: {
+	            required: true,
+	            equalTo: 'password'
+	        },
+	
+	        email: {
+	            required: true,
+	            pattern: 'email'
+	        }
+	    }
+	
+	});
+
+/***/ },
+/* 178 */
+/*!********************************************!*\
+  !*** ./wwwroot/homeApp/about/AboutView.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+>>>>>>> master
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+<<<<<<< HEAD
+	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 179);
+	
+	var _FogotPasswordViewHbs2 = _interopRequireDefault(_FogotPasswordViewHbs);
+=======
+	var _AboutViewHbs = __webpack_require__(/*! ./AboutView.hbs.html */ 179);
+	
+	var _AboutViewHbs2 = _interopRequireDefault(_AboutViewHbs);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./about.less */ 180);
+>>>>>>> master
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+<<<<<<< HEAD
 	    template: _FogotPasswordViewHbs2.default
 	});
 	exports.default = View;
@@ -35170,12 +51761,224 @@
 /*!************************************************************!*\
   !*** ./wwwroot/homeApp/account/FogotPasswordView.hbs.html ***!
   \************************************************************/
+=======
+	    template: _AboutViewHbs2.default,
+	
+	    events: {
+	        'submit form': 'sendMessage',
+	        'click .sh-btn-video-watch': 'videoWatch',
+	        'click .sh-close-video': 'videoStop'
+	    },
+	
+	    onAttach: function onAttach() {
+	        this.initStickMenu();
+	    },
+	    videoWatch: function videoWatch(e) {
+	        var topH = $('#topNav').height();
+	        var wrap = $('.sh-intro-wrapper'),
+	            fullVideo = wrap.find('.sh-full-video'),
+	            videoWrap = fullVideo.find(".sh-video-wrapper"),
+	            iframe = videoWrap.find('iframe');
+	
+	        var videoID = _app2.default.i18n.getLanguage() === 'ru' ? 'gLwq8LYiebI' : 'evO6s4tLu3s',
+	            controls = _app2.default.isMobile ? 1 : 0;
+	
+	        if (iframe.length) {
+	            iframe[0].contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', "*");
+	            fullVideo.addClass('playing');
+	        } else {
+	            videoWrap.append('<iframe id="iframe" src="//www.youtube.com/embed/' + videoID + '?modestbranding=1&amp;autohide=1&amp;enablejsapi=1&amp;version=3&amp;rel=0&amp;autoplay=1&amp;controls=' + controls + '&amp;showinfo=0&amp;iv_load_policy=3&amp;wmode=opaque&amp;html5=1" frameborder="0" allowfullscreen="1" allowscriptaccess="always"></iframe>');
+	            fullVideo.addClass('playing');
+	        }
+	
+	        if (fullVideo && $('body').hasClass('isMobile')) {
+	            $("html, body").scrollTop(fullVideo.offset().top - 60);
+	        }
+	    },
+	    videoStop: function videoStop(e) {
+	        var wrap = $('.sh-intro-wrapper'),
+	            fullVideo = wrap.find('.sh-full-video'),
+	            videoWrap = fullVideo.find(".sh-video-wrapper"),
+	            iframe = videoWrap.find('iframe');
+	
+	        if (iframe.length) {
+	            iframe[0].contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', "*");
+	            fullVideo.removeClass("playing");
+	        }
+	    },
+	    sendMessage: function sendMessage(e) {
+	        e.preventDefault();
+	        var text = this.$('#message_text').val(),
+	            name = this.$('#user_name').val(),
+	            email = this.$('#user_email').val();
+	
+	        var msg = "user: " + name + "\n" + "email: " + email + "\n" + text;
+	        var self = this;
+	        _app2.default.asteroid.call('sendMessageContactUs', msg).result.then(function () {
+	            alert('Сообщение отправлено');
+	            self.render();
+	        });
+	    },
+	    initStickMenu: function initStickMenu() {
+	
+	        setTimeout(function () {
+	            var secondaryNav = $('.sh-secondary-nav');
+	
+	            if (secondaryNav.length > 0) {
+	                var topPosition, shIntroTaglineTop, contentSections;
+	
+	                (function () {
+	                    var updateSecondaryNavigation = function updateSecondaryNavigation() {
+	                        contentSections.each(function () {
+	                            var actual = $(this),
+	                                actualHeight = actual.height() + parseInt(actual.css('paddingTop').replace('px', '')) + parseInt(actual.css('paddingBottom').replace('px', '')),
+	                                actualAnchor = secondaryNav.find('a[href="#' + actual.attr('id') + '"]');
+	                            if (actual.offset().top - secondaryNav.height() <= $(window).scrollTop() && actual.offset().top + actualHeight - secondaryNav.height() > $(window).scrollTop()) {
+	                                actualAnchor.addClass('active');
+	                            } else {
+	                                actualAnchor.removeClass('active');
+	                            }
+	                        });
+	                    };
+	
+	                    topPosition = secondaryNav.offset().top;
+	                    shIntroTaglineTop = $('.sh-intro-tagline-wrapper').offset().top + $('.sh-intro-tagline-wrapper').height() + parseInt($('.sh-intro-tagline-wrapper').css('paddingTop').replace('px', ''));
+	                    contentSections = $('.sh-section');
+	
+	
+	                    $(window).on('scroll', function () {
+	
+	                        $(window).scrollTop() > shIntroTaglineTop ? $('.sh-logo-about-us, .sh-create-about-us').addClass('is-hidden') : $('.sh-logo-about-us, .sh-create-about-us').removeClass('is-hidden');
+	
+	                        //on desktop - fix secondary navigation on scrolling
+	                        if ($(window).scrollTop() > topPosition) {
+	                            secondaryNav.addClass('is-fixed');
+	                            $('.sh-content').addClass('has-top-margin');
+	                            setTimeout(function () {
+	                                secondaryNav.addClass('sh-animated');
+	                                $('.sh-logo-about-us').addClass('slide-in');
+	                                $('.sh-create-about-us').addClass('slide-in');
+	                            }, 50);
+	                        } else {
+	                            secondaryNav.removeClass('is-fixed');
+	                            $('.sh-content').removeClass('has-top-margin');
+	                            setTimeout(function () {
+	                                secondaryNav.removeClass('sh-animated');
+	                                $('.sh-logo-about-us').removeClass('slide-in');
+	                                $('.sh-create-about-us').removeClass('slide-in');
+	                            }, 50);
+	                        }
+	
+	                        updateSecondaryNavigation();
+	                    });
+	
+	                    secondaryNav.find('ul a').on('click', function (event) {
+	                        event.preventDefault();
+	                        event.stopPropagation();
+	
+	                        var target = $(this.hash);
+	                        $('body,html').animate({
+	                            'scrollTop': target.offset().top - secondaryNav.height() + 1
+	                        }, 400);
+	                    });
+	                })();
+	            }
+	        }, 500);
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 179 */
+/*!**************************************************!*\
+  !*** ./wwwroot/homeApp/about/AboutView.hbs.html ***!
+  \**************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
 	__p+='<div>\r\n    <h2>Забыли пароль? Печалька</h2>\r\n</div>';
+=======
+	__p+='<!-- <div id="sh-intro" style="background: url(/images/banner-med.jpg) no-repeat 0% 30px; background-size: auto 100%; background-position-x: right; background-color: #f0f0f0;"> -->\r\n\r\n<!-- '+
+	((__t=(i18n('')))==null?'':__t)+
+	' -->\r\n\r\n<div id="sh-intro">\r\n    <div class="sh-intro-wrapper">\r\n\r\n        <div class="sh-full-video">\r\n            <div class="sh-video-wrapper">\r\n                <!--iFrame YT -->                \r\n            </div>\r\n            <div class="sh-close-video"><i class="fa fa-times-circle" aria-hidden="true"></i></div>\r\n        </div>\r\n\r\n        <div class="sh-intro-tagline container">\r\n            <div class="sh-intro-tagline-wrapper">\r\n                <h1 class="sh-logo-about-us" style="display: none;"><a href="/">Shiners</a></h1>\r\n                <p class="sh-sub-intro-text">'+
+	((__t=(i18n('about_intro_text')))==null?'':__t)+
+	'</p>\r\n                <div class="sh-sub-intro-text-info">\r\n                    <div class="sh-btn-video-watch"><i class="fa fa-play-circle" aria-hidden="true"></i></div>\r\n                    <div class="sh-sub-intro-vw-info">'+
+	((__t=(i18n('about_intro_duration')))==null?'':__t)+
+	': <span>1:12 '+
+	((__t=(i18n('about_intro_duration_minute')))==null?'':__t)+
+	'.</span></div>\r\n                    <a href="/posts/new" class="ui sh-button standard create big sh-create-about-us">'+
+	((__t=(i18n('CREATE_SHINER')))==null?'':__t)+
+	'</a>\r\n                </div>                \r\n            </div>\r\n        </div>\r\n\r\n        <div class="sh-gradient sh-gradient-blue"></div>\r\n\r\n        <div class="sh-background-about-image"></div>\r\n\r\n        <!--<div class="sh-intro-mockup"></div>-->\r\n    </div>\r\n</div>\r\n\r\n<div class="sh-secondary-nav">\r\n    <nav>\r\n        <ul>\r\n            <li><a href="#sh-section-1">'+
+	((__t=(i18n('about_menu_how_it_works')))==null?'':__t)+
+	'</a></li>\r\n            <li><a href="#sh-section-2">'+
+	((__t=(i18n('about_menu_what_are_we_useful')))==null?'':__t)+
+	'</a></li>\r\n            <li><a href="#sh-section-3">'+
+	((__t=(i18n('about_menu_our_team')))==null?'':__t)+
+	'</a></li>\r\n            <li><a href="#sh-section-4">'+
+	((__t=(i18n('about_menu_connect_with_us')))==null?'':__t)+
+	'</a></li>\r\n        </ul>\r\n    </nav>\r\n</div>\r\n\r\n<main class="sh-content">\r\n    <div class="sh-about-us">\r\n        <div class="container">\r\n            <div class="sh-about-us-wrapper sh-page-block">\r\n\r\n                <!-- INTRO -->\r\n                <div class="sh-intro-description">\r\n                    <div class="sh-intro-description-wrapper">\r\n                        <h1>'+
+	((__t=(i18n('about_title_section_1')))==null?'':__t)+
+	'</h1>\r\n                        <p>'+
+	((__t=(i18n('about_title_section_1_p1')))==null?'':__t)+
+	'</p>\r\n                        <p>'+
+	((__t=(i18n('about_title_section_1_p2')))==null?'':__t)+
+	'</p>\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- HOW IT WORK -->\r\n                <div id="sh-section-1" class="sh-intro-how-it-work sh-section">\r\n                    <div class="sh-intro-how-it-work-wrapper">\r\n                        <h1 class="sh-section-hero-headline sh-text-center">'+
+	((__t=(i18n('about_menu_how_it_works')))==null?'':__t)+
+	'</h1>\r\n                        <p class="sh-section-intro sh-text-center">'+
+	((__t=(i18n('about_title_section_2_intro')))==null?'':__t)+
+	'</p>\r\n                        <div class="sh-intro-how-it-work-ul">\r\n                            <ul class="sh-intro-how-it-work-list">\r\n                                <li>\r\n                                    <a data-toggle="tab" href="#step1" data-direct-link=""><i class="icon-plus"></i></a>\r\n                                    <h5>'+
+	((__t=(i18n('about_title_create_post')))==null?'':__t)+
+	'</h5>\r\n                                </li>\r\n                                <li>\r\n                                    <a data-toggle="tab" href="#step2" data-direct-link=""><i class="icon-map-marker"></i></a>\r\n                                    <h5>'+
+	((__t=(i18n('about_title_you_are_find')))==null?'':__t)+
+	'</h5>\r\n                                </li>\r\n                                <li>\r\n                                    <a data-toggle="tab" href="#step3" data-direct-link=""><i class="icon-ok"></i></a>\r\n                                    <h5>'+
+	((__t=(i18n('about_title_contract_meeting')))==null?'':__t)+
+	'</h5>\r\n                                </li>\r\n                            </ul>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- WHAT WE ARE USEFUL -->\r\n                <div id="sh-section-2" class="sh-what-we-are-useful sh-section">\r\n                    <div class="sh-what-we-are-useful-wrapper">\r\n                        <h1 class="sh-section-hero-headline sh-text-center">'+
+	((__t=(i18n('about_title_section_3')))==null?'':__t)+
+	'</h1>\r\n                        <p class="sh-section-intro sh-text-center">'+
+	((__t=(i18n('about_title_section_3_intro')))==null?'':__t)+
+	'</p>\r\n\r\n                        <div class="sh-what-we-are-useful-bg"></div>\r\n\r\n                        <hr>\r\n\r\n                        <div class="sh-what-we-are-useful-features">\r\n                            <div class="sh-features-left">\r\n                                <div class="sh-features-block">\r\n                                    <h5>'+
+	((__t=(i18n('about_block_ads')))==null?'':__t)+
+	'</h5>\r\n                                    <p>'+
+	((__t=(i18n('about_block_ads_text')))==null?'':__t)+
+	'</p>\r\n                                </div>\r\n\r\n                                <div class="sh-features-block">\r\n                                    <h5>'+
+	((__t=(i18n('about_block_link')))==null?'':__t)+
+	'</h5>\r\n                                    <p>'+
+	((__t=(i18n('about_block_link_text')))==null?'':__t)+
+	'</p>\r\n                                </div>\r\n                            </div>\r\n                            <div class="sh-features-center">\r\n                                <div class="sh-is-sh"><span></span></div>\r\n                            </div>\r\n                            <div class="sh-features-right">\r\n                                <div class="sh-features-block">\r\n                                    <h5>'+
+	((__t=(i18n('about_block_dynamic')))==null?'':__t)+
+	'</h5>\r\n                                    <p>'+
+	((__t=(i18n('about_block_dynamic_text')))==null?'':__t)+
+	'</p>\r\n                                </div>\r\n\r\n                                <div class="sh-features-block">\r\n                                    <h5>'+
+	((__t=(i18n('about_block_static')))==null?'':__t)+
+	'</h5>\r\n                                    <p>'+
+	((__t=(i18n('about_block_static_text')))==null?'':__t)+
+	'</p>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class="sh-set-sh sh-text-center">                            \r\n                            <a href="/posts/new" class="sh-woman-shiners"></a>\r\n                        </div>\r\n\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- WHO WE ARE -->\r\n                <div id="sh-section-3" class="sh-who-we-are sh-section">\r\n                    <div class="sh-who-we-are-wrapper">\r\n                        <div class="sh-red col-md-4 col-lg-4">\r\n                            <h5>'+
+	((__t=(i18n('about_who_we_are_title')))==null?'':__t)+
+	'</h5>\r\n                            <p>'+
+	((__t=(i18n('about_who_we_are_text')))==null?'':__t)+
+	'</p>\r\n                        </div>\r\n                        <div class="sh-blue col-md-4 col-lg-4">\r\n                            <h5>'+
+	((__t=(i18n('about_security_title')))==null?'':__t)+
+	'</h5>\r\n                            <p>'+
+	((__t=(i18n('about_security_text')))==null?'':__t)+
+	'</p>\r\n                        </div>\r\n                        <div class="sh-orange col-md-4 col-lg-4">\r\n                            <h5>'+
+	((__t=(i18n('about_rules_title')))==null?'':__t)+
+	'</h5>\r\n                            <p>'+
+	((__t=(i18n('about_rules_text')))==null?'':__t)+
+	' <a href="/legal/user-agreement"> '+
+	((__t=(i18n('about_rules_text_link1')))==null?'':__t)+
+	'</a></p>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- CONTACT US -->\r\n                <div id="sh-section-4" class="sh-contact-us sh-section">\r\n                    <div class="sh-contact-us-bg"></div>\r\n                    <div class="sh-contact-us-wrapper">\r\n                        <h1 class="sh-section-hero-headline sh-text-center">'+
+	((__t=(i18n('about_title_section_4')))==null?'':__t)+
+	'</h1>\r\n                        <p class="sh-section-intro sh-text-center">'+
+	((__t=(i18n('about_title_section_4_intro')))==null?'':__t)+
+	'</p>\r\n                        <form action="/" method="post">\r\n                            <fieldset>\r\n                                <input type="hidden" name="action" value="contact_send">\r\n                                <div class="row">\r\n                                    <div class="form-group">\r\n                                        <div class="col-xs-12 col-md-6">\r\n                                            <input required="" type="text" value="" placeholder="Ваше имя" class="form-control" name="contact[name][required]" id="contact:name">\r\n                                        </div>\r\n                                        <div class="col-xs-12 col-md-6">\r\n                                            <input required="" type="email" value="" placeholder="Ваш email" class="form-control" name="contact[email][required]" id="contact:email">\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                                <div class="row">\r\n                                    <div class="form-group">\r\n                                        <div class="col-xs-12 col-md-12">\r\n                                            <textarea required="" placeholder="Ваше сообщение" maxlength="10000" rows="8" class="form-control" name="contact[message]" id="contact:message"></textarea>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </fieldset>\r\n                            <div class="row">\r\n                                <div class="col-md-12">\r\n                                    <button type="submit" class="ui sh-button standard action big pull-right"><i class="fa fa-check"></i> '+
+	((__t=(i18n('Send')))==null?'':__t)+
+	'</button>\r\n                                </div>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</main>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -35183,6 +51986,7 @@
 
 /***/ },
 /* 180 */
+<<<<<<< HEAD
 /*!*********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalUserAgreementView.js ***!
   \*********************************************************/
@@ -35283,18 +52087,195 @@
 /*!**********************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.js ***!
   \**********************************************************/
+=======
+/*!******************************************!*\
+  !*** ./wwwroot/homeApp/about/about.less ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 181 */
+/*!****************************************************!*\
+  !*** ./wwwroot/homeApp/massMedia/MassMediaView.js ***!
+  \****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(jQuery) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+	var _MassMediaViewHbs = __webpack_require__(/*! ./MassMediaView.hbs.html */ 182);
+	
+	var _MassMediaViewHbs2 = _interopRequireDefault(_MassMediaViewHbs);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./MassMediaView.less */ 183);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _MassMediaViewHbs2.default,
+	
+	    onAttach: function onAttach() {
+	        this.initShTab();
+	    },
+	    initShTab: function initShTab() {
+	
+	        jQuery(document).ready(function ($) {
+	            function ProductBuilder(element) {
+	                this.element = element;
+	                this.stepsWrapper = this.element.children('.sh-tab-steps');
+	                this.steps = this.element.find('.builder-step');
+	                this.mainNavigation = this.element.find('.sh-tab-main-nav');
+	                // bind builder events
+	                this.bindEvents();
+	            }
+	
+	            ProductBuilder.prototype.bindEvents = function () {
+	                var self = this;
+	                //detect click on the left navigation
+	                this.mainNavigation.on('click', 'li:not(.active)', function (event) {
+	                    event.preventDefault();
+	                    event.stopPropagation();
+	                    self.showNewContent($(this).index());
+	                    self.updatePrimaryNav($(this).index());
+	                });
+	                this.element.find('.click-press-contact').on('click', function (event) {
+	                    event.preventDefault();
+	                    self.showNewContent(2);
+	                    self.updatePrimaryNav(2);
+	                });
+	            };
+	
+	            ProductBuilder.prototype.showNewContent = function (nextStep) {
+	                var actualStep = this.steps.filter('.active').index() + 1;
+	                if (actualStep < nextStep + 1) {
+	                    //go to next section
+	                    this.steps.eq(actualStep - 1).removeClass('active back').addClass('move-left');
+	                    this.steps.eq(nextStep).addClass('active').removeClass('move-left back');
+	                } else {
+	                    //go to previous section
+	                    this.steps.eq(actualStep - 1).removeClass('active back move-left');
+	                    this.steps.eq(nextStep).addClass('active back').removeClass('move-left');
+	                }
+	            };
+	
+	            ProductBuilder.prototype.updatePrimaryNav = function (nextStep) {
+	                this.mainNavigation.find('li').eq(nextStep).addClass('active').siblings('.active').removeClass('active');
+	            };
+	
+	            if ($('.sh-tab-builder').length > 0) {
+	                $('.sh-tab-builder').each(function () {
+	                    //create a productBuilder object for each .cd-product-builder
+	                    new ProductBuilder($(this));
+	                });
+	            }
+	        });
+	    }
+	});
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 182 */
+/*!**********************************************************!*\
+  !*** ./wwwroot/homeApp/massMedia/MassMediaView.hbs.html ***!
+  \**********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n<main class="sh-content">\r\n\r\n    <div class="sh-mass-media">\r\n        <div class="container">\r\n            <h1 class="sh-section-hero-headline">'+
+	((__t=(i18n('h_information_for_smi')))==null?'':__t)+
+	'</h1>\r\n            <div class="sh-page-block">\r\n                <div class="sh-mass-media-wrapper">\r\n                    <!-- SIDE LEFT -->\r\n                    <div class="sh-side-left sh-tab-builder">\r\n\r\n                        <ul class="nav nav-tabs nav-justified sh-mm-tabs sh-tab-main-nav">\r\n                            <li class="active"><a href="#press-about" data-toggle="tab">'+
+	((__t=(i18n('massMedia')))==null?'':__t)+
+	'</a></li>\r\n                            <li><a href="#press-release" data-toggle="tab">'+
+	((__t=(i18n('press_release')))==null?'':__t)+
+	'</a></li>\r\n                            <li><a href="#press-contact" data-toggle="tab">'+
+	((__t=(i18n('press_contacts')))==null?'':__t)+
+	'</a></li>\r\n                        </ul>\r\n\r\n                        <div class="tab-content sh-tab-content sh-tab-steps">\r\n                            <div class="tab-pane builder-step active" id="press-about">\r\n                                <div class="sh-tab-content-wrapper">\r\n                                    <p>У нас в <a class="sh-uppercase" href="/">Shiners</a> постоянно происходит что-то интересное. Поэтому мы регулярно делимся своими новостями с прессой и всегда реагируем на события, которые затрагивают нас.</p>\r\n                                    <p>В этом разделе вы сможете найти публикации в СМИ о нас и подготовленные при нашем участи. Для получения дополнительной информации о компании и ее сервисах, пожалуйста, свяжитесь с нашей <a class="click-press-contact" href="#press-contact">пресс-службой</a>.</p>\r\n\r\n                                    <div class="sh-article-block">\r\n                                        <time datetime="2017-01-31T17:00:00" class="sh-date"><a href="#2017-1">2017</a></time>\r\n                                        <hr>\r\n                                        <div id="2017-1">\r\n                                            <!-- 1 -->\r\n                                            <article class="sh-article-wrapper">\r\n                                                <div class="sh-press-log" style="background-image: url(\'http://fakeimg.pl/150x130/\')"></div>\r\n                                                <div class="sh-press-content">\r\n                                                    <small>31.01.2017</small>\r\n                                                    <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.</p>\r\n                                                    <a href="#">'+
+	((__t=(i18n('site_published')))==null?'':__t)+
+	'</a>\r\n                                                </div>\r\n                                            </article>\r\n\r\n                                            <!-- 2 -->\r\n                                            <article class="sh-article-wrapper">\r\n                                                <div class="sh-press-log" style="background-image: url(\'http://fakeimg.pl/150x130/\')"></div>\r\n                                                <div class="sh-press-content">\r\n                                                    <small>31.01.2017</small>\r\n                                                    <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.</p>\r\n                                                    <a href="#">'+
+	((__t=(i18n('site_published')))==null?'':__t)+
+	'</a>\r\n                                                </div>\r\n                                            </article>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="tab-pane builder-step" id="press-release">\r\n                                <div class="sh-tab-content-wrapper">\r\n                                    <p>В этом разделе вы найдете все официальные пресс-релизы и новости компании, которые помогут вам узнать о <a class="sh-uppercase" href="/">Shiners</a> чуть больше. Для получения дополнительной информации о компании и ее сервисах, пожалуйста, свяжитесь с нашей <a class="click-press-contact" href="#press-contact">пресс-службой</a>.</p>\r\n                                    <div class="sh-article-block">\r\n                                        <time datetime="2017-01-31T17:00:00" class="sh-date"><a href="#2017-2">2017</a></time>\r\n                                        <hr>\r\n                                        <div id="2017-2">\r\n                                            <!-- 1 -->\r\n                                            <article class="sh-article-wrapper">\r\n                                                <div class="sh-press-log" style="background-image: url(\'http://fakeimg.pl/150x130/\')"></div>\r\n                                                <div class="sh-press-content">\r\n                                                    <small>31.01.2017</small>\r\n                                                    <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.</p>\r\n                                                    <a href="#">'+
+	((__t=(i18n('download_press_release')))==null?'':__t)+
+	'</a>\r\n                                                </div>\r\n                                            </article>\r\n\r\n                                            <!-- 2 -->\r\n                                            <article class="sh-article-wrapper">\r\n                                                <div class="sh-press-log" style="background-image: url(\'http://fakeimg.pl/150x130/\')"></div>\r\n                                                <div class="sh-press-content">\r\n                                                    <small>31.01.2017</small>\r\n                                                    <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.</p>\r\n                                                    <a href="#">'+
+	((__t=(i18n('download_press_release')))==null?'':__t)+
+	'</a>\r\n                                                </div>\r\n                                            </article>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="tab-pane builder-step" id="press-contact">\r\n                                <div class="sh-tab-content-wrapper">\r\n                                    <p>Если вы хотите получить комментарий, данные или информацию о компании, а также пригласить <a class="sh-uppercase" href="/">Shiners</a> к участию в интересном мероприятии или проекте, пожалуйста, свяжитесь с нашими представителями: <strong>Ашот Арутюнян</strong> и <strong>Татьяна Урусова</strong>.</p>\r\n                                    <p>Если вы хотите стать нашим партнером или предложить иное сотрудничество, напишите нам на <a href="mailto:russia-pr@shiners.ru">russia-pr@shiners.ru</a></p>\r\n                                    <p>Информацию о работе сайта и ответы на все вопросы, вы сможете найти в разделе <a href="/help">Помощь</a>.</p>\r\n                                    <p>Если вы хотите узнать больше о нас, вы можете посетить наш специальный раздел <a href="/about-us">О нас</a>.</p>\r\n\r\n                                    <div class="sh-contact-press">\r\n                                        <div class="sh-contact-press-wrapper">\r\n                                            <div class="sh-items">\r\n                                                <div class="sh-item">\r\n                                                    <div class="sh-avatar" style="background: url(\'http://fakeimg.pl/90x90/\');"></div>\r\n                                                    <div class="sh-contact-name">'+
+	((__t=(i18n('ashot_a')))==null?'':__t)+
+	'</div>\r\n                                                    <div class="sh-contact-email">Email: <a href="mailto:arutune@gmail.com">arutune@gmail.com</a></div>\r\n                                                </div>\r\n                                                <div class="sh-item">\r\n                                                    <div class="sh-avatar" style="background: url(\'http://fakeimg.pl/90x90/\');"></div>\r\n                                                    <div class="sh-contact-name">'+
+	((__t=(i18n('tatyana_u')))==null?'':__t)+
+	'</div>\r\n                                                    <div class="sh-contact-email">Email: <a href="mailto:tatiana@napodiume.ru">tatiana@napodiume.ru</a></div>\r\n                                                </div>\r\n                                            </div>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                    </div>\r\n\r\n                    <!-- SIDE RIGHT -->\r\n                    <div class="sh-side-right sh-side-menu visible-md visible-lg">\r\n                        <div class="sh-section-box">\r\n                            <h2>'+
+	((__t=(i18n('h_meet_us')))==null?'':__t)+
+	'</h2>\r\n                            <ul>\r\n                                <li><a href="#">'+
+	((__t=(i18n('m_about_us')))==null?'':__t)+
+	'</a> </li>\r\n                                <li><a href="#">'+
+	((__t=(i18n('m_help')))==null?'':__t)+
+	'</a></li>\r\n                                <li><a href="#">'+
+	((__t=(i18n('m_confidentiality')))==null?'':__t)+
+	'</a></li>\r\n                                <li><a href="#">'+
+	((__t=(i18n('m_terms_of_use')))==null?'':__t)+
+	'</a></li>\r\n                            </ul>\r\n                        </div>\r\n                        <div class="sh-section-box">\r\n                            <h2>'+
+	((__t=(i18n('h_mass_media')))==null?'':__t)+
+	'</h2>\r\n                            <div class="sh-quotes">\r\n                                <div class="sh-quotes-wrapper">\r\n                                    <div class="sh-quote">\r\n                                        <a href="#">В наминации продукт года побеждает проект со светлым названием SHINERS. Присуждается приз за вклад в развитии …</a>\r\n                                        <span class="sh-press-site"><i class="fa fa-word"></i> - Правда.ру</span>\r\n                                    </div>\r\n\r\n                                    <div class="sh-quote">\r\n                                        <a href="#">В наминации продукт года побеждает проект со светлым названием SHINERS. Присуждается приз за вклад в развитии …</a>\r\n                                        <span class="sh-press-site"><i class="fa fa-word"></i> - Правда.ру</span>\r\n                                    </div>\r\n\r\n                                    <div class="sh-quote">\r\n                                        <a href="#">В наминации продукт года побеждает проект со светлым названием SHINERS. Присуждается приз за вклад в развитии …</a>\r\n                                        <span class="sh-press-site"><i class="fa fa-word"></i> - Правда.ру</span>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n\r\n                </div>\r\n\r\n                <div class="sh-second-meet-menu hidden-md hidden-lg">\r\n                    <ul>\r\n                        <li><a href="#">'+
+	((__t=(i18n('m_about_us')))==null?'':__t)+
+	'</a> </li>\r\n                        <li><a href="#">'+
+	((__t=(i18n('m_help')))==null?'':__t)+
+	'</a></li>\r\n                        <li><a href="#">'+
+	((__t=(i18n('m_confidentiality')))==null?'':__t)+
+	'</a></li>\r\n                        <li><a href="#">'+
+	((__t=(i18n('m_terms_of_use')))==null?'':__t)+
+	'</a></li>\r\n                    </ul>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n</main>\r\n';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 183 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/massMedia/MassMediaView.less ***!
+  \******************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 184 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.js ***!
+  \******************************************************/
+>>>>>>> master
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+<<<<<<< HEAD
+	  value: true
+=======
+	    value: true
+>>>>>>> master
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+<<<<<<< HEAD
 	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 185);
 	
 	var _legalPostPublishingViewHbs2 = _interopRequireDefault(_legalPostPublishingViewHbs);
@@ -35306,20 +52287,40 @@
 	 */
 	var View = _backbone2.default.View.extend({
 	  template: _legalPostPublishingViewHbs2.default
+=======
+	var _HowItWorksViewHbs = __webpack_require__(/*! ./HowItWorksView.hbs.html */ 185);
+	
+	var _HowItWorksViewHbs2 = _interopRequireDefault(_HowItWorksViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _HowItWorksViewHbs2.default
+>>>>>>> master
 	});
 	exports.default = View;
 
 /***/ },
 /* 185 */
+<<<<<<< HEAD
 /*!****************************************************************!*\
   !*** ./wwwroot/homeApp/legal/legalPostPublishingView.hbs.html ***!
   \****************************************************************/
+=======
+/*!************************************************************!*\
+  !*** ./wwwroot/homeApp/howItWorks/HowItWorksView.hbs.html ***!
+  \************************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
 	__p+='<div class="page--legal-confidential">\r\n    <iframe src="https://docs.google.com/document/d/1fi04pKKonBP_O7zakR5m0NJqVXvscwqGbWZUV_0yCr4/pub?embedded=true" width="100%" height="500"></iframe>\r\n</div>';
+=======
+	__p+='<div>\n    <h2>Как это работает</h2>\n</div>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -35327,12 +52328,21 @@
 
 /***/ },
 /* 186 */
+<<<<<<< HEAD
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/blog/blogHomeView.js ***!
   \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+=======
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/account/FogotPasswordView.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -35342,6 +52352,7 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
 	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 187);
 	
 	var _blogHomeViewHbs2 = _interopRequireDefault(_blogHomeViewHbs);
@@ -35369,10 +52380,16 @@
 	var _backbone3 = __webpack_require__(/*! backbone */ 17);
 	
 	var _backbone4 = _interopRequireDefault(_backbone3);
+=======
+	var _FogotPasswordViewHbs = __webpack_require__(/*! ./FogotPasswordView.hbs.html */ 187);
+	
+	var _FogotPasswordViewHbs2 = _interopRequireDefault(_FogotPasswordViewHbs);
+>>>>>>> master
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var View = _backbone2.default.View.extend({
+<<<<<<< HEAD
 	
 	    template: _blogHomeViewHbs2.default,
 	    blogItems: null,
@@ -35550,18 +52567,50 @@
 /*!***********************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemsView.js ***!
   \***********************************************/
+=======
+	    template: _FogotPasswordViewHbs2.default
+	});
+	exports.default = View;
+
+/***/ },
+/* 187 */
+/*!************************************************************!*\
+  !*** ./wwwroot/homeApp/account/FogotPasswordView.hbs.html ***!
+  \************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div>\n    <h2>Забыли пароль? Печалька</h2>\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 188 */
+/*!*********************************************************!*\
+  !*** ./wwwroot/homeApp/legal/legalUserAgreementView.js ***!
+  \*********************************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
+<<<<<<< HEAD
 	    value: true
+=======
+	  value: true
+>>>>>>> master
 	});
 	
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+<<<<<<< HEAD
 	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.js */ 189);
 	
 	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
@@ -35572,11 +52621,25 @@
 	    childView: _BlogItemView2.default,
 	    className: 'blog-post-item-wrapper',
 	    tagName: 'div'
+=======
+	var _legalUserAgreementViewHbs = __webpack_require__(/*! ./legalUserAgreementView.hbs.html */ 189);
+	
+	var _legalUserAgreementViewHbs2 = _interopRequireDefault(_legalUserAgreementViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Created by arutu_000 on 1/15/2017.
+	 */
+	var View = _backbone2.default.View.extend({
+	  template: _legalUserAgreementViewHbs2.default
+>>>>>>> master
 	});
 	exports.default = View;
 
 /***/ },
 /* 189 */
+<<<<<<< HEAD
 /*!**********************************************!*\
   !*** ./wwwroot/homeApp/blog/BlogItemView.js ***!
   \**********************************************/
@@ -35695,12 +52758,90 @@
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
+=======
+/*!***************************************************************!*\
+  !*** ./wwwroot/homeApp/legal/legalUserAgreementView.hbs.html ***!
+  \***************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="page--legal-confidential">\n    <iframe src="https://docs.google.com/document/d/1MKCBacnlxgWNHX9NWy7Eoco64q5FH6RITTm_E2kDnYE/pub?embedded=true" width="100%" height="500"></iframe>\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 190 */
+/*!********************************************************!*\
+  !*** ./wwwroot/homeApp/legal/legalConfidentialView.js ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
 	});
 	
 	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+	var _legalConfidentialViewHbs = __webpack_require__(/*! ./legalConfidentialView.hbs.html */ 191);
+	
+	var _legalConfidentialViewHbs2 = _interopRequireDefault(_legalConfidentialViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Created by arutu_000 on 1/15/2017.
+	 */
+	var View = _backbone2.default.View.extend({
+	    template: _legalConfidentialViewHbs2.default,
+	    onRender: function onRender() {
+	        debugger;
+	    }
+	});
+	exports.default = View;
+
+/***/ },
+/* 191 */
+/*!**************************************************************!*\
+  !*** ./wwwroot/homeApp/legal/legalConfidentialView.hbs.html ***!
+  \**************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="page--legal-confidential">\n    <iframe src="https://docs.google.com/document/d/1MKCBacnlxgWNHX9NWy7Eoco64q5FH6RITTm_E2kDnYE/pub?embedded=true" width="100%" height="500"></iframe>\n\n    <!--<iframe src="https://drive.google.com/file/d/0B55GYt-og1BUVzRZNWFlVVE0U21SYnExYlhYMzNKV2ZIUnRN/preview" width="100%" height="500"></iframe>-->\n</div>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 192 */
+/*!**********************************************************!*\
+  !*** ./wwwroot/homeApp/legal/legalPostPublishingView.js ***!
+  \**********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+>>>>>>> master
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+<<<<<<< HEAD
 	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 193);
 	
 	var _blogPostIdViewHbs2 = _interopRequireDefault(_blogPostIdViewHbs);
@@ -35805,12 +52946,37 @@
 /*!******************************************************!*\
   !*** ./wwwroot/homeApp/blog/blogPostIdView.hbs.html ***!
   \******************************************************/
+=======
+	var _legalPostPublishingViewHbs = __webpack_require__(/*! ./legalPostPublishingView.hbs.html */ 193);
+	
+	var _legalPostPublishingViewHbs2 = _interopRequireDefault(_legalPostPublishingViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Created by arutu_000 on 1/15/2017.
+	 */
+	var View = _backbone2.default.View.extend({
+	  template: _legalPostPublishingViewHbs2.default
+	});
+	exports.default = View;
+
+/***/ },
+/* 193 */
+/*!****************************************************************!*\
+  !*** ./wwwroot/homeApp/legal/legalPostPublishingView.hbs.html ***!
+  \****************************************************************/
+>>>>>>> master
 /***/ function(module, exports) {
 
 	module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
 	__p+='<div class="sh-blog-post-id">\n    <!-- -->\r\n    <div class="container">\r\n        <div class="sh-page-block sh-blog-post-id-wrapper">\r\n\r\n            <h1 class="blog-post-title">BLOG POST TITLE HERE</h1>\r\n            <ul class="blog-post-info list-inline">\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-clock-o"></i>\r\n                        <span class="font-lato">June 29, 2015</span>\r\n                    </a>\r\n                </li>\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-comment-o"></i>\r\n                        <span class="font-lato">28 Comments</span>\r\n                    </a>\r\n                </li>\r\n                <li>\r\n                    <i class="fa fa-folder-open-o"></i>\r\n\r\n                    <a class="category" href="#">\r\n                        <span class="font-lato">Design</span>\r\n                    </a>\r\n                    <a class="category" href="#">\r\n                        <span class="font-lato">Photography</span>\r\n                    </a>\r\n                </li>\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-user"></i>\r\n                        <span class="font-lato">John Doe</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n\r\n            <!-- OWL SLIDER -->\r\n            <div id="sh-blog-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"items": 1, "autoPlay": 4500, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}\'>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n            </div>\r\n            <!-- /OWL SLIDER -->\r\n            <!-- IMAGE -->\r\n            <!--\r\n            <figure class="margin-bottom-20">\r\n                <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="img" />\r\n            </figure>\r\n            -->\r\n            <!-- /IMAGE -->\r\n            <!-- VIDEO -->\r\n            <!--\r\n            <div class="margin-bottom-20 embed-responsive embed-responsive-16by9">\r\n                <iframe class="embed-responsive-item" src="http://player.vimeo.com/video/8408210" width="800" height="450"></iframe>\r\n            </div>\r\n            -->\r\n            <!-- /VIDEO -->\r\n\r\n            <!-- article content -->\r\n            <p class="dropcap">Aliquam fringilla, sapien eget scelerisque placerat, lorem libero cursus lorem, sed sodales lorem libero eu sapien. Nunc mattis feugiat justo vel faucibus. Nulla consequat feugiat malesuada. Ut justo nulla, <strong>facilisis vel molestie id</strong>, dictum ut arcu. Nunc ipsum nulla, eleifend non blandit quis, luctus quis orci. Cras blandit turpis mattis nulla ultrices interdum. Mauris pretium pretium dictum. Nunc commodo, felis sed dictum bibendum, risus justo iaculis dui, nec euismod orci sem eget neque. Donec in metus metus, vitae eleifend lorem. Ut vestibulum gravida venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque suscipit tincidunt magna non mollis. Fusce tempus tincidunt nisi, in luctus elit pellentesque quis. Sed velit mi, ullamcorper ut tempor ut, mattis eu lacus. Morbi rhoncus aliquet tellus, id accumsan enim sollicitudin vitae.</p>\r\n            <p>Vivamus <a href="#">magna justo</a>, lacinia eget consectetur sed, convallis at tellus. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Sed porttitor lectus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla porttitor accumsan tincidunt.</p>\r\n\r\n            <!-- BLOCKQUOTE -->\r\n            <blockquote>\r\n                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>\r\n                <cite>Source Title</cite>\r\n            </blockquote>\r\n\r\n            <p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.Quisque velit nisi, pretium ut lacinia in, elementum id enim. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Pellentesque in ipsum id orci porta dapibus. Nulla quis lorem ut libero malesuada feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>\r\n            <p>Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor accumsan tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>\r\n            <!-- /article content -->\r\n\r\n\r\n            <div class="divider divider-dotted"><!-- divider --></div>\r\n\r\n\r\n            <!-- TAGS -->\r\n            <a class="tag" href="#">\r\n                <span class="txt">RESPONSIVE</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">CSS</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">HTML</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">JAVASCRIPT</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">DESIGN</span>\r\n            </a>\r\n            <a class="tag" href="#">\r\n                <span class="txt">DEVELOPMENT</span>\r\n            </a>\r\n            <!-- /TAGS -->\r\n            <!-- SHARE POST -->\r\n            <div class="clearfix margin-top-30">\r\n\r\n                <span class="pull-left margin-top-6 bold hidden-xs">\r\n                    Share Post:\r\n                </span>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-facebook pull-right" data-toggle="tooltip" data-placement="top" title="Facebook">\r\n                    <i class="icon-facebook"></i>\r\n                    <i class="icon-facebook"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-twitter pull-right" data-toggle="tooltip" data-placement="top" title="Twitter">\r\n                    <i class="icon-twitter"></i>\r\n                    <i class="icon-twitter"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-gplus pull-right" data-toggle="tooltip" data-placement="top" title="Google plus">\r\n                    <i class="icon-gplus"></i>\r\n                    <i class="icon-gplus"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-linkedin pull-right" data-toggle="tooltip" data-placement="top" title="Linkedin">\r\n                    <i class="icon-linkedin"></i>\r\n                    <i class="icon-linkedin"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-pinterest pull-right" data-toggle="tooltip" data-placement="top" title="Pinterest">\r\n                    <i class="icon-pinterest"></i>\r\n                    <i class="icon-pinterest"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-call pull-right" data-toggle="tooltip" data-placement="top" title="Email">\r\n                    <i class="icon-email3"></i>\r\n                    <i class="icon-email3"></i>\r\n                </a>\r\n\r\n            </div>\r\n            <!-- /SHARE POST -->\r\n\r\n\r\n            <div class="divider"><!-- divider --></div>\r\n\r\n\r\n            <ul class="pager">\r\n                <li class="previous"><a class="noborder" href="#">&larr; Previous Post</a></li>\r\n                <li class="next"><a class="noborder" href="#">Next Post &rarr;</a></li>\r\n            </ul>\r\n\r\n\r\n        </div>\r\n   </div>\n</div>';
+=======
+	__p+='<div class="page--legal-confidential">\n    <iframe src="https://docs.google.com/document/d/1fi04pKKonBP_O7zakR5m0NJqVXvscwqGbWZUV_0yCr4/pub?embedded=true" width="100%" height="500"></iframe>\n</div>';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -35818,6 +52984,7 @@
 
 /***/ },
 /* 194 */
+<<<<<<< HEAD
 /*!**********************************************************************!*\
   !*** ./wwwroot/lib/magnific-popup/dist/jquery.magnific-popup.min.js ***!
   \**********************************************************************/
@@ -36218,6 +53385,13 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+=======
+/*!***************************************************!*\
+  !*** ./wwwroot/homeApp/blog/emptyBlogHomeView.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -36227,6 +53401,59 @@
 	
 	var _backbone2 = _interopRequireDefault(_backbone);
 	
+	var _emptyBlogHomeViewHbs = __webpack_require__(/*! ./emptyBlogHomeView.hbs.html */ 195);
+	
+	var _emptyBlogHomeViewHbs2 = _interopRequireDefault(_emptyBlogHomeViewHbs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    template: _emptyBlogHomeViewHbs2.default,
+	    tagName: 'div',
+	    className: 'sh-empty-blog'
+	});
+	
+	exports.default = View;
+
+/***/ },
+/* 195 */
+/*!*********************************************************!*\
+  !*** ./wwwroot/homeApp/blog/emptyBlogHomeView.hbs.html ***!
+  \*********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<h1 class="sh-section-hero-headline sh-text-center">'+
+	((__t=(i18n('blog_empty_title')))==null?'':__t)+
+	'</h1>\r\n<p class="sh-section-intro sh-text-center">'+
+	((__t=(i18n('blog_empty_subTitle')))==null?'':__t)+
+	'</p>';
+	}
+	return __p;
+	};
+
+
+/***/ },
+/* 196 */
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/blog/blogHomeView.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+>>>>>>> master
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+<<<<<<< HEAD
 	var _SuggestionsModalViewHbs = __webpack_require__(/*! ./SuggestionsModalView.hbs.html */ 197);
 	
 	var _SuggestionsModalViewHbs2 = _interopRequireDefault(_SuggestionsModalViewHbs);
@@ -36234,11 +53461,27 @@
 	var _OsmSearchCollection = __webpack_require__(/*! ../../../data/OsmSearchCollection.js */ 63);
 	
 	var _OsmSearchCollection2 = _interopRequireDefault(_OsmSearchCollection);
+=======
+	var _blogHomeViewHbs = __webpack_require__(/*! ./blogHomeView.hbs.html */ 197);
+	
+	var _blogHomeViewHbs2 = _interopRequireDefault(_blogHomeViewHbs);
+	
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 111);
+	
+	var _AsteroidCollection = __webpack_require__(/*! ../../data/AsteroidCollection.js */ 90);
+	
+	var _AsteroidCollection2 = _interopRequireDefault(_AsteroidCollection);
+	
+	var _BlogItemsView = __webpack_require__(/*! ./BlogItemsView.js */ 198);
+	
+	var _BlogItemsView2 = _interopRequireDefault(_BlogItemsView);
+>>>>>>> master
 	
 	var _underscore = __webpack_require__(/*! underscore */ 7);
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
+<<<<<<< HEAD
 	__webpack_require__(/*! ./SuggestionsModalView.less */ 198);
 	
 	var _SuggestionListView = __webpack_require__(/*! ../SuggestionListView.js */ 67);
@@ -36304,14 +53547,194 @@
 /*!***************************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.hbs.html ***!
   \***************************************************************************************/
+=======
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./blogHomeView.less */ 201);
+	
+	var _backbone3 = __webpack_require__(/*! backbone */ 17);
+	
+	var _backbone4 = _interopRequireDefault(_backbone3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _blogHomeViewHbs2.default,
+	    blogItems: null,
+	    className: 'sh-content',
+	    fakeCollection: null,
+	
+	    initialize: function initialize() {
+	        //Fake instance
+	        this.fakeCollection = this._adaptCollection();
+	
+	        this.blogItems = new _AsteroidCollection2.default(null, { asteroid: this.asteroid });
+	        //this.listenTo(app.user,'login',this.render);
+	        //this.listenTo(app.user, 'logout', this.render);
+	    },
+	    _adaptCollection: function _adaptCollection() {
+	        var ret, p;
+	        ret = this.options.collection.map(function (post) {
+	            p = post.toJSON();
+	            return _underscore2.default.extend({}, p, {
+	                id: p.id,
+	                timestamp: new Date(p.createdAt.$date),
+	                title: p.title,
+	                description: p.body,
+	                images: [{
+	                    src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
+	                    alt: '�����-�� �����'
+	                }, {
+	                    src: 'https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg',
+	                    alt: '�����-�� �����'
+	                }],
+	                comments: [],
+	                author: 'Shiners',
+	                //categories: ['shiners','news', 'tutorials'],
+	                tags: p.tags[0].split(' ')
+	            });
+	        });
+	
+	        return new _backbone4.default.Collection(ret);
+	    },
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            blogDetails: this.getBlogDetails()
+	        };
+	    },
+	    getBlogDetails: function getBlogDetails() {
+	        var details = {},
+	            blogData = this.fakeCollection.toJSON();
+	
+	        if (blogData) {
+	            details.tags = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6'];
+	        }
+	
+	        return details;
+	    },
+	
+	
+	    regions: {
+	        'blogItems': '#blog-items'
+	    },
+	
+	    onAttach: function onAttach() {
+	        //this.initCarousel();
+	    },
+	    onRender: function onRender() {
+	        this.showChildView('blogItems', new _BlogItemsView2.default({ collection: this.fakeCollection }));
+	    },
+	    initCarousel: function initCarousel() {
+	        var slider = this.$("#sh-blog-carousel" + this.model.get('id'));
+	        console.log(slider);
+	
+	        var options = slider.attr('data-plugin-options');
+	        var defaults = {
+	            //items: 5,
+	            itemsCustom: false,
+	            singleItem: true,
+	            itemsScaleUp: false,
+	
+	            slideSpeed: 200,
+	            paginationSpeed: 800,
+	            rewindSpeed: 1000,
+	
+	            autoPlay: false,
+	            stopOnHover: false,
+	
+	            navigation: false,
+	            navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+	            rewindNav: true,
+	            scrollPerPage: false,
+	
+	            pagination: true,
+	            paginationNumbers: false,
+	
+	            responsive: true,
+	            responsiveRefreshRate: 200,
+	            responsiveBaseWidth: window,
+	
+	            baseClass: "owl-carousel",
+	            theme: "owl-theme",
+	
+	            lazyLoad: false,
+	            lazyFollow: true,
+	            lazyEffect: "fade",
+	
+	            autoHeight: false,
+	
+	            jsonPath: false,
+	            jsonSuccess: false,
+	
+	            dragBeforeAnimFinish: true,
+	            mouseDrag: true,
+	            touchDrag: true,
+	
+	            transitionStyle: false,
+	
+	            addClassActive: false,
+	
+	            beforeUpdate: false,
+	            afterUpdate: false,
+	            beforeInit: false,
+	            afterInit: false,
+	            beforeMove: false,
+	            afterMove: false,
+	            afterAction: false,
+	            startDragging: false,
+	            afterLazyLoad: false
+	        };
+	        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+	        slider.owlCarousel(config).addClass("owl-carousel-init");
+	    },
+	    initMobileBtnBlog: function initMobileBtnBlog() {
+	        $("div.side-nav").each(function () {
+	            var _t = $('ul', this);
+	            $('button', this).bind("click", function () {
+	                _t.slideToggle(300);
+	            });
+	        });
+	    }
+	});
+	
+	//Fake instance
+	/**
+	 * Created by arutu_000 on 1/15/2017.
+	 */
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 197 */
+/*!****************************************************!*\
+  !*** ./wwwroot/homeApp/blog/blogHomeView.hbs.html ***!
+  \****************************************************/
+>>>>>>> master
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
 	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 	with(obj||{}){
+<<<<<<< HEAD
 	__p+='<div class="suggestions-modal-view">\r\n    <div class="suggestions-modal-view-wrapper">\r\n        <div class="sh-input-group">\r\n            <input placeholder="'+
 	((__t=(obj.address||'Поиск по городам и регионам'))==null?'':_.escape(__t))+
 	'" class="sh-input-suggestions form-control" id="locationQuery" type="text">            \r\n            <div class="suggestion-box" id="suggestionsBox">\r\n                <h5>Поиск городов, регионов</h5>\r\n                <div id="suggestionsListBox"></div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>';
+=======
+	__p+='\n<div class="sh-blog-home">\n    <div class="container">\n        <div class="page--blog-home">\n            <div class="sh-page-block sh-blog-home-wrapper row">\n                <!--LEFT-->\n                <div class="col-md-12 col-sm-12">\n                    <div id="blog-items"></div>\r\n                </div>\n\n                <!--RIGHT-->\n                <div class="col-md-3 col-sm-3" style="display:none;">\n\n                    <!-- INLINE SEARCH -->\r\n                    <div class="inline-search clearfix margin-bottom-30">\r\n                        <form action="" method="get" class="widget_search">\r\n                            <input type="search" placeholder="Start Searching..." id="s" name="s" class="serch-input">\r\n                            <button type="submit">\r\n                                <i class="fa fa-search"></i>\r\n                            </button>\r\n                        </form>\r\n                    </div>\r\n                    <!-- /INLINE SEARCH -->\n\n                    <hr />\r\n\r\n                    <!-- side navigation -->\r\n                    <div class="side-nav margin-bottom-60 margin-top-30">\r\n\r\n                        <div class="side-nav-head">\r\n                            <button class="fa fa-bars"></button>\r\n                            <h4>CATEGORIES</h4>\r\n                        </div>\r\n                        <ul class="list-group list-group-bordered list-group-noicon uppercase">\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(12)</span> MEDIA</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(8)</span> MOVIES</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(32)</span> NEW</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(16)</span> TUTORIALS</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(2)</span> DEVELOPMENT</a></li>\r\n                            <li class="list-group-item"><a href="#"><span class="size-11 text-muted pull-right">(1)</span> UNCATEGORIZED</a></li>\r\n\r\n                        </ul>\r\n                        <!-- /side navigation -->\r\n\r\n\r\n                    </div>\n\n                    <!-- TAGS -->\r\n                    ';
+	 if(blogDetails) { 
+	__p+='\r\n                    <h3 class="hidden-xs size-16 margin-bottom-20">SEARCH FOR TAGS</h3>\r\n                    <div class="hidden-xs margin-bottom-60">\r\n                        ';
+	_.each(blogDetails.tags, function(tag){ 
+	__p+='                            \r\n                            <a class="tag" href="#">\r\n                                <span class="txt">'+
+	((__t=( tag))==null?'':__t)+
+	'</span>\r\n                            </a>                           \r\n                        ';
+	});
+	__p+='                        \r\n                    </div>\n                    ';
+	 } 
+	__p+='\n                    <hr />\r\n\r\n\r\n                    <!-- SOCIAL ICONS -->\r\n                    <div class="hidden-xs margin-top-30 margin-bottom-60">\r\n                        <a href="#" class="social-icon social-icon-border social-facebook pull-left" data-toggle="tooltip" data-placement="top" title="Facebook">\r\n                            <i class="icon-facebook"></i>\r\n                            <i class="icon-facebook"></i>\r\n                        </a>\r\n\r\n                        <a href="#" class="social-icon social-icon-border social-twitter pull-left" data-toggle="tooltip" data-placement="top" title="Twitter">\r\n                            <i class="icon-twitter"></i>\r\n                            <i class="icon-twitter"></i>\r\n                        </a>\r\n\r\n                        <a href="#" class="social-icon social-icon-border social-gplus pull-left" data-toggle="tooltip" data-placement="top" title="Google plus">\r\n                            <i class="icon-gplus"></i>\r\n                            <i class="icon-gplus"></i>\r\n                        </a>                        \r\n                    </div>\n\n                </div>               \n            </div>\n        </div>\n    </div>\n</div>\n';
+>>>>>>> master
 	}
 	return __p;
 	};
@@ -36320,6 +53743,7 @@
 
 /***/ },
 /* 198 */
+<<<<<<< HEAD
 /*!***********************************************************************************!*\
   !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.less ***!
   \***********************************************************************************/
@@ -36374,10 +53798,19 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+=======
+/*!***********************************************!*\
+  !*** ./wwwroot/homeApp/blog/BlogItemsView.js ***!
+  \***********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+>>>>>>> master
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+<<<<<<< HEAD
 	exports.createClass = createClass;
 	
 	var _lodash = __webpack_require__(/*! lodash.assign */ 202);
@@ -38964,10 +56397,803 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+=======
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.js */ 199);
+	
+	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.CollectionView.extend({
+	    childView: _BlogItemView2.default,
+	    className: 'blog-post-item-wrapper',
+	    tagName: 'div'
+	});
+	exports.default = View;
+
+/***/ },
+/* 199 */
+/*!**********************************************!*\
+  !*** ./wwwroot/homeApp/blog/BlogItemView.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _BlogItemView = __webpack_require__(/*! ./BlogItemView.html */ 200);
+	
+	var _BlogItemView2 = _interopRequireDefault(_BlogItemView);
+	
+	var _app = __webpack_require__(/*! ../app */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	    tagName: 'div',
+	    className: 'blog-post-item',
+	    template: _BlogItemView2.default,
+	
+	    initialize: function initialize() {
+	        console.log('-> MODEL: ', this.model.toJSON());
+	    },
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            description: this.getDescription()
+	        };
+	    },
+	    onAttach: function onAttach() {
+	        this.initCarousel();
+	    },
+	    getDescription: function getDescription() {
+	        var blogItem = this.model.toJSON(),
+	            textDescription = blogItem.excerpt,
+	            limit = 400;
+	
+	        if (textDescription) {
+	            var tx = textDescription.slice(0, limit);
+	            tx += '...';
+	        }
+	
+	        return tx;
+	    },
+	    initCarousel: function initCarousel() {
+	        var slider = this.$("#sh-blog-carousel-" + this.model.get('id'));
+	        var options = slider.attr('data-plugin-options');
+	        var defaults = {
+	            //items: 5,
+	            itemsCustom: false,
+	            singleItem: true,
+	            itemsScaleUp: false,
+	
+	            slideSpeed: 200,
+	            paginationSpeed: 800,
+	            rewindSpeed: 1000,
+	
+	            autoPlay: false,
+	            stopOnHover: false,
+	
+	            navigation: false,
+	            navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+	            rewindNav: true,
+	            scrollPerPage: false,
+	
+	            pagination: true,
+	            paginationNumbers: false,
+	
+	            responsive: true,
+	            responsiveRefreshRate: 200,
+	            responsiveBaseWidth: window,
+	
+	            baseClass: "owl-carousel",
+	            theme: "owl-theme",
+	
+	            lazyLoad: false,
+	            lazyFollow: true,
+	            lazyEffect: "fade",
+	
+	            autoHeight: false,
+	
+	            jsonPath: false,
+	            jsonSuccess: false,
+	
+	            dragBeforeAnimFinish: true,
+	            mouseDrag: true,
+	            touchDrag: true,
+	
+	            transitionStyle: false,
+	
+	            addClassActive: false,
+	
+	            beforeUpdate: false,
+	            afterUpdate: false,
+	            beforeInit: false,
+	            afterInit: false,
+	            beforeMove: false,
+	            afterMove: false,
+	            afterAction: false,
+	            startDragging: false,
+	            afterLazyLoad: false
+	        };
+	        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+	        slider.owlCarousel(config).addClass("owl-carousel-init");
+	    }
+	});
+	
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 200 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/blog/BlogItemView.html ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_, moment) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='\r\n<!-- POST ITEM -->\r\n';
+	 if (_.size(obj.images) > 1) { 
+	__p+='\r\n <!-- OWL SLIDER -->\r\n<div id="sh-blog-carousel-'+
+	((__t=(obj.id))==null?'':__t)+
+	'" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"items": 1, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}\'>\r\n    ';
+	_.each(obj.images, function(image){ 
+	__p+='\r\n    <div>\r\n        <img class="img-responsive" src="'+
+	((__t=( image.src))==null?'':__t)+
+	'" alt="'+
+	((__t=( image.alt))==null?'':__t)+
+	'">\r\n    </div> \r\n    ';
+	});
+	__p+='   \r\n</div>\r\n<!-- /OWL SLIDER -->\r\n';
+	 } else { 
+	__p+='\r\n    <!-- IMAGE -->\r\n    ';
+	 if(images && images[0].src) { 
+	__p+='\r\n    <figure class="margin-bottom-20">\r\n        <img class="img-responsive" src="'+
+	((__t=(obj.images[0].src))==null?'':__t)+
+	'" alt="'+
+	((__t=(obj.images[0].alt))==null?'':__t)+
+	'">\r\n    </figure>\r\n    ';
+	 } 
+	__p+='\r\n';
+	 } 
+	__p+='\r\n\r\n<div class="">\r\n    <h2><a href="blog/post/'+
+	((__t=(id))==null?'':__t)+
+	'">'+
+	((__t=( obj.title))==null?'':__t)+
+	'</a></h2>\r\n    <ul class="blog-post-info list-inline">\r\n        <li>\r\n            <a href="#">\r\n                <i class="fa fa-clock-o"></i>\r\n                <span class="font-lato">'+
+	((__t=( moment(obj.timestamp).calendar()))==null?'':__t)+
+	'</span>\r\n            </a>\r\n        </li>\r\n\r\n        <li>\r\n            <a href="#">\r\n                <i class="fa fa-comment-o"></i>\r\n                <span class="font-lato">Комментариев: '+
+	((__t=( (_.size(obj.comments) > 0) ? obj.comments.length : '0' ))==null?'':__t)+
+	'</span>\r\n            </a>\r\n        </li>\r\n\r\n        ';
+	 if(_.size(obj.categories) > 0){ 
+	__p+='\r\n        <li>\r\n            <i class="fa fa-folder-open-o"></i>\r\n            ';
+	_.each(obj.categories, function(category){ 
+	__p+='\r\n            <a class="category" href="#">\r\n                <span class="font-lato">'+
+	((__t=( category))==null?'':__t)+
+	'</span>\r\n            </a>\r\n            ';
+	});
+	__p+='\r\n        </li>\r\n        ';
+	 } 
+	__p+='\r\n\r\n        <li>\r\n            <a href="#">\r\n                <i class="fa fa-user"></i>\r\n                <span class="font-lato">'+
+	((__t=( obj.author))==null?'':__t)+
+	'</span>\r\n            </a>\r\n        </li>\r\n    </ul>\r\n\r\n    <p class="sh-post-description">\r\n        '+
+	((__t=( obj.description))==null?'':_.escape(__t))+
+	'\r\n    </p>\r\n\r\n    <a href="/blog/post/'+
+	((__t=(id))==null?'':__t)+
+	'" class="btn btn-default btn-readmore">\r\n        <i class="fa fa-plus"></i> <span>'+
+	((__t=(i18n('READ_MORE')))==null?'':__t)+
+	'</span>\r\n    </a>\r\n</div>\r\n\r\n\r\n';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7), __webpack_require__(/*! moment */ 12)))
+
+/***/ },
+/* 201 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/blog/blogHomeView.less ***!
+  \************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 202 */
+/*!************************************************!*\
+  !*** ./wwwroot/homeApp/blog/blogPostIdView.js ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _blogPostIdViewHbs = __webpack_require__(/*! ./blogPostIdView.hbs.html */ 203);
+	
+	var _blogPostIdViewHbs2 = _interopRequireDefault(_blogPostIdViewHbs);
+	
+	__webpack_require__(/*! ../../lib/owl-carousel/owl.carousel.min.js */ 111);
+	
+	__webpack_require__(/*! ../../lib/magnific-popup/dist/jquery.magnific-popup.min.js */ 204);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _app = __webpack_require__(/*! ../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	__webpack_require__(/*! ./blogPostIdView.less */ 205);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var View = _backbone2.default.View.extend({
+	
+	    template: _blogPostIdViewHbs2.default,
+	
+	    initialize: function initialize() {
+	        // console.log('POST ID -> MODEL: ', this.model);
+	    },
+	    onBeforeRender: function onBeforeRender() {
+	        this.templateContext = {
+	            item: this.getBlogDetails()
+	        };
+	    },
+	    getBlogDetails: function getBlogDetails() {
+	        var item = this.model;
+	        return item;
+	    },
+	    onAttach: function onAttach() {
+	        this.initLightBox();
+	        this.initCarousel();
+	    },
+	    initCarousel: function initCarousel() {
+	        var slider = this.$('#sh-blog-carousel');
+	        var options = slider.attr('data-plugin-options');
+	        var defaults = {
+	            //items: 5,
+	            itemsCustom: false,
+	            singleItem: true,
+	            itemsScaleUp: false,
+	
+	            slideSpeed: 200,
+	            paginationSpeed: 800,
+	            rewindSpeed: 1000,
+	
+	            autoPlay: false,
+	            stopOnHover: false,
+	
+	            navigation: false,
+	            navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+	            rewindNav: true,
+	            scrollPerPage: false,
+	
+	            pagination: true,
+	            paginationNumbers: false,
+	
+	            responsive: true,
+	            responsiveRefreshRate: 200,
+	            responsiveBaseWidth: window,
+	
+	            baseClass: "owl-carousel",
+	            theme: "owl-theme",
+	
+	            lazyLoad: false,
+	            lazyFollow: true,
+	            lazyEffect: "fade",
+	
+	            autoHeight: false,
+	
+	            jsonPath: false,
+	            jsonSuccess: false,
+	
+	            dragBeforeAnimFinish: true,
+	            mouseDrag: true,
+	            touchDrag: true,
+	
+	            transitionStyle: false,
+	
+	            addClassActive: false,
+	
+	            beforeUpdate: false,
+	            afterUpdate: false,
+	            beforeInit: false,
+	            afterInit: false,
+	            beforeMove: false,
+	            afterMove: false,
+	            afterAction: false,
+	            startDragging: false,
+	            afterLazyLoad: false
+	        };
+	        var config = $.extend({}, defaults, options, slider.data("plugin-options"));
+	        slider.owlCarousel(config).addClass("owl-carousel-init");
+	    },
+	    initLightBox: function initLightBox() {}
+	});
+	
+	exports.default = View;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 3)))
+
+/***/ },
+/* 203 */
+/*!******************************************************!*\
+  !*** ./wwwroot/homeApp/blog/blogPostIdView.hbs.html ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(moment, _) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="sh-blog-post-id">\n    <!-- -->\r\n    <div class="container">\r\n        <div class="sh-page-block sh-blog-post-id-wrapper">\r\n\r\n            <h1 class="blog-post-title">'+
+	((__t=( item.title))==null?'':__t)+
+	'</h1>\r\n            <ul class="blog-post-info list-inline">\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-clock-o"></i>\r\n                        <span class="font-lato">'+
+	((__t=( moment(item.createdAt.$date).calendar()))==null?'':__t)+
+	'</span>\r\n                    </a>\r\n                </li>\r\n                <li>\r\n                    <a href="#">\r\n                        <i class="fa fa-comment-o"></i>\r\n                        <span class="font-lato">'+
+	((__t=(i18n('COMMENTS')))==null?'':__t)+
+	': '+
+	((__t=( (_.size(item.comments) > 0) ? item.comments.length : '0' ))==null?'':__t)+
+	'</span>\r\n                    </a>\r\n                </li>\r\n                ';
+	 if(_.size(item.categories) > 0){ 
+	__p+='\r\n                <li>\r\n                    <i class="fa fa-folder-open-o"></i>\r\n                    ';
+	_.each(item.categories, function(category){ 
+	__p+='\r\n                    <a class="category" href="#">\r\n                        <span class="font-lato">'+
+	((__t=( category))==null?'':__t)+
+	'</span>\r\n                    </a>\r\n                    ';
+	});
+	__p+='\r\n                </li>\r\n                ';
+	 } 
+	__p+='\r\n                <li style="display:none;">\r\n                    <a href="#">\r\n                        <i class="fa fa-user"></i>\r\n                        <span class="font-lato">'+
+	((__t=( item.author))==null?'':__t)+
+	'</span>\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n\r\n            <!-- OWL SLIDER -->\r\n            <div id="sh-blog-carousel" class="owl-carousel buttons-autohide controlls-over" data-plugin-options=\'{"items": 1, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}\'>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n                <a class="lightbox" href="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" data-plugin-options=\'{"type":"image"}\'>\r\n                    <img class="img-responsive" src="https://www.mos.org/sites/dev-elvis.mos.org/files/images/main/uploads/slides/imax_extreme-weather_tornado.jpg" alt="" />\r\n                </a>\r\n            </div>\r\n           \r\n            <!-- article content -->\r\n            <p class="sh-post-description">\r\n                '+
+	((__t=( item.body))==null?'':__t)+
+	'\r\n            </p>\r\n            <!-- /article content -->\r\n\r\n            <div class="divider divider-dotted"><!-- divider --></div>\r\n\r\n            <!-- TAGS -->\r\n            ';
+	 if (item.tags && (_.size(item.tags) > 0)) { 
+	__p+='\r\n                ';
+	_.each(item.tags, function(tag){ 
+	__p+='\r\n                    <div class="tag"><span class="txt">'+
+	((__t=( tag))==null?'':__t)+
+	'</span></div>\r\n                ';
+	})
+	__p+='            \r\n            ';
+	 } 
+	__p+='\r\n            <!-- /TAGS -->\r\n\r\n            <!-- SHARE POST -->\r\n            <div class="clearfix margin-top-30" style="display:none;">\r\n\r\n                <span class="pull-left margin-top-6 bold hidden-xs">\r\n                    Share Post:\r\n                </span>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-facebook pull-right" data-toggle="tooltip" data-placement="top" title="Facebook">\r\n                    <i class="icon-facebook"></i>\r\n                    <i class="icon-facebook"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-twitter pull-right" data-toggle="tooltip" data-placement="top" title="Twitter">\r\n                    <i class="icon-twitter"></i>\r\n                    <i class="icon-twitter"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-gplus pull-right" data-toggle="tooltip" data-placement="top" title="Google plus">\r\n                    <i class="icon-gplus"></i>\r\n                    <i class="icon-gplus"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-linkedin pull-right" data-toggle="tooltip" data-placement="top" title="Linkedin">\r\n                    <i class="icon-linkedin"></i>\r\n                    <i class="icon-linkedin"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-pinterest pull-right" data-toggle="tooltip" data-placement="top" title="Pinterest">\r\n                    <i class="icon-pinterest"></i>\r\n                    <i class="icon-pinterest"></i>\r\n                </a>\r\n\r\n                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-call pull-right" data-toggle="tooltip" data-placement="top" title="Email">\r\n                    <i class="icon-email3"></i>\r\n                    <i class="icon-email3"></i>\r\n                </a>\r\n\r\n            </div>\r\n            <!-- /SHARE POST -->\r\n\r\n            <div class="divider"><!-- divider --></div>\r\n\r\n            <ul class="pager">\r\n                <li class="previous"><a class="noborder" href="#">&larr; Previous Post</a></li>\r\n                <li class="next"><a class="noborder" href="#">Next Post &rarr;</a></li>\r\n            </ul>\r\n\r\n        </div>\r\n   </div>\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! moment */ 12), __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 204 */
+/*!**********************************************************************!*\
+  !*** ./wwwroot/lib/magnific-popup/dist/jquery.magnific-popup.min.js ***!
+  \**********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	/*! Magnific Popup - v1.1.0 - 2016-02-20
+	* http://dimsemenov.com/plugins/magnific-popup/
+	* Copyright (c) 2016 Dmitry Semenov; */
+	!function (a) {
+	   true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ 3)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : a("object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) ? require("jquery") : window.jQuery || window.Zepto);
+	}(function (a) {
+	  var b,
+	      c,
+	      d,
+	      e,
+	      f,
+	      g,
+	      h = "Close",
+	      i = "BeforeClose",
+	      j = "AfterClose",
+	      k = "BeforeAppend",
+	      l = "MarkupParse",
+	      m = "Open",
+	      n = "Change",
+	      o = "mfp",
+	      p = "." + o,
+	      q = "mfp-ready",
+	      r = "mfp-removing",
+	      s = "mfp-prevent-close",
+	      t = function t() {},
+	      u = !!window.jQuery,
+	      v = a(window),
+	      w = function w(a, c) {
+	    b.ev.on(o + a + p, c);
+	  },
+	      x = function x(b, c, d, e) {
+	    var f = document.createElement("div");return f.className = "mfp-" + b, d && (f.innerHTML = d), e ? c && c.appendChild(f) : (f = a(f), c && f.appendTo(c)), f;
+	  },
+	      y = function y(c, d) {
+	    b.ev.triggerHandler(o + c, d), b.st.callbacks && (c = c.charAt(0).toLowerCase() + c.slice(1), b.st.callbacks[c] && b.st.callbacks[c].apply(b, a.isArray(d) ? d : [d]));
+	  },
+	      z = function z(c) {
+	    return c === g && b.currTemplate.closeBtn || (b.currTemplate.closeBtn = a(b.st.closeMarkup.replace("%title%", b.st.tClose)), g = c), b.currTemplate.closeBtn;
+	  },
+	      A = function A() {
+	    a.magnificPopup.instance || (b = new t(), b.init(), a.magnificPopup.instance = b);
+	  },
+	      B = function B() {
+	    var a = document.createElement("p").style,
+	        b = ["ms", "O", "Moz", "Webkit"];if (void 0 !== a.transition) return !0;for (; b.length;) {
+	      if (b.pop() + "Transition" in a) return !0;
+	    }return !1;
+	  };t.prototype = { constructor: t, init: function init() {
+	      var c = navigator.appVersion;b.isLowIE = b.isIE8 = document.all && !document.addEventListener, b.isAndroid = /android/gi.test(c), b.isIOS = /iphone|ipad|ipod/gi.test(c), b.supportsTransition = B(), b.probablyMobile = b.isAndroid || b.isIOS || /(Opera Mini)|Kindle|webOS|BlackBerry|(Opera Mobi)|(Windows Phone)|IEMobile/i.test(navigator.userAgent), d = a(document), b.popupsCache = {};
+	    }, open: function open(c) {
+	      var e;if (c.isObj === !1) {
+	        b.items = c.items.toArray(), b.index = 0;var g,
+	            h = c.items;for (e = 0; e < h.length; e++) {
+	          if (g = h[e], g.parsed && (g = g.el[0]), g === c.el[0]) {
+	            b.index = e;break;
+	          }
+	        }
+	      } else b.items = a.isArray(c.items) ? c.items : [c.items], b.index = c.index || 0;if (b.isOpen) return void b.updateItemHTML();b.types = [], f = "", c.mainEl && c.mainEl.length ? b.ev = c.mainEl.eq(0) : b.ev = d, c.key ? (b.popupsCache[c.key] || (b.popupsCache[c.key] = {}), b.currTemplate = b.popupsCache[c.key]) : b.currTemplate = {}, b.st = a.extend(!0, {}, a.magnificPopup.defaults, c), b.fixedContentPos = "auto" === b.st.fixedContentPos ? !b.probablyMobile : b.st.fixedContentPos, b.st.modal && (b.st.closeOnContentClick = !1, b.st.closeOnBgClick = !1, b.st.showCloseBtn = !1, b.st.enableEscapeKey = !1), b.bgOverlay || (b.bgOverlay = x("bg").on("click" + p, function () {
+	        b.close();
+	      }), b.wrap = x("wrap").attr("tabindex", -1).on("click" + p, function (a) {
+	        b._checkIfClose(a.target) && b.close();
+	      }), b.container = x("container", b.wrap)), b.contentContainer = x("content"), b.st.preloader && (b.preloader = x("preloader", b.container, b.st.tLoading));var i = a.magnificPopup.modules;for (e = 0; e < i.length; e++) {
+	        var j = i[e];j = j.charAt(0).toUpperCase() + j.slice(1), b["init" + j].call(b);
+	      }y("BeforeOpen"), b.st.showCloseBtn && (b.st.closeBtnInside ? (w(l, function (a, b, c, d) {
+	        c.close_replaceWith = z(d.type);
+	      }), f += " mfp-close-btn-in") : b.wrap.append(z())), b.st.alignTop && (f += " mfp-align-top"), b.fixedContentPos ? b.wrap.css({ overflow: b.st.overflowY, overflowX: "hidden", overflowY: b.st.overflowY }) : b.wrap.css({ top: v.scrollTop(), position: "absolute" }), (b.st.fixedBgPos === !1 || "auto" === b.st.fixedBgPos && !b.fixedContentPos) && b.bgOverlay.css({ height: d.height(), position: "absolute" }), b.st.enableEscapeKey && d.on("keyup" + p, function (a) {
+	        27 === a.keyCode && b.close();
+	      }), v.on("resize" + p, function () {
+	        b.updateSize();
+	      }), b.st.closeOnContentClick || (f += " mfp-auto-cursor"), f && b.wrap.addClass(f);var k = b.wH = v.height(),
+	          n = {};if (b.fixedContentPos && b._hasScrollBar(k)) {
+	        var o = b._getScrollbarSize();o && (n.marginRight = o);
+	      }b.fixedContentPos && (b.isIE7 ? a("body, html").css("overflow", "hidden") : n.overflow = "hidden");var r = b.st.mainClass;return b.isIE7 && (r += " mfp-ie7"), r && b._addClassToMFP(r), b.updateItemHTML(), y("BuildControls"), a("html").css(n), b.bgOverlay.add(b.wrap).prependTo(b.st.prependTo || a(document.body)), b._lastFocusedEl = document.activeElement, setTimeout(function () {
+	        b.content ? (b._addClassToMFP(q), b._setFocus()) : b.bgOverlay.addClass(q), d.on("focusin" + p, b._onFocusIn);
+	      }, 16), b.isOpen = !0, b.updateSize(k), y(m), c;
+	    }, close: function close() {
+	      b.isOpen && (y(i), b.isOpen = !1, b.st.removalDelay && !b.isLowIE && b.supportsTransition ? (b._addClassToMFP(r), setTimeout(function () {
+	        b._close();
+	      }, b.st.removalDelay)) : b._close());
+	    }, _close: function _close() {
+	      y(h);var c = r + " " + q + " ";if (b.bgOverlay.detach(), b.wrap.detach(), b.container.empty(), b.st.mainClass && (c += b.st.mainClass + " "), b._removeClassFromMFP(c), b.fixedContentPos) {
+	        var e = { marginRight: "" };b.isIE7 ? a("body, html").css("overflow", "") : e.overflow = "", a("html").css(e);
+	      }d.off("keyup" + p + " focusin" + p), b.ev.off(p), b.wrap.attr("class", "mfp-wrap").removeAttr("style"), b.bgOverlay.attr("class", "mfp-bg"), b.container.attr("class", "mfp-container"), !b.st.showCloseBtn || b.st.closeBtnInside && b.currTemplate[b.currItem.type] !== !0 || b.currTemplate.closeBtn && b.currTemplate.closeBtn.detach(), b.st.autoFocusLast && b._lastFocusedEl && a(b._lastFocusedEl).focus(), b.currItem = null, b.content = null, b.currTemplate = null, b.prevHeight = 0, y(j);
+	    }, updateSize: function updateSize(a) {
+	      if (b.isIOS) {
+	        var c = document.documentElement.clientWidth / window.innerWidth,
+	            d = window.innerHeight * c;b.wrap.css("height", d), b.wH = d;
+	      } else b.wH = a || v.height();b.fixedContentPos || b.wrap.css("height", b.wH), y("Resize");
+	    }, updateItemHTML: function updateItemHTML() {
+	      var c = b.items[b.index];b.contentContainer.detach(), b.content && b.content.detach(), c.parsed || (c = b.parseEl(b.index));var d = c.type;if (y("BeforeChange", [b.currItem ? b.currItem.type : "", d]), b.currItem = c, !b.currTemplate[d]) {
+	        var f = b.st[d] ? b.st[d].markup : !1;y("FirstMarkupParse", f), f ? b.currTemplate[d] = a(f) : b.currTemplate[d] = !0;
+	      }e && e !== c.type && b.container.removeClass("mfp-" + e + "-holder");var g = b["get" + d.charAt(0).toUpperCase() + d.slice(1)](c, b.currTemplate[d]);b.appendContent(g, d), c.preloaded = !0, y(n, c), e = c.type, b.container.prepend(b.contentContainer), y("AfterChange");
+	    }, appendContent: function appendContent(a, c) {
+	      b.content = a, a ? b.st.showCloseBtn && b.st.closeBtnInside && b.currTemplate[c] === !0 ? b.content.find(".mfp-close").length || b.content.append(z()) : b.content = a : b.content = "", y(k), b.container.addClass("mfp-" + c + "-holder"), b.contentContainer.append(b.content);
+	    }, parseEl: function parseEl(c) {
+	      var d,
+	          e = b.items[c];if (e.tagName ? e = { el: a(e) } : (d = e.type, e = { data: e, src: e.src }), e.el) {
+	        for (var f = b.types, g = 0; g < f.length; g++) {
+	          if (e.el.hasClass("mfp-" + f[g])) {
+	            d = f[g];break;
+	          }
+	        }e.src = e.el.attr("data-mfp-src"), e.src || (e.src = e.el.attr("href"));
+	      }return e.type = d || b.st.type || "inline", e.index = c, e.parsed = !0, b.items[c] = e, y("ElementParse", e), b.items[c];
+	    }, addGroup: function addGroup(a, c) {
+	      var d = function d(_d) {
+	        _d.mfpEl = this, b._openClick(_d, a, c);
+	      };c || (c = {});var e = "click.magnificPopup";c.mainEl = a, c.items ? (c.isObj = !0, a.off(e).on(e, d)) : (c.isObj = !1, c.delegate ? a.off(e).on(e, c.delegate, d) : (c.items = a, a.off(e).on(e, d)));
+	    }, _openClick: function _openClick(c, d, e) {
+	      var f = void 0 !== e.midClick ? e.midClick : a.magnificPopup.defaults.midClick;if (f || !(2 === c.which || c.ctrlKey || c.metaKey || c.altKey || c.shiftKey)) {
+	        var g = void 0 !== e.disableOn ? e.disableOn : a.magnificPopup.defaults.disableOn;if (g) if (a.isFunction(g)) {
+	          if (!g.call(b)) return !0;
+	        } else if (v.width() < g) return !0;c.type && (c.preventDefault(), b.isOpen && c.stopPropagation()), e.el = a(c.mfpEl), e.delegate && (e.items = d.find(e.delegate)), b.open(e);
+	      }
+	    }, updateStatus: function updateStatus(a, d) {
+	      if (b.preloader) {
+	        c !== a && b.container.removeClass("mfp-s-" + c), d || "loading" !== a || (d = b.st.tLoading);var e = { status: a, text: d };y("UpdateStatus", e), a = e.status, d = e.text, b.preloader.html(d), b.preloader.find("a").on("click", function (a) {
+	          a.stopImmediatePropagation();
+	        }), b.container.addClass("mfp-s-" + a), c = a;
+	      }
+	    }, _checkIfClose: function _checkIfClose(c) {
+	      if (!a(c).hasClass(s)) {
+	        var d = b.st.closeOnContentClick,
+	            e = b.st.closeOnBgClick;if (d && e) return !0;if (!b.content || a(c).hasClass("mfp-close") || b.preloader && c === b.preloader[0]) return !0;if (c === b.content[0] || a.contains(b.content[0], c)) {
+	          if (d) return !0;
+	        } else if (e && a.contains(document, c)) return !0;return !1;
+	      }
+	    }, _addClassToMFP: function _addClassToMFP(a) {
+	      b.bgOverlay.addClass(a), b.wrap.addClass(a);
+	    }, _removeClassFromMFP: function _removeClassFromMFP(a) {
+	      this.bgOverlay.removeClass(a), b.wrap.removeClass(a);
+	    }, _hasScrollBar: function _hasScrollBar(a) {
+	      return (b.isIE7 ? d.height() : document.body.scrollHeight) > (a || v.height());
+	    }, _setFocus: function _setFocus() {
+	      (b.st.focus ? b.content.find(b.st.focus).eq(0) : b.wrap).focus();
+	    }, _onFocusIn: function _onFocusIn(c) {
+	      return c.target === b.wrap[0] || a.contains(b.wrap[0], c.target) ? void 0 : (b._setFocus(), !1);
+	    }, _parseMarkup: function _parseMarkup(b, c, d) {
+	      var e;d.data && (c = a.extend(d.data, c)), y(l, [b, c, d]), a.each(c, function (c, d) {
+	        if (void 0 === d || d === !1) return !0;if (e = c.split("_"), e.length > 1) {
+	          var f = b.find(p + "-" + e[0]);if (f.length > 0) {
+	            var g = e[1];"replaceWith" === g ? f[0] !== d[0] && f.replaceWith(d) : "img" === g ? f.is("img") ? f.attr("src", d) : f.replaceWith(a("<img>").attr("src", d).attr("class", f.attr("class"))) : f.attr(e[1], d);
+	          }
+	        } else b.find(p + "-" + c).html(d);
+	      });
+	    }, _getScrollbarSize: function _getScrollbarSize() {
+	      if (void 0 === b.scrollbarSize) {
+	        var a = document.createElement("div");a.style.cssText = "width: 99px; height: 99px; overflow: scroll; position: absolute; top: -9999px;", document.body.appendChild(a), b.scrollbarSize = a.offsetWidth - a.clientWidth, document.body.removeChild(a);
+	      }return b.scrollbarSize;
+	    } }, a.magnificPopup = { instance: null, proto: t.prototype, modules: [], open: function open(b, c) {
+	      return A(), b = b ? a.extend(!0, {}, b) : {}, b.isObj = !0, b.index = c || 0, this.instance.open(b);
+	    }, close: function close() {
+	      return a.magnificPopup.instance && a.magnificPopup.instance.close();
+	    }, registerModule: function registerModule(b, c) {
+	      c.options && (a.magnificPopup.defaults[b] = c.options), a.extend(this.proto, c.proto), this.modules.push(b);
+	    }, defaults: { disableOn: 0, key: null, midClick: !1, mainClass: "", preloader: !0, focus: "", closeOnContentClick: !1, closeOnBgClick: !0, closeBtnInside: !0, showCloseBtn: !0, enableEscapeKey: !0, modal: !1, alignTop: !1, removalDelay: 0, prependTo: null, fixedContentPos: "auto", fixedBgPos: "auto", overflowY: "auto", closeMarkup: '<button title="%title%" type="button" class="mfp-close">&#215;</button>', tClose: "Close (Esc)", tLoading: "Loading...", autoFocusLast: !0 } }, a.fn.magnificPopup = function (c) {
+	    A();var d = a(this);if ("string" == typeof c) {
+	      if ("open" === c) {
+	        var e,
+	            f = u ? d.data("magnificPopup") : d[0].magnificPopup,
+	            g = parseInt(arguments[1], 10) || 0;f.items ? e = f.items[g] : (e = d, f.delegate && (e = e.find(f.delegate)), e = e.eq(g)), b._openClick({ mfpEl: e }, d, f);
+	      } else b.isOpen && b[c].apply(b, Array.prototype.slice.call(arguments, 1));
+	    } else c = a.extend(!0, {}, c), u ? d.data("magnificPopup", c) : d[0].magnificPopup = c, b.addGroup(d, c);return d;
+	  };var C,
+	      D,
+	      E,
+	      F = "inline",
+	      G = function G() {
+	    E && (D.after(E.addClass(C)).detach(), E = null);
+	  };a.magnificPopup.registerModule(F, { options: { hiddenClass: "hide", markup: "", tNotFound: "Content not found" }, proto: { initInline: function initInline() {
+	        b.types.push(F), w(h + "." + F, function () {
+	          G();
+	        });
+	      }, getInline: function getInline(c, d) {
+	        if (G(), c.src) {
+	          var e = b.st.inline,
+	              f = a(c.src);if (f.length) {
+	            var g = f[0].parentNode;g && g.tagName && (D || (C = e.hiddenClass, D = x(C), C = "mfp-" + C), E = f.after(D).detach().removeClass(C)), b.updateStatus("ready");
+	          } else b.updateStatus("error", e.tNotFound), f = a("<div>");return c.inlineElement = f, f;
+	        }return b.updateStatus("ready"), b._parseMarkup(d, {}, c), d;
+	      } } });var H,
+	      I = "ajax",
+	      J = function J() {
+	    H && a(document.body).removeClass(H);
+	  },
+	      K = function K() {
+	    J(), b.req && b.req.abort();
+	  };a.magnificPopup.registerModule(I, { options: { settings: null, cursor: "mfp-ajax-cur", tError: '<a href="%url%">The content</a> could not be loaded.' }, proto: { initAjax: function initAjax() {
+	        b.types.push(I), H = b.st.ajax.cursor, w(h + "." + I, K), w("BeforeChange." + I, K);
+	      }, getAjax: function getAjax(c) {
+	        H && a(document.body).addClass(H), b.updateStatus("loading");var d = a.extend({ url: c.src, success: function success(d, e, f) {
+	            var g = { data: d, xhr: f };y("ParseAjax", g), b.appendContent(a(g.data), I), c.finished = !0, J(), b._setFocus(), setTimeout(function () {
+	              b.wrap.addClass(q);
+	            }, 16), b.updateStatus("ready"), y("AjaxContentAdded");
+	          }, error: function error() {
+	            J(), c.finished = c.loadError = !0, b.updateStatus("error", b.st.ajax.tError.replace("%url%", c.src));
+	          } }, b.st.ajax.settings);return b.req = a.ajax(d), "";
+	      } } });var L,
+	      M = function M(c) {
+	    if (c.data && void 0 !== c.data.title) return c.data.title;var d = b.st.image.titleSrc;if (d) {
+	      if (a.isFunction(d)) return d.call(b, c);if (c.el) return c.el.attr(d) || "";
+	    }return "";
+	  };a.magnificPopup.registerModule("image", { options: { markup: '<div class="mfp-figure"><div class="mfp-close"></div><figure><div class="mfp-img"></div><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter"></div></div></figcaption></figure></div>', cursor: "mfp-zoom-out-cur", titleSrc: "title", verticalFit: !0, tError: '<a href="%url%">The image</a> could not be loaded.' }, proto: { initImage: function initImage() {
+	        var c = b.st.image,
+	            d = ".image";b.types.push("image"), w(m + d, function () {
+	          "image" === b.currItem.type && c.cursor && a(document.body).addClass(c.cursor);
+	        }), w(h + d, function () {
+	          c.cursor && a(document.body).removeClass(c.cursor), v.off("resize" + p);
+	        }), w("Resize" + d, b.resizeImage), b.isLowIE && w("AfterChange", b.resizeImage);
+	      }, resizeImage: function resizeImage() {
+	        var a = b.currItem;if (a && a.img && b.st.image.verticalFit) {
+	          var c = 0;b.isLowIE && (c = parseInt(a.img.css("padding-top"), 10) + parseInt(a.img.css("padding-bottom"), 10)), a.img.css("max-height", b.wH - c);
+	        }
+	      }, _onImageHasSize: function _onImageHasSize(a) {
+	        a.img && (a.hasSize = !0, L && clearInterval(L), a.isCheckingImgSize = !1, y("ImageHasSize", a), a.imgHidden && (b.content && b.content.removeClass("mfp-loading"), a.imgHidden = !1));
+	      }, findImageSize: function findImageSize(a) {
+	        var c = 0,
+	            d = a.img[0],
+	            e = function e(f) {
+	          L && clearInterval(L), L = setInterval(function () {
+	            return d.naturalWidth > 0 ? void b._onImageHasSize(a) : (c > 200 && clearInterval(L), c++, void (3 === c ? e(10) : 40 === c ? e(50) : 100 === c && e(500)));
+	          }, f);
+	        };e(1);
+	      }, getImage: function getImage(c, d) {
+	        var e = 0,
+	            f = function f() {
+	          c && (c.img[0].complete ? (c.img.off(".mfploader"), c === b.currItem && (b._onImageHasSize(c), b.updateStatus("ready")), c.hasSize = !0, c.loaded = !0, y("ImageLoadComplete")) : (e++, 200 > e ? setTimeout(f, 100) : g()));
+	        },
+	            g = function g() {
+	          c && (c.img.off(".mfploader"), c === b.currItem && (b._onImageHasSize(c), b.updateStatus("error", h.tError.replace("%url%", c.src))), c.hasSize = !0, c.loaded = !0, c.loadError = !0);
+	        },
+	            h = b.st.image,
+	            i = d.find(".mfp-img");if (i.length) {
+	          var j = document.createElement("img");j.className = "mfp-img", c.el && c.el.find("img").length && (j.alt = c.el.find("img").attr("alt")), c.img = a(j).on("load.mfploader", f).on("error.mfploader", g), j.src = c.src, i.is("img") && (c.img = c.img.clone()), j = c.img[0], j.naturalWidth > 0 ? c.hasSize = !0 : j.width || (c.hasSize = !1);
+	        }return b._parseMarkup(d, { title: M(c), img_replaceWith: c.img }, c), b.resizeImage(), c.hasSize ? (L && clearInterval(L), c.loadError ? (d.addClass("mfp-loading"), b.updateStatus("error", h.tError.replace("%url%", c.src))) : (d.removeClass("mfp-loading"), b.updateStatus("ready")), d) : (b.updateStatus("loading"), c.loading = !0, c.hasSize || (c.imgHidden = !0, d.addClass("mfp-loading"), b.findImageSize(c)), d);
+	      } } });var N,
+	      O = function O() {
+	    return void 0 === N && (N = void 0 !== document.createElement("p").style.MozTransform), N;
+	  };a.magnificPopup.registerModule("zoom", { options: { enabled: !1, easing: "ease-in-out", duration: 300, opener: function opener(a) {
+	        return a.is("img") ? a : a.find("img");
+	      } }, proto: { initZoom: function initZoom() {
+	        var a,
+	            c = b.st.zoom,
+	            d = ".zoom";if (c.enabled && b.supportsTransition) {
+	          var e,
+	              f,
+	              g = c.duration,
+	              j = function j(a) {
+	            var b = a.clone().removeAttr("style").removeAttr("class").addClass("mfp-animated-image"),
+	                d = "all " + c.duration / 1e3 + "s " + c.easing,
+	                e = { position: "fixed", zIndex: 9999, left: 0, top: 0, "-webkit-backface-visibility": "hidden" },
+	                f = "transition";return e["-webkit-" + f] = e["-moz-" + f] = e["-o-" + f] = e[f] = d, b.css(e), b;
+	          },
+	              k = function k() {
+	            b.content.css("visibility", "visible");
+	          };w("BuildControls" + d, function () {
+	            if (b._allowZoom()) {
+	              if (clearTimeout(e), b.content.css("visibility", "hidden"), a = b._getItemToZoom(), !a) return void k();f = j(a), f.css(b._getOffset()), b.wrap.append(f), e = setTimeout(function () {
+	                f.css(b._getOffset(!0)), e = setTimeout(function () {
+	                  k(), setTimeout(function () {
+	                    f.remove(), a = f = null, y("ZoomAnimationEnded");
+	                  }, 16);
+	                }, g);
+	              }, 16);
+	            }
+	          }), w(i + d, function () {
+	            if (b._allowZoom()) {
+	              if (clearTimeout(e), b.st.removalDelay = g, !a) {
+	                if (a = b._getItemToZoom(), !a) return;f = j(a);
+	              }f.css(b._getOffset(!0)), b.wrap.append(f), b.content.css("visibility", "hidden"), setTimeout(function () {
+	                f.css(b._getOffset());
+	              }, 16);
+	            }
+	          }), w(h + d, function () {
+	            b._allowZoom() && (k(), f && f.remove(), a = null);
+	          });
+	        }
+	      }, _allowZoom: function _allowZoom() {
+	        return "image" === b.currItem.type;
+	      }, _getItemToZoom: function _getItemToZoom() {
+	        return b.currItem.hasSize ? b.currItem.img : !1;
+	      }, _getOffset: function _getOffset(c) {
+	        var d;d = c ? b.currItem.img : b.st.zoom.opener(b.currItem.el || b.currItem);var e = d.offset(),
+	            f = parseInt(d.css("padding-top"), 10),
+	            g = parseInt(d.css("padding-bottom"), 10);e.top -= a(window).scrollTop() - f;var h = { width: d.width(), height: (u ? d.innerHeight() : d[0].offsetHeight) - g - f };return O() ? h["-moz-transform"] = h.transform = "translate(" + e.left + "px," + e.top + "px)" : (h.left = e.left, h.top = e.top), h;
+	      } } });var P = "iframe",
+	      Q = "//about:blank",
+	      R = function R(a) {
+	    if (b.currTemplate[P]) {
+	      var c = b.currTemplate[P].find("iframe");c.length && (a || (c[0].src = Q), b.isIE8 && c.css("display", a ? "block" : "none"));
+	    }
+	  };a.magnificPopup.registerModule(P, { options: { markup: '<div class="mfp-iframe-scaler"><div class="mfp-close"></div><iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen></iframe></div>', srcAction: "iframe_src", patterns: { youtube: { index: "youtube.com", id: "v=", src: "//www.youtube.com/embed/%id%?autoplay=1" }, vimeo: { index: "vimeo.com/", id: "/", src: "//player.vimeo.com/video/%id%?autoplay=1" }, gmaps: { index: "//maps.google.", src: "%id%&output=embed" } } }, proto: { initIframe: function initIframe() {
+	        b.types.push(P), w("BeforeChange", function (a, b, c) {
+	          b !== c && (b === P ? R() : c === P && R(!0));
+	        }), w(h + "." + P, function () {
+	          R();
+	        });
+	      }, getIframe: function getIframe(c, d) {
+	        var e = c.src,
+	            f = b.st.iframe;a.each(f.patterns, function () {
+	          return e.indexOf(this.index) > -1 ? (this.id && (e = "string" == typeof this.id ? e.substr(e.lastIndexOf(this.id) + this.id.length, e.length) : this.id.call(this, e)), e = this.src.replace("%id%", e), !1) : void 0;
+	        });var g = {};return f.srcAction && (g[f.srcAction] = e), b._parseMarkup(d, g, c), b.updateStatus("ready"), d;
+	      } } });var S = function S(a) {
+	    var c = b.items.length;return a > c - 1 ? a - c : 0 > a ? c + a : a;
+	  },
+	      T = function T(a, b, c) {
+	    return a.replace(/%curr%/gi, b + 1).replace(/%total%/gi, c);
+	  };a.magnificPopup.registerModule("gallery", { options: { enabled: !1, arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>', preload: [0, 2], navigateByImgClick: !0, arrows: !0, tPrev: "Previous (Left arrow key)", tNext: "Next (Right arrow key)", tCounter: "%curr% of %total%" }, proto: { initGallery: function initGallery() {
+	        var c = b.st.gallery,
+	            e = ".mfp-gallery";return b.direction = !0, c && c.enabled ? (f += " mfp-gallery", w(m + e, function () {
+	          c.navigateByImgClick && b.wrap.on("click" + e, ".mfp-img", function () {
+	            return b.items.length > 1 ? (b.next(), !1) : void 0;
+	          }), d.on("keydown" + e, function (a) {
+	            37 === a.keyCode ? b.prev() : 39 === a.keyCode && b.next();
+	          });
+	        }), w("UpdateStatus" + e, function (a, c) {
+	          c.text && (c.text = T(c.text, b.currItem.index, b.items.length));
+	        }), w(l + e, function (a, d, e, f) {
+	          var g = b.items.length;e.counter = g > 1 ? T(c.tCounter, f.index, g) : "";
+	        }), w("BuildControls" + e, function () {
+	          if (b.items.length > 1 && c.arrows && !b.arrowLeft) {
+	            var d = c.arrowMarkup,
+	                e = b.arrowLeft = a(d.replace(/%title%/gi, c.tPrev).replace(/%dir%/gi, "left")).addClass(s),
+	                f = b.arrowRight = a(d.replace(/%title%/gi, c.tNext).replace(/%dir%/gi, "right")).addClass(s);e.click(function () {
+	              b.prev();
+	            }), f.click(function () {
+	              b.next();
+	            }), b.container.append(e.add(f));
+	          }
+	        }), w(n + e, function () {
+	          b._preloadTimeout && clearTimeout(b._preloadTimeout), b._preloadTimeout = setTimeout(function () {
+	            b.preloadNearbyImages(), b._preloadTimeout = null;
+	          }, 16);
+	        }), void w(h + e, function () {
+	          d.off(e), b.wrap.off("click" + e), b.arrowRight = b.arrowLeft = null;
+	        })) : !1;
+	      }, next: function next() {
+	        b.direction = !0, b.index = S(b.index + 1), b.updateItemHTML();
+	      }, prev: function prev() {
+	        b.direction = !1, b.index = S(b.index - 1), b.updateItemHTML();
+	      }, goTo: function goTo(a) {
+	        b.direction = a >= b.index, b.index = a, b.updateItemHTML();
+	      }, preloadNearbyImages: function preloadNearbyImages() {
+	        var a,
+	            c = b.st.gallery.preload,
+	            d = Math.min(c[0], b.items.length),
+	            e = Math.min(c[1], b.items.length);for (a = 1; a <= (b.direction ? e : d); a++) {
+	          b._preloadItem(b.index + a);
+	        }for (a = 1; a <= (b.direction ? d : e); a++) {
+	          b._preloadItem(b.index - a);
+	        }
+	      }, _preloadItem: function _preloadItem(c) {
+	        if (c = S(c), !b.items[c].preloaded) {
+	          var d = b.items[c];d.parsed || (d = b.parseEl(c)), y("LazyLoad", d), "image" === d.type && (d.img = a('<img class="mfp-img" />').on("load.mfploader", function () {
+	            d.hasSize = !0;
+	          }).on("error.mfploader", function () {
+	            d.hasSize = !0, d.loadError = !0, y("LazyLoadError", d);
+	          }).attr("src", d.src)), d.preloaded = !0;
+	        }
+	      } } });var U = "retina";a.magnificPopup.registerModule(U, { options: { replaceSrc: function replaceSrc(a) {
+	        return a.src.replace(/\.\w+$/, function (a) {
+	          return "@2x" + a;
+	        });
+	      }, ratio: 1 }, proto: { initRetina: function initRetina() {
+	        if (window.devicePixelRatio > 1) {
+	          var a = b.st.retina,
+	              c = a.ratio;c = isNaN(c) ? c() : c, c > 1 && (w("ImageHasSize." + U, function (a, b) {
+	            b.img.css({ "max-width": b.img[0].naturalWidth / c, width: "100%" });
+	          }), w("ElementParse." + U, function (b, d) {
+	            d.src = a.replaceSrc(d, c);
+	          }));
+	        }
+	      } } }), A();
+	});
+
+/***/ },
+/* 205 */
+/*!**************************************************!*\
+  !*** ./wwwroot/homeApp/blog/blogPostIdView.less ***!
+  \**************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 206 */
+/*!*********************************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.js ***!
+  \*********************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+>>>>>>> master
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+<<<<<<< HEAD
 	exports.subscribe = subscribe;
 	exports.unsubscribe = unsubscribe;
 	exports.init = init;
@@ -39201,6 +57427,151 @@
 	}); /**
 	     * Created by arutu_000 on 1/15/2017.
 	     */
+=======
+	
+	var _backbone = __webpack_require__(/*! backbone.marionette */ 16);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _SuggestionsModalViewHbs = __webpack_require__(/*! ./SuggestionsModalView.hbs.html */ 207);
+	
+	var _SuggestionsModalViewHbs2 = _interopRequireDefault(_SuggestionsModalViewHbs);
+	
+	var _OsmSearchCollection = __webpack_require__(/*! ../../../data/OsmSearchCollection.js */ 69);
+	
+	var _OsmSearchCollection2 = _interopRequireDefault(_OsmSearchCollection);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	__webpack_require__(/*! ./SuggestionsModalView.less */ 208);
+	
+	var _SuggestionListView = __webpack_require__(/*! ../SuggestionListView.js */ 73);
+	
+	var _SuggestionListView2 = _interopRequireDefault(_SuggestionListView);
+	
+	var _app = __webpack_require__(/*! ../../app.js */ 15);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _backbone2.default.View.extend({
+	
+	    template: _SuggestionsModalViewHbs2.default,
+	    osmCollection: null,
+	
+	    regions: {
+	        'suggestions': '#suggestionsListBox'
+	    },
+	
+	    events: {
+	        'click #locationQuery': 'showSuggestions',
+	        'keyup #locationQuery': 'onLocationsSearch'
+	    },
+	
+	    initialize: function initialize() {
+	        this.osmCollection = new _OsmSearchCollection2.default();
+	    },
+	    onRender: function onRender() {
+	        this.showChildView('suggestions', new _SuggestionListView2.default({ collection: this.osmCollection, model: this.model }));
+	    },
+	    onLocationsSearch: function onLocationsSearch(e) {
+	        if (e && (e.keyCode > 31 || e.keyCode === 13 || e.keyCode === 8)) {
+	            if (this.searchTimeOut) clearTimeout(this.searchTimeOut);
+	            this.searchTimeOut = setTimeout(_underscore2.default.bind(function () {
+	                this.osmCollection.fetch({
+	                    data: {
+	                        q: e.target.value,
+	                        format: 'json',
+	                        'accept-language': 'ru',
+	                        limit: 20,
+	                        polygon_geojson: 0
+	                        //city:e.target.value,
+	                        //county:e.target.value,
+	                        //state:e.target.value,
+	                        //country:e.target.value
+	                    }
+	                });
+	            }, this), 400);
+	        }
+	    },
+	    showSuggestions: function showSuggestions(e) {
+	        var quickCartBox = this.$('#suggestionsBox');
+	        if (!quickCartBox.is(":visible")) {
+	            quickCartBox.fadeIn(300);
+	        }
+	    }
+	});
+
+/***/ },
+/* 207 */
+/*!***************************************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.hbs.html ***!
+  \***************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<div class="suggestions-modal-view">\r\n    <div class="suggestions-modal-view-wrapper">\r\n        <div class="sh-input-group">\r\n            <input placeholder="'+
+	((__t=(obj.address||'Поиск по городам и регионам'))==null?'':_.escape(__t))+
+	'" class="sh-input-suggestions form-control" id="locationQuery" type="text">            \r\n            <div class="suggestion-box" id="suggestionsBox">\r\n                <h5>Поиск городов, регионов</h5>\r\n                <div id="suggestionsListBox"></div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>';
+	}
+	return __p;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 7)))
+
+/***/ },
+/* 208 */
+/*!***********************************************************************************!*\
+  !*** ./wwwroot/homeApp/selectLocation/suggestionsModal/SuggestionsModalView.less ***!
+  \***********************************************************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 209 */
+/*!******************************************!*\
+  !*** ./wwwroot/css/shiners-override.css ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../~/css-loader!./shiners-override.css */ 210);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 51)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./shiners-override.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./shiners-override.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 210 */
+/*!*********************************************************!*\
+  !*** ./~/css-loader!./wwwroot/css/shiners-override.css ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 14)();
+	exports.push([module.id, "/*this file contains rules that override template/bootstrap etc.*/\nbody.sh-body #topNav button.btn-mobile {\n    color: #f7fafb;\n}\n", ""]);
+>>>>>>> master
 
 /***/ }
 /******/ ]);

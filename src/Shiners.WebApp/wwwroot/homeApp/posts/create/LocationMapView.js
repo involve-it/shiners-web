@@ -23,7 +23,7 @@ export default Marionette.View.extend({
         this.showUser();
         this.showDoneButton();
         this.showDynamicOrStaticSelection();
-        this.showSearchBox();
+        this.showSearchBox;
     },
 
     renderName() {
@@ -84,8 +84,9 @@ export default Marionette.View.extend({
         el.addEventListener('click', ()=> {
             //self.setLocation();
             self.remove();
-            self.trigger('destroy');
+            self.trigger('destroy'); 
         });
+
         this.map.controls[window.google.maps.ControlPosition.BOTTOM_CENTER].push(el);
     },
 
@@ -99,8 +100,7 @@ export default Marionette.View.extend({
                 self.model.set('placeType', 'dynamic');
                 self.shiner.setDraggable(false);
             } else {
-                self.model.set('placeType','static');
-                
+                self.model.set('placeType','static');                
             }
         });
         this.map.controls[window.google.maps.ControlPosition.TOP_CENTER].push($container[0]);           
@@ -136,7 +136,7 @@ export default Marionette.View.extend({
                 if (status === window.google.maps.GeocoderStatus.OK) {
                     var parts = results[0].formatted_address.split(', ');
                     parts.length =parts.length> 3?3:parts.length;
-                    model.set({
+                    model.set({                        
                         coords: self.shiner.getPosition(),
                         name:results[0].formatted_address,
                         accurateAddress:parts.join(', '),

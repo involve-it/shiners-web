@@ -51,7 +51,7 @@ var View = Marionette.View.extend({
         this.listenTo(this.selectedLocation,'change', this.showLocation);
         this.listenTo(this.selectedLocation,'change', this.setLocation);
         this.listenTo(this.images,'change',this.setImages);
-        window.uploadedImages = this.images; // debug
+        //window.uploadedImages = this.images; // debug
     },
 
     setAnonimous(e) {
@@ -61,11 +61,15 @@ var View = Marionette.View.extend({
     setLocation() {
         var details = this.model.get('details');
         var location = this.selectedLocation.toJSON()||{};
+
+        
+
         if (location["name"]) {
             location["userId"] = app.user.id;
             location["public"] = false;
             details.locations = [location];
-            this.model.set('details',details,{validate:true});
+            this.model.set('details', details, {validate:true});
+            this.model.trigger('change');
         }       
     },
 
@@ -88,7 +92,7 @@ var View = Marionette.View.extend({
         } else {
             delete details.title;
         }
-        this.model.set('details',details,{validate:true});
+        this.model.set('details', details, {validate:true});
     },
 
     setUrl(e) {
@@ -185,7 +189,7 @@ var View = Marionette.View.extend({
     setDate(e) {
         if (e.target.value && !_.isEmpty(e.target.value)) {
             var val = moment(e.target.value,"DD/MM/YYYY");
-            this.model.set('endDatePost', val.valueOf());
+            this.model.set('endDatePost', val.valueOf(), {validate:true});
         }      
     },
 
@@ -252,12 +256,13 @@ var View = Marionette.View.extend({
 
     save() {
         if (!this.model.validate()) {
-
+            this.$('#saveShiner').addClass('disabled');
             this.model.create();
         }
     },
 
     showSuccess() {
+        this.$('#saveShiner').removeClass('disabled');
         this.showChildView('modal',new ModalView({
             view:new SuccessView({
                 resultUrl:'/posts/'+this.model.id,
@@ -269,6 +274,7 @@ var View = Marionette.View.extend({
     },
 
     showError(er) {
+        this.$('#saveShiner').removeClass('disabled');
         alert("Ошибка создания поста. "+er);
     },
 

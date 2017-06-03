@@ -39,6 +39,8 @@ export default Marionette.AppRouter.extend({
         //blog:
         'blog': 'blogHome',
         'blog/post/:id': 'blogPostId',
+        //marketing landing pages:
+        'app': 'app'
     },
 
     policy: {
@@ -64,7 +66,9 @@ export default Marionette.AppRouter.extend({
             return (className.match(/(^|\s)page--\S+/g) || []).join(' ');
         });
 
-        $('body').addClass('page--' + name);
+       $('body').addClass('page--' + name);
+
+       window.scrollTo(0, 0); //scroll to top on route change
     },
 
     redirectIfLogout() {

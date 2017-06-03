@@ -19,7 +19,8 @@ var View = Marionette.View.extend({
     mapView:null,
 
     events: {
-        'change #chooseLanguage':'chooseLanguage'
+        'change #chooseLanguage':'chooseLanguage',
+        'click [data-lang]':'chooseTopMenuLanguage'
     },
 
     regions: {
@@ -47,15 +48,42 @@ var View = Marionette.View.extend({
 
     onRender() {
         this.renderMapAndBanner();
-        this.renderMainMenu();
+        this.renderMainMenu();       
         this.listenTo(app.router,'route',this.toggleMapAndBanner);
         //this._adaptUiIfIsIframe();
         //this.listenTo(app.user, 'receivedMeteorUser', this._toggleUserInfo);
         //this._loadIframeView();
-    },
+    },    
 
     onAttach() {
         this.onClickLink();
+        this.changeSelectlanguage();
+    },
+
+    changeSelectlanguage() {
+        var language = i18n.getLanguage(); 
+        this.setSelectBoxByValue('chooseLanguage', language);
+
+        var elements = $('.sh-top-choose-language-list').children().find('a');
+        if(elements) {
+            elements.each(function() {
+                $(this).removeClass('active');
+                if($(this).data('lang') === language) {
+                    $(this).addClass('active');
+                }
+            });
+        }
+    },
+
+    chooseTopMenuLanguage(e) {
+        e.preventDefault();
+        e.stopPropagation();        
+        this.chooseLanguage(e);
+        this.changeSelectlanguage();
+    },
+
+    setSelectBoxByValue(eid, val) {
+        document.querySelector('#chooseLanguage [value="' + val + '"]').selected = 'selected';
     },
 
     renderMapAndBanner() {
@@ -110,9 +138,11 @@ var View = Marionette.View.extend({
     },
 
     chooseLanguage(e) {
-        app.i18n.setLanguage(e.target.value);
-        app.trigger('change:language', e.target.value);
-    },
+        var lang = (e.target.value) ? e.target.value : e.target.getAttribute('data-lang');
+        app.setCookie('language', lang, {expires: 31536000, path: '/'});
+        app.i18n.setLanguage(lang);        
+        app.trigger('change:language', lang);
+    },    
 
     _toggleUserInfo(user) {
         var view = new UserMenuView({ 

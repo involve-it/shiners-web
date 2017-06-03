@@ -1,15 +1,16 @@
-﻿<div class="alert alert-success margin-bottom-30" style="min-height: 250px">
-
-    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Закрыть</span></button>
-
-    <h4>{{=obj.title}}</h4>
+﻿<div>
+    
+    <strong>{{=obj.title}}</strong>
 
     <p>
         {{=obj.message}}
     </p>
 
     {{if(obj.resultUrl) { }}
-        <a href="{{=resultUrl}}" class="btn btn-info btn-sm margin-top-10">Перейти</a>
+        <hr />
+        <div class="sh-text-center">
+            <a href="{{=resultUrl}}" onclick="window.scrollTo(0, 0);" class="ui sh-button standard action big"><span>Перейти</span></a>
+        </div>
     {{ } }}
 
 </div>

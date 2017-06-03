@@ -19,6 +19,8 @@
 
         percent = ms / duration * 100;
 
+        if(percent > 100) percent = 100;
+
         /* get barClass */
         if( percent < 20 ) {
             barClass = 'red';

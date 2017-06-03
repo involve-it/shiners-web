@@ -1,0 +1,17 @@
+﻿<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myLargeModalLabel">{{= obj.title || ''}}</h4>
+        </div>
+
+        <div class="modal-body">
+            {{if(obj.message) { }}<div class="sh-text-center" style="font-size: 28px;line-height: 1.2;font-weight: 400;color: #3a4751">{{= obj.message}}</div>{{ } }}
+            <hr />
+            <div class="sh-text-center">
+                <button type="button" class="ui sh-button standard create big js-btn-yes">{{=i18n('TITLE_YES')}}</button>
+                <button type="button" class="ui sh-button standard action big js-btn-not" data-dismiss="modal">{{=i18n('TITLE_NO')}}</button>
+            </div>
+        </div>        
+    </div>
+</div>

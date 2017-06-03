@@ -23,7 +23,9 @@ var View = Marionette.View.extend({
             videoWrap = fullVideo.find(".sh-video-wrapper"),
             iframe = videoWrap.find('iframe');
 
-        var videoID = 'gLwq8LYiebI',
+        
+
+        var videoID = app.i18n.getLanguage() === 'ru' ? 'gLwq8LYiebI' : 'evO6s4tLu3s',
             controls = (app.isMobile) ? 1 : 0;        
 
         if (iframe.length) {

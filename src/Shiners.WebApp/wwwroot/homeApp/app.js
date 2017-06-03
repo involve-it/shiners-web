@@ -47,11 +47,16 @@ let App = Marionette.Application.extend({
         this.asteroid = new Asteroid({
             endpoint: 'ws://shiners.mobi/websocket',
 
+<<<<<<< HEAD
         })
         //this.asteroid = new Asteroid("www.shiners.mobi", true);
 
         ///* local server */
         ////this.asteroid = new Asteroid("192.168.1.38:3000", false);
+=======
+        /* local server */
+        //this.asteroid = new Asteroid("192.168.1.34:3000", false);
+>>>>>>> master
 
         //window.asteroid = this.asteroid; // debug        
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
@@ -183,6 +188,35 @@ let App = Marionette.Application.extend({
 
     logout() {
         this.asteroid.logout();
+    },
+
+    setCookie(name, value, options) {
+        options = options || {};
+
+        var expires = options.expires;
+
+        if (typeof expires == "number" && expires) {
+            var d = new Date();
+            d.setTime(d.getTime() + expires * 1000);
+            expires = options.expires = d;
+        }
+        if (expires && expires.toUTCString) {
+            options.expires = expires.toUTCString();
+        }
+
+        value = encodeURIComponent(value);
+
+        var updatedCookie = name + "=" + value;
+
+        for (var propName in options) {
+            updatedCookie += "; " + propName;
+            var propValue = options[propName];
+            if (propValue !== true) {
+                updatedCookie += "=" + propValue;
+            }
+        }
+
+        document.cookie = updatedCookie;
     },
 
     destroyUser() {

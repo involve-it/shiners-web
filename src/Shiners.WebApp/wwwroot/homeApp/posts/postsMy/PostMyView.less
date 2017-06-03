@@ -147,12 +147,47 @@ body {
                                     }
 
                                     .sh-my-posts-item-content-footer-progress {
-                                        .sh-flex(1 1 0);
-                                        padding-right: 16px;
+                                        .sh-flex(1 1 0);                                        
                                         width: 100%;
-
                                         .progress {
                                             margin-bottom: 0;
+                                        }
+                                    }
+
+                                    .sh-my-posts-item-content-footer-actions {
+                                        .sh-flex-display();
+                                        padding-right: 16px;
+                                        z-index: 3;
+
+                                        .sh-my-posts-item-content-footer-actions-wrapper {
+
+                                            .sh-post-action-link {
+                                                display: inline-block;
+                                                border: 1px solid @sh-main-border-color;
+                                                padding: 6px;
+                                                color: @sh-main-border-color;
+                                                background-color: transparent;
+                                                white-space: nowrap;
+                                                .border-radius(2px);
+                                                line-height: 21px;
+                                                opacity: .75;
+                                                .transition(all .25s ease-in-out);
+              
+                                                span {
+                                                display: block;
+                                                text-align: center;
+                                                height: 18px;
+                                                width: 18px;
+                
+                                                    i {
+                                                        font-size: 16px;
+                                                    }
+                                                }
+
+                                                &:hover {
+                                                    opacity: 1;
+                                                }
+                                            }
                                         }
                                     }
 

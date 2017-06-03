@@ -1,4 +1,7 @@
 ﻿<!-- <div id="sh-intro" style="background: url(/images/banner-med.jpg) no-repeat 0% 30px; background-size: auto 100%; background-position-x: right; background-color: #f0f0f0;"> -->
+
+<!-- {{=i18n('')}} -->
+
 <div id="sh-intro">
     <div class="sh-intro-wrapper">
 
@@ -12,10 +15,10 @@
         <div class="sh-intro-tagline container">
             <div class="sh-intro-tagline-wrapper">
                 <h1 class="sh-logo-about-us" style="display: none;"><a href="/">Shiners</a></h1>
-                <p class="sh-sub-intro-text">Мы считаем, это замечательно - иметь инструмент, который помогает людям вокруг сотрудничать друг с другом, находить людей и занятия прямо здесь, и прямо сейчас. <strong>SHINERS</strong> показывает людям объявления вокруг с привязкой к человеку и его локации.</p>
+                <p class="sh-sub-intro-text">{{=i18n('about_intro_text')}}</p>
                 <div class="sh-sub-intro-text-info">
                     <div class="sh-btn-video-watch"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
-                    <div class="sh-sub-intro-vw-info">Продолжительность: <span>1:12 мин.</span></div>
+                    <div class="sh-sub-intro-vw-info">{{=i18n('about_intro_duration')}}: <span>1:12 {{=i18n('about_intro_duration_minute')}}.</span></div>
                     <a href="/posts/new" class="ui sh-button standard create big sh-create-about-us">{{=i18n('CREATE_SHINER')}}</a>
                 </div>                
             </div>
@@ -32,10 +35,10 @@
 <div class="sh-secondary-nav">
     <nav>
         <ul>
-            <li><a href="#sh-section-1">Как это работает?</a></li>
-            <li><a href="#sh-section-2">Чем мы полезны?</a></li>
-            <li><a href="#sh-section-3">Наша команда</a></li>
-            <li><a href="#sh-section-4">Связаться с нами</a></li>
+            <li><a href="#sh-section-1">{{=i18n('about_menu_how_it_works')}}</a></li>
+            <li><a href="#sh-section-2">{{=i18n('about_menu_what_are_we_useful')}}</a></li>
+            <li><a href="#sh-section-3">{{=i18n('about_menu_our_team')}}</a></li>
+            <li><a href="#sh-section-4">{{=i18n('about_menu_connect_with_us')}}</a></li>
         </ul>
     </nav>
 </div>
@@ -48,30 +51,30 @@
                 <!-- INTRO -->
                 <div class="sh-intro-description">
                     <div class="sh-intro-description-wrapper">
-                        <h1>Единственный сервис, предлагающий живое присутствие!</h1>
-                        <p>Светлячки позволяют привязать объявление или любой адрес в интернете к текущему местоположению пользователя, и, как результат, осуществлять мгновенный поиск информации среди людей вокруг. Это позволяет искать информацию здесь и сейчас с целью мгновенной встречи с ее владельцем. Ненужное промежуточное звено (поиск по интернету, договор о встрече, дорогу к месту) можно исключить, если потенциально интересующий нас человек находится поблизости.</p>
-                        <p>Мы расширяем возможности Веба, посредством привязки информации к реальным людям и координатам, что дает веб-ресурсам новое,- пространство-временное, качество, то есть путь напрямик к цели! Нас также видно в Google и соцсетях, и поэтому твое объявление превращается в собственную интернет-страницу, которую при желании увидит весь интернет.</p>
+                        <h1>{{=i18n('about_title_section_1')}}</h1>
+                        <p>{{=i18n('about_title_section_1_p1')}}</p>
+                        <p>{{=i18n('about_title_section_1_p2')}}</p>
                     </div>
                 </div>
 
                 <!-- HOW IT WORK -->
                 <div id="sh-section-1" class="sh-intro-how-it-work sh-section">
                     <div class="sh-intro-how-it-work-wrapper">
-                        <h1 class="sh-section-hero-headline sh-text-center">Как это работает?</h1>
-                        <p class="sh-section-intro sh-text-center">Представь себе виртуальную визитку, только носишь ты ее не в кошельке, а в мобильном телефоне, и видят ее не избранные, а все, кто рядом!</p>
+                        <h1 class="sh-section-hero-headline sh-text-center">{{=i18n('about_menu_how_it_works')}}</h1>
+                        <p class="sh-section-intro sh-text-center">{{=i18n('about_title_section_2_intro')}}</p>
                         <div class="sh-intro-how-it-work-ul">
                             <ul class="sh-intro-how-it-work-list">
                                 <li>
                                     <a data-toggle="tab" href="#step1" data-direct-link=""><i class="icon-plus"></i></a>
-                                    <h5><tran data-key="create_your_post">Создай свой пост</tran></h5>
+                                    <h5>{{=i18n('about_title_create_post')}}</h5>
                                 </li>
                                 <li>
                                     <a data-toggle="tab" href="#step2" data-direct-link=""><i class="icon-map-marker"></i></a>
-                                    <h5><tran data-key="you_found">Ты находишь / Тебя находят</tran></h5>
+                                    <h5>{{=i18n('about_title_you_are_find')}}</h5>
                                 </li>
                                 <li>
                                     <a data-toggle="tab" href="#step3" data-direct-link=""><i class="icon-ok"></i></a>
-                                    <h5><tran data-key="connect_and_meet">Договаривайся / встречайся</tran></h5>
+                                    <h5>{{=i18n('about_title_contract_meeting')}}</h5>
                                 </li>
                             </ul>
                         </div>
@@ -81,8 +84,8 @@
                 <!-- WHAT WE ARE USEFUL -->
                 <div id="sh-section-2" class="sh-what-we-are-useful sh-section">
                     <div class="sh-what-we-are-useful-wrapper">
-                        <h1 class="sh-section-hero-headline sh-text-center">Чем мы полезны?</h1>
-                        <p class="sh-section-intro sh-text-center">Один сервис для всех ресурсов - светлячки дают возможность привязать любой пост, размещенный на любом интернет-ресурсе к текущему местоположению пользователя.</p>
+                        <h1 class="sh-section-hero-headline sh-text-center">{{=i18n('about_title_section_3')}}</h1>
+                        <p class="sh-section-intro sh-text-center">{{=i18n('about_title_section_3_intro')}}</p>
 
                         <div class="sh-what-we-are-useful-bg"></div>
 
@@ -91,13 +94,13 @@
                         <div class="sh-what-we-are-useful-features">
                             <div class="sh-features-left">
                                 <div class="sh-features-block">
-                                    <h5>ОБЪЯВЛЕНИЕ</h5>
-                                    <p>Полноценная страница в интернете. Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности".</p>
+                                    <h5>{{=i18n('about_block_ads')}}</h5>
+                                    <p>{{=i18n('about_block_ads_text')}}</p>
                                 </div>
 
                                 <div class="sh-features-block">
-                                    <h5>ССЫЛКА</h5>
-                                    <p>Быстрое создание поста одним нажатием! Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!</p>
+                                    <h5>{{=i18n('about_block_link')}}</h5>
+                                    <p>{{=i18n('about_block_link_text')}}</p>
                                 </div>
                             </div>
                             <div class="sh-features-center">
@@ -105,28 +108,19 @@
                             </div>
                             <div class="sh-features-right">
                                 <div class="sh-features-block">
-                                    <h5>ДИНАМИЧЕСКИЙ ПОСТ</h5>
-                                    <p>
-                                        Движется вместе с тобой.
-                                        Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!
-                                    </p>
+                                    <h5>{{=i18n('about_block_dynamic')}}</h5>
+                                    <p>{{=i18n('about_block_dynamic_text')}}</p>
                                 </div>
 
                                 <div class="sh-features-block">
-                                    <h5>СТАТИЧЕСКИЙ ПОСТ</h5>
-                                    <p>
-                                        Привязан к заданной тобой местности.
-                                        Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!
-                                    </p>
+                                    <h5>{{=i18n('about_block_static')}}</h5>
+                                    <p>{{=i18n('about_block_static_text')}}</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="sh-set-sh sh-text-center">
-                            
+                        <div class="sh-set-sh sh-text-center">                            
                             <a href="/posts/new" class="sh-woman-shiners"></a>
-
-                            <!--<a href="/posts/new" class="ui sh-button standard create big">Установи свой Светлячок</a>-->
                         </div>
 
                     </div>
@@ -136,16 +130,16 @@
                 <div id="sh-section-3" class="sh-who-we-are sh-section">
                     <div class="sh-who-we-are-wrapper">
                         <div class="sh-red col-md-4 col-lg-4">
-                            <h5>Кто мы</h5>
-                            <p>Мы - небольшой стартап, верящий в необходимость единого поискового сервиса по людям поблизости</p>
+                            <h5>{{=i18n('about_who_we_are_title')}}</h5>
+                            <p>{{=i18n('about_who_we_are_text')}}</p>
                         </div>
                         <div class="sh-blue col-md-4 col-lg-4">
-                            <h5>Безопасность</h5>
-                            <p>Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет!</p>
+                            <h5>{{=i18n('about_security_title')}}</h5>
+                            <p>{{=i18n('about_security_text')}}</p>
                         </div>
                         <div class="sh-orange col-md-4 col-lg-4">
-                            <h5>Правила</h5>
-                            <p>При регистрации на «Cветлячках» Пользователь соглашается с <a href="/legal/user-agreement">настоящими правилами</a></p>
+                            <h5>{{=i18n('about_rules_title')}}</h5>
+                            <p>{{=i18n('about_rules_text')}} <a href="/legal/user-agreement"> {{=i18n('about_rules_text_link1')}}</a></p>
                         </div>
                     </div>
                 </div>
@@ -154,8 +148,8 @@
                 <div id="sh-section-4" class="sh-contact-us sh-section">
                     <div class="sh-contact-us-bg"></div>
                     <div class="sh-contact-us-wrapper">
-                        <h1 class="sh-section-hero-headline sh-text-center">Связаться с нами</h1>
-                        <p class="sh-section-intro sh-text-center">Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!</p>
+                        <h1 class="sh-section-hero-headline sh-text-center">{{=i18n('about_title_section_4')}}</h1>
+                        <p class="sh-section-intro sh-text-center">{{=i18n('about_title_section_4_intro')}}</p>
                         <form action="/" method="post">
                             <fieldset>
                                 <input type="hidden" name="action" value="contact_send">
@@ -179,7 +173,7 @@
                             </fieldset>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="submit" class="ui sh-button standard action big pull-right"><i class="fa fa-check"></i> Отправить</button>
+                                    <button type="submit" class="ui sh-button standard action big pull-right"><i class="fa fa-check"></i> {{=i18n('Send')}}</button>
                                 </div>
                             </div>
                         </form>
