@@ -47,16 +47,11 @@ let App = Marionette.Application.extend({
         this.asteroid = new Asteroid({
             endpoint: 'ws://shiners.mobi/websocket',
 
-<<<<<<< HEAD
         })
         //this.asteroid = new Asteroid("www.shiners.mobi", true);
 
         ///* local server */
         ////this.asteroid = new Asteroid("192.168.1.38:3000", false);
-=======
-        /* local server */
-        //this.asteroid = new Asteroid("192.168.1.34:3000", false);
->>>>>>> master
 
         //window.asteroid = this.asteroid; // debug        
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
@@ -80,7 +75,6 @@ let App = Marionette.Application.extend({
     _startApp() {
         this.asteroid.off('connected');
         this.asteroid.on('loggedIn', () => {
-            debugger;
         });
         this.isMobile = $.browser.mobile;
         this.postAdTypes.loadByMethod('getPostAdTypes');
@@ -172,11 +166,8 @@ let App = Marionette.Application.extend({
     },
 
     registerUser(accountData) {
-        debugger;
-
         const asteroidInstance = this.asteroid;
         this.asteroid.createUser(accountData).catch((error) => {
-            debugger;
             asteroidInstance.trigger('bz:onRegisterError', error);
         });
     },
