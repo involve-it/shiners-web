@@ -23,7 +23,7 @@ export default Marionette.View.extend({
         this.showUser();
         this.showDoneButton();
         this.showDynamicOrStaticSelection();
-        this.showSearchBox;
+        this.showSearchBox();
     },
 
     renderName() {
