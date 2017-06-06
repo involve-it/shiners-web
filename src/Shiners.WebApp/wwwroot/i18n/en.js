@@ -185,5 +185,9 @@ var json = {
 
     PUBLISHED_BY: 'Published by',
 
+    //BLOG
+    blog_empty_title: 'Мы извиняемся, но сейчас нам нечего вам показать',
+    blog_empty_subTitle: 'Пожалуйста, зайдите позже',
+
 };
 i18n.add('en', json);
