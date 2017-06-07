@@ -11,8 +11,10 @@ var View = Marionette.View.extend({
     },
     
     onAttach() {
-        setTimeout(function() {
-            console.log('перенаправление');
+        var thatLink = this.link;
+        console.log(thatLink);
+        window.setTimeout(function() {
+            window.location.replace(thatLink);
         }, 5000);
     }
 });

@@ -40,9 +40,8 @@ var View = Marionette.View.extend({
         } else if(this.android) {
             this.showChildView('container',new RedirectPageView({title: 'Android', device: 'Android', link: (lang === 'en') ? 'https://play.google.com/store/apps/details?id=org.buzzar.app&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' : 'https://play.google.com/store/apps/details?id=org.buzzar.app&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'}));
         } else if (this.desktop) {
-            console.log('GO TO HOME');
-
-            //app.router.navigate('/',  {trigger:true});
+            //Backbone.history.navigate('/', {trigger: true});
+            window.location.replace("//shiners.ru");
         }
     }
 });

@@ -183,8 +183,6 @@ export default Marionette.Object.extend({
                 app.layout.showChildView('content', new BlogPostIdView({ model: post }));
             });
         }
-    },
-    app() {
-        debugger;
     }
+    
 });

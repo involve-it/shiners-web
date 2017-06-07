@@ -12,8 +12,7 @@ export default Marionette.AppRouter.extend({
     appRoutes: {
         '':'index',
         'mobileIndex':'mobileIndex',
-        'posts/new':'createPost',
-        'app':'appRedirect',
+        'posts/new':'createPost',        
         //'Posts/new':'createPost',
         //'Posts/New':'createPost',
         'posts/my':'postsMy',
@@ -41,7 +40,7 @@ export default Marionette.AppRouter.extend({
         'blog': 'blogHome',
         'blog/post/:id': 'blogPostId',
         //marketing landing pages:
-        'app': 'app'
+        'app':'appRedirect',
     },
 
     policy: {
