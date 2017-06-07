@@ -40,6 +40,8 @@ export default Marionette.AppRouter.extend({
         //blog:
         'blog': 'blogHome',
         'blog/post/:id': 'blogPostId',
+        //marketing landing pages:
+        'app': 'app'
     },
 
     policy: {
