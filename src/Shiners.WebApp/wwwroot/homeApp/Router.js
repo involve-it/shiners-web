@@ -13,6 +13,7 @@ export default Marionette.AppRouter.extend({
         '':'index',
         'mobileIndex':'mobileIndex',
         'posts/new':'createPost',
+        'app':'appRedirect',
         //'Posts/new':'createPost',
         //'Posts/New':'createPost',
         'posts/my':'postsMy',
