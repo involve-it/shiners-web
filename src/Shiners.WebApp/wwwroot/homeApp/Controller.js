@@ -170,8 +170,10 @@ export default Marionette.Object.extend({
     // BLOG:
     blogHome() {
         var posts = new AsteroidCollection(null, {asteroid: app.asteroid, comparator: 'createdAt'});
+        
         //app.layout.showChildView('content', new BlogHomeView({ collection: [] }));
         posts.loadByMethod('bz.blog.getPosts', {}, () => {
+            debugger;
             (posts.length === 0) ? app.layout.showChildView('content', new EmptyBlogHomeView({})) : app.layout.showChildView('content', new BlogHomeView({ collection: posts }));
         });
     },
