@@ -28,6 +28,7 @@ var json = {
     DELETE_POST: 'Delete post',
     TITLE_YES: 'Yes',
     TITLE_NO: 'NO',
+    REDIRECT_DOWNLOAD_FOR: 'Download for',
 
     // banner
     shiners_are: 'SHINERS - ARE',
