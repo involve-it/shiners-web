@@ -26,6 +26,7 @@ var json = {
     DELETE_POST: 'Удалить пост',
     TITLE_YES: 'Да',
     TITLE_NO: 'Нет',
+    REDIRECT_DOWNLOAD_FOR: 'Загрузить для',
 
     // BANNER
     shiners_are: 'СВЕТЛЯЧКИ - ЭТО',

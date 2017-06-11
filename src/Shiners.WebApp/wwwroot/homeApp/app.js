@@ -4,6 +4,7 @@ import i18n from '../js/controllers/templateController.js';
 import '../i18n/en.js';
 import '../i18n/ru.js';
 import '../lib/detectmobile.js';
+import deviceDetect from '../lib/device/device.min.js';
 //import "ddp.js";
 //import Asteroid from '../lib/asteroid.browser.js';
 const AsteroidModule = require('asteroid');
@@ -33,6 +34,7 @@ let App = Marionette.Application.extend({
     user:null,
     postAdTypes:null,
     isMobile:false,
+    device: deviceDetect,
     router:null,
     //iframeLoaded:false,
     FbInitialized:false,

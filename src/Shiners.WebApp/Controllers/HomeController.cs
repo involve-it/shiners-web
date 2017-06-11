@@ -41,6 +41,6 @@ namespace Shiners.WebApp.Controllers
         public IActionResult AppleAppSiteAssociation()
         {
             return File("~/apple-app-site-association", "application/json");
-        }
+        }        
     }
 }

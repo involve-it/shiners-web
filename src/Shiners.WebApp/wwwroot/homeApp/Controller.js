@@ -22,6 +22,8 @@ import AboutView from './about/AboutView.js';
 import MassMediaView from './massMedia/MassMediaView.js';
 import HowItWorksView from './howItWorks/HowItWorksView.js';
 import FogotPasswordView from './account/FogotPasswordView.js';
+import RedirectPage from './redirectPage/redirectPage.js';
+
 
 import LegalUserAgreementView from './legal/legalUserAgreementView';
 import LegalConfidentialView from './legal/legalConfidentialView';
@@ -50,6 +52,10 @@ export default Marionette.Object.extend({
         app.myPosts.loadByMethod('getMyPosts', {skip: 0, take: 100, type: 'all'}, () => {
             app.layout.showChildView('content', new PostsMytView({collection: app.myPosts}));
         });
+    },
+
+    appRedirect() {
+        app.layout.showChildView('content', new RedirectPage());
     },
 
     postDetails(id) {
@@ -165,8 +171,10 @@ export default Marionette.Object.extend({
     // BLOG:
     blogHome() {
         var posts = new AsteroidCollection(null, {asteroid: app.asteroid, comparator: 'createdAt'});
+        
         //app.layout.showChildView('content', new BlogHomeView({ collection: [] }));
         posts.loadByMethod('bz.blog.getPosts', {}, () => {
+            debugger;
             (posts.length === 0) ? app.layout.showChildView('content', new EmptyBlogHomeView({})) : app.layout.showChildView('content', new BlogHomeView({ collection: posts }));
         });
     },
@@ -178,8 +186,6 @@ export default Marionette.Object.extend({
                 app.layout.showChildView('content', new BlogPostIdView({ model: post }));
             });
         }
-    },
-    app() {
-        debugger;
     }
+    
 });

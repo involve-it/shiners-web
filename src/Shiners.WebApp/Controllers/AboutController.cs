@@ -18,5 +18,10 @@ namespace Shiners.WebApp.Controllers
         {
             return View("Index");
         }
+
+        public IActionResult AppRedirect()
+        {
+            return View("Index");
+        }
     }
 }
