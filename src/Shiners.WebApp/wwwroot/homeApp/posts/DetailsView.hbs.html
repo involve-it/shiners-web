@@ -22,7 +22,7 @@
                             {{ } }}
                         </div>
 
-                        {{if (obj.currentUser._id === user._id) { }}
+                        {{ if (obj.currentUser && (obj.currentUser._id === user._id)) { }}
                             <div class="sh-post-toolbar">
                                 <div class="sh-post-toolbar-item">
                                     <a class="ui sh-button small js-edit-post disabled">{{=i18n('EDIT_POST')}}</a>
