@@ -94,7 +94,7 @@ var json = {
     search_not_found: 'No posts found around',
 
     // ABOUT US
-    about_intro_text: 'Shiners is a tool that helps people around to cooperate with each other. We will show you people ads around with a link to the person and his location.  Yor new friends, Clients, partners are nearby and ready to meet you',
+    about_intro_text: 'Shiners - is the first and only tool for searching among people. The uniqueness of Shiners - ads, bound to a real person and his dynamic location',
     about_intro_duration: 'Duration',
     about_intro_duration_minute: 'min.',
     about_menu_how_it_works: 'How does it work?',
