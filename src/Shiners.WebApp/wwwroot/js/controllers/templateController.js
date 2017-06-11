@@ -41,6 +41,14 @@ Object.assign(i18n, {
             $('tran').each(function() {
                 $(this).translate(lang);
             });
+
+            $('[data-i18n-name]').each(function() {
+                var attr = $(this).attr('data-i18n-name');
+                var key = $(this).attr('data-i18n-key');
+                var newText = dataGlobal[lang][key];
+                $(this).attr(attr, newText);
+
+            });
         })
     },
     add: function(lang, data) {
@@ -68,6 +76,19 @@ Object.assign(i18n, {
         var dataLang = dataGlobal[lang];
         if (name && dataLang) {
             ret = dataLang[name];
+        }
+        return ret;
+    },
+
+    setI18nAttribute(attr, key ) {
+        var ret, lang = i18n.getLanguage();
+        var dataLang = dataGlobal[lang];
+
+       var template = function(attr, key, value) { return ` data-i18n-name="${ attr }" data-i18n-key="${ key }" ${attr}="${ value }" `};
+
+        if (key && dataLang) {
+            ret = dataLang[key];
+            ret = template(attr, key, ret);
         }
         return ret;
     }
