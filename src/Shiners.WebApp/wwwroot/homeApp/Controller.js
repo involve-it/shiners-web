@@ -39,8 +39,6 @@ import app from './app.js';
 export default Marionette.Object.extend({
 
     index() {
-        debugger;
-
         app.layout.showChildView('content', new IndexView());
     },
 
@@ -62,7 +60,6 @@ export default Marionette.Object.extend({
         app.layout.showChildView('content', new PreloaderView());
         var post = new AsteroidModel({_id: id}, {asteroid: app.asteroid});
         post.loadByMethod('getPost', null, () => {
-            //window.detailsPost = post; // debug
             app.layout.showChildView('content', new PostDetailsView({model: post}));
         });
     },
@@ -171,10 +168,8 @@ export default Marionette.Object.extend({
     // BLOG:
     blogHome() {
         var posts = new AsteroidCollection(null, {asteroid: app.asteroid, comparator: 'createdAt'});
-        
         //app.layout.showChildView('content', new BlogHomeView({ collection: [] }));
-        posts.loadByMethod('bz.blog.getPosts', {}, () => {
-            debugger;
+        posts.loadByMethod('bz.blog.getPosts', [], () => {
             (posts.length === 0) ? app.layout.showChildView('content', new EmptyBlogHomeView({})) : app.layout.showChildView('content', new BlogHomeView({ collection: posts }));
         });
     },
