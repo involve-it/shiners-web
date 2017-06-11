@@ -8,8 +8,8 @@
 .DS_Store
 
 
-wwwroot/bundle.js
-wwwroot/bundle.js.map
+wwwroot/build/bundle.js
+wwwroot/build/bundle.js.map
 wwwroot/_references.js
 
 node_modules
