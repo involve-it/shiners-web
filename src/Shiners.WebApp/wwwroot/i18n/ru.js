@@ -27,6 +27,7 @@ var json = {
     TITLE_YES: 'Да',
     TITLE_NO: 'Нет',
     REDIRECT_DOWNLOAD_FOR: 'Загрузить для',
+    SEARCH_PEOPLE_TEXT: '- поиск по людям',
 
     // BANNER
     shiners_are: 'SHINERS - ЭТО',
@@ -57,6 +58,7 @@ var json = {
     footer_menu_privacy_policy: 'Политика конфиденциальности',
     footer_disclaimer_text: 'Использование сайта, в том числе создание Светлячков (постов), означает согласие с ',
     footer_disclaimer_text2: 'пользовательским соглашением',
+    footer_disclaimer_text3: 'Использование материалов SHINERS, возможно только при наличии активной ссылки на первоисточник.',
     footer_all_rights_reserved: 'SHINERS 2017, Все права защищены',
     footer_menu_post_publishing_rules: 'Правила размещения рекламных объявлений',
 

@@ -8,7 +8,7 @@ var View = Marionette.View.extend({
     template:template,
 
     initialize() {
-        console.log('-> MODEL: ', this.model.toJSON());
+        //console.log('-> MODEL: ', this.model.toJSON());
     },
 
     onBeforeRender() {

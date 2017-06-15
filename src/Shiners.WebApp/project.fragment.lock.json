@@ -5,17 +5,17 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.5.2",
       "compile": {
-        "bin/Release/Shiners.Models.dll": {}
+        "bin/Debug/Shiners.Models.dll": {}
       },
       "runtime": {
         "../packages/DotNetOpen.PrerenderModule.1.0.4/lib/net40/DotNetOpen.PrerenderModule.dll": {},
         "../packages/Microsoft.Web.Infrastructure.1.0.0.0/lib/net40/Microsoft.Web.Infrastructure.dll": {},
         "../packages/MongoDB.Bson.2.4.0/lib/net45/MongoDB.Bson.dll": {},
         "../packages/System.Runtime.InteropServices.RuntimeInformation.4.3.0/lib/net45/System.Runtime.InteropServices.RuntimeInformation.dll": {},
-        "bin/Release/Shiners.Models.dll": {}
+        "bin/Debug/Shiners.Models.dll": {}
       },
       "contentFiles": {
-        "bin/Release/Shiners.Models.pdb": {
+        "bin/Debug/Shiners.Models.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true
@@ -26,7 +26,7 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.5.2",
       "compile": {
-        "bin/Release/Shiners.Repository.dll": {}
+        "bin/Debug/Shiners.Repository.dll": {}
       },
       "runtime": {
         "../packages/DotNetOpen.PrerenderModule.1.0.4/lib/net40/DotNetOpen.PrerenderModule.dll": {},
@@ -36,10 +36,10 @@
         "../packages/MongoDB.Driver.Core.2.4.0/lib/net45/MongoDB.Driver.Core.dll": {},
         "../packages/System.Runtime.InteropServices.RuntimeInformation.4.3.0/lib/net45/System.Runtime.InteropServices.RuntimeInformation.dll": {},
         "../packages/mongocsharpdriver.2.4.0/lib/net45/MongoDB.Driver.Legacy.dll": {},
-        "bin/Release/Shiners.Repository.dll": {}
+        "bin/Debug/Shiners.Repository.dll": {}
       },
       "contentFiles": {
-        "bin/Release/Shiners.Repository.pdb": {
+        "bin/Debug/Shiners.Repository.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true

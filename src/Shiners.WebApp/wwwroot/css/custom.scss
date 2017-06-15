@@ -1165,6 +1165,14 @@ input[type=radio] + label {
                         color: $sh-white-color;
                         font-size: 28px;
                         padding-left: 0;
+
+                        .sh-logo-header-subtext {
+                            font-size: 12px;
+                            margin-top: -2px;
+                            padding-left: 44px;
+                            font-weight: 400;
+                            text-transform:capitalize uppercase;
+                        }
                     }
                 }
 
@@ -1173,6 +1181,7 @@ input[type=radio] + label {
                     width: 100%;
                     cursor: pointer;
                     padding-left: 8px;
+                    padding-top: 6px;
 
                     .white-link {
                         color: $sh-white-color;
@@ -1334,7 +1343,8 @@ input[type=radio] + label {
       text-transform: uppercase;
       font-family: 'Roboto', sans-serif;
       @include sh-display-flex();
-      @include sh-align-items(center);
+      @include sh-align-items(flex-start);
+      @include sh-flex-direction(column);
 
         img {
             margin-right: 8px;
@@ -1968,7 +1978,6 @@ input[type=radio] + label {
 
         &.footer-section-nav {
         padding-top: 25px;
-        padding-bottom: 25px;
         margin-bottom: 25px;
         border-top: 1px solid rgba(255,255,255, .1);
         }
@@ -2019,7 +2028,6 @@ input[type=radio] + label {
 
     .sh-usage-text {
       padding: 0;
-      margin: 0 0 6px 0;
       color: $sh-footer-text-color;
     }
 
@@ -2034,6 +2042,60 @@ input[type=radio] + label {
     .sh-store-link {
       margin-top: 10px;
       display: inline-block;
+    }
+
+    .sh-social-groups {
+        margin: 16px 0;
+
+        .social-group {
+            display: inline-block;
+            @include border-radius(2px);
+            width: 152px;
+            height: 42px;
+            margin: 7px 10px 7px 0;
+            position: relative;
+            font-size: 14px;
+            line-height: 42px; 
+
+            &:last-child {
+                margin-right: 0;
+            }
+            
+            i {
+                font-size: 16px;
+                @include sh-display-flex();
+                margin: 0px 10px;
+                float: left;
+                width: 16px;
+                height: 100%;
+                text-align: center;
+                @include sh-align-items(center);
+            }           
+
+            .social-group-text {
+                white-space: nowrap;
+                overflow: hidden;
+                -ms-text-overflow: ellipsis;
+                -o-text-overflow: ellipsis;
+                text-overflow: ellipsis;
+                margin: 0 36px 0 10px;
+                display: block;
+                overflow: hidden;
+            }
+
+            &.social-group-vk {
+                background-color: rgb(94, 130, 172);
+                &:hover {
+                    background-color: rgb(121, 151, 186);
+                }
+            }
+            &.social-group-fb {
+                background-color: rgb(62, 87, 168);
+                &:hover {
+                    background-color: rgb(80, 106, 191);
+                }
+            }
+        }
     }
 
     .sh-social-link {
@@ -2061,6 +2123,7 @@ input[type=radio] + label {
 
         .sh-choose-language {
             padding-right: 30px;
+            padding-left: 15px;
 
             #chooseLanguage {
                 background: rgba(255, 255, 255, .1);
@@ -2071,6 +2134,10 @@ input[type=radio] + label {
                 option {
                     color: $sh-main-gray-color;
                 }
+            }
+
+            > * {
+                margin: 16px 0;
             }
         }
   }

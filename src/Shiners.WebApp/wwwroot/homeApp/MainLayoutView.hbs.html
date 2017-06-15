@@ -10,8 +10,8 @@
 					<div class="sh-header-topline-item">
                         <div class="sh-header-navbar-logo">
                             <a class="sh-logo-header" href="/">
-                                <img src="/images/sh-logo.png" alt="logotype Shiners" height="35" width="35" /> <span>{{=i18n('SITE_NAME')}}</span>
-								<span class="sh-header-small-text" style="font-size: medium;"> - Поиск по людям</span>
+                                <div><img src="/images/sh-logo.png" alt="logotype Shiners" height="35" width="35" /> <span>{{=i18n('SITE_NAME')}}</span></div>
+								<div class="sh-logo-header-subtext">{{=i18n('SEARCH_PEOPLE_TEXT')}}</div>
                             </a>
 
                         </div>
@@ -162,16 +162,31 @@
 
 		<!--3-->
 		<div class="row">
-            <div class="sh-footer-bottom">
+            <div class="sh-footer-bottom">                
                 <div class="sh-choose-language">
                     <select id="chooseLanguage">
                         <option value="ru">Русский</option>
                         <option value="en">English</option>
                     </select>
-                </div>
-                <div class="col-xs-12 sh-copyright">
+                    <!--<p class="sh-usage-text">{{=i18n('footer_disclaimer_text3')}}</p>-->
                     <p class="sh-usage-text">{{=i18n('footer_disclaimer_text')}}<a href="/legal/user-agreement">{{=i18n('footer_disclaimer_text2')}}</a>.</p>
-                    <p class="margin-bottom-0">&#169; {{=i18n('footer_all_rights_reserved')}} </p>
+                    <p class="sh-copyright">&#169; {{=i18n('footer_all_rights_reserved')}} </p>
+                </div>
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <div class="sh-social-groups">
+                                <a href="https://vk.com/shinersnews" title="Присоединяйтесь к нам во Вконтакте" target="_blank" class="social-group social-group-vk">
+                                    <i class="fa fa-vk" aria-hidden="true"></i>
+                                    <span class="social-group-text">Вконтакте</span>
+                                </a>
+                                <a href="https://www.facebook.com/shinersapp/" title="Присоединяйтесь к нам в Facebook" target="_blank" class="social-group social-group-fb">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    <span class="social-group-text">Facebook</span>
+                                </a>                            
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 		</div>
