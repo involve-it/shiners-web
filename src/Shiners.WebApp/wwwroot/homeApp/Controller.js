@@ -8,6 +8,7 @@ import UserModel from '../data/Domain/User.js';
 import Post from '../data/Post/PostModel.js'
 //import Collection from '../data/AsteroidCollection.js';
 import PreloaderView from '../sharedViews/PreloaderView.js';
+import PreloaderInnerView from '../sharedViews/PreloaderInnerView.js';
 import CreatePostView from './posts/create/CreatePostView.js';
 
 import PostsMytView from './posts/postsMy/PostsMyView.js';
@@ -47,6 +48,7 @@ export default Marionette.Object.extend({
     },
 
     postsMy(){
+        app.layout.showChildView('content', new PreloaderInnerView());
         app.myPosts.loadByMethod('getMyPosts', {skip: 0, take: 100, type: 'all'}, () => {
             app.layout.showChildView('content', new PostsMytView({collection: app.myPosts}));
         });
@@ -91,10 +93,12 @@ export default Marionette.Object.extend({
     },
 
     about() {
+        app.layout.showChildView('content', new PreloaderInnerView());
         app.layout.showChildView('content', new AboutView());
     },
 
     massMedia() {
+        app.layout.showChildView('content', new PreloaderInnerView());
         app.layout.showChildView('content', new MassMediaView());
     },
 
@@ -103,6 +107,7 @@ export default Marionette.Object.extend({
     },
 
     chatsMy(){
+        app.layout.showChildView('content', new PreloaderInnerView());
         app.myChats.loadByMethod('getChats', {skip: 0, take: 100}, (res) => {
             app.layout.showChildView('content', new ChatsMyView({collection: app.myChats}));
         });
@@ -112,7 +117,7 @@ export default Marionette.Object.extend({
         //app.layout.showChildView('content', new PreloaderView());
         //var chatModel = new Backbone.Model({ _id:id });
         //app.layout.showChildView('content', new ChatIdView( {model: chatModel } ));
-        app.layout.showChildView('content', new PreloaderView());
+        app.layout.showChildView('content', new PreloaderInnerView());
         var messages = new AsteroidCollection(null, {asteroid: app.asteroid, comparator: 'timestamp'});
         var remoteUser = new AsteroidModel({_id: remoteUserId}, {asteroid: app.asteroid});
         messages.loadByMethod('getMessages', {chatId: chatId, skip: 0, take: 20}, () => {
@@ -128,7 +133,7 @@ export default Marionette.Object.extend({
     },
 
     messagesTo(remoteUserId, postId) {
-        app.layout.showChildView('content', new PreloaderView());
+        app.layout.showChildView('content', new PreloaderInnerView());
         if (app.asteroid.loggedIn) {
             var remoteUser = new AsteroidModel({_id: remoteUserId}, {asteroid: app.asteroid});
             app.asteroid.call('bz.chats.createChatIfFirstMessage', app.user.id, remoteUserId).then((chatId) => {
@@ -167,6 +172,7 @@ export default Marionette.Object.extend({
 
     // BLOG:
     blogHome() {
+        app.layout.showChildView('content', new PreloaderInnerView());
         var posts = new AsteroidCollection(null, {
             asteroid: app.asteroid,            
             comparator: function(a, b) {
@@ -184,7 +190,7 @@ export default Marionette.Object.extend({
     },
 
     blogPostId(id) {
-        app.layout.showChildView('content', new PreloaderView());
+        app.layout.showChildView('content', new PreloaderInnerView());
         if (id) {
             app.asteroid.call('bz.blog.getPostById', id).then((post) => {
                 app.layout.showChildView('content', new BlogPostIdView({ model: post }));

@@ -44,7 +44,7 @@ let App = Marionette.Application.extend({
     },
     initialize() { 
         /* web server */ 
-        console.log(AsteroidModule);
+        //console.log(AsteroidModule);
         var Asteroid = AsteroidModule.createClass();
         this.asteroid = new Asteroid({
             endpoint: 'wss://shiners.mobi/websocket',
