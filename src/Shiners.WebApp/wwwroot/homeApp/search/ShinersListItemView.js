@@ -7,9 +7,7 @@ var View = Marionette.View.extend({
     tagName:'div',
     template:template,
 
-    initialize() {
-        
-    },
+    initialize() {   },
 
     onBeforeRender() {
         this.setModelDistance();

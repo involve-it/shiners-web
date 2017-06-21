@@ -38,8 +38,8 @@ var View = Marionette.View.extend({
     },
 
     modelEvents: {
-        'change':'toggleCreateButton',
-        'save':'showSuccess',
+        'change' : 'toggleCreateButton',
+        'save' : 'showSuccess',
         'error:save':'showError'
     },
 

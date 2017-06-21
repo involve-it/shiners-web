@@ -6,7 +6,7 @@
             <span class="label bg-type-category-{{=type}}">{{=type}}</span>
         {{ } }} 
         <span class="sh-shiners-list-time">
-            {{=moment(timestamp).fromNow()}}          
+            {{=moment(obj.timestamp.$date).fromNow()}}          
         </span>
         <span>
             {{if(obj.distance && obj.distanceType){ }}

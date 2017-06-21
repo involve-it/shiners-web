@@ -58,6 +58,17 @@ export default Model.extend({
                 }
             });
         }
+
+        if (resp.success) {
+            self.set('_id', resp.result, options);
+            if(!options || !options.silent)
+                self.trigger('save', resp);
+        } else {
+            if(!options || !options.silent)
+                self.trigger('error:save', resp.error);
+            throw new Error("Creating post error: " + resp.error);
+        }
+
         });
          /*
         return this.asteroid.call('addPost', this.attributes, postPosition).result.then((resp) => {
