@@ -28,15 +28,15 @@ var View = Marionette.View.extend({
     },       
 
     regions: {
-        'related':'#relatedPostsContainer',
+        //'related':'#relatedPostsContainer',
         'comments': '#sh-comments'
     },
 
     initialize() {
-        window.postDetails = this.model.toJSON(); //debug
+        //window.postDetails = this.model.toJSON(); //debug
         this.collection = new Collection(null,{asteroid:this.model.asteroid});
         this.comments = new Collection(null, {asteroid: this.model.asteroid});
-        this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
+        //this.listenTo(this.collection, 'after:load', this.showRelatedPosts);
         this.listenTo(app.user,'login',this.render);
         this.listenTo(app.user, 'logout', this.render);
         this.listenTo( this.comments, 'after:load', this.initCommentsCount);

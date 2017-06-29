@@ -59,7 +59,7 @@
                                 </div>
 
                                 <ul class="sh-post-info sh-with-dotted">
-                                    {{if(obj.stats.seenTotal) { }}
+                                    {{if(obj.stats && obj.stats.seenTotal) { }}
                                     <li><div><span class="sh-item">{{=i18n('post_d_views')}}</span><span class="sh-item-right">{{=stats.seenTotal}}</span></div></li>
                                     {{ } }}
                                     <!--{{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}-->
@@ -183,7 +183,7 @@
                                 <span>{{=i18n('post_d_summary_information')}}</span>
                             </div>
                             <ul class="sh-post-info sh-with-dotted">
-                                {{if(obj.stats.seenTotal) { }}
+                                {{if(obj.stats && obj.stats.seenTotal) { }}
                                 <li><div><span class="sh-item">{{=i18n('post_d_views')}}</span><span class="sh-item-right">{{=stats.seenTotal}}</span></div></li>
                                 {{ } }}
                                 <!--{{var isDynamic = details.locations && _.find(details.locations,function(l){ return l.placeType==='dynamic';} );}}-->

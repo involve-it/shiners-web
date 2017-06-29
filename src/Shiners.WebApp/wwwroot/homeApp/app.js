@@ -46,14 +46,15 @@ let App = Marionette.Application.extend({
         /* web server */ 
         //console.log(AsteroidModule);
         var Asteroid = AsteroidModule.createClass();
-        this.asteroid = new Asteroid({
-            endpoint: 'wss://shiners.mobi/websocket',
+        //this.asteroid = new Asteroid({
+        //    endpoint: 'wss://shiners.mobi/websocket',
 
-        })
+        //});
         //this.asteroid = new Asteroid("www.shiners.mobi", true);
 
         ///* local server */
-        ////this.asteroid = new Asteroid("192.168.1.38:3000", false);
+        //this.asteroid = new Asteroid("192.168.1.49:3000", false);
+        this.asteroid = new Asteroid({endpoint: 'ws://192.168.1.49:3000/websocket'})
 
         //window.asteroid = this.asteroid; // debug        
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
