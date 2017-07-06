@@ -1,7 +1,6 @@
 ﻿
 <!-- POST ITEM -->
-{{ if (_.size(obj.images) > 1) { }}
- <!-- OWL SLIDER -->
+<!--{{ if (_.size(obj.images) > 1) { }}
 <div id="sh-blog-carousel-{{=obj.id}}" class="owl-carousel buttons-autohide controlls-over" data-plugin-options='{"items": 1, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}'>
     {{_.each(obj.images, function(image){ }}
     <div>
@@ -9,15 +8,13 @@
     </div> 
     {{});}}   
 </div>
-<!-- /OWL SLIDER -->
 {{ } else { }}
-    <!-- IMAGE -->
     {{ if(images && images[0].src) { }}
     <figure class="margin-bottom-20">
         <img class="img-responsive" src="{{=obj.images[0].src}}" alt="{{=obj.images[0].alt}}">
     </figure>
     {{ } }}
-{{ } }}
+{{ } }}-->
 
 <div class="">
     <h2><a href="blog/post/{{=id}}">{{= obj.title}}</a></h2>
