@@ -47,8 +47,8 @@ var View = Marionette.View.extend({
     },
 
     onAttach() {
-        this.initMap();
-    },
+        this.initMap();        
+    },    
 
     getShinerUrlPin(model) {
         var details = model.get('details');

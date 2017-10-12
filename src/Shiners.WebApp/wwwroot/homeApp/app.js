@@ -214,6 +214,13 @@ let App = Marionette.Application.extend({
         document.cookie = updatedCookie;
     },
 
+    getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    },
+
     destroyUser() {
         this.user.unset('_id');
         this.user.unset('id',{silent:true});

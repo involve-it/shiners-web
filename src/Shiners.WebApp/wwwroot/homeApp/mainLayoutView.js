@@ -6,6 +6,8 @@ import MapView from './MapView.js';
 import BannerView from './BannerView.js';
 import UserBarView from './UserBarView.js';
 import NavLocationView from './NavLocationView.js';
+import MarketingView from '../sharedViews/ModalContainerView.js'
+import MessagesView from '../sharedViews/MessagesView.js'
 import app from './app.js';
 import IframeView from './shared/iframeView.js';
 import UserMenuView from './layout/userMenuView';
@@ -52,12 +54,30 @@ var View = Marionette.View.extend({
         this.listenTo(app.router,'route',this.toggleMapAndBanner);
         //this._adaptUiIfIsIframe();
         //this.listenTo(app.user, 'receivedMeteorUser', this._toggleUserInfo);
-        //this._loadIframeView();
+        //this._loadIframeView();  
     },    
 
     onAttach() {
         this.onClickLink();
-        this.changeSelectlanguage();
+        this.changeSelectlanguage();    
+        this.showModalMarketing();
+    },
+
+    showModalMarketing() {
+        if (!app.getCookie('marketing')) {
+            setTimeout(()=> {            
+                this.showChildView('modal',new MarketingView({
+                    view:new MessagesView({
+                        title:'ЗАГОЛОВОК ДЛЯ СООБЩЕНИЯ.',
+                        message:'Тут типа будет маркетинговое сообщение для юзеров или лузеров ))'
+                    }),
+                    title:'ГЛАВНЫЙ ЗАГОЛОВОК!'
+                }) );
+                
+                app.setCookie('marketing', true);
+
+            }, 5000);
+        }
     },
 
     changeSelectlanguage() {
@@ -142,7 +162,7 @@ var View = Marionette.View.extend({
         app.setCookie('language', lang, {expires: 31536000, path: '/'});
         app.i18n.setLanguage(lang);        
         app.trigger('change:language', lang);
-    },    
+    },
 
     _toggleUserInfo(user) {
         var view = new UserMenuView({ 

@@ -15,7 +15,7 @@ var View = Marionette.View.extend({
         console.log(thatLink);
         window.setTimeout(function() {
             window.location.replace(thatLink);
-        }, 5000);
+        }, 10);
     }
 });
 
