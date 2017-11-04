@@ -46,10 +46,7 @@ let App = Marionette.Application.extend({
         /* web server */ 
         //console.log(AsteroidModule);
         var Asteroid = AsteroidModule.createClass();
-        this.asteroid = new Asteroid({
-            endpoint: 'wss://shiners.mobi/websocket',
-
-        });
+        this.asteroid = new Asteroid({endpoint: 'wss://shiners.mobi/websocket'});
 
         //this.asteroid = new Asteroid("www.shiners.mobi", true);
 
@@ -57,7 +54,7 @@ let App = Marionette.Application.extend({
         //this.asteroid = new Asteroid("192.168.1.49:3000", false);
         //this.asteroid = new Asteroid({endpoint: 'ws://192.168.1.49:3000/websocket'})
 
-        //window.asteroid = this.asteroid; // debug        
+        window.asteroid = this.asteroid; // debug        
         this.user = new AsteroidModel(null,{asteroid:this.asteroid});
         this.postAdTypes = new Collection(null, { asteroid: this.asteroid });
         this.myPosts = new Collection(null, { asteroid: this.asteroid });  
@@ -169,11 +166,12 @@ let App = Marionette.Application.extend({
         });
     },
 
-    registerUser(accountData) {
+    registerUser(options) {
         const asteroidInstance = this.asteroid;
-        this.asteroid.createUser(accountData).catch((error) => {
-            asteroidInstance.trigger('bz:onRegisterError', error);
-        });
+        this.asteroid.createUser(options)            
+            .catch((error) => {
+                asteroidInstance.trigger('bz:onRegisterError', error);
+            });
     },
 
     initUser(userId) {
